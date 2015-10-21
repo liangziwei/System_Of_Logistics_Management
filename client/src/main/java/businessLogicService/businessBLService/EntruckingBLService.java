@@ -1,5 +1,7 @@
 package businessLogicService.businessBLService;
 
-public interface EntruckingBLService {
+import vo.businessVO.EntruckingVO;
 
+public interface EntruckingBLService {
+      public boolean addEntruckingFrom(EntruckingVO entruckingVO);
 }
