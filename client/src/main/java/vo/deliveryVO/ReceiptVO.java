@@ -1,13 +1,24 @@
 package vo.deliveryVO;
 
+/**
+ * 记录了收件的信息
+ * @author 肖安祥
+ */
 public class ReceiptVO {
 	
-//	订单条形码号、收件人姓名、收件日期
-	
+	/**
+	 * 订单条形码号
+	 */
 	private String orderID;
 	
+	/**
+	 * 收件人姓名
+	 */
 	private String name;
 	
+	/**
+	 * 收件日期
+	 */
 	private String date;
 
 	public ReceiptVO(String orderID, String name, String date) {
@@ -17,16 +28,27 @@ public class ReceiptVO {
 		this.date = date;
 	}
 
-	String getOrderID() {
+	public String getOrderID() {
 		return orderID;
 	}
 
-	String getName() {
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
+	}
+
+	public String getName() {
 		return name;
 	}
 
-	String getDate() {
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDate() {
 		return date;
 	}
 
+	public void setDate(String date) {
+		this.date = date;
+	}
 }

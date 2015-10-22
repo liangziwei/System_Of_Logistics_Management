@@ -1,89 +1,114 @@
 package vo.deliveryVO;
 
-public class GoodsInfo {
+import java.util.List;
 
-//	原件数、实际重量、内件品名、尺寸），
-//	包装类型（纸箱、木箱、快递袋、其它，系统默认显示快递袋），
-//	快递类型（经济快递、标准快递、特快，系统默认显示经济快递），
-//	订单条形码号（10位，系统自动生成）），
-//	订单的创建日期，
-//	货物所在站点（寄件人营业厅、寄件人中转中心、收件人营业厅、收件人中转中心，收件人手中）
-//	当前所在城市
+/**
+ * 记录了快递的货物信息
+ * @author 肖安祥
+ */
+public class GoodsInfo {
 	
-	private int goodsNumber;
-	
+	/**
+	 * 重量
+	 */
 	private double weight;
 	
-	private String name;
+	/**
+	 * 物品名称
+	 */
+	private List<String> names;
 	
+	/**
+	 * 尺寸（长*宽*高）
+	 */
 	private String size;
 	
+	/**
+	 * 包装类型（纸箱、木箱、快递袋、其它，系统默认显示快递袋）
+	 */
 	private String packageType;
 	
+	/**
+	 * 快递类型（经济快递、标准快递、特快，系统默认显示经济快递）
+	 */
 	private String deliveryType;
 	
-	private String orderID;
-	
+	/**
+	 * 订单的创建日期（yyyy-mm-dd）
+	 */
 	private String date;
 	
+	/**
+	 * 货物所在站点（寄件人营业厅、寄件人中转中心、收件人营业厅、收件人中转中心，收件人手中）
+	 */
 	private String transitNode;
-	
-	private String location;
 
-	public GoodsInfo(int goodsNumber, double weight, String name, String size,
-			String packageType, String deliveryType,String orderID, 
-			String date, String transitNode, String location) {
+	public GoodsInfo(double weight, List<String> names, String size,
+			String packageType, String deliveryType, String date,
+			String transitNode) {
 		super();
-		this.goodsNumber = goodsNumber;
 		this.weight = weight;
-		this.name = name;
+		this.names = names;
 		this.size = size;
 		this.packageType = packageType;
 		this.deliveryType = deliveryType;
-		this.orderID = orderID;
 		this.date = date;
 		this.transitNode = transitNode;
-		this.location = location;
 	}
 
-	int getGoodsNumber() {
-		return goodsNumber;
-	}
-
-	double getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	String getName() {
-		return name;
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
 
-	String getSize() {
+	public List<String> getNames() {
+		return names;
+	}
+
+	public void setNames(List<String> names) {
+		this.names = names;
+	}
+
+	public String getSize() {
 		return size;
 	}
 
-	String getPackageType() {
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public String getPackageType() {
 		return packageType;
 	}
 
-	String getDeliveryType() {
+	public void setPackageType(String packageType) {
+		this.packageType = packageType;
+	}
+
+	public String getDeliveryType() {
 		return deliveryType;
 	}
 
-	String getOrderID() {
-		return orderID;
+	public void setDeliveryType(String deliveryType) {
+		this.deliveryType = deliveryType;
 	}
 
-	String getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	String getTransitNode() {
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getTransitNode() {
 		return transitNode;
 	}
 
-	String getLocation() {
-		return location;
+	public void setTransitNode(String transitNode) {
+		this.transitNode = transitNode;
 	}
-	
 }
