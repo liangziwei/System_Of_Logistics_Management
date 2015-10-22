@@ -1,7 +1,9 @@
 package businessLogicService.repositoryBLService;
 
-import vo.outRepositoryVO.OutRepositoryVO;
-import vo.transferringVO.TransferringInfoVO;
+import java.util.List;
+
+import vo.repositoryVO.OutRepositoryVO;
+import vo.transitionVO.TransferringVO;
 
 /**
  * description:业务逻辑层为中转中心仓库出库信息界面提供的服务
@@ -33,7 +35,7 @@ public interface OutRepositoryBLService {
 	/**
 	 * description:查看中转单列表信息
 	 * @param 
-	 * @return TransferringInfoVO, 返回中转单列表信息的值对象，具体参照TransferringInfoVO
+	 * @return List<TransferringVO>, 返回中转单列表信息的值对象，具体参照TransferringVO
 	 * */
-	public TransferringInfoVO GetTransferringInfo();
+	public List<TransferringVO> GetTransferringInfo();
 }

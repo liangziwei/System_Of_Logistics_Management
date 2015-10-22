@@ -1,7 +1,9 @@
 package businessLogicService.transitionBLService;
 
-import vo.manageRepositoryVO.RepositoryVO;
-import vo.transferringVO.TransferringVO;
+import java.util.List;
+
+import vo.repositoryVO.RepositoryVO;
+import vo.transitionVO.TransferringVO;
 
 /**
  * description:业务逻辑层为中转中心中转信息界面提供的服务
@@ -10,7 +12,7 @@ import vo.transferringVO.TransferringVO;
 public interface TransferringBLService {
 
 	/**
-	 * description:通过中专单编号得到相应的中转单信息
+	 * description:通过中转单编号得到相应的中转单信息
 	 * @param TransferringNumber ,中转单编号（中转中心编号+日期+0000000七位数字）
 	 * @return TransferringVO, 返回中转单信息的值对象，具体参照TransferringVO的定义
 	 * */
@@ -41,7 +43,7 @@ public interface TransferringBLService {
 	/**
 	 * description:查看库存信息
 	 * @param 
-	 * @return RepositoryVO, 返回仓库的库存信息的值对象，具体参照RepositoryVO
+	 * @return List<RepositoryVO>, 返回仓库的库存信息的值对象，具体参照RepositoryVO
 	 * */
-	public RepositoryVO getRepositoryInfo();
+	public List<RepositoryVO> getRepositoryInfo();
 }

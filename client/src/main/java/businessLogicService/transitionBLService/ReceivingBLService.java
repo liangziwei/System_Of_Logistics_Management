@@ -1,6 +1,6 @@
 package businessLogicService.transitionBLService;
 
-import vo.receivingVO.ReceivingVO;
+import vo.transitionVO.ReceivingVO;
 
 /**
  * description:业务逻辑层为中转中心接收货物信息界面提供的服务
