@@ -1,5 +1,5 @@
 package po.deliveryPO;
 
-public class ReceiptOrder {
+public class ReceiptPO {
 
 }
