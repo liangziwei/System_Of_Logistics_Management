@@ -34,6 +34,11 @@ public class GoodsInfo {
 	private String deliveryType;
 	
 	/**
+	 * 订单条形码号（10位数字）
+	 */
+	private long id;
+	
+	/**
 	 * 订单的创建日期（yyyy-mm-dd）
 	 */
 	private String date;
@@ -43,10 +48,11 @@ public class GoodsInfo {
 	 */
 	private String transitNode;
 
-	public GoodsInfo(double weight, List<String> names, String size,
+	public GoodsInfo(long id, double weight, List<String> names, String size,
 			String packageType, String deliveryType, String date,
 			String transitNode) {
 		super();
+		this.id = id;
 		this.weight = weight;
 		this.names = names;
 		this.size = size;
@@ -111,4 +117,13 @@ public class GoodsInfo {
 	public void setTransitNode(String transitNode) {
 		this.transitNode = transitNode;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 }
