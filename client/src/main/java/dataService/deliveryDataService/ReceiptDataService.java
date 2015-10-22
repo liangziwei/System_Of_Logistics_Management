@@ -5,7 +5,7 @@ import po.deliveryPO.ReceiptPO;
 /**
  * description:数据服务层为收件信息逻辑处理提供的服务
  * @author 肖安祥
- * */
+ */
 public interface ReceiptDataService {
 
 	/**

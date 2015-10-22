@@ -1,5 +1,17 @@
 package dataService.senderDataService.InquireDataService;
 
+import po.senderPO.LogisticsPO;
+
+/**
+ * description:数据服务层为物流信息逻辑处理提供的服务
+ * @author 肖安祥
+ */
 public interface InquireDataService {
 
+	/**
+	 * description:通过订单条形码号得到相应的物流信息
+	 * @param id:订单条形码号
+	 * @return LogisticsPO：物流信息的持久化对象，具体参见LogisticsPO的定义
+	 */
+	public LogisticsPO getLogInfoById(String id);
 }
