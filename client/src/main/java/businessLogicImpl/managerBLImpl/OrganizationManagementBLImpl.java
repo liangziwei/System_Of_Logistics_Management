@@ -1,0 +1,7 @@
+package businessLogicImpl.managerBLImpl;
+
+import businessLogicService.managerBLService.OrganizationManagementBLService;
+
+public class OrganizationManagementBLImpl implements OrganizationManagementBLService {
+
+}
