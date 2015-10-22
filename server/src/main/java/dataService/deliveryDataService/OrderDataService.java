@@ -16,7 +16,7 @@ public interface OrderDataService {
 	 * @param id ,订单条形码号（10位数字）
 	 * @return OrderPO, 返回订单信息的持久化对象，具体参照OrdePO的定义
 	 */
-	public OrderPO getOrderInfoById(String id);
+	public OrderPO getOrderInfoById(long id);
 	
 	/**
 	 * description:将订单信息保存

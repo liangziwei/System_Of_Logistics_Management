@@ -12,7 +12,7 @@ import po.deliveryPO.TimeRecordPO;
  */
 public class OrderDataImpl implements OrderDataService{
 
-	public OrderPO getOrderInfoById(String id) {
+	public OrderPO getOrderInfoById(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
