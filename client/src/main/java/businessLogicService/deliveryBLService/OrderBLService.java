@@ -1,5 +1,7 @@
 package businessLogicService.deliveryBLService;
 
+import constant.City;
+import constant.DeliveryType;
 import vo.deliveryVO.OrderVO;
 
 /**
@@ -29,7 +31,7 @@ public interface OrderBLService {
 	 * @param destination 快递的目的地名称
 	 * @return int, 返回时间值（天）
 	 */
-	public int calculateTime(String source, String destination);
+	public int calculateTime(City source, City destination);
 	
 	/**
 	 * description:计算快递的预估费用
@@ -39,6 +41,6 @@ public interface OrderBLService {
 	 * @param destination 快递的目的地名称
 	 * @return double, 返回价格（元）
 	 */
-	public double calculatePrice(int type, double weight, String source, String destination);
+	public double calculatePrice(DeliveryType type, double weight, City source, City destination);
 	
 }

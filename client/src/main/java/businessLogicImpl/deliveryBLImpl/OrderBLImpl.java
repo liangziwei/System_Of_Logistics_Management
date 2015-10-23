@@ -1,6 +1,8 @@
 package businessLogicImpl.deliveryBLImpl;
 
 import businessLogicService.deliveryBLService.OrderBLService;
+import constant.City;
+import constant.DeliveryType;
 import vo.deliveryVO.OrderVO;
 
 /**
@@ -19,12 +21,12 @@ public class OrderBLImpl implements OrderBLService{
 		return false;
 	}
 
-	public int calculateTime(String source, String destination) {
+	public int calculateTime(City source, City destination) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public double calculatePrice(int type, double weight, String source, String destination) {
+	public double calculatePrice(DeliveryType type, double weight, City source, City destination) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
