@@ -1,5 +1,6 @@
 package dataImpl.deliveryDataImpl;
 
+import constant.City;
 import dataService.deliveryDataService.ReceiptDataService;
 import po.deliveryPO.ReceiptPO;
 
@@ -14,7 +15,7 @@ public class ReceiptDataImpl implements ReceiptDataService{
 		return false;
 	}
 
-	public boolean updateTimeRecord(int day, String source, String destination) {
+	public boolean updateTimeRecord(int day, City source, City destination) {
 		// TODO Auto-generated method stub
 		return false;
 	}

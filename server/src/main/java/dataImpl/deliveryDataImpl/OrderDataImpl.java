@@ -2,6 +2,7 @@ package dataImpl.deliveryDataImpl;
 
 import java.util.List;
 
+import constant.City;
 import dataService.deliveryDataService.OrderDataService;
 import po.deliveryPO.OrderPO;
 import po.deliveryPO.TimeRecordPO;
@@ -12,7 +13,7 @@ import po.deliveryPO.TimeRecordPO;
  */
 public class OrderDataImpl implements OrderDataService{
 
-	public OrderPO getOrderInfoById(long id) {
+	public OrderPO getOrderInfoById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -22,7 +23,7 @@ public class OrderDataImpl implements OrderDataService{
 		return false;
 	}
 
-	public List<TimeRecordPO> getTimeRecords(String source, String destination) {
+	public List<TimeRecordPO> getTimeRecords(City source, City destination) {
 		// TODO Auto-generated method stub
 		return null;
 	}

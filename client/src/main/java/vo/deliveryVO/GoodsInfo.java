@@ -2,6 +2,10 @@ package vo.deliveryVO;
 
 import java.util.List;
 
+import constant.DeliveryType;
+import constant.PackageType;
+import constant.TransitionNode;
+
 /**
  * 记录了快递的货物信息
  * @author 肖安祥
@@ -26,17 +30,17 @@ public class GoodsInfo {
 	/**
 	 * 包装类型（纸箱、木箱、快递袋、其它，系统默认显示快递袋）
 	 */
-	private String packageType;
+	private PackageType packageType;
 	
 	/**
 	 * 快递类型（经济快递、标准快递、特快，系统默认显示经济快递）
 	 */
-	private String deliveryType;
+	private DeliveryType deliveryType;
 	
 	/**
 	 * 订单条形码号（10位数字）
 	 */
-	private long id;
+	private String id;
 	
 	/**
 	 * 订单的创建日期（yyyy-mm-dd）
@@ -46,11 +50,11 @@ public class GoodsInfo {
 	/**
 	 * 货物所在站点（寄件人营业厅、寄件人中转中心、收件人营业厅、收件人中转中心，收件人手中）
 	 */
-	private String transitNode;
+	private TransitionNode transitNode;
 
-	public GoodsInfo(long id, double weight, List<String> names, String size,
-			String packageType, String deliveryType, String date,
-			String transitNode) {
+	public GoodsInfo(String id, double weight, List<String> names, String size,
+			PackageType packageType, DeliveryType deliveryType, String date,
+			TransitionNode transitNode) {
 		super();
 		this.id = id;
 		this.weight = weight;
@@ -86,19 +90,19 @@ public class GoodsInfo {
 		this.size = size;
 	}
 
-	public String getPackageType() {
+	public PackageType getPackageType() {
 		return packageType;
 	}
 
-	public void setPackageType(String packageType) {
+	public void setPackageType(PackageType packageType) {
 		this.packageType = packageType;
 	}
 
-	public String getDeliveryType() {
+	public DeliveryType getDeliveryType() {
 		return deliveryType;
 	}
 
-	public void setDeliveryType(String deliveryType) {
+	public void setDeliveryType(DeliveryType deliveryType) {
 		this.deliveryType = deliveryType;
 	}
 
@@ -110,19 +114,19 @@ public class GoodsInfo {
 		this.date = date;
 	}
 
-	public String getTransitNode() {
+	public TransitionNode getTransitNode() {
 		return transitNode;
 	}
 
-	public void setTransitNode(String transitNode) {
+	public void setTransitNode(TransitionNode transitNode) {
 		this.transitNode = transitNode;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

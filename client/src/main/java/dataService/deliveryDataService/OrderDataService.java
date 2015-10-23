@@ -2,6 +2,7 @@ package dataService.deliveryDataService;
 
 import java.util.List;
 
+import constant.City;
 import po.deliveryPO.OrderPO;
 import po.deliveryPO.TimeRecordPO;
 
@@ -16,7 +17,7 @@ public interface OrderDataService {
 	 * @param id ,订单条形码号（10位数字）
 	 * @return OrderPO, 返回订单信息的持久化对象，具体参照OrdePO的定义
 	 */
-	public OrderPO getOrderInfoById(long id);
+	public OrderPO getOrderInfoById(String id);
 	
 	/**
 	 * description:将订单信息保存
@@ -31,6 +32,6 @@ public interface OrderDataService {
 	 * @param destination 快递目的地的名称
 	 * @return List<TimeRecordPO> 返回时间记录持久化对象的列表
 	 */
-	public List<TimeRecordPO> getTimeRecords(String source, String destination);
+	public List<TimeRecordPO> getTimeRecords(City source, City destination);
 
 }

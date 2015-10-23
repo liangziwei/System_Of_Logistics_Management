@@ -11,7 +11,7 @@ import vo.deliveryVO.OrderVO;
  */
 public class OrderBLImpl implements OrderBLService{
 
-	public OrderVO getOrderInfoById(long id) {
+	public OrderVO getOrderInfoById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

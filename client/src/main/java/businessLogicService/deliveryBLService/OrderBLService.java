@@ -15,7 +15,7 @@ public interface OrderBLService {
 	 * @param id ,订单条形码号（10位数字）
 	 * @return OrderVO, 返回订单信息的值对象，具体参照OrdeVO的定义
 	 */
-	public OrderVO getOrderInfoById(long id);
+	public OrderVO getOrderInfoById(String id);
 	
 	
 	/**

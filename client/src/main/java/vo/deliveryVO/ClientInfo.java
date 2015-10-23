@@ -1,5 +1,7 @@
 package vo.deliveryVO;
 
+import constant.ClientType;
+
 /**
  * 记录了客户的信息
  * @author 肖安祥
@@ -9,7 +11,7 @@ public class ClientInfo {
 	/**
 	 * 身份（寄件人或收件人）
 	 */
-	private String identity;
+	private ClientType identity;
 
 	/**
 	 * 姓名
@@ -36,7 +38,7 @@ public class ClientInfo {
 	 */
 	private String mobileNumber;
 
-	public ClientInfo(String identity, String name, String address, String company, 
+	public ClientInfo(ClientType identity, String name, String address, String company, 
 			String phoneNumber, String mobileNumber) {
 		super();
 		this.identity = identity;
@@ -47,11 +49,11 @@ public class ClientInfo {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public String getIdentity() {
+	public ClientType getIdentity() {
 		return identity;
 	}
 
-	public void setIdentity(String identity) {
+	public void setIdentity(ClientType identity) {
 		this.identity = identity;
 	}
 

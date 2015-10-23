@@ -1,5 +1,6 @@
 package dataService.deliveryDataService;
 
+import constant.City;
 import po.deliveryPO.ReceiptPO;
 
 /**
@@ -21,5 +22,5 @@ public interface ReceiptDataService {
 	 * @param source：快递出发地的名称
 	 * @param destination：快递目的地的名称
 	 */
-	public boolean updateTimeRecord(int day, String source, String destination);
+	public boolean updateTimeRecord(int day, City source, City destination);
 }
