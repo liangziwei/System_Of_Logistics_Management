@@ -19,15 +19,15 @@ public class OrderVO {
 		this.goodsInfo = goodsInfo;
 	}
 
-	ClientInfo getSenderInfo() {
+	public ClientInfo getSenderInfo() {
 		return senderInfo;
 	}
 	
-	ClientInfo getReceiverInfo() {
+	public ClientInfo getReceiverInfo() {
 		return receiverInfo;
 	}
 
-	GoodsInfo getGoodsInfo() {
+	public GoodsInfo getGoodsInfo() {
 		return goodsInfo;
 	}
 

@@ -1,4 +1,4 @@
-package businessLogicImpl_stub.deliveryBLImpl_Stub;
+package stub.businessLogicImpl_stub.deliveryBLImpl_stub;
 
 import businessLogicService.deliveryBLService.ReceiptBLService;
 import vo.deliveryVO.ReceiptVO;

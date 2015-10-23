@@ -1,4 +1,4 @@
-package ui_stub;
+package ui_test;
 
 public class ManagerUI_Stub {
 

@@ -1,4 +1,4 @@
-package businessLogicImpl_stub.deliveryBLImpl_Stub;
+package stub.businessLogicImpl_stub.deliveryBLImpl_stub;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +35,12 @@ public class OrderBLImpl_Stub implements OrderBLService{
 
 	public int calculateTime(City source, City destination) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 	public double calculatePrice(DeliveryType type, double weight, City source, City destination) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 20.5;
 	}
 
 }

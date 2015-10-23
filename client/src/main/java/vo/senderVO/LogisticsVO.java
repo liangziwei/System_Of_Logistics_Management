@@ -2,6 +2,9 @@ package vo.senderVO;
 
 import java.util.List;
 
+import constant.City;
+import constant.TransitionNode;
+
 /**
  * 记录了物流的信息
  * @author 肖安祥
@@ -12,32 +15,32 @@ public class LogisticsVO {
 	 * 物品的货运状态（派件中、到达寄件人营业厅、到达寄件人中转中心、
 	 * 到达收件人中转中心、到达收件人营业厅、收件）
 	 */
-	private String state;
+	private TransitionNode state;
 	
 	/**
 	 * 物流轨迹（从寄出点到当前位置所经过的所有站点）
 	 */
-	private List<String> trace;
+	private List<City> trace;
 
-	public LogisticsVO(String state, List<String> trace) {
+	public LogisticsVO(TransitionNode state, List<City> trace) {
 		super();
 		this.state = state;
 		this.trace = trace;
 	}
 
-	public String getState() {
+	public TransitionNode getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(TransitionNode state) {
 		this.state = state;
 	}
 
-	public List<String> getTrace() {
+	public List<City> getTrace() {
 		return trace;
 	}
 
-	public void setTrace(List<String> trace) {
+	public void setTrace(List<City> trace) {
 		this.trace = trace;
 	}
 }
