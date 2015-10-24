@@ -10,12 +10,12 @@ public class VehicleDataImpl implements VehicleDataService {
 		return false;
 	}
 
-	public VehiclePO findVehicle(int vehicleid) {
+	public VehiclePO findVehicle(String vehicleid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean deleteVehicle(int vehicleid) {
+	public boolean deleteVehicle(String vehicleid) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -1,12 +1,12 @@
 package dataImpl.businessDataImpl;
 
-import po.businessPO.ReceiveFormPO;
+import po.businessPO.ArrivalFormPO;
 import po.businessPO.SendFormPO;
 import dataService.businessDataService.ReceiveAndSendDataService;
 
 public class ReceiveAndSendDataImpl implements ReceiveAndSendDataService {
 
-	public boolean addReceiveFrom(ReceiveFormPO receiveFormPO) {
+	public boolean addReceiveFrom(ArrivalFormPO arrivalFormPO) {
 		// TODO Auto-generated method stub
 		return false;
 	}

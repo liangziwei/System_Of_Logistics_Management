@@ -10,17 +10,17 @@ public class AdministratorBLImpl implements AdministratorBLService {
 		return false;
 	}
 
-	public boolean deleteUser(int administratorid) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	public boolean modifyUser(AdministratorVO administratorVO) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public AdministratorVO findUser(int administratorid) {
+	public boolean deleteUser(String administratorid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public AdministratorVO findUser(String administratorid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
