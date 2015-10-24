@@ -1,7 +1,6 @@
 
 package vo.repositoryVO;
 
-import constant.AreaCodeType;
 import constant.LoadingType;
 
 /**

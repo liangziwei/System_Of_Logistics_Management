@@ -13,6 +13,9 @@ public interface TransferringBLService {
 
 	/**
 	 * description:通过中转单编号得到相应的中转单信息
+	 * 前置条件：用户输入有效中转单编号
+	 * 后置条件：根据中转单编号查找相应中转单信息，返回给界面显示
+	 * 需接口：TransferringDataService.FindTransferringFormDT(String transferringNumber)（根据中转单编号查询中转单）
 	 * @param TransferringNumber ,中转单编号（中转中心编号+日期+0000000七位数字）
 	 * @return TransferringVO, 返回中转单信息的值对象，具体参照TransferringVO的定义
 	 * */
@@ -20,6 +23,10 @@ public interface TransferringBLService {
 	
 	/**
 	 * description:添加新的中转单信息
+	 * 前置条件：用户按照界面输入TransferringVO的信息，界面传递TransferringVO
+	 * 后置条件：系统保存中转单信息，返回界面是否保存成功
+	 * 需接口：TransferringDataService.addTransferringFormmDT(TransferringPO transferringPO),
+	 * TransferringBLService.transferringFare(String CityFrom,String CityTo)
 	 * @param TranferringVO ,中转单信息的相关值对象，具体参照TransferringVO的定义
 	 * @return boolean, 返回中转单信息是否添加成功
 	 * */
@@ -27,6 +34,10 @@ public interface TransferringBLService {
 	
 	/**
 	 * description:修改新的中转单信息
+	 * 前置条件：用户按照界面输入TransferringVO的信息，界面传递TransferringVO
+	 * 后置条件：系统保存修改的中转单信息，返回界面是否修改成功
+	 * 需接口：TransferringDataService.modifyTransferringFormDT(TransferringPO transferringPO),
+	 * TransferringBLService.transferringFare(String CityFrom,String CityTo)
 	 * @param TranferringVO ,中转单信息的相关值对象，具体参照TransferringVO的定义
 	 * @return boolean, 返回中转单信息是否修改成功
 	 * */
@@ -34,6 +45,9 @@ public interface TransferringBLService {
 	
 	/**
 	 * description:通过不同城市来定义中转单的运费值
+	 * 前置条件：addTransferringFormBL，modifyTransferringFormBL传递中转单的出发地和目的地
+	 * 后置条件：返回中转单的运费
+	 * 需接口：无
 	 * @param CityFrom , 出发城市
 	 * @param CityTo , 到达城市
 	 * @return double, 返回中转单的运费值
@@ -42,6 +56,9 @@ public interface TransferringBLService {
 	
 	/**
 	 * description:查看库存信息
+	 * 前置条件：用户请求进行库存信息的查看
+	 * 后置条件：系统返回库存信息列表List<RepositoryVO>（详细参数参照RepositoryVO）给界面
+	 * 需接口：ManageRepositoryBLImpl.List<RepositoryVO> GetRepositoryInfoBL()
 	 * @param 
 	 * @return List<RepositoryVO>, 返回仓库的库存信息的值对象，具体参照RepositoryVO
 	 * */

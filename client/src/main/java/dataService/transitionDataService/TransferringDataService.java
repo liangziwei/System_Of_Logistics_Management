@@ -36,6 +36,6 @@ public interface TransferringDataService{
 	 * @param  Date : 当天的日期
 	 * @return List<TransferringPO> 返回记录当天的中转单的持久化对象的列表
 	 */
-	public List<TransferringPO> GetTansferringInfoDT(String date);
+	public List<TransferringPO> GetTransferringInfoDT(String date);
 
 }

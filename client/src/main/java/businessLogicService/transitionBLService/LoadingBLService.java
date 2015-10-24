@@ -10,6 +10,9 @@ public interface LoadingBLService {
 	
 	/**
 	 * description:通过装运编号得到相应的装运单信息
+	 * 前置条件：用户输入有效装运编号
+	 * 后置条件：根据装运编号查找相应装运单信息，返回给界面显示
+	 * 需接口：LoadingDataService.FindLoadingFormDT(String loadingNumber)（根据装运编号查询装运单）
 	 * @param LoadingNumber ,装运编号（中转中心编号+日期+0000四位数字）
 	 * @return LoadingVO, 返回装运信息的值对象，具体参照LoadingVO的定义
 	 * */
@@ -17,6 +20,10 @@ public interface LoadingBLService {
 	
 	/**
 	 * description:添加新的装运单信息
+	 * 前置条件：用户按照界面输入LoadingVO的信息，界面传递LoadingVO
+	 * 后置条件：系统保存装运单信息，返回界面是否保存成功
+	 * 需接口：LoadingDataService.addLoadingFormmDT(LoadingPO loadingPO),
+	 * LoadingBLService.loadingFare(String CityFrom,String CityTo)
 	 * @param LoadingVO ,装运信息的相关值对象，具体参照LoadingVO的定义
 	 * @return boolean, 返回装运信息是否添加成功
 	 * */
@@ -24,6 +31,10 @@ public interface LoadingBLService {
 	
 	/**
 	 * description:修改某份装运单信息
+	 * 前置条件：用户按照界面输入LoadingVO的信息，界面传递LoadingVO
+	 * 后置条件：系统保存修改的装运单信息，返回界面是否修改成功
+	 * 需接口：LoadingDataService.modifyLoadingFormDT(LoadingPO loadingPO),
+	 * LoadingBLService.loadingFare(String CityFrom,String CityTo)
 	 * @param LoadingVO ,装运信息的相关值对象，具体参照LoadingVO的定义
 	 * @return boolean, 返回装运信息是否修改成功
 	 * */
@@ -31,6 +42,9 @@ public interface LoadingBLService {
 	
 	/**
 	 * description:通过不同城市来定义装运单的运费值
+	 * 前置条件：addLoadingFormBL，modifyLoadingFormBL传递装运单的出发地和目的地
+	 * 后置条件：返回装运的运费
+	 * 需接口：无
 	 * @param CityFrom , 出发城市
 	 * @param CityTo , 到达城市
 	 * @return double, 返回装运单的运费值
