@@ -3,7 +3,7 @@ package dataService.financeDataService;
 import java.util.List;
 
 import po.businessPO.VehiclePO;
-import po.financePO.BankPO;
+import po.financePO.AccountPO;
 import po.managerPO.OrganizationPO;
 import po.managerPO.StaffPO;
 import po.repositoryPO.RepositoryInfoPO;
@@ -58,5 +58,5 @@ public interface OriginalInfoDataService {
 	 * @param year 年份
 	 * @return List<StaffPO>银行信息的持久化对象
 	 */
-	public BankPO getBankInfo(int year);
+	public AccountPO getBankInfo(int year);
 }

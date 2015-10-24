@@ -10,6 +10,8 @@ public interface AccountDataService {
 	
 	/**
 	 * description:添加一个账户
+	 * 前置条件：启动账户管理
+	 * 后置条件：在数据库中增加一个账户信息
 	 * @param AccountPO ,记录账户信息的值对象，具体参照AccountPO的定义
 	 * @return 添加是否成功
 	 */
@@ -17,6 +19,8 @@ public interface AccountDataService {
 	
 	/**
 	 * description:查询一个账户
+	 * 前置条件：启动账户管理
+	 * 后置条件：无
 	 * @param  name 关键字（账户名称）
 	 * @return AccountPO 返回查询到的账户信息
 	 */
@@ -24,6 +28,8 @@ public interface AccountDataService {
 	
 	/**
 	 * description:删除一个账户
+	 * 前置条件：启动账户管理
+	 * 后置条件：在数据库中删除一个账户信息
 	 * @param  name 账户名称
 	 * @return 删除是否成功
 	 */
@@ -31,6 +37,8 @@ public interface AccountDataService {
 	
 	/**
 	 * description:修改一个账户
+	 * 前置条件：启动账户管理
+	 * 后置条件：在数据库中修改一个账户信息
 	 * @param  name ,账户名称
 	 * @return 要修改的账户是否存在
 	 */

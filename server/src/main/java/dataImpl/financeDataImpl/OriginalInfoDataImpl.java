@@ -2,12 +2,12 @@ package dataImpl.financeDataImpl;
 
 import java.util.List;
 
-import dataService.financeDataService.OriginalInfoDataService;
 import po.businessPO.VehiclePO;
-import po.financePO.BankPO;
+import po.financePO.AccountPO;
 import po.managerPO.OrganizationPO;
 import po.managerPO.StaffPO;
 import po.repositoryPO.RepositoryInfoPO;
+import dataService.financeDataService.OriginalInfoDataService;
 
 public class OriginalInfoDataImpl implements OriginalInfoDataService{
 
@@ -31,7 +31,7 @@ public class OriginalInfoDataImpl implements OriginalInfoDataService{
 		return null;
 	}
 
-	public BankPO getBankInfo(int year) {
+	public AccountPO getBankInfo(int year) {
 		// TODO Auto-generated method stub
 		return null;
 	}
