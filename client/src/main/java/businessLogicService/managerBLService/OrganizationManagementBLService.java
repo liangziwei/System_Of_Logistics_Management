@@ -1,6 +1,5 @@
 package businessLogicService.managerBLService;
 
-import po.managerPO.OrganizationPO;
 import vo.managerVO.OrganizationVO;
 
 /**

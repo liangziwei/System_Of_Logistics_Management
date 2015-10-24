@@ -1,5 +1,8 @@
 package dataService.managerDataService;
 
+import constant.City;
+import constant.TransitType;
+
 /**
  * description:数据服务层为制定城市距离和价格常量逻辑处理提供的服务
  * @author 张仁知
@@ -12,7 +15,7 @@ public interface MakeConstantDataService {
 	 * @param  transType ,运输方式
 	 * @return boolean, 更新价格常量是否成功
 	 */
-	public boolean updatePrice(double price,String transType);
+	public boolean updatePrice(double price,TransitType transType);
 	
 	/**
 	 * description:更新不同的城市之间的距离
@@ -21,5 +24,5 @@ public interface MakeConstantDataService {
 	 * @param  destination ,目的地
 	 * @return boolean, 更新城市距离是否成功
 	 */
-	public boolean updateDistance(double distance,String source	,String destination);
+	public boolean updateDistance(double distance,City source	,City destination);
 }

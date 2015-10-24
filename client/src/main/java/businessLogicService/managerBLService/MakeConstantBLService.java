@@ -1,4 +1,8 @@
 package businessLogicService.managerBLService;
+
+import constant.City;
+import constant.TransitType;
+
 /**
  * description:业务逻辑层为制定城市距离和价格常量界面提供的服务
  * @author 张仁知
@@ -15,7 +19,7 @@ public interface MakeConstantBLService {
 	 * @param  transType ,运输方式
 	 * @return boolean, 制定新的价格常量是否成功
 	 */
-	public boolean setPrice(double price,String transType);
+	public boolean setPrice(double price,TransitType transType);
 	
 	/**
 	 * description:为不同的城市之间分别制定距离
@@ -27,6 +31,6 @@ public interface MakeConstantBLService {
 	 * @param  destination ,目的地
 	 * @return boolean, 制定新的城市距离是否成功
 	 */
-	public boolean setDistance(double distance,String source,String destination);
+	public boolean setDistance(double distance,City source,City destination);
 
 }
