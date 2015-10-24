@@ -1,39 +1,23 @@
 package stub.businessLogicImpl_stub.deliveryBLImpl_stub;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import businessLogicService.deliveryBLService.OrderBLService;
 import constant.City;
-import constant.ClientType;
 import constant.DeliveryType;
-import constant.PackageType;
-import constant.TransitionNode;
-import vo.deliveryVO.ClientInfo;
-import vo.deliveryVO.GoodsInfo;
+import dataService.deliveryDataService.OrderDataService;
+import po.deliveryPO.OrderPO;
+import stub.dataImpl_stub.deliveryDataImpl_stub.OrderDataImpl_Stub;
 import vo.deliveryVO.OrderVO;
 
 public class OrderBLImpl_Stub implements OrderBLService{
+	
+	private OrderDataService order = new OrderDataImpl_Stub();
 
 	public OrderVO getOrderInfoById(String id) {
-		List<String> names = new ArrayList<String>();
-		names.add("衣服");
-		List<TransitionNode> trace = new ArrayList<TransitionNode>();
-		trace.add(TransitionNode.RECEIVER_BUSINESS_HALL);
-		trace.add(TransitionNode.RECEIVER);
-		return 
-		new OrderVO(
-			new ClientInfo(ClientType.SENDER, "张三", "南京市", null, null, "12345678901"),
-			new ClientInfo(ClientType.RECEIVER, "李四", "上海市", null, null, "00000000000"),
-			new GoodsInfo(id, 2, names, "2*2*2", 
-					PackageType.COURIER_BAG, DeliveryType.ECONOMIC,
-					"2015-10-27", trace)
-		);
+		return this.OrderPOToOrderVO(order.getOrderInfoById(id));
 	}
 
 	public boolean saveOrderInfo(OrderVO orderVO) {
-		// TODO Auto-generated method stub
-		return false;
+		return order.saveOrderInfo(this.orderVOToOrderPO(orderVO));
 	}
 
 	public int calculateTime(City source, City destination) {
@@ -46,4 +30,11 @@ public class OrderBLImpl_Stub implements OrderBLService{
 		return 20.5;
 	}
 
+	private OrderVO OrderPOToOrderVO(OrderPO orderPO) {
+		return new OrderVO(orderPO.getSenderInfo(), orderPO.getReceiverInfo(), orderPO.getGoodsInfo());
+	}
+
+	private OrderPO orderVOToOrderPO(OrderVO orderVO) {
+		return new OrderPO(orderVO.getSenderInfo(), orderVO.getReceiverInfo(), orderVO.getGoodsInfo());
+	}
 }

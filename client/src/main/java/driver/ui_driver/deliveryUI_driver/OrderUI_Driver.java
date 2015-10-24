@@ -33,7 +33,7 @@ public class OrderUI_Driver {
 				break;
 			case 2:
 				System.out.println("保存是否成功： "
-						+ order.saveOrderInfo(null));
+						+ order.saveOrderInfo(new OrderVO(null, null, null)));
 				break;
 			case 3:
 				System.out.println("快递送达需要：" 

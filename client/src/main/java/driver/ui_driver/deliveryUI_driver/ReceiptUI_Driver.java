@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import businessLogicService.deliveryBLService.ReceiptBLService;
 import stub.businessLogicImpl_stub.deliveryBLImpl_stub.ReceiptBLImpl_Stub;
+import vo.deliveryVO.ReceiptVO;
 
 public class ReceiptUI_Driver {
 
@@ -16,7 +17,8 @@ public class ReceiptUI_Driver {
 			int input = s.nextInt();
 			switch(input) {
 			case 1:
-				System.out.println("订单是否保存成功：" + receipt.saveReceiptInfo(null));
+				System.out.println("订单是否保存成功：" 
+			+ receipt.saveReceiptInfo(new ReceiptVO(null, null, null)));
 				break;
 			case 2:
 				System.out.println("时间历史记录是否更新成功: " 
