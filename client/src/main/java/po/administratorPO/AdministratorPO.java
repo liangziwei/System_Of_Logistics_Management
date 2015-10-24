@@ -1,15 +1,17 @@
 package po.administratorPO;
 
+import java.io.Serializable;
+
 import constant.Authority;
 import constant.UserType;
 
-public class AdministratorPO {
+public class AdministratorPO implements Serializable{
 	private UserType type;
 	private String name;
 	private String id;
 	private String password;
 	private Authority limit;
-	
+    
 	public AdministratorPO(UserType type, String name, String id,
 			String password, Authority limit) {
 		super();
@@ -51,5 +53,5 @@ public class AdministratorPO {
 	public void setLimit(Authority limit) {
 		this.limit = limit;
 	}
-	
+
 }

@@ -1,6 +1,8 @@
 package po.businessPO;
 
-public class DriverPO {
+import java.io.Serializable;
+
+public class DriverPO implements Serializable{
 	private String driverid;
 	private String name;
 	private String birthday;

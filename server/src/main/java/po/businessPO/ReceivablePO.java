@@ -1,12 +1,15 @@
 package po.businessPO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ReceivablePO {
+public class ReceivablePO implements Serializable{
 	private String date;
 	private double money;
 	private String courier;//快递员
 	private ArrayList<Long> deliveryid;
+	private boolean isApproved; 
+	private boolean isPassed;
 	
 	public ReceivablePO(String date, double money, String courier,
 			ArrayList<Long> deliveryid) {
@@ -47,4 +50,21 @@ public class ReceivablePO {
 	public void setDeliveryid(ArrayList<Long> deliveryid) {
 		this.deliveryid = deliveryid;
 	}
+
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+
+	public boolean isPassed() {
+		return isPassed;
+	}
+
+	public void setPassed(boolean isPassed) {
+		this.isPassed = isPassed;
+	}
+	
 }

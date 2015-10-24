@@ -1,14 +1,17 @@
 package po.businessPO;
 
+import java.io.Serializable;
+
 import constant.CargoState;
 
-
-public class ArrivalFormPO {
+public class ArrivalFormPO implements Serializable{
 
 	private String date;
 	private String transitNumber;
 	private String departPlace;
 	private CargoState state;
+	private boolean isApproved; 
+	private boolean isPassed;
 	
 	public ArrivalFormPO(String date, String transitNumber, String departPlace,
 			CargoState state) {
@@ -41,6 +44,22 @@ public class ArrivalFormPO {
 	}
 	public void setState(CargoState state) {
 		this.state = state;
+	}
+
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+
+	public boolean isPassed() {
+		return isPassed;
+	}
+
+	public void setPassed(boolean isPassed) {
+		this.isPassed = isPassed;
 	}
 	
 	

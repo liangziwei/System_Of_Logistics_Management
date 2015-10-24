@@ -1,6 +1,8 @@
 package po.businessPO;
 
-public class EntruckingPO {
+import java.io.Serializable;
+
+public class EntruckingPO implements Serializable{
 	private String date;
 	private String businessHallid;
 	private String transportNumber;
@@ -9,7 +11,8 @@ public class EntruckingPO {
 	private String supervisor;//监装员
 	private String supercargo;//押运员
 	private double freight;//运费
-	
+	private boolean isApproved; 
+	private boolean isPassed;
 
 	public EntruckingPO(String date, String businessHallid,
 			String transportNumber, String destionation, String vehicleid,
@@ -86,6 +89,22 @@ public class EntruckingPO {
 
 	public void setFreight(double freight) {
 		this.freight = freight;
+	}
+
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+
+	public boolean isPassed() {
+		return isPassed;
+	}
+
+	public void setPassed(boolean isPassed) {
+		this.isPassed = isPassed;
 	}
 
 }

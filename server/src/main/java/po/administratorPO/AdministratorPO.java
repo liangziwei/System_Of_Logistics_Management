@@ -1,9 +1,11 @@
 package po.administratorPO;
 
+import java.io.Serializable;
+
 import constant.Authority;
 import constant.UserType;
 
-public class AdministratorPO {
+public class AdministratorPO implements Serializable{
 	private UserType type;
 	private String name;
 	private String id;
