@@ -10,6 +10,9 @@ public interface ReceiptBLService {
 
 	/**
 	 * description:把收件信息保存
+	 * 前置条件：界面传递一个不为null的receiptVO，里面记录了收件信息
+	 * 后置条件：将收件信息存储
+	 * 需接口：ReceiptDataService.saveReceiptInfo(ReceiptPO receiptPO)（将收件信息存储）
 	 * @param receiptVO 记录收件信息的值对象，具体参见ReceiptVO的定义
 	 * @return boolean 通知方法调用者是否保存成功
 	 */
@@ -17,7 +20,14 @@ public interface ReceiptBLService {
 	
 	/**
 	 * description:更新快递到达时间历史记录
-	 * @param arriveTime 快递到达时间
+	 * 前置条件：用户输入有效的快递到达日期和订单条形码号
+	 * 后置条件：根据订单条形码号查询订单的出发日期以及出发地和目的地，
+	 * 			 将快递运送于这两地所需时间的记录进行存储
+	 * 需接口：OrderDataService.getOrderInfoById(String id)
+	 *        （获得订单信息，包括出发日期，出发地和目的地信息）
+	 *         ReceiptDataService.updateTimeRecord(int day, City source, City destination)
+	 *        （存储时间记录）
+	 * @param arriveTime 快递到达日期
 	 * @param id 订单条形码号
 	 * @return 通知方法调用者是否更新成功
 	 */
