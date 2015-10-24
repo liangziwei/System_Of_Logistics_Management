@@ -1,6 +1,6 @@
 package po.businessPO;
 
-import constant.CargoState;
+import state.CargoState;
 
 public class ArrivalFormPO {
 
