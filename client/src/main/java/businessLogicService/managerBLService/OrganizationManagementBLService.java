@@ -1,5 +1,9 @@
 package businessLogicService.managerBLService;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/zyfncg/System_Of_Logistics_Management.git
 import vo.managerVO.OrganizationVO;
 
 /**
