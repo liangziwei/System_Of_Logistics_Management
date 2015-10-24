@@ -21,14 +21,14 @@ public interface OrganizationManagementBLService {
 	 * @param  id ,机构编号
 	 * @return OrganizationVO, 记录机构信息的值对象，具体参照OrganizationVO定义
 	 */
-	public OrganizationVO findOrganization(int id);
+	public OrganizationVO findOrganization(String id);
 	
 	/**
 	 * description:删除一个机构信息
 	 * @param  id ,机构编号
 	 * @return boolean, 删除是否成功
 	 */	
-	public boolean deleteOrganization(int id);
+	public boolean deleteOrganization(String id);
 	
 	/**
 	 * description:修改一个机构信息

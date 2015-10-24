@@ -2,12 +2,12 @@ package businessLogicImpl.financeBLImpl;
 
 import java.util.List;
 
-import businessLogicService.financeBLService.OriginalInfoBLService;
 import vo.businessVO.VehicleVO;
-import vo.financeVO.BankVO;
+import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryInfoVO;
+import businessLogicService.financeBLService.OriginalInfoBLService;
 
 /**
  *业务逻辑层为展示层提供的期初建账服务的实现
@@ -35,7 +35,7 @@ public class OriginalInfoBLImpl implements OriginalInfoBLService{
 		return null;
 	}
 
-	public BankVO getBankInfo(int year) {
+	public AccountVO getAccountInfo(int year) {
 		// TODO Auto-generated method stub
 		return null;
 	}

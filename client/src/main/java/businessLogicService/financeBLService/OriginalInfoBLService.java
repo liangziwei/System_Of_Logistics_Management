@@ -3,7 +3,7 @@ package businessLogicService.financeBLService;
 import java.util.List;
 
 import vo.businessVO.VehicleVO;
-import vo.financeVO.BankVO;
+import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryInfoVO;
@@ -29,7 +29,7 @@ public interface OriginalInfoBLService {
 	 * 后置条件：根据年份查询所有的机构信息，返回给界面展示
 	 * 需接口：OriginalInfoDataService.getOrganizationInfo(int year)（根据年份查找所有的机构信息）
 	 * @param year 年份
-	 * @return List<StaffVO> 所有机构信息的值对象
+	 * @return List<OrganizationVO> 所有机构信息的值对象
 	 */
 	public List<OrganizationVO> getOrganization(int year);
 	
@@ -39,7 +39,7 @@ public interface OriginalInfoBLService {
 	 * 后置条件：根据年份查询所有的车辆信息，返回给界面展示
 	 * 需接口：OriginalInfoDataService.getVehicleInfo(int year)（根据年份查找所有的车辆信息）
 	 * @param year 年份
-	 * @return List<StaffVO> 所有车辆信息的值对象
+	 * @return List<VehicleVO> 所有车辆信息的值对象
 	 */
 	public List<VehicleVO> getVehicleInfo(int year);
 	
@@ -49,7 +49,7 @@ public interface OriginalInfoBLService {
 	 * 后置条件：根据年份查询所有的库存信息，返回给界面展示
 	 * 需接口：OriginalInfoDataService.getRepositoryInfo(int year)（根据年份查找所有的库存信息）
 	 * @param year 年份
-	 * @return List<StaffVO> 所有库存信息的值对象
+	 * @return List<RepositoryInfoVO> 所有库存信息的值对象
 	 */
     public RepositoryInfoVO getRepositoryInfo(int year);
     
@@ -59,7 +59,7 @@ public interface OriginalInfoBLService {
 	 * 后置条件：根据年份查询银行信息，返回给界面展示
 	 * 需接口：OriginalInfoDataService.getBankInfo(int year)（根据年份查找银行信息）
 	 * @param year 年份
-	 * @return List<StaffVO> 银行信息的值对象
+	 * @return List<AccountVO> 银行信息的值对象
 	 */
-    public BankVO getBankInfo(int year);
+    public AccountVO getAccountInfo(int year);
 }

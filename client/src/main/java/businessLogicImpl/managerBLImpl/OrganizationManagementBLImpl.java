@@ -14,11 +14,11 @@ public class OrganizationManagementBLImpl implements OrganizationManagementBLSer
 		return false;
 	}
 	
-	public OrganizationVO findOrganization(int id) {
+	public OrganizationVO findOrganization(String id) {
 		return null;
 	}
 	
-	public boolean deleteOrganization(int id) {
+	public boolean deleteOrganization(String id) {
 		return false;
 	}
 	
