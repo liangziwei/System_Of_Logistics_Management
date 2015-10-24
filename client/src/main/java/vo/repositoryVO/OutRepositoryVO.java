@@ -1,3 +1,4 @@
+
 package vo.repositoryVO;
 
 import constant.AreaCodeType;
@@ -100,3 +101,4 @@ public class OutRepositoryVO {
 		return isPassed;
 	}
 }
+

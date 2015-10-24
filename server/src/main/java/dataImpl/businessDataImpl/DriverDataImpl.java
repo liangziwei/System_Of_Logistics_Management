@@ -10,12 +10,12 @@ public class DriverDataImpl implements DriverDataService {
 		return false;
 	}
 
-	public DriverPO findDriver(int driverid) {
+	public DriverPO findDriver(String driverid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean deleteDriver(int driverid) {
+	public boolean deleteDriver(String driverid) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -9,15 +9,32 @@ import vo.deliveryVO.GoodsInfo;
  */
 public class OrderPO {
 
+	/**
+	 *寄件人信息 
+	 */
 	private ClientInfo senderInfo;
 
+	/**
+	 *收件人信息 
+	 */
 	private ClientInfo receiverInfo;
 
+	/**
+	 *货物信息 
+	 */
 	private GoodsInfo goodsInfo;
 	
+	/**
+	 * 是否已经被总经理的审批
+	 */
 	private boolean isApproved = false;
 	
+	/**
+	 * 审批是否通过
+	 */
 	private boolean isPassed = false;
+	
+	
 
 	public OrderPO(ClientInfo senderInfo, ClientInfo receiverInfo, GoodsInfo goodsInfo) {
 		super();

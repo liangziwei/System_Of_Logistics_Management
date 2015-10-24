@@ -1,3 +1,4 @@
+
 package vo.transitionVO;
 
 import java.util.List;
@@ -149,3 +150,4 @@ public class TransferringVO {
 		return isPassed;
 	}
 }
+

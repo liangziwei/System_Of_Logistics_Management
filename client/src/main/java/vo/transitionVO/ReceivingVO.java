@@ -1,3 +1,4 @@
+
 package vo.transitionVO;
 
 import state.CargoState;
@@ -99,3 +100,4 @@ public class ReceivingVO {
 		return isPassed;
 	}
 }
+

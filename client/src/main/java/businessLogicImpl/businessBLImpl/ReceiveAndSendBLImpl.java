@@ -1,12 +1,12 @@
 package businessLogicImpl.businessBLImpl;
 
-import vo.businessVO.ReceiveFormVO;
+import vo.businessVO.ArrivalFormVO;
 import vo.businessVO.SendFormVO;
 import businessLogicService.businessBLService.ReceiveAndSendBLService;
 
 public class ReceiveAndSendBLImpl implements ReceiveAndSendBLService{
 
-	public boolean addReceiveFrom(ReceiveFormVO receiveFormVO) {
+	public boolean addReceiveFrom(ArrivalFormVO receiveFormVO) {
 		// TODO Auto-generated method stub
 		return false;
 	}

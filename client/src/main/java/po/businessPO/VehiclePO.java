@@ -1,6 +1,8 @@
 package po.businessPO;
 
-public class VehiclePO {
+import java.io.Serializable;
+
+public class VehiclePO implements Serializable{
 
 	private String vehicleid;
 	private String number;

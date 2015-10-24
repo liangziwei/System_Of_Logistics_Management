@@ -1,3 +1,4 @@
+
 package vo.repositoryVO;
 
 import constant.AreaCodeType;
@@ -90,3 +91,4 @@ public class DeliveryInfoVO {
 		return posid;
 	}
 }
+

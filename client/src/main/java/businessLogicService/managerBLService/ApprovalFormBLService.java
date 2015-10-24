@@ -10,6 +10,9 @@ public interface ApprovalFormBLService {
 	
 	/**
 	 * description:通过日期得到相应的未审批单据
+	 * 前置条件：启动审批单据
+	 * 后置条件：返回该日期的未审批单据
+	 * 需接口：ApprovalFormDataService.getUncheckedForms(String date)
 	 * @param date ,日期（yyyy-mm-dd）
 	 * @return UncheckedFormVO , 返回未审批单据的值对象，具体参照UncheckedFormVO的定义
 	 */

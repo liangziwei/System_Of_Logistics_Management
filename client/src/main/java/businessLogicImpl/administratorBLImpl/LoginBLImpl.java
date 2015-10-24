@@ -7,7 +7,7 @@ public class LoginBLImpl implements LoginBLService{
 	
     AdministratorDataService admin;
 	
-	public boolean login(int userid, String passward) {
+	public boolean login(String userid, String passward) {
 		// TODO Auto-generated method stub
 		return false;
 	}

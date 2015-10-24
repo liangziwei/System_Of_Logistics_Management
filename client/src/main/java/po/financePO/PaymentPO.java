@@ -28,8 +28,16 @@ public class PaymentPO {
 	 * 备注（租金年份、运单号、标注工资月份）
 	 */
 	private String remark;
-	boolean isApproved=false;
-	boolean isPassed=false;
+	/**
+	 * 是否已经被总经理的审批
+	 */
+	private boolean isApproved = false;
+	
+	/**
+	 * 审批是否通过
+	 */
+	private boolean isPassed = false;
+	
 	public PaymentPO(String date, double payAmount, String name,
 			String account, String entry, String remark) {
 		super();
@@ -76,5 +84,16 @@ public class PaymentPO {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
+	public boolean isApproved() {
+		return isApproved;
+	}
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+	public boolean isPassed() {
+		return isPassed;
+	}
+	public void setPassed(boolean isPassed) {
+		this.isPassed = isPassed;
+	}
 }

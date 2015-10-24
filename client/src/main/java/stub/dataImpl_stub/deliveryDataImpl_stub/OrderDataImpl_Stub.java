@@ -11,6 +11,7 @@ public class OrderDataImpl_Stub implements OrderDataService{
 
 	public OrderPO getOrderInfoById(String id) {
 		// TODO Auto-generated method stub
+//		return new OrderPO(senderInfo, receiverInfo, goodsInfo);
 		return null;
 	}
 

@@ -10,12 +10,12 @@ public class DriverBLImpl implements DriverBLService {
 		return false;
 	}
 
-	public DriverVO findDriver(int driverid) {
+	public DriverVO findDriver(String driverid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean deleteDriver(int driverid) {
+	public boolean deleteDriver(String driverid) {
 		// TODO Auto-generated method stub
 		return false;
 	}

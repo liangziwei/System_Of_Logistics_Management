@@ -1,5 +1,7 @@
 package dataImpl.managerDataImpl;
 
+import constant.City;
+import constant.TransitType;
 import dataService.managerDataService.MakeConstantDataService;
 
 /**
@@ -8,11 +10,11 @@ import dataService.managerDataService.MakeConstantDataService;
  */
 public class MakeConstantDataImpl implements MakeConstantDataService{
 
-	public boolean updatePrice(double price,String transType) {
+	public boolean updatePrice(double price,TransitType transType) {
 		return false;
 	}
 	
-	public boolean updateDistance(double distance,String source	,String destination) {
+	public boolean updateDistance(double distance,City source	,City destination) {
 		return false;
 	}
 }

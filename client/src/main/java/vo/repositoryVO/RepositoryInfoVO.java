@@ -1,3 +1,4 @@
+
 package vo.repositoryVO;
 
 import constant.AreaCodeType;
@@ -89,3 +90,4 @@ public class RepositoryInfoVO {
 		return money;
 	}
 }
+

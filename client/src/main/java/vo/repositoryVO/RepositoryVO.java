@@ -1,3 +1,4 @@
+
 package vo.repositoryVO;
 
 import constant.AreaCodeType;
@@ -28,3 +29,4 @@ public class RepositoryVO {
 	 */
 	private String posid;
 }
+
