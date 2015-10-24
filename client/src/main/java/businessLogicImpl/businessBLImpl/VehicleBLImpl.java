@@ -10,12 +10,12 @@ public class VehicleBLImpl implements VehicleBLService {
 		return false;
 	}
 
-	public VehicleVO findVehicle(int vehicleid) {
+	public VehicleVO findVehicle(String vehicleid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean deleteVehicle(int vehicleid) {
+	public boolean deleteVehicle(String vehicleid) {
 		// TODO Auto-generated method stub
 		return false;
 	}

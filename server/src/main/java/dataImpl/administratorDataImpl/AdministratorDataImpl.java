@@ -10,7 +10,7 @@ public class AdministratorDataImpl implements AdministratorDataService {
 		return false;
 	}
 
-	public boolean deleteUser(int administratorid) {
+	public boolean deleteUser(String administratorid) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -20,12 +20,12 @@ public class AdministratorDataImpl implements AdministratorDataService {
 		return false;
 	}
 
-	public AdministratorPO findUser(int administratorid) {
+	public AdministratorPO findUser(String administratorid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String getPassword(int userid) {
+	public String getPassword(String userid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
