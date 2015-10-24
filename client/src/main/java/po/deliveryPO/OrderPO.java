@@ -33,6 +33,8 @@ public class OrderPO {
 	 * 审批是否通过
 	 */
 	private boolean isPassed = false;
+	
+	
 
 	public OrderPO(ClientInfo senderInfo, ClientInfo receiverInfo, GoodsInfo goodsInfo) {
 		super();

@@ -48,13 +48,13 @@ public class GoodsInfo {
 	private String date;
 	
 	/**
-	 * 货物所在站点（寄件人营业厅、寄件人中转中心、收件人营业厅、收件人中转中心，收件人手中）
+	 * 货物经过站点（寄件人营业厅、寄件人中转中心、收件人营业厅、收件人中转中心，收件人手中）
 	 */
-	private TransitionNode transitNode;
+	private List<TransitionNode> transitNode;
 
 	public GoodsInfo(String id, double weight, List<String> names, String size,
 			PackageType packageType, DeliveryType deliveryType, String date,
-			TransitionNode transitNode) {
+			List<TransitionNode> transitNode) {
 		super();
 		this.id = id;
 		this.weight = weight;
@@ -114,11 +114,11 @@ public class GoodsInfo {
 		this.date = date;
 	}
 
-	public TransitionNode getTransitNode() {
+	public List<TransitionNode> getTransitNode() {
 		return transitNode;
 	}
 
-	public void setTransitNode(TransitionNode transitNode) {
+	public void setTransitNode(List<TransitionNode> transitNode) {
 		this.transitNode = transitNode;
 	}
 

@@ -76,6 +76,8 @@ public class OrderUI_Driver {
 		System.out.println("快递类型：" + goods.getDeliveryType());
 		System.out.println("订单条形码号：" + goods.getId());
 		System.out.println("订单创建日期：" + goods.getDate());
-		System.out.println("货物所在站点：" + goods.getTransitNode());
+		System.out.println("货物经过站点：");
+		for(int i = 0; i < goods.getTransitNode().size(); i++)
+			System.out.print(goods.getTransitNode().get(i) + " ");
 	}
 }

@@ -18,13 +18,15 @@ public class OrderBLImpl_Stub implements OrderBLService{
 	public OrderVO getOrderInfoById(String id) {
 		List<String> names = new ArrayList<String>();
 		names.add("衣服");
+		List<TransitionNode> trace = new ArrayList<TransitionNode>();
+		trace.add(TransitionNode.RECEIVER_BUSINESS_HALL);
 		return 
 		new OrderVO(
 			new ClientInfo(ClientType.SENDER, "张三", "南京市", null, null, "12345678901"),
 			new ClientInfo(ClientType.RECEIVER, "李四", "上海市", null, null, "00000000000"),
 			new GoodsInfo(id, 2, names, "2*2*2", 
 					PackageType.COURIER_BAG, DeliveryType.ECONOMIC,
-					"2015-10-27", TransitionNode.RECEIVER_BUSINESS_HALL)
+					"2015-10-27", trace)
 		);
 	}
 
