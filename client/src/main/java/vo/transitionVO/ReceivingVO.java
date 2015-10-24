@@ -1,7 +1,7 @@
 
 package vo.transitionVO;
 
-import state.CargoState;
+import constant.CargoState;
 
 /**
  * 记录了接收单的信息

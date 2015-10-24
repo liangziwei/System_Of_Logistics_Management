@@ -1,6 +1,6 @@
 package vo.businessVO;
 
-import state.CargoState;
+import constant.CargoState;
 
 public class ArrivalFormVO {
 

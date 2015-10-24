@@ -1,7 +1,7 @@
 package po.businessPO;
 
 
-import state.CargoState;
+import constant.CargoState;
 
 import java.io.Serializable;
 
