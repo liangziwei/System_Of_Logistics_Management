@@ -20,7 +20,7 @@ public class SettlementBLImpl implements SettlementBLService{
 		return 0.0;
 	}
 	
-	public List<ReceivableVO> showBusinessRecei(int id,String date) {
+	public List<ReceivableVO> showBusinessRecei( String id,String date) {
 		return null;
 	}
 

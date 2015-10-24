@@ -11,8 +11,8 @@ public interface ApprovalFormDataService {
 
 	/**
 	 * description:通过日期得到相应的未审批单据
-	 * 前置条件：启动审批单据
-	 * 后置条件：返回该日期的未审批单据
+	 * 前置条件：无
+	 * 后置条件：按日期进行查找返回该日期的未审批单据
 	 * @param date ,日期（yyyy-mm-dd）
 	 * @return UncheckedFormPO , 返回未审批单据的值对象，具体参照UncheckedFormPO的定义
 	 */

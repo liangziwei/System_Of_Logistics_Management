@@ -15,7 +15,7 @@ public class SettlementDataImpl implements SettlementDataService{
 		return null;
 	}
 	
-	public List<ReceivablePO> getBusinessRecei(int id,String date) {
+	public List<ReceivablePO> getBusinessRecei(String id,String date) {
 		return null;
 	}
 }

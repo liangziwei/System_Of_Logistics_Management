@@ -14,8 +14,8 @@ public interface CostDataService {
 
 	/**
 	 * description:新建一个付款单
-	 * 前置条件：启动成本管理
-	 * 后置条件：在数据库中增加一个付款单信息
+	 * 前置条件：同样的的po在数据库中不存在
+	 * 后置条件：在数据库中增加一个po记录
 	 * @param  PaymentPO ,记录付款单信息的值对象，具体参照PaymentPO的定义
 	 * @return 添加是否成功
 	 */
