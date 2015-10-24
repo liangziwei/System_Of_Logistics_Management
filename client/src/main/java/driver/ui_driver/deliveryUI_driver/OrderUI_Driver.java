@@ -51,7 +51,7 @@ public class OrderUI_Driver {
 		s.close();
 	}
 	
-	private static void showClientInfo(ClientInfo client) {
+	public static void showClientInfo(ClientInfo client) {
 		if(client.getIdentity() == ClientType.SENDER)
 			System.out.println("寄件人信息：");
 		else
@@ -63,7 +63,7 @@ public class OrderUI_Driver {
 		System.out.println("手机：" + client.getMobileNumber());
 	}
 	
-	private static void showGoodsInfo(GoodsInfo goods) {
+	public static void showGoodsInfo(GoodsInfo goods) {
 		System.out.println("货物信息：");
 		System.out.println("重量：" + goods.getWeight());
 		System.out.println("物品名称 ：");
@@ -77,7 +77,8 @@ public class OrderUI_Driver {
 		System.out.println("订单条形码号：" + goods.getId());
 		System.out.println("订单创建日期：" + goods.getDate());
 		System.out.println("货物经过站点：");
-		for(int i = 0; i < goods.getTransitNode().size(); i++)
-			System.out.print(goods.getTransitNode().get(i) + " ");
+		for(int i = 0; i < goods.getTransitNode().size() - 1; i++)
+			System.out.print(goods.getTransitNode().get(i) + " --> ");
+		System.out.println(goods.getTransitNode().get(goods.getTransitNode().size() - 1));
 	}
 }

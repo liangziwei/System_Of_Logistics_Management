@@ -6,8 +6,8 @@ public class SendFormPO implements Serializable{
 	private String date;	
 	private String deliveryid;
 	private String sender;
-	private boolean isApproved; 
-	private boolean isPassed;
+	private boolean isApproved=false; 
+	private boolean isPassed=true;
 	
 	public SendFormPO(String date, String deliveryid, String sender) {
 		this.date = date;

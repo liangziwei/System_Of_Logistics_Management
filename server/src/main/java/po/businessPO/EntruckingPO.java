@@ -11,8 +11,8 @@ public class EntruckingPO implements Serializable{
 	private String supervisor;//监装员
 	private String supercargo;//押运员
 	private double freight;//运费
-	private boolean isApproved; 
-	private boolean isPassed;
+	private boolean isApproved=false; 
+	private boolean isPassed=true;
 
 	public EntruckingPO(String date, String businessHallid,
 			String transportNumber, String destionation, String vehicleid,

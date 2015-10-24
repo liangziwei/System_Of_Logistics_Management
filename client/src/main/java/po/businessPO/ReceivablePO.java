@@ -8,8 +8,8 @@ public class ReceivablePO implements Serializable{
 	private double money;
 	private String courier;//快递员
 	private ArrayList<Long> deliveryid;
-	private boolean isApproved; 
-	private boolean isPassed;
+	private boolean isApproved=false; 
+	private boolean isPassed=true;
 	
 	public ReceivablePO(String date, double money, String courier,
 			ArrayList<Long> deliveryid) {

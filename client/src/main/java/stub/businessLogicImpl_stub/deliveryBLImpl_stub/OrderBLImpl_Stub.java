@@ -20,6 +20,7 @@ public class OrderBLImpl_Stub implements OrderBLService{
 		names.add("衣服");
 		List<TransitionNode> trace = new ArrayList<TransitionNode>();
 		trace.add(TransitionNode.RECEIVER_BUSINESS_HALL);
+		trace.add(TransitionNode.RECEIVER);
 		return 
 		new OrderVO(
 			new ClientInfo(ClientType.SENDER, "张三", "南京市", null, null, "12345678901"),

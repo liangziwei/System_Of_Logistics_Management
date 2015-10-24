@@ -1,5 +1,8 @@
 
+
+
 package vo.repositoryVO;
+
 
 import constant.LoadingType;
 
@@ -100,4 +103,5 @@ public class OutRepositoryVO {
 		return isPassed;
 	}
 }
+
 
