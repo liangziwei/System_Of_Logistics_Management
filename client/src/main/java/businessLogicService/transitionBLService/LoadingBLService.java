@@ -47,9 +47,9 @@ public interface LoadingBLService {
 	 * 后置条件：返回装运的运费
 	 * 需接口：无
 	 * @param CityFrom , 出发城市
-	 * @param CityTo , 到达城市
+	 * @param CityFrom , 到达的某营业厅
 	 * @return double, 返回装运单的运费值
 	 * */
-	public double loadingFare(String CityFrom,String CityTo);
+	public double loadingFare(City CityFrom,String CityTo);
 	
 }

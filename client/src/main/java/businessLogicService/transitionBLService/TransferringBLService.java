@@ -2,6 +2,7 @@ package businessLogicService.transitionBLService;
 
 import java.util.List;
 
+import constant.City;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
@@ -52,7 +53,7 @@ public interface TransferringBLService {
 	 * @param CityTo , 到达城市
 	 * @return double, 返回中转单的运费值
 	 * */
-	public double tranferringFare(String CityFrom,String CityTo);
+	public double tranferringFare(City CityFrom,City CityTo);
 	
 	/**
 	 * description:查看库存信息
