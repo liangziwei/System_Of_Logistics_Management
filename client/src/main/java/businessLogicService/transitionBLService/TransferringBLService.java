@@ -2,7 +2,6 @@ package businessLogicService.transitionBLService;
 
 import java.util.List;
 
-import constant.City;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
@@ -53,7 +52,7 @@ public interface TransferringBLService {
 	 * @param CityTo , 到达城市
 	 * @return double, 返回中转单的运费值
 	 * */
-	public double tranferringFare(City CityFrom,City CityTo);
+	public double tranferringFare(String CityFrom,String CityTo);
 	
 	/**
 	 * description:查看库存信息
@@ -64,14 +63,4 @@ public interface TransferringBLService {
 	 * @return List<RepositoryVO>, 返回仓库的库存信息的值对象，具体参照RepositoryVO
 	 * */
 	public List<RepositoryVO> getRepositoryInfo();
-	
-	/**
-	 * description:取得当天的中转单列表信息（实际取得中转单列表的BL）
-	 * 前置条件：启动一个出库单操作，用户请求查询当天的中转单列表
-	 * 后置条件：系统返回中转单信息列表List<TransferringVO>（详细参数参照TransferringVO）给界面
-	 * 需接口：TransferringDataService.List<TransferringPO> GetTransferringInfoDT(String date)
-	 * @param date ：当天的日期
-	 * @return List<TransferringVO>, 返回中转单列表信息的值对象，具体参照TransferringVO的定义
-	 * */
-	public List<TransferringVO> GetTansferringInfoBL(String date);
 }

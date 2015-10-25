@@ -1,7 +1,6 @@
 package businessLogicImpl.transitionBLImpl;
 
 import businessLogicService.transitionBLService.LoadingBLService;
-import constant.City;
 import vo.transitionVO.LoadingVO;
 
 public class LoadingBLImpl implements LoadingBLService{
@@ -21,7 +20,7 @@ public class LoadingBLImpl implements LoadingBLService{
 		return false;
 	}
 
-	public double loadingFare(City CityFrom, String CityTo) {
+	public double loadingFare(String CityFrom, String CityTo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

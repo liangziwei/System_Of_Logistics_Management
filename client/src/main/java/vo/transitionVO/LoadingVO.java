@@ -46,7 +46,7 @@ public class LoadingVO {
 	/**
 	 * 装运单的运费
 	 */
-	private double fare;
+	private int fare;
 	/**
 	 * 是否经过审批
 	 */
@@ -109,10 +109,10 @@ public class LoadingVO {
 	public List<String> getalldeliveryid() {
 		return alldeliveryid;
 	}
-	public void setfare(double fare) {
+	public void setfare(int fare) {
 		this.fare=fare;
 	}
-	public double getfare() {
+	public int getfare() {
 		return fare;
 	}
 	public void setisApproved(boolean isApproved) {
