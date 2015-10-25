@@ -1,0 +1,30 @@
+package stub.dataImpl_stub.transitionDataImpl;
+
+import java.util.List;
+
+import dataService.transitionDataService.TransferringDataService;
+import po.transitionPO.TransferringPO;
+
+public class TransferringDataImpl_Stub implements TransferringDataService{
+
+	public boolean AddTransferringFormDT(TransferringPO transferringPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean ModifyTransferringFormDT(TransferringPO transferringPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public TransferringPO FindTransferringFormDT(String transferringNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<TransferringPO> GetTransferringInfoDT(String date) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
