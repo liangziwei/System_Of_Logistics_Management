@@ -2,6 +2,7 @@ package dataImpl.repositoryDataImpl;
 
 import java.util.List;
 
+import constant.AreaCodeType;
 import dataService.repositoryDataService.ManageRepositoryDataService;
 import po.repositoryPO.DeliveryInfoPO;
 import po.repositoryPO.RepositoryInfoPO;
@@ -19,17 +20,17 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 		return null;
 	}
 
-	public boolean UpdataRepositoryWarnDT(int allNum, double WarnNum, String ID) {
+	public boolean UpdataRepositoryWarnDT(int allNum, double WarnNum, AreaCodeType ID) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public double GetWarnNumDT(String ID) {
+	public double GetWarnNumDT(AreaCodeType ID) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public int GetRepositoryNumDT(String ID) {
+	public int GetRepositoryNumDT(AreaCodeType ID) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -39,7 +40,7 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 		return null;
 	}
 
-	public int GetRepositoryExistDT(String ID) {
+	public int GetRepositoryExistDT(AreaCodeType ID) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

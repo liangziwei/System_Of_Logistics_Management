@@ -23,7 +23,7 @@ public class OutRepositoryBLImpl implements OutRepositoryBLService{
 		return null;
 	}
 
-	public List<TransferringVO> GetTransferringInfo() {
+	public List<TransferringVO> GetTransferringInfo(String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}

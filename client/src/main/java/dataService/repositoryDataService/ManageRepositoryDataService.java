@@ -2,6 +2,7 @@ package dataService.repositoryDataService;
 
 import java.util.List;
 
+import constant.AreaCodeType;
 import po.repositoryPO.DeliveryInfoPO;
 import po.repositoryPO.RepositoryInfoPO;
 import po.repositoryPO.RepositoryPO;
@@ -33,21 +34,21 @@ public interface ManageRepositoryDataService {
 	 * @param ID 存储的区号（plane、train、car、auto）
 	 * @return boolean  返回警戒信息是否存储成功
 	 */
-	public boolean UpdataRepositoryWarnDT(int allNum,double WarnNum,String ID);
+	public boolean UpdataRepositoryWarnDT(int allNum,double WarnNum,AreaCodeType ID);
 	
 	/**
 	 * description : 取得某个区的警戒百分比
 	 * @param ID ：所需的区号
 	 * @return double ， 所需区的警戒百分比
 	 * */
-	public double GetWarnNumDT(String ID);
+	public double GetWarnNumDT(AreaCodeType ID);
 	
 	/**
 	 * description : 取得某个区的总容量
 	 * @param ID ：所需的区号
 	 * @return double ， 所需区的库存总容量
 	 * */
-	public int GetRepositoryNumDT(String ID);
+	public int GetRepositoryNumDT(AreaCodeType ID);
 	
 	/**
 	 * description:取得库存信息
@@ -61,7 +62,7 @@ public interface ManageRepositoryDataService {
 	 * @param ID ：所需的区号
 	 * @return int ， 所需区现存的库存数量
 	 * */
-	public int GetRepositoryExistDT(String ID);
+	public int GetRepositoryExistDT(AreaCodeType ID);
 	
 	
 }
