@@ -8,7 +8,7 @@ import constant.City;
 import dataService.transitionDataService.TransferringDataService;
 import po.transitionPO.TransferringPO;
 import stub.businessLogicImpl_stub.repositoryBLImpl_stub.ManageRepositoryBLImpl_Stub;
-import stub.dataImpl_stub.transitionDataImpl.TransferringDataImpl_Stub;
+import stub.dataImpl_stub.transitionDataImpl_stub.TransferringDataImpl_Stub;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 

@@ -3,6 +3,7 @@ package businessLogicImpl.transitionBLImpl;
 import java.util.List;
 
 import businessLogicService.transitionBLService.TransferringBLService;
+import constant.City;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
@@ -43,6 +44,11 @@ public class TransferringBLImpl implements TransferringBLService{
 	 * */
 	public List<TransferringVO> GetTansferringInfoBL(String date){
 		return null;
+	}
+
+	public double tranferringFare(City CityFrom, City CityTo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

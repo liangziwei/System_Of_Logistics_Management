@@ -23,4 +23,9 @@ public class ReceivingDataImpl_Stub implements ReceivingDataService{
 		return new ReceivingPO("0025 010","2015-10-8", "20151008000017","北京","南京",CargoState.INTACT);
 	}
 
+	public boolean ModifyReceivingFormDT(ReceivingPO receivingPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
