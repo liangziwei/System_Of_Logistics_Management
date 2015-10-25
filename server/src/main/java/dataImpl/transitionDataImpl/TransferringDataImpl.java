@@ -22,7 +22,7 @@ public class TransferringDataImpl implements TransferringDataService{
 		return null;
 	}
 
-	public List<TransferringPO> GetTansferringInfoDT(String date) {
+	public List<TransferringPO> GetTransferringInfoDT(String date) {
 		// TODO Auto-generated method stub
 		return null;
 	}
