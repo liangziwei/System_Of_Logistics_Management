@@ -7,7 +7,7 @@ import businessLogicService.transitionBLService.TransferringBLService;
 import dataService.repositoryDataService.OutRepositoryDataService;
 import po.repositoryPO.OutRepositoryPO;
 import stub.businessLogicImpl_stub.transitionBLImpl_stub.TransferringBLImpl_Stub;
-import stub.dataImpl_stub.repositoryDataImpl.OutRepositoryDataImpl_Stub;
+import stub.dataImpl_stub.repositoryDataImpl_stub.OutRepositoryDataImpl_Stub;
 import vo.repositoryVO.OutRepositoryVO;
 import vo.transitionVO.TransferringVO;
 

@@ -1,4 +1,4 @@
-package stub.dataImpl_stub.transitionDataImpl;
+package stub.dataImpl_stub.transitionDataImpl_stub;
 
 import java.lang.Thread.State;
 
@@ -21,11 +21,6 @@ public class ReceivingDataImpl_Stub implements ReceivingDataService{
 	public ReceivingPO FindReceivingFormDT(String receivingNumber) {
 		// TODO Auto-generated method stub
 		return new ReceivingPO("0025 010","2015-10-8", "20151008000017","北京","南京",CargoState.INTACT);
-	}
-
-	public boolean ModifyReceivingFormDT(ReceivingPO receivingPO) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

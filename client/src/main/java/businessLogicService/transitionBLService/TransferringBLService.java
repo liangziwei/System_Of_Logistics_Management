@@ -75,4 +75,3 @@ public interface TransferringBLService {
 	 * */
 	public List<TransferringVO> GetTansferringInfoBL(String date);
 }
-

@@ -44,7 +44,6 @@ public interface ManageRepositoryBLService {
 	 * @return boolean, 返回库存预警值是否保存成功
 	 * */
 	public boolean SetWarnValueBL(AreaCodeType ID,int allNum,double WarnNum);
-	
 	/**
 	 * description:取得仓库中某个区的报警百分比
 	 * 前置条件：进行一次添加（修改）入库单的操作
@@ -84,5 +83,6 @@ public interface ManageRepositoryBLService {
 	 * @return List<RepositoryVO>, 返回仓库的库存信息的值对象，具体参照RepositoryVO
 	 * */
 	public List<RepositoryVO> GetRepositoryInfoBL();
-
+	
+	
 }

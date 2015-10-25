@@ -5,7 +5,7 @@ import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import constant.AreaCodeType;
 import dataService.repositoryDataService.InRepositoryDataService;
 import po.repositoryPO.InRepositoryPO;
-import stub.dataImpl_stub.repositoryDataImpl.InRepositoryDataImpl_Stub;
+import stub.dataImpl_stub.repositoryDataImpl_stub.InRepositoryDataImpl_Stub;
 import vo.repositoryVO.InRepositoryVO;
 
 public class InRepositoryBLImpl_Stub implements InRepositoryBLService{

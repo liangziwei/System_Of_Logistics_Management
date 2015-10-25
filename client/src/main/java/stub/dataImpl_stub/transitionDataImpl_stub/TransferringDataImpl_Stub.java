@@ -1,4 +1,4 @@
-package stub.dataImpl_stub.transitionDataImpl;
+package stub.dataImpl_stub.transitionDataImpl_stub;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,9 @@ public class TransferringDataImpl_Stub implements TransferringDataService{
 		alldeliveryid.add("1110000123");
 		alldeliveryid.add("1110001342");
 		alldeliveryid.add("1110022123");
-		return new TransferringPO("2015-10-11","01710100000127" , LoadingType.PLANE,"139010001",City.BEI_JING, City.NAN_JING, "茗柯", "3", alldeliveryid);
+		TransferringPO transferringPO =new TransferringPO("2015-10-11","01710100000127" , LoadingType.PLANE,"139010001",City.BEI_JING, City.NAN_JING, "茗柯", "3", alldeliveryid);
+		transferringPO.setfare(500);
+		return transferringPO;
 	}
 
 	public List<TransferringPO> GetTransferringInfoDT(String date) {

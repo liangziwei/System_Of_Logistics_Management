@@ -1,4 +1,4 @@
-package stub.dataImpl_stub.repositoryDataImpl;
+package stub.dataImpl_stub.repositoryDataImpl_stub;
 
 import constant.LoadingType;
 import dataService.repositoryDataService.OutRepositoryDataService;

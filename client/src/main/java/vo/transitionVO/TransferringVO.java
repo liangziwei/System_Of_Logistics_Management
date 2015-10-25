@@ -3,6 +3,7 @@ package vo.transitionVO;
 
 import java.util.List;
 
+import constant.City;
 import constant.LoadingType;
 
 /**
@@ -30,11 +31,11 @@ public class TransferringVO {
 	/**
 	 * 出发地
 	 */
-	private String departureid;
+	private City departureid;
 	/**
 	 * 目的地
 	 */
-	private String arrivalid;
+	private City arrivalid;
 	/**
 	 * 监装员
 	 */
@@ -54,7 +55,7 @@ public class TransferringVO {
 	/**
 	 * 装运单的运费
 	 */
-	private int fare;
+	private double fare;
 	/**
 	 * 是否经过审批
 	 */
@@ -64,7 +65,7 @@ public class TransferringVO {
 	 */
 	private boolean isPassed = false;
 	public TransferringVO(String loadingdate,String transferringid,LoadingType way,String wayid,
-			String departureid,String arrivalid,String supervisionid,
+			City departureid,City arrivalid,String supervisionid,
 			String containerid,List<String> alldeliveryid) {
 		// TODO Auto-generated constructor stub
 		super();
@@ -101,16 +102,16 @@ public class TransferringVO {
 	public String getwayid() {
 		return wayid;
 	}
-	public void setdepartureid(String departureid) {
+	public void setdepartureid(City departureid) {
 		this.departureid=departureid;
 	}
-	public String getdepartureid() {
+	public City  getdepartureid() {
 		return departureid;
 	}
-	public void setarrivalid(String arrivalid) {
+	public void setarrivalid(City  arrivalid) {
 			this.arrivalid=arrivalid;
 	}
-	public String getarrivalid() {
+	public City getarrivalid() {
 		return arrivalid;
 	}
 	public void setsupervisionid(String supervisionid) {
@@ -131,10 +132,10 @@ public class TransferringVO {
 	public List<String> getalldeliveryid() {
 		return alldeliveryid;
 	}
-	public void setfare(int fare) {
+	public void setfare(double fare) {
 		this.fare=fare;
 	}
-	public int getfare() {
+	public double getfare() {
 		return fare;
 	}
 	public void setisApproved(boolean isApproved) {
