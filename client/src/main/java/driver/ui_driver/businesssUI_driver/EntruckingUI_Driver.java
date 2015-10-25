@@ -6,7 +6,7 @@ import businessLogicService.businessBLService.EntruckingBLService;
 
 public class EntruckingUI_Driver {
 	
-	public static void main(String[] args) {
+	public void driver() {
 		EntruckingBLService entrucking=new EntruckingBLImpl_Stub();
 		EntruckingVO entruckingVO=new EntruckingVO("2015-10-10","025001","0250012015101012345","025002","025001001","监装员","押运员",600);
 		if(entrucking.addEntruckingFrom(entruckingVO)){
