@@ -10,7 +10,7 @@ public class ReceivingDataImpl_Stub implements ReceivingDataService{
 		return false;
 	}
 
-	public boolean ModifyReceivingFormDT(ReceivingPO receivingPO) {
+	public boolean modifyReceivingFormDT(ReceivingPO receivingPO) {
 		// TODO Auto-generated method stub
 		return false;
 	}

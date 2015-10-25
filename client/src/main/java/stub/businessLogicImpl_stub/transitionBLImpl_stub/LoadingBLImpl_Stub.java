@@ -33,7 +33,7 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 
 	public double loadingFare(City CityFrom, String CityTo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 500;
 	}
 	
 	private LoadingVO LoadingPOtoLoadingVO(LoadingPO loadingPO){
