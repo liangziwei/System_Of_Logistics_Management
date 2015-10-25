@@ -15,6 +15,7 @@ public class EntruckingBLImpl_Stub implements EntruckingBLService{
 
 		return entruckingData.addEntruckingFrom(entruckingVOToPO(entruckingVO));
 	}
+	
 	private EntruckingPO entruckingVOToPO(EntruckingVO entruckingVO){
 		
 		return new EntruckingPO(entruckingVO.getDate(),entruckingVO.getBusinessHallid(),entruckingVO.getTransportNumber(),entruckingVO.getDestionation(),entruckingVO.getVehicleid(),entruckingVO.getSupervisor(),entruckingVO.getSupercargo(),entruckingVO.getFreight());

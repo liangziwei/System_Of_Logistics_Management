@@ -9,7 +9,7 @@ public class AdministratorVO {
 	private String name;
 	private String id;
 	private String password;
-	private Authority limit;
+	private Authority limit=Authority.LOW;
 	
 	public AdministratorVO(UserType type, String name, String id,
 			String password, Authority limit) {
