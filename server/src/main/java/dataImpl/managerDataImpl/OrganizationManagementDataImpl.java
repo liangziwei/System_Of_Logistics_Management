@@ -13,11 +13,11 @@ public class OrganizationManagementDataImpl implements OrganizationManagementDat
 		return false;
 	}
 	
-	public OrganizationPO findOrganization(int id) {
+	public OrganizationPO findOrganization(String id) {
 		return null;
 	}
 	
-	public boolean deleteOrganization(int id) {
+	public boolean deleteOrganization(String id) {
 		return false;
 	}
 	
