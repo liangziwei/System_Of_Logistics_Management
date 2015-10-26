@@ -14,7 +14,7 @@ public class Start {
 		try {
 			OrderDataService order = new OrderDataImpl();
 			OrderDataService stub = (OrderDataService) UnicastRemoteObject.exportObject(order, 0);
-			Registry registry = LocateRegistry.getRegistry(1099);
+			Registry registry = LocateRegistry.createRegistry(1099);
 			registry.bind("order", stub);
 			System.out.println("Server is working...");
 		} catch (Exception e) {
