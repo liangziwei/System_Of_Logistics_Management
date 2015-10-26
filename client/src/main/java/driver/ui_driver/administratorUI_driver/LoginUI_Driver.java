@@ -6,6 +6,12 @@ import businessLogicService.administratorBLService.LoginBLService;
 public class LoginUI_Driver {
 
 	private LoginBLService loginBL=new LoginBLImpl_Stub();
+	
+	public static void main(String[] args) {
+		LoginUI_Driver login=new LoginUI_Driver();
+		login.driver();
+	}
+	
 	public void driver(){
 		if(loginBL.login("C123456","0000")){
 			System.out.println("登陆成功");

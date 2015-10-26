@@ -11,6 +11,12 @@ import vo.administratorVO.AdministratorVO;
 public class AdministratorUI_Driver {
 	private AdministratorBLService administrator=new AdministratorBLImpl_Stub();
 	private AdministratorVO administratorVO;
+	
+	public static void main(String[] args){
+		AdministratorUI_Driver admin=new AdministratorUI_Driver ();
+		admin.driver();
+	}
+	
 	public void driver(){
 		administratorVO=new AdministratorVO(UserType.BUSINESS,"dogee","C123456","0000",Authority.LOW);
 		if(administrator.addUser(new AdministratorVO(UserType.BUSINESS,"dogee","C123456","0000",Authority.LOW))){
@@ -20,7 +26,7 @@ public class AdministratorUI_Driver {
 		}
 		
 		administratorVO=administrator.findUser("C123456");	
-		System.out.println(administratorVO.getType()+" "+administratorVO.getId()+" "+administratorVO.getName()+administratorVO.getPassword());
+		System.out.println(administratorVO.getType()+" "+administratorVO.getId()+" "+administratorVO.getName()+" "+administratorVO.getPassword());
 		
 		if(administrator.deleteUser("C123456")){
 			System.out.println("账户信息删除成功");
