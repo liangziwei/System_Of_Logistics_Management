@@ -14,6 +14,11 @@ import constant.TransitionNode;
 public class GoodsInfo implements Serializable{
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -796289660796525400L;
+	
+	/**
 	 * 重量
 	 */
 	private double weight;

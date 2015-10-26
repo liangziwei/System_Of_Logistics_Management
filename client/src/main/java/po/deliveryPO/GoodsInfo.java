@@ -1,4 +1,4 @@
-package vo.deliveryVO;
+package po.deliveryPO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,6 +13,11 @@ import constant.TransitionNode;
  */
 public class GoodsInfo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -796289660796525400L;
+
 	/**
 	 * 重量
 	 */

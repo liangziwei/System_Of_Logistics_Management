@@ -13,6 +13,11 @@ import constant.TransitionNode;
 public class LogisticsPO implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7909418555507985940L;
+
+	/**
 	 * 物品的货运状态（派件中、到达寄件人营业厅、到达寄件人中转中心、
 	 * 到达收件人中转中心、到达收件人营业厅、收件）
 	 */

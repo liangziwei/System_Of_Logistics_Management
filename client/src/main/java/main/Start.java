@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import businessLogicImpl.deliveryBLImpl.OrderBLImpl;
 import businessLogicService.deliveryBLService.OrderBLService;
 import constant.ClientType;
-import vo.deliveryVO.ClientInfo;
-import vo.deliveryVO.GoodsInfo;
+import po.deliveryPO.ClientInfo;
+import po.deliveryPO.GoodsInfo;
 import vo.deliveryVO.OrderVO;
 
 public class Start {

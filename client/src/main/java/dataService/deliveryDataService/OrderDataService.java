@@ -1,6 +1,7 @@
 package dataService.deliveryDataService;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 import constant.City;
@@ -21,7 +22,7 @@ public interface OrderDataService extends Remote{
 	 * @param id ,订单条形码号（10位数字）
 	 * @return OrderPO, 返回订单信息的持久化对象，具体参照OrdePO的定义
 	 */
-	public OrderPO getOrderInfoById(String id);
+	public OrderPO getOrderInfoById(String id)throws RemoteException;
 	
 	/**
 	 * description:将订单信息保存
@@ -31,7 +32,7 @@ public interface OrderDataService extends Remote{
 	 * @param orderVO,将订单信息的持久化对象存储，具体参照OrderPO的定义
 	 * @return boolean,通知方法调用者是否保存成功
 	 */
-	public boolean saveOrderInfo(OrderPO orderPO);
+	public boolean saveOrderInfo(OrderPO orderPO)throws RemoteException;
 	
 	/**
 	 * description:查询数据存储，得到两地之间快递运送时间的所有历史记录
@@ -42,6 +43,6 @@ public interface OrderDataService extends Remote{
 	 * @param destination 快递目的地的名称
 	 * @return List<TimeRecordPO> 返回时间记录持久化对象的列表
 	 */
-	public List<TimeRecordPO> getTimeRecords(City source, City destination);
+	public List<TimeRecordPO> getTimeRecords(City source, City destination)throws RemoteException;
 
 }

@@ -11,6 +11,11 @@ import constant.City;
 public class TimeRecordPO implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3660908839874834569L;
+	
+	/**
 	 *快递出发地 
 	 */
 	private City source;

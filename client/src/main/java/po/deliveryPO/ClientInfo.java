@@ -1,4 +1,4 @@
-package vo.deliveryVO;
+package po.deliveryPO;
 
 import java.io.Serializable;
 
@@ -10,6 +10,11 @@ import constant.ClientType;
  */
 public class ClientInfo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5564025686495061391L;
+
 	/**
 	 * 身份（寄件人或收件人）
 	 */

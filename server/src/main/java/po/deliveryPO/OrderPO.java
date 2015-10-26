@@ -7,6 +7,11 @@ import java.io.Serializable;
  * @author 肖安祥
  */
 public class OrderPO implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4731658363143448150L;
 
 	/**
 	 *寄件人信息 

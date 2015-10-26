@@ -1,5 +1,8 @@
 package vo.deliveryVO;
 
+import po.deliveryPO.ClientInfo;
+import po.deliveryPO.GoodsInfo;
+
 /**
  * 记录了订单的信息
  * @author 肖安祥

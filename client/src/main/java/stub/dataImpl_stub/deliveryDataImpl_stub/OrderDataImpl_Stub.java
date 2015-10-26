@@ -9,10 +9,10 @@ import constant.DeliveryType;
 import constant.PackageType;
 import constant.TransitionNode;
 import dataService.deliveryDataService.OrderDataService;
+import po.deliveryPO.ClientInfo;
+import po.deliveryPO.GoodsInfo;
 import po.deliveryPO.OrderPO;
 import po.deliveryPO.TimeRecordPO;
-import vo.deliveryVO.ClientInfo;
-import vo.deliveryVO.GoodsInfo;
 
 public class OrderDataImpl_Stub implements OrderDataService{
 

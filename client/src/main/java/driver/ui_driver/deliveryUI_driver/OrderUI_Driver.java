@@ -6,9 +6,9 @@ import businessLogicService.deliveryBLService.OrderBLService;
 import constant.City;
 import constant.ClientType;
 import constant.DeliveryType;
+import po.deliveryPO.ClientInfo;
+import po.deliveryPO.GoodsInfo;
 import stub.businessLogicImpl_stub.deliveryBLImpl_stub.OrderBLImpl_Stub;
-import vo.deliveryVO.ClientInfo;
-import vo.deliveryVO.GoodsInfo;
 import vo.deliveryVO.OrderVO;
 
 public class OrderUI_Driver {
