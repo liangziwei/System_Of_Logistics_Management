@@ -1,12 +1,14 @@
 package po.deliveryPO;
 
+import java.io.Serializable;
+
 import constant.City;
 
 /**
  * 快递到达时间的历史记录的持久化对象
  * @author 肖安祥
  */
-public class TimeRecordPO {
+public class TimeRecordPO implements Serializable{
 
 	/**
 	 *快递出发地 

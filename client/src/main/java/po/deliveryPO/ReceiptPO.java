@@ -1,10 +1,12 @@
 package po.deliveryPO;
 
+import java.io.Serializable;
+
 /**
  *收件信息的持久化对象
  *@author 肖安祥 
  */
-public class ReceiptPO {
+public class ReceiptPO implements Serializable{
 
 	/**
 	 * 订单条形码号

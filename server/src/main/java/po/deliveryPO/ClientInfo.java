@@ -1,12 +1,14 @@
 package po.deliveryPO;
 
+import java.io.Serializable;
+
 import constant.ClientType;
 
 /**
  * 记录了客户的信息
  * @author 肖安祥
  */
-public class ClientInfo {
+public class ClientInfo implements Serializable{
 	
 	/**
 	 * 身份（寄件人或收件人）

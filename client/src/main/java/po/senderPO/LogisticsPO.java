@@ -1,5 +1,6 @@
 package po.senderPO;
 
+import java.io.Serializable;
 import java.util.List;
 
 import constant.City;
@@ -9,7 +10,7 @@ import constant.TransitionNode;
  * 物流信息的持久化对象
  * @author 肖安祥
  */
-public class LogisticsPO {
+public class LogisticsPO implements Serializable{
 
 	/**
 	 * 物品的货运状态（派件中、到达寄件人营业厅、到达寄件人中转中心、

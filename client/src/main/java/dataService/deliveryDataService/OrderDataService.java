@@ -1,5 +1,6 @@
 package dataService.deliveryDataService;
 
+import java.rmi.Remote;
 import java.util.List;
 
 import constant.City;
@@ -10,7 +11,7 @@ import po.deliveryPO.TimeRecordPO;
  * description:数据服务层为订单信息逻辑处理提供的服务
  * @author 肖安祥
  */
-public interface OrderDataService {
+public interface OrderDataService extends Remote{
 
 	/**
 	 * description:通过订单条形码号得到相应的订单信息

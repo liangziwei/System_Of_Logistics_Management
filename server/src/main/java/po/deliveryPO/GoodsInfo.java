@@ -1,5 +1,6 @@
 package po.deliveryPO;
 
+import java.io.Serializable;
 import java.util.List;
 
 import constant.DeliveryType;
@@ -10,7 +11,7 @@ import constant.TransitionNode;
  * 记录了快递的货物信息
  * @author 肖安祥
  */
-public class GoodsInfo {
+public class GoodsInfo implements Serializable{
 	
 	/**
 	 * 重量

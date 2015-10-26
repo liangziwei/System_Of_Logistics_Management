@@ -1,5 +1,7 @@
 package po.deliveryPO;
 
+import java.io.Serializable;
+
 import vo.deliveryVO.ClientInfo;
 import vo.deliveryVO.GoodsInfo;
 
@@ -7,7 +9,7 @@ import vo.deliveryVO.GoodsInfo;
  * 订单的持久化对象
  * @author 肖安祥
  */
-public class OrderPO {
+public class OrderPO implements Serializable{
 
 	/**
 	 *寄件人信息 
