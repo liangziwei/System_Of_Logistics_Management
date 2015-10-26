@@ -15,9 +15,9 @@ public class PaymentUI_Driver {
 		PaymentBLService payment=new PaymentBLImpl_Stub();
 		ReceivableVO receivableVO=new ReceivableVO("2015-10-10",33,"快递员1",deliveryid);
 		if(payment.addPayentForm(receivableVO)){
-			System.out.println("添加成功");
+			System.out.println("收款单添加成功");
 		}else{
-			System.out.println("添加失败");
+			System.out.println("收款单添加失败");
 		}
 	}
 }
