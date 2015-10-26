@@ -5,6 +5,7 @@ import java.util.List;
 import constant.AreaCodeType;
 import vo.repositoryVO.DeliveryInfoVO;
 import vo.repositoryVO.RepositoryInfoVO;
+import vo.repositoryVO.RepositoryVO;
 
 /**
  * description:业务逻辑层为中转中心仓库库存信息管理界面提供的服务
@@ -42,10 +43,6 @@ public interface ManageRepositoryBLService {
 	 * @param WarnNum ：该区的预警的百分比
 	 * @return boolean, 返回库存预警值是否保存成功
 	 * */
-<<<<<<< Updated upstream
-	public boolean SetWarnValueBL(String ID,int allNum,double WarnNum);
-=======
-<<<<<<< HEAD
 	public boolean SetWarnValueBL(AreaCodeType ID,int allNum,double WarnNum);
 	/**
 	 * description:取得仓库中某个区的报警百分比
@@ -86,10 +83,6 @@ public interface ManageRepositoryBLService {
 	 * @return List<RepositoryVO>, 返回仓库的库存信息的值对象，具体参照RepositoryVO
 	 * */
 	public List<RepositoryVO> GetRepositoryInfoBL();
-=======
-	public boolean SetWarnValueBL(String ID,int allNum,double WarnNum);
->>>>>>> origin/master
->>>>>>> Stashed changes
 	
 	
 }

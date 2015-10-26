@@ -1,4 +1,4 @@
-package stub.dataImpl_stub.transitionDataImpl;
+package stub.dataImpl_stub.transitionDataImpl_stub;
 
 import java.lang.Thread.State;
 

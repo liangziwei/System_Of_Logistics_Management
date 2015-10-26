@@ -10,6 +10,9 @@ public interface OutRepositoryDataService {
 	
 	/**
 	 * description:添加新的出库单信息
+	 * 前置条件：逻辑层传送的OutRepositoryPO不为null且格式正确
+	 * 后置条件：保存出库单
+	 * 需接口：无
 	 * @param OutRepositoryPO ,出库单信息的相关持久化对象存储，具体参照OutRepositoryPO的定义
 	 * @return boolean, 返回给方法调用者出库单信息是否添加成功
 	 * */
@@ -17,6 +20,9 @@ public interface OutRepositoryDataService {
 	
 	/**
 	 * description:修改出库单信息
+	 * 前置条件：逻辑层传送的OutRepositoryPO不为null且格式正确
+	 * 后置条件：修改出库单
+	 * 需接口：无
 	 * @param OutRepositoryPO ,出库单信息的相关持久化对象存储，具体参照OutRepositoryPO的定义
 	 * @return boolean, 返回给方法调用者出库单信息是否修改成功
 	 * */
@@ -24,6 +30,9 @@ public interface OutRepositoryDataService {
 	
 	/**
 	 * description:通过出库单的快递编号得到相应的出库单信息
+	 * 前置条件：逻辑层传送的OutRepositoryNumber正确
+	 * 后置条件：将获得的出库单信息返回给逻辑层
+	 * 需接口：无
 	 * @param OutRepositoryNumber ,出库单的快递编号（十位数字）
 	 * @return OutRepositoryPO, 返回出库单信息的持久化对象，具体参照OutRepositoryPO的定义
 	 */
@@ -31,6 +40,9 @@ public interface OutRepositoryDataService {
 	
 	/**
 	 * description:根据出库单信息更新库存信息
+	 * 前置条件：逻辑层传送的OutRepositoryPO不为null且格式正确
+	 * 后置条件：库存信息更新(添加，修改)
+	 * 需接口：无
 	 * @param OutRepositoryPO , 出库单信息的相关持久化对象存储，具体参照OutRepositoryPO的定义
 	 * @return boolean, 返回给方法调用者库存信息是否更新成功
 	 * */

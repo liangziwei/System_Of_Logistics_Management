@@ -1,5 +1,6 @@
 package stub.businessLogicImpl_stub.transitionBLImpl_stub;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import businessLogicService.repositoryBLService.ManageRepositoryBLService;
@@ -8,7 +9,7 @@ import constant.City;
 import dataService.transitionDataService.TransferringDataService;
 import po.transitionPO.TransferringPO;
 import stub.businessLogicImpl_stub.repositoryBLImpl_stub.ManageRepositoryBLImpl_Stub;
-import stub.dataImpl_stub.transitionDataImpl.TransferringDataImpl_Stub;
+import stub.dataImpl_stub.transitionDataImpl_stub.TransferringDataImpl_Stub;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
@@ -69,7 +70,7 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 	public List<TransferringVO> GetTansferringInfoBL(String date) {
 		// TODO Auto-generated method stub
 		List<TransferringPO> transferringPOs = transferringdata.GetTransferringInfoDT(date);
-		List<TransferringVO> transferringVOs =null;
+		List<TransferringVO> transferringVOs = new ArrayList<TransferringVO>();
 		for(int i=0;i<transferringPOs.size();i++){
 			transferringVOs.add(this.TransferringPOtoTransferringVO(transferringPOs.get(i)));
 		}

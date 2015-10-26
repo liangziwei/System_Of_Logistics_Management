@@ -40,9 +40,6 @@ public interface InRepositoryBLService {
 	 * @return InRepositoryVO, 返回入库单信息的值对象，具体参照InRepositoryVO的定义
 	 * */
 	public InRepositoryVO findInRepositoryFormBL(String InRepositoryNumber);
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 	/**
 	 * description:进行是否要预警的处理
 	 * 前置条件：进行一次添加（修改）入库单的操作
@@ -84,7 +81,4 @@ public interface InRepositoryBLService {
 	 * @return int ： 返回仓库的某个区的现存快递数量
 	 * */
 	public int GetRepositoryExist(AreaCodeType ID);
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
 }

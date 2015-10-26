@@ -1,4 +1,4 @@
-package stub.dataImpl_stub.transitionDataImpl;
+package stub.dataImpl_stub.transitionDataImpl_stub;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,9 @@ public class LoadingDataImpl_Stub implements LoadingDataService{
 		alldeliveryid.add("1000221181");
 		alldeliveryid.add("1244291091");
 		alldeliveryid.add("1827461871");
-		
-		return new LoadingPO("017 1010 0007", "北京", LoadingType.PLANE,"139 010 001","茗柯","茗柯",alldeliveryid);
+		LoadingPO loadingPO =new LoadingPO("017 1010 0007", "北京", LoadingType.PLANE,"139 010 001","茗柯","茗柯",alldeliveryid);
+		loadingPO.setfare(500);
+		return loadingPO;
 	}
 
 }

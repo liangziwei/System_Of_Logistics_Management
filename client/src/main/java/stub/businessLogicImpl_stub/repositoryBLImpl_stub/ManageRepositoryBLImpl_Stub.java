@@ -1,5 +1,6 @@
 package stub.businessLogicImpl_stub.repositoryBLImpl_stub;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import businessLogicService.repositoryBLService.ManageRepositoryBLService;
@@ -8,28 +9,31 @@ import dataService.repositoryDataService.ManageRepositoryDataService;
 import po.repositoryPO.DeliveryInfoPO;
 import po.repositoryPO.RepositoryInfoPO;
 import po.repositoryPO.RepositoryPO;
-import stub.dataImpl_stub.repositoryDataImpl.ManageRepositoryDataImpl_Stub;
+import stub.dataImpl_stub.repositoryDataImpl_stub.ManageRepositoryDataImpl_Stub;
 import vo.repositoryVO.DeliveryInfoVO;
 import vo.repositoryVO.RepositoryInfoVO;
 import vo.repositoryVO.RepositoryVO;
 
 public class ManageRepositoryBLImpl_Stub implements ManageRepositoryBLService{
 	private ManageRepositoryDataService manageRepositoryData =new ManageRepositoryDataImpl_Stub();
+	private List<RepositoryVO> repositoryVOs;
+	private List<RepositoryInfoVO> repositoryVOs2;
+	private List<DeliveryInfoVO> deliveryInfoVOs;
 
 	public List<RepositoryInfoVO> SeeRepositoryBL(String time) {
 		// TODO Auto-generated method stub
 		List<RepositoryInfoPO> repositoryPOs = manageRepositoryData.SeeRepositoryDT(time);
-		List<RepositoryInfoVO> repositoryVOs = null;
+		repositoryVOs2 = new ArrayList<RepositoryInfoVO>();
 		for(int i=0;i<(repositoryPOs.size());i++){
-			repositoryVOs.add(this.RepositoryInfoPOtoRepositoryInfoVO(repositoryPOs.get(i)));
+			repositoryVOs2.add(this.RepositoryInfoPOtoRepositoryInfoVO(repositoryPOs.get(i)));
 		}
-		return repositoryVOs;
+		return repositoryVOs2;
 	}
 
 	public List<DeliveryInfoVO> CheckRepositoryBL() {
 		// TODO Auto-generated method stub
 		List<DeliveryInfoPO> deliveryInfoPOs = manageRepositoryData.CheckRepositoryDT();
-		List<DeliveryInfoVO> deliveryInfoVOs = null;
+		deliveryInfoVOs = new ArrayList<DeliveryInfoVO>();
 		for(int i=0;i<(deliveryInfoPOs.size());i++){
 			deliveryInfoVOs.add(this.DeliveryInfoPOtoDeliveryInfoVO(deliveryInfoPOs.get(i)));
 		}
@@ -59,9 +63,10 @@ public class ManageRepositoryBLImpl_Stub implements ManageRepositoryBLService{
 	public List<RepositoryVO> GetRepositoryInfoBL() {
 		// TODO Auto-generated method stub
 		List<RepositoryPO> repositoryPOs = manageRepositoryData.GetRepositoryInfoDT();
-		List<RepositoryVO> repositoryVOs = null;
+		repositoryVOs = new ArrayList<RepositoryVO>();
 		for(int i=0;i<(repositoryPOs.size());i++){
-			repositoryVOs.add(this.RepositoryPOtoRepositoryVO(repositoryPOs.get(i)));
+			RepositoryVO repositoryvo=this.RepositoryPOtoRepositoryVO(repositoryPOs.get(i));
+			repositoryVOs.add(repositoryvo);
 		}
 		return repositoryVOs;
 	}
