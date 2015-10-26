@@ -25,5 +25,5 @@ public interface MakeConstantDataService {
 	 * @param  destination ,目的地
 	 * @return boolean, 更新城市距离是否成功
 	 */
-	public boolean updateDistance(double distance,City source	,City destination);
+	public boolean updateDistance(double distance,City source,City destination);
 }
