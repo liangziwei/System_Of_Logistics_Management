@@ -58,6 +58,7 @@ public class MainUI_Stub {
 					new FinanceUI_Stub();
 					break;
 				case '5':
+					new TransitionUI_Stub();
 					break;
 				case '6':
 					break;
