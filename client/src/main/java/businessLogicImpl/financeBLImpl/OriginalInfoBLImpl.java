@@ -30,12 +30,12 @@ public class OriginalInfoBLImpl implements OriginalInfoBLService{
 		return null;
 	}
 
-	public RepositoryInfoVO getRepositoryInfo(int year) {
+	public List<RepositoryInfoVO> getRepositoryInfo(int year) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public AccountVO getAccountInfo(int year) {
+	public List<AccountVO> getAccountInfo(int year) {
 		// TODO Auto-generated method stub
 		return null;
 	}

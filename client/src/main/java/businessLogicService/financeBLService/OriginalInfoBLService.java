@@ -51,7 +51,7 @@ public interface OriginalInfoBLService {
 	 * @param year 年份
 	 * @return List<RepositoryInfoVO> 所有库存信息的值对象
 	 */
-    public RepositoryInfoVO getRepositoryInfo(int year);
+    public List<RepositoryInfoVO> getRepositoryInfo(int year);
     
     /**
 	 * description:获得某一年份的银行信息
@@ -61,5 +61,5 @@ public interface OriginalInfoBLService {
 	 * @param year 年份
 	 * @return List<AccountVO> 银行信息的值对象
 	 */
-    public AccountVO getAccountInfo(int year);
+    public List<AccountVO> getAccountInfo(int year);
 }

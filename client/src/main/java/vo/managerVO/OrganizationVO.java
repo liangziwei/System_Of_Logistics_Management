@@ -1,6 +1,6 @@
 package vo.managerVO;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 记录了机构的信息
@@ -22,10 +22,10 @@ public class OrganizationVO {
 	/**
 	 * 人员信息
 	 */
-	private ArrayList<StaffVO> staffInfo;
+	private List<StaffVO> staffInfo;
 	
 	public OrganizationVO(String type, String id, String name,
-			ArrayList<StaffVO> staffInfo) {
+			List<StaffVO> staffInfo) {
 		super();
 		this.type = type;
 		this.id = id;
@@ -57,11 +57,11 @@ public class OrganizationVO {
 		this.name = name;
 	}
 
-	public ArrayList<StaffVO> getStaffInfo() {
+	public List<StaffVO> getStaffInfo() {
 		return staffInfo;
 	}
 
-	public void setStaffInfo(ArrayList<StaffVO> staffInfo) {
+	public void setStaffInfo(List<StaffVO> staffInfo) {
 		this.staffInfo = staffInfo;
 	}
 	

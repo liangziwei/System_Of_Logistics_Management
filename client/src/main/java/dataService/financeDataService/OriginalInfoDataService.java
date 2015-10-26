@@ -28,7 +28,7 @@ public interface OriginalInfoDataService {
 	 * @param year 年份
 	 * @return List<OrganizationPO>所有机构信息的持久化对象
 	 */
-	public OrganizationPO getOrganizationInfo(int year);
+	public List<OrganizationPO> getOrganizationInfo(int year);
 	
 	/**
 	 * description:根据年份获得该年份的所有车辆信息
@@ -48,7 +48,7 @@ public interface OriginalInfoDataService {
 	 * @param year 年份
 	 * @return List<RepositoryInfoPO>所有库存信息的持久化对象
 	 */
-	public RepositoryInfoPO getRepositoryInfo(int year);
+	public List<RepositoryInfoPO> getRepositoryInfo(int year);
 	
 	/**
 	 * description:根据年份获得该年份的银行信息
@@ -58,5 +58,5 @@ public interface OriginalInfoDataService {
 	 * @param year 年份
 	 * @return List<AccountPO>银行信息的持久化对象
 	 */
-	public AccountPO getAccountInfo(int year);
+	public List<AccountPO> getAccountInfo(int year);
 }

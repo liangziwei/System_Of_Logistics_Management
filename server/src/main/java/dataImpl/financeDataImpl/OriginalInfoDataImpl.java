@@ -16,7 +16,7 @@ public class OriginalInfoDataImpl implements OriginalInfoDataService{
 		return null;
 	}
 
-	public OrganizationPO getOrganizationInfo(int year) {
+	public List<OrganizationPO> getOrganizationInfo(int year) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -26,12 +26,12 @@ public class OriginalInfoDataImpl implements OriginalInfoDataService{
 		return null;
 	}
 
-	public RepositoryInfoPO getRepositoryInfo(int year) {
+	public List<RepositoryInfoPO> getRepositoryInfo(int year) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public AccountPO getBankInfo(int year) {
+	public List<AccountPO> getAccountInfo(int year) {
 		// TODO Auto-generated method stub
 		return null;
 	}
