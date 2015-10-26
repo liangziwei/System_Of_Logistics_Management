@@ -14,7 +14,7 @@ public class OrganizationPO {
 	/**
 	 * 机构编号
 	 */
-	private int id;
+	private String id;
 	/**
 	 * 机构名称
 	 */
@@ -23,7 +23,7 @@ public class OrganizationPO {
 	 * 人员信息
 	 */
 	private ArrayList<StaffPO> staffInfo;
-	public OrganizationPO(String type, int id, String name,
+	public OrganizationPO(String type, String id, String name,
 			ArrayList<StaffPO> staffInfo) {
 		super();
 		this.type = type;
@@ -37,10 +37,10 @@ public class OrganizationPO {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -55,5 +55,7 @@ public class OrganizationPO {
 	public void setStaffInfo(ArrayList<StaffPO> staffInfo) {
 		this.staffInfo = staffInfo;
 	}
+	
+	
 	
 }
