@@ -18,16 +18,40 @@ public class BusinessUI_Stub {
 	public static final JButton CANCEL = new JButton("CANCEL");
 
 	public BusinessUI_Stub() {
-		show();
+		BUSINESS_PANEL.setVisible(true);
+		BUSINESS_PANEL.setLayout(new BoxLayout(BUSINESS_PANEL, BoxLayout.Y_AXIS));
+		OK.setSize(50, 30);
+		
+		CANCEL.setSize(50, 30);
+
+		CANCEL.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+//				MainUI_Stub.MAIN_FRAME.setTitle("MAIN_FRAME");
+//				MainUI_Stub.MAIN_PANEL.setVisible(true);
+//				BusinessUI_Stub.BUSINESS_PANEL.setVisible(false);
+				MainUI_Stub.ViewController("MAIN_FRAME",
+						new BusinessUI_Stub().getClass().getName(),
+						new MainUI_Stub().getClass().getName());
+			}
+		});
+		
+		BUSINESS_PANEL.add(OK);
+		BUSINESS_PANEL.add(CANCEL);
+
+		MainUI_Stub.MAIN_FRAME.setTitle("BUSINESS");
+		MainUI_Stub.MAIN_FRAME.add(BUSINESS_PANEL);
 	}
 
 	public static void show() {
-		BUSINESS_PANEL.setVisible(true);
-		BUSINESS_PANEL.setLayout(new BoxLayout(BUSINESS_PANEL, BoxLayout.Y_AXIS));
+		BusinessUI_Stub.BUSINESS_PANEL.setVisible(true);
+//		BUSINESS_PANEL.setVisible(true);
+//		BUSINESS_PANEL.setLayout(new BoxLayout(BUSINESS_PANEL, BoxLayout.Y_AXIS));
 
 //		ID.setSize(200, 50);
 
-		OK.setSize(50, 30);
+//		OK.setSize(50, 30);
 
 //		OK.addActionListener(new ActionListener() {
 //
@@ -39,24 +63,30 @@ public class BusinessUI_Stub {
 //			}
 //		});
 
-		CANCEL.setSize(50, 30);
-
-		CANCEL.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-				MainUI_Stub.MAIN_FRAME.setTitle("MAIN_FRAME");
-				MainUI_Stub.MAIN_PANEL.setVisible(true);
-				BusinessUI_Stub.BUSINESS_PANEL.setVisible(false);
-			}
-		});
+//		CANCEL.setSize(50, 30);
+//
+//		CANCEL.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//
+//				MainUI_Stub.MAIN_FRAME.setTitle("MAIN_FRAME");
+//				MainUI_Stub.MAIN_PANEL.setVisible(true);
+//				BusinessUI_Stub.BUSINESS_PANEL.setVisible(false);
+//			}
+//		});
 
 
 //		BUSINESS_PANEL.add(ID);
-		BUSINESS_PANEL.add(OK);
-		BUSINESS_PANEL.add(CANCEL);
-
-		MainUI_Stub.MAIN_FRAME.setTitle("BUSINESS");
-		MainUI_Stub.MAIN_FRAME.add(BUSINESS_PANEL);
+//		BUSINESS_PANEL.add(OK);
+//		BUSINESS_PANEL.add(CANCEL);
+//
+//		MainUI_Stub.MAIN_FRAME.setTitle("BUSINESS");
+//		MainUI_Stub.MAIN_FRAME.add(BUSINESS_PANEL);
 	}
+	
+	public static void disappear() {
+		BusinessUI_Stub.BUSINESS_PANEL.setVisible(false);
+	}
+	
+	
 }

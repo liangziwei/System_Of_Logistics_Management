@@ -2,6 +2,7 @@ package ui_test;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Method;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -82,5 +83,30 @@ public class MainUI_Stub {
 	
 	public static void main(String[] args) {
 		new MainUI_Stub();
+//		BusinessUI_Stub b = new BusinessUI_Stub();
+//		DeliveryUI_Stub d = new DeliveryUI_Stub();
+//		ViewController("haha", b.getClass().getName(), d.getClass().getName());
+	}
+	
+	public static void ViewController(String title, String from, String to) {
+		try {
+			MAIN_FRAME.setTitle(title);
+			Class<?> f = Class.forName(from);
+			Class<?> t = Class.forName(to);
+			Method fm = f.getMethod("disappear");
+			Method tm = t.getMethod("show");
+			fm.invoke(f);
+			tm.invoke(t);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void show() {
+		MainUI_Stub.MAIN_PANEL.setVisible(true);
+	}
+	
+	public static void disappear() {
+		MainUI_Stub.MAIN_PANEL.setVisible(false);
 	}
 }

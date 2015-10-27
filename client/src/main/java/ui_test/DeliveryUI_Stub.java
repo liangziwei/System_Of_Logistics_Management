@@ -59,4 +59,8 @@ public class DeliveryUI_Stub {
 		MainUI_Stub.MAIN_FRAME.setTitle("DELIVERY");
 		MainUI_Stub.MAIN_FRAME.add(DELIVERY_PANEL);
 	}
+	
+	public static void a() {
+		System.out.println("delivery");
+	}
 }
