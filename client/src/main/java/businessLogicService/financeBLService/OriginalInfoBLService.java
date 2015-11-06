@@ -31,7 +31,7 @@ public interface OriginalInfoBLService {
 	 * @param year 年份
 	 * @return List<OrganizationVO> 所有机构信息的值对象
 	 */
-	public List<OrganizationVO> getOrganization(int year);
+	public List<OrganizationVO> getOrganizationInfo(int year);
 	
 	/**
 	 * description:获得某一年份的车辆信息

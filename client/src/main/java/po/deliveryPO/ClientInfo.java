@@ -55,7 +55,7 @@ public class ClientInfo implements Serializable{
 		this.phoneNumber = phoneNumber;
 		this.mobileNumber = mobileNumber;
 	}
-
+	
 	public ClientType getIdentity() {
 		return identity;
 	}

@@ -27,6 +27,8 @@ public class LogisticsPO implements Serializable{
 	 * 物流轨迹（从寄出点到当前位置所经过的所有站点）
 	 */
 	private List<City> trace;
+	
+	private boolean isExit;
 
 	public LogisticsPO(TransitionNode state, List<City> trace) {
 		super();
@@ -48,5 +50,13 @@ public class LogisticsPO implements Serializable{
 
 	public void setTrace(List<City> trace) {
 		this.trace = trace;
+	}
+
+	public boolean isExit() {
+		return isExit;
+	}
+
+	public void setExit(boolean isExit) {
+		this.isExit = isExit;
 	}
 }

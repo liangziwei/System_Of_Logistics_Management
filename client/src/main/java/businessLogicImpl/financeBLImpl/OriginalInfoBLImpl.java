@@ -20,7 +20,7 @@ public class OriginalInfoBLImpl implements OriginalInfoBLService{
 		return null;
 	}
 
-	public List<OrganizationVO> getOrganization(int year) {
+	public List<OrganizationVO> getOrganizationInfo(int year) {
 		// TODO Auto-generated method stub
 		return null;
 	}

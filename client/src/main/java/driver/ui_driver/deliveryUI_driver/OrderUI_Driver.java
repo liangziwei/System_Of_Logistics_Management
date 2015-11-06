@@ -66,10 +66,7 @@ public class OrderUI_Driver {
 	public static void showGoodsInfo(GoodsInfo goods) {
 		System.out.println("货物信息：");
 		System.out.println("重量：" + goods.getWeight());
-		System.out.println("物品名称 ：");
-		for(int i = 0; i < goods.getNames().size(); i++) {
-			System.out.print(goods.getNames().get(i) + " ");
-		}
+		System.out.println("物品名称 ：" + goods.getName());
 		System.out.println();
 		System.out.println("尺寸：" + goods.getSize());
 		System.out.println("包装类型：" + goods.getPackageType());

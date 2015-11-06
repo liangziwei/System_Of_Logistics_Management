@@ -1,0 +1,183 @@
+package ui.deliveryui.orderInfo;
+
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import constant.DeliveryType;
+import constant.PackageType;
+import ui.baseui.DatePanel;
+import ui.deliveryui.OrderInputPanel;
+
+@SuppressWarnings("serial")
+public class OtherInfo extends JPanel{
+
+	private JLabel typeLabel = new JLabel("快递类型");
+	
+	private JLabel packageLabel = new JLabel("包装类型");
+	
+	private JLabel idLabel = new JLabel("订单条形码号");
+	
+	private JLabel dateLabel = new JLabel("日期");
+	
+	private JComboBox<String> typeText = new JComboBox<String>();
+	
+	private JComboBox<String> packageText = new JComboBox<String>();
+	
+	private JTextField idText = new JTextField();
+	
+	private DatePanel dateText = new DatePanel();
+	
+	public OtherInfo() {
+		//主面板
+		this.setLayout(null);
+		//设置组件大小与边界
+		this.setComponentBound();
+		//设置字体样式
+		this.setWordFont(OrderInputPanel.WORD_FONT);
+		//添加文本框选项
+		this.addComboItem();
+		//将组件添加到面板
+		this.addComponent();
+	}
+	
+	private void setWordFont(Font font) {
+		//标签
+		this.idLabel.setFont(font);
+		this.typeLabel.setFont(font);
+		this.packageLabel.setFont(font);
+		this.dateLabel.setFont(font);
+		//文本框
+		this.idText.setFont(font);
+		this.typeText.setFont(font);
+		this.packageText.setFont(font);
+		this.dateText.setFont(font);
+	}
+	
+	private void addComponent() {
+		this.add(this.typeLabel);
+		this.add(this.typeText);
+		this.add(this.packageLabel);
+		this.add(this.packageText);
+		this.add(this.idLabel);
+		this.add(this.idText);
+		this.add(this.dateLabel);
+		this.add(this.dateText);
+	}
+	
+	private void addComboItem() {
+		//快递类型
+		this.typeText.addItem("经济快递");
+		this.typeText.addItem("普通快递");
+		this.typeText.addItem("特快");
+		//包装类型
+		this.packageText.addItem("快递袋");
+		this.packageText.addItem("木箱");
+		this.packageText.addItem("纸箱");
+		this.packageText.addItem("其他");
+	}
+	
+	private void setComponentBound() {
+		int lw = OrderInputPanel.LABEL_W;			//标签的宽度
+		int lh = OrderInputPanel.LABEL_H;			//标签的高度
+		int tw = OrderInputPanel.TEXT_W;			//文本框的宽度
+		int th = OrderInputPanel.TEXT_H;			//文本框的高度
+		int gap = OrderInputPanel.COMPONENT_GAP;	//组件之间的距离
+		//标签
+		this.idLabel.setBounds(0, 0, lw, lh);
+		this.typeLabel.setBounds(0, this.idLabel.getY() + lh + gap,
+				lw, lh);
+		this.packageLabel.setBounds(0, this.typeLabel.getY() + lh + gap,
+				lw, lh);
+		this.dateLabel.setBounds(0, this.packageLabel.getY() + lh + gap,
+				lw, lh);
+		//文本框
+		this.idText.setBounds(this.idLabel.getX() + lw + gap,
+				this.idLabel.getY(), tw, th);
+		this.typeText.setBounds(this.idText.getX(), this.idText.getY() + th + gap,
+				tw, th);
+		this.packageText.setBounds(this.idText.getX(), this.typeText.getY() + th + gap,
+				tw, th);
+		this.dateText.setPanelBound(this.idText.getX(), this.packageText.getY() + th + gap,
+				tw, th);
+	}
+	
+	public DeliveryType getDeliveryType() {
+		String type = (String) this.typeText.getSelectedItem();
+		switch(type) {
+		case "经济快递":
+			return DeliveryType.ECONOMIC;
+		case "普通快递":
+			return DeliveryType.NORMAL;
+		case "特快":
+			return DeliveryType.FAST;
+		default:
+			return DeliveryType.ECONOMIC;
+		}
+	}
+	
+	public PackageType getPackageType() {
+		String type = (String) this.packageText.getSelectedItem();
+		switch(type) {
+		case "快递袋":
+			return PackageType.COURIER_BAG;
+		case "木箱":
+			return PackageType.WOODEN;
+		case "纸箱":
+			return PackageType.CARTON;
+		case "其他":
+			return PackageType.OTHER;
+		default:
+			return PackageType.COURIER_BAG;
+		}
+	}
+	
+	public String getID() {
+		return this.idText.getText();
+	}
+	
+	public String getDate() {
+		return this.dateText.getDate();
+	}
+	
+	/**
+	 * 界面展示中组件的行数
+	 */
+	public int getUILineNum() {
+		return 4;
+	}
+
+	public JLabel getIdLabel() {
+		return idLabel;
+	}
+
+	public JLabel getDateLabel() {
+		return dateLabel;
+	}
+	
+	public DatePanel getDatePanel() {
+		return this.dateText;
+	}
+	
+	public void disableComponents() {
+		this.typeText.setEnabled(false);;
+		this.packageText.setEnabled(false);
+		this.idText.setEditable(false);
+	}
+	
+	public void enableComponents() {
+		this.typeText.setEnabled(true);;
+		this.packageText.setEnabled(true);
+		this.idText.setEditable(true);
+	}
+	
+	public void setLabelBlack() {
+		this.idLabel.setForeground(Color.BLACK);
+		this.typeLabel.setForeground(Color.BLACK);
+		this.packageLabel.setForeground(Color.BLACK);
+	}
+}

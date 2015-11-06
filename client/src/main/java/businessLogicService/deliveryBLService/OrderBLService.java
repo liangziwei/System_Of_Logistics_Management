@@ -3,6 +3,7 @@ package businessLogicService.deliveryBLService;
 import constant.City;
 import constant.DeliveryType;
 import vo.deliveryVO.OrderVO;
+import vo.deliveryVO.VerifyMessage;
 
 /**
  * description:业务逻辑层为订单信息界面提供的服务
@@ -55,5 +56,15 @@ public interface OrderBLService {
 	 * @return double, 返回价格（元）
 	 */
 	public double calculatePrice(DeliveryType type, double weight, City source, City destination);
+	
+	/**
+	 * description:验证用户在界面的输入是否符合规范
+	 * 前置条件：用户确认订单输入
+	 * 后置条件：给用户的输入返回反馈信息
+	 * 需接口：无
+	 * @param orderVO 用户输入的值对象
+	 * @return VerifyMessage, 返回验证结果以及修改意见
+	 */
+	public VerifyMessage verifyOrderInfo(OrderVO orderVO);
 	
 }

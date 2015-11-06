@@ -11,7 +11,12 @@ public class InquireBLImpl_Stub implements InquireBLService{
 	private InquireDataService inquire = new InquireDataImpl_Stub();
 	
 	public LogisticsVO getLogInfoById(String id) {
-		return this.LogisticsPOToLogisticsVO(inquire.getLogInfoById(id));
+		LogisticsPO po = inquire.getLogInfoById(id);
+		//如果不存在该订单条形码号
+		if(!po.isExit()) {
+			return null;
+		}
+		return this.LogisticsPOToLogisticsVO(po);
 	}
 
 	private LogisticsVO LogisticsPOToLogisticsVO(LogisticsPO logisticsPO) {

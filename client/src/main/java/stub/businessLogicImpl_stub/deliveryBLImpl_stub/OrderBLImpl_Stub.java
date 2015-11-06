@@ -9,6 +9,7 @@ import dataService.deliveryDataService.OrderDataService;
 import po.deliveryPO.OrderPO;
 import stub.dataImpl_stub.deliveryDataImpl_stub.OrderDataImpl_Stub;
 import vo.deliveryVO.OrderVO;
+import vo.deliveryVO.VerifyMessage;
 
 public class OrderBLImpl_Stub implements OrderBLService{
 	
@@ -50,5 +51,10 @@ public class OrderBLImpl_Stub implements OrderBLService{
 
 	private OrderPO orderVOToOrderPO(OrderVO orderVO) {
 		return new OrderPO(orderVO.getSenderInfo(), orderVO.getReceiverInfo(), orderVO.getGoodsInfo());
+	}
+
+	public VerifyMessage verifyOrderInfo(OrderVO orderVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

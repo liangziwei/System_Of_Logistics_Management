@@ -18,16 +18,14 @@ public class OrderDataImpl_Stub implements OrderDataService{
 
 	public OrderPO getOrderInfoById(String id) {
 		// TODO Auto-generated method stub
-		List<String> names = new ArrayList<String>();
-		names.add("衣服");
-		names.add("书");
 		List<TransitionNode> trace = new ArrayList<TransitionNode>();
+		List<City> city = new ArrayList<City>();
 		trace.add(TransitionNode.RECEIVER_BUSINESS_HALL);
 		return new OrderPO(new ClientInfo(ClientType.SENDER, "张三", "南京市", null, null, "12345678901"),
 				new ClientInfo(ClientType.RECEIVER, "李四", "上海市", null, null, "00000000000"),
-				new GoodsInfo(id, 2, names, "2*2*2", 
+				new GoodsInfo("1", id, "2", "衣服", "2*2*2", 
 						PackageType.COURIER_BAG, DeliveryType.ECONOMIC,
-						"2015-10-27", trace));
+						"2015-10-27", trace, city));
 	}
 
 	public boolean saveOrderInfo(OrderPO orderPO) {
