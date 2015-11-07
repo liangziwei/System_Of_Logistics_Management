@@ -3,7 +3,7 @@ package businessLogic.businessLogicController.businessController;
 import vo.businessVO.DriverVO;
 import businessLogicService.businessBLService.DriverBLService;
 
-public class DriverBLImpl implements DriverBLService {
+public class DriverController implements DriverBLService {
 
 	public boolean addDriver(DriverVO driverVO) {
 		// TODO Auto-generated method stub

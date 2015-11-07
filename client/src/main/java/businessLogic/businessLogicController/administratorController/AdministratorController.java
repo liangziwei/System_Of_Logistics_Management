@@ -3,7 +3,7 @@ package businessLogic.businessLogicController.administratorController;
 import vo.administratorVO.AdministratorVO;
 import businessLogicService.administratorBLService.AdministratorBLService;
 
-public class AdministratorBLImpl implements AdministratorBLService {
+public class AdministratorController implements AdministratorBLService {
 
 	public boolean addUser(AdministratorVO administratorVO) {
 		// TODO Auto-generated method stub

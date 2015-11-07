@@ -4,7 +4,7 @@ import vo.businessVO.ArrivalFormVO;
 import vo.businessVO.SendFormVO;
 import businessLogicService.businessBLService.ReceiveAndSendBLService;
 
-public class ReceiveAndSendBLImpl implements ReceiveAndSendBLService{
+public class ReceiveAndSendController implements ReceiveAndSendBLService{
 
 	public boolean addReceiveFrom(ArrivalFormVO receiveFormVO) {
 		// TODO Auto-generated method stub

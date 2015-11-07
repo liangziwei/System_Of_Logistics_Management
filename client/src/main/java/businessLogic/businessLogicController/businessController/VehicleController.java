@@ -3,7 +3,7 @@ package businessLogic.businessLogicController.businessController;
 import vo.businessVO.VehicleVO;
 import businessLogicService.businessBLService.VehicleBLService;
 
-public class VehicleBLImpl implements VehicleBLService {
+public class VehicleController implements VehicleBLService {
 
 	public boolean addVehicle(VehicleVO vehicleVO) {
 		// TODO Auto-generated method stub

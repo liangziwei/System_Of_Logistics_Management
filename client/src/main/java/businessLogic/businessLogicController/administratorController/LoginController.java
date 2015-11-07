@@ -3,7 +3,7 @@ package businessLogic.businessLogicController.administratorController;
 import dataService.administratorDataService.AdministratorDataService;
 import businessLogicService.administratorBLService.LoginBLService;
 
-public class LoginBLImpl implements LoginBLService{
+public class LoginController implements LoginBLService{
 	
     AdministratorDataService admin;
 	
