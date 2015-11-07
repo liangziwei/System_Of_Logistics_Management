@@ -3,6 +3,7 @@ package businessLogic.businessLogicController.financeController;
 import java.util.List;
 
 import vo.businessVO.ReceivableVO;
+import businessLogic.businessLogicModel.financeModel.Settlement;
 import businessLogicService.financeBLService.SettlementBLService;
 /**
  * description:为结算管理界面提供服务的具体实现
@@ -12,8 +13,10 @@ import businessLogicService.financeBLService.SettlementBLService;
 
 public class SettlementController implements SettlementBLService{
 	
+	private Settlement settlement = new Settlement();
+	
 	public List<ReceivableVO> showReceiList(String date) {
-		return null;
+		return settlement.showReceiList(date);
 	}
 	
 	public double calculateSum() {
@@ -21,7 +24,7 @@ public class SettlementController implements SettlementBLService{
 	}
 	
 	public List<ReceivableVO> showBusinessRecei( String id,String date) {
-		return null;
+		return settlement.showBusinessRecei(id, date);
 	}
 
 }

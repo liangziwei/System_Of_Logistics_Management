@@ -1,5 +1,6 @@
 package businessLogic.businessLogicController.managerController;
 
+import businessLogic.businessLogicModel.managerModel.MakeConstant;
 import businessLogicService.managerBLService.MakeConstantBLService;
 import constant.City;
 import constant.TransitType;
@@ -11,12 +12,14 @@ import constant.TransitType;
 
 public class MakeConstantController implements MakeConstantBLService{
 	
+	private MakeConstant makeconstant = new MakeConstant();
+	
 	public boolean setPrice(double price,TransitType transType) {
-		return false;
+		return makeconstant.setPrice(price, transType);
 	}
 	
 	public boolean setDistance(double distance,City source,City destination) {
-		return false;
+		return makeconstant.setDistance(distance, source, destination);
 	}
 
 }

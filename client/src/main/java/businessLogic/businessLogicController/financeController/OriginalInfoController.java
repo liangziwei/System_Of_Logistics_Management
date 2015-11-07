@@ -7,6 +7,7 @@ import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryInfoVO;
+import businessLogic.businessLogicModel.financeModel.OriginalInfo;
 import businessLogicService.financeBLService.OriginalInfoBLService;
 
 /**
@@ -14,30 +15,32 @@ import businessLogicService.financeBLService.OriginalInfoBLService;
  *@author 肖安祥 
  */
 public class OriginalInfoController implements OriginalInfoBLService{
+	
+	private OriginalInfo original = new OriginalInfo();
 
 	public List<StaffVO> getStaffInfo(int year) {
 		// TODO Auto-generated method stub
-		return null;
+		return original.getStaffInfo(year);
 	}
 
 	public List<OrganizationVO> getOrganizationInfo(int year) {
 		// TODO Auto-generated method stub
-		return null;
+		return original.getOrganizationInfo(year);
 	}
 
 	public List<VehicleVO> getVehicleInfo(int year) {
 		// TODO Auto-generated method stub
-		return null;
+		return original.getVehicleInfo(year);
 	}
 
 	public List<RepositoryInfoVO> getRepositoryInfo(int year) {
 		// TODO Auto-generated method stub
-		return null;
+		return original.getRepositoryInfo(year);
 	}
 
 	public List<AccountVO> getAccountInfo(int year) {
 		// TODO Auto-generated method stub
-		return null;
+		return original.getAccountInfo(year);
 	}
 
 }
