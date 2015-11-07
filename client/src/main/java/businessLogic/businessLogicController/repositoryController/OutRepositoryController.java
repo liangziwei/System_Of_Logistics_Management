@@ -6,7 +6,7 @@ import businessLogicService.repositoryBLService.OutRepositoryBLService;
 import vo.repositoryVO.OutRepositoryVO;
 import vo.transitionVO.TransferringVO;
 
-public class OutRepositoryBLImpl implements OutRepositoryBLService{
+public class OutRepositoryController implements OutRepositoryBLService{
 
 	public boolean addOutRepositoryFormBL(OutRepositoryVO outRepositoryVO) {
 		// TODO Auto-generated method stub

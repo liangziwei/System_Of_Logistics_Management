@@ -3,7 +3,7 @@ package businessLogic.businessLogicController.transitionController;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import vo.transitionVO.ReceivingVO;
 
-public class ReceivingBLImpl implements ReceivingBLService{
+public class ReceivingController implements ReceivingBLService{
 
 	public boolean addReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub

@@ -8,7 +8,7 @@ import vo.repositoryVO.DeliveryInfoVO;
 import vo.repositoryVO.RepositoryInfoVO;
 import vo.repositoryVO.RepositoryVO;
 
-public class ManageRepositoryBLImpl implements ManageRepositoryBLService{
+public class ManageRepositoryController implements ManageRepositoryBLService{
 
 	public List<RepositoryInfoVO> SeeRepositoryBL(String time) {
 		// TODO Auto-generated method stub

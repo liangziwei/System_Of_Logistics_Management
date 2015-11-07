@@ -4,7 +4,7 @@ import businessLogicService.repositoryBLService.InRepositoryBLService;
 import constant.AreaCodeType;
 import vo.repositoryVO.InRepositoryVO;
 
-public class InRepositoryBLImpl implements InRepositoryBLService{
+public class InRepositoryController implements InRepositoryBLService{
 
 	public String addInRepositoryFormBL(InRepositoryVO inRepository) {
 		// TODO Auto-generated method stub

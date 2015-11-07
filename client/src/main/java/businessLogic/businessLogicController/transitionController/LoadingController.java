@@ -4,7 +4,7 @@ import businessLogicService.transitionBLService.LoadingBLService;
 import constant.City;
 import vo.transitionVO.LoadingVO;
 
-public class LoadingBLImpl implements LoadingBLService{
+public class LoadingController implements LoadingBLService{
 
 	public LoadingVO findLoadingFormBL(String loadingNumber) {
 		// TODO Auto-generated method stub

@@ -7,7 +7,7 @@ import constant.City;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
-public class TransferringBLImpl implements TransferringBLService{
+public class TransferringController implements TransferringBLService{
 
 	public TransferringVO findTransferringFormBL(String transferringNumber) {
 		// TODO Auto-generated method stub
