@@ -3,9 +3,12 @@ package ui.deliveryui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 
+import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
 import ui.baseui.UserPanel;
@@ -15,49 +18,52 @@ import ui.viewcontroller.ViewController;
 @SuppressWarnings("serial")
 public class DeliveryPanel extends UserPanel{
 
-	private JButton orderInput = new JButton("输入订单");
+	private TaskButton orderInput = new TaskButton("输入订单");
 
-	private JButton orderInquire = new JButton("查询订单");
+	private TaskButton orderInquire = new TaskButton("查询订单");
 
-	private JButton receipt = new JButton("记录收件信息");
+	private TaskButton receipt = new TaskButton("记录收件信息");
 	
-	private JButton exit = new JButton("退出");
+	private TaskButton exit = new TaskButton("退出");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
-	
-	private static final int BUTTON_WITH = TaskPanel.TASK_PANEL_W;
-	
-	private static final int BUTTON_HEIGHT = 32;
-	
-	private static final int BUTTON_GAP = 4;
 	
 	public DeliveryPanel(ViewController controller) {
 		super(controller);
 		initUI();
 		addListener();
+		
+		List<JButton> d = new ArrayList<JButton>();
+		d.add(new JButton("haha"));
+		d.add(new JButton("hehe"));
+		d.add(new JButton("heihei"));
+		d.add(new JButton("huohuo"));
+		d.add(new JButton("2333"));
+		d.add(new JButton("haha"));
+		orderInput.setDetailButtons(d);
 	}
 	
 	private void initUI() {
 		//输入订单按钮
-		this.orderInput.setBounds(0, UserImagePanel.USER_PANEL_H, BUTTON_WITH, BUTTON_HEIGHT);
+		this.orderInput.setBounds(0, UserImagePanel.USER_PANEL_H, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.orderInput.setFont(WORD_FONT);
 		//查询订单按钮
-		this.orderInquire.setBounds(0, this.orderInput.getY() + BUTTON_HEIGHT + BUTTON_GAP,
-				BUTTON_WITH, BUTTON_HEIGHT);
+		this.orderInquire.setBounds(0, this.orderInput.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP,
+				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.orderInquire.setFont(WORD_FONT);
 		//记录收件信息按钮
-		this.receipt.setBounds(0, this.orderInquire.getY() + BUTTON_HEIGHT + BUTTON_GAP, 
-				BUTTON_WITH, BUTTON_HEIGHT);
+		this.receipt.setBounds(0, this.orderInquire.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
+				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.receipt.setFont(WORD_FONT);
 		//退出按钮
-		this.exit.setBounds(0, this.receipt.getY() + BUTTON_HEIGHT + BUTTON_GAP,
-				BUTTON_WITH, BUTTON_HEIGHT);
+		this.exit.setBounds(0, this.receipt.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP,
+				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.exit.setFont(WORD_FONT);
 		//面板添加按钮
-		this.task.add(orderInput);
-		this.task.add(orderInquire);
-		this.task.add(receipt);
-		this.task.add(exit);
+		this.task.buttonContainer.add(orderInput);
+		this.task.buttonContainer.add(orderInquire);
+		this.task.buttonContainer.add(receipt);
+		this.task.buttonContainer.add(exit);
 	}
 	
 	private void addListener() {
@@ -65,14 +71,27 @@ public class DeliveryPanel extends UserPanel{
 		this.orderInput.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//设置当前细节信息面板为不可见
-				detail.setVisible(false);
-				//设置细节信息面板显示订单输入界面
-				detail = new OrderInputPanel();
-				//将细节信息面板添加到主面板
-				add(detail);
-				//将子组件重新布局和重绘
-				revalidate();
+//				//设置当前细节信息面板为不可见
+//				detail.setVisible(false);
+//				//设置细节信息面板显示订单输入界面
+//				detail = new OrderInputPanel();
+//				//将细节信息面板添加到主面板
+//				add(detail);
+//				//将子组件重新布局和重绘
+//				revalidate();
+				
+				
+				List<TaskButton> b = new ArrayList<TaskButton>();
+				b.add(orderInquire);
+				b.add(receipt);
+				b.add(exit);
+				if(!orderInput.isUnfold()) {
+					orderInput.setUnfold(true);
+					task.showTaskDetail(orderInput, b);
+				}else {
+					orderInput.setUnfold(false);
+					task.hideTaskDetail(orderInput, b);
+				}
 			}
 		});
 		

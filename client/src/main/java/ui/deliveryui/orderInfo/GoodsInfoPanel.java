@@ -20,6 +20,8 @@ public class GoodsInfoPanel extends JPanel{
 	
 	private JLabel nameLabel = new JLabel("物品名称");
 	
+	private JLabel priceLabel = new JLabel("运费");
+	
 	private JTextField numText = new JTextField();
 	
 	private JTextField weightText = new JTextField();
@@ -27,6 +29,8 @@ public class GoodsInfoPanel extends JPanel{
 	private JTextField volumnText = new JTextField();
 	
 	private JTextField nameText = new JTextField();
+	
+	private JTextField priceText = new JTextField();
 	
 	public GoodsInfoPanel() {
 		//主面板
@@ -47,16 +51,20 @@ public class GoodsInfoPanel extends JPanel{
 		this.nameLabel.setFont(font);
 		this.volumeLabel.setFont(font);
 		this.weightLabel.setFont(font);
+		this.priceLabel.setFont(font);
 		//文本框
 		this.numText.setFont(font);
 		this.nameText.setFont(font);
 		this.volumnText.setFont(font);
 		this.weightText.setFont(font);
+		this.priceText.setFont(font);
 	}
 	
 	private void setDefaultValue() {
 		//原件数
 		this.numText.setText("1");
+		//设置价格为不可编辑
+		this.priceText.setEditable(false);
 	}
 	
 	private void setComponentBound() {
@@ -70,11 +78,13 @@ public class GoodsInfoPanel extends JPanel{
 		this.weightLabel.setBounds(0, lh + gap, lw, lh);
 		this.volumeLabel.setBounds(0, (lh + gap) << 1, lw, lh);
 		this.nameLabel.setBounds(0, (lh + gap) * 3, lw, lh);
+		this.priceLabel.setBounds(0, (lh + gap) << 2, lw, lh);
 		//文本框
 		this.numText.setBounds(this.numLabel.getX() + lw + gap, this.numLabel.getY() , tw, th);
 		this.weightText.setBounds(this.numText.getX(), this.weightLabel.getY() , tw, th);
 		this.volumnText.setBounds(this.numText.getX(), this.volumeLabel.getY() , tw, th);
 		this.nameText.setBounds(this.numText.getX(), this.nameLabel.getY() , tw, th);
+		this.priceText.setBounds(this.numText.getX(), this.priceLabel.getY(), tw, th);
 	}
 
 	private void addComponent() {
@@ -83,10 +93,12 @@ public class GoodsInfoPanel extends JPanel{
 		this.add(this.numLabel);
 		this.add(this.weightLabel);
 		this.add(this.volumeLabel);
+		this.add(this.priceLabel);
 		this.add(this.numText);
 		this.add(this.nameText);
 		this.add(this.weightText);
 		this.add(this.volumnText);
+		this.add(this.priceText);
 	}
 	
 	public String getNumber() {
@@ -109,7 +121,7 @@ public class GoodsInfoPanel extends JPanel{
 	 * 界面展示中组件的行数
 	 */
 	public int getUILineNum() {
-		return 4;
+		return 5;
 	}
 
 	public JLabel getNumLabel() {
@@ -128,6 +140,14 @@ public class GoodsInfoPanel extends JPanel{
 		return nameLabel;
 	}
 	
+	public JLabel getPriceLabel() {
+		return priceLabel;
+	}
+
+	public void setPriceText(String s) {
+		this.priceText.setText(s);;
+	}
+
 	public void disableComponents() {
 		this.numText.setEditable(false);
 		this.weightText.setEditable(false);
@@ -147,5 +167,6 @@ public class GoodsInfoPanel extends JPanel{
 		this.weightLabel.setForeground(Color.BLACK);
 		this.volumeLabel.setForeground(Color.BLACK);
 		this.nameLabel.setForeground(Color.BLACK);
+		this.priceLabel.setForeground(Color.BLACK);
 	}
 }

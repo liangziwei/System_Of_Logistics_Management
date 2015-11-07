@@ -30,7 +30,7 @@ public class DetailPanel extends JScrollPane{
 	
 	protected static final int CONTAINER_W = 1200;
 	
-	protected static final int CONTAINER_H = 800;
+	protected static final int CONTAINER_H = 900;
 	
 	public DetailPanel() {
 		this.setBounds(TaskPanel.TASK_PANEL_W, TitlePanel.TITLE_PANEL_H,
@@ -40,5 +40,6 @@ public class DetailPanel extends JScrollPane{
 		this.container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
 		this.setViewportView(this.container);
 		
+		this.getVerticalScrollBar().setUnitIncrement(15);
 	}
 }

@@ -24,11 +24,15 @@ public class OtherInfo extends JPanel{
 	
 	private JLabel dateLabel = new JLabel("日期");
 	
+	private JLabel timeLabel = new JLabel("预估时间");
+	
 	private JComboBox<String> typeText = new JComboBox<String>();
 	
 	private JComboBox<String> packageText = new JComboBox<String>();
 	
 	private JTextField idText = new JTextField();
+	
+	private JTextField timeText = new JTextField();
 	
 	private DatePanel dateText = new DatePanel();
 	
@@ -51,11 +55,15 @@ public class OtherInfo extends JPanel{
 		this.typeLabel.setFont(font);
 		this.packageLabel.setFont(font);
 		this.dateLabel.setFont(font);
+		this.timeLabel.setFont(font);
 		//文本框
 		this.idText.setFont(font);
 		this.typeText.setFont(font);
 		this.packageText.setFont(font);
 		this.dateText.setFont(font);
+		this.timeText.setFont(font);
+		//设置时间文本框不可编辑
+		this.timeText.setEditable(false);
 	}
 	
 	private void addComponent() {
@@ -67,6 +75,8 @@ public class OtherInfo extends JPanel{
 		this.add(this.idText);
 		this.add(this.dateLabel);
 		this.add(this.dateText);
+		this.add(this.timeLabel);
+		this.add(this.timeText);
 	}
 	
 	private void addComboItem() {
@@ -95,6 +105,8 @@ public class OtherInfo extends JPanel{
 				lw, lh);
 		this.dateLabel.setBounds(0, this.packageLabel.getY() + lh + gap,
 				lw, lh);
+		this.timeLabel.setBounds(0, this.dateLabel.getY() + lh + gap,
+				lw, lh);
 		//文本框
 		this.idText.setBounds(this.idLabel.getX() + lw + gap,
 				this.idLabel.getY(), tw, th);
@@ -104,6 +116,7 @@ public class OtherInfo extends JPanel{
 				tw, th);
 		this.dateText.setPanelBound(this.idText.getX(), this.packageText.getY() + th + gap,
 				tw, th);
+		this.timeText.setBounds(this.idText.getX(), this.timeLabel.getY(), tw, th);
 	}
 	
 	public DeliveryType getDeliveryType() {
@@ -148,7 +161,7 @@ public class OtherInfo extends JPanel{
 	 * 界面展示中组件的行数
 	 */
 	public int getUILineNum() {
-		return 4;
+		return 5;
 	}
 
 	public JLabel getIdLabel() {
@@ -163,6 +176,14 @@ public class OtherInfo extends JPanel{
 		return this.dateText;
 	}
 	
+	public JLabel getTimeLabel() {
+		return timeLabel;
+	}
+
+	public void setTimeText(String s) {
+		this.timeText.setText(s);;
+	}
+
 	public void disableComponents() {
 		this.typeText.setEnabled(false);;
 		this.packageText.setEnabled(false);
@@ -179,5 +200,6 @@ public class OtherInfo extends JPanel{
 		this.idLabel.setForeground(Color.BLACK);
 		this.typeLabel.setForeground(Color.BLACK);
 		this.packageLabel.setForeground(Color.BLACK);
+		this.timeLabel.setForeground(Color.BLACK);
 	}
 }
