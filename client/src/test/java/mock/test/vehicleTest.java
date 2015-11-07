@@ -7,7 +7,7 @@ import org.junit.Test;
 import vo.businessVO.VehicleVO;
 import businessLogic.businessLogicController.businessController.VehicleController;
 
-public class vehicleTest {
+public class VehicleTest {
 	@Test
 	
 	public void testaddVehicle(){
