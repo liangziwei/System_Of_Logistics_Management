@@ -16,9 +16,6 @@ import po.deliveryPO.TimeRecordPO;
 
 public class OrderDataImpl_Stub implements OrderDataService{
 	
-	//TODO DELETE
-    protected List<? extends TimeRecordPO> list = new ArrayList<TimeRecordPO>();
-    
 	public OrderPO getOrderInfoById(String id) {
 		// TODO Auto-generated method stub
 		List<TransitionNode> trace = new ArrayList<TransitionNode>();
@@ -37,14 +34,13 @@ public class OrderDataImpl_Stub implements OrderDataService{
 	}
 
 	//TODO MODIFY
-	@SuppressWarnings("unchecked")
 	public List<TimeRecordPO> getTimeRecords(City source, City destination) {
 		// TODO Auto-generated method stub
-//		List<TimeRecordPO> timeRecord = new ArrayList<TimeRecordPO>();
-//		timeRecord.add(new TimeRecordPO(City.NAN_JING, City.BEI_JING, 2));
-//		timeRecord.add(new TimeRecordPO(City.SHANG_HAI, City.GUANG_ZHOU, 1));
-//		timeRecord.add(new TimeRecordPO(City.BEI_JING, City.GUANG_ZHOU, 3));
-		return (List<TimeRecordPO>) this.list;
+		List<TimeRecordPO> timeRecord = new ArrayList<TimeRecordPO>();
+		timeRecord.add(new TimeRecordPO(City.NAN_JING, City.BEI_JING, 2));
+		timeRecord.add(new TimeRecordPO(City.SHANG_HAI, City.GUANG_ZHOU, 1));
+		timeRecord.add(new TimeRecordPO(City.BEI_JING, City.GUANG_ZHOU, 3));
+		return timeRecord;
 	}
 
 }
