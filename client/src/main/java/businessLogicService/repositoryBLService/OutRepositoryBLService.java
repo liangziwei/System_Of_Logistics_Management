@@ -51,5 +51,5 @@ public interface OutRepositoryBLService {
 	 * @param data:查询某天的中转单列表
 	 * @return List<TransferringVO>, 返回中转单列表信息的值对象，具体参照TransferringVO
 	 * */
-	public List<TransferringVO> GetTransferringInfo(String data);
+	public List<TransferringVO> GetTransferringInfo(String date);
 }

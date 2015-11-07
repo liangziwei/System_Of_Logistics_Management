@@ -2,12 +2,17 @@ package businessLogic.businessLogicController.transitionController;
 
 import java.util.List;
 
+import businessLogic.businessLogicController.repositoryController.ManageRepositoryController;
+import businessLogic.businessLogicModel.transitionModel.Transferring;
+import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import businessLogicService.transitionBLService.TransferringBLService;
 import constant.City;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
 public class TransferringController implements TransferringBLService{
+	ManageRepositoryBLService manageRepositoryBLService = new ManageRepositoryController();
+	Transferring transferring = new Transferring();
 
 	public TransferringVO findTransferringFormBL(String transferringNumber) {
 		// TODO Auto-generated method stub
@@ -31,12 +36,12 @@ public class TransferringController implements TransferringBLService{
 
 	public List<RepositoryVO> getRepositoryInfo() {
 		// TODO Auto-generated method stub
-		return null;
+		return manageRepositoryBLService.GetRepositoryInfoBL();
 	}
 
 	public List<TransferringVO> GetTansferringInfoBL(String date) {
 		// TODO Auto-generated method stub
-		return null;
+		return transferring.GetTansferringInfoBL(date);
 	}
 
 

@@ -2,6 +2,7 @@ package businessLogic.businessLogicController.repositoryController;
 
 import java.util.List;
 
+import businessLogic.businessLogicModel.repositoryModel.ManageRepository;
 import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import constant.AreaCodeType;
 import vo.repositoryVO.DeliveryInfoVO;
@@ -9,15 +10,16 @@ import vo.repositoryVO.RepositoryInfoVO;
 import vo.repositoryVO.RepositoryVO;
 
 public class ManageRepositoryController implements ManageRepositoryBLService{
+	ManageRepository manageRepository = new ManageRepository();
 
 	public List<RepositoryInfoVO> SeeRepositoryBL(String time) {
 		// TODO Auto-generated method stub
-		return null;
+		return manageRepository.SeeRepositoryBL(time);
 	}
 
 	public List<DeliveryInfoVO> CheckRepositoryBL() {
 		// TODO Auto-generated method stub
-		return null;
+		return manageRepository.CheckRepositoryBL();
 	}
 
 	public boolean SetWarnValueBL(AreaCodeType ID, int allNum, double WarnNum) {
@@ -42,7 +44,7 @@ public class ManageRepositoryController implements ManageRepositoryBLService{
 
 	public List<RepositoryVO> GetRepositoryInfoBL() {
 		// TODO Auto-generated method stub
-		return null;
+		return manageRepository.GetRepositoryInfoBL();
 	}
 	
 
