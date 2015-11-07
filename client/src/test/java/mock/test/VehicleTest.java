@@ -22,7 +22,7 @@ public class VehicleTest {
 		assertEquals("苏A 00001",vehicleControl.findVehicle("025001001").getNumber());
 		assertEquals("2",vehicleControl.findVehicle("025001001").getAge());
 	}
-	
+
 	public void testdeleteVehicle(){
 		VehicleController vehicleControl=new VehicleController();
 		assertEquals(true,vehicleControl.deleteVehicle("025001001"));
