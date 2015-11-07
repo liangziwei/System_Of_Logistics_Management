@@ -59,8 +59,8 @@ public class TaskPanel extends JScrollPane{
 	public TaskPanel() {
 		this.setBounds(0, TitlePanel.TITLE_PANEL_H, TASK_PANEL_W, TASK_PANEL_H);
 		
-		this.buttonContainer.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
 		this.buttonContainer.setLayout(null);
+		this.buttonContainer.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
 		this.buttonContainer.add(this.user);
 		
 		this.setViewportView(this.buttonContainer);

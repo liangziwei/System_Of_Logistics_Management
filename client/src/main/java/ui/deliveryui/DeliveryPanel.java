@@ -3,10 +3,6 @@ package ui.deliveryui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JButton;
 
 import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
@@ -30,26 +26,10 @@ public class DeliveryPanel extends UserPanel{
 	
 	public DeliveryPanel(ViewController controller) {
 		super(controller);
+		//初始化组件
 		initUI();
+		//给按钮添加事件监听
 		addListener();
-		
-		List<JButton> d = new ArrayList<JButton>();
-		d.add(new JButton("haha"));
-		d.add(new JButton("hehe"));
-		d.add(new JButton("heihei"));
-		d.add(new JButton("huohuo"));
-		d.add(new JButton("2333"));
-		d.add(new JButton("haha"));
-		orderInput.setDetailButtons(d);
-		
-		List<JButton> d1 = new ArrayList<JButton>();
-		d1.add(new JButton("haha"));
-		d1.add(new JButton("hehe"));
-		d1.add(new JButton("heihei"));
-		d1.add(new JButton("huohuo"));
-		d1.add(new JButton("2333"));
-		d1.add(new JButton("haha"));
-		orderInquire.setDetailButtons(d1);
 	}
 	
 	private void initUI() {
@@ -69,10 +49,11 @@ public class DeliveryPanel extends UserPanel{
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.exit.setFont(WORD_FONT);
 		//面板添加按钮
-		this.task.buttonContainer.add(orderInput);
-		this.task.buttonContainer.add(orderInquire);
-		this.task.buttonContainer.add(receipt);
-		this.task.buttonContainer.add(exit);
+		this.task.setLayout(null);
+		this.task.add(orderInput);
+		this.task.add(orderInquire);
+		this.task.add(receipt);
+		this.task.add(exit);
 	}
 	
 	private void addListener() {
@@ -80,27 +61,14 @@ public class DeliveryPanel extends UserPanel{
 		this.orderInput.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-//				//设置当前细节信息面板为不可见
-//				detail.setVisible(false);
-//				//设置细节信息面板显示订单输入界面
-//				detail = new OrderInputPanel();
-//				//将细节信息面板添加到主面板
-//				add(detail);
-//				//将子组件重新布局和重绘
-//				revalidate();
-				
-				
-				List<TaskButton> b = new ArrayList<TaskButton>();
-				b.add(orderInquire);
-				b.add(receipt);
-				b.add(exit);
-				if(!orderInput.isUnfold()) {
-					orderInput.setUnfold(true);
-					task.showTaskDetail(orderInput, b);
-				}else {
-					orderInput.setUnfold(false);
-					task.hideTaskDetail(orderInput, b);
-				}
+				//设置当前细节信息面板为不可见
+				detail.setVisible(false);
+				//设置细节信息面板显示订单输入界面
+				detail = new OrderInputPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局和重绘
+				revalidate();
 			}
 		});
 		
@@ -108,25 +76,14 @@ public class DeliveryPanel extends UserPanel{
 		this.orderInquire.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-//				//设置当前细节信息面板为不可见
-//				detail.setVisible(false);
-//				//设置细节信息面板显示订单查询界面
-//				detail = new OrderInquirePanel();
-//				//将细节信息面板添加到主面板
-//				add(detail);
-//				//将子组件重新布局
-//				revalidate();
-				
-				List<TaskButton> b = new ArrayList<TaskButton>();
-				b.add(receipt);
-				b.add(exit);
-				if(!orderInquire.isUnfold()) {
-					orderInquire.setUnfold(true);
-					task.showTaskDetail(orderInquire, b);
-				}else {
-					orderInquire.setUnfold(false);
-					task.hideTaskDetail(orderInquire, b);
-				}
+				//设置当前细节信息面板为不可见
+				detail.setVisible(false);
+				//设置细节信息面板显示订单查询界面
+				detail = new OrderInquirePanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局
+				revalidate();
 			}
 		});
 		

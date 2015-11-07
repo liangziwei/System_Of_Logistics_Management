@@ -5,8 +5,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import ui.viewcontroller.ViewController;
-
 @SuppressWarnings("serial")
 public class ExpressFrame extends JFrame{
 
@@ -28,17 +26,6 @@ public class ExpressFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setFrameAtCenter(this);
-	}
-	
-	public static void main(String[] args) {
-		//主框架
-		ExpressFrame frame = new ExpressFrame();
-		//界面跳转控制器
-		ViewController controller = new ViewController(frame);
-		//主面板
-		ExpressPanel panel = new ExpressPanel(controller);
-		//主框架添加主面板
-		frame.add(panel);
 	}
 	
 	private void setFrameAtCenter(JFrame frame) {
