@@ -77,15 +77,21 @@ public class TaskPanel extends JScrollPane{
 		if(unfoldButton == null || belowButtons == null) return;
 		
 		//布局具体任务按钮
-		int detailY = unfoldButton.getY();							//当前按钮的y坐标
-		detailY = this.setButtonBounds(unfoldButton, detailY);		//设置任务按钮和展开按钮的大小和边界
+		List<JButton> detailButtons = unfoldButton.getDetailButtons();		//要展开的按钮
+		int detailY = unfoldButton.getY();									//任务按钮的y坐标
+		for(int i = 0; i < detailButtons.size(); i++) {
+			detailY = detailY + BUTTON_H + BUTTON_GAP;
+			detailButtons.get(i).setBounds(DETAIL_BUTTON_X, detailY, DETAIL_BUTTON_W, BUTTON_H);
+			detailButtons.get(i).setVisible(true);
+			this.buttonContainer.add(detailButtons.get(i));
+		}
 		//布局展开按钮下面的任务按钮
 		int taskButtonY = detailY;
 		for(int i = 0; i < belowButtons.size(); i++) {
 			taskButtonY = taskButtonY + BUTTON_H + BUTTON_GAP;
 			TaskButton below = belowButtons.get(i);
 			if(below.isUnfold()) {		//如果当前按钮已经展开
-				taskButtonY = this.setButtonBounds(below, taskButtonY);
+				taskButtonY = this.showCurrentDetail(below, taskButtonY);
 			}else {						//如果当前按钮没有展开
 				below.setBounds(0, taskButtonY, BUTTON_W, BUTTON_H);
 				this.buttonContainer.add(below);
@@ -115,7 +121,7 @@ public class TaskPanel extends JScrollPane{
 			taskButtonY = taskButtonY + BUTTON_H + BUTTON_GAP;
 			TaskButton below = belowButtons.get(i);
 			if(below.isUnfold()) {		//如果当前按钮已经展开
-				taskButtonY = this.setButtonBounds(below, taskButtonY);
+				this.hideCurrentDetail(below, taskButtonY);
 			}else {						//如果当前按钮没有展开
 				below.setBounds(0, taskButtonY, BUTTON_W, BUTTON_H);
 				this.buttonContainer.add(below);
@@ -125,19 +131,22 @@ public class TaskPanel extends JScrollPane{
 		this.repaint();
 	}
 	
-	/**
-	 * 设置按钮以及它的展开按钮的大小和边界
-	 */
-	private int setButtonBounds(TaskButton button, int currentY) {
+	private int showCurrentDetail(TaskButton button, int currentY) {
 		button.setBounds(0, currentY, BUTTON_W, BUTTON_H);
 		List<JButton> details = button.getDetailButtons();
 		for(int i = 0; i < details.size(); i++) {
 			currentY = currentY + BUTTON_H + BUTTON_GAP;
 			JButton detail = details.get(i);
 			detail.setBounds(DETAIL_BUTTON_X, currentY, DETAIL_BUTTON_W, BUTTON_H);
-			detail.setVisible(true);
-			this.buttonContainer.add(detail);
 		}
 		return currentY;
+	}
+	
+	private void hideCurrentDetail(TaskButton button, int currentY) {
+		button.setBounds(0, currentY, BUTTON_W, BUTTON_H);
+		List<JButton> details = button.getDetailButtons();
+		for(int i = 0; i < details.size(); i++) {
+			
+		}
 	}
 }
