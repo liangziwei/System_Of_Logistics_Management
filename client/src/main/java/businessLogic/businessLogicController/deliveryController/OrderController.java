@@ -19,7 +19,7 @@ import vo.deliveryVO.VerifyMessage;
  * description:为订单信息界面提供服务的具体实现
  * @author 肖安祥
  */
-public class OrderBLImpl implements OrderBLService{
+public class OrderController implements OrderBLService{
 	
 	
 	

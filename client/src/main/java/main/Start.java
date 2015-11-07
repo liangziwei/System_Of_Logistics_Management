@@ -3,7 +3,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import businessLogicImpl.deliveryBLImpl.OrderBLImpl;
+import businessLogic.businessLogicController.deliveryController.OrderController;
 import businessLogicService.deliveryBLService.OrderBLService;
 import constant.ClientType;
 import po.deliveryPO.ClientInfo;
@@ -14,7 +14,7 @@ public class Start {
 
 	public static void main(String[] args) {
 		System.out.println("请输入订单条形码号：");
-		OrderBLService order = new OrderBLImpl();
+		OrderBLService order = new OrderController();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			String id = reader.readLine();

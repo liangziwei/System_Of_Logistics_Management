@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import businessLogicImpl.deliveryBLImpl.OrderBLImpl;
+import businessLogic.businessLogicController.deliveryController.OrderController;
 import businessLogicService.deliveryBLService.OrderBLService;
 import constant.City;
 import constant.ClientType;
@@ -32,7 +32,7 @@ import vo.deliveryVO.VerifyMessage;
 @SuppressWarnings("serial")
 public class OrderInputPanel extends DetailPanel{
 	
-	private OrderBLService orderService = new OrderBLImpl();
+	private OrderBLService orderService = new OrderController();
 
 	private ClientInfoPanel sender = new ClientInfoPanel(ClientType.SENDER);
 	

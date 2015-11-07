@@ -89,8 +89,13 @@ public class TaskPanel extends JScrollPane{
 		int taskButtonY = detailY;
 		for(int i = 0; i < belowButtons.size(); i++) {
 			taskButtonY = taskButtonY + BUTTON_H + BUTTON_GAP;
-			belowButtons.get(i).setBounds(0, taskButtonY, BUTTON_W, BUTTON_H);
-			this.buttonContainer.add(belowButtons.get(i));
+			TaskButton below = belowButtons.get(i);
+			if(below.isUnfold()) {		//如果当前按钮已经展开
+				taskButtonY = this.showCurrentDetail(below, taskButtonY);
+			}else {						//如果当前按钮没有展开
+				below.setBounds(0, taskButtonY, BUTTON_W, BUTTON_H);
+				this.buttonContainer.add(below);
+			}
 		}
 		//刷新面板
 		this.repaint();
@@ -114,10 +119,34 @@ public class TaskPanel extends JScrollPane{
 		int taskButtonY = foldButton.getY();
 		for(int i = 0; i < belowButtons.size(); i++) {
 			taskButtonY = taskButtonY + BUTTON_H + BUTTON_GAP;
-			belowButtons.get(i).setBounds(0, taskButtonY, BUTTON_W, BUTTON_H);
-			this.buttonContainer.add(belowButtons.get(i));
+			TaskButton below = belowButtons.get(i);
+			if(below.isUnfold()) {		//如果当前按钮已经展开
+				this.hideCurrentDetail(below, taskButtonY);
+			}else {						//如果当前按钮没有展开
+				below.setBounds(0, taskButtonY, BUTTON_W, BUTTON_H);
+				this.buttonContainer.add(below);
+			}
 		}
 		//刷新面板
 		this.repaint();
+	}
+	
+	private int showCurrentDetail(TaskButton button, int currentY) {
+		button.setBounds(0, currentY, BUTTON_W, BUTTON_H);
+		List<JButton> details = button.getDetailButtons();
+		for(int i = 0; i < details.size(); i++) {
+			currentY = currentY + BUTTON_H + BUTTON_GAP;
+			JButton detail = details.get(i);
+			detail.setBounds(DETAIL_BUTTON_X, currentY, DETAIL_BUTTON_W, BUTTON_H);
+		}
+		return currentY;
+	}
+	
+	private void hideCurrentDetail(TaskButton button, int currentY) {
+		button.setBounds(0, currentY, BUTTON_W, BUTTON_H);
+		List<JButton> details = button.getDetailButtons();
+		for(int i = 0; i < details.size(); i++) {
+			
+		}
 	}
 }
