@@ -9,7 +9,7 @@ import constant.TransitType;
  *
  */
 
-public class MakeConstantBLImpl implements MakeConstantBLService{
+public class MakeConstantController implements MakeConstantBLService{
 	
 	public boolean setPrice(double price,TransitType transType) {
 		return false;

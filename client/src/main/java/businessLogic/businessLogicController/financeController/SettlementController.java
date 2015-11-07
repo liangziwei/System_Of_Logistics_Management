@@ -10,7 +10,7 @@ import businessLogicService.financeBLService.SettlementBLService;
  *
  */
 
-public class SettlementBLImpl implements SettlementBLService{
+public class SettlementController implements SettlementBLService{
 	
 	public List<ReceivableVO> showReceiList(String date) {
 		return null;

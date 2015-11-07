@@ -10,7 +10,7 @@ import businessLogicService.financeBLService.StatisticsBLSevice;
  * @author 张仁知
  *
  */
-public class StatisticsBLImpl implements StatisticsBLSevice{
+public class StatisticsController implements StatisticsBLSevice{
 	
 	public CostBenefitVO getCostBenefit() {
 		

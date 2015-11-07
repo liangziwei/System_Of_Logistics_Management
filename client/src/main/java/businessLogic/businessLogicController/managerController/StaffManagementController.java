@@ -8,7 +8,7 @@ import businessLogicService.managerBLService.StaffManagementBLService;
  *
  */
 
-public class StaffManagementBLImpl implements StaffManagementBLService {
+public class StaffManagementController implements StaffManagementBLService {
 	
 	public boolean addStaff(StaffVO staffVO) {
 		return false;

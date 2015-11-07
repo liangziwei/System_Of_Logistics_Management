@@ -8,7 +8,7 @@ import businessLogicService.managerBLService.OrganizationManagementBLService;
  *
  */
 
-public class OrganizationManagementBLImpl implements OrganizationManagementBLService {
+public class OrganizationManagementController implements OrganizationManagementBLService {
 	
 	public boolean addOrganization(OrganizationVO organizationVO) {
 		return false;

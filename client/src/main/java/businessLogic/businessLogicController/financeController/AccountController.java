@@ -8,7 +8,7 @@ import businessLogicService.financeBLService.AccountBLService;
  *
  */
 
-public class AccountBLImpl implements AccountBLService {
+public class AccountController implements AccountBLService {
 	
 	public boolean addAccount(AccountVO accountVO) {
 		

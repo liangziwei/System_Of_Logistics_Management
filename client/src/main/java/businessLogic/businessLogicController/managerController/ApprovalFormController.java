@@ -8,7 +8,7 @@ import businessLogicService.managerBLService.ApprovalFormBLService;
  *
  */
 
-public class ApprovalFormBLImpl implements ApprovalFormBLService {
+public class ApprovalFormController implements ApprovalFormBLService {
 	
 	public UncheckedFormVO getUncheckedForms(String date) {
 		return null;

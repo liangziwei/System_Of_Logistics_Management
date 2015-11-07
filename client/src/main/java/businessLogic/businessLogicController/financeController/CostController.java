@@ -8,7 +8,7 @@ import businessLogicService.financeBLService.CostBLService;
  *
  */
 
-public class CostBLImpl implements CostBLService{
+public class CostController implements CostBLService{
 	
 	public boolean addPayment(PaymentVO paymentVO) {
 		
