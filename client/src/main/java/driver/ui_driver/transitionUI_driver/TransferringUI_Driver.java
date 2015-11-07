@@ -27,7 +27,7 @@ public class TransferringUI_Driver {
 			alldeliveryid.add("1110000123");
 			alldeliveryid.add("1110001342");
 			alldeliveryid.add("1110022123");
-			boolean add=transferringBLService.addTransferringFormBL(new TransferringVO("2015-10-11","01710100000127" , LoadingType.PLANE,"139010001",City.BEI_JING, City.NAN_JING, "茗柯", "3", alldeliveryid));
+			boolean add=transferringBLService.addTransferringFormBL(new TransferringVO("2015-10-11","01710100000127" , LoadingType.PLANE,"139010001","北京", "南京", "茗柯", "3", alldeliveryid));
 			if(add){
 				System.out.println("添加成功");
 			}
@@ -39,7 +39,7 @@ public class TransferringUI_Driver {
 			alldeliveryid.add("1110000123");
 			alldeliveryid.add("1110001342");
 			alldeliveryid.add("1110022123");
-			boolean modify = transferringBLService.modifyTransferringFormBL(new TransferringVO("2015-10-11","01710100000127" , LoadingType.PLANE,"139010001",City.BEI_JING, City.NAN_JING, "茗柯", "5", alldeliveryid));
+			boolean modify = transferringBLService.modifyTransferringFormBL(new TransferringVO("2015-10-11","01710100000127" , LoadingType.PLANE,"139010001","北京", "南京", "茗柯", "5", alldeliveryid));
 			if(modify){
 				System.out.println("修改成功");
 			}

@@ -26,7 +26,7 @@ public class TransferringDataImpl_Stub implements TransferringDataService{
 		alldeliveryid.add("1110000123");
 		alldeliveryid.add("1110001342");
 		alldeliveryid.add("1110022123");
-		TransferringPO transferringPO =new TransferringPO("2015-10-11","01710100000127" , LoadingType.PLANE,"139010001",City.BEI_JING, City.NAN_JING, "茗柯", "3", alldeliveryid);
+		TransferringPO transferringPO =new TransferringPO("2015-10-11","01710100000127" , LoadingType.PLANE,"139010001","北京", "南京", "茗柯", "3", alldeliveryid);
 		transferringPO.setfare(500);
 		return transferringPO;
 	}
@@ -43,9 +43,9 @@ public class TransferringDataImpl_Stub implements TransferringDataService{
 		alldeliveryid2.add("1111001342");
 		alldeliveryid2.add("1110452123");
 		alltransferringPO.add(new TransferringPO("2015-10-11","01710100000127",LoadingType.PLANE,
-				"139010001",City.BEI_JING, City.NAN_JING, "茗柯", "3", alldeliveryid1));
+				"139010001","北京", "南京", "茗柯", "3", alldeliveryid1));
 		alltransferringPO.add(new TransferringPO("2015-10-12","01710100010127",LoadingType.TRAIN,
-				"159010101",City.BEI_JING, City.NAN_JING, "haha", "2", alldeliveryid2));
+				"159010101","北京", "南京", "haha", "2", alldeliveryid2));
 		return alltransferringPO;
 	}
 

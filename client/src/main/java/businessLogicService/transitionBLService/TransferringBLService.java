@@ -53,7 +53,7 @@ public interface TransferringBLService {
 	 * @param CityTo , 到达城市
 	 * @return double, 返回中转单的运费值
 	 * */
-	public double tranferringFare(City CityFrom,City CityTo);
+	public double tranferringFare(String CityFrom,String CityTo);
 	
 	/**
 	 * description:查看库存信息

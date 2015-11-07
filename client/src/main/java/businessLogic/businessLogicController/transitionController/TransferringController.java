@@ -24,7 +24,7 @@ public class TransferringController implements TransferringBLService{
 		return false;
 	}
 
-	public double tranferringFare(City CityFrom, City CityTo) {
+	public double tranferringFare(String CityFrom, String CityTo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

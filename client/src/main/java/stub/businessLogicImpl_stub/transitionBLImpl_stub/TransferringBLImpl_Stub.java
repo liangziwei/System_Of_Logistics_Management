@@ -38,7 +38,7 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 		return transferringdata.AddTransferringFormDT(transferringPO);
 	}
 
-	public double tranferringFare(City CityFrom, City CityTo) {
+	public double tranferringFare(String CityFrom, String CityTo) {
 		// TODO Auto-generated method stub
 		return 500;
 	}

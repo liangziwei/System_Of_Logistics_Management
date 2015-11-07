@@ -3,6 +3,8 @@ package ui.transitionui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 
@@ -44,7 +46,13 @@ public class TransitionPanel extends UserPanel {
 	private TaskButton exit = new TaskButton("退出");
 
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
-
+	
+	private List<JButton> DetailButtonLoading = new ArrayList<JButton>();
+	
+	private List<JButton> DetailButtonTransferring = new ArrayList<JButton>();
+	
+	private List<JButton> DetailButtonReceiving = new ArrayList<JButton>();
+	
 	private static final int BUTTON_WITH = TaskPanel.TASK_PANEL_W;
 
 	private static final int BUTTON_HEIGHT = 32;
@@ -56,6 +64,25 @@ public class TransitionPanel extends UserPanel {
 		// TODO Auto-generated constructor stub
 		initUI();
 		addListenter();
+		
+		DetailButtonLoading.add(AddLoading);
+		DetailButtonLoading.add(ModifyLoading);
+		DetailButtonLoading.add(FindLoading);
+		//要展开的按钮
+		Loading.setDetailButtons(DetailButtonLoading);    //设置（添加）要展开的按钮
+		
+		DetailButtonReceiving.add(AddReceiving);
+		DetailButtonReceiving.add(ModifyReceiving);
+		DetailButtonReceiving.add(FindReceiving);
+		//要展开的按钮
+		Receiving.setDetailButtons(DetailButtonReceiving);    //设置（添加）要展开的按钮
+		
+		DetailButtonTransferring.add(AddTransferring);
+		DetailButtonTransferring.add(ModifyTransferring);
+		DetailButtonTransferring.add(FindTransferring);
+		DetailButtonTransferring.add(SeeRepository);
+		//要展开的按钮
+		Transferring.setDetailButtons(DetailButtonTransferring);    //设置（添加）要展开的按钮
 	}
 
 	/**
@@ -76,30 +103,11 @@ public class TransitionPanel extends UserPanel {
 		this.exit.setFont(WORD_FONT);
 		// 面板添加按钮
 
-		// 装运单添加按钮
-		// this.AddLoading.setBounds(0, this.Loading.getY(), BUTTON_WITH+10,
-		// BUTTON_HEIGHT);
-		// this.AddLoading.setFont(WORD_FONT);
-		// // 装运单修改按钮
-		// this.ModifyLoading.setBounds(0, this.AddLoading.getY(),
-		// BUTTON_WITH+10, BUTTON_HEIGHT);
-		// this.ModifyLoading.setFont(WORD_FONT);
-		// // 装运单查询按钮
-		// this.FindLoading.setBounds(0, this.ModifyLoading.getY(),
-		// BUTTON_WITH+10, BUTTON_HEIGHT);
-		// this.FindLoading.setFont(WORD_FONT);
-
-		// this.AddLoading.setVisible(false);
-		// this.ModifyLoading.setVisible(false);
-		// this.FindLoading.setVisible(false);
-
 		this.task.buttonContainer.add(Loading);
 		this.task.buttonContainer.add(Transferring);
 		this.task.buttonContainer.add(Receiving);
 		this.task.buttonContainer.add(exit);
-		// this.task.add(AddLoading);
-		// this.task.add(ModifyLoading);
-		// this.task.add(FindLoading);
+
 	}
 
 	private void addListenter() {
@@ -107,34 +115,19 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				repaint();
-
-				Loading.setLocation(0, UserImagePanel.USER_PANEL_H);
-				// 装运单添加按钮
-				AddLoading.setBounds(0, Loading.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30, BUTTON_HEIGHT);
-				AddLoading.setFont(WORD_FONT);
-				// 装运单修改按钮
-				ModifyLoading.setBounds(0, AddLoading.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30,
-						BUTTON_HEIGHT);
-				ModifyLoading.setFont(WORD_FONT);
-				// 装运单查询按钮
-				FindLoading.setBounds(0, ModifyLoading.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30,
-						BUTTON_HEIGHT);
-				FindLoading.setFont(WORD_FONT);
-
-				task.add(AddLoading);
-				task.add(ModifyLoading);
-				task.add(FindLoading);
-
-				AddLoading.setVisible(true);
-				ModifyLoading.setVisible(true);
-				FindLoading.setVisible(true);
-
-				Transferring.setLocation(0, FindLoading.getY() + BUTTON_HEIGHT + BUTTON_GAP);
-				Receiving.setLocation(0, Transferring.getY() + BUTTON_HEIGHT + BUTTON_GAP);
-				exit.setLocation(0, Receiving.getY() + BUTTON_HEIGHT + BUTTON_GAP);
-
-				repaint();
+				//添加要展开按钮的下面的按钮
+				List<TaskButton> BelowButton = new ArrayList<TaskButton>();
+				BelowButton.add(Transferring);
+				BelowButton.add(Receiving);
+				BelowButton.add(exit);
+				if(!Loading.isUnfold()) {
+					task.showTaskDetail(Loading, BelowButton);
+					Loading.setUnfold(true);
+				}else {
+					task.hideTaskDetail(Loading, BelowButton);
+					Loading.setUnfold(false);
+				}
+//				repaint();
 				// 将子组件重新布局和重绘
 				// revalidate();
 			}
@@ -144,36 +137,18 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				repaint();
-
-				Loading.setLocation(0, UserImagePanel.USER_PANEL_H);
-				Transferring.setLocation(0, Loading.getY() + BUTTON_HEIGHT + BUTTON_GAP);
-
-				AddTransferring.setBounds(0, Transferring.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30,
-						BUTTON_HEIGHT);
-				AddTransferring.setFont(WORD_FONT);
-				// 装运单修改按钮
-				ModifyTransferring.setBounds(0, AddTransferring.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30,
-						BUTTON_HEIGHT);
-				ModifyTransferring.setFont(WORD_FONT);
-				// 装运单查询按钮
-				FindTransferring.setBounds(0, ModifyTransferring.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30,
-						BUTTON_HEIGHT);
-				FindTransferring.setFont(WORD_FONT);
-
-				SeeRepository.setBounds(0, FindTransferring.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30,
-						BUTTON_HEIGHT);
-				SeeRepository.setFont(WORD_FONT);
-
-				task.add(AddTransferring);
-				task.add(ModifyTransferring);
-				task.add(FindTransferring);
-				task.add(SeeRepository);
-
-				Receiving.setLocation(0, SeeRepository.getY() + BUTTON_HEIGHT + BUTTON_GAP);
-				exit.setLocation(0, Receiving.getY() + BUTTON_HEIGHT + BUTTON_GAP);
-
-				repaint();
+				//添加要展开按钮的下面的按钮
+				List<TaskButton> BelowButton = new ArrayList<TaskButton>();
+//				BelowButton.add(Transferring);
+				BelowButton.add(Receiving);
+				BelowButton.add(exit);
+				if(!Transferring.isUnfold()) {
+					task.showTaskDetail(Transferring, BelowButton);
+					Transferring.setUnfold(true);
+				}else {
+					task.hideTaskDetail(Transferring, BelowButton);
+					Transferring.setUnfold(false);
+				}
 			}
 		});
 
@@ -181,29 +156,16 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				repaint();
-				Loading.setLocation(0, UserImagePanel.USER_PANEL_H);
-				Transferring.setLocation(0, Loading.getY() + BUTTON_HEIGHT + BUTTON_GAP);
-				Receiving.setLocation(0, Transferring.getY() + BUTTON_HEIGHT + BUTTON_GAP);
-
-				AddReceiving.setBounds(0, Receiving.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30,
-						BUTTON_HEIGHT);
-				AddReceiving.setFont(WORD_FONT);
-				// 装运单修改按钮
-				ModifyReceiving.setBounds(0, AddReceiving.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30,
-						BUTTON_HEIGHT);
-				ModifyReceiving.setFont(WORD_FONT);
-				// 装运单查询按钮
-				FindReceiving.setBounds(0, ModifyReceiving.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH - 30,
-						BUTTON_HEIGHT);
-				FindReceiving.setFont(WORD_FONT);
-
-				task.add(AddReceiving);
-				task.add(ModifyReceiving);
-				task.add(FindReceiving);
-
-				exit.setLocation(0, FindReceiving.getY() + BUTTON_HEIGHT + BUTTON_GAP);
-				repaint();
+				//添加要展开按钮的下面的按钮
+				List<TaskButton> BelowButton = new ArrayList<TaskButton>();
+				BelowButton.add(exit);
+				if(!Receiving.isUnfold()) {
+					task.showTaskDetail(Receiving, BelowButton);
+					Receiving.setUnfold(true);
+				}else {
+					task.hideTaskDetail(Receiving, BelowButton);
+					Receiving.setUnfold(false);
+				}
 			}
 		});
 		

@@ -14,7 +14,7 @@ public class TransferringPO {
 	 */
 	private String loadingdate;
 	/**
-	 * 本中转中心中转单编号（中转中心编号+日期+0000000七位数字）
+	 * 本中转中心中转单编号（中转中心编号（四位数字）+日期+0000000七位数字）
 	 */
 	private String transferringid;
 	/**
@@ -28,11 +28,11 @@ public class TransferringPO {
 	/**
 	 * 出发地
 	 */
-	private City departureid;
+	private String departureid;
 	/**
 	 * 目的地
 	 */
-	private City arrivalid;
+	private String arrivalid;
 	/**
 	 * 监装员
 	 */
@@ -62,7 +62,7 @@ public class TransferringPO {
 	 */
 	private boolean isPassed = false;
 	public TransferringPO(String loadingdate,String transferringid,LoadingType way,String wayid,
-			City departureid,City arrivalid,String supervisionid,
+			String departureid,String arrivalid,String supervisionid,
 			String containerid,List<String> alldeliveryid) {
 		// TODO Auto-generated constructor stub
 		super();
@@ -99,16 +99,16 @@ public class TransferringPO {
 	public String getwayid() {
 		return wayid;
 	}
-	public void setdepartureid(City departureid) {
+	public void setdepartureid(String departureid) {
 		this.departureid=departureid;
 	}
-	public City getdepartureid() {
+	public String getdepartureid() {
 		return departureid;
 	}
-	public void setarrivalid(City arrivalid) {
+	public void setarrivalid(String arrivalid) {
 			this.arrivalid=arrivalid;
 	}
-	public City getarrivalid() {
+	public String getarrivalid() {
 		return arrivalid;
 	}
 	public void setsupervisionid(String supervisionid) {

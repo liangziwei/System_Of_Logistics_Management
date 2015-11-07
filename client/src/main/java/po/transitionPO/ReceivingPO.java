@@ -8,7 +8,7 @@ import constant.CargoState;
  */
 public class ReceivingPO {
 	/**
-	 * 中转中心编号（城市编号＋中转中心编号）
+	 * 中转中心编号（城市编号＋中转中心编号）(四位数字)
 	 */
 	private String transitionid;
 	/**
@@ -16,7 +16,7 @@ public class ReceivingPO {
 	 */
 	private String arrivaldate;
 	/**
-	 * 中转单编号（年月日＋000000六位数字）
+	 * 中转单编号（年月日＋00000000八位数字）
 	 */
 	private String transferringid;
 	/**
