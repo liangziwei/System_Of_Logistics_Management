@@ -1,5 +1,6 @@
 package businessLogic.businessLogicModel.deliveryModel;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
@@ -9,11 +10,11 @@ import constant.DeliveryType;
 import constant.OrderLabelName;
 import constant.VerifyResult;
 import dataService.deliveryDataService.OrderDataService;
-import mock.object.MockTimeRecordList;
 import po.deliveryPO.ClientInfo;
 import po.deliveryPO.GoodsInfo;
 import po.deliveryPO.OrderPO;
 import po.deliveryPO.TimeRecordPO;
+import stub.dataImpl_stub.deliveryDataImpl_stub.OrderDataImpl_Stub;
 import vo.deliveryVO.OrderVO;
 import vo.deliveryVO.VerifyMessage;
 
@@ -23,12 +24,7 @@ import vo.deliveryVO.VerifyMessage;
  */
 public class OrderModel{
 	
-	private MockTimeRecordList order = new MockTimeRecordList();
-	
-	//TODO DELETE
-	public MockTimeRecordList getOrderDataService() {
-		return this.order;
-	}
+	private OrderDataService order = new OrderDataImpl_Stub();
 	
 	public OrderVO getOrderInfoById(String id) {
 		OrderPO orderInfo = null;
@@ -52,7 +48,7 @@ public class OrderModel{
 		List<TimeRecordPO> timeRecords = null;
 		try {
 			 timeRecords = order.getTimeRecords(source, destination);
-		} catch (Exception e) {
+		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		for(int i = 0; i < timeRecords.size(); i++) {

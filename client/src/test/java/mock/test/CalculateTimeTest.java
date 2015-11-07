@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import businessLogic.businessLogicController.deliveryController.OrderController;
-import businessLogic.businessLogicModel.deliveryModel.OrderModel;
 import constant.City;
 import mock.object.MockTimeRecord;
 import mock.object.MockTimeRecordList;
@@ -26,12 +24,9 @@ public class CalculateTimeTest {
 		l.add(t2);
 		l.add(t3);
 		
-		OrderController order = new OrderController();
-		OrderModel orderModel = order.getOrderModel();
-		MockTimeRecordList times = orderModel.getOrderDataService();
-		times.setList(l);
+		MockTimeRecordList order = new MockTimeRecordList(l);
 		
-		assertEquals(2, order.calculateTime(City.NAN_JING, City.BEI_JING));
+		assertEquals(2, order.calculateTime());
 		
 	}
 

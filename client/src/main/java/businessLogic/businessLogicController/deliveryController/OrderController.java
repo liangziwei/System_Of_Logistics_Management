@@ -35,9 +35,4 @@ public class OrderController implements OrderBLService{
 		return this.order.verifyOrderInfo(orderVO);
 		
 	}
-	
-	//TODO DELETE
-	public OrderModel getOrderModel() {
-		return this.order;
-	}
 }
