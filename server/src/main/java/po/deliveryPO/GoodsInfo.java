@@ -3,6 +3,7 @@ package po.deliveryPO;
 import java.io.Serializable;
 import java.util.List;
 
+import constant.City;
 import constant.DeliveryType;
 import constant.PackageType;
 import constant.TransitionNode;
@@ -19,14 +20,19 @@ public class GoodsInfo implements Serializable{
 	private static final long serialVersionUID = -796289660796525400L;
 	
 	/**
+	 *原件数 
+	 */
+	private String number;
+
+	/**
 	 * 重量
 	 */
-	private double weight;
+	private String weight;
 	
 	/**
 	 * 物品名称
 	 */
-	private List<String> names;
+	private String name;
 	
 	/**
 	 * 尺寸（长*宽*高）
@@ -57,35 +63,50 @@ public class GoodsInfo implements Serializable{
 	 * 货物经过站点（寄件人营业厅、寄件人中转中心、收件人营业厅、收件人中转中心，收件人手中）
 	 */
 	private List<TransitionNode> transitNode;
+	
+	/**
+	 * 货物所在城市
+	 */
+	private List<City> city;
 
-	public GoodsInfo(String id, double weight, List<String> names, String size,
+	public GoodsInfo(String number, String id, String weight, String name, String size,
 			PackageType packageType, DeliveryType deliveryType, String date,
-			List<TransitionNode> transitNode) {
+			List<TransitionNode> transitNode, List<City> city) {
 		super();
+		this.number = number;
 		this.id = id;
 		this.weight = weight;
-		this.names = names;
+		this.name = name;
 		this.size = size;
 		this.packageType = packageType;
 		this.deliveryType = deliveryType;
 		this.date = date;
 		this.transitNode = transitNode;
+		this.city = city;
+	}
+	
+	public String getNumber() {
+		return number;
 	}
 
-	public double getWeight() {
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(String weight) {
 		this.weight = weight;
 	}
 
-	public List<String> getNames() {
-		return names;
+	public String getName() {
+		return name;
 	}
 
-	public void setNames(List<String> names) {
-		this.names = names;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getSize() {
@@ -135,5 +156,12 @@ public class GoodsInfo implements Serializable{
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
+	public List<City> getCity() {
+		return city;
+	}
+
+	public void setCity(List<City> city) {
+		this.city = city;
+	}
 }

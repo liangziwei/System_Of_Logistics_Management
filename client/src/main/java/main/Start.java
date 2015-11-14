@@ -63,5 +63,6 @@ public class Start {
 		ExpressPanel panel = new ExpressPanel(controller);
 		//主框架添加主面板
 		frame.add(panel);
+		
 	}
 }
