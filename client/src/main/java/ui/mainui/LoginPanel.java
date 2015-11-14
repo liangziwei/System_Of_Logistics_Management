@@ -126,6 +126,7 @@ public class LoginPanel extends JPanel{
 				case 'D':
 					break;
 				case 'E':
+					viewController.switchView(TransitionPanel.class.getName());
 					break;
 				case 'F':
 					break;

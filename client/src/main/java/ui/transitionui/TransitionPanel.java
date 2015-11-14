@@ -111,6 +111,7 @@ public class TransitionPanel extends UserPanel {
 	}
 
 	private void addListenter() {
+		//装运单管理监听
 		this.Loading.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -129,6 +130,7 @@ public class TransitionPanel extends UserPanel {
 		});
 
 		this.Transferring.addActionListener(new ActionListener() {
+			//中转单管理监听
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -142,6 +144,7 @@ public class TransitionPanel extends UserPanel {
 		});
 
 		this.Receiving.addActionListener(new ActionListener() {
+			//接收单管理监听
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -153,6 +156,7 @@ public class TransitionPanel extends UserPanel {
 		});
 		
 		this.exit.addActionListener(new ActionListener() {
+			//退出监听
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -180,12 +184,68 @@ public class TransitionPanel extends UserPanel {
 			}
 		});
 		//查询装运单的监听
+		this.FindLoading.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//添加中转单的监听
+		this.AddTransferring.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//修改中转单的监听
+		this.ModifyTransferring.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//查询中转单的监听
+		this.FindTransferring.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//库存信息查询的监听
+		this.SeeRepository.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//添加接收单的监听
+		this.AddReceiving.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//修改接收单的监听
+		this.ModifyReceiving.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//查询接收单的监听
+		this.FindReceiving.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 }
