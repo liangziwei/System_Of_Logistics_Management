@@ -2,7 +2,6 @@ package businessLogicService.transitionBLService;
 
 import java.util.List;
 
-import constant.City;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
