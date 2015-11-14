@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ui.deliveryui.DeliveryPanel;
 import ui.transitionui.TransitionPanel;
 import ui.viewcontroller.ViewController;
 
@@ -116,6 +115,7 @@ public class LoginPanel extends JPanel{
 				setVisible(false);
 				//跳转页面
 				viewController.switchView(TransitionPanel.class.getName());
+//				viewController.switchView(DeliveryPanel.class.getName());
 			}
 		});
 		

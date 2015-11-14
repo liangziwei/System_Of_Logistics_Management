@@ -120,13 +120,8 @@ public class TransitionPanel extends UserPanel {
 				BelowButton.add(Transferring);
 				BelowButton.add(Receiving);
 				BelowButton.add(exit);
-				if(!Loading.isUnfold()) {
-					task.showTaskDetail(Loading, BelowButton);
-					Loading.setUnfold(true);
-				}else {
-					task.hideTaskDetail(Loading, BelowButton);
-					Loading.setUnfold(false);
-				}
+				
+				task.resetTaskButtons(Loading, BelowButton);
 //				repaint();
 				// 将子组件重新布局和重绘
 				// revalidate();
@@ -142,13 +137,7 @@ public class TransitionPanel extends UserPanel {
 //				BelowButton.add(Transferring);
 				BelowButton.add(Receiving);
 				BelowButton.add(exit);
-				if(!Transferring.isUnfold()) {
-					task.showTaskDetail(Transferring, BelowButton);
-					Transferring.setUnfold(true);
-				}else {
-					task.hideTaskDetail(Transferring, BelowButton);
-					Transferring.setUnfold(false);
-				}
+				task.resetTaskButtons(Transferring, BelowButton);
 			}
 		});
 
@@ -159,13 +148,7 @@ public class TransitionPanel extends UserPanel {
 				//添加要展开按钮的下面的按钮
 				List<TaskButton> BelowButton = new ArrayList<TaskButton>();
 				BelowButton.add(exit);
-				if(!Receiving.isUnfold()) {
-					task.showTaskDetail(Receiving, BelowButton);
-					Receiving.setUnfold(true);
-				}else {
-					task.hideTaskDetail(Receiving, BelowButton);
-					Receiving.setUnfold(false);
-				}
+				task.resetTaskButtons(Receiving, BelowButton);
 			}
 		});
 		

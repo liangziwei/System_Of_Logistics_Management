@@ -5,12 +5,9 @@ import java.util.List;
 
 import constant.City;
 import constant.ClientType;
-import constant.DeliveryType;
-import constant.PackageType;
 import constant.TransitionNode;
 import dataService.deliveryDataService.OrderDataService;
 import po.deliveryPO.ClientInfo;
-import po.deliveryPO.GoodsInfo;
 import po.deliveryPO.OrderPO;
 import po.deliveryPO.TimeRecordPO;
 
@@ -28,9 +25,7 @@ public class OrderDataImpl implements OrderDataService{
 		trace.add(TransitionNode.RECEIVER_BUSINESS_HALL);
 		return new OrderPO(new ClientInfo(ClientType.SENDER, "张三", "南京市", null, null, "12345678901"),
 				new ClientInfo(ClientType.RECEIVER, "李四", "上海市", null, null, "00000000000"),
-				new GoodsInfo(id, 2, names, "2*2*2", 
-						PackageType.COURIER_BAG, DeliveryType.ECONOMIC,
-						"2015-10-27", trace));
+				null);
 	}
 
 	public boolean saveOrderInfo(OrderPO orderPO) {

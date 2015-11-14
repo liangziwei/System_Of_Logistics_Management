@@ -39,7 +39,7 @@ public class OrderModel{
 	}
 
 	public boolean saveOrderInfo(OrderVO orderVO) {
-		// TODO Auto-generated method stub
+		// TODO test
 		return false;
 	}
 

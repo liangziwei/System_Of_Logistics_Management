@@ -73,28 +73,29 @@ public class TaskPanel extends JScrollPane{
 	 * @param belowButtons, 要展开按钮的下面所有按钮
 	 * @return 面板上的按钮重新布局
 	 */
-	public void showTaskDetail(TaskButton unfoldButton, List<TaskButton> belowButtons) {
+	private void showTaskDetail(TaskButton unfoldButton, List<TaskButton> belowButtons) {
 		if(unfoldButton == null || belowButtons == null) return;
+	
+		//要展开的任务按钮的y坐标
+		int detailY = unfoldButton.getY();		
+		//展开任务按钮以及附带的细节按钮
+		detailY = this.showCurrentDetail(unfoldButton, detailY);
 		
-		//布局具体任务按钮
-		List<JButton> detailButtons = unfoldButton.getDetailButtons();		//要展开的按钮
-		int detailY = unfoldButton.getY();									//任务按钮的y坐标
-		for(int i = 0; i < detailButtons.size(); i++) {
-			detailY = detailY + BUTTON_H + BUTTON_GAP;
-			detailButtons.get(i).setBounds(DETAIL_BUTTON_X, detailY, DETAIL_BUTTON_W, BUTTON_H);
-			detailButtons.get(i).setVisible(true);
-			this.buttonContainer.add(detailButtons.get(i));
-		}
-		//布局展开按钮下面的任务按钮
+		//对下面的按钮重新布局
 		int taskButtonY = detailY;
 		for(int i = 0; i < belowButtons.size(); i++) {
+			//计算要布局的按钮的y坐标
 			taskButtonY = taskButtonY + BUTTON_H + BUTTON_GAP;
+			//获得当前要布局的按钮
 			TaskButton below = belowButtons.get(i);
-			if(below.isUnfold()) {		//如果当前按钮已经展开
+			//如果当前按钮已经展开
+			if(below.isUnfold()) {		
+				//将当前按钮以及附带的按钮重新布局
 				taskButtonY = this.showCurrentDetail(below, taskButtonY);
-			}else {						//如果当前按钮没有展开
+			//如果当前按钮没有展开	
+			}else {				
+				//将当前按钮重新布局
 				below.setBounds(0, taskButtonY, BUTTON_W, BUTTON_H);
-				this.buttonContainer.add(below);
 			}
 		}
 		//刷新面板
@@ -107,46 +108,72 @@ public class TaskPanel extends JScrollPane{
 	 * @param belowButtons, 已经展开按钮的下面所有按钮
 	 * @return 面板上的按钮重新布局
 	 */
-	public void hideTaskDetail(TaskButton foldButton, List<TaskButton> belowButtons) {
+	private void hideTaskDetail(TaskButton foldButton, List<TaskButton> belowButtons) {
 		if(foldButton == null || belowButtons == null) return;
 		
-		//隐藏具体任务按钮
+		//隐藏任务按钮附属的细节按钮
 		List<JButton> detailButtons = foldButton.getDetailButtons();		//要展开的按钮
 		for(int i = 0; i < detailButtons.size(); i++) {
 			detailButtons.get(i).setVisible(false);
 		}
-		//布局展开按钮下面的任务按钮
+		
+		//对下面的按钮重新布局
 		int taskButtonY = foldButton.getY();
 		for(int i = 0; i < belowButtons.size(); i++) {
+			//计算要布局的按钮的y坐标
 			taskButtonY = taskButtonY + BUTTON_H + BUTTON_GAP;
+			//获得要布局的按钮
 			TaskButton below = belowButtons.get(i);
-			if(below.isUnfold()) {		//如果当前按钮已经展开
-				this.hideCurrentDetail(below, taskButtonY);
-			}else {						//如果当前按钮没有展开
+			//如果当前按钮已经展开
+			if(below.isUnfold()) {		
+				//对按钮及其附属的细节按钮重新布局
+				taskButtonY = this.showCurrentDetail(below, taskButtonY);
+			}
+			//如果当前按钮没有展开
+			else {	
+				//对当前按钮重新布局
 				below.setBounds(0, taskButtonY, BUTTON_W, BUTTON_H);
-				this.buttonContainer.add(below);
 			}
 		}
 		//刷新面板
 		this.repaint();
 	}
 	
+	/**
+	 *展开任务按钮以及附带的细节按钮 
+	 *@return int, 返回的是最后一个细节按钮的y坐标
+	 */
 	private int showCurrentDetail(TaskButton button, int currentY) {
+		//对任务按钮进行布局
 		button.setBounds(0, currentY, BUTTON_W, BUTTON_H);
+		
+		//对细节按钮进行布局
 		List<JButton> details = button.getDetailButtons();
 		for(int i = 0; i < details.size(); i++) {
+			//计算要布局按钮的y坐标
 			currentY = currentY + BUTTON_H + BUTTON_GAP;
+			//获得要布局的按钮
 			JButton detail = details.get(i);
+			//重设按钮的边界
 			detail.setBounds(DETAIL_BUTTON_X, currentY, DETAIL_BUTTON_W, BUTTON_H);
+			//将按钮设为可见
+			detail.setVisible(true);
+			//将按钮加入面板
+			this.buttonContainer.add(detail);
 		}
 		return currentY;
 	}
 	
-	private void hideCurrentDetail(TaskButton button, int currentY) {
-		button.setBounds(0, currentY, BUTTON_W, BUTTON_H);
-		List<JButton> details = button.getDetailButtons();
-		for(int i = 0; i < details.size(); i++) {
-			
+	/**
+	 * 对外提供的接口，当用户点击任务按钮后，对任务面板的按钮进行重新布局
+	 */
+	public void resetTaskButtons(TaskButton clickButton, List<TaskButton> belowButtons) {
+		if(clickButton.isUnfold()) {		//如果当前按钮已经展开，隐藏当前按钮的细节
+			clickButton.setUnfold(false);
+			this.hideTaskDetail(clickButton, belowButtons);
+		}else {								//如果当前按钮没有展开，展开当前按钮的细节
+			clickButton.setUnfold(true);
+			this.showTaskDetail(clickButton, belowButtons);
 		}
 	}
 }
