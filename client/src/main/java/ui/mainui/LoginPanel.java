@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ui.deliveryui.DeliveryPanel;
 import ui.transitionui.TransitionPanel;
 import ui.viewcontroller.ViewController;
 
@@ -111,11 +112,30 @@ public class LoginPanel extends JPanel{
 				//如果错误，提示错误信息
 				
 				//TODO 测试代码
+				//跳转页面
+				String id = idField.getText();
+				if(id == null || id.equals("")) return;
 				//设置当前页面不可见
 				setVisible(false);
-				//跳转页面
-				viewController.switchView(TransitionPanel.class.getName());
-//				viewController.switchView(DeliveryPanel.class.getName());
+				switch(id.charAt(0)) {
+				case 'B':
+					viewController.switchView(DeliveryPanel.class.getName());
+					break;
+				case 'C':
+					break;
+				case 'D':
+					break;
+				case 'E':
+					break;
+				case 'F':
+					break;
+				case 'G':
+					break;
+				case 'H':
+					break;
+				default:
+					break;
+				}
 			}
 		});
 		
