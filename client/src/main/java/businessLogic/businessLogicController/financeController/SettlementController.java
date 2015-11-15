@@ -20,7 +20,7 @@ public class SettlementController implements SettlementBLService{
 	}
 	
 	public double calculateSum() {
-		return 0.0;
+		return settlement.calculateSum();
 	}
 	
 	public List<ReceivableVO> showBusinessRecei( String id,String date) {
