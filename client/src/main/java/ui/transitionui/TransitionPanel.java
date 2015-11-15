@@ -13,6 +13,16 @@ import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
 import ui.baseui.UserPanel;
 import ui.mainui.LoginPanel;
+import ui.transitionui.loadingui.AddLoadingPanel;
+import ui.transitionui.loadingui.FindLoadingPanel1;
+import ui.transitionui.loadingui.ModifyLoadingPanel1;
+import ui.transitionui.receivingui.AddReceivingPanel;
+import ui.transitionui.receivingui.FindReceivingPanel1;
+import ui.transitionui.receivingui.ModifyReceivingPanel1;
+import ui.transitionui.transferringui.AddTransferringPanel;
+import ui.transitionui.transferringui.FindTransferringPanel1;
+import ui.transitionui.transferringui.ModifyTransferringPanel1;
+import ui.transitionui.transferringui.SeeRepositoryPanel;
 import ui.viewcontroller.ViewController;
 
 public class TransitionPanel extends UserPanel {
@@ -171,7 +181,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new AddLoadingPanel();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 		
@@ -180,7 +197,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new ModifyLoadingPanel1();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 		//查询装运单的监听
@@ -188,7 +212,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new FindLoadingPanel1();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 		//添加中转单的监听
@@ -196,7 +227,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new AddTransferringPanel();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 		//修改中转单的监听
@@ -204,7 +242,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new ModifyTransferringPanel1();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 		//查询中转单的监听
@@ -212,7 +257,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new FindTransferringPanel1();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 		//库存信息查询的监听
@@ -220,7 +272,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new SeeRepositoryPanel();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 		//添加接收单的监听
@@ -228,7 +287,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new AddReceivingPanel();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 		//修改接收单的监听
@@ -236,7 +302,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new ModifyReceivingPanel1();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 		//查询接收单的监听
@@ -244,7 +317,14 @@ public class TransitionPanel extends UserPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new FindReceivingPanel1();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
 			}
 		});
 	}
