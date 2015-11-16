@@ -22,7 +22,13 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * description:查询数据库信息
+	 * @param table:数据库中的表的名称
+	 * @param idname 表中属性的名称
+	 * @param id 要查的编号
+	 * @return 结果的集合
+	 */
 	public static ResultSet query(String table,String idname,String id){
 		String sql="SELECT * FROM "+table+" WHERE "+idname+"="+"'"+id+"'";
 		try {
@@ -34,17 +40,12 @@ public class Database {
 		return rs;
 	}
 	
-	public static boolean update(String sql){
-		int x;
-		try {
-			x=stat.executeUpdate(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
+	/**
+	 * description:添加数据库信息
+	 * @param table:数据库中的表的名称
+	 * @param val PO转化为对应数据的字符串
+	 * @return 添加是否成功
+	 */
 	public static boolean add(String table,String val){
 		int x;
 		String sql="INSERT INTO "+table+" VALUES("+val+")";
@@ -57,6 +58,14 @@ public class Database {
 		}
 		return true;
 	}
+	
+	/**
+	 * description:删除数据库信息
+	 * @param table:数据库中的表的名称
+	 * @param idname 表中属性的名称
+	 * @param id 要查的编号
+	 * @return 是否删除成功
+	 */
 	public static boolean delete(String table,String idname,String id){
 		int x;
 		String sql="DELETE FROM "+table+" WHERE "+idname+"="+"'"+id+"'";
@@ -69,6 +78,13 @@ public class Database {
 		}
 		return true;
 	}
+	
+	/**
+	 * description:修改数据库信息
+	 * @param table:数据库中的表的名称
+	 * @param val PO转化为对应数据的字符串
+	 * @return 修改是否成功
+	 */
 	public static boolean modify(String table,String val,String idname,String id){
 		int x;
 		String sql="UPDATE "+table+" SET "+val+" WHERE "+idname+"="+"'"+id+"'";;
