@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -15,10 +17,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.transitionController.LoadingController;
+import businessLogicService.transitionBLService.LoadingBLService;
 import constant.LoadingType;
 import ui.baseui.DetailPanel;
+import vo.transitionVO.LoadingVO;
 
 public class AddLoadingPanel extends DetailPanel{
+	private LoadingBLService loadingservice = new LoadingController();
+	
 	private JLabel loadingid = new JLabel("装运编号");
 	
 	private JLabel arrivalid = new JLabel("到达地");
@@ -88,12 +95,12 @@ public class AddLoadingPanel extends DetailPanel{
 	/**
 	 *组件开始x坐标 
 	 */
-	private static final int START_X = (DetailPanel.DETAIL_PANEL_W - ((LABEL_W+TEXT_W+COMPONENT_GAP_X)* 2)) / 3;
+	public static final int START_X = (DetailPanel.DETAIL_PANEL_W - ((LABEL_W+TEXT_W+COMPONENT_GAP_X)* 2)) / 3;
 	
 	/**
 	 *组件开始y坐标 
 	 */
-	private static final int START_Y = START_X;
+	public static final int START_Y = START_X;
 	
 	/**
 	 * 是否为第一次按确认按钮
@@ -180,15 +187,124 @@ public class AddLoadingPanel extends DetailPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				//创建装运单对象
+				LoadingVO loadingVO = creatLoadingVO();
+				//验证输入是否规范
+				boolean result = loadingservice.verify(loadingVO);
 				
+				if (result) {
+					throughVerifyOperation(loadingVO);   //验证成功
+				}
+				else {
+					verifyFailOperation(loadingVO);   //验证失败
+				}
 				
+				//刷新页面
+				repaint();
 			}
 		});
+		
+		this.cancel.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//回到第一次点击确定的状态
+				isFirstEnsure = true;
+				//使提示信息消失
+				state.setText("");
+				//使信息可编辑
+				enableComponents();
+				//重置运费
+				fareText.setText("");
+			}
+		});
+	}
+	
+	private void throughVerifyOperation(LoadingVO loadingVO) {
+		//使所有组件不可编辑
+		disableComponents();
+		//计算运费
+		String thefare = loadingservice.loadingFare("南京", loadingVO.getarrivalid())+"";
+		//显示运费
+		fareText.setText(thefare);
+		if(isFirstEnsure) {
+			showState("请再次确认信息，无误后按确定，否则按取消");
+			isFirstEnsure = false;
+		}
+		else {
+			//添加装运信息
+			boolean save =loadingservice.addLoadingFormBL(loadingVO);
+			if(save) {		//保存成功
+				showState("订单保存成功");
+				disableComponents();
+			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
+				showState("订单存失败");
+			}
+		}
+	}
+	
+	private void verifyFailOperation(LoadingVO loadingVO) {
+		//提示修改意见
+		showState(loadingVO.geterrorMsg());
 	}
 	
 	private void addPanels() {
 		this.container.add(this.infoPanel);
 		this.container.add(this.buttonPanel);
 		this.container.add(this.state);
+	}
+	
+	private LoadingVO creatLoadingVO(){
+		String loadid = loadingidText.getText().trim();
+		String arriveid = arrivalidText.getText().trim();
+		String Wayid = wayidText.getText().trim();
+		String Supervis = supervisionidText.getText().trim();
+		String Supercar = supercargoidText.getText().trim();
+		String Way = (String) wayBox.getSelectedItem();
+		LoadingType way1 = null;
+		switch (Way) {
+		case "飞机":
+			way1 = LoadingType.PLANE;
+			break;
+		case "火车":
+			way1 = LoadingType.TRAIN;
+			break;
+		case "汽车":
+			way1 = LoadingType.TRUCK;
+			break;
+		}
+		String alldeli = alldeliveryidArea.getText();
+		String[] alldeli1 = alldeli.split("\n");
+		List<String> all = new ArrayList<String>();
+		for(String q:alldeli1){
+			all.add(q);
+		}
+		
+		LoadingVO loadingVO = new LoadingVO(loadid, arriveid, way1, Wayid, Supervis, Supercar, all);
+		return loadingVO;
+	}
+	private void disableComponents() {
+		this.loadingidText.setEditable(false);
+		this.arrivalidText.setEditable(false);
+		this.wayBox.setEnabled(false);
+		this.wayidText.setEditable(false);
+		this.supercargoidText.setEditable(false);
+		this.supervisionidText.setEditable(false);
+		this.alldeliveryidArea.setEditable(false);
+	}
+	
+	private void enableComponents() {
+		this.loadingidText.setEditable(true);
+		this.arrivalidText.setEditable(true);
+		this.wayBox.setEnabled(true);
+		this.wayidText.setEditable(true);
+		this.supercargoidText.setEditable(true);
+		this.supervisionidText.setEditable(true);
+		this.alldeliveryidArea.setEditable(true);
+	}
+	
+	private void showState(String msg) {
+		this.state.setText(msg);
+		this.repaint();
 	}
 }

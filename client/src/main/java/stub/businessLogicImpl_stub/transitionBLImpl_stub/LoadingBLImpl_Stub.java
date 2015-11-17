@@ -17,7 +17,7 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 
 	public boolean addLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		double fare =this.loadingFare(City.NAN_JING, loadingVO.getarrivalid());
+		double fare =this.loadingFare("南京", loadingVO.getarrivalid());
 		loadingVO.setfare(fare);
 		LoadingPO loadingPO = this.LoadingVOtoLoadingPO(loadingVO);
 		return loadingdata.AddLoadingFormDT(loadingPO);
@@ -25,13 +25,13 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 
 	public boolean modifyLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		double fare =this.loadingFare(City.NAN_JING, loadingVO.getarrivalid());
+		double fare =this.loadingFare("南京", loadingVO.getarrivalid());
 		loadingVO.setfare(fare);
 		LoadingPO loadingPO = this.LoadingVOtoLoadingPO(loadingVO);
 		return loadingdata.ModifyLoadingFormDT(loadingPO);
 	}
 
-	public double loadingFare(City CityFrom, String CityTo) {
+	public double loadingFare(String CityFrom, String CityTo) {
 		// TODO Auto-generated method stub
 		return 500;
 	}
@@ -49,6 +49,12 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 				loadingVO.getalldeliveryid());
 		loadingPO.setfare(loadingVO.getfare());
 		return loadingPO;
+	}
+
+	@Override
+	public boolean verify(LoadingVO loadingVO) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }
