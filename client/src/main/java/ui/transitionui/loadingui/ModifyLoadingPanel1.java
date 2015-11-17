@@ -19,9 +19,6 @@ import businessLogic.businessLogicController.transitionController.LoadingControl
 import businessLogicService.transitionBLService.LoadingBLService;
 import constant.LoadingType;
 import ui.baseui.DetailPanel;
-import ui.transitionui.TransitionPanel;
-import ui.transitionui.receivingui.ModifyReceivingPanel1;
-import ui.transitionui.receivingui.ModifyReceivingPanel2;
 import vo.transitionVO.LoadingVO;
 
 public class ModifyLoadingPanel1 extends DetailPanel{
