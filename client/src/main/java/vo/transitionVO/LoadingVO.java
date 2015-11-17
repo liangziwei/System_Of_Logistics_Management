@@ -51,10 +51,10 @@ public class LoadingVO {
 	 * 错误信息
 	 */
 	private String errorMsg;
-//	/**
-//	 * 验证结果
-//	 */
-//	private boolean VerifyResult;
+	/**
+	 * 验证结果
+	 */
+	private boolean VerifyResult;
 	/**
 	 * 是否经过审批
 	 */
@@ -141,12 +141,12 @@ public class LoadingVO {
 	public String geterrorMsg() {
 		return errorMsg;
 	}
-//	public void setVerifyResult(boolean VerifyResult) {
-//		this.VerifyResult=VerifyResult;
-//	}
-//	public boolean getVerifyResult() {
-//		return VerifyResult;
-//	}
+	public void setVerifyResult(boolean VerifyResult) {
+		this.VerifyResult=VerifyResult;
+	}
+	public boolean getVerifyResult() {
+		return VerifyResult;
+	}
 }
 
 

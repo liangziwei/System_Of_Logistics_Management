@@ -10,7 +10,7 @@ public class LoadingController implements LoadingBLService{
 
 	public LoadingVO findLoadingFormBL(String loadingNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		return loading.findLoadingFormBL(loadingNumber);
 	}
 
 	public boolean addLoadingFormBL(LoadingVO loadingVO) {

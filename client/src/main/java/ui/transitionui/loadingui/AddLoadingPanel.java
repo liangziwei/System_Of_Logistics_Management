@@ -238,7 +238,7 @@ public class AddLoadingPanel extends DetailPanel{
 				showState("订单保存成功");
 				disableComponents();
 			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
-				showState("订单存失败");
+				showState("订单保存失败");
 			}
 		}
 	}

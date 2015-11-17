@@ -1,12 +1,20 @@
 package businessLogic.businessLogicModel.transitionModel;
 
+import java.util.ArrayList;
+
 import constant.City;
+import constant.LoadingType;
 import vo.transitionVO.LoadingVO;
 
 public class Loading {
 	public LoadingVO findLoadingFormBL(String loadingNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String>  alldeliveryid = new ArrayList<>();
+		alldeliveryid.add("1234567890");
+		alldeliveryid.add("0987654321");
+		LoadingVO loadingVO =new LoadingVO("12312311111", "123", LoadingType.PLANE, "212453", "haha", "xixi", alldeliveryid);
+		loadingVO.setVerifyResult(true);
+		return loadingVO;
 	}
 
 	public boolean addLoadingFormBL(LoadingVO loadingVO) {
