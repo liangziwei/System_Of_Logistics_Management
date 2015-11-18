@@ -10,7 +10,7 @@ public class RMI {
 	
 	static {
 		try {
-			registry = LocateRegistry.getRegistry("127.0.0.1");
+			registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

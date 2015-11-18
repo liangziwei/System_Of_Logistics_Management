@@ -47,6 +47,7 @@ public class RMI {
 
 	private static void initSenderRMI() {
 		try {
+			//物流信息访问接口
 			InquireDataService inquire = new InquireDataImpl();
 			InquireDataService stub = (InquireDataService) UnicastRemoteObject.exportObject(inquire, 0);
 			registry.bind("inquire", stub);

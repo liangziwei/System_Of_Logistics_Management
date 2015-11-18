@@ -2,7 +2,7 @@ package businessLogic.businessLogicModel.senderModel;
 
 import java.rmi.RemoteException;
 
-import dataService.senderDataService.InquireDataService.InquireDataService;
+import dataService.senderDataService.InquireDataService;
 import network.RMI;
 import po.senderPO.LogisticsPO;
 import vo.senderVO.LogisticsVO;
@@ -14,7 +14,7 @@ import vo.senderVO.LogisticsVO;
 public class InquireModel{
 	
 	private InquireDataService inquire = RMI.<InquireDataService>getDataService("inquire");
-
+	
 	public LogisticsVO getLogInfoById(String id) {
 		LogisticsPO logistics = null;
 		try {

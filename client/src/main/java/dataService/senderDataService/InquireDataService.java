@@ -1,4 +1,4 @@
-package dataService.senderDataService.InquireDataService;
+package dataService.senderDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -19,5 +19,5 @@ public interface InquireDataService extends Remote{
 	 * @param id:订单条形码号
 	 * @return LogisticsPO：物流信息的持久化对象，具体参见LogisticsPO的定义
 	 */
-	public LogisticsPO getLogInfoById(String id) throws RemoteException;
+	public LogisticsPO getLogInfoById(String id)throws RemoteException;
 }

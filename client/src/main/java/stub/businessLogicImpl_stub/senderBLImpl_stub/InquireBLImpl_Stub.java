@@ -3,7 +3,7 @@ package stub.businessLogicImpl_stub.senderBLImpl_stub;
 import java.rmi.RemoteException;
 
 import businessLogicService.senderBLService.InquireBLService;
-import dataService.senderDataService.InquireDataService.InquireDataService;
+import dataService.senderDataService.InquireDataService;
 import po.senderPO.LogisticsPO;
 import stub.dataImpl_stub.senderDataImpl_stub.InquireDataImpl_Stub;
 import vo.senderVO.LogisticsVO;
