@@ -12,7 +12,7 @@ public class DatabaseConnect {
 
 	private static final String URL="jdbc:mysql://127.0.0.1/logistics_system";
 	private static final String USER="root";
-	private static final String PASSWORD="X1231z60";
+	private static final String PASSWORD="blabla";
 	
 	private static Connection conn=null;
 	
