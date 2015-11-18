@@ -50,6 +50,15 @@ public interface LoadingBLService {
 	 * @param CityFrom , 到达的某营业厅
 	 * @return double, 返回装运单的运费值
 	 * */
-	public double loadingFare(City CityFrom,String CityTo);
+	public double loadingFare(String CityFrom,String CityTo);
+	/**
+	 * description:判断输入是否正确
+	 * 前置条件：LoadingPanel
+	 * 后置条件：返回是否正确
+	 * 需接口：无
+	 * @param loadingVO,输入的装运单信息
+	 * @return boolean, 返回是否正确
+	 * */
+	public boolean verify(LoadingVO loadingVO);
 	
 }

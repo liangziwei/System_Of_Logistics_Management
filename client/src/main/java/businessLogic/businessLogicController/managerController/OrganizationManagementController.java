@@ -1,6 +1,7 @@
 package businessLogic.businessLogicController.managerController;
 
 import vo.managerVO.OrganizationVO;
+import businessLogic.businessLogicModel.managerModel.OrganizationManagement;
 import businessLogicService.managerBLService.OrganizationManagementBLService;
 /**
  * description:为机构管理界面提供服务的具体实现
@@ -10,20 +11,23 @@ import businessLogicService.managerBLService.OrganizationManagementBLService;
 
 public class OrganizationManagementController implements OrganizationManagementBLService {
 	
+	
+	private OrganizationManagement organization = new OrganizationManagement();
+	
 	public boolean addOrganization(OrganizationVO organizationVO) {
-		return false;
+		return organization.addOrganization(organizationVO);
 	}
 	
 	public OrganizationVO findOrganization(String id) {
-		return null;
+		return organization.findOrganization(id);
 	}
 	
 	public boolean deleteOrganization(String id) {
-		return false;
+		return organization.deleteOrganization(id);
 	}
 	
 	public boolean modifyOrganization(OrganizationVO organizationVO) {
-		return false;
+		return organization.modifyOrganization(organizationVO);
 	}
 
 }

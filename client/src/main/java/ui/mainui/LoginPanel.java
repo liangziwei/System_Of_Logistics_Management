@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import ui.deliveryui.DeliveryPanel;
 import ui.financeui.FinancePanel;
+import ui.transitionui.TransitionPanel;
 import ui.viewcontroller.ViewController;
 
 @SuppressWarnings("serial")
@@ -126,6 +127,7 @@ public class LoginPanel extends JPanel{
 				case 'D':
 					break;
 				case 'E':
+					viewController.switchView(TransitionPanel.class.getName());
 					break;
 				case 'F':
 					break;

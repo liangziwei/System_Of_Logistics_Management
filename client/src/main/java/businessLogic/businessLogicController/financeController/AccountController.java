@@ -1,8 +1,9 @@
 package businessLogic.businessLogicController.financeController;
 
 import vo.financeVO.AccountVO;
+import businessLogic.businessLogicModel.financeModel.Account;
 import businessLogicService.financeBLService.AccountBLService;
-/**
+/** 
  * description:为账户管理界面提供服务的具体实现
  * @author 张仁知
  *
@@ -10,24 +11,26 @@ import businessLogicService.financeBLService.AccountBLService;
 
 public class AccountController implements AccountBLService {
 	
+	private Account account = new Account();
+	
 	public boolean addAccount(AccountVO accountVO) {
 		
-		return false;		
+		return account.addAccount(accountVO);		
 	}
 	
 	public AccountVO findAccount(String name) {
 		
-		return null;
+		return account.findAccount(name);
 	}
 	
 	public boolean deleteAccount(String name) {
 		
-		return false;
+		return account.deleteAccount(name);
 	}
 	
 	public boolean modifyAccount(AccountVO accountVO) {
 		
-		return false;
+		return account.modifyAccount(accountVO);
 	}
 
 }

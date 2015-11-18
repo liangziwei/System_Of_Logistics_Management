@@ -3,7 +3,6 @@ package businessLogic.businessLogicModel.repositoryModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import constant.AreaCodeType;
 import mock.object.MockCheckRepository;
 import mock.object.MockGetRepository;
 import mock.object.MockSeeRepository;
@@ -13,6 +12,7 @@ import po.repositoryPO.RepositoryPO;
 import vo.repositoryVO.DeliveryInfoVO;
 import vo.repositoryVO.RepositoryInfoVO;
 import vo.repositoryVO.RepositoryVO;
+import constant.AreaCodeType;
 
 public class ManageRepository {
 	MockCheckRepository check = new MockCheckRepository();
