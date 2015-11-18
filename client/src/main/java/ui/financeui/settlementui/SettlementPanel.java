@@ -1,5 +1,8 @@
 package ui.financeui.settlementui;
 
-public class SettlementPanel {
+import ui.baseui.DetailPanel;
+
+@SuppressWarnings("serial")
+public class SettlementPanel extends DetailPanel{
 
 }

@@ -58,6 +58,14 @@ public class ClientInfoPanel extends JPanel{
 		this.addComponent();
 	}
 	
+	public void clearInfo() {
+		this.nameText.setText("");
+		this.addressText.setText("");
+		this.companyText.setText("可不填");
+		this.phoneText.setText("可不填");
+		this.mobileText.setText("");
+	}
+	
 	
 	private void setWordFont(Font font) {
 		//标签
@@ -219,5 +227,17 @@ public class ClientInfoPanel extends JPanel{
 		this.companyLabel.setForeground(Color.BLACK);
 		this.companyLabel.setForeground(Color.BLACK);
 		this.mobileLabel.setForeground(Color.BLACK);
+	}
+	
+	/**
+	 * 设置客户信息
+	 */
+	public void setClientInfo(String name, String address, String company,
+			String phone, String mobile) {
+		this.nameText.setText(name);
+		this.addressText.setText(address);
+		this.companyText.setText(company);
+		this.phoneText.setText(phone);
+		this.mobileText.setText(mobile);
 	}
 }

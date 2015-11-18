@@ -6,6 +6,7 @@ import dataService.deliveryDataService.ReceiptDataService;
 import po.deliveryPO.ReceiptPO;
 import stub.dataImpl_stub.deliveryDataImpl_stub.ReceiptDataImpl_Stub;
 import vo.deliveryVO.ReceiptVO;
+import vo.deliveryVO.VerifyMessage;
 
 public class ReceiptBLImpl_Stub implements ReceiptBLService{
 
@@ -21,5 +22,11 @@ public class ReceiptBLImpl_Stub implements ReceiptBLService{
 
 	private ReceiptPO receiptVOToReceiptPO(ReceiptVO receiptVO) {
 		return new ReceiptPO(receiptVO.getOrderID(), receiptVO.getName(), receiptVO.getDate());
+	}
+
+	@Override
+	public VerifyMessage verifyReceiptInfo(ReceiptVO receiptVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

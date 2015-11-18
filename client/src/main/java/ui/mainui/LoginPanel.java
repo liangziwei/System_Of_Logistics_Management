@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ui.deliveryui.DeliveryPanel;
-import ui.transitionui.TransitionPanel;
+import ui.financeui.FinancePanel;
 import ui.viewcontroller.ViewController;
 
 @SuppressWarnings("serial")
@@ -130,6 +130,7 @@ public class LoginPanel extends JPanel{
 				case 'F':
 					break;
 				case 'G':
+					viewController.switchView(FinancePanel.class.getName());
 					break;
 				case 'H':
 					break;

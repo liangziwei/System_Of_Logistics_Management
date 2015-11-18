@@ -1,5 +1,8 @@
 package ui.financeui.costui;
 
-public class CostPanel {
+import ui.baseui.DetailPanel;
+
+@SuppressWarnings("serial")
+public class CostPanel extends DetailPanel{
 
 }

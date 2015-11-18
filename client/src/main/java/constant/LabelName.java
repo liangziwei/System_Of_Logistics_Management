@@ -1,9 +1,9 @@
 package constant;
 
 /**
- * 订单信息面板的标签名字
+ * 标签名字
  */
-public enum OrderLabelName {
+public enum LabelName {
 	SENDER_NAME, SENDER_ADDR, SENDER_COM, SENDER_PHONE, SENDER_MOBILE,
 	RECEIVER_NAME, RECEIVER_ADDR, RECEIVER_COM, RECEIVER_PHONE, RECEIVER_MOBILE,
 	GOODS_NUM, GOODS_WEIGHT, GOODS_VOLUMN, GOODS_NAME,

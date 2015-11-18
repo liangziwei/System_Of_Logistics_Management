@@ -1,6 +1,7 @@
 package businessLogicService.deliveryBLService;
 
 import vo.deliveryVO.ReceiptVO;
+import vo.deliveryVO.VerifyMessage;
 
 /**
  * description:业务逻辑层为收件信息界面提供的服务
@@ -32,5 +33,15 @@ public interface ReceiptBLService {
 	 * @return 通知方法调用者是否更新成功
 	 */
 	public boolean updateTimeRecord(String arriveTime, String id);
+	
+	/**
+	 * description:验证收件信息的输入是否合法
+	 * 前置条件：快递员输入收件信息后，确认保存收件信息
+	 * 后置条件：给出验证的反馈结果
+	 * 需接口：无
+	 * @param receiptVO,订单信息的值对象
+	 * @return 返回验证的结果
+	 */
+	public VerifyMessage verifyReceiptInfo(ReceiptVO receiptVO);
 	
 }

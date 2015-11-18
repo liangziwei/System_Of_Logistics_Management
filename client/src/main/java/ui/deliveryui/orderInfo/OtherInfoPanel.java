@@ -14,7 +14,7 @@ import ui.baseui.DatePanel;
 import ui.deliveryui.OrderInputPanel;
 
 @SuppressWarnings("serial")
-public class OtherInfo extends JPanel{
+public class OtherInfoPanel extends JPanel{
 
 	private JLabel typeLabel = new JLabel("快递类型");
 	
@@ -36,7 +36,7 @@ public class OtherInfo extends JPanel{
 	
 	private DatePanel dateText = new DatePanel();
 	
-	public OtherInfo() {
+	public OtherInfoPanel() {
 		//主面板
 		this.setLayout(null);
 		//设置组件大小与边界
@@ -47,6 +47,13 @@ public class OtherInfo extends JPanel{
 		this.addComboItem();
 		//将组件添加到面板
 		this.addComponent();
+	}
+	
+	public void clearInfo() {
+		this.idText.setText("");
+		this.typeText.setSelectedItem("经济快递");
+		this.packageText.setSelectedItem("快递袋");
+		this.timeText.setText("");
 	}
 	
 	private void setWordFont(Font font) {
@@ -157,6 +164,10 @@ public class OtherInfo extends JPanel{
 		return this.dateText.getDate();
 	}
 	
+	public String getTime() {
+		return this.timeText.getText();
+	}
+	
 	/**
 	 * 界面展示中组件的行数
 	 */
@@ -201,5 +212,17 @@ public class OtherInfo extends JPanel{
 		this.typeLabel.setForeground(Color.BLACK);
 		this.packageLabel.setForeground(Color.BLACK);
 		this.timeLabel.setForeground(Color.BLACK);
+	}
+	
+	/**
+	 * 设置物品的其他信息
+	 */
+	public void setOtherInfo(String id, DeliveryType deliveryType, PackageType packageType,
+		String date, String time) {
+		this.idText.setText(id);
+		this.typeText.setSelectedItem(deliveryType);
+		this.packageText.setSelectedItem(packageType);
+		this.dateText.setDate(date);
+		this.timeText.setText(time);
 	}
 }

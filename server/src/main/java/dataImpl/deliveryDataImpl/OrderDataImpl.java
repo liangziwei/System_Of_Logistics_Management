@@ -23,8 +23,8 @@ public class OrderDataImpl implements OrderDataService{
 		names.add("书");
 		List<TransitionNode> trace = new ArrayList<TransitionNode>();
 		trace.add(TransitionNode.RECEIVER_BUSINESS_HALL);
-		return new OrderPO(new ClientInfo(ClientType.SENDER, "张三", "南京市", null, null, "12345678901"),
-				new ClientInfo(ClientType.RECEIVER, "李四", "上海市", null, null, "00000000000"),
+		return new OrderPO(new ClientInfo(ClientType.SENDER, "张三", "南京市", null, null, "12345678901", City.NAN_JING),
+				new ClientInfo(ClientType.RECEIVER, "李四", "上海市", null, null, "00000000000", City.SHANG_HAI),
 				null);
 	}
 

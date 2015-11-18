@@ -11,6 +11,11 @@ import javax.swing.JScrollPane;
 public class TaskPanel extends JScrollPane{
 	
 	protected UserImagePanel user = new UserImagePanel();
+	
+	/**
+	 *包含任务按钮的容器 
+	 */
+	public JPanel buttonContainer = new JPanel();
 
 	/**
 	 * 任务面板宽度
@@ -46,11 +51,6 @@ public class TaskPanel extends JScrollPane{
 	 * 具体任务按钮的x坐标
 	 */
 	private static final int DETAIL_BUTTON_X = (BUTTON_W - DETAIL_BUTTON_W) >> 1;
-	
-	/**
-	 *包含任务按钮的容器 
-	 */
-	public JPanel buttonContainer = new JPanel();
 	
 	private static final int CONTAINER_W = TASK_PANEL_W + 100;
 	

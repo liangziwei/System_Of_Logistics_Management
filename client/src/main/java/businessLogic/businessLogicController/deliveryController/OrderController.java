@@ -28,11 +28,15 @@ public class OrderController implements OrderBLService{
 	}
 
 	public double calculatePrice(DeliveryType type, double weight, City source, City destination) {
-		return this.order.calculatePrice(type, weight, source, destination);
+		return OrderModel.calculatePrice(type, weight, source, destination);
 	}
 	
 	public VerifyMessage verifyOrderInfo(OrderVO orderVO) {
-		return this.order.verifyOrderInfo(orderVO);
+		return OrderModel.verifyOrderInfo(orderVO);
 		
+	}
+	
+	public VerifyMessage verifyOrderId(String id) {
+		return OrderModel.verifyOrderId(id);
 	}
 }

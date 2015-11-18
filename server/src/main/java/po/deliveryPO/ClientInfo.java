@@ -1,7 +1,7 @@
 package po.deliveryPO;
 
 import java.io.Serializable;
-
+import constant.City;
 import constant.ClientType;
 
 /**
@@ -9,12 +9,12 @@ import constant.ClientType;
  * @author 肖安祥
  */
 public class ClientInfo implements Serializable{
-
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5564025686495061391L;
-	
+
 	/**
 	 * 身份（寄件人或收件人）
 	 */
@@ -29,6 +29,11 @@ public class ClientInfo implements Serializable{
 	 * 住址
 	 */
 	private String address;
+	
+	/**
+	 *城市 
+	 */
+	private City city;
 	
 	/**
 	 * 单位
@@ -46,7 +51,7 @@ public class ClientInfo implements Serializable{
 	private String mobileNumber;
 
 	public ClientInfo(ClientType identity, String name, String address, String company, 
-			String phoneNumber, String mobileNumber) {
+			String phoneNumber, String mobileNumber, City city) {
 		super();
 		this.identity = identity;
 		this.name = name;
@@ -54,8 +59,9 @@ public class ClientInfo implements Serializable{
 		this.company = company;
 		this.phoneNumber = phoneNumber;
 		this.mobileNumber = mobileNumber;
+		this.city = city;
 	}
-
+	
 	public ClientType getIdentity() {
 		return identity;
 	}
@@ -102,5 +108,13 @@ public class ClientInfo implements Serializable{
 
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 }

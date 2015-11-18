@@ -1,11 +1,11 @@
 package vo.deliveryVO;
 
-import constant.OrderLabelName;
+import constant.LabelName;
 import constant.VerifyResult;
 
 public class VerifyMessage {
 
-	private OrderLabelName label;
+	private LabelName label;
 	
 	private String errorMsg;
 	
@@ -15,17 +15,17 @@ public class VerifyMessage {
 		
 	}
 	
-	public VerifyMessage(OrderLabelName label, String errorMsg, VerifyResult result) {
+	public VerifyMessage(LabelName label, String errorMsg, VerifyResult result) {
 		this.label = label;
 		this.errorMsg = errorMsg;
 		this.result = result;
 	}
 	
-	public OrderLabelName getLabel() {
+	public LabelName getLabel() {
 		return label;
 	}
 
-	public void setLabel(OrderLabelName label) {
+	public void setLabel(LabelName label) {
 		this.label = label;
 	}
 

@@ -3,6 +3,7 @@ package businessLogic.businessLogicController.deliveryController;
 import businessLogic.businessLogicModel.deliveryModel.ReceiptModel;
 import businessLogicService.deliveryBLService.ReceiptBLService;
 import vo.deliveryVO.ReceiptVO;
+import vo.deliveryVO.VerifyMessage;
 
 /**
  * description:为收件信息界面提供服务的控制器
@@ -17,7 +18,11 @@ public class ReceiptController implements ReceiptBLService{
 	}
 
 	public boolean updateTimeRecord(String arriveTime, String id) {
-		return this.updateTimeRecord(arriveTime, id);
+		return this.receipt.updateTimeRecord(arriveTime, id);
+	}
+
+	public VerifyMessage verifyReceiptInfo(ReceiptVO receiptVO) {
+		return ReceiptModel.verifyReceiptInfo(receiptVO);
 	}
 
 }

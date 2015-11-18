@@ -8,7 +8,7 @@ public class ReceiptDataImpl_Stub implements ReceiptDataService{
 
 	public boolean saveReceiptInfo(ReceiptPO receiptPO) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public boolean updateTimeRecord(int day, City source, City destination) {

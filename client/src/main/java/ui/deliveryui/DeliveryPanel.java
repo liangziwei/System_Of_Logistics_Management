@@ -104,7 +104,7 @@ public class DeliveryPanel extends UserPanel{
 		this.exit.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//设置面板
+				//设置面板不可见
 				DeliveryPanel.this.setVisible(false);
 				//跳转到登录画面
 				viewController.switchView(LoginPanel.class.getName());

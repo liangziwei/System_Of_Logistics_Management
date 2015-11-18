@@ -67,4 +67,14 @@ public interface OrderBLService {
 	 */
 	public VerifyMessage verifyOrderInfo(OrderVO orderVO);
 	
+	/**
+	 * description:验证用户在界面的输入是否符合规范
+	 * 前置条件：用户确认进行订单查询
+	 * 后置条件：给用户的输入返回反馈信息
+	 * 需接口：无
+	 * @param id 用户输入的订单条形码号
+	 * @return VerifyMessage, 返回验证结果以及修改意见
+	 */
+	public VerifyMessage verifyOrderId(String id);
+	
 }

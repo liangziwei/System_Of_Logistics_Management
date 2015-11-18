@@ -67,6 +67,18 @@ public class DatePanel extends JPanel{
 		this.day.setEditable(false);
 	}
 	
+	public void setDate(String date) {
+		try {
+			String d[] = date.split("-");
+			this.year.setText(d[0]);
+			this.month.setText(d[1]);
+			this.day.setText(d[2]);
+		}
+		catch(Exception e) {
+			
+		}	
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);

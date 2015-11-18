@@ -17,7 +17,7 @@ import businessLogic.businessLogicController.deliveryController.OrderController;
 import businessLogicService.deliveryBLService.OrderBLService;
 import constant.City;
 import constant.ClientType;
-import constant.OrderLabelName;
+import constant.LabelName;
 import constant.TransitionNode;
 import constant.VerifyResult;
 import po.deliveryPO.ClientInfo;
@@ -25,7 +25,7 @@ import po.deliveryPO.GoodsInfo;
 import ui.baseui.DetailPanel;
 import ui.deliveryui.orderInfo.ClientInfoPanel;
 import ui.deliveryui.orderInfo.GoodsInfoPanel;
-import ui.deliveryui.orderInfo.OtherInfo;
+import ui.deliveryui.orderInfo.OtherInfoPanel;
 import vo.deliveryVO.OrderVO;
 import vo.deliveryVO.VerifyMessage;
 
@@ -40,7 +40,7 @@ public class OrderInputPanel extends DetailPanel{
 	
 	private GoodsInfoPanel goodsInfo = new GoodsInfoPanel();
 	
-	private OtherInfo otherInfo = new OtherInfo();
+	private OtherInfoPanel otherInfo = new OtherInfoPanel();
 	
 	private JPanel buttonPanel = new JPanel();
 	
@@ -86,7 +86,7 @@ public class OrderInputPanel extends DetailPanel{
 	/**
 	 * 标签列表，每个字符串对应一个标签
 	 */
-	private Map<OrderLabelName, JLabel> labelList = new HashMap<OrderLabelName, JLabel>();
+	private Map<LabelName, JLabel> labelList = new HashMap<LabelName, JLabel>();
 	
 	/**
 	 * 是否为第一次按确认按钮
@@ -108,6 +108,7 @@ public class OrderInputPanel extends DetailPanel{
 		//取消按钮
 		this.cancel.setBounds(BUTTON_W + PANEL_GAP, 0, BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
+		this.cancel.setVisible(false);
 		//添加事件监听
 		this.addListener();
 		//将按钮添加到按钮面板
@@ -117,11 +118,41 @@ public class OrderInputPanel extends DetailPanel{
 		//状态信息
 		this.state.setBounds(this.sender.getX(), this.buttonPanel.getY() - BUTTON_H, PANEL_W, BUTTON_W);
 		this.state.setFont(WORD_FONT);
-		this.state.setForeground(Color.RED);
 		//将信息面板加到主面板
 		this.addPanels();
 		//初始化标签列表
 		this.initLabelList();
+	}
+	
+	/**
+	 * 返回展示订单信息的面板
+	 */
+	public JPanel OrderInfoView(int x, int y) {
+		//创建面板
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(x, y, DetailPanel.CONTAINER_W, DetailPanel.CONTAINER_H);
+		//添加其他信息面板
+		panel.add(this.sender);
+		panel.add(this.receiver);
+		panel.add(this.goodsInfo);
+		panel.add(this.otherInfo);
+		//设置信息为不可编辑
+		this.disableComponents();
+		return panel;
+	}
+	
+	//设置面板信息
+	public void setOrderInfo(ClientInfo sender, ClientInfo receiver,
+			GoodsInfo goodsInfo) {
+		this.sender.setClientInfo(sender.getName(), sender.getAddress(),
+				sender.getCompany(), sender.getPhoneNumber(), sender.getMobileNumber());
+		this.receiver.setClientInfo(receiver.getName(), receiver.getAddress(),
+				receiver.getCompany(), receiver.getPhoneNumber(), receiver.getMobileNumber());
+		this.goodsInfo.setGoodsInfo(goodsInfo.getNumber(), goodsInfo.getWeight(),
+				goodsInfo.getSize(), goodsInfo.getName(), goodsInfo.getPrice());
+		this.otherInfo.setOtherInfo(goodsInfo.getId(), goodsInfo.getDeliveryType(),
+				goodsInfo.getPackageType(), goodsInfo.getDate(), goodsInfo.getTime());
 	}
 	
 	private void initUI() {
@@ -168,7 +199,6 @@ public class OrderInputPanel extends DetailPanel{
 				}else {
 					verifyFailOperation(msg);			//验证失败
 				}
-				
 				//刷新页面
 				repaint();
 			}
@@ -188,6 +218,8 @@ public class OrderInputPanel extends DetailPanel{
 				//重置运费和时间
 				goodsInfo.setPriceText("");
 				otherInfo.setTimeText("");
+				//设置取消按钮不可见
+				cancel.setVisible(false);
 			}
 		});
 	}
@@ -201,26 +233,52 @@ public class OrderInputPanel extends DetailPanel{
 				weight, sender.getCity(), receiver.getCity());
 		int day = orderService.calculateTime(sender.getCity(), receiver.getCity());
 		//显示运费
-		labelList.get(OrderLabelName.PRICE).setForeground(Color.RED);
+		labelList.get(LabelName.PRICE).setForeground(Color.RED);
 		goodsInfo.setPriceText(price + "元");
 		//显示时间
-		labelList.get(OrderLabelName.TIME).setForeground(Color.RED);
+		labelList.get(LabelName.TIME).setForeground(Color.RED);
 		otherInfo.setTimeText(day + "天");
 		//如果是第一次按确认，提示用户确认输入
 		if(isFirstEnsure) {
-			showState("请再次确认信息，无误后按确定，否则按取消");
+			//设置状态为不是第一次点击确定
 			isFirstEnsure = false;
+			//询问用户是否确认保存
+			showState("请再次确认信息，无误后按确定，否则按取消");
+			//使取消按钮可见
+			cancel.setVisible(true);
+			
 		}
 		else {
 			//记录收件信息
 			boolean save = orderService.saveOrderInfo(orderVO);
-			if(save) {		//保存成功
-				showState("订单保存成功");
-				disableComponents();
-			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
-				showState("订单存失败");
+			if(save) {		
+				this.state.setForeground(Color.BLUE);
+				this.state.setText("订单保存成功");
+				//清空信息
+				this.clearInfo();
+			}else {	
+				showState("订单存失败，请重试");
 			}
+			//使组件可编辑
+			this.enableComponents();
+			//设置状态为第一次点击确认按钮
+			this.isFirstEnsure = true;
+			//设置取消按钮不可见
+			this.cancel.setVisible(false);
+			//消除提示信息
+			this.setLabelBlack();
 		}
+	}
+	
+	private void clearInfo() {
+		//寄件人信息
+		this.sender.clearInfo();
+		//收件人信息
+		this.receiver.clearInfo();
+		//货物信息
+		this.goodsInfo.clearInfo();
+		//其他信息
+		this.otherInfo.clearInfo();
 	}
 	
 	private void verifyFailOperation(VerifyMessage msg) {
@@ -233,40 +291,40 @@ public class OrderInputPanel extends DetailPanel{
 	private OrderVO createOrderVO() {
 		ClientInfo senderInfo = new ClientInfo(ClientType.SENDER,
 				sender.getClientName(), sender.getAddress(), sender.getCompany(),
-				sender.getPhoneNumber(), sender.getMobilbeNumber());
+				sender.getPhoneNumber(), sender.getMobilbeNumber(), sender.getCity());
 		ClientInfo receiverInfo = new ClientInfo(ClientType.RECEIVER,
 				receiver.getClientName(), receiver.getAddress(), receiver.getCompany(),
-				receiver.getPhoneNumber(), receiver.getMobilbeNumber());
+				receiver.getPhoneNumber(), receiver.getMobilbeNumber(), receiver.getCity());
 		List<TransitionNode> node = new ArrayList<TransitionNode>();
 		node.add(TransitionNode.SENDER_BUSINESS_HALL);
 		List<City> city = new ArrayList<City>();
 		city.add(sender.getCity());
 		GoodsInfo goods = new GoodsInfo(goodsInfo.getNumber(), otherInfo.getID(), goodsInfo.getWeight(),
 				goodsInfo.getGoodsName(), goodsInfo.getVolumn(), otherInfo.getPackageType(),
-				otherInfo.getDeliveryType(), otherInfo.getDate(), node, city);
+				otherInfo.getDeliveryType(), otherInfo.getDate(), node, city, otherInfo.getTime(),goodsInfo.getPrice());
 		
 		return new OrderVO(senderInfo, receiverInfo, goods);
 	}
 	
 	private void initLabelList() {
 		//寄件人标签
-		this.labelList.put(OrderLabelName.SENDER_NAME, this.sender.getNameLabel());
-		this.labelList.put(OrderLabelName.SENDER_ADDR, this.sender.getAddressLabel());
-		this.labelList.put(OrderLabelName.SENDER_MOBILE, this.sender.getMobileLabel());
+		this.labelList.put(LabelName.SENDER_NAME, this.sender.getNameLabel());
+		this.labelList.put(LabelName.SENDER_ADDR, this.sender.getAddressLabel());
+		this.labelList.put(LabelName.SENDER_MOBILE, this.sender.getMobileLabel());
 		//收件人标签
-		this.labelList.put(OrderLabelName.RECEIVER_NAME, this.receiver.getNameLabel());
-		this.labelList.put(OrderLabelName.RECEIVER_ADDR, this.receiver.getAddressLabel());
-		this.labelList.put(OrderLabelName.RECEIVER_MOBILE, this.receiver.getMobileLabel());
+		this.labelList.put(LabelName.RECEIVER_NAME, this.receiver.getNameLabel());
+		this.labelList.put(LabelName.RECEIVER_ADDR, this.receiver.getAddressLabel());
+		this.labelList.put(LabelName.RECEIVER_MOBILE, this.receiver.getMobileLabel());
 		//物品信息标签
-		this.labelList.put(OrderLabelName.GOODS_NAME, this.goodsInfo.getNumLabel());
-		this.labelList.put(OrderLabelName.GOODS_WEIGHT, this.goodsInfo.getWeightLabel());
-		this.labelList.put(OrderLabelName.GOODS_VOLUMN, this.goodsInfo.getVolumeLabel());
-		this.labelList.put(OrderLabelName.GOODS_NAME, this.goodsInfo.getNameLabel());
-		this.labelList.put(OrderLabelName.PRICE, this.goodsInfo.getPriceLabel());
+		this.labelList.put(LabelName.GOODS_NAME, this.goodsInfo.getNumLabel());
+		this.labelList.put(LabelName.GOODS_WEIGHT, this.goodsInfo.getWeightLabel());
+		this.labelList.put(LabelName.GOODS_VOLUMN, this.goodsInfo.getVolumeLabel());
+		this.labelList.put(LabelName.GOODS_NAME, this.goodsInfo.getNameLabel());
+		this.labelList.put(LabelName.PRICE, this.goodsInfo.getPriceLabel());
 		//其他信息标签
-		this.labelList.put(OrderLabelName.GOODS_ID, this.otherInfo.getIdLabel());
-		this.labelList.put(OrderLabelName.GOODS_DATE, this.otherInfo.getDateLabel());
-		this.labelList.put(OrderLabelName.TIME, this.otherInfo.getTimeLabel());
+		this.labelList.put(LabelName.GOODS_ID, this.otherInfo.getIdLabel());
+		this.labelList.put(LabelName.GOODS_DATE, this.otherInfo.getDateLabel());
+		this.labelList.put(LabelName.TIME, this.otherInfo.getTimeLabel());
 	}
 	
 	private void addPanels() {
@@ -293,6 +351,7 @@ public class OrderInputPanel extends DetailPanel{
 	}
 	
 	private void showState(String msg) {
+		this.state.setForeground(Color.RED);
 		this.state.setText(msg);
 		this.repaint();
 	}

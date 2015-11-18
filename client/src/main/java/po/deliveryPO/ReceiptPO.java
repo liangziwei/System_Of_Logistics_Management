@@ -2,6 +2,8 @@ package po.deliveryPO;
 
 import java.io.Serializable;
 
+import vo.deliveryVO.ReceiptVO;
+
 /**
  *收件信息的持久化对象
  *@author 肖安祥 
@@ -33,6 +35,10 @@ public class ReceiptPO implements Serializable{
 		this.orderID = orderID;
 		this.name = name;
 		this.date = date;
+	}
+	
+	public static ReceiptPO ReceiptVOToPO(ReceiptVO receiptVO) {
+		return new ReceiptPO(receiptVO.getOrderID(), receiptVO.getName(), receiptVO.getDate());
 	}
 
 	public String getOrderID() {

@@ -2,6 +2,8 @@ package po.deliveryPO;
 
 import java.io.Serializable;
 
+import vo.deliveryVO.OrderVO;
+
 /**
  * 订单的持久化对象
  * @author 肖安祥
@@ -37,14 +39,20 @@ public class OrderPO implements Serializable{
 	 * 审批是否通过
 	 */
 	private boolean isPassed = false;
-	
-	
 
 	public OrderPO(ClientInfo senderInfo, ClientInfo receiverInfo, GoodsInfo goodsInfo) {
 		super();
 		this.senderInfo = senderInfo;
 		this.receiverInfo = receiverInfo;
 		this.goodsInfo = goodsInfo;
+	}
+	
+	public static OrderVO orderPOToVO(OrderPO orderPO) {
+		return new OrderVO(orderPO.getSenderInfo(), orderPO.getReceiverInfo(), orderPO.getGoodsInfo());
+	}
+	
+	public static OrderPO orderVOToPO(OrderVO orderVO) {
+		return new OrderPO(orderVO.getSenderInfo(), orderVO.getReceiverInfo(), orderVO.getGoodsInfo());
 	}
 
 	public ClientInfo getSenderInfo() {

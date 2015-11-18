@@ -1,5 +1,7 @@
 package businessLogic.businessLogicModel.senderModel;
 
+import dataService.senderDataService.InquireDataService.InquireDataService;
+import stub.dataImpl_stub.senderDataImpl_stub.InquireDataImpl_Stub;
 import vo.senderVO.LogisticsVO;
 
 /**
@@ -7,9 +9,11 @@ import vo.senderVO.LogisticsVO;
  * @author 肖安祥
  */
 public class InquireModel{
+	
+	private InquireDataService inquire = new InquireDataImpl_Stub();
 
 	public LogisticsVO getLogInfoById(String id) {
-		// TODO Auto-generated method stub
+//		this.inquire.getLogInfoById(id);
 		return null;
 	}
 

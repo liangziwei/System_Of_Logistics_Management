@@ -1,21 +1,33 @@
 package ui.deliveryui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.deliveryController.OrderController;
 import businessLogicService.deliveryBLService.OrderBLService;
-import stub.businessLogicImpl_stub.deliveryBLImpl_stub.OrderBLImpl_Stub;
+import constant.VerifyResult;
 import ui.baseui.DetailPanel;
+import vo.deliveryVO.OrderVO;
+import vo.deliveryVO.VerifyMessage;
 
 @SuppressWarnings("serial")
 public class OrderInquirePanel extends DetailPanel{
 
-	private OrderBLService orderService = new OrderBLImpl_Stub();
+	private OrderBLService orderService = new OrderController();
+	
+	private OrderInputPanel orderInput = new OrderInputPanel();
+	
+	/**
+	 * 显示订单信息
+	 */
+	private JPanel orderInfo = new JPanel();
 	
 	private JTextField search = new JTextField();
 
@@ -24,6 +36,8 @@ public class OrderInquirePanel extends DetailPanel{
 	private JButton inquire = new JButton("查询");
 
 	private JButton cancel = new JButton("取消");
+	
+	private JLabel error = new JLabel();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
@@ -66,6 +80,10 @@ public class OrderInquirePanel extends DetailPanel{
 		this.cancel.setBounds(this.inquire.getX() + BUTTON_W + COMPONENT_GAP, this.inquire.getY(),
 				BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
+		//错误信息
+		this.error.setBounds(this.search.getX(), this.search.getY() + (TEXT_H << 1), TEXT_W << 1, LABEL_H);
+		this.error.setFont(WORD_FONT);
+		this.error.setForeground(Color.RED);
 		//添加事件监听
 		this.addListener();
 		//把组件添加到面板
@@ -73,6 +91,11 @@ public class OrderInquirePanel extends DetailPanel{
 		this.container.add(this.search);
 		this.container.add(this.inquire);
 		this.container.add(this.cancel);
+		this.container.add(this.error);
+		
+		this.orderInfo = this.orderInput.OrderInfoView(0, orderLabel.getY() + (LABEL_H << 1));
+		this.orderInfo.setVisible(false);
+		this.container.add(this.orderInfo);
 	}
 	
 	private void addListener() {
@@ -80,8 +103,23 @@ public class OrderInquirePanel extends DetailPanel{
 		this.inquire.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//检查订单条形码号是否为10位数字
-				
+				//验证订单条形码号是否合法
+				VerifyMessage msg = orderService.verifyOrderId(search.getText());
+				if(msg.getResult() == VerifyResult.FAIL) {
+					orderLabel.setForeground(Color.RED);
+					error.setText(msg.getErrorMsg());
+					orderInfo.setVisible(false);
+				}
+				else {
+					orderLabel.setForeground(Color.BLACK);
+					error.setText("");
+					//查询订单信息
+					OrderVO order = orderService.getOrderInfoById(search.getText());
+					orderInput.setOrderInfo(order.getSenderInfo(), order.getReceiverInfo(), order.getGoodsInfo());
+					//显示订单信息
+					orderInfo.setVisible(true);
+				}
+				repaint();
 			}
 		});
 		
@@ -89,12 +127,11 @@ public class OrderInquirePanel extends DetailPanel{
 		this.cancel.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//TODO 将当前细节信息面板设置为初始页面
-				search.setVisible(false);
-				orderLabel.setVisible(false);
-				inquire.setVisible(false);
-				cancel.setVisible(false);
+				//将当前细节信息面板设置为初始页面
+				orderInfo.setVisible(false);
 			}
 		});
 	}
+	
+	
 }

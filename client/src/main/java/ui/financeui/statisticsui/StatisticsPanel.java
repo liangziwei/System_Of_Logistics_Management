@@ -1,5 +1,8 @@
 package ui.financeui.statisticsui;
 
-public class StatisticsPanel {
+import ui.baseui.DetailPanel;
+
+@SuppressWarnings("serial")
+public class StatisticsPanel extends DetailPanel{
 
 }
