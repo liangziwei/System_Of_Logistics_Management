@@ -16,8 +16,7 @@ public class ReceiptDataImpl implements ReceiptDataService{
 	}
 
 	public boolean updateTimeRecord(int day, City source, City destination) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
-
 }

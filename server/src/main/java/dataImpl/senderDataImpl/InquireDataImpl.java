@@ -1,5 +1,10 @@
 package dataImpl.senderDataImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import constant.City;
+import constant.TransitionNode;
 import dataService.senderDataService.InquireDataService;
 import po.senderPO.LogisticsPO;
 
@@ -10,8 +15,14 @@ import po.senderPO.LogisticsPO;
 public class InquireDataImpl implements InquireDataService{
 
 	public LogisticsPO getLogInfoById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		//临时数据
+		TransitionNode state = TransitionNode.SENDER_TRANSI_CENTER;
+		List<City> trace = new ArrayList<City>();
+		trace.add(City.BEI_JING);
+		trace.add(City.NAN_JING);
+		trace.add(City.SHANG_HAI);
+		trace.add(City.GUANG_ZHOU);
+		return new LogisticsPO(state, trace);
 	}
 
 }

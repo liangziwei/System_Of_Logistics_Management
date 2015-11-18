@@ -12,6 +12,10 @@ import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
 import ui.baseui.UserPanel;
+import ui.financeui.accountui.AddAccountPanel;
+import ui.financeui.accountui.DeleteAccountPanel;
+import ui.financeui.accountui.InquireAccountPanel;
+import ui.financeui.accountui.ModifyAccountPanel;
 import ui.financeui.costui.CostPanel;
 import ui.financeui.originalInfoui.OriginalInfoPanel;
 import ui.financeui.settlementui.SettlementPanel;
@@ -256,8 +260,14 @@ public class FinancePanel extends UserPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				//设置当前细节信息面板为不可见
+				detail.setVisible(false);
+				//设置细节信息面板显示订单输入界面
+				detail = new AddAccountPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局和重绘
+				revalidate();
 			}
 		});
 		//删除账户
@@ -265,8 +275,14 @@ public class FinancePanel extends UserPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				//设置当前细节信息面板为不可见
+				detail.setVisible(false);
+				//设置细节信息面板显示订单输入界面
+				detail = new DeleteAccountPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局和重绘
+				revalidate();
 			}
 		});
 		//修改账户
@@ -274,8 +290,14 @@ public class FinancePanel extends UserPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				//设置当前细节信息面板为不可见
+				detail.setVisible(false);
+				//设置细节信息面板显示订单输入界面
+				detail = new ModifyAccountPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局和重绘
+				revalidate();
 			}
 		});
 		//查询账户
@@ -283,8 +305,14 @@ public class FinancePanel extends UserPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				//设置当前细节信息面板为不可见
+				detail.setVisible(false);
+				//设置细节信息面板显示订单输入界面
+				detail = new InquireAccountPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局和重绘
+				revalidate();
 			}
 		});
 	}

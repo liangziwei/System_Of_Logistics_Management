@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import ui.baseui.DetailPanel;
 
 @SuppressWarnings("serial")
-public class AddAccountPanel extends DetailPanel{
+public class InquireAccountPanel extends DetailPanel{
 
 	private JLabel nameLabel = new JLabel("账户名称");
 	
@@ -43,7 +43,7 @@ public class AddAccountPanel extends DetailPanel{
 	
 	private static final int START_Y = START_X;
 	
-	public AddAccountPanel() {
+	public InquireAccountPanel() {
 		//初始化界面
 		this.initUI();
 		//增加事件监听
@@ -58,14 +58,11 @@ public class AddAccountPanel extends DetailPanel{
 		this.nameText.setBounds(LABEL_W + (START_X * 3 >> 1), this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
 		//账户金额标签
-		this.moneyLabel.setBounds(this.nameLabel.getX(), this.nameLabel.getY() + LABEL_H + (START_Y >> 1),
-				LABEL_W, LABEL_H);
-		this.moneyLabel.setFont(WORD_FONT);
+		this.moneyLabel.setVisible(false);
 		//账户金额文本框
-		this.moneyText.setBounds(this.nameText.getX(), this.moneyLabel.getY(), TEXT_W, TEXT_H);
-		this.moneyText.setFont(WORD_FONT);
+		this.moneyText.setVisible(false);
 		//确定按钮
-		this.ok.setBounds(this.moneyText.getX() + (TEXT_W >> 1), this.moneyText.getY() + TEXT_H + (START_Y >> 1),
+		this.ok.setBounds(this.nameText.getX() + (TEXT_W >> 1), this.nameText.getY() + TEXT_H + (START_Y >> 1),
 				BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
 		//取消按钮
@@ -90,6 +87,8 @@ public class AddAccountPanel extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
+				//TODO test
+				resetUI();
 			}
 		});
 		//取消按钮
@@ -101,5 +100,33 @@ public class AddAccountPanel extends DetailPanel{
 				
 			}
 		});
+	}
+	
+	private void resetUI() {
+		//账户名称标签
+		this.nameLabel.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
+		this.nameLabel.setFont(WORD_FONT);
+		//账户名称文本框
+		this.nameText.setBounds(LABEL_W + (START_X * 3 >> 1), this.nameLabel.getY(), TEXT_W, TEXT_H);
+		this.nameText.setFont(WORD_FONT);
+		this.nameText.setEditable(false);
+		//账户金额标签
+		this.moneyLabel.setBounds(this.nameLabel.getX(), this.nameLabel.getY() + LABEL_H + (START_Y >> 1),
+				LABEL_W, LABEL_H);
+		this.moneyLabel.setFont(WORD_FONT);
+		this.moneyLabel.setVisible(true);
+		//账户金额文本框
+		this.moneyText.setBounds(this.nameText.getX(), this.moneyLabel.getY(), TEXT_W, TEXT_H);
+		this.moneyText.setFont(WORD_FONT);
+		this.moneyText.setEditable(false);
+		this.moneyText.setVisible(true);
+		//确定按钮
+		this.ok.setBounds(this.moneyText.getX() + (TEXT_W >> 1), this.moneyText.getY() + TEXT_H + (START_Y >> 1),
+				BUTTON_W, BUTTON_H);
+		this.ok.setFont(WORD_FONT);
+		//取消按钮
+		this.cancel.setBounds(this.ok.getX() + (BUTTON_W * 3 >> 1), this.ok.getY(),
+				BUTTON_W, BUTTON_H);
+		this.cancel.setFont(WORD_FONT);
 	}
 }

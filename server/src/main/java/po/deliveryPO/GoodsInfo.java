@@ -68,10 +68,20 @@ public class GoodsInfo implements Serializable{
 	 * 货物所在城市
 	 */
 	private List<City> city;
+	
+	/**
+	 * 快递预估到达时间
+	 */
+	private String time;
+	
+	/**
+	 * 快递报价
+	 */
+	private String price;
 
 	public GoodsInfo(String number, String id, String weight, String name, String size,
 			PackageType packageType, DeliveryType deliveryType, String date,
-			List<TransitionNode> transitNode, List<City> city) {
+			List<TransitionNode> transitNode, List<City> city, String time, String price) {
 		super();
 		this.number = number;
 		this.id = id;
@@ -83,6 +93,8 @@ public class GoodsInfo implements Serializable{
 		this.date = date;
 		this.transitNode = transitNode;
 		this.city = city;
+		this.time = time;
+		this.price = price;
 	}
 	
 	public String getNumber() {
@@ -163,5 +175,21 @@ public class GoodsInfo implements Serializable{
 
 	public void setCity(List<City> city) {
 		this.city = city;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
 }
