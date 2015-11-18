@@ -5,7 +5,7 @@ import java.util.List;
 
 import constant.City;
 import constant.TransitionNode;
-import dataService.senderDataService.InquireDataService.InquireDataService;
+import dataService.senderDataService.InquireDataService;
 import po.senderPO.LogisticsPO;
 
 public class InquireDataImpl_Stub implements InquireDataService{

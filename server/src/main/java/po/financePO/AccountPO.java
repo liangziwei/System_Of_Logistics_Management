@@ -1,10 +1,15 @@
 package po.financePO;
+
+import java.io.Serializable;
+
+import constant.UserType;
+
 /**
  * 记录了账户的信息
  * @author 张仁知
  */
-public class AccountPO {
-
+public class AccountPO implements Serializable{
+	
 	/**
 	 * 账户名称
 	 */

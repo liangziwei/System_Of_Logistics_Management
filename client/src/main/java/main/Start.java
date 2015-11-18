@@ -1,5 +1,6 @@
 package main;
 
+import network.RMI;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
 import ui.viewcontroller.ViewController;
@@ -55,6 +56,7 @@ public class Start {
 //	}
 	
 	public static void main(String[] args) {
+		
 		//主框架
 		ExpressFrame frame = new ExpressFrame();
 		//界面跳转控制器
@@ -63,6 +65,6 @@ public class Start {
 		ExpressPanel panel = new ExpressPanel(controller);
 		//主框架添加主面板
 		frame.add(panel);
-		
+		new RMI();
 	}
 }
