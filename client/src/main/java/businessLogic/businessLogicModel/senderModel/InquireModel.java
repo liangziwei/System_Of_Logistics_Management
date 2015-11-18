@@ -1,7 +1,10 @@
 package businessLogic.businessLogicModel.senderModel;
 
-import dataService.senderDataService.InquireDataService.InquireDataService;
-import stub.dataImpl_stub.senderDataImpl_stub.InquireDataImpl_Stub;
+import java.rmi.RemoteException;
+
+import dataService.senderDataService.InquireDataService;
+import network.RMI;
+import po.senderPO.LogisticsPO;
 import vo.senderVO.LogisticsVO;
 
 /**
@@ -10,11 +13,16 @@ import vo.senderVO.LogisticsVO;
  */
 public class InquireModel{
 	
-	private InquireDataService inquire = new InquireDataImpl_Stub();
-
+	private InquireDataService inquire = RMI.<InquireDataService>getDataService("inquire");
+	
 	public LogisticsVO getLogInfoById(String id) {
-//		this.inquire.getLogInfoById(id);
-		return null;
+		LogisticsPO logistics = null;
+		try {
+			logistics = this.inquire.getLogInfoById(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return LogisticsPO.LogisticsPOToVO(logistics);
 	}
 
 }

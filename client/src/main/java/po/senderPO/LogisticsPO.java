@@ -5,6 +5,7 @@ import java.util.List;
 
 import constant.City;
 import constant.TransitionNode;
+import vo.senderVO.LogisticsVO;
 
 /**
  * 物流信息的持久化对象
@@ -34,6 +35,10 @@ public class LogisticsPO implements Serializable{
 		super();
 		this.state = state;
 		this.trace = trace;
+	}
+	
+	public static LogisticsVO LogisticsPOToVO(LogisticsPO logisticsPO) {
+		return new LogisticsVO(logisticsPO.getState(), logisticsPO.getTrace());
 	}
 
 	public TransitionNode getState() {

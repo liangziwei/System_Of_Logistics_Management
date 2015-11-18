@@ -1,23 +1,19 @@
 package businessLogic.businessLogicModel.deliveryModel;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 
 import businessLogic.businessLogicModel.util.CommonLogic;
 import constant.City;
-import constant.ClientType;
 import constant.DeliveryType;
 import constant.LabelName;
-import constant.PackageType;
-import constant.TransitionNode;
 import constant.VerifyResult;
 import dataService.deliveryDataService.OrderDataService;
+import network.RMI;
 import po.deliveryPO.ClientInfo;
 import po.deliveryPO.GoodsInfo;
 import po.deliveryPO.OrderPO;
 import po.deliveryPO.TimeRecordPO;
-import stub.dataImpl_stub.deliveryDataImpl_stub.OrderDataImpl_Stub;
 import vo.deliveryVO.OrderVO;
 import vo.deliveryVO.VerifyMessage;
 
@@ -27,41 +23,22 @@ import vo.deliveryVO.VerifyMessage;
  */
 public class OrderModel{
 	
-	private OrderDataService order = new OrderDataImpl_Stub();
+	private  OrderDataService order = RMI.<OrderDataService>getDataService("order");
 	
 	public OrderVO getOrderInfoById(String id) {
-//		OrderPO orderInfo = null;
-//		try {
-//			Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
-//			OrderDataService order = (OrderDataService) registry.lookup("order");
-//			orderInfo = order.getOrderInfoById(id);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return this.OrderPOToOrderVO(orderInfo);
-		
-		//TODO 临时数据
-		List<String> names = new ArrayList<String>();
-		names.add("衣服");
-		names.add("书");
-		List<TransitionNode> nodes = new ArrayList<TransitionNode>();
-		nodes.add(TransitionNode.RECEIVER_BUSINESS_HALL);
-		List<City> citys = new ArrayList<City>();
-		citys.add(City.NAN_JING);
-		citys.add(City.SHANG_HAI);
-		List<TransitionNode> trace = new ArrayList<TransitionNode>();
-		trace.add(TransitionNode.RECEIVER_BUSINESS_HALL);
-		return OrderPO.orderPOToVO(new OrderPO(
-				new ClientInfo(ClientType.SENDER, "张三", "南京大学", "可不填", "可不填", "12345678901", City.BEI_JING),
-				new ClientInfo(ClientType.RECEIVER, "李四", "复旦大学", "可不填", "可不填", "00000000000", City.NAN_JING),
-				new GoodsInfo("1", "1231231231", "1", "书", "2", PackageType.COURIER_BAG,
-						DeliveryType.ECONOMIC, "2015-1-1", nodes, citys, "2天", "10元")));
+		OrderPO orderInfo = null;
+		try {
+			orderInfo = order.getOrderInfoById(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return OrderPO.orderPOToVO(orderInfo);
 	}
 
 	public boolean saveOrderInfo(OrderVO orderVO) {
 		boolean result = false;
 		try {
-			result = this.order.saveOrderInfo(OrderPO.orderVOToPO(orderVO));
+			result = order.saveOrderInfo(OrderPO.orderVOToPO(orderVO));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

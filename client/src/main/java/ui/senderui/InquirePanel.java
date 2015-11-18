@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.senderController.InquireController;
 import businessLogicService.senderBLService.InquireBLService;
 import constant.City;
-import stub.businessLogicImpl_stub.senderBLImpl_stub.InquireBLImpl_Stub;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
 import ui.viewcontroller.ViewController;
@@ -24,7 +24,7 @@ public class InquirePanel extends JPanel{
 	
 	private ViewController viewController;
 	
-	private InquireBLService inquireService = new InquireBLImpl_Stub();
+	private InquireBLService inquireService = new InquireController();
 	
 	/**
 	 * 是否显示物流信息

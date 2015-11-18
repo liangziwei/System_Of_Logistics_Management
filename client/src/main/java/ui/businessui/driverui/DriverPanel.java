@@ -1,5 +1,7 @@
 package ui.businessui.driverui;
 
-public class DriverPanel {
+import ui.baseui.DetailPanel;
+
+public class DriverPanel extends DetailPanel{
 
 }
