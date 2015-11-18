@@ -1,5 +1,7 @@
 package ui.businessui.receiveandsendui;
 
-public class ReceiveAndSendPanel {
+import ui.baseui.DetailPanel;
+
+public class ReceiveAndSendPanel extends DetailPanel{
 
 }
