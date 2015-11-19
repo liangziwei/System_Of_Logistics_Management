@@ -10,20 +10,44 @@ public class AccountBLImpl_Stub implements AccountBLService{
 	
 	private AccountDataService account = new AccountDataImpl_Stub();
 	
-	public boolean addAccount(AccountVO accountVO) {		
-		return account.addAccount(this.AccountVOToAccountPO(accountVO));		
+	public boolean addAccount(AccountVO accountVO) {
+		boolean success = false;
+		try{
+			success = account.addAccount(this.AccountVOToAccountPO(accountVO));	
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 	success;
 	}
 	
 	public AccountVO findAccount(String name) {
-		return this.AccountPOToAccountVO(account.findAccount(name));
+		AccountVO accountVO = null;
+		try{
+			accountVO = this.AccountPOToAccountVO(account.findAccount(name));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return accountVO;
 	}
 	
 	public boolean deleteAccount(String name) {
-		return account.deleteAccount(name);
+		boolean success =false;
+		try{
+			success = account.deleteAccount(name);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
-	public boolean modifyAccount(AccountVO accountVO) {
-		return false;
+	public boolean modifyAccount(String name) {
+		boolean success = false;
+		try{
+			success = account.modifyAccount(name);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	private AccountVO AccountPOToAccountVO(AccountPO accountPO){

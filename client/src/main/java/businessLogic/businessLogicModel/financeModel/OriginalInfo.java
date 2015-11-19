@@ -1,8 +1,10 @@
 package businessLogic.businessLogicModel.financeModel;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import network.RMI;
 import po.businessPO.VehiclePO;
 import po.financePO.AccountPO;
 import po.managerPO.OrganizationPO;
@@ -13,36 +15,65 @@ import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryInfoVO;
-import mock.object.MockOriginalInfoData;
 import dataService.financeDataService.OriginalInfoDataService;
 
 public class OriginalInfo {
 
-	private OriginalInfoDataService originalInfo = new MockOriginalInfoData();
+	private OriginalInfoDataService originalInfo = RMI.<OriginalInfoDataService>getDataService("originalInfo");
 	
 	public List<StaffVO> getStaffInfo(int year) {
 		// TODO Auto-generated method stub
-		return this.StaffPOToStaffVO(originalInfo.getStaffInfo(year));
+		List<StaffVO> list = null;
+		try{
+			list = this.StaffPOToStaffVO(originalInfo.getStaffInfo(year));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public List<OrganizationVO> getOrganizationInfo(int year) {
 		// TODO Auto-generated method stub
-		return this.OrganizationPOToVO(originalInfo.getOrganizationInfo(year));
+		List<OrganizationVO> list = null;
+		try{
+			list = this.OrganizationPOToVO(originalInfo.getOrganizationInfo(year));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public List<VehicleVO> getVehicleInfo(int year) {
 		// TODO Auto-generated method stub
-		return this.vehiclePOToVO(originalInfo.getVehicleInfo(year));
+		List<VehicleVO> list = null;
+		try{
+			list = this.vehiclePOToVO(originalInfo.getVehicleInfo(year));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 
-	public List<RepositoryInfoVO> getRepositoryInfo(int year) {
+	public List<RepositoryInfoVO> getRepositoryInfo(int year)  {
 		// TODO Auto-generated method stub
-		return this.repositoryPOToVO(originalInfo.getRepositoryInfo(year));
+		List<RepositoryInfoVO> list =null;
+		try{
+			list = this.repositoryPOToVO(originalInfo.getRepositoryInfo(year));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public List<AccountVO> getAccountInfo(int year) {
 		// TODO Auto-generated method stub
-		return this.accountPOToVO(originalInfo.getAccountInfo(year));
+		List<AccountVO> list = null;
+		try{
+			list = this.accountPOToVO(originalInfo.getAccountInfo(year));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	private List<StaffVO> StaffPOToStaffVO(List<StaffPO> staff) {

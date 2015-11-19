@@ -1,5 +1,5 @@
 package businessLogic.businessLogicModel.financeModel;
-
+ 
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +19,15 @@ public class Statistics {
 	
 	public List<ReceivableVO> getReceivableList(String startDate,String endDate) {
 		List<ReceivableVO> receivablevo = new ArrayList<ReceivableVO>();
-		for(int i=0;i<statisticsData.getReceivableList(startDate, endDate).size();i++){
-			receivablevo.add(receivablePOToreceivableVO(statisticsData.getReceivableList
-					(startDate, endDate).get(i)));
+		try{
+			for(int i=0;i<statisticsData.getReceivableList(startDate, endDate).size();i++){
+				receivablevo.add(receivablePOToreceivableVO(statisticsData.getReceivableList
+						(startDate, endDate).get(i)));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
+		
 		return receivablevo;
 	}
 	private ReceivableVO receivablePOToreceivableVO(ReceivablePO receivablePO){

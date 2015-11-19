@@ -1,5 +1,7 @@
 package businessLogicService.administratorBLService;
 
+import java.rmi.RemoteException;
+
 /**
  *description:业务逻辑层为登陆界面提供的服务 
  * @author 张云飞
@@ -14,6 +16,7 @@ public interface LoginBLService {
 	 * @param userid 账户账号
 	 * @param passward 账户密码
 	 * @return 登陆是否成功
+	 * @throws RemoteException 
 	 */
-	public boolean login(String userid,String passward);
+	public boolean login(String userid,String passward) throws RemoteException;
 }

@@ -1,5 +1,7 @@
 package dataService.financeDataService;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 import po.businessPO.VehiclePO;
@@ -8,7 +10,7 @@ import po.managerPO.OrganizationPO;
 import po.managerPO.StaffPO;
 import po.repositoryPO.RepositoryInfoPO;
 
-public interface OriginalInfoDataService {
+public interface OriginalInfoDataService extends Remote{
 
 	/**
 	 * description:根据年份获得该年份的所有人员信息
@@ -18,7 +20,7 @@ public interface OriginalInfoDataService {
 	 * @param year 年份
 	 * @return List<StaffPO>所有人员信息的持久化对象
 	 */
-	public List<StaffPO> getStaffInfo(int year);
+	public List<StaffPO> getStaffInfo(int year) throws RemoteException;
 	
 	/**
 	 * description:根据年份获得该年份的所有机构信息
@@ -28,7 +30,7 @@ public interface OriginalInfoDataService {
 	 * @param year 年份
 	 * @return List<OrganizationPO>所有机构信息的持久化对象
 	 */
-	public List<OrganizationPO> getOrganizationInfo(int year);
+	public List<OrganizationPO> getOrganizationInfo(int year) throws RemoteException;
 	
 	/**
 	 * description:根据年份获得该年份的所有车辆信息
@@ -38,7 +40,7 @@ public interface OriginalInfoDataService {
 	 * @param year 年份
 	 * @return List<StaffPO>所有车辆信息的持久化对象
 	 */
-	public List<VehiclePO> getVehicleInfo(int year);
+	public List<VehiclePO> getVehicleInfo(int year) throws RemoteException;
 	
 	/**
 	 * description:根据年份获得该年份的所有库存信息
@@ -48,7 +50,7 @@ public interface OriginalInfoDataService {
 	 * @param year 年份
 	 * @return List<RepositoryInfoPO>所有库存信息的持久化对象
 	 */
-	public List<RepositoryInfoPO> getRepositoryInfo(int year);
+	public List<RepositoryInfoPO> getRepositoryInfo(int year) throws RemoteException;
 	
 	/**
 	 * description:根据年份获得该年份的银行信息
@@ -58,5 +60,5 @@ public interface OriginalInfoDataService {
 	 * @param year 年份
 	 * @return List<AccountPO>银行信息的持久化对象
 	 */
-	public List<AccountPO> getAccountInfo(int year);
+	public List<AccountPO> getAccountInfo(int year) throws RemoteException;
 }

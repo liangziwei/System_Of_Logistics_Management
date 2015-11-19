@@ -35,7 +35,7 @@ public class DetailPanel extends JScrollPane{
 	public DetailPanel() {
 		this.setBounds(TaskPanel.TASK_PANEL_W, TitlePanel.TITLE_PANEL_H,
 				DETAIL_PANEL_W, DETAIL_PANEL_H);
-		
+		this.setLayout(null);
 		this.container.setLayout(null);
 		this.container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
 		this.setViewportView(this.container);

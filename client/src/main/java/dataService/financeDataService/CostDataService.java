@@ -1,5 +1,8 @@
 package dataService.financeDataService;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import po.financePO.PaymentPO;
 
 
@@ -9,7 +12,7 @@ import po.financePO.PaymentPO;
  */
 
 
-public interface CostDataService {
+public interface CostDataService extends Remote{
 
 
 	/**
@@ -20,5 +23,5 @@ public interface CostDataService {
 	 * @return 添加是否成功
 	 */
 	
-	public boolean addPayment(PaymentPO paymentPO);
+	public boolean addPayment(PaymentPO paymentPO) throws RemoteException;
 }

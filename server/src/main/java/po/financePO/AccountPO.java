@@ -9,6 +9,10 @@ import constant.UserType;
  * @author 张仁知
  */
 public class AccountPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3517122489468260782L;
 	
 	/**
 	 * 账户名称

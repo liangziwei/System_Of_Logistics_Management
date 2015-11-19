@@ -6,12 +6,16 @@ import constant.Authority;
 import constant.UserType;
 
 public class AdministratorPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4363691605247598871L;
 	private UserType type;
 	private String name;
 	private String id;
 	private String password;
 	private Authority limit;
-	
+    
 	public AdministratorPO(UserType type, String name, String id,
 			String password, Authority limit) {
 		super();
@@ -53,5 +57,5 @@ public class AdministratorPO implements Serializable{
 	public void setLimit(Authority limit) {
 		this.limit = limit;
 	}
-	
+
 }

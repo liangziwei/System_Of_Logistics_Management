@@ -10,10 +10,22 @@ public class MakeConstantBLImpl_Stub implements MakeConstantBLService{
 	
 	private MakeConstantDataService makeConstant = new MakeConstantDataImpl_Stub();
 	public boolean setPrice(double price,TransitType transType) {
-		return makeConstant.updatePrice(price, transType);
+		boolean success =false;
+		try{
+			success = makeConstant.updatePrice(price, transType);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	public boolean setDistance(double distance,City source,City destination) {
-		return makeConstant.updateDistance(distance, source, destination);
+		boolean success =false;
+		try{
+			success = makeConstant.updateDistance(distance, source, destination);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 }
