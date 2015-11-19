@@ -12,7 +12,7 @@ public class Loading {
 		ArrayList<String>  alldeliveryid = new ArrayList<>();
 		alldeliveryid.add("1234567890");
 		alldeliveryid.add("0987654321");
-		LoadingVO loadingVO =new LoadingVO("12312311111", "123", LoadingType.PLANE, "212453", "haha", "xixi", alldeliveryid);
+		LoadingVO loadingVO =new LoadingVO("12312311111", "123", LoadingType.TRAIN, "212453", "haha", "xixi", alldeliveryid);
 		loadingVO.setVerifyResult(true);
 		return loadingVO;
 	}

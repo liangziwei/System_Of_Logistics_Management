@@ -1,6 +1,7 @@
 package po.deliveryPO;
 
 import java.io.Serializable;
+
 import constant.City;
 import constant.ClientType;
 

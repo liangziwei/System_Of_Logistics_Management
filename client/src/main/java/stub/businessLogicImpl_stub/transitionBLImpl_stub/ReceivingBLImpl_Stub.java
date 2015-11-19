@@ -1,5 +1,6 @@
 package stub.businessLogicImpl_stub.transitionBLImpl_stub;
 
+import businessLogic.businessLogicModel.transitionModel.Receiving;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import dataService.transitionDataService.ReceivingDataService;
 import po.transitionPO.ReceivingPO;
@@ -33,6 +34,12 @@ public class ReceivingBLImpl_Stub implements ReceivingBLService{
 		return new ReceivingVO(receivingPO.gettransitionid(), receivingPO.getarrivaldate(), 
 				receivingPO.gettransferringid(), receivingPO.getdepartureid(), 
 				receivingPO.getarrivalid(), receivingPO.getstate());
+	}
+
+	@Override
+	public boolean verify(ReceivingVO receivingVO) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

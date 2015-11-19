@@ -1,5 +1,7 @@
 package stub.businessLogicImpl_stub.administratorBLImpl_stub;
 
+import java.rmi.RemoteException;
+
 import po.administratorPO.AdministratorPO;
 import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
 import vo.administratorVO.AdministratorVO;
@@ -10,22 +12,22 @@ public class AdministratorBLImpl_Stub implements AdministratorBLService{
 	
 	private AdministratorDataService adminData=new AdministratorDataImpl_Stub();
 
-	public boolean addUser(AdministratorVO administratorVO) {
+	public boolean addUser(AdministratorVO administratorVO) throws RemoteException {
 		// TODO Auto-generated method stub
 		return adminData.addUser(adminVOToPO(administratorVO));
 	}
 
-	public boolean deleteUser(String administratorid) {
+	public boolean deleteUser(String administratorid) throws RemoteException {
 		// TODO Auto-generated method stub
 		return adminData.deleteUser(administratorid);
 	}
 
-	public boolean modifyUser(AdministratorVO administratorVO) {
+	public boolean modifyUser(AdministratorVO administratorVO) throws RemoteException {
 		// TODO Auto-generated method stub
 		return adminData.modifyUser(adminVOToPO(administratorVO));
 	}
 
-	public AdministratorVO findUser(String administratorid) {
+	public AdministratorVO findUser(String administratorid) throws RemoteException {
 		// TODO Auto-generated method stub
 		return adminPOToVO(adminData.findUser(administratorid));
 	}

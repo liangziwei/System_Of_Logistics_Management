@@ -1,5 +1,7 @@
 package ui.businessui.vehicleui;
 
-public class VehiclePanel {
+import ui.baseui.DetailPanel;
+
+public class VehiclePanel extends DetailPanel{
 
 }

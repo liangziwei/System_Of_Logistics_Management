@@ -1,5 +1,7 @@
 package businessLogic.businessLogicModel.administratorModel;
 
+import java.rmi.RemoteException;
+
 import po.administratorPO.AdministratorPO;
 import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
 import vo.administratorVO.AdministratorVO;
@@ -11,22 +13,46 @@ public class Administrator {
 
 	public boolean addUser(AdministratorVO administratorVO) {
 		// TODO Auto-generated method stub
-		return adminData.addUser(adminVOToPO(administratorVO));
+		try {
+			return adminData.addUser(adminVOToPO(administratorVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean deleteUser(String administratorid) {
 		// TODO Auto-generated method stub
-		return adminData.deleteUser(administratorid);
+		try {
+			return adminData.deleteUser(administratorid);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean modifyUser(AdministratorVO administratorVO) {
 		// TODO Auto-generated method stub
-		return adminData.modifyUser(adminVOToPO(administratorVO));
+		try {
+			return adminData.modifyUser(adminVOToPO(administratorVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public AdministratorVO findUser(String administratorid) {
 		// TODO Auto-generated method stub
-		return adminPOToVO(adminData.findUser(administratorid));
+		try {
+			return adminPOToVO(adminData.findUser(administratorid));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private AdministratorPO adminVOToPO(AdministratorVO administratorVO){

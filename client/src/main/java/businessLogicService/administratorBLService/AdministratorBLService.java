@@ -1,5 +1,7 @@
 package businessLogicService.administratorBLService;
 
+import java.rmi.RemoteException;
+
 import vo.administratorVO.AdministratorVO;
 
 /**
@@ -15,8 +17,9 @@ public interface AdministratorBLService {
 	 * 需要的服务：AdministratorDataService.addAdministrator(AdministratorPO administratorPO) 
 	 * @param administratorVO 账户信息的值对象，具体参见AdministratorVO
 	 * @return 添加是否成功
+	 * @throws RemoteException 
 	 */
-	public boolean addUser(AdministratorVO administratorVO);
+	public boolean addUser(AdministratorVO administratorVO) throws RemoteException;
    
 	/**
 	 *description:通过账户账号删除对应账户信息
@@ -25,8 +28,9 @@ public interface AdministratorBLService {
 	 * 需要的服务：AdministratorDataService.deleteAdministrator(String administratorid)
 	 * @param administratorid 账户账号
 	 * @return 删除是否成功
+	 * @throws RemoteException 
 	 */
-    public boolean deleteUser(String administratorid);
+    public boolean deleteUser(String administratorid) throws RemoteException;
     
     /**
      *description:通过传入对应账户信息修改账户信息
@@ -35,8 +39,9 @@ public interface AdministratorBLService {
 	 * 需要的服务：AdministratorDataService.modifyAdministrator(AdministratorPO administratorPO) 
 	 * @param administratorVO 账户信息的值对象，具体参见AdministratorVO
 	 * @return 修改是否成功
+     * @throws RemoteException 
 	 */
-    public boolean modifyUser(AdministratorVO administratorVO);
+    public boolean modifyUser(AdministratorVO administratorVO) throws RemoteException;
     
     /**
 	 *description:通过账户账号得到账户的信息
@@ -45,6 +50,7 @@ public interface AdministratorBLService {
 	 * 需要的服务：AdministratorDataService.findAdministrator(String administratorid)
 	 * @param asministratorid 账户账号
 	 * @return administratorVO 返回账户信息的值对象，具体参见AdministratorVO的定义
+     * @throws RemoteException 
 	 */
-    public AdministratorVO findUser(String administratorid);
+    public AdministratorVO findUser(String administratorid) throws RemoteException;
 }

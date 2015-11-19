@@ -1,5 +1,7 @@
 package ui.businessui.paymentui;
 
-public class PaymentPanel {
+import ui.baseui.DetailPanel;
+
+public class PaymentPanel extends DetailPanel{
 
 }

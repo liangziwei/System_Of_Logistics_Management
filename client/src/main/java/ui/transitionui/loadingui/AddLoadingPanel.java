@@ -152,6 +152,7 @@ public class AddLoadingPanel extends DetailPanel{
 		way.setBounds(arrivalidText.getX()+arrivalidText.getWidth()+COMPONENT_GAP_X, arrivalid.getY(),LABEL_W, LABEL_H);
 		this.infoPanel.add(way);
 		wayBox.setBounds(way.getX()+way.getWidth()+COMPONENT_GAP_X, way.getY(), TEXT_W, TEXT_H);
+		wayBox.setToolTipText("123");
 		wayBox.addItem("飞机");
 		wayBox.addItem("火车");
 		wayBox.addItem("汽车");
