@@ -1,13 +1,20 @@
 package network;
 
+import java.rmi.AccessException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
+import dataImpl.administratorDataImpl.AdministratorDataImpl;
+import dataImpl.businessDataImpl.EntruckingDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.senderDataImpl.InquireDataImpl;
+import dataService.administratorDataService.AdministratorDataService;
+import dataService.businessDataService.EntruckingDataService;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.deliveryDataService.ReceiptDataService;
 import dataService.senderDataService.InquireDataService;
@@ -73,6 +80,14 @@ public class RMI {
 	
 	private static void initBusinessRMI() {
 
+		try {
+			EntruckingDataService entrucking=new EntruckingDataImpl();
+			EntruckingDataService entrucking_stub=(EntruckingDataService)UnicastRemoteObject.exportObject(entrucking, 0);
+			registry.bind("entrucking", entrucking_stub);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 	
 	private static void initRepositoryRMI() {
@@ -92,7 +107,21 @@ public class RMI {
 	}
 	
 	private static void initAdministratorRMI() {
-
+		try {
+//			AdministratorDataService administrator=new AdministratorDataImpl();
+			AdministratorDataService administrator=new AdministratorDataImpl_Stub();
+			AdministratorDataService administrator_stub=(AdministratorDataService)UnicastRemoteObject.exportObject(administrator, 0);
+			registry.bind("administrator", administrator_stub);
+		} catch (AccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AlreadyBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

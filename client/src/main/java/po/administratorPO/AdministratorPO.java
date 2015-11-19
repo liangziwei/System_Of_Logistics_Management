@@ -6,6 +6,9 @@ import constant.Authority;
 import constant.UserType;
 
 public class AdministratorPO implements Serializable{
+	
+	private static final long serialVersionUID = 4363691605247598871L;
+
 	private UserType type;
 	private String name;
 	private String id;

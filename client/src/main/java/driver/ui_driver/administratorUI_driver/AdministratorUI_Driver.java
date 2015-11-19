@@ -1,5 +1,7 @@
 package driver.ui_driver.administratorUI_driver;
 
+import java.rmi.RemoteException;
+
 import constant.Authority;
 import constant.UserType;
 import businessLogicService.administratorBLService.AdministratorBLService;
@@ -12,12 +14,12 @@ public class AdministratorUI_Driver {
 	private AdministratorBLService administrator=new AdministratorBLImpl_Stub();
 	private AdministratorVO administratorVO;
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws RemoteException{
 		AdministratorUI_Driver admin=new AdministratorUI_Driver ();
 		admin.driver();
 	}
 	
-	public void driver(){
+	public void driver() throws RemoteException{
 		administratorVO=new AdministratorVO(UserType.BUSINESS,"dogee","C123456","0000",Authority.LOW);
 		if(administrator.addUser(new AdministratorVO(UserType.BUSINESS,"dogee","C123456","0000",Authority.LOW))){
 			System.out.println("账户信息添加成功");

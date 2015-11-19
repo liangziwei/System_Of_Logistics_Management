@@ -12,7 +12,7 @@ public class ReceiptPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 3655968395582871602L;
-	
+
 	/**
 	 * 订单条形码号
 	 */
