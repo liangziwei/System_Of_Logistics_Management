@@ -15,19 +15,43 @@ public class OrganizationManagementBLImpl_Stub implements OrganizationManagement
 	private OrganizationManagementDataService organization = new OrganizationManagementDataImpl_Stub();
 	
 	public boolean addOrganization(OrganizationVO organizationVO) {
-		return organization.addOrganization(organizationVOToOrganizationPO(organizationVO));
+		boolean success = false;
+		try{
+			success = organization.addOrganization(organizationVOToOrganizationPO(organizationVO));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	public OrganizationVO findOrganization(String id) {
-		return this.organizationPOToOrganizationVO(organization.findOrganization(id));
+		OrganizationVO organizationVO = null;
+		try{
+			organizationVO = this.organizationPOToOrganizationVO(organization.findOrganization(id));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return organizationVO;
 	}
 	
 	public boolean deleteOrganization(String id) {
-		return organization.deleteOrganization(id);
+		boolean success =false;
+		try{
+			success = organization.deleteOrganization(id); 
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	public boolean modifyOrganization(OrganizationVO organizationVO) {
-		return organization.modifyOrganization(this.organizationVOToOrganizationPO(organizationVO));
+		boolean success =false;
+		try{
+			success = organization.modifyOrganization(this.organizationVOToOrganizationPO(organizationVO));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	private OrganizationPO organizationVOToOrganizationPO(OrganizationVO organizationVO){

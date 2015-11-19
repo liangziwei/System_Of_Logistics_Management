@@ -1,5 +1,7 @@
 package businessLogic.businessLogicController.financeController;
 
+import java.rmi.RemoteException;
+
 import vo.financeVO.PaymentVO;
 import businessLogic.businessLogicModel.financeModel.Cost;
 import businessLogicService.financeBLService.CostBLService;

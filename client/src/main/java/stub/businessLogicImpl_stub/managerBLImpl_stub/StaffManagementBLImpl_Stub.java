@@ -11,19 +11,43 @@ public class StaffManagementBLImpl_Stub implements StaffManagementBLService {
 	private StaffManagementDataService staff = new StaffManagementDataImpl_Stub();
 	
 	public boolean addStaff(StaffVO staffVO) {
-		return staff.addStaff(this.staffVOTostaffPO(staffVO));
+		boolean success = false;
+		try{
+			success = staff.addStaff(this.staffVOTostaffPO(staffVO));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	public StaffVO findStaff(String id) {
-		return this.staffPOTostaffVO(staff.findStaff(id));
+		StaffVO staffVO = null;
+		try{
+			staffVO = this.staffPOTostaffVO(staff.findStaff(id)); 
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return staffVO;
 	}
 	
 	public boolean deleteStaff(String id) {
-		return staff.deleteStaff(id);
+		boolean success = false;
+		try{ 
+			success = staff.deleteStaff(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	public boolean modifyStaff(StaffVO staffVO) {
-		return staff.modifyStaff(this.staffVOTostaffPO(staffVO));
+		boolean success = false;
+		try{
+			success = staff.modifyStaff(this.staffVOTostaffPO(staffVO));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	private StaffPO staffVOTostaffPO(StaffVO staffVO){

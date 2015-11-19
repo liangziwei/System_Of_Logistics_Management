@@ -11,7 +11,13 @@ public class ApprovalFormBLImpl_Stub implements ApprovalFormBLService {
 	private ApprovalFormDataService approvalForm = new ApprovalFormDataImpl_Stub();
 	
 	public UncheckedFormVO getUncheckedForms(String date) {
-		return this.uncheckedFormPOTouncheckedFormVO(approvalForm.getUncheckedForms(date));
+		UncheckedFormVO uncheckedForm = null;
+		try{
+			uncheckedForm = this.uncheckedFormPOTouncheckedFormVO(approvalForm.getUncheckedForms(date));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return uncheckedForm;
 	}
 
 	private UncheckedFormVO uncheckedFormPOTouncheckedFormVO(UncheckedFormPO uncheckedFormPO){

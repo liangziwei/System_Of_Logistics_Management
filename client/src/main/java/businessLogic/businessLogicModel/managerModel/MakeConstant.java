@@ -1,19 +1,33 @@
 package businessLogic.businessLogicModel.managerModel;
 
+
+
+import network.RMI;
 import constant.City;
 import constant.TransitType;
-import mock.object.MockMakeConstantData;
 import dataService.managerDataService.MakeConstantDataService;
 
 public class MakeConstant {
 	
-	private MakeConstantDataService makeConstant = new MockMakeConstantData();
+	private MakeConstantDataService makeConstant = RMI.<MakeConstantDataService>getDataService("makeConstant");
 	
 	public boolean setPrice(double price,TransitType transType) {
-		return makeConstant.updatePrice(price, transType);
+		boolean success = false;
+		try{
+			success = makeConstant.updatePrice(price, transType);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	public boolean setDistance(double distance,City source,City destination) {
-		return makeConstant.updateDistance(distance, source, destination);
+		boolean success = false;
+		try{
+			success = makeConstant.updateDistance(distance, source, destination);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 }

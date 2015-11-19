@@ -9,7 +9,13 @@ import dataService.financeDataService.CostDataService;
 public class CostBLImpl_Stub implements CostBLService{
 	private CostDataService cost = new CostDataImpl_Stub();
 	public boolean addPayment(PaymentVO paymentVO) {
-		return cost.addPayment(paymentVOTopaymentPO(paymentVO));
+		boolean success = false;
+		try{
+			success = cost.addPayment(paymentVOTopaymentPO(paymentVO));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 		}
 	private PaymentPO paymentVOTopaymentPO(PaymentVO paymentVO){
 		return new PaymentPO(paymentVO.getDate(),paymentVO.getPayAmount(),

@@ -1,9 +1,16 @@
 package po.managerPO;
+
+import java.io.Serializable;
+
 /**
  * 记录了人员的信息
  * @author 张仁知
  */
-public class StaffPO {
+public class StaffPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2070718225576742833L;
 	/**
 	 * 姓名
 	 */
