@@ -2,10 +2,8 @@ package ui.transitionui.receivingui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.Thread.State;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,11 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.transitionController.ReceivingController;
-import businessLogic.businessLogicModel.transitionModel.Receiving;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import constant.CargoState;
 import ui.baseui.DetailPanel;
-import vo.transitionVO.LoadingVO;
 import vo.transitionVO.ReceivingVO;
 
 public class AddReceivingPanel extends DetailPanel{

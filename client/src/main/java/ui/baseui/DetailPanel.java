@@ -40,6 +40,6 @@ public class DetailPanel extends JScrollPane{
 		this.container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
 		this.setViewportView(this.container);
 		
-		this.getVerticalScrollBar().setUnitIncrement(15);
+//		this.getVerticalScrollBar().setUnitIncrement(15);
 	}
 }
