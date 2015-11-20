@@ -268,7 +268,7 @@ public class AddReceivingPanel extends DetailPanel{
 		arrivaldateTextday.setEditable(false);
 		departureidText.setEditable(false);
 		arrivalidText.setEditable(false);
-		endState.setEnabled(false);;
+		endState.setEnabled(false);
 	}
 	
 	private void enableComponents() {
@@ -279,7 +279,7 @@ public class AddReceivingPanel extends DetailPanel{
 		arrivaldateTextday.setEditable(true);
 		departureidText.setEditable(true);
 		arrivalidText.setEditable(true);
-		endState.setEnabled(true);;
+		endState.setEnabled(true);
 	}
 	
 	private void addPanels() {

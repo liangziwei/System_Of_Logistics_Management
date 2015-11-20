@@ -20,6 +20,7 @@ import ui.financeui.costui.CostPanel;
 import ui.financeui.originalInfoui.OriginalInfoPanel;
 import ui.financeui.settlementui.SettlementPanel;
 import ui.financeui.statisticsui.RunningPanel;
+import ui.financeui.statisticsui.StatisticPanel;
 import ui.mainui.LoginPanel;
 import ui.viewcontroller.ViewController;
 
@@ -191,6 +192,7 @@ public class FinancePanel extends UserPanel{
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
 				detail = new RunningPanel();
+				detail = new StatisticPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘
