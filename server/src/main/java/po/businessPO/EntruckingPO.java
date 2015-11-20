@@ -3,6 +3,8 @@ package po.businessPO;
 import java.io.Serializable;
 
 public class EntruckingPO implements Serializable{
+	
+	private static final long serialVersionUID = -5974465357631427989L;
 	private String date;
 	private String businessHallid;
 	private String transportNumber;
