@@ -4,12 +4,25 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
 
 @SuppressWarnings("serial")
-public class CostAndBenefit extends DetailPanel{
+public class StatisticPanel extends DetailPanel{
+	
+	private JLabel costLabel = new JLabel("总支出");
+	
+	private JTextField costText = new JTextField();
+	
+	private JLabel earningsLabel = new JLabel("总收益");
+	
+	private JTextField earningsText = new JTextField();
+	
+	private JLabel profitLabel = new JLabel("总利润");
+	
+	private JTextField profitText = new JTextField();
 
 	private JButton ok = new JButton("确定");
 	
@@ -41,7 +54,7 @@ public class CostAndBenefit extends DetailPanel{
 	
 	private static final int START_DATE_Y = START_DATE_X;
 	
-	public CostAndBenefit() {
+	public StatisticPanel() {
 		//开始日期标签
 		this.startDateL.setBounds(START_DATE_X, START_DATE_Y, LABEL_W, LABEL_H);
 		this.startDateL.setFont(WORD_FONT);
