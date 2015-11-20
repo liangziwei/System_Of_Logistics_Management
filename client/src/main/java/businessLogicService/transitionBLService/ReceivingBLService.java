@@ -1,5 +1,6 @@
 package businessLogicService.transitionBLService;
 
+import businessLogic.businessLogicModel.transitionModel.Receiving;
 import vo.transitionVO.ReceivingVO;
 
 /**
@@ -37,5 +38,14 @@ public interface ReceivingBLService {
 	 * @return ReceivingVO, 返回货物接受信息的值对象，具体参见ReceivingVo的定义
 	 * */
 	public ReceivingVO findReceivingformBL(String receivingNumber);
+	/**
+	 * description:判断输入是否正确
+	 * 前置条件：ReceivingPanel
+	 * 后置条件：返回是否正确
+	 * 需接口：无
+	 * @param receivingVO,输入的接收单信息
+	 * @return boolean, 返回是否正确
+	 * */
+	public boolean verify(ReceivingVO receivingVO);
 	
 }

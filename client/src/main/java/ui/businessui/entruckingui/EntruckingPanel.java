@@ -36,20 +36,20 @@ public class EntruckingPanel extends DetailPanel{
 	
 	private static final int LABEL_W = 100;
 	
-	private static final int LABEL_H = 30;
+	private static final int LABEL_H = 25;
 	
 	/**
 	 * 每行信息之间的间隔
 	 */
-	private static final int LINE_GAP = 20;
+	private static final int LINE_GAP = 18;
 	
-	private static final int TEXT_W = LABEL_W << 1;
+	private static final int TEXT_W = LABEL_W *3;
 	
 	private static final int TEXT_H = LABEL_H;
 	
-	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W) >> 3;
+	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W) / 3;
 	
-	private static final int START_Y = START_X;
+	private static final int START_Y = START_X>>1;
 	
 	private static final int BUTTON_W = LABEL_W;
 	
@@ -100,7 +100,7 @@ public class EntruckingPanel extends DetailPanel{
 		this.supercargoText.setBounds(this.dateText.getX(), this.supercargo.getY(), TEXT_W, TEXT_H);
 		this.supercargoText.setFont(WORD_FONT);
 		
-		this.freight.setBounds(START_X, this.supervisor.getY() + LABEL_H + LINE_GAP,
+		this.freight.setBounds(START_X, this.supercargo.getY() + LABEL_H + LINE_GAP,
 				LABEL_W , LABEL_H);
 		this.freight.setFont(WORD_FONT);
 		this.freightText.setBounds(this.dateText.getX(), this.freight.getY(), TEXT_W, TEXT_H);
@@ -163,5 +163,7 @@ public class EntruckingPanel extends DetailPanel{
 		this.add(freightText);
 		this.add(vehicleid);
 		this.add(vehicleidText);
+		this.add(ok);
+		this.add(cancel);
 	}
 }

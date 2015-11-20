@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ui.administratorui.AdministratorPanel;
 import ui.businessui.BusinessPanel;
 import ui.deliveryui.DeliveryPanel;
 import ui.financeui.FinancePanel;
@@ -137,6 +138,7 @@ public class LoginPanel extends JPanel{
 					viewController.switchView(FinancePanel.class.getName());
 					break;
 				case 'H':
+					viewController.switchView(AdministratorPanel.class.getName());
 					break;
 				default:
 					break;

@@ -1,5 +1,6 @@
 package businessLogic.businessLogicController.financeController;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import vo.businessVO.VehicleVO;
@@ -18,7 +19,7 @@ public class OriginalInfoController implements OriginalInfoBLService{
 	
 	private OriginalInfo original = new OriginalInfo();
 
-	public List<StaffVO> getStaffInfo(int year) {
+	public List<StaffVO> getStaffInfo(int year)  {
 		// TODO Auto-generated method stub
 		return original.getStaffInfo(year);
 	}

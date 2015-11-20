@@ -1,5 +1,6 @@
 package network;
 
+import java.lang.Thread.State;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -7,9 +8,27 @@ import java.rmi.server.UnicastRemoteObject;
 
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
+import dataImpl.financeDataImpl.AccountDataImpl;
+import dataImpl.financeDataImpl.CostDataImpl;
+import dataImpl.financeDataImpl.OriginalInfoDataImpl;
+import dataImpl.financeDataImpl.SettlementDataImpl;
+import dataImpl.financeDataImpl.StatisticsDataImpl;
+import dataImpl.managerDataImpl.ApprovalFormDataImpl;
+import dataImpl.managerDataImpl.MakeConstantDataImpl;
+import dataImpl.managerDataImpl.OrganizationManagementDataImpl;
+import dataImpl.managerDataImpl.StaffManagementDataImpl;
 import dataImpl.senderDataImpl.InquireDataImpl;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.deliveryDataService.ReceiptDataService;
+import dataService.financeDataService.AccountDataService;
+import dataService.financeDataService.CostDataService;
+import dataService.financeDataService.OriginalInfoDataService;
+import dataService.financeDataService.SettlementDataService;
+import dataService.financeDataService.StatisticsDataService;
+import dataService.managerDataService.ApprovalFormDataService;
+import dataService.managerDataService.MakeConstantDataService;
+import dataService.managerDataService.OrganizationManagementDataService;
+import dataService.managerDataService.StaffManagementDataService;
 import dataService.senderDataService.InquireDataService;
 
 public class RMI {
@@ -84,11 +103,56 @@ public class RMI {
 	}
 	
 	private static void initManagerRMI() {
+		try{
+			//审批单据访问接口
+			ApprovalFormDataService approvalForm = new ApprovalFormDataImpl();
+			ApprovalFormDataService approvalForm_stub = (ApprovalFormDataService) UnicastRemoteObject.exportObject(approvalForm, 0);
+			registry.bind("approvalForm", approvalForm_stub);
+			//城市距离和价格常量访问接口
+			MakeConstantDataService makeConstant = new MakeConstantDataImpl();
+			MakeConstantDataService makeConstant_stub = (MakeConstantDataService)UnicastRemoteObject.exportObject(makeConstant, 0);
+			registry.bind("makeConstant", makeConstant_stub);
+			//机构信息访问接口
+			OrganizationManagementDataService organization = new OrganizationManagementDataImpl();
+			OrganizationManagementDataService organization_stub = (OrganizationManagementDataService)UnicastRemoteObject.exportObject(organization, 0);
+			registry.bind("organization", organization_stub);
+			//人员信息访问接口
+			StaffManagementDataService staff = new StaffManagementDataImpl();
+			StaffManagementDataService staff_stub = (StaffManagementDataService) UnicastRemoteObject.exportObject(staff, 0);
+			registry.bind("staff", staff_stub);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 
 	}
 	
 	private static void initFinanceRMI() {
-
+		try{
+			//账号信息访问接口
+			AccountDataService account = new AccountDataImpl();
+			AccountDataService account_stub = (AccountDataService) UnicastRemoteObject.exportObject(account, 0);
+			registry.bind("account", account_stub);
+			//成本信息访问接口
+			CostDataService cost = new CostDataImpl();
+			CostDataService cost_stub = (CostDataService) UnicastRemoteObject.exportObject(cost, 0);
+			registry.bind("cost", cost_stub);
+			//期初建账访问接口
+			OriginalInfoDataService originalInfo = new OriginalInfoDataImpl();
+			OriginalInfoDataService originalInfo_stub =
+					(OriginalInfoDataService) UnicastRemoteObject.exportObject(originalInfo, 0);
+			registry.bind("originalInfo", originalInfo_stub);
+			//结算管理访问接口
+			SettlementDataService settlement = new SettlementDataImpl();
+			SettlementDataService settlement_stub = (SettlementDataService) UnicastRemoteObject.exportObject(settlement, 0);
+			registry.bind("settlement", settlement_stub);
+			//统计分析访问接口
+			StatisticsDataService statistics = new StatisticsDataImpl();
+			StatisticsDataService statistics_stub = (StatisticsDataService) UnicastRemoteObject.exportObject(statistics, 0);
+			registry.bind("statistics", statistics_stub);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private static void initAdministratorRMI() {

@@ -1,5 +1,7 @@
 package businessLogic.businessLogicController.financeController;
 
+import java.rmi.RemoteException;
+
 import vo.financeVO.AccountVO;
 import businessLogic.businessLogicModel.financeModel.Account;
 import businessLogicService.financeBLService.AccountBLService;
@@ -14,8 +16,7 @@ public class AccountController implements AccountBLService {
 	private Account account = new Account();
 	
 	public boolean addAccount(AccountVO accountVO) {
-		
-		return account.addAccount(accountVO);		
+			return account.addAccount(accountVO);		
 	}
 	
 	public AccountVO findAccount(String name) {
@@ -28,9 +29,9 @@ public class AccountController implements AccountBLService {
 		return account.deleteAccount(name);
 	}
 	
-	public boolean modifyAccount(AccountVO accountVO) {
+	public boolean modifyAccount(String name) {
 		
-		return account.modifyAccount(accountVO);
+		return account.modifyAccount(name);
 	}
 
 }

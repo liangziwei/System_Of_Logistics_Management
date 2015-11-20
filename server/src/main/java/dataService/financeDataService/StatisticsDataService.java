@@ -1,5 +1,7 @@
 package dataService.financeDataService;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 import po.businessPO.ReceivablePO;
@@ -11,7 +13,7 @@ import po.financePO.PaymentPO;
  * @author 张仁知
  */
 
-public interface StatisticsDataService {
+public interface StatisticsDataService extends Remote {
 	
 	/**
 	 * description:  显示一段时间内的收款单记录
@@ -21,7 +23,7 @@ public interface StatisticsDataService {
 	 * @param  endDate   ,结束日期（yyyy-mm-dd）
 	 * @return List<ReceivablePO> ,返回记录收款单信息对象的列表
 	 */
-	public List<ReceivablePO> getReceivableList(String startDate,String endDate);
+	public List<ReceivablePO> getReceivableList(String startDate,String endDate) throws RemoteException;
 	
 	/**
 	 * description:显示所有收款单记录
@@ -29,7 +31,7 @@ public interface StatisticsDataService {
 	 * 后置条件：返回所有收款单列表
 	 * @return List<ReceivablePO> ,返回记录收款单信息对象的列表
 	 */
-	public List<ReceivablePO> getReceivableList();
+	public List<ReceivablePO> getReceivableList() throws RemoteException;
 	
 	/**
 	 * description:显示所有付款单记录
@@ -37,6 +39,6 @@ public interface StatisticsDataService {
 	 * 后置条件：返回所有付款单列表
 	 * @return List<ReceivablePO> ,返回记录付款单信息对象的列表
 	 */
-	public List<PaymentPO>	getPaymentList();
+	public List<PaymentPO>	getPaymentList() throws RemoteException;
 
 }

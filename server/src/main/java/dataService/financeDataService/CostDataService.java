@@ -1,5 +1,7 @@
 package dataService.financeDataService;
 
+import java.rmi.Remote;
+
 import po.financePO.PaymentPO;
 
 
@@ -9,7 +11,7 @@ import po.financePO.PaymentPO;
  */
 
 
-public interface CostDataService {
+public interface CostDataService extends Remote{
 
 
 	/**

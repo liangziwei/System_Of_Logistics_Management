@@ -1,12 +1,17 @@
 package po.managerPO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * 记录了机构的信息
  * @author 张仁知
  */
-public class OrganizationPO {
+public class OrganizationPO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4704429741521430274L;
 	/**
 	 * 机构类型
 	 */
@@ -55,6 +60,7 @@ public class OrganizationPO {
 	public void setStaffInfo(ArrayList<StaffPO> staffInfo) {
 		this.staffInfo = staffInfo;
 	}
+	
 	
 	
 }

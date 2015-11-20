@@ -1,17 +1,24 @@
 package businessLogic.businessLogicModel.financeModel;
 
+
+import network.RMI;
 import po.financePO.PaymentPO;
-import mock.object.MockCostData;
 import vo.financeVO.PaymentVO;
 import dataService.financeDataService.CostDataService;
 
 public class Cost {
 	
-	private CostDataService  costData = new MockCostData();
+	private CostDataService  costData = RMI.<CostDataService>getDataService("cost");
 	
 	public boolean addPayment(PaymentVO paymentVO) {
+		boolean success = false;
+		try{
+			success = costData.addPayment(paymentVOTopaymentPO(paymentVO));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 		
-		return costData.addPayment(paymentVOTopaymentPO(paymentVO));
+		return success;
 	}
 	
 	private PaymentPO paymentVOTopaymentPO(PaymentVO paymentVO){

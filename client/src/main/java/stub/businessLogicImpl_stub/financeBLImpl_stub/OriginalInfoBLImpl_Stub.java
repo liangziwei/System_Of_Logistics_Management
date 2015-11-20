@@ -22,23 +22,53 @@ public class OriginalInfoBLImpl_Stub implements OriginalInfoBLService{
 	private OriginalInfoDataService original = new OriginalInfoDataImpl_Stub();
 	
 	public List<StaffVO> getStaffInfo(int year) {
-		return this.StaffPOToStaffVO(original.getStaffInfo(year));
+		List<StaffVO> list = null;
+		try{
+			list = this.StaffPOToStaffVO(original.getStaffInfo(year));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public List<OrganizationVO> getOrganizationInfo(int year) {
-		return this.OrganizationVOToPO(original.getOrganizationInfo(year));
+		List<OrganizationVO> list = null;
+		try{
+			list = this.OrganizationVOToPO(original.getOrganizationInfo(year)); 
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public List<VehicleVO> getVehicleInfo(int year) {
-		return this.vehiclePOToVO(original.getVehicleInfo(year));
+		List<VehicleVO> list = null;
+		try{
+			list = this.vehiclePOToVO(original.getVehicleInfo(year));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public List<RepositoryInfoVO> getRepositoryInfo(int year) {
-		return this.repositoryPOToVO(original.getRepositoryInfo(year));
+		List<RepositoryInfoVO> list = null;
+		try{
+			list = this.repositoryPOToVO(original.getRepositoryInfo(year));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public List<AccountVO> getAccountInfo(int year) {
-		return this.accountPOToVO(original.getAccountInfo(year));
+		List<AccountVO> list = null;
+		try{
+			list = this.accountPOToVO(original.getAccountInfo(year));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	private List<StaffVO> StaffPOToStaffVO(List<StaffPO> staff) {

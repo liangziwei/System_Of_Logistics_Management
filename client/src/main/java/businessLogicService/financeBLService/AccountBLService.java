@@ -47,6 +47,6 @@ public interface AccountBLService {
 	 * @param AccountVO ,记录账户信息的值对象，具体参照AccountVO的定义
 	 * @return 修改是否成功
 	 */
-	public boolean modifyAccount(AccountVO accountVO);
+	public boolean modifyAccount(String name);
 
 }

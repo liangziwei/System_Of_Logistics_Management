@@ -1,11 +1,12 @@
 package businessLogic.businessLogicModel.financeModel;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import network.RMI;
 import po.businessPO.ReceivablePO;
 import vo.businessVO.ReceivableVO;
-import mock.object.MockSettlementData;
 import dataService.financeDataService.SettlementDataService;
 
 public class Settlement {
@@ -14,9 +15,14 @@ public class Settlement {
 	
 	public List<ReceivableVO> showReceiList(String date) {
 		List<ReceivableVO> receivablevo = new ArrayList<ReceivableVO>();
-		for(int i=0;i<settlementData.getReceiList(date).size();i++){
-			receivablevo.add(receivablePOToreceivableVO(settlementData.getReceiList(date).get(i)));
+		try{
+			for(int i=0;i<settlementData.getReceiList(date).size();i++){
+				receivablevo.add(receivablePOToreceivableVO(settlementData.getReceiList(date).get(i)));
+			}
+		} catch(Exception e){
+			e.printStackTrace();
 		}
+		
 		return receivablevo;
 	}
 	

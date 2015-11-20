@@ -1,12 +1,15 @@
 package dataService.managerDataService;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import po.managerPO.UncheckedFormPO;
 
 /**
  * description:数据服务层为审批单据逻辑处理提供的服务
  * @author 张仁知
  */
-public interface ApprovalFormDataService {
+public interface ApprovalFormDataService extends Remote{
 
 
 	/**
@@ -17,6 +20,6 @@ public interface ApprovalFormDataService {
 	 * @return UncheckedFormPO , 返回未审批单据的值对象，具体参照UncheckedFormPO的定义
 	 */
 	
-	public UncheckedFormPO getUncheckedForms(String date);
+	public UncheckedFormPO getUncheckedForms(String date) throws RemoteException;
 
 }
