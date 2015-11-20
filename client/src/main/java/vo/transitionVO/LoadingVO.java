@@ -52,7 +52,7 @@ public class LoadingVO {
 	 */
 	private String errorMsg;
 	/**
-	 * 验证结果
+	 * 验证结果(查询)
 	 */
 	private boolean VerifyResult;
 	/**
