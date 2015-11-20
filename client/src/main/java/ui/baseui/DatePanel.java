@@ -75,8 +75,12 @@ public class DatePanel extends JPanel{
 			this.day.setText(d[2]);
 		}
 		catch(Exception e) {
-			
+			e.printStackTrace();
 		}	
+		//设置日期不可编辑
+		this.year.setEditable(false);
+		this.month.setEditable(false);
+		this.day.setEditable(false);
 	}
 	
 	@Override

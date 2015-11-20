@@ -19,7 +19,7 @@ import ui.financeui.accountui.ModifyAccountPanel;
 import ui.financeui.costui.CostPanel;
 import ui.financeui.originalInfoui.OriginalInfoPanel;
 import ui.financeui.settlementui.SettlementPanel;
-import ui.financeui.statisticsui.StatisticsPanel;
+import ui.financeui.statisticsui.RunningPanel;
 import ui.mainui.LoginPanel;
 import ui.viewcontroller.ViewController;
 
@@ -32,7 +32,9 @@ public class FinancePanel extends UserPanel{
 	
 	private TaskButton settlement = new TaskButton("结算管理");
 	
-	private JButton receivable = new JButton("查看营业厅收款单");
+	private JButton receivable = new JButton("营业厅当天收款单");
+	
+	private JButton allReceivable = new JButton("当天所有收款单");
 	
 	private TaskButton account = new TaskButton("账号管理");
 	
@@ -85,11 +87,14 @@ public class FinancePanel extends UserPanel{
 		//结算管理按钮（包括收款单按钮）
 		this.settlement.setBounds(0, this.cost.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.settlement.setFont(WORD_FONT);
-		//收款单按钮
+		//当天收款单按钮
 		this.receivable.setFont(WORD_FONT);
+		//所有收款单按钮
+		this.allReceivable.setFont(WORD_FONT);
 		//将收款单按钮作为结算管理按钮的子按钮
 		List<JButton> settleButtons = new ArrayList<JButton>();
 		settleButtons.add(this.receivable);
+		settleButtons.add(this.allReceivable);
 		this.settlement.setDetailButtons(settleButtons);
 		
 		//账户管理按钮（增删改查账户）
@@ -185,7 +190,7 @@ public class FinancePanel extends UserPanel{
 				//设置当前细节信息面板为不可见
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
-				detail = new StatisticsPanel();
+				detail = new RunningPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘
@@ -238,6 +243,7 @@ public class FinancePanel extends UserPanel{
 	}
 
 	private void addSettlementListener() {
+		//查看一个营业厅的当天收款单
 		this.receivable.addActionListener(new ActionListener() {
 			
 			@Override
@@ -245,7 +251,22 @@ public class FinancePanel extends UserPanel{
 				//设置当前细节信息面板为不可见
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
-				detail = new SettlementPanel();
+				detail = new SettlementPanel(false);
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局和重绘
+				revalidate();
+			}
+		});
+		//查看所有营业厅的当天收款单
+		this.allReceivable.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//设置当前细节信息面板为不可见
+				detail.setVisible(false);
+				//设置细节信息面板显示订单输入界面
+				detail = new SettlementPanel(true);
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘
