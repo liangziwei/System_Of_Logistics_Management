@@ -249,9 +249,9 @@ public class AddLoadingPanel extends DetailPanel{
 	}
 	
 	private void addPanels() {
-		this.container.add(this.infoPanel);
-		this.container.add(this.buttonPanel);
-		this.container.add(this.state);
+		this.add(this.infoPanel);
+		this.add(this.buttonPanel);
+		this.add(this.state);
 	}
 	
 	private LoadingVO creatLoadingVO(){

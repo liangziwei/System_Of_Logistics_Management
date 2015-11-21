@@ -328,12 +328,12 @@ public class OrderInputPanel extends DetailPanel{
 	}
 	
 	private void addPanels() {
-		this.container.add(this.sender);
-		this.container.add(this.receiver);
-		this.container.add(this.goodsInfo);
-		this.container.add(this.otherInfo);
-		this.container.add(this.buttonPanel);
-		this.container.add(this.state);
+		this.add(this.sender);
+		this.add(this.receiver);
+		this.add(this.goodsInfo);
+		this.add(this.otherInfo);
+		this.add(this.buttonPanel);
+		this.add(this.state);
 	}
 	
 	private void disableComponents() {

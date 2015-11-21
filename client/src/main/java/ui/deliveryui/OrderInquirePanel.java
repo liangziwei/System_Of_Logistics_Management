@@ -87,15 +87,15 @@ public class OrderInquirePanel extends DetailPanel{
 		//添加事件监听
 		this.addListener();
 		//把组件添加到面板
-		this.container.add(this.orderLabel);
-		this.container.add(this.search);
-		this.container.add(this.inquire);
-		this.container.add(this.cancel);
-		this.container.add(this.error);
+		this.add(this.orderLabel);
+		this.add(this.search);
+		this.add(this.inquire);
+		this.add(this.cancel);
+		this.add(this.error);
 		
 		this.orderInfo = this.orderInput.OrderInfoView(0, orderLabel.getY() + (LABEL_H << 1));
 		this.orderInfo.setVisible(false);
-		this.container.add(this.orderInfo);
+		this.add(this.orderInfo);
 	}
 	
 	private void addListener() {

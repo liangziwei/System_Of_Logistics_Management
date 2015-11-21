@@ -51,7 +51,6 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 		return loadingPO;
 	}
 
-	@Override
 	public boolean verify(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
 		return false;

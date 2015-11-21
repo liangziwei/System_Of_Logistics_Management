@@ -107,22 +107,22 @@ public class ModifyLoadingPanel1 extends DetailPanel{
 		
 		//查询的相关组件
 		loadingid.setBounds(AddLoadingPanel.START_X, AddLoadingPanel.START_Y, AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
-		this.container.add(this.loadingid);
+		this.add(this.loadingid);
 		loadingidText.setBounds(loadingid.getX()+loadingid.getWidth()+AddLoadingPanel.COMPONENT_GAP_X,loadingid.getY(),
 				AddLoadingPanel.TEXTid_W,AddLoadingPanel.TEXT_H);
-		this.container.add(this.loadingidText);
+		this.add(this.loadingidText);
 		find.setBounds(loadingidText.getX()+loadingidText.getWidth()+AddLoadingPanel.COMPONENT_GAP_X,loadingid.getY(),
 				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
-		this.container.add(find);
+		this.add(find);
 		cancle1.setBounds(find.getX()+find.getWidth()+AddLoadingPanel.COMPONENT_GAP_X, loadingid.getY(), 
 				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
-		this.container.add(cancle1);
+		this.add(cancle1);
 		
 		//信息面板的相关操作
 		this.infoPanel.setBounds(loadingid.getX(),loadingid.getY()+loadingid.getHeight()+COMPONENT_GAP_Y,
 				AddLoadingPanel.DETAIL_PANEL_W,AddLoadingPanel.START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H);
 		this.infoPanel.setLayout(null);
-		this.container.add(infoPanel);
+		this.add(infoPanel);
 		this.infoPanel.setVisible(false);
 		//初始化信息面板
 		this.initUI();
@@ -140,7 +140,7 @@ public class ModifyLoadingPanel1 extends DetailPanel{
 		this.cancel2.setFont(WORD_FONT);
 		this.buttonPanel.add(this.ok);
 		this.buttonPanel.add(this.cancel2);
-		this.container.add(buttonPanel);
+		this.add(buttonPanel);
 		this.buttonPanel.setVisible(false);
 		
 		//状态信息1
@@ -148,13 +148,13 @@ public class ModifyLoadingPanel1 extends DetailPanel{
 						(AddLoadingPanel.BUTTON_W<<2), AddLoadingPanel.BUTTON_W);
 		this.state1.setFont(AddLoadingPanel.WORD_FONT);
 		this.state1.setForeground(Color.RED);
-		this.container.add(state1);
+		this.add(state1);
 		
 		//状态信息2
 		this.state2.setBounds(AddLoadingPanel.START_X, this.buttonPanel.getY() - BUTTON_H, (BUTTON_W<<2), BUTTON_W);
 		this.state2.setFont(WORD_FONT);
 		this.state2.setForeground(Color.RED);
-		this.container.add(state2);
+		this.add(state2);
 		state2.setVisible(false);
 		//添加事件监听
 		this.addListener();

@@ -24,7 +24,6 @@ public class ReceiptBLImpl_Stub implements ReceiptBLService{
 		return new ReceiptPO(receiptVO.getOrderID(), receiptVO.getName(), receiptVO.getDate());
 	}
 
-	@Override
 	public VerifyMessage verifyReceiptInfo(ReceiptVO receiptVO) {
 		// TODO Auto-generated method stub
 		return null;

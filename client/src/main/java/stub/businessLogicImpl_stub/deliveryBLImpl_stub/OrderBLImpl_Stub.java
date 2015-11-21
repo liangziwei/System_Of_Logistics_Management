@@ -58,8 +58,7 @@ public class OrderBLImpl_Stub implements OrderBLService{
 		return null;
 	}
 
-	@Override
-	public VerifyMessage verifyOrderId(String id) {
+	public VerifyMessage verifyOrderId(String id) { 
 		// TODO Auto-generated method stub
 		return null;
 	}

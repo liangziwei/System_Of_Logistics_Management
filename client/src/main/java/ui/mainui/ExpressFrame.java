@@ -26,6 +26,7 @@ public class ExpressFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setFrameAtCenter(this);
+		
 	}
 	
 	private void setFrameAtCenter(JFrame frame) {

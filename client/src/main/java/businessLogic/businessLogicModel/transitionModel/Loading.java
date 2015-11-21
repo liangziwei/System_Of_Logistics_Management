@@ -9,7 +9,7 @@ import vo.transitionVO.LoadingVO;
 public class Loading {
 	public LoadingVO findLoadingFormBL(String loadingNumber) {
 		// TODO Auto-generated method stub
-		ArrayList<String>  alldeliveryid = new ArrayList<>();
+		ArrayList<String>  alldeliveryid = new ArrayList<String>();
 		alldeliveryid.add("1234567890");
 		alldeliveryid.add("0987654321");
 		LoadingVO loadingVO =new LoadingVO("12312311111", "123", LoadingType.PLANE, "212453", "haha", "xixi", alldeliveryid);
