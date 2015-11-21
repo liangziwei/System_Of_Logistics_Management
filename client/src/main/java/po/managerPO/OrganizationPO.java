@@ -27,9 +27,9 @@ public class OrganizationPO implements Serializable{
 	/**
 	 * 人员信息
 	 */
-	private ArrayList<StaffPO> staffInfo;
+	private ArrayList<String> staffInfo;
 	public OrganizationPO(String type, String id, String name,
-			ArrayList<StaffPO> staffInfo) {
+			ArrayList<String> staffInfo) {
 		super();
 		this.type = type;
 		this.id = id;
@@ -54,10 +54,10 @@ public class OrganizationPO implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<StaffPO> getStaffInfo() {
+	public ArrayList<String> getStaffInfo() {
 		return staffInfo;
 	}
-	public void setStaffInfo(ArrayList<StaffPO> staffInfo) {
+	public void setStaffInfo(ArrayList<String> staffInfo) {
 		this.staffInfo = staffInfo;
 	}
 	

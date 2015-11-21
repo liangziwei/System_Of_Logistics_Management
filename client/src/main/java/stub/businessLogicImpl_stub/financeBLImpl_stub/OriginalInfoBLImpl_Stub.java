@@ -84,7 +84,7 @@ public class OriginalInfoBLImpl_Stub implements OriginalInfoBLService{
 		List<OrganizationVO> o = new ArrayList<OrganizationVO>();
 		for(int i = 0; i < org.size(); i++) {
 			o.add(new OrganizationVO(org.get(i).getType(), org.get(i).getId(),
-					org.get(i).getName(), this.StaffPOToStaffVO(org.get(i).getStaffInfo())));
+					org.get(i).getName(), org.get(i).getStaffInfo()));
 		}
 		return o;
 	}

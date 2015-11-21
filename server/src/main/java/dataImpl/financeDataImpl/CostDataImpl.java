@@ -1,5 +1,8 @@
 package dataImpl.financeDataImpl;
 
+
+
+import mysql.Database;
 import po.financePO.PaymentPO;
 import dataService.financeDataService.CostDataService;
 
@@ -10,6 +13,17 @@ import dataService.financeDataService.CostDataService;
 public class CostDataImpl implements CostDataService{
 
 	public boolean addPayment(PaymentPO paymentPO) {
-		return false;
+		
+		
+		String date = paymentPO.getDate();
+		double payAmount = paymentPO.getPayAmount();
+		String name = paymentPO.getName();
+		String account = paymentPO.getAccount();
+		String entry = paymentPO.getEntry();
+		String remark = paymentPO.getRemark();
+		String val = "";
+		val = "'"+date+"',"+payAmount+",'"+name+"','"+account+"','"+entry+"','"
+		+remark+"',0,1";
+		return Database.add("payment", val);
 	}
 }

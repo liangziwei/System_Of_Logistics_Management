@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import mysql.Database;
-import constant.UserType;
 import po.financePO.AccountPO;
 import dataService.financeDataService.AccountDataService;
 
