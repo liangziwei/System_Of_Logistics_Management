@@ -1,5 +1,6 @@
 package dataImpl.transitionDataImpl;
 
+import constant.CargoState;
 import dataService.transitionDataService.ReceivingDataService;
 import po.transitionPO.ReceivingPO;
 
@@ -7,7 +8,8 @@ public class ReceivingDataImpl implements ReceivingDataService {
 
 	public ReceivingPO FindReceivingFormDT(String receivingNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		ReceivingPO receiving = new ReceivingPO("0025","2015-10-14", "2015100800001711","北京","南京",CargoState.lOSE);
+		return receiving;
 	}
 
 	public boolean addReceivingFormDT(ReceivingPO receivingPO) {
@@ -17,6 +19,7 @@ public class ReceivingDataImpl implements ReceivingDataService {
 
 	public boolean modifyReceivingFormDT(ReceivingPO receivingPO) {
 		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

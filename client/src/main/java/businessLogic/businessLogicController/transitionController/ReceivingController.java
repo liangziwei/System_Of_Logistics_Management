@@ -19,7 +19,7 @@ public class ReceivingController implements ReceivingBLService{
 
 	public ReceivingVO findReceivingformBL(String receivingNumber) {
 		// TODO Auto-generated method stub
-		return findReceivingformBL(receivingNumber);
+		return receiving.findReceivingformBL(receivingNumber);
 	}
 	
 	public boolean verify(ReceivingVO receivingVO) {

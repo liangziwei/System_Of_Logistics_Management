@@ -224,7 +224,7 @@ public class FindReceivingPanel extends DetailPanel {
 		String[] ArrivalDate = receivingVO.getarrivaldate().split("-");
 		arrivaldateTextyear.setText(ArrivalDate[0]);
 		arrivaldateTextmonth.setText(ArrivalDate[1]);
-		arrivaldateTextday.setText(ArrivalDate[3]);
+		arrivaldateTextday.setText(ArrivalDate[2]);
 		transitionidText.setText(receivingVO.gettransitionid());
 		departureidText.setText(receivingVO.getdepartureid());
 		arrivalidText.setText(receivingVO.getarrivalid());

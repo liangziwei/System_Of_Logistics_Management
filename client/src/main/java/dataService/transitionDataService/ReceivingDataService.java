@@ -1,6 +1,7 @@
 package dataService.transitionDataService;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import po.transitionPO.ReceivingPO;
 
@@ -18,7 +19,7 @@ public interface ReceivingDataService extends Remote{
 	 * @param ReceivingPO ,货物接收信息的相关持久化对象存储，具体参照ReceivingPO的定义
 	 * @return boolean, 返回给方法调用者货物接收信息是否添加成功
 	 * */
-	public boolean addReceivingFormDT(ReceivingPO receivingPO);
+	public boolean addReceivingFormDT(ReceivingPO receivingPO)throws RemoteException;
 	
 	/**
 	 * description:修改新的货物接收单信息
@@ -28,7 +29,7 @@ public interface ReceivingDataService extends Remote{
 	 * @param ReceivingPO ,货物接收信息的相关持久化对象存储，具体参照ReceivingPO的定义
 	 * @return boolean, 返回给方法调用者货物接收信息是否修改成功
 	 * */
-	public boolean modifyReceivingFormDT(ReceivingPO receivingPO);
+	public boolean modifyReceivingFormDT(ReceivingPO receivingPO)throws RemoteException;
 	
 	/**
 	 * description:通过中转单编号找到相应的货物接收单
@@ -38,6 +39,6 @@ public interface ReceivingDataService extends Remote{
 	 * @param ReceivingNumber ,中转单编号（年月日＋000000六位数字）
 	 * @return ReceivingPO, 返回货物接受信息的持久化对象，具体参见ReceivingPO的定义
 	 */
-	public ReceivingPO FindReceivingFormDT(String receivingNumber);
+	public ReceivingPO FindReceivingFormDT(String receivingNumber)throws RemoteException;
 	
 }

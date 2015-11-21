@@ -1,10 +1,14 @@
 package businessLogic.businessLogicModel.transitionModel;
 
+import java.rmi.RemoteException;
 import dataService.transitionDataService.ReceivingDataService;
+import network.RMI;
+import po.transitionPO.ReceivingPO;
 import vo.transitionVO.ReceivingVO;
 
 public class Receiving {
-//	private ReceivingDataService = RMI.<ReceivingDataService>getDataService("receiving");
+	private ReceivingDataService receivingDataService = RMI.<ReceivingDataService>getDataService("receiving");
+	
 	public boolean addReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
 		return false;
@@ -17,7 +21,32 @@ public class Receiving {
 
 	public ReceivingVO findReceivingformBL(String receivingNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		ReceivingPO receivingPO = null;
+		ReceivingVO result =null;
+		try {
+			receivingPO = receivingDataService.FindReceivingFormDT(receivingNumber);
+			if(receivingPO==null){
+				result.setVerifyResult(false);
+			}
+			else {
+				result = ReceivingPOtoReceivingVO(receivingPO);				
+				result.setVerifyResult(true);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	private ReceivingPO ReceivingVOtoReceivingPO(ReceivingVO receivingVO){
+		return new ReceivingPO(receivingVO.gettransitionid(), receivingVO.getarrivaldate(),
+				receivingVO.gettransferringid(),receivingVO.getdepartureid(),
+				receivingVO.getarrivalid(), receivingVO.getstate());
+	}
+	private ReceivingVO ReceivingPOtoReceivingVO(ReceivingPO receivingPO) {
+		return new ReceivingVO(receivingPO.gettransitionid(), receivingPO.getarrivaldate(), 
+				receivingPO.gettransferringid(), receivingPO.getdepartureid(), 
+				receivingPO.getarrivalid(), receivingPO.getstate());
 	}
 	
 	public boolean verifyres(ReceivingVO receivingVO){

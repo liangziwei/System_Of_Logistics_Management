@@ -1,5 +1,6 @@
 package stub.businessLogicImpl_stub.repositoryBLImpl_stub;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import businessLogicService.repositoryBLService.OutRepositoryBLService;
@@ -18,8 +19,20 @@ public class OutRepositoryBLImpl_Stub implements OutRepositoryBLService{
 	public boolean addOutRepositoryFormBL(OutRepositoryVO outRepositoryVO) {
 		// TODO Auto-generated method stub
 		outRepositoryVO.setbeinrepository(false);
-		boolean update =outRepositoryDataService.UpdateRepositoryInfoDT(this.OutRepositoryVOtoOutRepositoryPO(outRepositoryVO));
-		boolean add=outRepositoryDataService.AddOutRepositoryFormDT(this.OutRepositoryVOtoOutRepositoryPO(outRepositoryVO));
+		boolean update = false;
+		try {
+			update = outRepositoryDataService.UpdateRepositoryInfoDT(this.OutRepositoryVOtoOutRepositoryPO(outRepositoryVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean add = false;
+		try {
+			add = outRepositoryDataService.AddOutRepositoryFormDT(this.OutRepositoryVOtoOutRepositoryPO(outRepositoryVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(update&&add){
 			return true;
 		}
@@ -31,8 +44,20 @@ public class OutRepositoryBLImpl_Stub implements OutRepositoryBLService{
 	public boolean modifyOutRepositoryFormBL(OutRepositoryVO outRepositoryVO) {
 		// TODO Auto-generated method stub
 		outRepositoryVO.setbeinrepository(false);
-		boolean update =outRepositoryDataService.UpdateRepositoryInfoDT(this.OutRepositoryVOtoOutRepositoryPO(outRepositoryVO));
-		boolean add=outRepositoryDataService.ModifyOutRepositoryFormDT(this.OutRepositoryVOtoOutRepositoryPO(outRepositoryVO));
+		boolean update = false;
+		try {
+			update = outRepositoryDataService.UpdateRepositoryInfoDT(this.OutRepositoryVOtoOutRepositoryPO(outRepositoryVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean add = false;
+		try {
+			add = outRepositoryDataService.ModifyOutRepositoryFormDT(this.OutRepositoryVOtoOutRepositoryPO(outRepositoryVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(update&&add){
 			return true;
 		}
@@ -43,7 +68,13 @@ public class OutRepositoryBLImpl_Stub implements OutRepositoryBLService{
 
 	public OutRepositoryVO findOutRepositoryFormBL(String OutRepositoryNumber) {
 		// TODO Auto-generated method stub
-		return this.OutRepositoryPOtoOutRepositoryVO(outRepositoryDataService.FindOutRepositoryFormDT(OutRepositoryNumber));
+		try {
+			return this.OutRepositoryPOtoOutRepositoryVO(outRepositoryDataService.FindOutRepositoryFormDT(OutRepositoryNumber));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public List<TransferringVO> GetTransferringInfo(String data) {

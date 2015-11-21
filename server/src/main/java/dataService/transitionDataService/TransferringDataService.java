@@ -1,6 +1,7 @@
 package dataService.transitionDataService;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 import po.transitionPO.TransferringPO;
@@ -19,7 +20,7 @@ public interface TransferringDataService extends Remote{
 	 * @param TransferringPO ,中转信息的相关持久化对象存储，具体参照TransferringPO的定义
 	 * @return boolean, 返回给方法调用者中转单信息是否添加成功
 	 * */
-	public boolean AddTransferringFormDT(TransferringPO transferringPO);
+	public boolean AddTransferringFormDT(TransferringPO transferringPO)throws RemoteException;
 	
 	/**
 	 * description:修改中转单
@@ -29,7 +30,7 @@ public interface TransferringDataService extends Remote{
 	 * @param TransferringPO ,中转信息的相关持久化对象存储，具体参照TransferringPO的定义
 	 * @return boolean, 返回给方法调用者中转单信息是否修改成功
 	 * */
-	public boolean ModifyTransferringFormDT(TransferringPO transferringPO);
+	public boolean ModifyTransferringFormDT(TransferringPO transferringPO)throws RemoteException;
 	
 	/**
 	 * description:通过中转单编号得到相应的中转单信息
@@ -39,7 +40,7 @@ public interface TransferringDataService extends Remote{
 	 * @param transferringNumber ,中转单编号（中转中心编号+日期+0000000七位数字）
 	 * @return TransferringPO, 返回中转单信息的持久化对象，具体参照TransferringPO的定义
 	 */
-	public TransferringPO FindTransferringFormDT(String transferringNumber);
+	public TransferringPO FindTransferringFormDT(String transferringNumber)throws RemoteException;
 	
 	/**
 	 * description:查询当天的中转单列表
@@ -49,6 +50,6 @@ public interface TransferringDataService extends Remote{
 	 * @param  Date : 当天的日期
 	 * @return List<TransferringPO> 返回记录当天的中转单的持久化对象的列表
 	 */
-	public List<TransferringPO> GetTransferringInfoDT(String date);
+	public List<TransferringPO> GetTransferringInfoDT(String date)throws RemoteException;
 
 }
