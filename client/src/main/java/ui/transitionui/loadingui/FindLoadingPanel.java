@@ -1,6 +1,7 @@
 package ui.transitionui.loadingui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,10 @@ import vo.transitionVO.LoadingVO;
 
 public class FindLoadingPanel extends DetailPanel{
 	private LoadingBLService loadingservice = new LoadingController();
-	
+	//添加下拉框
+	private JScrollPane jScrollPane =new JScrollPane();
+	private JPanel container = new JPanel();
+	//组件
 	private JLabel loadingid = new JLabel("装运编号");
 	
 	private JLabel arrivalid = new JLabel("到达地");
@@ -89,6 +93,13 @@ public class FindLoadingPanel extends DetailPanel{
 	public FindLoadingPanel() {
 		// TODO Auto-generated constructor stub
 		super();
+		//下拉框设置
+		container.setLayout(null);
+		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
+		jScrollPane.setViewportView(this.container);
+		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		super.add(jScrollPane);
 		
 		//查询的相关组件
 		loadingid.setBounds(AddLoadingPanel.START_X, AddLoadingPanel.START_Y, AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);

@@ -33,7 +33,7 @@ public class SettlementPanel extends DetailPanel{
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
-	private static final int LABEL_W = 100;
+	private static final int LABEL_W = 80;
 	
 	private static final int LABEL_H = 32;
 	
@@ -45,7 +45,7 @@ public class SettlementPanel extends DetailPanel{
 	
 	private static final int BUTTON_H = LABEL_H;
 	
-	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W - (BUTTON_W << 1)) / 5;
+	private static final int START_X = (DETAIL_PANEL_W - - LABEL_W - TEXT_W - (BUTTON_W << 1)) / 5;
 	
 	private static final int START_Y = START_X >> 1;
 	
@@ -130,7 +130,7 @@ public class SettlementPanel extends DetailPanel{
 		//TODO TEST
 		List<ReceivableVO> receivables = settle.showBusinessRecei(idText.getText(), "100");
 		receivable = new ReceivablePanel(receivables.get(0), list.getX() + LIST_PANEL_W,
-				list.getY(), DETAIL_PANEL_W - LIST_PANEL_W, LIST_PANEL_H);
+				list.getY(), DETAIL_PANEL_W - 30 - LIST_PANEL_W, LIST_PANEL_H);
 		add(receivable);
 	}
 }

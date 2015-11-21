@@ -1,7 +1,7 @@
 package ui.transitionui.receivingui;
 
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,18 +10,21 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.transitionController.ReceivingController;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import ui.baseui.DetailPanel;
-
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.transitionVO.ReceivingVO;
 
 public class FindReceivingPanel extends DetailPanel {
 	private ReceivingBLService receivingService = new ReceivingController();
-
+	// 添加下拉框
+	private JScrollPane jScrollPane = new JScrollPane();
+	private JPanel container = new JPanel();
+	// 组件
 	private JLabel transferringid = new JLabel("中转单编号");
 
 	private JLabel arrivaldate = new JLabel("到达日期");
@@ -95,7 +98,14 @@ public class FindReceivingPanel extends DetailPanel {
 	public FindReceivingPanel() {
 		// TODO Auto-generated constructor stub
 		super();
-
+		// 下拉框设置
+		container.setLayout(null);
+		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
+		jScrollPane.setViewportView(this.container);
+		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		super.add(jScrollPane);
+				
 		transferringid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.container.add(transferringid);
 		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,

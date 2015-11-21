@@ -41,8 +41,8 @@ public class Loading {
 			loadingVO.seterrorMsg("到达地不能为空");
 			return false;
 		}
-		if (loadingVO.getwayid()==null) {
-			loadingVO.seterrorMsg("装运方式编号不能为空");
+		if (loadingVO.getwayid()==null||loadingVO.getwayid().length()!=9) {
+			loadingVO.seterrorMsg("装运方式编号不能为空或编号输入错误");
 			return false;
 		}
 		if (loadingVO.getsupervisionid()==null) {

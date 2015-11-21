@@ -1,6 +1,7 @@
 package ui.transitionui.receivingui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.transitionController.ReceivingController;
@@ -19,7 +21,10 @@ import vo.transitionVO.ReceivingVO;
 
 public class AddReceivingPanel extends DetailPanel{
 	private ReceivingBLService receivingService = new ReceivingController();
-	
+	// 添加下拉框
+	private JScrollPane jScrollPane = new JScrollPane();
+	private JPanel container = new JPanel();
+	// 组件
 	private JLabel transferringid = new JLabel("中转单编号");
 	
 	private JLabel arrivaldate = new JLabel("到达日期");
@@ -96,6 +101,14 @@ public class AddReceivingPanel extends DetailPanel{
 	public AddReceivingPanel() {
 		// TODO Auto-generated constructor stub
 		super();
+		//下拉框设置
+		container.setLayout(null);
+		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
+		jScrollPane.setViewportView(this.container);
+		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		super.add(jScrollPane);
+		
 		//主面板
 		this.infoPanel.setBounds(START_X,START_Y,this.DETAIL_PANEL_W,START_Y+(LABEL_H+COMPONENT_GAP_Y)*5);
 		this.infoPanel.setLayout(null);
@@ -118,6 +131,7 @@ public class AddReceivingPanel extends DetailPanel{
 		this.buttonPanel.setLayout(null);
 		this.buttonPanel.add(this.ok);
 		this.buttonPanel.add(this.cancel);
+		cancel.setVisible(false);
 		//状态信息
 		this.state.setBounds(START_X, this.buttonPanel.getY() - BUTTON_H, (BUTTON_W<<2), BUTTON_W);
 		this.state.setFont(WORD_FONT);
@@ -188,6 +202,7 @@ public class AddReceivingPanel extends DetailPanel{
 				
 				if (result) {
 					throughVerifyOperation(receivingVO);   //验证成功
+					cancel.setVisible(true);
 				}
 				else {
 					verifyFailOperation(receivingVO);   //验证失败
@@ -208,6 +223,7 @@ public class AddReceivingPanel extends DetailPanel{
 				state.setText("");
 				//使信息可编辑
 				enableComponents();
+				cancel.setVisible(false);
 			}
 		});
 	}

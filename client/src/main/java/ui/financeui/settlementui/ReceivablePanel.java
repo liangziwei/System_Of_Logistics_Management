@@ -25,18 +25,18 @@ public class ReceivablePanel extends JPanel{
 	
 	private JTextArea itemText = new JTextArea();
 	
-	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
+	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 
 	public ReceivablePanel(ReceivableVO receivable, int x, int y, int w, int h) {
 		//初始化组件
 		int idNum = receivable.getDeliveryid().size();
-		int ltGap = 20;	//标签与文本框的距离
-		int dateX = 40;
+		int labelW = w / 5;
+		int textW = labelW * 3;	
+		int dateX = labelW >> 1;
 		int dateY = 0;
 		int labelH = dateX;
 		int textH = labelH;
-		int labelW = (w - ltGap - (dateX << 1)) >> 2;
-		int textW = labelW * 3;		
+		int ltGap = labelW >> 1;	//标签与文本框的距离
 		//日期标签
 		this.dateLabel.setBounds(dateX, dateY, labelW, labelH);
 		this.dateLabel.setFont(WORD_FONT);

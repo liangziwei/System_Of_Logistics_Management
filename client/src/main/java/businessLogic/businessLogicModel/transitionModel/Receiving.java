@@ -1,9 +1,10 @@
 package businessLogic.businessLogicModel.transitionModel;
 
+import dataService.transitionDataService.ReceivingDataService;
 import vo.transitionVO.ReceivingVO;
 
 public class Receiving {
-	
+//	private ReceivingDataService = RMI.<ReceivingDataService>getDataService("receiving");
 	public boolean addReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
 		return false;

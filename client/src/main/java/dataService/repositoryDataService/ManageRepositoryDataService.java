@@ -1,5 +1,6 @@
 package dataService.repositoryDataService;
 
+import java.rmi.Remote;
 import java.util.List;
 
 import constant.AreaCodeType;
@@ -11,7 +12,7 @@ import po.repositoryPO.RepositoryPO;
  *description:数据服务层为中转中心库存管理人员管理库存信息提供的服务 
  * @author 阮威威
  */
-public interface ManageRepositoryDataService {
+public interface ManageRepositoryDataService extends Remote{
 	
 	/**
 	 * description:进行库存信息的查看

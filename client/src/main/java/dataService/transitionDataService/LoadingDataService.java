@@ -1,12 +1,14 @@
 package dataService.transitionDataService;
 
+import java.rmi.Remote;
+
 import po.transitionPO.LoadingPO;
 
 /**
  *description:数据服务层为中转中心装运信息管理提供的服务 
  * @author 阮威威
  */
-public interface LoadingDataService {
+public interface LoadingDataService extends Remote{
 	
 	/**
 	 * description:添加新的装运单信息

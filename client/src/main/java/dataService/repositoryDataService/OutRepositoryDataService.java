@@ -1,12 +1,14 @@
 package dataService.repositoryDataService;
 
+import java.rmi.Remote;
+
 import po.repositoryPO.OutRepositoryPO;
 
 /**
  *description:数据服务层为中转中心库存管理的出库单信息管理提供的服务 
  * @author 阮威威
  */
-public interface OutRepositoryDataService {
+public interface OutRepositoryDataService extends Remote{
 	
 	/**
 	 * description:添加新的出库单信息

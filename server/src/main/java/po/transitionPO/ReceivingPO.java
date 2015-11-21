@@ -1,8 +1,8 @@
 package po.transitionPO;
 
 import java.io.Serializable;
-
 import constant.CargoState;
+
 
 
 /**
@@ -10,7 +10,7 @@ import constant.CargoState;
  * @author 阮威威
  */
 public class ReceivingPO implements Serializable{
-	
+
 	/**
 	 * 
 	 */

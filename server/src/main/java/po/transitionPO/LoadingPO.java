@@ -2,7 +2,6 @@ package po.transitionPO;
 
 import java.io.Serializable;
 import java.util.List;
-
 import constant.LoadingType;
 
 /**
@@ -10,6 +9,7 @@ import constant.LoadingType;
  * @author 阮威威
  */
 public class LoadingPO implements Serializable{
+
 	/**
 	 * 
 	 */

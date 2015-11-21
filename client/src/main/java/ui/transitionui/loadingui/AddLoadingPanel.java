@@ -1,14 +1,13 @@
 package ui.transitionui.loadingui;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -25,7 +24,10 @@ import vo.transitionVO.LoadingVO;
 
 public class AddLoadingPanel extends DetailPanel{
 	private LoadingBLService loadingservice = new LoadingController();
-	
+	//添加下拉框
+	private JScrollPane jScrollPane =new JScrollPane();
+	private JPanel container = new JPanel();
+	//组件
 	private JLabel loadingid = new JLabel("装运编号");
 	
 	private JLabel arrivalid = new JLabel("到达地");
@@ -110,6 +112,14 @@ public class AddLoadingPanel extends DetailPanel{
 	public AddLoadingPanel() {
 		// TODO Auto-generated constructor stub
 		super();
+		//下拉框设置
+		container.setLayout(null);
+		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
+		jScrollPane.setViewportView(this.container);
+		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		super.add(jScrollPane);
+		
 		//主面板
 		this.infoPanel.setBounds(START_X,START_Y,this.DETAIL_PANEL_W,START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H);
 		this.infoPanel.setLayout(null);
@@ -132,6 +142,7 @@ public class AddLoadingPanel extends DetailPanel{
 		this.buttonPanel.setLayout(null);
 		this.buttonPanel.add(this.ok);
 		this.buttonPanel.add(this.cancel);
+		cancel.setVisible(false);
 		//状态信息
 		this.state.setBounds(START_X, this.buttonPanel.getY() - BUTTON_H, (BUTTON_W<<2), BUTTON_W);
 		this.state.setFont(WORD_FONT);
@@ -181,6 +192,7 @@ public class AddLoadingPanel extends DetailPanel{
 		fareText.setBackground(Color.GRAY);
 		fareText.setEditable(false);
 		this.infoPanel.add(fareText);
+	
 	}
 	
 	private void addListener(){
@@ -195,6 +207,8 @@ public class AddLoadingPanel extends DetailPanel{
 				
 				if (result) {
 					throughVerifyOperation(loadingVO);   //验证成功
+					cancel.setVisible(true);
+					fare.setForeground(Color.red);
 				}
 				else {
 					verifyFailOperation(loadingVO);   //验证失败
@@ -215,8 +229,10 @@ public class AddLoadingPanel extends DetailPanel{
 				state.setText("");
 				//使信息可编辑
 				enableComponents();
+				cancel.setVisible(false);
 				//重置运费
 				fareText.setText("");
+				fare.setForeground(Color.black);
 			}
 		});
 	}

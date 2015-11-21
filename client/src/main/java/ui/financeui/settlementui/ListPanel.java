@@ -6,22 +6,22 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JList;
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import vo.businessVO.ReceivableVO;
 
 @SuppressWarnings("serial")
-public class ListPanel extends JPanel{
+public class ListPanel extends JScrollPane{
 	
 	private JList<String> list = null;
 	
 	private Vector<String> items = new Vector<String>();
 	
-	private JButton sumBtn = new JButton("合计");
+//	private JButton sumBtn = new JButton("合计");
 	
-	private JTextField sumText = new JTextField();
+//	private JTextField sumText = new JTextField();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 		
@@ -38,16 +38,13 @@ public class ListPanel extends JPanel{
 		int btnH = btnW >> 1;
 		int btnX = btnH;
 		int btnY = panelH - btnH * 3;
-		this.sumBtn.setBounds(0, btnY, btnW, btnH);
-		this.sumBtn.setFont(WORD_FONT);
+//		this.sumBtn.setBounds(0, btnY, btnW, btnH);
+//		this.sumBtn.setFont(WORD_FONT);
 		//合计文本框
 		int textW = btnW;
 		int textH = btnH;
-		this.sumText.setBounds(this.sumBtn.getX() + btnW + btnX, this.sumBtn.getY(), textW, textH);
-		this.sumText.setFont(WORD_FONT);
-		//列表面板
-		this.setLayout(null);
-		this.setBounds(x, y, panelW, panelH);
+//		this.sumText.setBounds(this.sumBtn.getX() + btnW + btnX, this.sumBtn.getY(), textW, textH);
+//		this.sumText.setFont(WORD_FONT);
 		//列表项
 		this.list = new JList<String>(this.items);
 		//计算列表项个数
@@ -70,12 +67,11 @@ public class ListPanel extends JPanel{
 		this.list.setBorder(b);
 		int h = btnY - btnH;
 		this.list.setBounds(0, 0, panelW, h);	
-		//将列表添加到列表面板
-		this.setLayout(null);
-		
-		this.add(this.list);
-		this.add(this.sumBtn);
-		this.add(this.sumText);
+		//列表面板
+		this.setBounds(x, y, panelW, panelH);
+		this.setViewportView(this.list);
+//		this.add(this.sumBtn);
+//		this.add(this.sumText);
 	}
 	
 	private void addListItem(List<ReceivableVO> receivables) {
