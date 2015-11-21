@@ -1,9 +1,13 @@
 package ui.mainui;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -35,24 +39,38 @@ public class ExpressPanel extends JPanel{
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 20);
 	
+	private static Image BACKGROUND = new ImageIcon("picture/background.jpg").getImage();
+	
 	public ExpressPanel(ViewController controller) {
 		this.controller = controller;
+		this.repaint();
+		//初始化组件
+		this.initUI();
+	}
+	
+	private void initUI() {
 		//主面板
-		this.setLayout(null);
 		this.setBounds(0, 0, ExpressFrame.FRAME_W, ExpressFrame.FRAME_H);
+		this.setLayout(null);
 		//登录按钮
 		this.login.setSize(BUTTON_W, BUTTON_H);
 		this.login.setLocation(LOGIN_X, LOGIN_Y);
 		this.login.setFont(WORD_FONT);
+		this.login.setContentAreaFilled(false);
+		this.login.setBorderPainted(false);
+		this.login.setForeground(Color.RED);
 		//物流信息查询按钮
 		this.logistics.setSize(BUTTON_W, BUTTON_H);
 		this.logistics.setLocation(LOGISTICS_X, LOGISTICS_Y);
 		this.logistics.setFont(WORD_FONT);
+		this.logistics.setOpaque(false);
 		//增加时间监听
 		this.addListener(this.login, this.logistics);
 		//增加组件到容器
 		this.add(this.login);
 		this.add(this.logistics);
+		this.requestFocus();
+		this.repaint();
 	}
 	
 	private void addListener(JButton login, JButton logistics) {
@@ -76,5 +94,11 @@ public class ExpressPanel extends JPanel{
 				controller.switchView(InquirePanel.class.getName());
 			}
 		});
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 }
