@@ -1,6 +1,7 @@
 package ui.deliveryui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import businessLogic.businessLogicController.deliveryController.OrderController;
 import businessLogicService.deliveryBLService.OrderBLService;
@@ -33,6 +35,16 @@ import vo.deliveryVO.VerifyMessage;
 public class OrderInputPanel extends DetailPanel{
 	
 	private OrderBLService orderService = new OrderController();
+	
+	/**
+	 * 承载所有信息的面板
+	 */
+	private JPanel infoPanel = new JPanel();
+	
+	/**
+	 * 承载infoPanel的下拉框面板
+	 */
+	private JScrollPane container = new JScrollPane();
 
 	private ClientInfoPanel sender = new ClientInfoPanel(ClientType.SENDER);
 	
@@ -127,11 +139,11 @@ public class OrderInputPanel extends DetailPanel{
 	/**
 	 * 返回展示订单信息的面板
 	 */
-	public JPanel OrderInfoView(int x, int y) {
+	public JPanel OrderInfoView() {
 		//创建面板
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(x, y, DetailPanel.CONTAINER_W, DetailPanel.CONTAINER_H);
+		panel.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H - 72));
 		//添加其他信息面板
 		panel.add(this.sender);
 		panel.add(this.receiver);
@@ -156,6 +168,13 @@ public class OrderInputPanel extends DetailPanel{
 	}
 	
 	private void initUI() {
+		//信息面板
+		this.infoPanel.setLayout(null);
+		this.infoPanel.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		this.container.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
+		this.container.setViewportView(this.infoPanel);
+		this.container.getVerticalScrollBar().setUnitIncrement(15);
+		this.add(this.container);
 		int panelH = 0;
 		//寄件人信息面板
 		panelH = LABEL_H * this.sender.getUILineNum()
@@ -328,12 +347,12 @@ public class OrderInputPanel extends DetailPanel{
 	}
 	
 	private void addPanels() {
-		this.add(this.sender);
-		this.add(this.receiver);
-		this.add(this.goodsInfo);
-		this.add(this.otherInfo);
-		this.add(this.buttonPanel);
-		this.add(this.state);
+		this.infoPanel.add(this.sender);
+		this.infoPanel.add(this.receiver);
+		this.infoPanel.add(this.goodsInfo);
+		this.infoPanel.add(this.otherInfo);
+		this.infoPanel.add(this.buttonPanel);
+		this.infoPanel.add(this.state);
 	}
 	
 	private void disableComponents() {

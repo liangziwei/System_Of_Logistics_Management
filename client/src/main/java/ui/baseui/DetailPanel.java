@@ -20,12 +20,7 @@ public class DetailPanel extends JPanel{
 	 */
 	protected static final int DETAIL_PANEL_H = TaskPanel.TASK_PANEL_H;
 	
-	/**
-	 * 放在JScrollPane里的容器，盛放子组件
-	 */
-//	public JPanel container = new JPanel();
-	
-	protected static final int CONTAINER_W = 1200;
+	protected static final int CONTAINER_W = 750;
 	
 	protected static final int CONTAINER_H = 900;
 	
@@ -38,5 +33,7 @@ public class DetailPanel extends JPanel{
 //		this.setViewportView(this.container);
 //		
 //		this.getVerticalScrollBar().setUnitIncrement(15);
+		
+		this.setLayout(null);
 	}
 }
