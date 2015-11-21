@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.deliveryController.OrderController;
@@ -23,6 +24,11 @@ public class OrderInquirePanel extends DetailPanel{
 	private OrderBLService orderService = new OrderController();
 	
 	private OrderInputPanel orderInput = new OrderInputPanel();
+	
+	/**
+	 * 显示信息的容器
+	 */
+	private JScrollPane container = new JScrollPane();
 	
 	/**
 	 * 显示订单信息
@@ -93,9 +99,14 @@ public class OrderInquirePanel extends DetailPanel{
 		this.add(this.cancel);
 		this.add(this.error);
 		
-		this.orderInfo = this.orderInput.OrderInfoView(0, orderLabel.getY() + (LABEL_H << 1));
+		this.container.setBounds(0, orderLabel.getY() + (LABEL_H << 1),
+				DETAIL_PANEL_W - 30, DETAIL_PANEL_H - (LABEL_H << 2));
+		this.container.getVerticalScrollBar().setUnitIncrement(15);
+		this.orderInfo = this.orderInput.OrderInfoView();
 		this.orderInfo.setVisible(false);
-		this.add(this.orderInfo);
+		this.container.setViewportView(this.orderInfo);
+		this.container.setVisible(false);
+		this.add(this.container);
 	}
 	
 	private void addListener() {
@@ -118,6 +129,7 @@ public class OrderInquirePanel extends DetailPanel{
 					orderInput.setOrderInfo(order.getSenderInfo(), order.getReceiverInfo(), order.getGoodsInfo());
 					//显示订单信息
 					orderInfo.setVisible(true);
+					container.setVisible(true);
 				}
 				repaint();
 			}
