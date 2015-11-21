@@ -7,12 +7,12 @@ public class ReceivablePO implements Serializable{
 	private String date;
 	private double money;
 	private String courier;//快递员
-	private ArrayList<Long> deliveryid;
+	private ArrayList<String> deliveryid;
 	private boolean isApproved=false; 
 	private boolean isPassed=true;
 	
 	public ReceivablePO(String date, double money, String courier,
-			ArrayList<Long> deliveryid) {
+			ArrayList<String> deliveryid) {
 		this.date = date;
 		this.money = money;
 		this.courier = courier;
@@ -43,11 +43,11 @@ public class ReceivablePO implements Serializable{
 		this.courier = courier;
 	}
 
-	public ArrayList<Long> getDeliveryid() {
+	public ArrayList<String> getDeliveryid() {
 		return deliveryid;
 	}
 
-	public void setDeliveryid(ArrayList<Long> deliveryid) {
+	public void setDeliveryid(ArrayList<String> deliveryid) {
 		this.deliveryid = deliveryid;
 	}
 

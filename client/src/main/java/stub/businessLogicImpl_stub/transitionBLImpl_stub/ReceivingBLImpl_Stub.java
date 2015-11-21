@@ -1,5 +1,6 @@
 package stub.businessLogicImpl_stub.transitionBLImpl_stub;
 
+import businessLogic.businessLogicModel.transitionModel.Receiving;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import dataService.transitionDataService.ReceivingDataService;
 import po.transitionPO.ReceivingPO;

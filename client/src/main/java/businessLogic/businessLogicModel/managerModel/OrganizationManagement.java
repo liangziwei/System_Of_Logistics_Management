@@ -2,31 +2,56 @@ package businessLogic.businessLogicModel.managerModel;
 
 import java.util.ArrayList;
 
+import network.RMI;
 import po.managerPO.OrganizationPO;
 import po.managerPO.StaffPO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
-import mock.object.MockOrganizationData;
 import dataService.managerDataService.OrganizationManagementDataService;
 
 public class OrganizationManagement {
 
-	private OrganizationManagementDataService organizationData = new MockOrganizationData();
+	private OrganizationManagementDataService organizationData = 
+			RMI.<OrganizationManagementDataService>getDataService("organization");
 	
 	public boolean addOrganization(OrganizationVO organizationVO) {
-		return organizationData.addOrganization(organizationVOToOrganizationPO(organizationVO));
+		boolean success = false;
+		try{
+			success = organizationData.addOrganization(organizationVOToOrganizationPO(organizationVO));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	public OrganizationVO findOrganization(String id) {
-		return this.organizationPOToOrganizationVO(organizationData.findOrganization(id));
+		OrganizationVO organization = null;
+		try{
+			organization = this.organizationPOToOrganizationVO(organizationData.findOrganization(id));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return organization;
 	}
 	
 	public boolean deleteOrganization(String id) {
-		return organizationData.deleteOrganization(id);
+		boolean success = false;
+		try{
+			success = organizationData.deleteOrganization(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	public boolean modifyOrganization(OrganizationVO organizationVO) {
-		return organizationData.modifyOrganization(this.organizationVOToOrganizationPO(organizationVO));
+		boolean success = false;
+		try{
+			success = organizationData.modifyOrganization(this.organizationVOToOrganizationPO(organizationVO));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	private OrganizationPO organizationVOToOrganizationPO(OrganizationVO organizationVO){

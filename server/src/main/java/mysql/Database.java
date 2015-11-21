@@ -97,4 +97,29 @@ public class Database {
 		}
 		return true;
 	}
+	
+	//查询数据
+	public static ResultSet findOperation(String sql){
+		try {
+			rs=stat.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	//增删改操作
+	public static boolean operate(String sql){
+		int x;
+		try {
+			x=stat.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 }

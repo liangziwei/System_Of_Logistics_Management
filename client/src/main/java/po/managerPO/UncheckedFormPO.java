@@ -1,5 +1,6 @@
 package po.managerPO;
 
+import java.io.Serializable;
 import java.util.List;
 
 import po.businessPO.ArrivalFormPO;
@@ -17,7 +18,12 @@ import po.transitionPO.TransferringPO;
  * 记录了未审批单据的信息
  * @author 张仁知
  */
-public class UncheckedFormPO {
+public class UncheckedFormPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7692206600497076397L;
+
 	/**
 	 *未审批寄件单
 	 */

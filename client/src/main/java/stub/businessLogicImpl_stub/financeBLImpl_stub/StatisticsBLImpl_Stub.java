@@ -18,10 +18,15 @@ public class StatisticsBLImpl_Stub implements StatisticsBLSevice{
 	
 	public List<ReceivableVO> getReceivableList(String startDate,String endDate) {
 		List<ReceivableVO> receivablevo = new ArrayList<ReceivableVO>();
-		for(int i=0;i<statistics.getReceivableList(startDate, endDate).size();i++){
-			receivablevo.add(receivablePOToreceivableVO(statistics.getReceivableList
-					(startDate, endDate).get(i)));
+		try{
+			for(int i=0;i<statistics.getReceivableList(startDate, endDate).size();i++){
+				receivablevo.add(receivablePOToreceivableVO(statistics.getReceivableList
+						(startDate, endDate).get(i)));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
+		
 		return receivablevo;
 	}
 	

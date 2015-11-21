@@ -1,9 +1,16 @@
 package po.financePO;
+
+import java.io.Serializable;
+
 /**
  * 记录了付款单的信息
  * @author 张仁知
  */
-public class PaymentPO {
+public class PaymentPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3743405899224889595L;
 	/**
 	 * 付款日期
 	 */
