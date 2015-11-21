@@ -1,5 +1,6 @@
 package dataService.transitionDataService;
 
+import java.rmi.Remote;
 import java.util.List;
 
 import po.transitionPO.TransferringPO;
@@ -8,7 +9,7 @@ import po.transitionPO.TransferringPO;
  *description:数据服务层为中转中心中转信息管理提供的服务 
  * @author 阮威威
  */
-public interface TransferringDataService{
+public interface TransferringDataService extends Remote{
 	
 	/**
 	 * description:添加新的中转单

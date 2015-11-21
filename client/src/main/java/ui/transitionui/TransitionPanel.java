@@ -14,14 +14,14 @@ import ui.baseui.UserImagePanel;
 import ui.baseui.UserPanel;
 import ui.mainui.LoginPanel;
 import ui.transitionui.loadingui.AddLoadingPanel;
-import ui.transitionui.loadingui.FindLoadingPanel1;
-import ui.transitionui.loadingui.ModifyLoadingPanel1;
+import ui.transitionui.loadingui.FindLoadingPanel;
+import ui.transitionui.loadingui.ModifyLoadingPanel;
 import ui.transitionui.receivingui.AddReceivingPanel;
-import ui.transitionui.receivingui.FindReceivingPanel1;
-import ui.transitionui.receivingui.ModifyReceivingPanel1;
+import ui.transitionui.receivingui.FindReceivingPanel;
+import ui.transitionui.receivingui.ModifyReceivingPanel;
 import ui.transitionui.transferringui.AddTransferringPanel;
-import ui.transitionui.transferringui.FindTransferringPanel1;
-import ui.transitionui.transferringui.ModifyTransferringPanel1;
+import ui.transitionui.transferringui.FindTransferringPanel;
+import ui.transitionui.transferringui.ModifyTransferringPanel;
 import ui.transitionui.transferringui.SeeRepositoryPanel;
 import ui.viewcontroller.ViewController;
 
@@ -189,6 +189,7 @@ public class TransitionPanel extends UserPanel {
 				add(detail);
 				//重新布局
 				revalidate();
+				repaint();
 			}
 		});
 		
@@ -200,7 +201,7 @@ public class TransitionPanel extends UserPanel {
 				//设置当前的细节信息面板不可见
 				detail.setVisible(false);
 				//设置细节信息面板为将要显示的的界面
-				detail = new ModifyLoadingPanel1();
+				detail = new ModifyLoadingPanel();
 				//将细节信息添加到主面板
 				add(detail);
 				//重新布局
@@ -215,7 +216,7 @@ public class TransitionPanel extends UserPanel {
 				//设置当前的细节信息面板不可见
 				detail.setVisible(false);
 				//设置细节信息面板为将要显示的的界面
-				detail = new FindLoadingPanel1();
+				detail = new FindLoadingPanel();
 				//将细节信息添加到主面板
 				add(detail);
 				//重新布局
@@ -245,7 +246,7 @@ public class TransitionPanel extends UserPanel {
 				//设置当前的细节信息面板不可见
 				detail.setVisible(false);
 				//设置细节信息面板为将要显示的的界面
-				detail = new ModifyTransferringPanel1();
+				detail = new ModifyTransferringPanel();
 				//将细节信息添加到主面板
 				add(detail);
 				//重新布局
@@ -260,7 +261,7 @@ public class TransitionPanel extends UserPanel {
 				//设置当前的细节信息面板不可见
 				detail.setVisible(false);
 				//设置细节信息面板为将要显示的的界面
-				detail = new FindTransferringPanel1();
+				detail = new FindTransferringPanel();
 				//将细节信息添加到主面板
 				add(detail);
 				//重新布局
@@ -305,7 +306,7 @@ public class TransitionPanel extends UserPanel {
 				//设置当前的细节信息面板不可见
 				detail.setVisible(false);
 				//设置细节信息面板为将要显示的的界面
-				detail = new ModifyReceivingPanel1();
+				detail = new ModifyReceivingPanel();
 				//将细节信息添加到主面板
 				add(detail);
 				//重新布局
@@ -320,7 +321,7 @@ public class TransitionPanel extends UserPanel {
 				//设置当前的细节信息面板不可见
 				detail.setVisible(false);
 				//设置细节信息面板为将要显示的的界面
-				detail = new FindReceivingPanel1();
+				detail = new FindReceivingPanel();
 				//将细节信息添加到主面板
 				add(detail);
 				//重新布局

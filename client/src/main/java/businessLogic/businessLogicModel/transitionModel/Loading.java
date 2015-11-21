@@ -9,10 +9,10 @@ import vo.transitionVO.LoadingVO;
 public class Loading {
 	public LoadingVO findLoadingFormBL(String loadingNumber) {
 		// TODO Auto-generated method stub
-		ArrayList<String>  alldeliveryid = new ArrayList<String>();
+		ArrayList<String>  alldeliveryid = new ArrayList<>();
 		alldeliveryid.add("1234567890");
 		alldeliveryid.add("0987654321");
-		LoadingVO loadingVO =new LoadingVO("12312311111", "123", LoadingType.PLANE, "212453", "haha", "xixi", alldeliveryid);
+		LoadingVO loadingVO =new LoadingVO("12312311111", "123", LoadingType.TRAIN, "212453", "haha", "xixi", alldeliveryid);
 		loadingVO.setVerifyResult(true);
 		return loadingVO;
 	}
@@ -41,8 +41,8 @@ public class Loading {
 			loadingVO.seterrorMsg("到达地不能为空");
 			return false;
 		}
-		if (loadingVO.getwayid()==null) {
-			loadingVO.seterrorMsg("装运方式编号不能为空");
+		if (loadingVO.getwayid()==null||loadingVO.getwayid().length()!=9) {
+			loadingVO.seterrorMsg("装运方式编号不能为空或编号输入错误");
 			return false;
 		}
 		if (loadingVO.getsupervisionid()==null) {

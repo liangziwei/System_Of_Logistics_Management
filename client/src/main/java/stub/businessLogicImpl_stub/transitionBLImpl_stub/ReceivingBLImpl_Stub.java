@@ -35,4 +35,10 @@ public class ReceivingBLImpl_Stub implements ReceivingBLService{
 				receivingPO.getarrivalid(), receivingPO.getstate());
 	}
 
+	@Override
+	public boolean verify(ReceivingVO receivingVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

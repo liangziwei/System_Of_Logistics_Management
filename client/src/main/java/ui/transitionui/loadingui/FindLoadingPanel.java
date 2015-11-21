@@ -1,6 +1,7 @@
 package ui.transitionui.loadingui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,9 +20,12 @@ import businessLogicService.transitionBLService.LoadingBLService;
 import ui.baseui.DetailPanel;
 import vo.transitionVO.LoadingVO;
 
-public class FindLoadingPanel1 extends DetailPanel{
+public class FindLoadingPanel extends DetailPanel{
 	private LoadingBLService loadingservice = new LoadingController();
-	
+	//添加下拉框
+	private JScrollPane jScrollPane =new JScrollPane();
+	private JPanel container = new JPanel();
+	//组件
 	private JLabel loadingid = new JLabel("装运编号");
 	
 	private JLabel arrivalid = new JLabel("到达地");
@@ -86,28 +90,35 @@ public class FindLoadingPanel1 extends DetailPanel{
 	
 	private static final int BUTTON_H = 30;
 	
-	public FindLoadingPanel1() {
+	public FindLoadingPanel() {
 		// TODO Auto-generated constructor stub
 		super();
+		//下拉框设置
+		container.setLayout(null);
+		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
+		jScrollPane.setViewportView(this.container);
+		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		super.add(jScrollPane);
 		
 		//查询的相关组件
 		loadingid.setBounds(AddLoadingPanel.START_X, AddLoadingPanel.START_Y, AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
-		this.add(this.loadingid);
+		this.container.add(this.loadingid);
 		loadingidText.setBounds(loadingid.getX()+loadingid.getWidth()+AddLoadingPanel.COMPONENT_GAP_X,loadingid.getY(),
 				AddLoadingPanel.TEXTid_W,AddLoadingPanel.TEXT_H);
-		this.add(this.loadingidText);
+		this.container.add(this.loadingidText);
 		find.setBounds(loadingidText.getX()+loadingidText.getWidth()+AddLoadingPanel.COMPONENT_GAP_X,loadingid.getY(),
 				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
-		this.add(find);
+		this.container.add(find);
 		cancle.setBounds(find.getX()+find.getWidth()+AddLoadingPanel.COMPONENT_GAP_X, loadingid.getY(), 
 				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
-		this.add(cancle);
+		this.container.add(cancle);
 		
 		//信息面板的相关操作
 		this.infoPanel.setBounds(loadingid.getX(),loadingid.getY()+loadingid.getHeight()+COMPONENT_GAP_Y,
 				AddLoadingPanel.DETAIL_PANEL_W,AddLoadingPanel.START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H);
 		this.infoPanel.setLayout(null);
-		this.add(infoPanel);
+		this.container.add(infoPanel);
 		this.infoPanel.setVisible(false);
 		//初始化信息面板
 		this.initUI();
@@ -117,7 +128,7 @@ public class FindLoadingPanel1 extends DetailPanel{
 						(AddLoadingPanel.BUTTON_W<<2), AddLoadingPanel.BUTTON_W);
 		this.state.setFont(AddLoadingPanel.WORD_FONT);
 		this.state.setForeground(Color.RED);
-		this.add(state);
+		this.container.add(state);
 		//添加事件监听
 		this.addListener();
 	

@@ -1,5 +1,6 @@
 package po.transitionPO;
 
+import java.io.Serializable;
 import java.util.List;
 
 import constant.LoadingType;
@@ -8,8 +9,13 @@ import constant.LoadingType;
  * 记录了装运单的信息
  * @author 阮威威
  */
-public class LoadingPO {
+public class LoadingPO implements Serializable{
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8421592450936238542L;
 	/**
 	 * 装运编号（中转中心编号+日期+0000四位数字）
 	 */

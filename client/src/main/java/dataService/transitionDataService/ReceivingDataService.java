@@ -1,12 +1,14 @@
 package dataService.transitionDataService;
 
+import java.rmi.Remote;
+
 import po.transitionPO.ReceivingPO;
 
 /**
  *description:数据服务层为中转中心货物接收信息管理提供的服务 
  * @author 阮威威
  */
-public interface ReceivingDataService {
+public interface ReceivingDataService extends Remote{
 	
 	/**
 	 * description:添加新的货物接收单信息
