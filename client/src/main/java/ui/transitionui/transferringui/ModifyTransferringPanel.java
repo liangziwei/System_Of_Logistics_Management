@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -17,11 +18,12 @@ import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.transitionController.TransferringController;
 import businessLogicService.transitionBLService.TransferringBLService;
+import constant.LoadingType;
 import ui.baseui.DetailPanel;
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.transitionVO.TransferringVO;
 
-public class ModifyTransferringPanel extends DetailPanel{
+public class ModifyTransferringPanel extends DetailPanel {
 	private TransferringBLService transferringBLService = new TransferringController();
 
 	// 添加下拉框
@@ -60,9 +62,15 @@ public class ModifyTransferringPanel extends DetailPanel{
 
 	private JButton cancle1 = new JButton("取消查询");
 
+	private JButton ok = new JButton("确定");
+
+	private JButton cancle2 = new JButton("取消");
+
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
-	private JLabel state = new JLabel("", JLabel.CENTER);
+	private JLabel state1 = new JLabel("", JLabel.CENTER);
+	
+	private JLabel state2 = new JLabel("", JLabel.CENTER);
 
 	public static final int LABEL_W = 80;
 
@@ -99,6 +107,7 @@ public class ModifyTransferringPanel extends DetailPanel{
 	 * 是否为第一次按确认按钮
 	 */
 	private boolean isFirstEnsure = true;
+
 	public ModifyTransferringPanel() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -109,53 +118,84 @@ public class ModifyTransferringPanel extends DetailPanel{
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
 		super.add(jScrollPane);
-		//添加查询组件
+		// 添加查询组件
 		transferringid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		container.add(transferringid);
-		transferringidText.setBounds(transferringid.getX()+transferringid.getWidth()+COMPONENT_GAP_X, transferringid.getY(), TEXTid_W, TEXT_H);
+		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,
+				transferringid.getY(), TEXTid_W, TEXT_H);
 		container.add(transferringidText);
-		find.setBounds(transferringidText.getX()+transferringidText.getWidth()+COMPONENT_GAP_X, transferringidText.getY(), LABEL_W, LABEL_H);
+		find.setBounds(transferringidText.getX() + transferringidText.getWidth() + COMPONENT_GAP_X,
+				transferringidText.getY(), LABEL_W, LABEL_H);
 		container.add(find);
-		cancle1.setBounds(find.getX()+find.getWidth()+COMPONENT_GAP_X, find.getY(), LABEL_W, LABEL_H);
+		cancle1.setBounds(find.getX() + find.getWidth() + COMPONENT_GAP_X, find.getY(), LABEL_W, LABEL_H);
 		container.add(cancle1);
 		// 主面板
-		this.infoPanel.setBounds(transferringid.getX(), transferringid.getY()+transferringid.getHeight()+COMPONENT_GAP_Y, DETAIL_PANEL_W,
-						START_Y + (LABEL_H + COMPONENT_GAP_Y) * 6 + Area_H - 40);
+		this.infoPanel.setBounds(transferringid.getX(),
+				transferringid.getY() + transferringid.getHeight() + COMPONENT_GAP_Y, DETAIL_PANEL_W,
+				START_Y + (LABEL_H + COMPONENT_GAP_Y) * 5 + Area_H - 40);
 		this.infoPanel.setLayout(null);
+		this.infoPanel.setVisible(false);
+		container.add(this.infoPanel);
 		// 初始化信息面板
 		this.initUI();
-		//状态信息
-		this.state.setBounds(transferringid.getX(),transferringid.getY()+transferringid.getHeight()+AddLoadingPanel.COMPONENT_GAP_Y,
-								(AddLoadingPanel.BUTTON_W<<2), AddLoadingPanel.BUTTON_W);
-		this.state.setFont(AddLoadingPanel.WORD_FONT);
-		this.state.setForeground(Color.RED);
-		this.container.add(state);
+
+		// 按钮面板
+		this.buttonPanel.setBounds(AddLoadingPanel.START_X + LABEL_W + COMPONENT_GAP_X + TEXTid_W,
+				infoPanel.getY() + infoPanel.getHeight(), (BUTTON_W << 1) + COMPONENT_GAP_Y, BUTTON_H);
+		this.buttonPanel.setVisible(false);
+		this.buttonPanel.setLayout(null);
+		// 确定按钮
+		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
+		this.ok.setFont(WORD_FONT);
+		// 取消按钮
+		this.cancle2.setBounds(BUTTON_W + COMPONENT_GAP_Y, 0, BUTTON_W, BUTTON_H);
+		this.cancle2.setFont(WORD_FONT);
+		this.buttonPanel.add(this.ok);
+		this.buttonPanel.add(this.cancle2);
+		cancle2.setVisible(false);
+		this.container.add(buttonPanel);
+		this.buttonPanel.setVisible(false);
+
+		// 状态信息
+		this.state1.setBounds(transferringid.getX(),
+				transferringid.getY() + transferringid.getHeight() + AddLoadingPanel.COMPONENT_GAP_Y,
+				(AddLoadingPanel.BUTTON_W << 2), AddLoadingPanel.BUTTON_W);
+		this.state1.setFont(AddLoadingPanel.WORD_FONT);
+		this.state1.setForeground(Color.RED);
+		this.container.add(state1);
+		
+		//状态信息2
+		this.state2.setBounds(AddLoadingPanel.START_X, this.buttonPanel.getY() - BUTTON_H, (BUTTON_W<<2), BUTTON_W);
+		this.state2.setFont(WORD_FONT);
+		this.state2.setForeground(Color.RED);
+		this.container.add(state2);
+		this.state2.setVisible(false);
 		// 添加事件监听
 		this.addListener();
-		
-		
+
 	}
-	
-	private void initUI(){
-		
+
+	private void initUI() {
 		JLabel apart1 = new JLabel("-");
 		JLabel apart2 = new JLabel("-");
-		loadingdate.setBounds(0,0, LABEL_W, LABEL_H);
+		loadingdate.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(loadingdate);
 		loadingdateTextyear.setBounds(loadingdate.getX() + loadingdate.getWidth() + COMPONENT_GAP_X, loadingdate.getY(),
-				TEXT_W/3, TEXT_H);
+				TEXT_W / 3, TEXT_H);
 		this.infoPanel.add(loadingdateTextyear);
-		apart1.setBounds(loadingdateTextyear.getX()+loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10, LABEL_H);
+		apart1.setBounds(loadingdateTextyear.getX() + loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10,
+				LABEL_H);
 		this.infoPanel.add(apart1);
-		loadingdateTextmonth.setBounds(apart1.getX()+apart1.getWidth(),apart1.getY(),TEXT_W/3,TEXT_H);
+		loadingdateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 3, TEXT_H);
 		this.infoPanel.add(loadingdateTextmonth);
-		apart2.setBounds(loadingdateTextmonth.getX()+loadingdateTextmonth.getWidth(),loadingdateTextmonth.getY(),10,LABEL_H);
+		apart2.setBounds(loadingdateTextmonth.getX() + loadingdateTextmonth.getWidth(), loadingdateTextmonth.getY(), 10,
+				LABEL_H);
 		this.infoPanel.add(apart2);
-		loadingdateTextday.setBounds(apart2.getX()+apart2.getWidth(), apart2.getY(), TEXT_W/3, TEXT_H);
+		loadingdateTextday.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 3, TEXT_H);
 		this.infoPanel.add(loadingdateTextday);
-		
-		way.setBounds(loadingdateTextday.getX() + loadingdateTextday.getWidth() + COMPONENT_GAP_X, loadingdateTextday.getY(),
-				LABEL_W, LABEL_H);
+
+		way.setBounds(loadingdateTextday.getX() + loadingdateTextday.getWidth() + COMPONENT_GAP_X,
+				loadingdateTextday.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(way);
 		loadingway.setBounds(way.getX() + way.getWidth() + COMPONENT_GAP_X, way.getY(), TEXT_W, TEXT_H);
 		this.infoPanel.add(loadingway);
@@ -214,30 +254,41 @@ public class ModifyTransferringPanel extends DetailPanel{
 		fareText.setEditable(false);
 		this.infoPanel.add(fareText);
 	}
-	
-	private void addListener(){
+
+	private void addListener() {
 		find.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String transferringID = transferringidText.getText().trim();
 				TransferringVO transferringVO = transferringBLService.findTransferringFormBL(transferringID);
-				if (transferringVO.getVerifyResult()) {
-					//设置当前的信息面板可见
+				if (transferringVO!=null) {
+					// 设置当前的信息面板可见
 					infoPanel.setVisible(true);
-					//设置细节信息面板为将要显示的内容
+					// 设置细节信息面板为将要显示的内容
 					setinfo(transferringVO);
-					//设置相关面板可见
-					state.setVisible(false);
+					// 设置相关面板可见
+					buttonPanel.setVisible(true);
+					state2.setVisible(true);
+					
+					state1.setVisible(false);
+					// 重新布局
+					revalidate();
+				} else {
+					//设置当前的信息面板不可见
+					infoPanel.setVisible(false);
+					//设置相关面板不可见
+					buttonPanel.setVisible(false);
+					state2.setVisible(false);
+					
+					state1.setVisible(true);
 					//重新布局
 					revalidate();
-				}
-				else{
-					showState("中转单编号错误或中转单编号不存在！");
+					showState1("中转单编号错误或中转单编号不存在！");
 				}
 			}
 		});
-		
+
 		cancle1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -245,9 +296,137 @@ public class ModifyTransferringPanel extends DetailPanel{
 				transferringidText.setText("");
 			}
 		});
+		
+		ok.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//创建中转单对象
+				TransferringVO transferringvo = creatTransferringVO();
+				//验证输入是否成功
+				boolean result = transferringBLService.verify(transferringvo);
+				
+				if (result) {
+					throughVerifyOperation(transferringvo);
+					cancle2.setVisible(true);
+					fare.setForeground(Color.red);
+				}
+				else {
+					verifyFailOperation(transferringvo);
+				}
+				
+				//刷新页面
+				repaint();
+			}
+			
+		});
+		
+		cancle2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//回到第一次点击确定的状态
+				isFirstEnsure = true;
+				//使提示信息消失
+				state2.setText("");
+				//使信息可编辑
+				enableComponents();
+				cancle2.setVisible(false);
+				//重置运费
+				fareText.setText("");
+				fare.setForeground(Color.black);
+			}
+		});
 	}
 	
-	private void setinfo(TransferringVO transferringVO){
+	private void throughVerifyOperation(TransferringVO transferringVO){
+		//使所有组件不可编辑
+		disableComponents();
+		//计算运费
+		String thefare = transferringBLService.tranferringFare(transferringVO.getdepartureid(),transferringVO.getarrivalid())+"";
+		//显示运费
+		fareText.setText(thefare);
+		if(isFirstEnsure) {
+			showState2("请再次确认信息，无误后按确定，否则按取消");
+			isFirstEnsure = false;
+		}
+		else {
+			//添加装运信息
+			boolean save =transferringBLService.modifyTransferringFormBL(transferringVO);
+			if(save) {		//保存成功
+				showState2("订单保存成功");
+				disableComponents();
+			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
+				showState2("订单保存失败");
+			}
+		}
+	}
+	
+	private void verifyFailOperation(TransferringVO transferringVO) {
+		//提示修改意见
+		showState2(transferringVO.geterrorMsg());
+	}
+	
+	private TransferringVO creatTransferringVO() {
+		String transfer = transferringidText.getText().trim();
+		String date = loadingdateTextyear.getText().trim()+" -"+loadingdateTextmonth.getText().trim()
+				+" -"+loadingdateTextday.getText().trim()+" ";
+		String way = (String) loadingway.getSelectedItem();
+		LoadingType WAY =null;
+		switch (way) {
+		case "飞机":
+			WAY = LoadingType.PLANE;
+			break;
+		case "火车":
+			WAY = LoadingType.TRAIN;
+			break;
+		case "汽车":
+			WAY = LoadingType.TRUCK;
+			break;
+		}
+		String wayid = loadingwayidText.getText().trim();
+		String depart = departureidText.getText().trim();
+		String arrive = arrivalidText.getText().trim();
+		String Supervision = supervisionidText.getText().trim();
+		String theContainer = containeridText.getText().trim();
+		String alldeli = alldeliveryidText.getText();
+		String[] alldeli1 = alldeli.split("\n");
+		List<String> all = new ArrayList<String>();
+		for (String q : alldeli1) {
+			all.add(q);
+		}
+		TransferringVO transferringvo = new TransferringVO(date, transfer, WAY, wayid, depart, arrive, Supervision, theContainer, all);
+		return transferringvo;
+	}
+	
+	private void disableComponents() {
+		this.loadingdateTextyear.setEditable(false);
+		this.loadingdateTextmonth.setEditable(false);
+		this.loadingdateTextday.setEditable(false);
+		this.loadingway.setEnabled(false);
+		this.loadingwayidText.setEditable(false);
+		this.departureidText.setEditable(false);
+		this.arrivalidText.setEditable(false);
+		this.supervisionidText.setEditable(false);
+		this.containeridText.setEditable(false);
+		this.alldeliveryidText.setEditable(false);
+	}
+
+	private void enableComponents() {
+		this.loadingdateTextyear.setEditable(true);
+		this.loadingdateTextmonth.setEditable(true);
+		this.loadingdateTextday.setEditable(true);
+		this.loadingway.setEnabled(true);
+		this.loadingwayidText.setEditable(true);
+		this.departureidText.setEditable(true);
+		this.arrivalidText.setEditable(true);
+		this.supervisionidText.setEditable(true);
+		this.containeridText.setEditable(true);
+		this.alldeliveryidText.setEditable(true);
+	}
+	
+
+	private void setinfo(TransferringVO transferringVO) {
 		String LoadingDate = transferringVO.getloadingdate();
 		String[] Date = LoadingDate.split("-");
 		this.loadingdateTextyear.setText(Date[0].trim());
@@ -270,14 +449,18 @@ public class ModifyTransferringPanel extends DetailPanel{
 		this.supervisionidText.setText(transferringVO.getsupervisionid().trim());
 		this.containeridText.setText(transferringVO.getcontainerid().trim());
 		List<String> deliveryID = transferringVO.getalldeliveryid();
-		for (String str: deliveryID){
-			alldeliveryidText.append(str+"\n");
+		for (String str : deliveryID) {
+			alldeliveryidText.append(str + "\n");
 		}
-		this.fareText.setText(transferringVO.getfare()+"");	
+		this.fareText.setText(transferringVO.getfare() + "");
 	}
-	
-	private void showState(String msg) {
-		this.state.setText(msg);
+
+	private void showState1(String msg) {
+		this.state1.setText(msg);
+		this.repaint();
+	}
+	private void showState2(String msg) {
+		this.state2.setText(msg);
 		this.repaint();
 	}
 }

@@ -16,7 +16,7 @@ public class TransferringController implements TransferringBLService{
 
 	public TransferringVO findTransferringFormBL(String transferringNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		return transferring.findTransferringFormBL(transferringNumber);
 	}
 
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {

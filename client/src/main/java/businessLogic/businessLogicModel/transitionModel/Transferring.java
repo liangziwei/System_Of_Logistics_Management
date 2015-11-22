@@ -1,20 +1,38 @@
 package businessLogic.businessLogicModel.transitionModel;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 
+import dataService.transitionDataService.TransferringDataService;
 import mock.object.MockTransferring;
+import network.RMI;
 import po.transitionPO.TransferringPO;
 import vo.transitionVO.TransferringVO;
 
 public class Transferring {
 //	MockTransferring mockTransferring = new MockTransferring();
+	private TransferringDataService transferringDataService = RMI.<TransferringDataService>getDataService("transferring");
 	
 	public TransferringVO findTransferringFormBL(String transferringNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		TransferringPO transferringPO = null;
+		TransferringVO transferringVO = null;
+		try {
+			transferringPO = transferringDataService.FindTransferringFormDT(transferringNumber);
+			if(transferringPO==null){
+				return null;
+			}
+			else {
+				transferringVO = TransferringPOtoTransferringVO(transferringPO);				
+				transferringVO.setVerifyResult(true);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return transferringVO;
 	}
 
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {

@@ -1,14 +1,18 @@
 package po.transitionPO;
 
+import java.io.Serializable;
 import java.util.List;
 
-import constant.City;
 import constant.LoadingType;
 /**
  * 记录了装运单的信息
  * @author 阮威威
  */
-public class TransferringPO {
+public class TransferringPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6746928238562531266L;
 	/**
 	 * 装车（机）日期（yyyy-mm-dd）
 	 */

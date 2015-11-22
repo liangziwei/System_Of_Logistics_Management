@@ -118,6 +118,8 @@ public class FindTransferringPanel extends DetailPanel{
 		this.infoPanel.setBounds(transferringid.getX(), transferringid.getY()+transferringid.getHeight()+COMPONENT_GAP_Y, DETAIL_PANEL_W,
 						START_Y + (LABEL_H + COMPONENT_GAP_Y) * 6 + Area_H - 40);
 		this.infoPanel.setLayout(null);
+		container.add(infoPanel);
+		this.infoPanel.setVisible(false);
 		// 初始化信息面板
 		this.initUI();
 		//状态信息
@@ -218,7 +220,7 @@ public class FindTransferringPanel extends DetailPanel{
 				// TODO Auto-generated method stub
 				String transferringID = transferringidText.getText().trim();
 				TransferringVO transferringVO = transferringBLService.findTransferringFormBL(transferringID);
-				if (transferringVO.getVerifyResult()) {
+				if (transferringVO!=null) {
 					//设置当前的信息面板可见
 					infoPanel.setVisible(true);
 					//设置细节信息面板为将要显示的内容

@@ -26,7 +26,7 @@ public class Receiving {
 		try {
 			receivingPO = receivingDataService.FindReceivingFormDT(receivingNumber);
 			if(receivingPO==null){
-				result.setVerifyResult(false);
+				return null;
 			}
 			else {
 				result = ReceivingPOtoReceivingVO(receivingPO);				

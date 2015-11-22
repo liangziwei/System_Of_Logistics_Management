@@ -196,7 +196,7 @@ public class FindReceivingPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				String receivingid = transferringidText.getText().trim();
 				ReceivingVO receivingVO = receivingService.findReceivingformBL(receivingid);
-				if (receivingVO.getVerifyResult()) {
+				if (receivingVO!=null) {
 					//设置当前的信息面板可见
 					infoPanel.setVisible(true);
 					//设置细节信息面板为将要显示的内容
