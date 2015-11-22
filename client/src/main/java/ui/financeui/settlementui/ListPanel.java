@@ -4,10 +4,8 @@ import java.awt.Font;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import vo.businessVO.ReceivableVO;
