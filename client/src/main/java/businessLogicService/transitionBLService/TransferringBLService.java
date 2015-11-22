@@ -53,6 +53,15 @@ public interface TransferringBLService {
 	 * @return double, 返回中转单的运费值
 	 * */
 	public double tranferringFare(String CityFrom,String CityTo);
+	/**
+	 * description:判断输入是否正确
+	 * 前置条件：LoadingPanel
+	 * 后置条件：返回是否正确
+	 * 需接口：无
+	 * @param transferringVO,输入的中转单信息
+	 * @return boolean, 返回是否正确
+	 * */
+	public boolean verify(TransferringVO transferringVO);
 	
 	/**
 	 * description:查看库存信息

@@ -101,6 +101,12 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 		}
 		return transferringVOs;
 	}
+
+	@Override
+	public boolean verify(TransferringVO transferringVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 }
