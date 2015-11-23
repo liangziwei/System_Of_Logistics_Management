@@ -31,4 +31,10 @@ public class OutRepositoryController implements OutRepositoryBLService{
 		return transferringBLService.GetTansferringInfoBL(date);
 	}
 
+	@Override
+	public boolean verify(OutRepositoryVO outRepositoryVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

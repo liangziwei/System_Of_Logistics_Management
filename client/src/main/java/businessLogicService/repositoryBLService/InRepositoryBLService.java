@@ -81,4 +81,13 @@ public interface InRepositoryBLService {
 	 * @return int ： 返回仓库的某个区的现存快递数量
 	 * */
 	public int GetRepositoryExist(AreaCodeType ID);
+	/**
+	 * description:判断输入是否正确
+	 * 前置条件：InRepositoryPanel
+	 * 后置条件：返回是否正确
+	 * 需接口：无
+	 * @param inRepository,输入的入库单
+	 * @return boolean ,返回是否正确
+	 * */
+	public boolean verify(InRepositoryVO inRepositoryVO);
 }

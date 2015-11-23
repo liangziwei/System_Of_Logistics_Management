@@ -20,7 +20,7 @@ public class OutRepositoryUI_Driver {
 					+ "（3）查询出库单 (4)查询中转单列表(5)结束");
 			int input = s.nextInt();
 			switch(input){
-			case 1:boolean add =outRepositoryBLService.addOutRepositoryFormBL(new OutRepositoryVO("2015100046", "2015-10-18","广州",LoadingType.TRUCK,"025 1012 0002301",false));
+			case 1:boolean add =outRepositoryBLService.addOutRepositoryFormBL(new OutRepositoryVO("2015100046", "2015-10-18","广州",LoadingType.TRUCK,"025 1012 0002301"));
 			if(add){
 				System.out.println("添加成功");
 			}
@@ -28,7 +28,7 @@ public class OutRepositoryUI_Driver {
 				System.out.println("添加失败");
 			}
 			break;
-			case 2:boolean modify =outRepositoryBLService.modifyOutRepositoryFormBL(new OutRepositoryVO("2015100046", "2015-10-18","广州",LoadingType.TRUCK,"025 1012 0002301",false));
+			case 2:boolean modify =outRepositoryBLService.modifyOutRepositoryFormBL(new OutRepositoryVO("2015100046", "2015-10-18","广州",LoadingType.TRUCK,"025 1012 0002301"));
 			if(modify){
 				System.out.println("修改成功");
 			}

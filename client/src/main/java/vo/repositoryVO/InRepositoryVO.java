@@ -59,7 +59,7 @@ public class InRepositoryVO {
 	 */
 	private boolean isPassed = false;
 	public InRepositoryVO(String deliveryid,String inrepositorydate,String arrivalid,
-			AreaCodeType areaCode,String rowid,String shelfid,String posid,boolean beinrepository) {
+			AreaCodeType areaCode,String rowid,String shelfid,String posid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -69,7 +69,6 @@ public class InRepositoryVO {
 		this.rowid=rowid;
 		this.shelfid=shelfid;
 		this.posid=posid;
-		this.beinrepository=beinrepository;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;

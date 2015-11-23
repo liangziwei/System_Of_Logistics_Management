@@ -54,7 +54,7 @@ public class InRepositoryPO implements Serializable{
 	 */
 	private boolean isPassed = false;
 	public InRepositoryPO(String deliveryid,String inrepositorydate,String arrivalid,
-			AreaCodeType areaCode,String rowid,String shelfid,String posid,boolean beinrepository) {
+			AreaCodeType areaCode,String rowid,String shelfid,String posid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -64,7 +64,6 @@ public class InRepositoryPO implements Serializable{
 		this.rowid=rowid;
 		this.shelfid=shelfid;
 		this.posid=posid;
-		this.beinrepository=beinrepository;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;

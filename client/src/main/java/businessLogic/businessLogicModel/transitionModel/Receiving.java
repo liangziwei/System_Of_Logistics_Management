@@ -51,7 +51,7 @@ public class Receiving {
 	
 	public boolean verifyres(ReceivingVO receivingVO){
 			
-		if(receivingVO.gettransferringid()==null||receivingVO.gettransferringid().length()!=16){
+		if(receivingVO.gettransferringid().equals("")||receivingVO.gettransferringid().length()!=16){
 			receivingVO.seterrorMsg("中转单编号不能为空或输入错误");
 			return false;
 		}
@@ -82,17 +82,17 @@ public class Receiving {
 			return false;
 		}
 		
-		if(receivingVO.gettransitionid()==null||receivingVO.gettransitionid().length()!=4){
+		if(receivingVO.gettransitionid().equals("")||receivingVO.gettransitionid().length()!=4){
 			receivingVO.seterrorMsg("本中转中心编号不能为空或者输入错误");
 			return false;
 		}
 		
-		if (receivingVO.getdepartureid()==null) {
+		if (receivingVO.getdepartureid().equals("")) {
 			receivingVO.seterrorMsg("出发地不能为空");
 			return false;
 		}
 		
-		if (receivingVO.getarrivalid()==null) {
+		if (receivingVO.getarrivalid().equals("")) {
 			receivingVO.seterrorMsg("到达地不能为空");
 			return false;
 		}

@@ -62,7 +62,7 @@ public class Transferring {
 	}
 	
 	public boolean verify(TransferringVO transferringVO) {
-		if (transferringVO.gettransferringid() == null || transferringVO.gettransferringid().length() != 15) {
+		if (transferringVO.gettransferringid() .equals("") || transferringVO.gettransferringid().length() != 15) {
 			transferringVO.seterrorMsg("中转单编号为空或输入错误");
 			return false;
 		}
@@ -92,23 +92,23 @@ public class Transferring {
 			return false;
 		}
 		
-		if (transferringVO.getwayid()==null||transferringVO.getwayid().length()!=9) {
+		if (transferringVO.getwayid().equals("")||transferringVO.getwayid().length()!=9) {
 			transferringVO.seterrorMsg("装运方式编号不能为空或输入错误");
 			return false;
 		}
-		if (transferringVO.getdepartureid()==null) {
+		if (transferringVO.getdepartureid().equals("")) {
 			transferringVO.seterrorMsg("出发地不能为空");
 			return false;
 		}
-		if (transferringVO.getarrivalid()==null) {
+		if (transferringVO.getarrivalid().equals("")) {
 			transferringVO.seterrorMsg("到达地不能为空");
 			return false;
 		}
-		if (transferringVO.getsupervisionid()==null) {
+		if (transferringVO.getsupervisionid().equals("")) {
 			transferringVO.seterrorMsg("监装员不能为空");
 			return false;
 		}
-		if (transferringVO.getcontainerid()==null) {
+		if (transferringVO.getcontainerid().equals("")) {
 			transferringVO.seterrorMsg("货柜号不能为空");
 			return false;
 		}

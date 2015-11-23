@@ -46,7 +46,7 @@ public class OutRepositoryPO implements Serializable{
 	 */
 	private boolean isPassed = false;
 	public OutRepositoryPO(String deliveryid,String outrepositorydate,String arrivalid,
-			LoadingType way,String loadingid,boolean beinrepository) {
+			LoadingType way,String loadingid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -54,7 +54,6 @@ public class OutRepositoryPO implements Serializable{
 		this.arrivalid=arrivalid;
 		this.way=way;
 		this.loadingid=loadingid;
-		this.beinrepository=beinrepository;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;
