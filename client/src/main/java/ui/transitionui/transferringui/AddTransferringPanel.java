@@ -322,11 +322,18 @@ public class AddTransferringPanel extends DetailPanel {
 		String arrival = arrivalidText.getText().trim();
 		String supervision = supervisionidText.getText().trim();
 		String con = containeridText.getText().trim();
-		String alldeli = alldeliveryidText.getText();
-		String[] alldeli1 = alldeli.split("\n");
+		
+		
 		List<String> all = new ArrayList<String>();
-		for (String q : alldeli1) {
-			all.add(q);
+		String alldeli = alldeliveryidText.getText();
+		if (alldeli.equals("")) {
+			all = null;
+		}
+		else{
+			String[] alldeli1 = alldeli.split("\n");
+			for(String q:alldeli1){
+				all.add(q);
+			}
 		}
 		TransferringVO transfer = new TransferringVO(date, transferringid, loadingWAY, loadingWAYid, departure, arrival,
 				supervision, con, all);

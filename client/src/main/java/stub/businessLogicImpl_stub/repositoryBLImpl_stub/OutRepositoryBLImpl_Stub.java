@@ -86,11 +86,17 @@ public class OutRepositoryBLImpl_Stub implements OutRepositoryBLService{
 	private OutRepositoryVO OutRepositoryPOtoOutRepositoryVO(OutRepositoryPO outRepositoryPO){
 		return new OutRepositoryVO(outRepositoryPO.getdeliveryid(), outRepositoryPO.getoutrepositorydate(), 
 				outRepositoryPO.getarrivalid(), outRepositoryPO.getway(), 
-				outRepositoryPO.getloadingid(), outRepositoryPO.getbeinrepository());
+				outRepositoryPO.getloadingid());
 	}
 	private OutRepositoryPO OutRepositoryVOtoOutRepositoryPO(OutRepositoryVO outRepositoryVO){
 		return new OutRepositoryPO(outRepositoryVO.getdeliveryid(), outRepositoryVO.getoutrepositorydate(), 
 				outRepositoryVO.getarrivalid(), outRepositoryVO.getway(), 
-				outRepositoryVO.getloadingid(), outRepositoryVO.getbeinrepository());
+				outRepositoryVO.getloadingid());
+	}
+
+	@Override
+	public boolean verify(OutRepositoryVO outRepositoryVO) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

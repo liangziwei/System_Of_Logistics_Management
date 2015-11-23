@@ -33,28 +33,28 @@ public class Loading {
 	}
 	
 	public boolean verifyres(LoadingVO loadingVO) {
-		if(loadingVO.getloadingid()==null||loadingVO.getloadingid().length()!=11){
+		if(loadingVO.getloadingid().equals("")||loadingVO.getloadingid().length()!=11){
 			loadingVO.seterrorMsg("装运单编号不能为空或装运单编号错误");
 			return false;
 		}
-		if(loadingVO.getarrivalid()==null){
+		if(loadingVO.getarrivalid().equals("")){
 			loadingVO.seterrorMsg("到达地不能为空");
 			return false;
 		}
-		if (loadingVO.getwayid()==null||loadingVO.getwayid().length()!=9) {
+		if (loadingVO.getwayid().equals("")||loadingVO.getwayid().length()!=9) {
 			loadingVO.seterrorMsg("装运方式编号不能为空或编号输入错误");
 			return false;
 		}
-		if (loadingVO.getsupervisionid()==null) {
+		if (loadingVO.getsupervisionid().equals("")) {
 			loadingVO.seterrorMsg("监装员不可为空");
 			return false;
 		}
-		if (loadingVO.getsupercargoid()==null) {
+		if (loadingVO.getsupercargoid().equals("")) {
 			loadingVO.seterrorMsg("押运员不可为空");
 			return false;
 		}
-		if (loadingVO.getarrivalid().isEmpty()) {
-			loadingVO.seterrorMsg("装运单编号不能为空");
+		if (loadingVO.getalldeliveryid()==null) {
+			loadingVO.seterrorMsg("所有订单条形码号不能为空");
 			return false;
 		}
 		return true;

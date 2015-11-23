@@ -370,13 +370,18 @@ public class ModifyLoadingPanel extends DetailPanel {
 			way1 = LoadingType.TRUCK;
 			break;
 		}
-		String alldeli = alldeliveryidArea.getText();
-		String[] alldeli1 = alldeli.split("\n");
 		List<String> all = new ArrayList<String>();
-		for (String q : alldeli1) {
-			all.add(q);
+		String alldeli = alldeliveryidArea.getText();
+		if (alldeli.equals("")) {
+			all = null;
 		}
-
+		else{
+			String[] alldeli1 = alldeli.split("\n");
+			for(String q:alldeli1){
+				all.add(q);
+			}
+		}
+		
 		LoadingVO loadingVO = new LoadingVO(loadid, arriveid, way1, Wayid, Supervis, Supercar, all);
 		return loadingVO;
 	}

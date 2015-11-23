@@ -112,7 +112,7 @@ public class PaymentPanel extends DetailPanel{
 						   disablePanel();
 						   result.setText("信息输入格式有错误，请重新输入");
 					}
-					
+					cancel.setVisible(true);
 				}else{
 					if(isOver){
 						result.setVisible(false);

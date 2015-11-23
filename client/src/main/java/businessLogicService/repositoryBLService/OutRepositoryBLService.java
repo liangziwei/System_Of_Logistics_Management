@@ -52,4 +52,13 @@ public interface OutRepositoryBLService {
 	 * @return List<TransferringVO>, 返回中转单列表信息的值对象，具体参照TransferringVO
 	 * */
 	public List<TransferringVO> GetTransferringInfo(String date);
+	/**
+	 * description:判断输入是否正确
+	 * 前置条件：InRepositoryPanel
+	 * 后置条件：返回是否正确
+	 * 需接口：无
+	 * @param outRepository,输入的出库单
+	 * @return boolean ,返回是否正确
+	 * */
+	public boolean verify(OutRepositoryVO outRepositoryVO);
 }

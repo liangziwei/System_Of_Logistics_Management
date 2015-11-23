@@ -8,8 +8,6 @@ import java.rmi.server.UnicastRemoteObject;
 import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
 import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_Stub;
 import stub.dataImpl_stub.businessDataImpl_stub.PaymentDataImpl_Stub;
-import dataImpl.businessDataImpl.EntruckingDataImpl;
-import dataImpl.businessDataImpl.PaymentDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
@@ -21,7 +19,13 @@ import dataImpl.managerDataImpl.ApprovalFormDataImpl;
 import dataImpl.managerDataImpl.MakeConstantDataImpl;
 import dataImpl.managerDataImpl.OrganizationManagementDataImpl;
 import dataImpl.managerDataImpl.StaffManagementDataImpl;
+import dataImpl.repositoryDataImpl.InRepositoryDataImpl;
+import dataImpl.repositoryDataImpl.ManageRepositoryDataImpl;
+import dataImpl.repositoryDataImpl.OutRepositoryDataImpl;
 import dataImpl.senderDataImpl.InquireDataImpl;
+import dataImpl.transitionDataImpl.LoadingDataImpl;
+import dataImpl.transitionDataImpl.ReceivingDataImpl;
+import dataImpl.transitionDataImpl.TransferringDataImpl;
 import dataService.administratorDataService.AdministratorDataService;
 import dataService.businessDataService.EntruckingDataService;
 import dataService.businessDataService.PaymentDataService;
@@ -36,7 +40,13 @@ import dataService.managerDataService.ApprovalFormDataService;
 import dataService.managerDataService.MakeConstantDataService;
 import dataService.managerDataService.OrganizationManagementDataService;
 import dataService.managerDataService.StaffManagementDataService;
+import dataService.repositoryDataService.InRepositoryDataService;
+import dataService.repositoryDataService.ManageRepositoryDataService;
+import dataService.repositoryDataService.OutRepositoryDataService;
 import dataService.senderDataService.InquireDataService;
+import dataService.transitionDataService.LoadingDataService;
+import dataService.transitionDataService.ReceivingDataService;
+import dataService.transitionDataService.TransferringDataService;
 
 public class RMI {
 	
@@ -118,12 +128,43 @@ public class RMI {
 	}
 	
 	private static void initRepositoryRMI() {
-
+		try {
+			//入库单访问借口
+			InRepositoryDataService inRepository = new InRepositoryDataImpl();
+			InRepositoryDataService inRepository_stub = (InRepositoryDataService) UnicastRemoteObject.exportObject(inRepository,0);
+			registry.bind("inrepository", inRepository_stub);
+			//出库单访问借口
+			OutRepositoryDataService outRepository = new OutRepositoryDataImpl();
+			OutRepositoryDataService outRepository_stub = (OutRepositoryDataService) UnicastRemoteObject.exportObject(outRepository,0);
+			registry.bind("outrepository", outRepository_stub);
+			//库存管理访问借口
+			ManageRepositoryDataService manage = new ManageRepositoryDataImpl();
+			ManageRepositoryDataService manage_stub = (ManageRepositoryDataService) UnicastRemoteObject.exportObject(manage, 0);
+			registry.bind("manage", manage_stub);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	private static void initTransitionRMI() {
-
+		try {
+			//装运单访问借口
+			LoadingDataService loading = new LoadingDataImpl();
+			LoadingDataService loading_stub = (LoadingDataService) UnicastRemoteObject.exportObject(loading,0);
+			registry.bind("loading", loading_stub);
+			//接受单访问借口
+			ReceivingDataService receiving = new ReceivingDataImpl();
+			ReceivingDataService receiving_stub = (ReceivingDataService) UnicastRemoteObject.exportObject(receiving,0);
+			registry.bind("receiving", receiving_stub);
+			//中转单访问借口
+			TransferringDataService transferring = new TransferringDataImpl();
+			TransferringDataService transferring_stub = (TransferringDataService) UnicastRemoteObject.exportObject(transferring,0);
+			registry.bind("transferring", transferring_stub);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
+	
 	
 	private static void initManagerRMI() {
 		try{

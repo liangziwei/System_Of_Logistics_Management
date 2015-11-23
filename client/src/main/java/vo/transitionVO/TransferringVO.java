@@ -51,7 +51,7 @@ public class TransferringVO {
 	/**
 	 * 本次装箱所有货物的订单条形码号
 	 */
-	private List<String> alldeliveryid;
+	private List<String> alldeliveryid = null;
 	/**
 	 * 装运单的运费
 	 */

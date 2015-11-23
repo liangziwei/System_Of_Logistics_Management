@@ -19,6 +19,8 @@ import ui.repositoryui.inoutRep.FindInRepositoryPanel;
 import ui.repositoryui.inoutRep.FindOutRepositoryPanel;
 import ui.repositoryui.inoutRep.ModifyInRepositoryPanel;
 import ui.repositoryui.inoutRep.ModifyOutRepositoryPanel;
+import ui.repositoryui.inoutRep.SeeTransferringListPanel;
+
 import ui.repositoryui.manageRep.CheckDeliveryPanel;
 import ui.repositoryui.manageRep.LookRepsitoryPanel;
 import ui.repositoryui.manageRep.RepositoryWarnPanel;
@@ -43,6 +45,9 @@ public class RepositoryPanel extends UserPanel {
 	private JButton AddOutRepository = new JButton("添加出库单");
 	private JButton ModifyOutRepository = new JButton("修改出库单");
 	private JButton FindOutRepository = new JButton("查询出库单");
+
+	private JButton SeeTransferringList = new JButton("查询中转单列表");
+
 
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 
@@ -71,6 +76,8 @@ public class RepositoryPanel extends UserPanel {
 		DetailButtonOutRepository.add(AddOutRepository);
 		DetailButtonOutRepository.add(ModifyOutRepository);
 		DetailButtonOutRepository.add(FindOutRepository);
+
+		DetailButtonOutRepository.add(SeeTransferringList);
 		// 要展开的按钮
 		OutRepository.setDetailButtons(DetailButtonOutRepository); // 设置（添加）要展开的按钮
 
@@ -279,6 +286,21 @@ public class RepositoryPanel extends UserPanel {
 				detail.setVisible(false);
 				//设置细节信息面板为将要显示的的界面
 				detail = new FindOutRepositoryPanel();
+				//将细节信息添加到主面板
+				add(detail);
+				//重新布局
+				revalidate();
+			}
+		});
+
+		this.SeeTransferringList.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//设置当前的细节信息面板不可见
+				detail.setVisible(false);
+				//设置细节信息面板为将要显示的的界面
+				detail = new SeeTransferringListPanel();
 				//将细节信息添加到主面板
 				add(detail);
 				//重新布局

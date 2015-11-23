@@ -1,14 +1,16 @@
 package businessLogic.businessLogicController.repositoryController;
 
+import businessLogic.businessLogicModel.repositoryModel.InRepository;
 import businessLogicService.repositoryBLService.InRepositoryBLService;
 import constant.AreaCodeType;
 import vo.repositoryVO.InRepositoryVO;
 
 public class InRepositoryController implements InRepositoryBLService{
-
-	public String addInRepositoryFormBL(InRepositoryVO inRepository) {
+	InRepository inRepository = new InRepository();
+	public String addInRepositoryFormBL(InRepositoryVO inRepositoryVO) {
 		// TODO Auto-generated method stub
-		return null;
+		boolean bewarn = this.warnBL(inRepositoryVO);
+		return "false";
 	}
 
 	public String modifyInRepositoryFormBL(InRepositoryVO inRepositoryVO) {
@@ -41,6 +43,9 @@ public class InRepositoryController implements InRepositoryBLService{
 		return 0;
 	}
 	
-	
+	public boolean verify(InRepositoryVO inRepositoryVO) {
+		boolean result = inRepository.verify(inRepositoryVO);
+		return result;	
+	}
 	
 }
