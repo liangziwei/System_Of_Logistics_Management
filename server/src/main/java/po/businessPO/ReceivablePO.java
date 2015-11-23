@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ReceivablePO implements Serializable{
-	
-	private static final long serialVersionUID = 6976620841885362041L;
 	private String date;
 	private double money;
 	private String courier;//快递员

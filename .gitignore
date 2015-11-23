@@ -1,4 +1,3 @@
 /target
 client/target/classes/META-INF/maven/edu.nju.software/client/pom.properties
 client/target/classes/META-INF/maven/edu.nju.software/client/pom.properties
-*.properties

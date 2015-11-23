@@ -12,17 +12,11 @@ public class LoginBL implements LoginBLService{
 //	private AdministratorDataService adminData=new AdministratorDataImpl_Stub();
 	private AdministratorDataService adminData=RMI.<AdministratorDataService>getDataService("administrator");
 
-	public boolean login(String userid, String passward) {
+	public boolean login(String userid, String passward) throws RemoteException {
 		// TODO Auto-generated method stub
-		try {
-			if(passward.equals(adminData.getPassword(userid))){
-			  return true;
-			}else{
-				return false;
-			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(passward.equals(adminData.getPassword(userid))){
+		  return true;
+		}else{
 			return false;
 		}
 	}
