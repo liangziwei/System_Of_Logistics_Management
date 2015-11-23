@@ -13,6 +13,7 @@ import ui.administratorui.AdministratorPanel;
 import ui.businessui.BusinessPanel;
 import ui.deliveryui.DeliveryPanel;
 import ui.financeui.FinancePanel;
+import ui.repositoryui.RepositoryPanel;
 import ui.transitionui.TransitionPanel;
 import ui.viewcontroller.ViewController;
 
@@ -133,6 +134,7 @@ public class LoginPanel extends JPanel{
 					viewController.switchView(TransitionPanel.class.getName());
 					break;
 				case 'F':
+					viewController.switchView(RepositoryPanel.class.getName());
 					break;
 				case 'G':
 					viewController.switchView(FinancePanel.class.getName());
