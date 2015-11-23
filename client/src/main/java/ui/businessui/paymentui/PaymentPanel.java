@@ -81,6 +81,12 @@ public class PaymentPanel extends DetailPanel{
 		this.deliveryidText.setBounds(this.dateText.getX(), this.deliveryid.getY(), TEXT_W, TEXT_H<<2);
 		this.deliveryidText.setFont(WORD_FONT);
 		
+		this.result.setBounds(this.deliveryid.getX()+ LINE_GAP , this.deliveryid.getY() + LABEL_H*6+ LINE_GAP,
+				TEXT_W, TEXT_H);
+		this.setFont(WORD_FONT);
+		this.result.setText("");
+		
+		
 		this.ok.setBounds(this.deliveryid.getX() + TEXT_W, this.deliveryid.getY() + LABEL_H*6+ LINE_GAP,
 				BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
@@ -115,8 +121,9 @@ public class PaymentPanel extends DetailPanel{
 					cancel.setVisible(true);
 				}else{
 					if(isOver){
-						result.setVisible(false);
+						result.setText("");
 						setBlack();
+						enablePanel();
 						isFirstEnsure=true;	
 						isOver=false;
 						
@@ -128,7 +135,7 @@ public class PaymentPanel extends DetailPanel{
 						ArrayList<String> deliveryList=new ArrayList<String>();
 						String [] str=deliveryidStr.split("\n");
 						for(String s:str){
-							System.out.println(s);
+//							System.out.println(s);
 							deliveryList.add(s);
 						}
 						receivableVO=new ReceivableVO(dateStr,Double.parseDouble(moneyStr),courierStr,deliveryList);
@@ -155,13 +162,23 @@ public class PaymentPanel extends DetailPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				//设置取消按钮不可见
-				cancel.setVisible(false);
-				//设置状态为第一次点击确定按钮
-				isFirstEnsure = true;
-				//使组件可编辑
-				enablePanel();
-				//消除提示信息
-				result.setText("");
+				if(ok.getText().equals("提交")){
+					ok.setText("确定");
+					cancel.setVisible(false);
+					enablePanel();
+					isFirstEnsure = true;
+					result.setText("");
+				}else{
+				  cancel.setVisible(false);
+				
+				  //设置状态为第一次点击确定按钮
+				  isFirstEnsure = true;
+				  //使组件可编辑
+				  enablePanel();
+				  //消除提示信息
+				  result.setText("");
+				  
+				}
 				repaint();
 			}
 		});
@@ -176,6 +193,7 @@ public class PaymentPanel extends DetailPanel{
 		this.add(courierText);
 		this.add(deliveryid);
 		this.add(deliveryidText);
+		this.add(result);
 		this.add(ok);
 		this.add(cancel);
 	}
@@ -206,10 +224,10 @@ public class PaymentPanel extends DetailPanel{
 	}
 	
 	private void enablePanel(){
-		this.dateText.setEditable(false);
-		this.moneyText.setEditable(false);
-		this.courierText.setEditable(false);
-		this.deliveryidText.setEditable(false);
+		this.dateText.setEditable(true);
+		this.moneyText.setEditable(true);
+		this.courierText.setEditable(true);
+		this.deliveryidText.setEditable(true);
 	}
 	
 	private void setBlack(){

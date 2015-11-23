@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
 import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_Stub;
 import stub.dataImpl_stub.businessDataImpl_stub.PaymentDataImpl_Stub;
+import dataImpl.businessDataImpl.PaymentDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
@@ -112,13 +113,13 @@ public class RMI {
 		try {
 //			EntruckingDataService entrucking = new EntruckingDataImpl();
 			EntruckingDataService entrucking = new EntruckingDataImpl_Stub();
-			InquireDataService entrucking_stub = (InquireDataService) UnicastRemoteObject.exportObject(entrucking, 0);
+			EntruckingDataService entrucking_stub = (EntruckingDataService) UnicastRemoteObject.exportObject(entrucking, 0);
 			registry.bind("entrucking", entrucking_stub);
 			
-//			PaymentDataService payment = new PaymentDataImpl();
-			PaymentDataService payment = new PaymentDataImpl_Stub();
-			InquireDataService payment_stub = (InquireDataService) UnicastRemoteObject.exportObject(payment, 0);
-			registry.bind("receivable", entrucking_stub);
+			PaymentDataService payment = new PaymentDataImpl();
+//			PaymentDataService payment = new PaymentDataImpl_Stub();
+			PaymentDataService payment_stub = (PaymentDataService) UnicastRemoteObject.exportObject(payment, 0);
+			registry.bind("receivable", payment_stub);
 			
 			
 		} catch (Exception e) {

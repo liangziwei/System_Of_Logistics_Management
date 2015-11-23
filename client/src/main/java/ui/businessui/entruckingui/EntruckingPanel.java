@@ -164,8 +164,9 @@ public class EntruckingPanel extends DetailPanel{
 				}else{
 					
 				  if(isOver){
-					    result.setVisible(false);
+					    result.setText("");
 						setblack();
+						enablePanel();
 						isFirstEnsure=true;	
 						isOver=false;
 				  }else{
@@ -202,13 +203,23 @@ public class EntruckingPanel extends DetailPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				//设置取消按钮不可见
-				cancel.setVisible(false);
-				//设置状态为第一次点击确定按钮
-				isFirstEnsure = true;
-				//使组件可编辑
-				enablePanel();
-				//消除提示信息
-				result.setText("");
+				if(ok.getText().equals("提交")){
+					ok.setText("确定");
+					cancel.setVisible(false);
+					enablePanel();
+					isFirstEnsure = true;
+					result.setText("");
+				}else{
+				  cancel.setVisible(false);
+				
+				  //设置状态为第一次点击确定按钮
+				  isFirstEnsure = true;
+				  //使组件可编辑
+				  enablePanel();
+				  //消除提示信息
+				  result.setText("");
+				  
+				}
 				repaint();
 			}
 		});

@@ -1,5 +1,7 @@
 package stub.businessLogicImpl_stub.businessBLImpl_stub;
 
+import java.rmi.RemoteException;
+
 import po.businessPO.ReceivablePO;
 import stub.dataImpl_stub.businessDataImpl_stub.PaymentDataImpl_Stub;
 import vo.businessVO.ReceivableVO;
@@ -13,7 +15,13 @@ public class PaymentBLImpl_Stub implements PaymentBLService{
 	public boolean addPayentForm(ReceivableVO receivableVO) {
 		// TODO Auto-generated method stub
 		
-		return paymentData.addPayentForm(receivableVOToPO(receivableVO));
+		try {
+			return paymentData.addPayentForm(receivableVOToPO(receivableVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	private ReceivablePO receivableVOToPO(ReceivableVO receivableVO){
