@@ -1,11 +1,13 @@
 package businessLogic.businessLogicModel.repositoryModel;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
 import mock.object.MockCheckRepository;
 import mock.object.MockGetRepository;
 import mock.object.MockSeeRepository;
+import network.RMI;
 import po.repositoryPO.DeliveryInfoPO;
 import po.repositoryPO.RepositoryInfoPO;
 import po.repositoryPO.RepositoryPO;
@@ -13,32 +15,34 @@ import vo.repositoryVO.DeliveryInfoVO;
 import vo.repositoryVO.RepositoryInfoVO;
 import vo.repositoryVO.RepositoryVO;
 import constant.AreaCodeType;
+import dataService.repositoryDataService.ManageRepositoryDataService;
 
 public class ManageRepository {
-	MockCheckRepository check = new MockCheckRepository();
-	MockGetRepository get = new MockGetRepository();
-	MockSeeRepository see = new MockSeeRepository();
+//	MockCheckRepository check = new MockCheckRepository();
+//	MockGetRepository get = new MockGetRepository();
+//	MockSeeRepository see = new MockSeeRepository();
+	private ManageRepositoryDataService manageRepositoryDataService = RMI.<ManageRepositoryDataService>getDataService("manage");
 	private List<RepositoryVO> repositoryVOs;
 	private List<RepositoryInfoVO> repositoryVOs2;
 	private List<DeliveryInfoVO> deliveryInfoVOs;
 
 	public List<RepositoryInfoVO> SeeRepositoryBL(String time) {
 		// TODO Auto-generated method stub
-		List<RepositoryInfoPO> repositoryPOs = see.SeeRepositoryDT(time);
-		repositoryVOs2 = new ArrayList<RepositoryInfoVO>();
-		for(int i=0;i<(repositoryPOs.size());i++){
-			repositoryVOs2.add(this.RepositoryInfoPOtoRepositoryInfoVO(repositoryPOs.get(i)));
-		}
+//		List<RepositoryInfoPO> repositoryPOs = see.SeeRepositoryDT(time);
+//		repositoryVOs2 = new ArrayList<RepositoryInfoVO>();
+//		for(int i=0;i<(repositoryPOs.size());i++){
+//			repositoryVOs2.add(this.RepositoryInfoPOtoRepositoryInfoVO(repositoryPOs.get(i)));
+//		}
 		return repositoryVOs2;
 	}
 
 	public List<DeliveryInfoVO> CheckRepositoryBL() {
 		// TODO Auto-generated method stub
-		List<DeliveryInfoPO> deliveryInfoPOs = check.CheckRepositoryDT();
-		deliveryInfoVOs = new ArrayList<DeliveryInfoVO>();
-		for(int i=0;i<(deliveryInfoPOs.size());i++){
-			deliveryInfoVOs.add(this.DeliveryInfoPOtoDeliveryInfoVO(deliveryInfoPOs.get(i)));
-		}
+//		List<DeliveryInfoPO> deliveryInfoPOs = check.CheckRepositoryDT();
+//		deliveryInfoVOs = new ArrayList<DeliveryInfoVO>();
+//		for(int i=0;i<(deliveryInfoPOs.size());i++){
+//			deliveryInfoVOs.add(this.DeliveryInfoPOtoDeliveryInfoVO(deliveryInfoPOs.get(i)));
+//		}
 		return deliveryInfoVOs;
 	}
 
@@ -64,7 +68,13 @@ public class ManageRepository {
 
 	public List<RepositoryVO> GetRepositoryInfoBL() {
 		// TODO Auto-generated method stub
-		List<RepositoryPO> repositoryPOs = get.GetRepositoryInfoDT();
+		List<RepositoryPO> repositoryPOs = new ArrayList<RepositoryPO>();
+		try {
+			repositoryPOs = manageRepositoryDataService.GetRepositoryInfoDT();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		repositoryVOs = new ArrayList<RepositoryVO>();
 		for(int i=0;i<(repositoryPOs.size());i++){
 			RepositoryVO repositoryvo=this.RepositoryPOtoRepositoryVO(repositoryPOs.get(i));

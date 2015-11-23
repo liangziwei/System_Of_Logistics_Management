@@ -1,12 +1,18 @@
 package po.repositoryPO;
 
+import java.io.Serializable;
+
 import constant.LoadingType;
 
 /**
  * 记录了出库单的信息
  * @author 阮威威
  */
-public class OutRepositoryPO {
+public class OutRepositoryPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 924541203691224625L;
 	/**
 	 * 快递的编号（十位数字）
 	 */

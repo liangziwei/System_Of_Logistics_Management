@@ -43,6 +43,14 @@ public class InRepositoryVO {
 	 */
 	private boolean beinrepository;
 	/**
+	 * 错误信息
+	 */
+	private String errorMsg;
+	/**
+	 * 验证结果(查询)
+	 */
+	private boolean VerifyResult;
+	/**
 	 * 是否经过审批
 	 */
 	private boolean isApproved = false;
@@ -122,6 +130,18 @@ public class InRepositoryVO {
 	}
 	public boolean getisPassed() {
 		return isPassed;
+	}
+	public void seterrorMsg(String errorMsg) {
+		this.errorMsg=errorMsg;
+	}
+	public String geterrorMsg() {
+		return errorMsg;
+	}
+	public void setVerifyResult(boolean VerifyResult) {
+		this.VerifyResult=VerifyResult;
+	}
+	public boolean getVerifyResult() {
+		return VerifyResult;
 	}
 }
 

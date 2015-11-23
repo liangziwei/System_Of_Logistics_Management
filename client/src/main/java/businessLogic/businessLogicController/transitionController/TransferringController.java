@@ -13,6 +13,7 @@ import vo.transitionVO.TransferringVO;
 public class TransferringController implements TransferringBLService{
 //	ManageRepositoryBLService manageRepositoryBLService = new ManageRepositoryController();
 	Transferring transferring = new Transferring();
+	ManageRepositoryBLService manageRepository = new ManageRepositoryController();
 
 	public TransferringVO findTransferringFormBL(String transferringNumber) {
 		// TODO Auto-generated method stub
@@ -36,7 +37,7 @@ public class TransferringController implements TransferringBLService{
 
 	public List<RepositoryVO> getRepositoryInfo() {
 		// TODO Auto-generated method stub
-		return null;
+		return manageRepository.GetRepositoryInfoBL();
 	}
 
 	public List<TransferringVO> GetTansferringInfoBL(String date) {

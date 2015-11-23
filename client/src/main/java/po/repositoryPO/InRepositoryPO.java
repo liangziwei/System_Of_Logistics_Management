@@ -1,12 +1,18 @@
 package po.repositoryPO;
 
+import java.io.Serializable;
+
 import constant.AreaCodeType;
 
 /**
  * 记录了入库单的信息
  * @author 阮威威
  */
-public class InRepositoryPO {
+public class InRepositoryPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7074545353878225576L;
 	/**
 	 * 快递的编号（十位数字）
 	 */
