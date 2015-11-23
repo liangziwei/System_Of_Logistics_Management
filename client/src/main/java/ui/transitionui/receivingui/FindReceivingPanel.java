@@ -196,7 +196,7 @@ public class FindReceivingPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				String receivingid = transferringidText.getText().trim();
 				ReceivingVO receivingVO = receivingService.findReceivingformBL(receivingid);
-				if (receivingVO.getVerifyResult()) {
+				if (receivingVO!=null) {
 					//设置当前的信息面板可见
 					infoPanel.setVisible(true);
 					//设置细节信息面板为将要显示的内容
@@ -224,7 +224,7 @@ public class FindReceivingPanel extends DetailPanel {
 		String[] ArrivalDate = receivingVO.getarrivaldate().split("-");
 		arrivaldateTextyear.setText(ArrivalDate[0]);
 		arrivaldateTextmonth.setText(ArrivalDate[1]);
-		arrivaldateTextday.setText(ArrivalDate[3]);
+		arrivaldateTextday.setText(ArrivalDate[2]);
 		transitionidText.setText(receivingVO.gettransitionid());
 		departureidText.setText(receivingVO.getdepartureid());
 		arrivalidText.setText(receivingVO.getarrivalid());

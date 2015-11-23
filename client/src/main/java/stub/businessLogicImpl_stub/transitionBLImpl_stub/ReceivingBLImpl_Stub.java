@@ -1,5 +1,7 @@
 package stub.businessLogicImpl_stub.transitionBLImpl_stub;
 
+import java.rmi.RemoteException;
+
 import businessLogic.businessLogicModel.transitionModel.Receiving;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import dataService.transitionDataService.ReceivingDataService;
@@ -12,17 +14,35 @@ public class ReceivingBLImpl_Stub implements ReceivingBLService{
 
 	public boolean addReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
-		return  receivingdata.addReceivingFormDT(this.ReceivingVOtoReceivingPO(receivingVO));
+		try {
+			return  receivingdata.addReceivingFormDT(this.ReceivingVOtoReceivingPO(receivingVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public boolean modifyReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
-		return receivingdata.modifyReceivingFormDT(this.ReceivingVOtoReceivingPO(receivingVO));
+		try {
+			return receivingdata.modifyReceivingFormDT(this.ReceivingVOtoReceivingPO(receivingVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public ReceivingVO findReceivingformBL(String receivingNumber) {
 		// TODO Auto-generated method stub
-		return this.ReceivingPOtoReceivingVO(receivingdata.FindReceivingFormDT(receivingNumber));
+		try {
+			return this.ReceivingPOtoReceivingVO(receivingdata.FindReceivingFormDT(receivingNumber));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	private ReceivingPO ReceivingVOtoReceivingPO(ReceivingVO receivingVO){

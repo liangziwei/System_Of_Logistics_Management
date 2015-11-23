@@ -1,5 +1,7 @@
 package stub.businessLogicImpl_stub.transitionBLImpl_stub;
 
+import java.rmi.RemoteException;
+
 import businessLogicService.transitionBLService.LoadingBLService;
 import constant.City;
 import dataService.transitionDataService.LoadingDataService;
@@ -12,7 +14,13 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 
 	public LoadingVO findLoadingFormBL(String loadingNumber) {
 		// TODO Auto-generated method stub		
-		return this.LoadingPOtoLoadingVO(loadingdata.FindLoadingFormDT(loadingNumber));
+		try {
+			return this.LoadingPOtoLoadingVO(loadingdata.FindLoadingFormDT(loadingNumber));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public boolean addLoadingFormBL(LoadingVO loadingVO) {
@@ -20,7 +28,13 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 		double fare =this.loadingFare("南京", loadingVO.getarrivalid());
 		loadingVO.setfare(fare);
 		LoadingPO loadingPO = this.LoadingVOtoLoadingPO(loadingVO);
-		return loadingdata.AddLoadingFormDT(loadingPO);
+		try {
+			return loadingdata.AddLoadingFormDT(loadingPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public boolean modifyLoadingFormBL(LoadingVO loadingVO) {
@@ -28,7 +42,13 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 		double fare =this.loadingFare("南京", loadingVO.getarrivalid());
 		loadingVO.setfare(fare);
 		LoadingPO loadingPO = this.LoadingVOtoLoadingPO(loadingVO);
-		return loadingdata.ModifyLoadingFormDT(loadingPO);
+		try {
+			return loadingdata.ModifyLoadingFormDT(loadingPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public double loadingFare(String CityFrom, String CityTo) {

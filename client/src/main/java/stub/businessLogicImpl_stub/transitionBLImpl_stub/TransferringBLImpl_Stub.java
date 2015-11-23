@@ -1,5 +1,6 @@
 package stub.businessLogicImpl_stub.transitionBLImpl_stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,13 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 
 	public TransferringVO findTransferringFormBL(String transferringNumber) {
 		// TODO Auto-generated method stub
-		return this.TransferringPOtoTransferringVO(transferringdata.FindTransferringFormDT(transferringNumber));
+		try {
+			return this.TransferringPOtoTransferringVO(transferringdata.FindTransferringFormDT(transferringNumber));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {
@@ -27,7 +34,13 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 		double fare =this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid());
 		transferringVO.setfare(fare);
 		TransferringPO transferringPO=this.TransferringVOtoTransferringPO(transferringVO);
-		return transferringdata.AddTransferringFormDT(transferringPO);
+		try {
+			return transferringdata.AddTransferringFormDT(transferringPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public boolean modifyTransferringFormBL(TransferringVO transferringVO) {
@@ -35,7 +48,13 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 		double fare =this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid());
 		transferringVO.setfare(fare);
 		TransferringPO transferringPO=this.TransferringVOtoTransferringPO(transferringVO);
-		return transferringdata.AddTransferringFormDT(transferringPO);
+		try {
+			return transferringdata.AddTransferringFormDT(transferringPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public double tranferringFare(String CityFrom, String CityTo) {
@@ -69,12 +88,24 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 
 	public List<TransferringVO> GetTansferringInfoBL(String date) {
 		// TODO Auto-generated method stub
-		List<TransferringPO> transferringPOs = transferringdata.GetTransferringInfoDT(date);
+		List<TransferringPO> transferringPOs = null;
+		try {
+			transferringPOs = transferringdata.GetTransferringInfoDT(date);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		List<TransferringVO> transferringVOs = new ArrayList<TransferringVO>();
 		for(int i=0;i<transferringPOs.size();i++){
 			transferringVOs.add(this.TransferringPOtoTransferringVO(transferringPOs.get(i)));
 		}
 		return transferringVOs;
+	}
+
+	@Override
+	public boolean verify(TransferringVO transferringVO) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 

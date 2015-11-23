@@ -132,7 +132,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 
 		// 主信息面板设置
 		infoPanel.setBounds(transferringid.getX(), transferringid.getY() + transferringid.getHeight() + COMPONENT_GAP_Y,
-				AddLoadingPanel.DETAIL_PANEL_W, AddLoadingPanel.START_Y + (LABEL_H + COMPONENT_GAP_Y) * 5);
+				AddLoadingPanel.DETAIL_PANEL_W, AddLoadingPanel.START_Y + (LABEL_H + COMPONENT_GAP_Y) * 3);
 		this.infoPanel.setLayout(null);
 		this.container.add(infoPanel);
 		this.infoPanel.setVisible(false);
@@ -233,7 +233,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				String receivingid = transferringidText.getText().trim();
 				ReceivingVO receivingVO = receivingService.findReceivingformBL(receivingid);
-				if (receivingVO.getVerifyResult()) {
+				if (receivingVO!=null) {
 					// 设置当前的信息面板可见
 					infoPanel.setVisible(true);
 					// 设置细节信息面板为将要显示的内容
@@ -245,7 +245,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 					state1.setVisible(false);
 					// 重新布局
 					revalidate();
-				} else {
+				}else {
 					//设置当前的信息面板可见
 					infoPanel.setVisible(false);
 					//设置相关面板可见
@@ -255,7 +255,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 					state1.setVisible(true);
 					//重新布局
 					revalidate();
-					showState("接收单编号错误或接收单编号不存在！");
+					showState1("接收单编号错误或接收单编号不存在！");
 				}
 			}
 		});
@@ -309,24 +309,24 @@ public class ModifyReceivingPanel extends DetailPanel {
 		disableComponents();
 		
 		if(isFirstEnsure) {
-			showState("请再次确认信息，无误后按确定，否则按取消");
+			showState2("请再次确认信息，无误后按确定，否则按取消");
 			isFirstEnsure = false;
 		}
 		else {
 			//添加装运信息
 			boolean save =receivingService.addReceivingFormBL(receivingVO);
 			if(save) {		//保存成功
-				showState("订单保存成功");
+				showState2("订单保存成功");
 				disableComponents();
 			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
-				showState("订单保存失败");
+				showState2("订单保存失败");
 			}
 		}
 	}
 	
 	private void verifyFailOperation(ReceivingVO receivingVO) {
 		//提示修改意见
-		showState(receivingVO.geterrorMsg());
+		showState2(receivingVO.geterrorMsg());
 	}
 	
 	private ReceivingVO creatReceivingVO() {
@@ -378,25 +378,29 @@ public class ModifyReceivingPanel extends DetailPanel {
 		String[] ArrivalDate = receivingVO.getarrivaldate().split("-");
 		arrivaldateTextyear.setText(ArrivalDate[0]);
 		arrivaldateTextmonth.setText(ArrivalDate[1]);
-		arrivaldateTextday.setText(ArrivalDate[3]);
+		arrivaldateTextday.setText(ArrivalDate[2]);
 		transitionidText.setText(receivingVO.gettransitionid());
 		departureidText.setText(receivingVO.getdepartureid());
 		arrivalidText.setText(receivingVO.getarrivalid());
 		switch (receivingVO.getstate()) {
 		case DAMAGE:
-			this.endState.setToolTipText("损坏");
+			this.endState.setSelectedItem("损坏");
 			break;
 		case INTACT:
-			this.endState.setToolTipText("完整");
+			this.endState.setSelectedItem("完整");
 			break;
 		case lOSE:
-			this.endState.setToolTipText("丢失");
+			this.endState.setSelectedItem("丢失");
 			break;
 		}
 	}
 
-	private void showState(String msg) {
+	private void showState1(String msg) {
 		this.state1.setText(msg);
+		this.repaint();
+	}
+	private void showState2(String msg) {
+		this.state2.setText(msg);
 		this.repaint();
 	}
 }

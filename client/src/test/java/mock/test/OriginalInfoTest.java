@@ -32,11 +32,9 @@ public class OriginalInfoTest {
 			"1990-02-25", "按提成"));
 		
 		List<OrganizationVO> org = new ArrayList<OrganizationVO>();
-		ArrayList<StaffVO> staffs = new ArrayList<StaffVO>();
-		staffs.add(new StaffVO("小明", "B1235468", "快递员", "男",
-			"1987-02-15", "按提成"));
-		staffs.add(new StaffVO("小红", "B1235468", "快递员", "女",
-			"1990-02-25", "按提成"));
+		ArrayList<String> staffs = new ArrayList<String>();
+		staffs.add("B1235468");
+		staffs.add("B1235468");
 		org.add(new OrganizationVO("营业厅", "001", "南京市营业厅", staffs));
 		org.add(new OrganizationVO("中转中心", "002", "南京市中转中心", staffs));
 		

@@ -3,18 +3,16 @@ package ui.mainui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ui.administratorui.AdministratorPanel;
 import ui.businessui.BusinessPanel;
 import ui.deliveryui.DeliveryPanel;
 import ui.financeui.FinancePanel;
-import ui.managerui.ManagerPanel;
 import ui.repositoryui.RepositoryPanel;
 import ui.transitionui.TransitionPanel;
 import ui.viewcontroller.ViewController;
@@ -72,18 +70,6 @@ public class LoginPanel extends JPanel{
 	
 	private static final int IDLABEL_Y = (ExpressFrame.FRAME_H - (LABEL_H << 1) - LABEL_GAP - TB_GAP - BUTTON_H) >> 1;
 	
-	private static Map<Character, String> USER_TABLE = new HashMap<Character, String>();
-	
-	static {
-		USER_TABLE.put('B', DeliveryPanel.class.getName());
-		USER_TABLE.put('C', BusinessPanel.class.getName());
-		USER_TABLE.put('D', ManagerPanel.class.getName());
-		USER_TABLE.put('E', TransitionPanel.class.getName());
-		USER_TABLE.put('F', RepositoryPanel.class.getName());
-		USER_TABLE.put('G', FinancePanel.class.getName());
-		USER_TABLE.put('H', DeliveryPanel.class.getName());
-	}
-	
 	private Font TEXT_FONT = new Font("宋体", Font.PLAIN, 20);
 		 
 	public LoginPanel(ViewController viewController) {
@@ -135,7 +121,30 @@ public class LoginPanel extends JPanel{
 				if(id == null || id.equals("")) return;
 				//设置当前页面不可见
 				setVisible(false);
-				viewController.switchView(USER_TABLE.get(id.charAt(0)));
+				switch(id.charAt(0)) {
+				case 'B':
+					viewController.switchView(DeliveryPanel.class.getName());
+					break;
+				case 'C':
+					viewController.switchView(BusinessPanel.class.getName());
+					break;
+				case 'D':
+					break;
+				case 'E':
+					viewController.switchView(TransitionPanel.class.getName());
+					break;
+				case 'F':
+					viewController.switchView(RepositoryPanel.class.getName());
+					break;
+				case 'G':
+					viewController.switchView(FinancePanel.class.getName());
+					break;
+				case 'H':
+					viewController.switchView(AdministratorPanel.class.getName());
+					break;
+				default:
+					break;
+				}
 			}
 		});
 		

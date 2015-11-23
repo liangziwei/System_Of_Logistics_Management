@@ -1,6 +1,7 @@
 package dataService.repositoryDataService;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import po.repositoryPO.OutRepositoryPO;
 
@@ -18,7 +19,7 @@ public interface OutRepositoryDataService extends Remote{
 	 * @param OutRepositoryPO ,出库单信息的相关持久化对象存储，具体参照OutRepositoryPO的定义
 	 * @return boolean, 返回给方法调用者出库单信息是否添加成功
 	 * */
-	public boolean AddOutRepositoryFormDT(OutRepositoryPO outRepository);
+	public boolean AddOutRepositoryFormDT(OutRepositoryPO outRepository)throws RemoteException;
 	
 	/**
 	 * description:修改出库单信息
@@ -28,7 +29,7 @@ public interface OutRepositoryDataService extends Remote{
 	 * @param OutRepositoryPO ,出库单信息的相关持久化对象存储，具体参照OutRepositoryPO的定义
 	 * @return boolean, 返回给方法调用者出库单信息是否修改成功
 	 * */
-	public boolean ModifyOutRepositoryFormDT(OutRepositoryPO outRepositoryPO);
+	public boolean ModifyOutRepositoryFormDT(OutRepositoryPO outRepositoryPO)throws RemoteException;
 	
 	/**
 	 * description:通过出库单的快递编号得到相应的出库单信息
@@ -38,7 +39,7 @@ public interface OutRepositoryDataService extends Remote{
 	 * @param OutRepositoryNumber ,出库单的快递编号（十位数字）
 	 * @return OutRepositoryPO, 返回出库单信息的持久化对象，具体参照OutRepositoryPO的定义
 	 */
-	public OutRepositoryPO FindOutRepositoryFormDT(String OutRepositoryNumber);
+	public OutRepositoryPO FindOutRepositoryFormDT(String OutRepositoryNumber)throws RemoteException;
 	
 	/**
 	 * description:根据出库单信息更新库存信息
@@ -48,6 +49,6 @@ public interface OutRepositoryDataService extends Remote{
 	 * @param OutRepositoryPO , 出库单信息的相关持久化对象存储，具体参照OutRepositoryPO的定义
 	 * @return boolean, 返回给方法调用者库存信息是否更新成功
 	 * */
-	public boolean UpdateRepositoryInfoDT(OutRepositoryPO outRepositoryPO);
+	public boolean UpdateRepositoryInfoDT(OutRepositoryPO outRepositoryPO)throws RemoteException;
 	
 }

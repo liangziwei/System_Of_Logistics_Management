@@ -24,11 +24,9 @@ public class OriginalInfoDataImpl_Stub implements OriginalInfoDataService{
 
 	public List<OrganizationPO> getOrganizationInfo(int year) {
 		List<OrganizationPO> org = new ArrayList<OrganizationPO>();
-		ArrayList<StaffPO> staff = new ArrayList<StaffPO>();
-		staff.add(new StaffPO("小明", "B1235468", "快递员", "男",
-			"1987-02-15", "按提成"));
-		staff.add(new StaffPO("小红", "B1235468", "快递员", "女",
-			"1990-02-25", "按提成"));
+		ArrayList<String> staff = new ArrayList<String>();
+		staff.add("B1235468");
+		staff.add("B1235468");
 		org.add(new OrganizationPO("营业厅", "001", "南京市营业厅", staff));
 		org.add(new OrganizationPO("中转中心", "002", "南京市中转中心", staff));
 		return org;
