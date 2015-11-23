@@ -68,6 +68,8 @@ public class EntruckingPanel extends DetailPanel{
 	
 	private boolean isFirstEnsure = true;
 	
+	private boolean isOver=false;
+	
 	public EntruckingPanel(){
 		this.date.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.date.setFont(WORD_FONT);	
@@ -160,6 +162,13 @@ public class EntruckingPanel extends DetailPanel{
 				   
 				   cancel.setVisible(true);
 				}else{
+					
+				  if(isOver){
+					    result.setVisible(false);
+						setblack();
+						isFirstEnsure=true;	
+						isOver=false;
+				  }else{
 					String dateStr=dateText.getText();
 					String businessIDStr=businessHallidText.getText();
 					String transNumberStr=transportNumberText.getText();
@@ -175,12 +184,14 @@ public class EntruckingPanel extends DetailPanel{
 						result.setText("保存成功！");
 						ok.setText("确认");
 						cancel.setVisible(false);
-//						setblack();
+						isOver=true;
+
 					}else{
 						result.setForeground(Color.RED);
 						result.setText("信息有误，保存失败");
 					}
-					isFirstEnsure=true;
+				
+				  }
 				}
 				repaint();
 			}

@@ -1,11 +1,15 @@
 package network;
 
-import java.lang.Thread.State;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.PaymentDataImpl_Stub;
+import dataImpl.businessDataImpl.EntruckingDataImpl;
+import dataImpl.businessDataImpl.PaymentDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
@@ -18,6 +22,9 @@ import dataImpl.managerDataImpl.MakeConstantDataImpl;
 import dataImpl.managerDataImpl.OrganizationManagementDataImpl;
 import dataImpl.managerDataImpl.StaffManagementDataImpl;
 import dataImpl.senderDataImpl.InquireDataImpl;
+import dataService.administratorDataService.AdministratorDataService;
+import dataService.businessDataService.EntruckingDataService;
+import dataService.businessDataService.PaymentDataService;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.deliveryDataService.ReceiptDataService;
 import dataService.financeDataService.AccountDataService;
@@ -91,7 +98,23 @@ public class RMI {
 	}
 	
 	private static void initBusinessRMI() {
-
+		
+		try {
+//			EntruckingDataService entrucking = new EntruckingDataImpl();
+			EntruckingDataService entrucking = new EntruckingDataImpl_Stub();
+			InquireDataService entrucking_stub = (InquireDataService) UnicastRemoteObject.exportObject(entrucking, 0);
+			registry.bind("entrucking", entrucking_stub);
+			
+//			PaymentDataService payment = new PaymentDataImpl();
+			PaymentDataService payment = new PaymentDataImpl_Stub();
+			InquireDataService payment_stub = (InquireDataService) UnicastRemoteObject.exportObject(payment, 0);
+			registry.bind("receivable", entrucking_stub);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private static void initRepositoryRMI() {
@@ -156,7 +179,15 @@ public class RMI {
 	}
 	
 	private static void initAdministratorRMI() {
-
+		try {
+			//用户信息访问接口
+//			AdministratorDataService admin = new AdministratorDataImpl();
+			AdministratorDataService admin = new AdministratorDataImpl_Stub();
+			AdministratorDataService stub = (AdministratorDataService) UnicastRemoteObject.exportObject(admin, 0);
+			registry.bind("administrator", stub);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

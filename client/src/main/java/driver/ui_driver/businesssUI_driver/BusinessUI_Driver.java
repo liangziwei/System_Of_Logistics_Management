@@ -1,8 +1,10 @@
 package driver.ui_driver.businesssUI_driver;
 
+import java.rmi.RemoteException;
+
 public class BusinessUI_Driver {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RemoteException {
 		// TODO Auto-generated method stub
 
 		EntruckingUI_Driver entrucking=new EntruckingUI_Driver();

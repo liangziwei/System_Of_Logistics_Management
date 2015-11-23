@@ -1,8 +1,10 @@
 package ui.businessui.paymentui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,12 +12,20 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import ui.baseui.DetailPanel;
+import vo.businessVO.ReceivableVO;
+import businessLogic.businessLogicController.businessController.PaymentController;
 
 public class PaymentPanel extends DetailPanel{
+	
+	private PaymentController paymentCon=new PaymentController();
+	private ReceivableVO receivableVO;
+	
 	private JLabel date=new JLabel("收款日期");
 	private JLabel money=new JLabel("收款金额");
 	private JLabel courier=new JLabel("收款快递员");//快递员
 	private JLabel deliveryid=new JLabel("订单条形码号");
+	
+	private JLabel result=new JLabel();
 	
 	private JTextField dateText=new JTextField();
 	private JTextField moneyText=new JTextField();
@@ -47,6 +57,8 @@ public class PaymentPanel extends DetailPanel{
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
 	private boolean isFirstEnsure = true;
+	
+	private boolean isOver=false;
 	
 	public PaymentPanel(){
 		this.date.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
@@ -88,8 +100,53 @@ public class PaymentPanel extends DetailPanel{
 		this.ok.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//验证收件信息是否合法
-				
+				if(isFirstEnsure){
+					if(isCorrect()){
+						   result.setForeground(Color.BLUE);
+						   result.setText("请确认信息输入无误，确认后点击提交");
+						   ok.setText("提交");
+						   disablePanel();
+						   isFirstEnsure=false;
+					}else{
+						   result.setForeground(Color.RED);
+						   disablePanel();
+						   result.setText("信息输入格式有错误，请重新输入");
+					}
+					
+				}else{
+					if(isOver){
+						result.setVisible(false);
+						setBlack();
+						isFirstEnsure=true;	
+						isOver=false;
+						
+					}else{
+						String dateStr=dateText.getText();
+						String moneyStr=moneyText.getText();
+						String courierStr=courierText.getText();
+						String deliveryidStr=deliveryidText.getText();
+						ArrayList<String> deliveryList=new ArrayList<String>();
+						String [] str=deliveryidStr.split("\n");
+						for(String s:str){
+							System.out.println(s);
+							deliveryList.add(s);
+						}
+						receivableVO=new ReceivableVO(dateStr,Double.parseDouble(moneyStr),courierStr,deliveryList);
+						
+						if(paymentCon.addPayentForm(receivableVO)){
+							result.setForeground(Color.GREEN);
+							result.setText("保存成功！");
+							ok.setText("确认");
+							cancel.setVisible(false);
+							isOver=true;
+						}else{
+							result.setForeground(Color.RED);
+							result.setText("信息有误，保存失败");
+						}						
+					}
+					
+				}
+				repaint();
 			}
 		});
 		
@@ -102,7 +159,10 @@ public class PaymentPanel extends DetailPanel{
 				//设置状态为第一次点击确定按钮
 				isFirstEnsure = true;
 				//使组件可编辑
+				enablePanel();
 				//消除提示信息
+				result.setText("");
+				repaint();
 			}
 		});
 	}
@@ -118,5 +178,44 @@ public class PaymentPanel extends DetailPanel{
 		this.add(deliveryidText);
 		this.add(ok);
 		this.add(cancel);
+	}
+	
+	private boolean isCorrect(){
+		
+		String dateStr=dateText.getText();
+		String moneyStr=moneyText.getText();
+		String courierStr=courierText.getText();
+		String deliveryidStr=deliveryidText.getText();
+		
+		if(dateStr.length()!=10){
+			dateText.setText("");
+			return false;
+		}else if(deliveryidStr.length()!=10){
+			deliveryidText.setText("");
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private void disablePanel(){
+		this.dateText.setEditable(false);
+		this.moneyText.setEditable(false);
+		this.courierText.setEditable(false);
+		this.deliveryidText.setEditable(false);
+	}
+	
+	private void enablePanel(){
+		this.dateText.setEditable(false);
+		this.moneyText.setEditable(false);
+		this.courierText.setEditable(false);
+		this.deliveryidText.setEditable(false);
+	}
+	
+	private void setBlack(){
+		this.dateText.setText("");
+		this.moneyText.setText("");
+		this.courierText.setText("");
+		this.deliveryidText.setText("");
 	}
 }
