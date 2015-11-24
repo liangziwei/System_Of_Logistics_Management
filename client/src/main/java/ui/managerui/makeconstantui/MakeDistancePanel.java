@@ -1,6 +1,9 @@
 package ui.managerui.makeconstantui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -39,7 +42,6 @@ public class MakeDistancePanel extends DetailPanel{
 	}
 	
 	private void initTable() {
-		
 		//城市距离表格
 		Object[] names = new Object[] {
 				"出发地", "到达地", "城市距离"
@@ -72,5 +74,18 @@ public class MakeDistancePanel extends DetailPanel{
 		//将按钮添加到面板
 		this.add(this.ok);
 		this.add(this.cancel);
+		//添加事件监听
+		this.addButtonListener();
+	}
+	
+	private void addButtonListener() {
+		//确定按钮
+		this.ok.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 	}
 }

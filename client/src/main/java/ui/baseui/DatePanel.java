@@ -62,9 +62,7 @@ public class DatePanel extends JPanel{
 		this.month.setText(d[1]);
 		this.day.setText(d[2]);
 		//设置日期不可编辑
-		this.year.setEditable(false);
-		this.month.setEditable(false);
-		this.day.setEditable(false);
+		this.disableComponents();
 	}
 	
 	public void setDate(String date) {
@@ -77,6 +75,11 @@ public class DatePanel extends JPanel{
 		catch(Exception e) {
 			e.printStackTrace();
 		}	
+		//设置日期不可编辑
+		this.disableComponents();
+	}
+	
+	public void disableComponents() {
 		//设置日期不可编辑
 		this.year.setEditable(false);
 		this.month.setEditable(false);

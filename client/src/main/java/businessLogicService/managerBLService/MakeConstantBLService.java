@@ -1,6 +1,7 @@
 package businessLogicService.managerBLService;
 
 import constant.City;
+import constant.PackageType;
 import constant.TransitType;
 
 /**
@@ -19,7 +20,7 @@ public interface MakeConstantBLService {
 	 * @param  transType ,运输方式
 	 * @return boolean, 制定新的价格常量是否成功
 	 */
-	public boolean setPrice(double price,TransitType transType);
+	public boolean setTransitPrice(double price,TransitType transType);
 	
 	/**
 	 * description:为不同的城市之间分别制定距离
@@ -32,5 +33,10 @@ public interface MakeConstantBLService {
 	 * @return boolean, 制定新的城市距离是否成功
 	 */
 	public boolean setDistance(double distance,City source,City destination);
+	
+	/**
+	 *设置快递包装费价格常量 
+	 */
+	public boolean setPackPrice(double price, PackageType packType);
 
 }

@@ -3,7 +3,10 @@ package businessLogic.businessLogicModel.managerModel;
 
 
 import network.RMI;
+import po.deliveryPO.PackPrice;
+import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
 import constant.City;
+import constant.PackageType;
 import constant.TransitType;
 import dataService.managerDataService.MakeConstantDataService;
 
@@ -29,5 +32,10 @@ public class MakeConstant {
 			e.printStackTrace();
 		}
 		return success;
+	}
+
+	public boolean setPackPrice(double price, PackageType packType) {
+//		PackagePriceIO.storePackPrice(new PackPrice(carton, wooden, courierBag, other));
+		return false;
 	}
 }

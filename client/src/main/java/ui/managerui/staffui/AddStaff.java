@@ -1,10 +1,12 @@
 package ui.managerui.staffui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ui.baseui.DatePanel;
@@ -124,5 +126,46 @@ public class AddStaff extends DetailPanel{
 		this.add(this.salaryText);
 		this.add(this.ok);
 		this.add(this.cancel);
+	}
+	
+	public JPanel getStaffInfo(boolean isEditable) {
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setPreferredSize(new Dimension(DETAIL_PANEL_W, DETAIL_PANEL_H));
+		
+		panel.add(this.nameLabel);
+		panel.add(this.nameText);
+		panel.add(this.idLabel);
+		panel.add(this.idText);
+		panel.add(this.posLabel);
+		panel.add(this.posText);
+		panel.add(this.birthLabel);
+		panel.add(this.birthText);
+		panel.add(this.salaryLabel);
+		panel.add(this.salaryType);
+		panel.add(this.salaryText);
+		panel.add(this.ok);
+		panel.add(this.cancel);
+		if(!isEditable) {
+			this.disableComponents();
+		}
+		return panel;
+	}
+	
+	private void disableComponents() {
+		this.nameText.setEditable(false);
+		this.idText.setEditable(false);
+		this.posText.setEnabled(false);
+		this.birthText.disableComponents();
+		this.salaryText.setEditable(false);
+		this.salaryType.setEnabled(false);
+	}
+	
+	public JButton getOk() {
+		return this.ok;
+	}
+	
+	public JButton getCancel() {
+		return this.cancel;
 	}
 }

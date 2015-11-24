@@ -2,6 +2,7 @@ package stub.businessLogicImpl_stub.managerBLImpl_stub;
 
 import stub.dataImpl_stub.managerDataImpl_stub.MakeConstantDataImpl_Stub;
 import constant.City;
+import constant.PackageType;
 import constant.TransitType;
 import dataService.managerDataService.MakeConstantDataService;
 import businessLogicService.managerBLService.MakeConstantBLService;
@@ -9,7 +10,7 @@ import businessLogicService.managerBLService.MakeConstantBLService;
 public class MakeConstantBLImpl_Stub implements MakeConstantBLService{
 	
 	private MakeConstantDataService makeConstant = new MakeConstantDataImpl_Stub();
-	public boolean setPrice(double price,TransitType transType) {
+	public boolean setTransitPrice(double price,TransitType transType) {
 		boolean success =false;
 		try{
 			success = makeConstant.updatePrice(price, transType);
@@ -27,5 +28,11 @@ public class MakeConstantBLImpl_Stub implements MakeConstantBLService{
 			e.printStackTrace();
 		}
 		return success;
+	}
+
+	@Override
+	public boolean setPackPrice(double price, PackageType packType) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

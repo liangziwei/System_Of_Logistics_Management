@@ -5,8 +5,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import javax.naming.ldap.ManageReferralControl;
-
+import dataImpl.deliveryDataImpl.ConstantDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
@@ -25,6 +24,7 @@ import dataImpl.senderDataImpl.InquireDataImpl;
 import dataImpl.transitionDataImpl.LoadingDataImpl;
 import dataImpl.transitionDataImpl.ReceivingDataImpl;
 import dataImpl.transitionDataImpl.TransferringDataImpl;
+import dataService.deliveryDataService.ConstantDataService;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.deliveryDataService.ReceiptDataService;
 import dataService.financeDataService.AccountDataService;
@@ -73,6 +73,8 @@ public class RMI {
 		initFinanceRMI();
 		//初始化系统管理人员的RMI连接
 		initAdministratorRMI();
+		//初始化获得常量的RMI连接
+		initGetConstant();
 		//提示服务器运行成功
 		System.out.println("Server is working...");
 	}
@@ -200,7 +202,16 @@ public class RMI {
 	}
 	
 	private static void initAdministratorRMI() {
-
+		
 	}
 
+	private static void initGetConstant() {
+		try {
+			ConstantDataService constant = new ConstantDataImpl();
+			ConstantDataService constant_stub = (ConstantDataService) UnicastRemoteObject.exportObject(constant, 0);
+			registry.bind("constant", constant_stub);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

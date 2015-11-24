@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import businessLogic.businessLogicController.deliveryController.OrderController;
+import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
 import businessLogicService.deliveryBLService.OrderBLService;
 import constant.City;
 import constant.ClientType;
@@ -157,10 +158,10 @@ public class OrderInputPanel extends DetailPanel{
 	//设置面板信息
 	public void setOrderInfo(ClientInfo sender, ClientInfo receiver,
 			GoodsInfo goodsInfo) {
-		this.sender.setClientInfo(sender.getName(), sender.getAddress(),
-				sender.getCompany(), sender.getPhoneNumber(), sender.getMobileNumber());
-		this.receiver.setClientInfo(receiver.getName(), receiver.getAddress(),
-				receiver.getCompany(), receiver.getPhoneNumber(), receiver.getMobileNumber());
+		this.sender.setClientInfo(sender.getName(), sender.getAddress(),sender.getCompany(),
+				sender.getPhoneNumber(), sender.getMobileNumber(), sender.getCity());
+		this.receiver.setClientInfo(receiver.getName(), receiver.getAddress(),receiver.getCompany(),
+				receiver.getPhoneNumber(), receiver.getMobileNumber(), receiver.getCity());
 		this.goodsInfo.setGoodsInfo(goodsInfo.getNumber(), goodsInfo.getWeight(),
 				goodsInfo.getSize(), goodsInfo.getName(), goodsInfo.getPrice());
 		this.otherInfo.setOtherInfo(goodsInfo.getId(), goodsInfo.getDeliveryType(),
@@ -249,16 +250,16 @@ public class OrderInputPanel extends DetailPanel{
 		//计算运费和时间
 		double weight = Double.parseDouble(goodsInfo.getWeight());
 		//TODO 还有包装费没算,根据总经理的价格常量
-		double pack;
+		double pack = PackagePriceIO.getPackPrice(orderVO.getGoodsInfo().getPackageType());
 		double price = orderService.calculatePrice(otherInfo.getDeliveryType(),
-				weight, sender.getCity(), receiver.getCity());
+				weight, sender.getCity(), receiver.getCity()) + pack;
 		int day = orderService.calculateTime(sender.getCity(), receiver.getCity());
 		//显示运费
 		labelList.get(LabelName.PRICE).setForeground(Color.RED);
-		goodsInfo.setPriceText(price + "元");
+		goodsInfo.setPriceText(price + "");
 		//显示时间
 		labelList.get(LabelName.TIME).setForeground(Color.RED);
-		otherInfo.setTimeText(day + "天");
+		otherInfo.setTimeText(day + "");
 		//如果是第一次按确认，提示用户确认输入
 		if(isFirstEnsure) {
 			//设置状态为不是第一次点击确定

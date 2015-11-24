@@ -56,7 +56,7 @@ public class OrderModel{
 		for(int i = 0; i < timeRecords.size(); i++) {
 			time += timeRecords.get(i).getTime();
 		}
-		return time / timeRecords.size();
+		return timeRecords.size() == 0 ? 0 : time / timeRecords.size();
 	}
 
 	public static double calculatePrice(DeliveryType type, double weight, City source, City destination) {

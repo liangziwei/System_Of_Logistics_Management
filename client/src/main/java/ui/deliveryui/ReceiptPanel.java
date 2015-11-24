@@ -169,16 +169,17 @@ public class ReceiptPanel extends DetailPanel{
 		}else {
 			//保存收件信息
 			boolean result = receipt.saveReceiptInfo
-					(new ReceiptVO(idText.getText(), nameText.getName(), date.getDate()));
+					(new ReceiptVO(idText.getText(), nameText.getText(), date.getDate()));
+			
 			//更新数据库中的快递时间历史记录
-			receipt.updateTimeRecord(date.getDate(), idText.getText());
+			receipt.updateTimeRecord(nameText.getText(), date.getDate(), idText.getText());
 			if(result) {
 				state.setForeground(Color.BLUE);
 				state.setText("收件信息保存成功");
 			}
 			else {
 				state.setForeground(Color.RED);
-				state.setText("收件信息保存失败，请重试");
+				state.setText("失败，请确认信息输入是否正确");
 			}
 			//使组件可编辑
 			this.enableComponents();

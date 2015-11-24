@@ -78,6 +78,10 @@ public class GoodsInfo implements Serializable{
 	 * 快递报价
 	 */
 	private String price;
+	
+	private boolean isApproved = false;
+	
+	private boolean isPassed = false;
 
 	public GoodsInfo(String number, String id, String weight, String name, String size,
 			PackageType packageType, DeliveryType deliveryType, String date,
@@ -191,5 +195,21 @@ public class GoodsInfo implements Serializable{
 
 	public void setPrice(String price) {
 		this.price = price;
+	}
+
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+
+	public boolean isPassed() {
+		return isPassed;
+	}
+
+	public void setPassed(boolean isPassed) {
+		this.isPassed = isPassed;
 	}
 }

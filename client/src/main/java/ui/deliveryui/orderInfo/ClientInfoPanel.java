@@ -233,11 +233,28 @@ public class ClientInfoPanel extends JPanel{
 	 * 设置客户信息
 	 */
 	public void setClientInfo(String name, String address, String company,
-			String phone, String mobile) {
+			String phone, String mobile, City city) {
 		this.nameText.setText(name);
 		this.addressText.setText(address);
 		this.companyText.setText(company);
 		this.phoneText.setText(phone);
 		this.mobileText.setText(mobile);
+		switch(city) {
+		case NAN_JING:
+			this.cityText.setSelectedItem("南京");
+			break;
+		case BEI_JING:
+			this.cityText.setSelectedItem("北京");
+			break;
+		case SHANG_HAI:
+			this.cityText.setSelectedItem("上海");
+			break;
+		case GUANG_ZHOU:
+			this.cityText.setSelectedItem("广州");
+			break;
+		default:
+			this.cityText.setSelectedItem("南京");
+			break;
+		}
 	}
 }

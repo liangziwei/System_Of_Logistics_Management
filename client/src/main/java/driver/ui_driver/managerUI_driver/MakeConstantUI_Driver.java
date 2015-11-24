@@ -23,7 +23,7 @@ public class MakeConstantUI_Driver {
 				break;
 			case 2:
 				System.out.println("制定价格常量是否成功："	+
-						makeConstant.setPrice(25.0, TransitType.RAILWAY));
+						makeConstant.setTransitPrice(25.0, TransitType.RAILWAY));
 				break;
 			case 3:
 				go = false;

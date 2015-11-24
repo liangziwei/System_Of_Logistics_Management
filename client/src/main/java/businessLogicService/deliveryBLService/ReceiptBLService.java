@@ -32,7 +32,7 @@ public interface ReceiptBLService {
 	 * @param id 订单条形码号
 	 * @return 通知方法调用者是否更新成功
 	 */
-	public boolean updateTimeRecord(String arriveTime, String id);
+	public boolean updateTimeRecord(String name, String arriveTime, String id);
 	
 	/**
 	 * description:验证收件信息的输入是否合法
