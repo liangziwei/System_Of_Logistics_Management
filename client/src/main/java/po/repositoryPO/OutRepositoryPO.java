@@ -1,12 +1,18 @@
 package po.repositoryPO;
 
+import java.io.Serializable;
+
 import constant.LoadingType;
 
 /**
  * 记录了出库单的信息
  * @author 阮威威
  */
-public class OutRepositoryPO {
+public class OutRepositoryPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 924541203691224625L;
 	/**
 	 * 快递的编号（十位数字）
 	 */
@@ -40,7 +46,7 @@ public class OutRepositoryPO {
 	 */
 	private boolean isPassed = false;
 	public OutRepositoryPO(String deliveryid,String outrepositorydate,String arrivalid,
-			LoadingType way,String loadingid,boolean beinrepository) {
+			LoadingType way,String loadingid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -48,7 +54,6 @@ public class OutRepositoryPO {
 		this.arrivalid=arrivalid;
 		this.way=way;
 		this.loadingid=loadingid;
-		this.beinrepository=beinrepository;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;

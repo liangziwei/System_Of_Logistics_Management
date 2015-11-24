@@ -51,11 +51,19 @@ public class TransferringVO {
 	/**
 	 * 本次装箱所有货物的订单条形码号
 	 */
-	private List<String> alldeliveryid;
+	private List<String> alldeliveryid = null;
 	/**
 	 * 装运单的运费
 	 */
 	private double fare;
+	/**
+	 * 错误信息
+	 */
+	private String errorMsg;
+	/**
+	 * 验证结果(查询)
+	 */
+	private boolean VerifyResult;
 	/**
 	 * 是否经过审批
 	 */
@@ -149,6 +157,18 @@ public class TransferringVO {
 	}
 	public boolean getisPassed() {
 		return isPassed;
+	}
+	public void seterrorMsg(String errorMsg) {
+		this.errorMsg=errorMsg;
+	}
+	public String geterrorMsg() {
+		return errorMsg;
+	}
+	public void setVerifyResult(boolean VerifyResult) {
+		this.VerifyResult=VerifyResult;
+	}
+	public boolean getVerifyResult() {
+		return VerifyResult;
 	}
 }
 

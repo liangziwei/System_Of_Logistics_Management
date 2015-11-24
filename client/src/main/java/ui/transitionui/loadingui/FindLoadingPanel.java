@@ -179,7 +179,7 @@ public class FindLoadingPanel extends DetailPanel{
 				// TODO Auto-generated method stub
 				String Loadingid = loadingidText.getText().trim();
 				LoadingVO loadingVO = loadingservice.findLoadingFormBL(Loadingid);
-				if(loadingVO.getVerifyResult()){
+				if(loadingVO!=null){
 					//设置当前的信息面板可见
 					infoPanel.setVisible(true);
 					//设置细节信息面板为将要显示的内容

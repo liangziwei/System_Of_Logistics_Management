@@ -43,6 +43,14 @@ public class InRepositoryVO {
 	 */
 	private boolean beinrepository;
 	/**
+	 * 错误信息
+	 */
+	private String errorMsg;
+	/**
+	 * 验证结果(查询)
+	 */
+	private boolean VerifyResult;
+	/**
 	 * 是否经过审批
 	 */
 	private boolean isApproved = false;
@@ -51,7 +59,7 @@ public class InRepositoryVO {
 	 */
 	private boolean isPassed = false;
 	public InRepositoryVO(String deliveryid,String inrepositorydate,String arrivalid,
-			AreaCodeType areaCode,String rowid,String shelfid,String posid,boolean beinrepository) {
+			AreaCodeType areaCode,String rowid,String shelfid,String posid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -61,7 +69,6 @@ public class InRepositoryVO {
 		this.rowid=rowid;
 		this.shelfid=shelfid;
 		this.posid=posid;
-		this.beinrepository=beinrepository;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;
@@ -122,6 +129,18 @@ public class InRepositoryVO {
 	}
 	public boolean getisPassed() {
 		return isPassed;
+	}
+	public void seterrorMsg(String errorMsg) {
+		this.errorMsg=errorMsg;
+	}
+	public String geterrorMsg() {
+		return errorMsg;
+	}
+	public void setVerifyResult(boolean VerifyResult) {
+		this.VerifyResult=VerifyResult;
+	}
+	public boolean getVerifyResult() {
+		return VerifyResult;
 	}
 }
 

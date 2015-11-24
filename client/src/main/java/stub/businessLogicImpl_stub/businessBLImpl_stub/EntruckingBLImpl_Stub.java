@@ -1,5 +1,7 @@
 package stub.businessLogicImpl_stub.businessBLImpl_stub;
 
+import java.rmi.RemoteException;
+
 import dataService.businessDataService.EntruckingDataService;
 import po.businessPO.EntruckingPO;
 import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_stub;
@@ -13,7 +15,13 @@ public class EntruckingBLImpl_Stub implements EntruckingBLService{
 	public boolean addEntruckingFrom(EntruckingVO entruckingVO) {
 		// TODO Auto-generated method stub
 
-		return entruckingData.addEntruckingFrom(entruckingVOToPO(entruckingVO));
+		try {
+			return entruckingData.addEntruckingFrom(entruckingVOToPO(entruckingVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	private EntruckingPO entruckingVOToPO(EntruckingVO entruckingVO){

@@ -11,12 +11,13 @@ import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
 public class TransferringController implements TransferringBLService{
-	ManageRepositoryBLService manageRepositoryBLService = new ManageRepositoryController();
+//	ManageRepositoryBLService manageRepositoryBLService = new ManageRepositoryController();
 	Transferring transferring = new Transferring();
+	ManageRepositoryBLService manageRepository = new ManageRepositoryController();
 
 	public TransferringVO findTransferringFormBL(String transferringNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		return transferring.findTransferringFormBL(transferringNumber);
 	}
 
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {
@@ -36,12 +37,18 @@ public class TransferringController implements TransferringBLService{
 
 	public List<RepositoryVO> getRepositoryInfo() {
 		// TODO Auto-generated method stub
-		return manageRepositoryBLService.GetRepositoryInfoBL();
+		return manageRepository.GetRepositoryInfoBL();
 	}
 
 	public List<TransferringVO> GetTansferringInfoBL(String date) {
 		// TODO Auto-generated method stub
-		return transferring.GetTansferringInfoBL(date);
+		return null;
+	}
+
+	@Override
+	public boolean verify(TransferringVO transferringVO) {
+		// TODO Auto-generated method stub
+		return transferring.verify(transferringVO);
 	}
 
 

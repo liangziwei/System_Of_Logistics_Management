@@ -1,12 +1,18 @@
 package po.repositoryPO;
 
+import java.io.Serializable;
+
 import constant.AreaCodeType;
 
 /**
  * 记录了入库单的信息
  * @author 阮威威
  */
-public class InRepositoryPO {
+public class InRepositoryPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7074545353878225576L;
 	/**
 	 * 快递的编号（十位数字）
 	 */
@@ -48,7 +54,7 @@ public class InRepositoryPO {
 	 */
 	private boolean isPassed = false;
 	public InRepositoryPO(String deliveryid,String inrepositorydate,String arrivalid,
-			AreaCodeType areaCode,String rowid,String shelfid,String posid,boolean beinrepository) {
+			AreaCodeType areaCode,String rowid,String shelfid,String posid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -58,7 +64,6 @@ public class InRepositoryPO {
 		this.rowid=rowid;
 		this.shelfid=shelfid;
 		this.posid=posid;
-		this.beinrepository=beinrepository;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;

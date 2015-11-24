@@ -226,7 +226,7 @@ public class ModifyLoadingPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				String Loadingid = loadingidText.getText().trim();
 				LoadingVO loadingVO = loadingservice.findLoadingFormBL(Loadingid);
-				if (loadingVO.getVerifyResult()) {
+				if (loadingVO!=null) {
 					// 设置当前的信息面板可见
 					infoPanel.setVisible(true);
 					// 设置细节信息面板为将要显示的内容
@@ -370,13 +370,18 @@ public class ModifyLoadingPanel extends DetailPanel {
 			way1 = LoadingType.TRUCK;
 			break;
 		}
-		String alldeli = alldeliveryidArea.getText();
-		String[] alldeli1 = alldeli.split("\n");
 		List<String> all = new ArrayList<String>();
-		for (String q : alldeli1) {
-			all.add(q);
+		String alldeli = alldeliveryidArea.getText();
+		if (alldeli.equals("")) {
+			all = null;
 		}
-
+		else{
+			String[] alldeli1 = alldeli.split("\n");
+			for(String q:alldeli1){
+				all.add(q);
+			}
+		}
+		
 		LoadingVO loadingVO = new LoadingVO(loadid, arriveid, way1, Wayid, Supervis, Supercar, all);
 		return loadingVO;
 	}
