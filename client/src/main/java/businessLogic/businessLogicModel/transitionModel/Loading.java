@@ -34,7 +34,7 @@ public class Loading {
 	
 	public boolean verifyres(LoadingVO loadingVO) {
 		if(loadingVO.getloadingid().equals("")||loadingVO.getloadingid().length()!=11){
-			loadingVO.seterrorMsg("装运单编号不能为空或装运单编号错误");
+			loadingVO.seterrorMsg("装运单编号不能为空或装运单编号错误(11位)");
 			return false;
 		}
 		if(loadingVO.getarrivalid().equals("")){
@@ -42,7 +42,7 @@ public class Loading {
 			return false;
 		}
 		if (loadingVO.getwayid().equals("")||loadingVO.getwayid().length()!=9) {
-			loadingVO.seterrorMsg("装运方式编号不能为空或编号输入错误");
+			loadingVO.seterrorMsg("装运方式编号不能为空或编号输入错误(9位)");
 			return false;
 		}
 		if (loadingVO.getsupervisionid().equals("")) {

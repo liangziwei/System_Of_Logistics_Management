@@ -258,7 +258,6 @@ public class ModifyLoadingPanel extends DetailPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				loadingidText.setText("");
-				;
 			}
 		});
 

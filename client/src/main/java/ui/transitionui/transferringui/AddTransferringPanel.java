@@ -151,26 +151,28 @@ public class AddTransferringPanel extends DetailPanel {
 		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), TEXTid_W, TEXT_H);
 		this.infoPanel.add(transferringidText);
-		
+
 		JLabel apart1 = new JLabel("-");
 		JLabel apart2 = new JLabel("-");
 		loadingdate.setBounds(transferringid.getX(),
 				transferringid.getY() + transferringid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(loadingdate);
 		loadingdateTextyear.setBounds(loadingdate.getX() + loadingdate.getWidth() + COMPONENT_GAP_X, loadingdate.getY(),
-				TEXT_W/3, TEXT_H);
+				TEXT_W / 3, TEXT_H);
 		this.infoPanel.add(loadingdateTextyear);
-		apart1.setBounds(loadingdateTextyear.getX()+loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10, LABEL_H);
+		apart1.setBounds(loadingdateTextyear.getX() + loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10,
+				LABEL_H);
 		this.infoPanel.add(apart1);
-		loadingdateTextmonth.setBounds(apart1.getX()+apart1.getWidth(),apart1.getY(),TEXT_W/3,TEXT_H);
+		loadingdateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 3, TEXT_H);
 		this.infoPanel.add(loadingdateTextmonth);
-		apart2.setBounds(loadingdateTextmonth.getX()+loadingdateTextmonth.getWidth(),loadingdateTextmonth.getY(),10,LABEL_H);
+		apart2.setBounds(loadingdateTextmonth.getX() + loadingdateTextmonth.getWidth(), loadingdateTextmonth.getY(), 10,
+				LABEL_H);
 		this.infoPanel.add(apart2);
-		loadingdateTextday.setBounds(apart2.getX()+apart2.getWidth(), apart2.getY(), TEXT_W/3, TEXT_H);
+		loadingdateTextday.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 3, TEXT_H);
 		this.infoPanel.add(loadingdateTextday);
-		
-		way.setBounds(loadingdateTextday.getX() + loadingdateTextday.getWidth() + COMPONENT_GAP_X, loadingdateTextday.getY(),
-				LABEL_W, LABEL_H);
+
+		way.setBounds(loadingdateTextday.getX() + loadingdateTextday.getWidth() + COMPONENT_GAP_X,
+				loadingdateTextday.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(way);
 		loadingway.setBounds(way.getX() + way.getWidth() + COMPONENT_GAP_X, way.getY(), TEXT_W, TEXT_H);
 		this.infoPanel.add(loadingway);
@@ -236,21 +238,23 @@ public class AddTransferringPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//创建中转单对象
+				// 创建中转单对象
 				TransferringVO transferringvo = creattransferringvo();
-				//验证输入是否成功
+				// 验证输入是否成功
 				boolean result = transferringBLService.verify(transferringvo);
-				
+
 				if (result) {
+					//重置中转单时间
+					transferringvo.setloadingdate(loadingdateTextyear.getText().trim() + "-"
+							+ loadingdateTextmonth.getText().trim() + "-" + loadingdateTextday.getText().trim());
 					throughVerifyOperation(transferringvo);
 					cancel.setVisible(true);
 					fare.setForeground(Color.red);
-				}
-				else {
+				} else {
 					verifyFailOperation(transferringvo);
 				}
-				
-				//刷新页面
+
+				// 刷新页面
 				repaint();
 			}
 		});
@@ -259,51 +263,52 @@ public class AddTransferringPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//回到第一次点击确定的状态
+				// 回到第一次点击确定的状态
 				isFirstEnsure = true;
-				//使提示信息消失
+				// 使提示信息消失
 				state.setText("");
-				//使信息可编辑
+				// 使信息可编辑
 				enableComponents();
 				cancel.setVisible(false);
-				//重置运费
+				// 重置运费
 				fareText.setText("");
 				fare.setForeground(Color.black);
 			}
 		});
 	}
-	
-	private void throughVerifyOperation(TransferringVO transferringVO){
-		//使所有组件不可编辑
+
+	private void throughVerifyOperation(TransferringVO transferringVO) {
+		// 使所有组件不可编辑
 		disableComponents();
-		//计算运费
-		String thefare = transferringBLService.tranferringFare(transferringVO.getdepartureid(),transferringVO.getarrivalid())+"";
-		//显示运费
+		// 计算运费
+		String thefare = transferringBLService.tranferringFare(transferringVO.getdepartureid(),
+				transferringVO.getarrivalid()) + "";
+		// 显示运费
 		fareText.setText(thefare);
-		if(isFirstEnsure) {
+		if (isFirstEnsure) {
 			showState("请再次确认信息，无误后按确定，否则按取消");
 			isFirstEnsure = false;
-		}
-		else {
-			//添加装运信息
-			boolean save =transferringBLService.addTransferringFormBL(transferringVO);
-			if(save) {		//保存成功
+		} else {
+			// 添加装运信息
+			boolean save = transferringBLService.addTransferringFormBL(transferringVO);
+			if (save) { // 保存成功
 				showState("订单保存成功");
 				disableComponents();
-			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
+			} else { // TODO 保存失败，说明保存失败的原因或者提出建议
 				showState("订单保存失败");
 			}
 		}
 	}
-	
+
 	private void verifyFailOperation(TransferringVO transferringVO) {
-		//提示修改意见
+		// 提示修改意见
 		showState(transferringVO.geterrorMsg());
 	}
-	
+
 	private TransferringVO creattransferringvo() {
 		String transferringid = transferringidText.getText().trim();
-		String date = loadingdateTextyear.getText().trim()+" -"+loadingdateTextmonth.getText().trim()+" -"+loadingdateTextday.getText().trim()+" ";
+		String date = loadingdateTextyear.getText().trim() + " -" + loadingdateTextmonth.getText().trim() + " -"
+				+ loadingdateTextday.getText().trim() + " ";
 		String WAY = (String) loadingway.getSelectedItem();
 		LoadingType loadingWAY = null;
 		switch (WAY) {
@@ -322,15 +327,14 @@ public class AddTransferringPanel extends DetailPanel {
 		String arrival = arrivalidText.getText().trim();
 		String supervision = supervisionidText.getText().trim();
 		String con = containeridText.getText().trim();
-		
+
 		List<String> all = new ArrayList<String>();
 		String alldeli = alldeliveryidText.getText();
 		if (alldeli.equals("")) {
 			all = null;
-		}
-		else{
+		} else {
 			String[] alldeli1 = alldeli.split("\n");
-			for(String q:alldeli1){
+			for (String q : alldeli1) {
 				all.add(q);
 			}
 		}

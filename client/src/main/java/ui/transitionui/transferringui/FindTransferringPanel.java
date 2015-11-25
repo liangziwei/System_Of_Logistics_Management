@@ -231,6 +231,10 @@ public class FindTransferringPanel extends DetailPanel{
 					revalidate();
 				}
 				else{
+					//设置当前的信息面板不可见
+					infoPanel.setVisible(false);
+					
+					state.setVisible(true);
 					showState("中转单编号错误或中转单编号不存在！");
 				}
 			}

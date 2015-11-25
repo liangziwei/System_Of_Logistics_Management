@@ -20,7 +20,7 @@ public class InRepositoryController implements InRepositoryBLService{
 
 	public InRepositoryVO findInRepositoryFormBL(String InRepositoryNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		return inRepository.findInRepositoryFormBL(InRepositoryNumber);
 	}
 
 	public boolean warnBL(InRepositoryVO inRepositoryVO) {

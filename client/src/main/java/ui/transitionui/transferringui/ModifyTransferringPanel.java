@@ -307,6 +307,9 @@ public class ModifyTransferringPanel extends DetailPanel {
 				boolean result = transferringBLService.verify(transferringvo);
 				
 				if (result) {
+					//重置中转单时间
+					transferringvo.setloadingdate(loadingdateTextyear.getText().trim() + "-"
+							+ loadingdateTextmonth.getText().trim() + "-" + loadingdateTextday.getText().trim());
 					throughVerifyOperation(transferringvo);
 					cancle2.setVisible(true);
 					fare.setForeground(Color.red);
@@ -354,10 +357,10 @@ public class ModifyTransferringPanel extends DetailPanel {
 			//添加装运信息
 			boolean save =transferringBLService.modifyTransferringFormBL(transferringVO);
 			if(save) {		//保存成功
-				showState2("订单保存成功");
+				showState2("订单修改成功");
 				disableComponents();
 			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
-				showState2("订单保存失败");
+				showState2("订单修改失败");
 			}
 		}
 	}

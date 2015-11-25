@@ -1,5 +1,6 @@
 package dataImpl.repositoryDataImpl;
 
+import constant.AreaCodeType;
 import dataService.repositoryDataService.InRepositoryDataService;
 import po.repositoryPO.InRepositoryPO;
 
@@ -17,7 +18,8 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 
 	public InRepositoryPO FindInRepositoryFormDT(String InRepositoryNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		InRepositoryPO inRepositoryPO = new InRepositoryPO("1110101023","2015-10-13", "北京",AreaCodeType.MOTOAREA,"004","012","042");
+		return inRepositoryPO;
 	}
 
 	public boolean UpdateRepositoryInfoDT(InRepositoryPO inRepository) {

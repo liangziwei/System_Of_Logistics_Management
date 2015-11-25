@@ -52,7 +52,7 @@ public class Receiving {
 	public boolean verifyres(ReceivingVO receivingVO){
 			
 		if(receivingVO.gettransferringid().equals("")||receivingVO.gettransferringid().length()!=16){
-			receivingVO.seterrorMsg("中转单编号不能为空或输入错误");
+			receivingVO.seterrorMsg("中转单编号不能为空或输入错误(16位)");
 			return false;
 		}
 		
@@ -83,7 +83,7 @@ public class Receiving {
 		}
 		
 		if(receivingVO.gettransitionid().equals("")||receivingVO.gettransitionid().length()!=4){
-			receivingVO.seterrorMsg("本中转中心编号不能为空或者输入错误");
+			receivingVO.seterrorMsg("本中转中心编号不能为空或者输入错误(4位)");
 			return false;
 		}
 		

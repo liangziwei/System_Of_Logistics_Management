@@ -277,6 +277,9 @@ public class ModifyReceivingPanel extends DetailPanel {
 				boolean result = receivingService.verify(receivingVO);
 				
 				if (result) {
+					//重置接受单时间
+					receivingVO.setarrivaldate(arrivaldateTextyear.getText().trim() + "-"
+							+ arrivaldateTextmonth.getText().trim() + "-" + arrivaldateTextday.getText().trim());
 					throughVerifyOperation(receivingVO);   //验证成功
 					cancle2.setVisible(true);
 				}
@@ -316,10 +319,10 @@ public class ModifyReceivingPanel extends DetailPanel {
 			//添加装运信息
 			boolean save =receivingService.addReceivingFormBL(receivingVO);
 			if(save) {		//保存成功
-				showState2("订单保存成功");
+				showState2("订单修改成功");
 				disableComponents();
 			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
-				showState2("订单保存失败");
+				showState2("订单修改失败");
 			}
 		}
 	}

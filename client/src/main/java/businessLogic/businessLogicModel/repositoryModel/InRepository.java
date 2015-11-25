@@ -1,8 +1,14 @@
 package businessLogic.businessLogicModel.repositoryModel;
 
+import java.rmi.RemoteException;
+
+import dataService.repositoryDataService.InRepositoryDataService;
+import network.RMI;
+import po.repositoryPO.InRepositoryPO;
 import vo.repositoryVO.InRepositoryVO;
 
 public class InRepository {
+	private InRepositoryDataService inRepositoryDataService = RMI.<InRepositoryDataService>getDataService("inrepository");
 	public String addInRepositoryFormBL(InRepositoryVO inRepository) {
 		// TODO Auto-generated method stub
 		return null;
@@ -15,12 +21,39 @@ public class InRepository {
 
 	public InRepositoryVO findInRepositoryFormBL(String InRepositoryNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		InRepositoryPO inRepositoryPO =null;
+		InRepositoryVO result=null;
+		try {
+			inRepositoryPO = inRepositoryDataService.FindInRepositoryFormDT(InRepositoryNumber);
+			if(inRepositoryPO==null){
+				return null;
+			}
+			else {
+				result = InRepositoryPOtoInRepositoryVO(inRepositoryPO);				
+				result.setVerifyResult(true);
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	private InRepositoryVO InRepositoryPOtoInRepositoryVO(InRepositoryPO inRepositoryPO){
+		return new InRepositoryVO(inRepositoryPO.getdeliveryid(), inRepositoryPO.getinrepositorydate(),
+				inRepositoryPO.getarrivalid(), inRepositoryPO.getareaCode(), inRepositoryPO.getrowid(), 
+				inRepositoryPO.getshelfid(), inRepositoryPO.getposid());
+	}
+	private InRepositoryPO InRepositoryVOtoInRepositoryPO(InRepositoryVO inRepositoryVO){
+		return new InRepositoryPO(inRepositoryVO.getdeliveryid(), inRepositoryVO.getinrepositorydate(),
+				inRepositoryVO.getarrivalid(), inRepositoryVO.getareaCode(), 
+				inRepositoryVO.getrowid(), inRepositoryVO.getshelfid(), 
+				inRepositoryVO.getposid());
 	}
 	
 	public boolean verify(InRepositoryVO inRepositoryVO) {
 		if (inRepositoryVO.getdeliveryid().equals("")||inRepositoryVO.getdeliveryid().length()!=10) {
-			inRepositoryVO.seterrorMsg("快递编号不能为空或输入错误");
+			inRepositoryVO.seterrorMsg("快递编号不能为空或输入错误(10位)");
 			return false;
 		}
 		if (inRepositoryVO.getarrivalid().equals("")) {

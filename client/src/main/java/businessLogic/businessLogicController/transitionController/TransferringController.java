@@ -42,7 +42,7 @@ public class TransferringController implements TransferringBLService{
 
 	public List<TransferringVO> GetTansferringInfoBL(String date) {
 		// TODO Auto-generated method stub
-		return null;
+		return transferring.GetTansferringInfoBL(date);
 	}
 
 	@Override

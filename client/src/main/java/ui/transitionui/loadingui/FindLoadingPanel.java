@@ -190,6 +190,10 @@ public class FindLoadingPanel extends DetailPanel{
 					revalidate();
 				}
 				else {
+					//设置当前的信息面板不可见
+					infoPanel.setVisible(false);
+					
+					state.setVisible(true);
 					showState("装运单编号错误或装运单编号不存在！");
 				}
 			}

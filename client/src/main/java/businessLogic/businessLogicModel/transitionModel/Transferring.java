@@ -53,17 +53,28 @@ public class Transferring {
 
 	public List<TransferringVO> GetTansferringInfoBL(String date) {
 		// TODO Auto-generated method stub
-//		List<TransferringPO> transferringPOs = mockTransferring.GetTransferringInfoDT(date);
-//		List<TransferringVO> transferringVOs = new ArrayList<TransferringVO>();
-//		for(int i=0;i<transferringPOs.size();i++){
-//			transferringVOs.add(this.TransferringPOtoTransferringVO(transferringPOs.get(i)));
-//		}
-		return null;		
+		List<TransferringPO> transferringPOs = null;
+		List<TransferringVO> transferringVOs = new ArrayList<TransferringVO>();
+		try {
+			transferringPOs = transferringDataService.GetTransferringInfoDT(date);
+			if (transferringPOs == null) {
+				return null;
+			}
+			else {
+				for(int i=0;i<transferringPOs.size();i++){
+					transferringVOs.add(this.TransferringPOtoTransferringVO(transferringPOs.get(i)));
+				}
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return transferringVOs;		
 	}
 	
 	public boolean verify(TransferringVO transferringVO) {
 		if (transferringVO.gettransferringid() .equals("") || transferringVO.gettransferringid().length() != 15) {
-			transferringVO.seterrorMsg("中转单编号为空或输入错误");
+			transferringVO.seterrorMsg("中转单编号为空或输入错误(15位)");
 			return false;
 		}
 		String[] aStrings =transferringVO.getloadingdate().split("-");
@@ -93,7 +104,7 @@ public class Transferring {
 		}
 		
 		if (transferringVO.getwayid().equals("")||transferringVO.getwayid().length()!=9) {
-			transferringVO.seterrorMsg("装运方式编号不能为空或输入错误");
+			transferringVO.seterrorMsg("装运方式编号不能为空或输入错误(9位)");
 			return false;
 		}
 		if (transferringVO.getdepartureid().equals("")) {

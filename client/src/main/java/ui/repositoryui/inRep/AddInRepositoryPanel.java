@@ -1,7 +1,6 @@
-package ui.repositoryui.inoutRep;
+package ui.repositoryui.inRep;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -121,13 +120,13 @@ public class AddInRepositoryPanel extends DetailPanel {
 	}
 
 	private void initUI() {
-		//快递编号
+		// 快递编号
 		Deliveryid.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(Deliveryid);
 		DeliveryidText.setBounds(Deliveryid.getX() + Deliveryid.getWidth() + COMPONENT_GAP_X, Deliveryid.getY(),
 				TEXTid_W, TEXT_H);
 		this.infoPanel.add(DeliveryidText);
-		//入库日期
+		// 入库日期
 		inrepositorydate.setBounds(Deliveryid.getX(), Deliveryid.getY() + Deliveryid.getHeight() + COMPONENT_GAP_Y,
 				LABEL_W, LABEL_H);
 		this.infoPanel.add(inrepositorydate);
@@ -136,42 +135,47 @@ public class AddInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(inrepositoryYear);
 		JLabel apart1 = new JLabel("-");
 		JLabel apart2 = new JLabel("-");
-		apart1.setBounds(inrepositoryYear.getX()+inrepositoryYear.getWidth(), inrepositoryYear.getY(), 10, TEXT_H);
+		apart1.setBounds(inrepositoryYear.getX() + inrepositoryYear.getWidth(), inrepositoryYear.getY(), 10, TEXT_H);
 		this.infoPanel.add(apart1);
-		inrepositoryMonth.setBounds(apart1.getX()+apart1.getWidth(), apart1.getY(), TEXT_W/2, TEXT_H);
+		inrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
 		this.infoPanel.add(inrepositoryMonth);
-		apart2.setBounds(inrepositoryMonth.getX()+inrepositoryMonth.getWidth(), inrepositoryMonth.getY(), 10, TEXT_H);
+		apart2.setBounds(inrepositoryMonth.getX() + inrepositoryMonth.getWidth(), inrepositoryMonth.getY(), 10, TEXT_H);
 		this.infoPanel.add(apart2);
-		inrepositoryDay.setBounds(apart2.getX()+apart2.getWidth(), apart2.getY(), TEXT_W /2, TEXT_H);
+		inrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
 		this.infoPanel.add(inrepositoryDay);
-		//目的地
-		arrivalid.setBounds(inrepositorydate.getX(), inrepositorydate.getY()+inrepositorydate.getHeight()+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
+		// 目的地
+		arrivalid.setBounds(inrepositorydate.getX(),
+				inrepositorydate.getY() + inrepositorydate.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivalid);
-		arrivalidText.setBounds(arrivalid.getX()+arrivalid.getWidth()+COMPONENT_GAP_X, arrivalid.getY(), TEXT_W, TEXT_H);
+		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
+				TEXT_H);
 		this.infoPanel.add(arrivalidText);
-		//区号
-		areaid.setBounds(arrivalidText.getX()+arrivalidText.getWidth()+COMPONENT_GAP_Y, arrivalidText.getY(), LABEL_W /2, LABEL_H);
+		// 区号
+		areaid.setBounds(arrivalidText.getX() + arrivalidText.getWidth() + COMPONENT_GAP_Y, arrivalidText.getY(),
+				LABEL_W / 2, LABEL_H);
 		this.infoPanel.add(areaid);
-		areaidText.setBounds(areaid.getX()+areaid.getWidth()+COMPONENT_GAP_X, areaid.getY(), TEXT_W, TEXT_H);
+		areaidText.setBounds(areaid.getX() + areaid.getWidth() + COMPONENT_GAP_X, areaid.getY(), TEXT_W, TEXT_H);
 		areaidText.addItem("航运区");
 		areaidText.addItem("铁运区");
 		areaidText.addItem("汽运区");
 		areaidText.addItem("机动区");
 		this.infoPanel.add(areaidText);
-		//排号
-		rowid.setBounds(arrivalid.getX(), arrivalid.getY()+arrivalid.getHeight()+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
+		// 排号
+		rowid.setBounds(arrivalid.getX(), arrivalid.getY() + arrivalid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(rowid);
-		rowidText.setBounds(rowid.getX()+rowid.getWidth()+COMPONENT_GAP_X, rowid.getY(), LABEL_W, LABEL_H);
+		rowidText.setBounds(rowid.getX() + rowid.getWidth() + COMPONENT_GAP_X, rowid.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(rowidText);
-		//架号
-		shelfid.setBounds(rowidText.getX()+rowidText.getWidth()+COMPONENT_GAP_Y, rowidText.getY(), LABEL_W /2, LABEL_H);
+		// 架号
+		shelfid.setBounds(rowidText.getX() + rowidText.getWidth() + COMPONENT_GAP_Y, rowidText.getY(), LABEL_W / 2,
+				LABEL_H);
 		this.infoPanel.add(shelfid);
-		shelfidText.setBounds(shelfid.getX()+shelfid.getWidth()+COMPONENT_GAP_X, shelfid.getY(), LABEL_W, LABEL_H);
+		shelfidText.setBounds(shelfid.getX() + shelfid.getWidth() + COMPONENT_GAP_X, shelfid.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(shelfidText);
-		//位号
-		posid.setBounds(shelfidText.getX()+shelfidText.getWidth()+COMPONENT_GAP_Y, shelfidText.getY(), LABEL_W /2, LABEL_H);
+		// 位号
+		posid.setBounds(shelfidText.getX() + shelfidText.getWidth() + COMPONENT_GAP_Y, shelfidText.getY(), LABEL_W / 2,
+				LABEL_H);
 		this.infoPanel.add(posid);
-		posidText.setBounds(posid.getX()+posid.getWidth()+COMPONENT_GAP_X, posid.getY(), LABEL_W, LABEL_H);
+		posidText.setBounds(posid.getX() + posid.getWidth() + COMPONENT_GAP_X, posid.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(posidText);
 	}
 
@@ -180,20 +184,22 @@ public class AddInRepositoryPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//创建接收单对象
+				// 创建接收单对象
 				InRepositoryVO inRepositoryVO = creatInRepository();
-				//验证输入是否规范
+				// 验证输入是否规范
 				boolean result = inRepositoryBLService.verify(inRepositoryVO);
-				
+
 				if (result) {
-					throughVerifyOperation(inRepositoryVO);   //验证成功
+					// 重置入库时间
+					inRepositoryVO.setinrepositorydate(inrepositoryYear.getText().trim() + "-"
+							+ inrepositoryMonth.getText().trim() + "-" + inrepositoryDay.getText().trim());
+					throughVerifyOperation(inRepositoryVO); // 验证成功
 					cancel.setVisible(true);
+				} else {
+					verifyFailOperation(inRepositoryVO); // 验证失败
 				}
-				else {
-					verifyFailOperation(inRepositoryVO);   //验证失败
-				}
-				
-				//刷新页面
+
+				// 刷新页面
 				repaint();
 			}
 		});
@@ -202,33 +208,31 @@ public class AddInRepositoryPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//回到第一次点击确定的状态
+				// 回到第一次点击确定的状态
 				isFirstEnsure = true;
-				//使提示信息消失
+				// 使提示信息消失
 				state.setText("");
-				//使信息可编辑
+				// 使信息可编辑
 				enableComponents();
 				cancel.setVisible(false);
 			}
 		});
 	}
-	
+
 	private void throughVerifyOperation(InRepositoryVO inRepositoryVO) {
-		//使所有组件不可编辑
+		// 使所有组件不可编辑
 		disableComponents();
-		
-		if(isFirstEnsure) {
+
+		if (isFirstEnsure) {
 			showState("请再次确认信息，无误后按确定，否则按取消");
 			isFirstEnsure = false;
-		}
-		else {
-			//添加装运信息
-			String save =inRepositoryBLService.addInRepositoryFormBL(inRepositoryVO);
-			if(save.equals("true")) {		//保存成功
+		} else {
+			// 添加装运信息
+			String save = inRepositoryBLService.addInRepositoryFormBL(inRepositoryVO);
+			if (save.equals("true")) { // 保存成功
 				showState("订单保存成功");
 				disableComponents();
-			}
-			else if(save.equals("true.warn")){//保存成功,报警
+			} else if (save.equals("true.warn")) {// 保存成功,报警
 				AreaCodeType Area = inRepositoryVO.getareaCode();
 				String way = null;
 				switch (Area) {
@@ -245,20 +249,19 @@ public class AddInRepositoryPanel extends DetailPanel {
 					way = "机动区";
 					break;
 				}
-				showState("保存成功，但"+way+"库存报警");
-			}
-			else if(save.equals("false")){
-				//TODO 保存失败，说明保存失败的原因或者提出建议
+				showState("保存成功，但" + way + "库存报警");
+			} else if (save.equals("false")) {
+				// TODO 保存失败，说明保存失败的原因或者提出建议
 				showState("订单保存失败");
 			}
 		}
 	}
-	
+
 	private void verifyFailOperation(InRepositoryVO inRepositoryVO) {
-		//提示修改意见
+		// 提示修改意见
 		showState(inRepositoryVO.geterrorMsg());
 	}
-	
+
 	private InRepositoryVO creatInRepository() {
 		String delivery = DeliveryidText.getText().trim();
 		String InRepDate = inrepositoryYear.getText().trim() + " -" + inrepositoryMonth.getText().trim() + " -"
