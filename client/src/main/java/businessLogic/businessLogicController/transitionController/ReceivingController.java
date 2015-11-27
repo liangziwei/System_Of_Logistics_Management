@@ -9,12 +9,12 @@ public class ReceivingController implements ReceivingBLService{
 	Receiving receiving = new Receiving();
 	public boolean addReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
-		return false;
+		return receiving.addReceivingFormBL(receivingVO);
 	}
 
 	public boolean modifyReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
-		return false;
+		return receiving.modifyReceivingFormBL(receivingVO);
 	}
 
 	public ReceivingVO findReceivingformBL(String receivingNumber) {

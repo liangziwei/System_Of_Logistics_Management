@@ -11,12 +11,28 @@ public class Receiving {
 	
 	public boolean addReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
-		return false;
+		ReceivingPO receivingPO = ReceivingVOtoReceivingPO(receivingVO);
+		boolean result = false;
+		try {
+			result = receivingDataService.addReceivingFormDT(receivingPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public boolean modifyReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
-		return false;
+		ReceivingPO receivingPO = ReceivingVOtoReceivingPO(receivingVO);
+		boolean result = false;
+		try {
+			result = receivingDataService.modifyReceivingFormDT(receivingPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public ReceivingVO findReceivingformBL(String receivingNumber) {

@@ -9,6 +9,7 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 import dataService.transitionDataService.TransferringDataService;
 import mock.object.MockTransferring;
 import network.RMI;
+import po.transitionPO.LoadingPO;
 import po.transitionPO.TransferringPO;
 import vo.transitionVO.TransferringVO;
 
@@ -37,12 +38,32 @@ public class Transferring {
 
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
-		return false;
+		double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid());
+		transferringVO.setfare(faremoney);
+		TransferringPO transferringPO = TransferringVOtoTransferringPO(transferringVO);
+		boolean add =false;
+		try {
+			add = transferringDataService.AddTransferringFormDT(transferringPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return add;
 	}
 
 	public boolean modifyTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
-		return false;
+		double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid());
+		transferringVO.setfare(faremoney);
+		TransferringPO transferringPO = TransferringVOtoTransferringPO(transferringVO);
+		boolean modify =false;
+		try {
+			modify = transferringDataService.ModifyTransferringFormDT(transferringPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return modify;
 	}
 
 	public double tranferringFare(String CityFrom, String CityTo) {

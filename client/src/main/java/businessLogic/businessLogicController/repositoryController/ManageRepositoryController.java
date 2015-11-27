@@ -24,27 +24,33 @@ public class ManageRepositoryController implements ManageRepositoryBLService{
 
 	public boolean SetWarnValueBL(AreaCodeType ID, int allNum, double WarnNum) {
 		// TODO Auto-generated method stub
-		return false;
+		return manageRepository.SetWarnValueBL(ID, allNum, WarnNum);
 	}
 
-	public double GetWranNumBL(AreaCodeType ID) {
+	public double GetWarnNumBL(AreaCodeType ID) {
 		// TODO Auto-generated method stub
-		return 0;
+		return manageRepository.GetWarnNumBL(ID);
 	}
 
 	public int GetRepositoryNumBL(AreaCodeType ID) {
 		// TODO Auto-generated method stub
-		return 0;
+		return manageRepository.GetRepositoryNumBL(ID);
 	}
 
 	public int GetRepositoryExistBL(AreaCodeType ID) {
 		// TODO Auto-generated method stub
-		return 0;
+		return manageRepository.GetRepositoryExistBL(ID);
 	}
 
 	public List<RepositoryVO> GetRepositoryInfoBL() {
 		// TODO Auto-generated method stub
 		return manageRepository.GetRepositoryInfoBL();
+	}
+
+	@Override
+	public boolean verify(String warn, String all) {
+		// TODO Auto-generated method stub	
+		return manageRepository.verify(warn, all);
 	}
 	
 

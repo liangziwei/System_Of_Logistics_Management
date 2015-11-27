@@ -51,7 +51,7 @@ public class ManageRepository {
 		return false;
 	}
 
-	public double GetWranNumBL(AreaCodeType ID) {
+	public double GetWarnNumBL(AreaCodeType ID) {
 		// TODO Auto-generated method stub
 		return 0.0;
 	}
@@ -82,6 +82,18 @@ public class ManageRepository {
 		}
 		return repositoryVOs;
 	}
+	
+	public boolean verify(String warn, String all) {
+		// TODO Auto-generated method stub
+		if (warn.equals("")||all.equals("")) {
+			return false;
+		}
+		if ((Double.parseDouble(warn))>1||(Double.parseDouble(warn))<0) {
+			return false;
+		}
+		return true;
+	}
+	
 	private RepositoryVO RepositoryPOtoRepositoryVO(RepositoryPO repositoryPO){
 		return new RepositoryVO(repositoryPO.getdeliveryid(), repositoryPO.getinrepositorydate(),
 				repositoryPO.getarrivalid(), repositoryPO.getareaCode(), 

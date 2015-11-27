@@ -1,35 +1,86 @@
 package businessLogic.businessLogicModel.transitionModel;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import constant.City;
 import constant.LoadingType;
+import dataService.transitionDataService.LoadingDataService;
+import network.RMI;
+import po.transitionPO.LoadingPO;
 import vo.transitionVO.LoadingVO;
 
 public class Loading {
+	private LoadingDataService loadingDataService = RMI.<LoadingDataService>getDataService("loading");
+	
 	public LoadingVO findLoadingFormBL(String loadingNumber) {
 		// TODO Auto-generated method stub
-		ArrayList<String>  alldeliveryid = new ArrayList<>();
-		alldeliveryid.add("1234567890");
-		alldeliveryid.add("0987654321");
-		LoadingVO loadingVO =new LoadingVO("12312311111", "123", LoadingType.TRAIN, "212453", "haha", "xixi", alldeliveryid);
-		loadingVO.setVerifyResult(true);
+		LoadingVO loadingVO = null;
+		LoadingPO loadingPO = null;
+		try {
+			loadingPO = loadingDataService.FindLoadingFormDT(loadingNumber);
+			if (loadingPO==null) {
+				return null;
+			}
+			else {
+				loadingVO = LoadingPOtoLoadingVO(loadingPO);
+				loadingVO.setVerifyResult(true);
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return loadingVO;
 	}
 
 	public boolean addLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		return false;
+		double faremoney = this.loadingFare("南京", loadingVO.getarrivalid());
+		loadingVO.setfare(faremoney);
+		LoadingPO loadingPO = LoadingVOtoLoadingPO(loadingVO);
+		boolean add =false;
+		try {
+			add = loadingDataService.AddLoadingFormDT(loadingPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return add;
 	}
 
 	public boolean modifyLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		return false;
+		double faremoney = this.loadingFare("南京", loadingVO.getarrivalid());
+		loadingVO.setfare(faremoney);
+		LoadingPO loadingPO = LoadingVOtoLoadingPO(loadingVO);
+		boolean modify =false;
+		try {
+			modify = loadingDataService.ModifyLoadingFormDT(loadingPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return modify;
 	}
 
 	public double loadingFare(String CityFrom, String CityTo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	private LoadingVO LoadingPOtoLoadingVO(LoadingPO loadingPO){
+		LoadingVO loadingVO =new LoadingVO(loadingPO.getloadingid(), loadingPO.getarrivalid(), 
+				loadingPO.getway(), loadingPO.getwayid(), loadingPO.getsupervisionid(), 
+				loadingPO.getsupercargoid(),loadingPO.getalldeliveryid());
+		loadingVO.setfare(loadingPO.getfare());
+		return loadingVO;
+	}
+	private LoadingPO LoadingVOtoLoadingPO(LoadingVO loadingVO){
+		LoadingPO loadingPO =new LoadingPO(loadingVO.getloadingid(), loadingVO.getarrivalid(), loadingVO.getway(),
+				loadingVO.getwayid(), loadingVO.getsupervisionid(), loadingVO.getsupercargoid(),
+				loadingVO.getalldeliveryid());
+		loadingPO.setfare(loadingVO.getfare());
+		return loadingPO;
 	}
 	
 	public boolean verifyres(LoadingVO loadingVO) {

@@ -52,7 +52,7 @@ public interface ManageRepositoryBLService {
 	 * @param ID：仓库的某个区号
 	 * @return double, 返回仓库的某个区的报警百分比
 	 * */
-	public double GetWranNumBL(AreaCodeType ID);
+	public double GetWarnNumBL(AreaCodeType ID);
 	
 	/**
 	 * description:取得仓库中某个区的容量值
@@ -83,6 +83,16 @@ public interface ManageRepositoryBLService {
 	 * @return List<RepositoryVO>, 返回仓库的库存信息的值对象，具体参照RepositoryVO
 	 * */
 	public List<RepositoryVO> GetRepositoryInfoBL();
+	/**
+	 * description:验证库存预警信息
+	 * 前置条件：RepositoryWarn
+	 * 后置条件：返回验证结果
+	 * 需接口：无
+	 * @param warn:预警值
+	 * @param all:总容量
+	 * @return boolean, 返回验证结果
+	 * */
+	public boolean verify(String warn,String all);
 	
 	
 }

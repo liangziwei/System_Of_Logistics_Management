@@ -15,17 +15,17 @@ public class LoadingController implements LoadingBLService{
 
 	public boolean addLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		return false;
+		return loading.addLoadingFormBL(loadingVO);
 	}
 
 	public boolean modifyLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		return false;
+		return loading.modifyLoadingFormBL(loadingVO);
 	}
 
 	public double loadingFare(String CityFrom, String CityTo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return loading.loadingFare(CityFrom, CityTo);
 	}
 	public boolean verify(LoadingVO loadingVO) {
 		boolean result = loading.verifyres(loadingVO);

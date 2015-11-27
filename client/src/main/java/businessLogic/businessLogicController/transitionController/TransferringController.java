@@ -22,17 +22,17 @@ public class TransferringController implements TransferringBLService{
 
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
-		return false;
+		return transferring.addTransferringFormBL(transferringVO);
 	}
 
 	public boolean modifyTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
-		return false;
+		return transferring.modifyTransferringFormBL(transferringVO);
 	}
 
 	public double tranferringFare(String CityFrom, String CityTo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return transferring.tranferringFare(CityFrom, CityTo);
 	}
 
 	public List<RepositoryVO> getRepositoryInfo() {

@@ -110,7 +110,7 @@ public class AddReceivingPanel extends DetailPanel {
 		super.add(jScrollPane);
 
 		// 主面板
-		this.infoPanel.setBounds(START_X, START_Y, this.DETAIL_PANEL_W, START_Y + (LABEL_H + COMPONENT_GAP_Y) * 5);
+		this.infoPanel.setBounds(START_X, START_Y, this.DETAIL_PANEL_W, START_Y + (LABEL_H + COMPONENT_GAP_Y) * 4);
 		this.infoPanel.setLayout(null);
 		// 初始化信息面板
 		this.initUI();

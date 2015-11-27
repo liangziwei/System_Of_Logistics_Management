@@ -108,7 +108,7 @@ public class InRepositoryBLImpl_Stub implements InRepositoryBLService{
 
 	public double getWarnNum(AreaCodeType ID) {
 		// TODO Auto-generated method stub
-		return manageRepositoryBLService.GetWranNumBL(ID);
+		return manageRepositoryBLService.GetWarnNumBL(ID);
 	}
 
 	public int GetRepositoryNum(AreaCodeType ID) {

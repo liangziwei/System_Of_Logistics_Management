@@ -12,12 +12,36 @@ public class OutRepository {
 	private OutRepositoryDataService outRepositoryDataService = RMI.<OutRepositoryDataService>getDataService("outrepository");
 	public boolean addOutRepositoryFormBL(OutRepositoryVO outRepositoryVO) {
 		// TODO Auto-generated method stub
-		return false;
+		OutRepositoryPO outRepositoryPO = OutRepositoryVOtoOutRepositoryPO(outRepositoryVO);
+		boolean result = false;
+		try {
+			boolean temp1 = outRepositoryDataService.AddOutRepositoryFormDT(outRepositoryPO);
+			boolean temp2 = outRepositoryDataService.UpdateRepositoryInfoDT(outRepositoryPO);
+			if (temp1&&temp2) {
+				result = true;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public boolean modifyOutRepositoryFormBL(OutRepositoryVO outRepositoryVO) {
 		// TODO Auto-generated method stub
-		return false;
+		OutRepositoryPO outRepositoryPO = OutRepositoryVOtoOutRepositoryPO(outRepositoryVO);
+		boolean result = false;
+		try {
+			boolean temp1 = outRepositoryDataService.ModifyOutRepositoryFormDT(outRepositoryPO);
+			boolean temp2 = outRepositoryDataService.UpdateRepositoryInfoDT(outRepositoryPO);
+			if (temp1&&temp2) {
+				result = true;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public OutRepositoryVO findOutRepositoryFormBL(String OutRepositoryNumber) {

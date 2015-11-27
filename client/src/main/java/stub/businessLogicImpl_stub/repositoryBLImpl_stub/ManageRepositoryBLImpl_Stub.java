@@ -64,7 +64,7 @@ public class ManageRepositoryBLImpl_Stub implements ManageRepositoryBLService{
 		return false;
 	}
 
-	public double GetWranNumBL(AreaCodeType ID) {
+	public double GetWarnNumBL(AreaCodeType ID) {
 		// TODO Auto-generated method stub
 		try {
 			return manageRepositoryData.GetWarnNumDT(ID);
@@ -127,6 +127,12 @@ public class ManageRepositoryBLImpl_Stub implements ManageRepositoryBLService{
 		return new DeliveryInfoVO(deliveryInfoPO.getdeliveryid(), deliveryInfoPO.getinrepositorydate(), 
 				deliveryInfoPO.getarrivalid(), deliveryInfoPO.getareaCode(), 
 				deliveryInfoPO.getrowid(), deliveryInfoPO.getshelfid(), deliveryInfoPO.getposid());
+	}
+
+	@Override
+	public boolean verify(String warn, String all) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
