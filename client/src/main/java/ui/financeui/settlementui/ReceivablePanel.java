@@ -1,9 +1,11 @@
 package ui.financeui.settlementui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -24,6 +26,8 @@ public class ReceivablePanel extends JPanel{
 	private JLabel itemLabel = new JLabel("收款项");
 	
 	private JTextArea itemText = new JTextArea();
+	
+	private JScrollPane itemContainer = new JScrollPane();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 
@@ -59,7 +63,8 @@ public class ReceivablePanel extends JPanel{
 				labelW, labelH);
 		this.itemLabel.setFont(WORD_FONT);
 		//收款项文本框
-		this.itemText.setBounds(this.nameText.getX(), this.itemLabel.getY(), textW, textH * idNum);
+		this.itemContainer.setBounds(this.nameText.getX(), this.itemLabel.getY(), textW, textH * idNum);
+		this.itemText.setPreferredSize(new Dimension(textW - 5, idNum * 20));
 		this.itemText.setFont(WORD_FONT);
 		String text = "";
 		for(int i = 0; i < idNum; i++) {
@@ -68,15 +73,16 @@ public class ReceivablePanel extends JPanel{
 		text = text + "总金额为： " + receivable.getMoney() + "\n";
 		this.itemText.setText(text);
 		this.itemText.setEditable(false);
+		this.itemContainer.setViewportView(this.itemText);
 		//将组件添加到面板
 		this.setBounds(x, y, w, h);
 		this.setLayout(null);
 		this.add(this.dateLabel);
 		this.add(this.dateText);
 		this.add(this.nameLabel);
-		this.add(this.itemLabel);
-		this.add(this.itemText);
 		this.add(this.nameText);
+		this.add(this.itemLabel);
+		this.add(this.itemContainer);
 	}
 	
 	

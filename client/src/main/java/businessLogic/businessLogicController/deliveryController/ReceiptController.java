@@ -17,8 +17,8 @@ public class ReceiptController implements ReceiptBLService{
 		return this.receipt.saveReceiptInfo(receiptVO);
 	}
 
-	public boolean updateTimeRecord(String arriveTime, String id) {
-		return this.receipt.updateTimeRecord(arriveTime, id);
+	public boolean updateTimeRecord(String name, String arriveTime, String id) {
+		return this.receipt.updateTimeRecord(name, arriveTime, id);
 	}
 
 	public VerifyMessage verifyReceiptInfo(ReceiptVO receiptVO) {

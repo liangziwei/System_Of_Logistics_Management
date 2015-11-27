@@ -1,6 +1,9 @@
 package businessLogicService.managerBLService;
 
+import java.util.List;
+
 import vo.managerVO.OrganizationVO;
+import vo.managerVO.StaffVO;
 
 /**
  * description:业务逻辑层为机构管理界面提供的服务
@@ -48,4 +51,14 @@ public interface OrganizationManagementBLService {
 	 * @return boolean ,修改是否成功
 	 */
 	public boolean modifyOrganization(OrganizationVO organizationVO);
+	
+	/**
+	 * 通过机构编号查找所有属于该机构的人员信息
+	 */
+	public List<StaffVO> getStaffInfos(String organizationId);
+	
+	/**
+	 * 通过机构编号删除所有属于该机构的人员信息
+	 */
+    public boolean deleteStaffByOrgId(String organizationId);
 }

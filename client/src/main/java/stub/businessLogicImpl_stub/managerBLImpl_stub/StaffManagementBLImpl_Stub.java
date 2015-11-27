@@ -3,6 +3,9 @@ package stub.businessLogicImpl_stub.managerBLImpl_stub;
 import po.managerPO.StaffPO;
 import stub.dataImpl_stub.managerDataImpl_stub.StaffManagementDataImpl_Stub;
 import vo.managerVO.StaffVO;
+
+import java.util.List;
+
 import businessLogicService.managerBLService.StaffManagementBLService;
 import dataService.managerDataService.StaffManagementDataService;
 
@@ -51,13 +54,15 @@ public class StaffManagementBLImpl_Stub implements StaffManagementBLService {
 	}
 	
 	private StaffPO staffVOTostaffPO(StaffVO staffVO){
-		return new StaffPO(staffVO.getName(),staffVO.getId(),staffVO.getPosition(),
-				staffVO.getGender(),staffVO.getBirthday(),staffVO.getSalary());
+//		return new StaffPO(staffVO.getName(),staffVO.getId(),staffVO.getPosition(),
+//				staffVO.getGender(),staffVO.getBirthday(),staffVO.getSalary());
+		return null;
 	}
 	
 	private StaffVO staffPOTostaffVO(StaffPO staffPO){
-		return new StaffVO(staffPO.getName(),staffPO.getId(),staffPO.getPosition(),
-				staffPO.getGender(),staffPO.getBirthday(),staffPO.getSalary());
+//		return new StaffVO(staffPO.getName(),staffPO.getId(),staffPO.getPosition(),
+//				staffPO.getGender(),staffPO.getBirthday(),staffPO.getSalary());
+		return null;
 	}
 
 }

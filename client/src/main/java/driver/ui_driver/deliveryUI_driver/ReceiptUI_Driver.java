@@ -22,7 +22,7 @@ public class ReceiptUI_Driver {
 				break;
 			case 2:
 				System.out.println("时间历史记录是否更新成功: " 
-			+ receipt.updateTimeRecord("2015-10-23", "0000000000"));
+			+ receipt.updateTimeRecord("小白", "2015-10-23", "0000000000"));
 				break;
 			case 3:
 				go = false;

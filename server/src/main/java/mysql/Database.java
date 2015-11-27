@@ -99,26 +99,14 @@ public class Database {
 	}
 	
 	//查询数据
-	public static ResultSet findOperation(String sql){
-		try {
-			rs=stat.executeQuery(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public static ResultSet findOperation(String sql) throws SQLException{
+		rs=stat.executeQuery(sql);
 		return rs;
 	}
 	
 	//增删改操作
-	public static boolean operate(String sql){
-		int x;
-		try {
-			x=stat.executeUpdate(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+	public static boolean operate(String sql) throws SQLException{
+	    stat.executeUpdate(sql);
 		return true;
 	}
 	

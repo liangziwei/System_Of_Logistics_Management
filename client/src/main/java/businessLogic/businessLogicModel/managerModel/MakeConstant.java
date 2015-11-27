@@ -2,10 +2,11 @@ package businessLogic.businessLogicModel.managerModel;
 
 
 
-import network.RMI;
 import constant.City;
+import constant.PackageType;
 import constant.TransitType;
 import dataService.managerDataService.MakeConstantDataService;
+import network.RMI;
 
 public class MakeConstant {
 	
@@ -29,5 +30,9 @@ public class MakeConstant {
 			e.printStackTrace();
 		}
 		return success;
+	}
+
+	public boolean setPackPrice(double price, PackageType packType) {
+			return false;
 	}
 }

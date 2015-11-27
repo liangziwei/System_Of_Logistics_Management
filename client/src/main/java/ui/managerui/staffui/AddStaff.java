@@ -1,21 +1,34 @@
 package ui.managerui.staffui;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.managerController.StaffManagementController;
+import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.managerBLService.StaffManagementBLService;
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
+import vo.managerVO.StaffVO;
 
 @SuppressWarnings("serial")
 public class AddStaff extends DetailPanel{
+	
+	private StaffManagementBLService staff = new StaffManagementController();
 
 	private JLabel nameLabel = new JLabel("姓名");
 	
 	private JTextField nameText = new JTextField();
+	
+	private JLabel genderLabel = new JLabel("性别");
+	
+	private JComboBox<String> genderText = new JComboBox<String>();
 	
 	private JLabel idLabel = new JLabel("编号");
 	
@@ -39,6 +52,8 @@ public class AddStaff extends DetailPanel{
 	
 	private JButton cancel = new JButton("取消");
 	
+	private JLabel tip = new JLabel();
+	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
 	private static final int LABEL_W = 60;
@@ -58,7 +73,8 @@ public class AddStaff extends DetailPanel{
 	private static final int START_Y = START_X >> 2;
 	
 	public AddStaff() {
-		int gap = LABEL_H + START_Y;
+		//标签与标签之间的距离
+		int gap = LABEL_H + START_Y - 12;
 		//姓名标签
 		this.nameLabel.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.nameLabel.setFont(WORD_FONT);
@@ -66,12 +82,21 @@ public class AddStaff extends DetailPanel{
 		this.nameText.setBounds(this.nameLabel.getX() + LABEL_W + (START_X >> 1),
 				this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
-		//编号标签
-		this.idLabel.setBounds(this.nameLabel.getX(),
+		//性别标签
+		this.genderLabel.setBounds(this.nameLabel.getX(),
 				this.nameText.getY() + gap, LABEL_W, LABEL_H);
+		this.genderLabel.setFont(WORD_FONT);
+		//性别文本框
+		this.genderText.setBounds(this.nameText.getX(), this.genderLabel.getY(), TEXT_W, TEXT_H);
+		this.genderText.setFont(WORD_FONT);
+		this.genderText.addItem("男");
+		this.genderText.addItem("女");
+		//编号标签
+		this.idLabel.setBounds(this.genderLabel.getX(),
+				this.genderLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.idLabel.setFont(WORD_FONT);
 		//编号文本框
-		this.idText.setBounds(this.nameText.getX(), this.idLabel.getY(), TEXT_W, TEXT_H);
+		this.idText.setBounds(this.genderText.getX(), this.idLabel.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
 		//职位标签
 		this.posLabel.setBounds(this.idLabel.getX(), this.idLabel.getY() + gap, LABEL_W, LABEL_H);
@@ -110,9 +135,14 @@ public class AddStaff extends DetailPanel{
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W << 1), this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
+		//提示标签
+		this.tip.setBounds(this.salaryLabel.getX(), this.ok.getY(), LABEL_W, LABEL_H);
+		this.tip.setFont(WORD_FONT);
 		//将组件添加到面板
 		this.add(this.nameLabel);
 		this.add(this.nameText);
+		this.add(this.genderLabel);
+		this.add(this.genderText);
 		this.add(this.idLabel);
 		this.add(this.idText);
 		this.add(this.posLabel);
@@ -124,5 +154,62 @@ public class AddStaff extends DetailPanel{
 		this.add(this.salaryText);
 		this.add(this.ok);
 		this.add(this.cancel);
+		this.add(this.tip);
+		//添加事件监听
+		this.addListener();
+	}
+	
+	private void addListener() {
+		//确定按钮
+		this.ok.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//验证输入是否完整 TODO 进行更进一步的信息验证
+				tip.setForeground(Color.RED);
+				String id = idText.getText();
+				if(CommonLogic.isNull(nameText.getText()) || CommonLogic.isNull(id)
+						|| CommonLogic.isNull(birthText.getDate()) || CommonLogic.isNull(salaryText.getText())) {
+					tip.setText("请把信息填写完整");
+					return ;
+				}
+				//保存输入
+				boolean result = staff.addStaff(new StaffVO(nameText.getText(), idText.getText(),
+						(String)posText.getSelectedItem(), (String)genderText.getSelectedItem(),
+						birthText.getDate(), salaryText.getText(), (String)salaryType.getSelectedItem(),
+						false, false));
+				//如果保存成功
+				if(result) {
+					//清空用户所填信息
+					clearInfo();
+					//提示保存成功
+					tip.setForeground(Color.BLUE);
+					tip.setText("保存成功");
+				}
+				else {
+					tip.setForeground(Color.RED);
+					tip.setText("保存失败，请重试");
+				}
+				repaint();
+			}
+		});
+		//取消按钮
+		this.cancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//清空用户输入的信息
+				clearInfo();
+				//刷新面板
+				repaint();
+			}
+		});
+	}
+	
+	private void clearInfo() {
+		this.nameText.setText("");
+		this.idText.setText("");
+		this.birthText.clearInfo();
+		this.salaryText.setText("");
 	}
 }

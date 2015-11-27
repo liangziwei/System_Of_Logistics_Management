@@ -1,62 +1,149 @@
 package ui.managerui.organizationui;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.JSeparator;
 
+import businessLogic.businessLogicController.managerController.OrganizationManagementController;
+import businessLogicService.managerBLService.OrganizationManagementBLService;
 import ui.baseui.DetailPanel;
+import ui.managerui.SearchPanel;
+import vo.managerVO.OrganizationVO;
+import vo.managerVO.StaffVO;
 
 @SuppressWarnings("serial")
 public class ModifyOrganization extends DetailPanel{
+	
+	private OrganizationManagementBLService organization = new OrganizationManagementController();
 
-	private JLabel idLabel = new JLabel("机构编号");
+	private SearchPanel orgId = new SearchPanel("机构编号", WORD_FONT, 0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H / 6);
 	
-	private JTextField idText = new JTextField();
+	private JSeparator separator = new JSeparator();
 	
-	private JButton ok = new JButton("确定");
+	private OrganizationInfoPanel orgPanel = null;
+	
+	private JLabel tip = new JLabel();
+	
+	private JButton modify = new JButton("修改");
 	
 	private JButton cancel = new JButton("取消");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
-	private static final int LABEL_W = 72;
-	
-	private static final int LABEL_H = 36;
-	
-	private static final int TEXT_W = LABEL_W * 3;
-	
-	private static final int TEXT_H = LABEL_H;
-	
-	private static final int BUTTON_W = LABEL_W;
-	
-	private static final int BUTTON_H = LABEL_H;
-	
-	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W - (BUTTON_W << 1)) / 5;
-	
-	private static final int START_Y = START_X;
-	
 	public ModifyOrganization() {
-		//机构编号标签
-		this.idLabel.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
-		this.idLabel.setFont(WORD_FONT);
-		//机构编号文本框
-		this.idText.setBounds(this.idLabel.getX() + LABEL_W + (START_X >> 1),
-				this.idLabel.getY(), TEXT_W, TEXT_H);
-		this.idText.setFont(WORD_FONT);
-		//确定按钮
-		this.ok.setBounds(this.idText.getX() + TEXT_W + START_X,
-				this.idText.getY(), BUTTON_W, BUTTON_H);
-		this.ok.setFont(WORD_FONT);
+		//机构信息查询面板
+		this.add(this.orgId);
+		//查询面板与信息面板的分割线
+		this.separator.setBounds(0, this.orgId.getHeight(), DETAIL_PANEL_W, 10);
+		this.add(this.separator);
+
+		int buttonW = (int) (orgId.getHeight() * 0.8);
+		int buttonH = orgId.getHeight() >> 1;
+		//修改按钮
+		this.modify.setBounds(orgId.getWidth() >> 1, (int)(orgId.getHeight()* 0.1), buttonW, buttonH);
+		this.modify.setFont(WORD_FONT);
+		this.modify.setVisible(false);
+		this.add(this.modify);
 		//取消按钮
-		this.cancel.setBounds(this.ok.getX() + BUTTON_W + (START_X >> 1),
-				this.ok.getY(), BUTTON_W, BUTTON_H);
+		this.cancel.setBounds(this.modify.getX() + (buttonW << 1), this.modify.getY(), buttonW, buttonH);
 		this.cancel.setFont(WORD_FONT);
-		//将组件添加到面板
-		this.add(this.idLabel);
-		this.add(this.idText);
-		this.add(this.ok);
+		this.cancel.setVisible(false);
 		this.add(this.cancel);
+		//提示标签
+		this.tip.setBounds(buttonW, this.modify.getY(), buttonW << 1, buttonH);
+		this.tip.setFont(WORD_FONT);
+		tip.setForeground(Color.RED);
+		this.add(this.tip);
+		//增加事件监听
+		this.addListener();
+	}
+	
+	private void addListener() {
+		//确定查询按钮
+		this.orgId.getOk().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//获得用户输入的机构编号
+				String id = orgId.getIdText();
+				//查询机构信息
+				OrganizationVO vo = organization.findOrganization(id);
+				//如果没有找到机构信息
+				if(vo == null) {
+					//提示用户没有该机构信息
+					orgId.setText("没有该机构信息", WORD_FONT, Color.RED);
+					//刷新面板
+					repaint();
+					return ;
+				}
+				else {
+					orgId.removeText();
+				}
+				//查询人员信息
+				List<StaffVO> list = organization.getStaffInfos(id);
+				//显示机构信息和人员信息
+				orgPanel = new OrganizationInfoPanel(orgId.getX(), orgId.getHeight(),
+						DETAIL_PANEL_W, DETAIL_PANEL_H * 5 / 6, list);
+				orgPanel.setOrganizationInfo(vo);
+				orgPanel.disableStaffInfo();
+				add(orgPanel);
+				//询问是否确认修改
+				tip.setText("确定要修改吗");
+				//隐藏查询按钮
+				orgId.setVisible(false);
+				//显示修改按钮
+				modify.setVisible(true);
+				cancel.setVisible(true);
+				//刷新面板
+				repaint();
+			}
+		});
+		//取消查询按钮
+		this.orgId.getCancel().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//隐藏机构和人员信息面板
+				orgPanel.setVisible(false);
+			}
+		});
+		//确定删除按钮
+		this.modify.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//保存对机构信息的修改
+				OrganizationVO vo = orgPanel.createOrganizationVO();
+				organization.modifyOrganization(vo);
+				//返回查询界面
+				backToInquire();
+			}
+		});
+		//取消删除按钮
+		this.cancel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//返回查询界面
+				backToInquire();
+			}
+		});
+	}
+	
+	private void backToInquire() {
+		//隐藏删除按钮
+		modify.setVisible(false);
+		cancel.setVisible(false);
+		//隐藏人员信息面板
+		orgPanel.setVisible(false);
+		//显示查询面板
+		orgId.setVisible(true);
+		repaint();
 	}
 }

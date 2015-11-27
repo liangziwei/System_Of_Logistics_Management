@@ -392,7 +392,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 		String arrive = arrivalidText.getText().trim();
 		String Supervision = supervisionidText.getText().trim();
 		String theContainer = containeridText.getText().trim();
-		
+
 		List<String> all = new ArrayList<String>();
 		String alldeli = alldeliveryidText.getText();
 		if (alldeli.equals("")) {

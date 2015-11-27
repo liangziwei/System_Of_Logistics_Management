@@ -17,22 +17,22 @@ public class StaffManagementUI_Driver {
 			int input = s.nextInt();
 			switch(input) {
 			case 1:
-				StaffVO staffVO = new StaffVO(null,null,null,null,null,null);
-				System.out.println("添加人员信息是否成功："+staff.addStaff(staffVO));
+//				StaffVO staffVO = new StaffVO(null,null,null,null,null,null);
+//				System.out.println("添加人员信息是否成功："+staff.addStaff(staffVO));
 				break;
 			case 2:
 				System.out.println("删除人员信息是否成功："+staff.deleteStaff(null));
 				break;
 			case 3:
-				staffVO = new StaffVO(null,null,null,null,null,null);
-				System.out.println("修改人员信息是否成功："+staff.modifyStaff(staffVO));
+//				staffVO = new StaffVO(null,null,null,null,null,null);
+//				System.out.println("修改人员信息是否成功："+staff.modifyStaff(staffVO));
 				break;
 			case 4:
-				staffVO = staff.findStaff("B1235468");
-				System.out.println("人员信息："+"\n"+"姓名："+staffVO.getName()
-						+"id:"+staffVO.getId()+"职位："+staffVO.getPosition()
-						+"性别："+staffVO.getGender()+"出生日期："+staffVO.getBirthday()
-						+"薪水："+staffVO.getSalary());
+//				staffVO = staff.findStaff("B1235468");
+//				System.out.println("人员信息："+"\n"+"姓名："+staffVO.getName()
+//						+"id:"+staffVO.getId()+"职位："+staffVO.getPosition()
+//						+"性别："+staffVO.getGender()+"出生日期："+staffVO.getBirthday()
+//						+"薪水："+staffVO.getSalary());
 				break;
 			case 5:
 				go = false;

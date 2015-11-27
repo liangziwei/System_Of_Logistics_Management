@@ -1,8 +1,5 @@
 package vo.managerVO;
 
-import java.util.ArrayList;
-
-
 /**
  * 记录了机构的信息
  * @author 张仁知
@@ -20,18 +17,19 @@ public class OrganizationVO {
 	 * 机构名称
 	 */
 	private String name;
-	/**
-	 * 人员信息
-	 */
-	private ArrayList<String> staffInfo;
+	
+	private boolean isApproved;
+	
+	private boolean isPassed;
 	
 	public OrganizationVO(String type, String id, String name,
-			ArrayList<String> staffInfo) {
+			boolean isApproved, boolean isPassed) {
 		super();
 		this.type = type;
 		this.id = id;
 		this.name = name;
-		this.staffInfo = staffInfo;
+		this.isApproved = isApproved;
+		this.isPassed = isPassed;
 	}
 
 	public String getType() {
@@ -58,12 +56,20 @@ public class OrganizationVO {
 		this.name = name;
 	}
 
-	public ArrayList<String> getStaffInfo() {
-		return staffInfo;
+	public boolean isApproved() {
+		return isApproved;
 	}
 
-	public void setStaffInfo(ArrayList<String> staffInfo) {
-		this.staffInfo = staffInfo;
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+
+	public boolean isPassed() {
+		return isPassed;
+	}
+
+	public void setPassed(boolean isPassed) {
+		this.isPassed = isPassed;
 	}
 	
 }

@@ -18,7 +18,8 @@ import ui.financeui.accountui.InquireAccountPanel;
 import ui.financeui.accountui.ModifyAccountPanel;
 import ui.financeui.costui.CostPanel;
 import ui.financeui.originalInfoui.OriginalInfoPanel;
-import ui.financeui.settlementui.SettlementPanel;
+import ui.financeui.settlementui.SettleAllPanel;
+import ui.financeui.settlementui.SettlePartPanel;
 import ui.financeui.statisticsui.ProfitPanel;
 import ui.financeui.statisticsui.RunPanel;
 import ui.mainui.LoginPanel;
@@ -255,7 +256,7 @@ public class FinancePanel extends UserPanel{
 				//设置当前细节信息面板为不可见
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
-				detail = new SettlementPanel(false);
+				detail = new SettlePartPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘
@@ -270,7 +271,7 @@ public class FinancePanel extends UserPanel{
 				//设置当前细节信息面板为不可见
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
-				detail = new SettlementPanel(true);
+				detail = new SettleAllPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘

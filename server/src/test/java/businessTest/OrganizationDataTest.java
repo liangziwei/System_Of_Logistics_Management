@@ -11,7 +11,7 @@ public class OrganizationDataTest {
 		staffInfo.add("B1235467");
 		staffInfo.add("B1289567");
 		staffInfo.add("B1784467");
-		OrganizationPO organizationPO = new OrganizationPO("营业厅","02500003","南京市栖霞营业厅",staffInfo);
+		OrganizationPO organizationPO = new OrganizationPO("营业厅","02500003","南京市栖霞营业厅", false, false);
 		OrganizationManagementDataImpl organizationData = new OrganizationManagementDataImpl();
 		OrganizationPO organizationTest = organizationData.findOrganization("02500001");
 //		System.out.print(organizationTest.getId()+" "+organizationTest.getType()+

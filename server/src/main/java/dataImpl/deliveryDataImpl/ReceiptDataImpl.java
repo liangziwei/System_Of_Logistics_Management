@@ -1,7 +1,11 @@
 package dataImpl.deliveryDataImpl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import constant.City;
 import dataService.deliveryDataService.ReceiptDataService;
+import mysql.Database;
 import po.deliveryPO.ReceiptPO;
 
 /**
@@ -11,12 +15,46 @@ import po.deliveryPO.ReceiptPO;
 public class ReceiptDataImpl implements ReceiptDataService{
 
 	public boolean saveReceiptInfo(ReceiptPO receiptPO) {
-		// TODO Auto-generated method stub
-		return false;
+		String name = receiptPO.getName();
+		String id = receiptPO.getOrderID();
+		String date = receiptPO.getDate();
+		//查询编号对应的订单信息
+		String inquire = "select * from"
+				+ " order_table where goods_id = '" + id + "';";
+		ResultSet rs = null;
+		try {
+			rs = Database.findOperation(inquire);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return false;
+		}
+		//验证填写的收件人姓名和收件编号是否对应
+		try {
+			while(rs.next()) {
+				if(!name.equals(rs.getString("receiver_name"))) return false;
+			}
+		} catch (SQLException e) {
+			return false;
+		}
+		//保存订单信息
+		String sql = "insert into receipt values('";
+		sql += id + "','" + date + "','" + name + "');";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean updateTimeRecord(int day, City source, City destination) {
-		
-		return false;
+		String sql = "insert into time_record values('";
+		sql += source + "','" + destination + "'," + day + ");";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

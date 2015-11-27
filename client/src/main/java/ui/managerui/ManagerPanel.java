@@ -337,7 +337,7 @@ public class ManagerPanel extends UserPanel{
 			}
 		});
 		//删除人员信息按钮
-		this.deleteStaff.addActionListener(new ActionListener() {
+		this.inquireStaff.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

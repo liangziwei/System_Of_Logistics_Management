@@ -124,6 +124,8 @@ public class Transferring {
 			return false;
 		}
 		
+
+		
 		if (transferringVO.getwayid().equals("")||transferringVO.getwayid().length()!=9) {
 			transferringVO.seterrorMsg("装运方式编号不能为空或输入错误(9位)");
 			return false;

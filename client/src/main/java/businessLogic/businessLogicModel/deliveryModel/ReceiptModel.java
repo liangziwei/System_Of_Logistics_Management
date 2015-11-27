@@ -11,10 +11,9 @@ import constant.LabelName;
 import constant.VerifyResult;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.deliveryDataService.ReceiptDataService;
+import network.RMI;
 import po.deliveryPO.OrderPO;
 import po.deliveryPO.ReceiptPO;
-import stub.dataImpl_stub.deliveryDataImpl_stub.OrderDataImpl_Stub;
-import stub.dataImpl_stub.deliveryDataImpl_stub.ReceiptDataImpl_Stub;
 import vo.deliveryVO.ReceiptVO;
 import vo.deliveryVO.VerifyMessage;
 
@@ -24,20 +23,30 @@ import vo.deliveryVO.VerifyMessage;
  */
 public class ReceiptModel{
 	
-	private ReceiptDataService receipt = new ReceiptDataImpl_Stub();
+	private ReceiptDataService receipt = RMI.<ReceiptDataService>getDataService("receipt");
 	
-	private OrderDataService order = new OrderDataImpl_Stub();
+	private OrderDataService order = RMI.<OrderDataService>getDataService("order");
 
 	public boolean saveReceiptInfo(ReceiptVO receiptVO) {
-		return this.receipt.saveReceiptInfo(ReceiptPO.ReceiptVOToPO(receiptVO));
+		try {
+			return this.receipt.saveReceiptInfo(ReceiptPO.ReceiptVOToPO(receiptVO));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
-	public boolean updateTimeRecord(String arriveTime, String id) {
+	public boolean updateTimeRecord(String name, String arriveTime, String id) {
 		OrderPO orderPO = null;
 		try {
 			orderPO = this.order.getOrderInfoById(id);			
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			return false;
+		}
+		//验证收件人姓名是否和订单收件人姓名一致
+		if(!name.equals(orderPO.getReceiverInfo().getName())) {
+			return false;
 		}
 		//获得订单信息中的快递的起始地和目的地，以及出发时间
 		City source = orderPO.getSenderInfo().getCity();
@@ -46,10 +55,11 @@ public class ReceiptModel{
 		
 		//计算快递所用时间
 		int day = this.calculateDays(startTime, arriveTime);
-		System.out.println(startTime);
-		System.out.println(arriveTime);
-		System.out.println(day);
-		this.receipt.updateTimeRecord(day, source, destination);
+		try {
+			this.receipt.updateTimeRecord(day, source, destination);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 	

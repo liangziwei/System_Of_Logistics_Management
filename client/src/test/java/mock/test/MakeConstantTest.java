@@ -15,7 +15,7 @@ public class MakeConstantTest {
 		MakeConstantController makeConstant = new MakeConstantController();
 		
 		assertEquals(false, makeConstant.setDistance(100.0, City.BEI_JING, City.GUANG_ZHOU));
-		assertEquals(true, makeConstant.setPrice(50.0, TransitType.RAILWAY));
+		assertEquals(true, makeConstant.setTransitPrice(50.0, TransitType.RAILWAY));
 	}
 
 }

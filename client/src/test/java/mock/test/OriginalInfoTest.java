@@ -26,17 +26,17 @@ public class OriginalInfoTest {
 		List<RepositoryInfoVO> repositoryInfolist = originalInfo.getRepositoryInfo(2015);
 		List<AccountVO> accountlist = originalInfo.getAccountInfo(2015);
 		List<StaffVO> staff = new ArrayList<StaffVO>();
-		staff.add(new StaffVO("小明", "B1235468", "快递员", "男",
-			"1987-02-15", "按提成"));
-		staff.add(new StaffVO("小红", "B1235468", "快递员", "女",
-			"1990-02-25", "按提成"));
+//		staff.add(new StaffVO("小明", "B1235468", "快递员", "男",
+//			"1987-02-15", "按提成"));
+//		staff.add(new StaffVO("小红", "B1235468", "快递员", "女",
+//			"1990-02-25", "按提成"));
 		
 		List<OrganizationVO> org = new ArrayList<OrganizationVO>();
 		ArrayList<String> staffs = new ArrayList<String>();
 		staffs.add("B1235468");
 		staffs.add("B1235468");
-		org.add(new OrganizationVO("营业厅", "001", "南京市营业厅", staffs));
-		org.add(new OrganizationVO("中转中心", "002", "南京市中转中心", staffs));
+//		org.add(new OrganizationVO("营业厅", "001", "南京市营业厅"));
+//		org.add(new OrganizationVO("中转中心", "002", "南京市中转中心"));
 		
 		List<VehicleVO> vehicle = new ArrayList<VehicleVO>();
 		vehicle.add(new VehicleVO("025001001","苏A 00001","2"));

@@ -1,12 +1,15 @@
 package dataService.businessDataService;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import po.businessPO.EntruckingPO;
 
 /**
  * description:数据服务层为装车管理提供的服务 
  * @author 张云飞
  */
-public interface EntruckingDataService {
+public interface EntruckingDataService extends Remote{
 	
 	/**
 	 * description:通过传入装车单信息新建一个装车单
@@ -15,5 +18,5 @@ public interface EntruckingDataService {
 	 * @param entruckingPO 装车单信息的持久化对象，具体参见EntruckingPO
 	 * @return 添加是否成功
 	 */
-	public boolean addEntruckingFrom(EntruckingPO entruckingPO);
+	public boolean addEntruckingFrom(EntruckingPO entruckingPO)throws RemoteException;
 }

@@ -47,5 +47,4 @@ public interface StaffManagementBLService {
 	 * @return boolean ,修改是否成功
 	 */
 	public boolean modifyStaff(StaffVO staffVO);
-
 }

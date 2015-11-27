@@ -28,8 +28,13 @@ public class PaymentVO {
 	 * 备注（租金年份、运单号、标注工资月份）
 	 */
 	private String remark;
+	
+	private boolean isApproved;
+	
+	private boolean isPassed;
 	public PaymentVO(String date, double payAmount, String name,
-			String account, String entry, String remark) {
+			String account, String entry, String remark,
+			boolean isApproved, boolean isPassed) {
 		super();
 		this.date = date;
 		this.payAmount = payAmount;
@@ -37,6 +42,8 @@ public class PaymentVO {
 		this.account = account;
 		this.entry = entry;
 		this.remark = remark;
+		this.isApproved = isApproved;
+		this.isPassed = isPassed;
 	}
 	public String getDate() {
 		return date;
@@ -74,6 +81,16 @@ public class PaymentVO {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
-
+	public boolean isApproved() {
+		return isApproved;
+	}
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+	public boolean isPassed() {
+		return isPassed;
+	}
+	public void setPassed(boolean isPassed) {
+		this.isPassed = isPassed;
+	}
 }

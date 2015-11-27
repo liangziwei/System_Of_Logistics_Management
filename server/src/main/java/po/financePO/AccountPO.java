@@ -2,8 +2,6 @@ package po.financePO;
 
 import java.io.Serializable;
 
-import constant.UserType;
-
 /**
  * 记录了账户的信息
  * @author 张仁知

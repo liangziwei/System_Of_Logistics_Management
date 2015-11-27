@@ -1,8 +1,11 @@
 package stub.dataImpl_stub.managerDataImpl_stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import po.managerPO.OrganizationPO;
+import po.managerPO.StaffPO;
 import dataService.managerDataService.OrganizationManagementDataService;
 
 public class OrganizationManagementDataImpl_Stub implements OrganizationManagementDataService{
@@ -15,7 +18,7 @@ public class OrganizationManagementDataImpl_Stub implements OrganizationManageme
 		staffInfo.add("B1235468");
 		staffInfo.add("B1289568");
 		staffInfo.add("B1784468");
-		return new OrganizationPO("营业厅", "00002500010000", "南京市鼓楼营业厅", staffInfo);
+		return new OrganizationPO("营业厅", "00002500010000", "南京市鼓楼营业厅", false, false);
 	}
 	
 	public boolean deleteOrganization(String id) {
@@ -23,6 +26,16 @@ public class OrganizationManagementDataImpl_Stub implements OrganizationManageme
 	}
 	
 	public boolean modifyOrganization(OrganizationPO organizationPO) {
+		return false;
+	}
+
+	public List<StaffPO> findStaffInfos(String organizationId) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean deleteStaffsByOrgId(String organizationId) throws RemoteException {
+		// TODO Auto-generated method stub
 		return false;
 	}
 }

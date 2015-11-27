@@ -68,6 +68,8 @@ public class EntruckingPanel extends DetailPanel{
 	
 	private boolean isFirstEnsure = true;
 	
+	private boolean isOver=false;
+	
 	public EntruckingPanel(){
 		this.date.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.date.setFont(WORD_FONT);	
@@ -160,6 +162,14 @@ public class EntruckingPanel extends DetailPanel{
 				   
 				   cancel.setVisible(true);
 				}else{
+					
+				  if(isOver){
+					    result.setText("");
+						setblack();
+						enablePanel();
+						isFirstEnsure=true;	
+						isOver=false;
+				  }else{
 					String dateStr=dateText.getText();
 					String businessIDStr=businessHallidText.getText();
 					String transNumberStr=transportNumberText.getText();
@@ -175,12 +185,14 @@ public class EntruckingPanel extends DetailPanel{
 						result.setText("保存成功！");
 						ok.setText("确认");
 						cancel.setVisible(false);
-//						setblack();
+						isOver=true;
+
 					}else{
 						result.setForeground(Color.RED);
 						result.setText("信息有误，保存失败");
 					}
-					isFirstEnsure=true;
+				
+				  }
 				}
 				repaint();
 			}
@@ -191,13 +203,23 @@ public class EntruckingPanel extends DetailPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				//设置取消按钮不可见
-				cancel.setVisible(false);
-				//设置状态为第一次点击确定按钮
-				isFirstEnsure = true;
-				//使组件可编辑
-				enablePanel();
-				//消除提示信息
-				result.setText("");
+				if(ok.getText().equals("提交")){
+					ok.setText("确定");
+					cancel.setVisible(false);
+					enablePanel();
+					isFirstEnsure = true;
+					result.setText("");
+				}else{
+				  cancel.setVisible(false);
+				
+				  //设置状态为第一次点击确定按钮
+				  isFirstEnsure = true;
+				  //使组件可编辑
+				  enablePanel();
+				  //消除提示信息
+				  result.setText("");
+				  
+				}
 				repaint();
 			}
 		});

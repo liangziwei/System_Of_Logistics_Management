@@ -23,7 +23,6 @@ import ui.repositoryui.outRep.AddOutRepositoryPanel;
 import ui.repositoryui.outRep.FindOutRepositoryPanel;
 import ui.repositoryui.outRep.ModifyOutRepositoryPanel;
 import ui.repositoryui.outRep.SeeTransferringListPanel;
-import ui.transitionui.transferringui.SeeRepositoryPanel;
 import ui.viewcontroller.ViewController;
 
 public class RepositoryPanel extends UserPanel {
@@ -44,7 +43,9 @@ public class RepositoryPanel extends UserPanel {
 	private JButton AddOutRepository = new JButton("添加出库单");
 	private JButton ModifyOutRepository = new JButton("修改出库单");
 	private JButton FindOutRepository = new JButton("查询出库单");
+
 	private JButton SeeTransferringList = new JButton("查询中转单列表");
+
 
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 
@@ -73,6 +74,7 @@ public class RepositoryPanel extends UserPanel {
 		DetailButtonOutRepository.add(AddOutRepository);
 		DetailButtonOutRepository.add(ModifyOutRepository);
 		DetailButtonOutRepository.add(FindOutRepository);
+
 		DetailButtonOutRepository.add(SeeTransferringList);
 		// 要展开的按钮
 		OutRepository.setDetailButtons(DetailButtonOutRepository); // 设置（添加）要展开的按钮
@@ -288,7 +290,7 @@ public class RepositoryPanel extends UserPanel {
 				revalidate();
 			}
 		});
-		
+
 		this.SeeTransferringList.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -5,8 +5,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import javax.naming.ldap.ManageReferralControl;
-
+import dataImpl.businessDataImpl.PaymentDataImpl;
+import dataImpl.deliveryDataImpl.ConstantDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
@@ -25,6 +25,10 @@ import dataImpl.senderDataImpl.InquireDataImpl;
 import dataImpl.transitionDataImpl.LoadingDataImpl;
 import dataImpl.transitionDataImpl.ReceivingDataImpl;
 import dataImpl.transitionDataImpl.TransferringDataImpl;
+import dataService.administratorDataService.AdministratorDataService;
+import dataService.businessDataService.EntruckingDataService;
+import dataService.businessDataService.PaymentDataService;
+import dataService.deliveryDataService.ConstantDataService;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.deliveryDataService.ReceiptDataService;
 import dataService.financeDataService.AccountDataService;
@@ -43,6 +47,8 @@ import dataService.senderDataService.InquireDataService;
 import dataService.transitionDataService.LoadingDataService;
 import dataService.transitionDataService.ReceivingDataService;
 import dataService.transitionDataService.TransferringDataService;
+import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_Stub;
 
 public class RMI {
 	
@@ -73,6 +79,8 @@ public class RMI {
 		initFinanceRMI();
 		//初始化系统管理人员的RMI连接
 		initAdministratorRMI();
+		//初始化获得常量的RMI连接
+		initGetConstant();
 		//提示服务器运行成功
 		System.out.println("Server is working...");
 	}
@@ -104,7 +112,23 @@ public class RMI {
 	}
 	
 	private static void initBusinessRMI() {
-
+		
+		try {
+//			EntruckingDataService entrucking = new EntruckingDataImpl();
+			EntruckingDataService entrucking = new EntruckingDataImpl_Stub();
+			EntruckingDataService entrucking_stub = (EntruckingDataService) UnicastRemoteObject.exportObject(entrucking, 0);
+			registry.bind("entrucking", entrucking_stub);
+			
+			PaymentDataService payment = new PaymentDataImpl();
+//			PaymentDataService payment = new PaymentDataImpl_Stub();
+			PaymentDataService payment_stub = (PaymentDataService) UnicastRemoteObject.exportObject(payment, 0);
+			registry.bind("receivable", payment_stub);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private static void initRepositoryRMI() {
@@ -200,7 +224,24 @@ public class RMI {
 	}
 	
 	private static void initAdministratorRMI() {
-
+		try {
+			//用户信息访问接口
+//			AdministratorDataService admin = new AdministratorDataImpl();
+			AdministratorDataService admin = new AdministratorDataImpl_Stub();
+			AdministratorDataService stub = (AdministratorDataService) UnicastRemoteObject.exportObject(admin, 0);
+			registry.bind("administrator", stub);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
+	private static void initGetConstant() {
+		try {
+			ConstantDataService constant = new ConstantDataImpl();
+			ConstantDataService constant_stub = (ConstantDataService) UnicastRemoteObject.exportObject(constant, 0);
+			registry.bind("constant", constant_stub);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
