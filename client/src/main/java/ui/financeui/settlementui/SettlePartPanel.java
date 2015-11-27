@@ -169,9 +169,15 @@ public class SettlePartPanel extends DetailPanel{
 	private void showReceivable() {
 		//TODO TEST
 		List<ReceivableVO> receivables = new ArrayList<>();
-		this.list = new ListPanel(receivables,30, this.id.getHeight(),
-				(DETAIL_PANEL_W >> 1) - 60, DETAIL_PANEL_H >> 1);
+		ArrayList<String> id = new ArrayList<String>();
+		id.add("1111");
+		id.add("2222");
+		receivables.add(new ReceivableVO("1995-1-1", 20.0, "茗科", id));
+		this.receivable = new ReceivablePanel(new ReceivableVO("1995-1-1", 20.0, "茗科", id),
+				DETAIL_PANEL_W >> 1, this.list.getY(),
+				DETAIL_PANEL_W >> 1, DETAIL_PANEL_H * 5 / 6);
 		add(receivable);
+		this.revalidate();
 		this.addListListener();
 	}
 	
