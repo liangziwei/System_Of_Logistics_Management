@@ -23,4 +23,8 @@ public class CommonLogic {
 		}
 		return true;
 	}
+	
+	public static boolean isStaffType(char c) {
+		return c >= 'B' && c <= 'H';
+	}
 }

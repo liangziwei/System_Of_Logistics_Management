@@ -1,6 +1,10 @@
 package mock.object;
 
 import po.managerPO.StaffPO;
+
+import java.rmi.RemoteException;
+import java.util.List;
+
 import dataService.managerDataService.StaffManagementDataService;
 
 public class MockStaffData implements StaffManagementDataService{

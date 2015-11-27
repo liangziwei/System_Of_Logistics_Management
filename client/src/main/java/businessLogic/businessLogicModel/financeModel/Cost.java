@@ -24,6 +24,7 @@ public class Cost {
 	private PaymentPO paymentVOTopaymentPO(PaymentVO paymentVO){
 		return new PaymentPO(paymentVO.getDate(),paymentVO.getPayAmount(),
 				paymentVO.getName(),paymentVO.getAccount(),
-				paymentVO.getEntry(),paymentVO.getRemark());
+				paymentVO.getEntry(),paymentVO.getRemark(),
+				paymentVO.isApproved(), paymentVO.isPassed());
 	}
 }

@@ -46,5 +46,4 @@ public interface StaffManagementDataService extends Remote{
 	 */
 	public boolean modifyStaff(StaffPO staffPO) throws RemoteException;
 
-
 }

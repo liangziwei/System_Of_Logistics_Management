@@ -24,7 +24,13 @@ import po.deliveryPO.TimeRecordPO;
 public class OrderDataImpl implements OrderDataService{
 
 	public OrderPO getOrderInfoById(String id){
-		ResultSet rs = Database.findOperation("select * from order_table where goods_id = '" + id + "';");
+		ResultSet rs;
+		try {
+			rs = Database.findOperation("select * from order_table where goods_id = '" + id + "';");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 		//货物信息
 		String goods_id = id, number = null, weight = null, volumn = null, name = null;
 		DeliveryType deliveryType = null;
@@ -44,7 +50,7 @@ public class OrderDataImpl implements OrderDataService{
 		//预估时间
 		String time = null;
 		try {
-			while(rs.next()) {
+			if(rs.next()) {
 				//货物信息
 				goods_id = rs.getString("goods_id");
 				number = new Integer(rs.getInt("goods_number")).toString();
@@ -84,8 +90,10 @@ public class OrderDataImpl implements OrderDataService{
 				//预估时间
 				time = new Integer(rs.getInt("time")).toString();
 			}
+			else return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
 		
 		return new OrderPO(
@@ -139,14 +147,24 @@ public class OrderDataImpl implements OrderDataService{
 		sql += goods.isApproved() + "','";
 		//是否已经审批通过
 		sql += goods.isPassed() + "');";
-		Database.operate(sql);
-		return true;
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public List<TimeRecordPO> getTimeRecords(City source, City destination) {
 		List<TimeRecordPO> records = new ArrayList<TimeRecordPO>();
-		ResultSet rs = Database.findOperation("select * from time_record where source = '"
-				+ source + "' && destination = '" + destination + "';");
+		ResultSet rs = null;
+		try {
+			rs = Database.findOperation("select * from time_record where source = '"
+					+ source + "' && destination = '" + destination + "';");
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return null;
+		}
 		try {
 			while(rs.next()) {
 				records.add(new TimeRecordPO(source, destination, rs.getInt("time")));

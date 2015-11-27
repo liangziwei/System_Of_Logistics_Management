@@ -2,13 +2,11 @@ package businessLogic.businessLogicModel.managerModel;
 
 
 
-import network.RMI;
-import po.deliveryPO.PackPrice;
-import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
 import constant.City;
 import constant.PackageType;
 import constant.TransitType;
 import dataService.managerDataService.MakeConstantDataService;
+import network.RMI;
 
 public class MakeConstant {
 	
@@ -35,7 +33,6 @@ public class MakeConstant {
 	}
 
 	public boolean setPackPrice(double price, PackageType packType) {
-//		PackagePriceIO.storePackPrice(new PackPrice(carton, wooden, courierBag, other));
-		return false;
+			return false;
 	}
 }

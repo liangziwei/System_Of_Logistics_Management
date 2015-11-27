@@ -1,26 +1,18 @@
 package ui.managerui.staffui;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.managerController.StaffManagementController;
-import businessLogic.businessLogicModel.util.CommonLogic;
-import businessLogicService.managerBLService.StaffManagementBLService;
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
 import vo.managerVO.StaffVO;
 
 @SuppressWarnings("serial")
-public class AddStaff extends DetailPanel{
-	
-	private StaffManagementBLService staff = new StaffManagementController();
+public class StaffInfoPanel extends DetailPanel{
 
 	private JLabel nameLabel = new JLabel("姓名");
 	
@@ -48,12 +40,6 @@ public class AddStaff extends DetailPanel{
 	
 	private JTextField salaryText = new JTextField();
 	
-	private JButton ok = new JButton("确定");
-	
-	private JButton cancel = new JButton("取消");
-	
-	private JLabel tip = new JLabel();
-	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
 	private static final int LABEL_W = 60;
@@ -64,15 +50,11 @@ public class AddStaff extends DetailPanel{
 	
 	private static final int TEXT_H = LABEL_H;
 	
-	private static final int BUTTON_W = 60;
-	
-	private static final int BUTTON_H = 36;
-	
 	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W) / 3;
 	
 	private static final int START_Y = START_X >> 2;
 	
-	public AddStaff() {
+	public StaffInfoPanel() {
 		//标签与标签之间的距离
 		int gap = LABEL_H + START_Y - 12;
 		//姓名标签
@@ -128,16 +110,6 @@ public class AddStaff extends DetailPanel{
 		this.salaryText.setBounds(this.salaryType.getX() + this.salaryType.getWidth(),
 				this.salaryType.getY(), TEXT_W >> 1, TEXT_H);
 		this.salaryText.setFont(WORD_FONT);
-		//确定按钮
-		this.ok.setBounds(this.salaryText.getX(),
-				this.salaryText.getY() + TEXT_H + START_Y, BUTTON_W, BUTTON_H);
-		this.ok.setFont(WORD_FONT);
-		//取消按钮
-		this.cancel.setBounds(this.ok.getX() + (BUTTON_W << 1), this.ok.getY(), BUTTON_W, BUTTON_H);
-		this.cancel.setFont(WORD_FONT);
-		//提示标签
-		this.tip.setBounds(this.salaryLabel.getX(), this.ok.getY(), LABEL_W, LABEL_H);
-		this.tip.setFont(WORD_FONT);
 		//将组件添加到面板
 		this.add(this.nameLabel);
 		this.add(this.nameText);
@@ -152,64 +124,23 @@ public class AddStaff extends DetailPanel{
 		this.add(this.salaryLabel);
 		this.add(this.salaryType);
 		this.add(this.salaryText);
-		this.add(this.ok);
-		this.add(this.cancel);
-		this.add(this.tip);
-		//添加事件监听
-		this.addListener();
 	}
 	
-	private void addListener() {
-		//确定按钮
-		this.ok.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//验证输入是否完整 TODO 进行更进一步的信息验证
-				tip.setForeground(Color.RED);
-				String id = idText.getText();
-				if(CommonLogic.isNull(nameText.getText()) || CommonLogic.isNull(id)
-						|| CommonLogic.isNull(birthText.getDate()) || CommonLogic.isNull(salaryText.getText())) {
-					tip.setText("请把信息填写完整");
-					return ;
-				}
-				//保存输入
-				boolean result = staff.addStaff(new StaffVO(nameText.getText(), idText.getText(),
-						(String)posText.getSelectedItem(), (String)genderText.getSelectedItem(),
-						birthText.getDate(), salaryText.getText(), (String)salaryType.getSelectedItem(),
-						false, false));
-				//如果保存成功
-				if(result) {
-					//清空用户所填信息
-					clearInfo();
-					//提示保存成功
-					tip.setForeground(Color.BLUE);
-					tip.setText("保存成功");
-				}
-				else {
-					tip.setForeground(Color.RED);
-					tip.setText("保存失败，请重试");
-				}
-				repaint();
-			}
-		});
-		//取消按钮
-		this.cancel.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//清空用户输入的信息
-				clearInfo();
-				//刷新面板
-				repaint();
-			}
-		});
+	public JPanel getStaffInfoPanel(StaffVO staffVO) {
+		this.nameText.setText(staffVO.getName());
+		this.genderText.setSelectedItem(staffVO.getGender());
+		this.idText.setText(staffVO.getId());
+		this.posText.setSelectedItem(staffVO.getPosition());
+		this.birthText.setDate(staffVO.getBirthday());
+		this.salaryType.setSelectedItem(staffVO.getType());
+		this.salaryText.setText(staffVO.getSalary());
+		return this;
 	}
 	
-	private void clearInfo() {
-		this.nameText.setText("");
-		this.idText.setText("");
-		this.birthText.clearInfo();
-		this.salaryText.setText("");
+	public StaffVO createVO() {
+		return new StaffVO(nameText.getText(), idText.getText(),
+				(String)posText.getSelectedItem(), (String)genderText.getSelectedItem(),
+				birthText.getDate(), salaryText.getText(), (String)salaryType.getSelectedItem(),
+				false, false);
 	}
 }

@@ -48,12 +48,12 @@ public class MockStatisticsData implements StatisticsDataService{
 	
 	public List<PaymentPO>	getPaymentList(){
 		List<PaymentPO> payment = new ArrayList<PaymentPO>();
-		payment.add(new PaymentPO("2015-05-12", 10000.0, "李小龙",
-			"南京大学", "人员工资", "2015年3月"));
-		payment.add(new PaymentPO("2015-05-12", 1000000.0, "张华",
-				"南京大学", "租金", "2015年"));
-		payment.add(new PaymentPO("2015-05-15", 10000.0, "向华胜",
-				"南京大学", "人员工资", "2015年4月"));
+//		payment.add(new PaymentPO("2015-05-12", 10000.0, "李小龙",
+//			"南京大学", "人员工资", "2015年3月"));
+//		payment.add(new PaymentPO("2015-05-12", 1000000.0, "张华",
+//				"南京大学", "租金", "2015年"));
+//		payment.add(new PaymentPO("2015-05-15", 10000.0, "向华胜",
+//				"南京大学", "人员工资", "2015年4月"));
 		return payment;
 	}
 }

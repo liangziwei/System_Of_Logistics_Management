@@ -22,8 +22,8 @@ public class OrganizationManagementUI_DriverStub {
 				staffInfo.add("B1235468");
 				staffInfo.add("B1289568");
 				staffInfo.add("B1784468");
-				OrganizationVO organizationVO = new OrganizationVO(null, null, null, staffInfo);
-				System.out.println("添加机构信息是否成功："+organization.addOrganization(organizationVO));
+//				OrganizationVO organizationVO = new OrganizationVO(null, null, null);
+//				System.out.println("添加机构信息是否成功："+organization.addOrganization(organizationVO));
 				break;
 			case 2:
 				System.out.println("删除机构信息是否成功："+organization.deleteOrganization(null));
@@ -33,17 +33,10 @@ public class OrganizationManagementUI_DriverStub {
 				staffInfo.add("B1235468");
 				staffInfo.add("B1289568");
 				staffInfo.add("B1784468");
-				organizationVO = new OrganizationVO(null, null, null, staffInfo);
-				System.out.println("修改机构信息是否成功："+organization.modifyOrganization(organizationVO));
+//				organizationVO = new OrganizationVO(null, null, null);
+//				System.out.println("修改机构信息是否成功："+organization.modifyOrganization(organizationVO));
 				break;
 			case 4:
-				organizationVO = organization.findOrganization(null);
-				System.out.println("机构信息："+"\n"+"类型："+organizationVO.getType()
-				+"id："+organizationVO.getId()+"名称："+organizationVO.getName()+"\n"+"人员信息：");
-				for(int i=0;i<organizationVO.getStaffInfo().size();i++){
-					System.out.println("姓名："+organizationVO.getStaffInfo().get(i));
-				}
-				
 				break;
 			case 5:
 				go = false;

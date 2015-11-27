@@ -79,6 +79,12 @@ public class DatePanel extends JPanel{
 		this.disableComponents();
 	}
 	
+	public void clearInfo() {
+		this.year.setText("");
+		this.month.setText("");
+		this.day.setText("");
+	}
+	
 	public void disableComponents() {
 		//设置日期不可编辑
 		this.year.setEditable(false);

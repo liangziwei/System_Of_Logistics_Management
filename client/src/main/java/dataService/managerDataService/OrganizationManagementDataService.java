@@ -2,8 +2,10 @@ package dataService.managerDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import po.managerPO.OrganizationPO;
+import po.managerPO.StaffPO;
 /**
  * description:数据服务层为机构管理逻辑处理提供的服务
  * @author 张仁知
@@ -45,4 +47,14 @@ public interface OrganizationManagementDataService extends Remote{
 	 * @return boolean ,修改是否成功
 	 */
 	public boolean modifyOrganization(OrganizationPO organizationPO) throws RemoteException;	
+	
+	/**
+	 *通过机构编号查询所有属于该机构的人员信息 
+	 */
+	public List<StaffPO> findStaffInfos(String organizationId) throws RemoteException;
+	
+	/**
+	 *通过机构编号删除所有属于该机构的人员信息 
+	 */
+	public boolean deleteStaffsByOrgId(String organizationId) throws RemoteException;
 }

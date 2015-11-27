@@ -74,8 +74,8 @@ public class OriginalInfoBLImpl_Stub implements OriginalInfoBLService{
 	private List<StaffVO> StaffPOToStaffVO(List<StaffPO> staff) {
 		List<StaffVO> s = new ArrayList<StaffVO>();
 		for(int i = 0; i < staff.size(); i++) {
-			s.add(new StaffVO(staff.get(i).getName(), staff.get(i).getId(), staff.get(i).getPosition(),
-					staff.get(i).getGender(), staff.get(i).getBirthday(), staff.get(i).getSalary()));
+//			s.add(new StaffVO(staff.get(i).getName(), staff.get(i).getId(), staff.get(i).getPosition(),
+//					staff.get(i).getGender(), staff.get(i).getBirthday(), staff.get(i).getSalary()));
 		}
 		return s;
 	}
@@ -83,8 +83,8 @@ public class OriginalInfoBLImpl_Stub implements OriginalInfoBLService{
 	private List<OrganizationVO> OrganizationVOToPO(List<OrganizationPO> org) {
 		List<OrganizationVO> o = new ArrayList<OrganizationVO>();
 		for(int i = 0; i < org.size(); i++) {
-			o.add(new OrganizationVO(org.get(i).getType(), org.get(i).getId(),
-					org.get(i).getName(), org.get(i).getStaffInfo()));
+//			o.add(new OrganizationVO(org.get(i).getType(), org.get(i).getId(),
+//					org.get(i).getName()));
 		}
 		return o;
 	}

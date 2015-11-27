@@ -1,6 +1,11 @@
 package mock.object;
 
 import po.managerPO.OrganizationPO;
+import po.managerPO.StaffPO;
+
+import java.rmi.RemoteException;
+import java.util.List;
+
 import dataService.managerDataService.OrganizationManagementDataService;
 
 public class MockOrganizationData implements OrganizationManagementDataService{
@@ -18,6 +23,18 @@ public class MockOrganizationData implements OrganizationManagementDataService{
 	}
 	
 	public boolean modifyOrganization(OrganizationPO organizationPO) {
+		return false;
+	}
+
+	@Override
+	public List<StaffPO> findStaffInfos(String organizationId) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteStaffsByOrgId(String organizationId) throws RemoteException {
+		// TODO Auto-generated method stub
 		return false;
 	}
 }

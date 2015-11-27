@@ -18,10 +18,17 @@ public class ReceiptDataImpl implements ReceiptDataService{
 		String name = receiptPO.getName();
 		String id = receiptPO.getOrderID();
 		String date = receiptPO.getDate();
-		//验证填写的收件人姓名和收件编号是否对应
+		//查询编号对应的订单信息
 		String inquire = "select * from"
 				+ " order_table where goods_id = '" + id + "';";
-		ResultSet rs = Database.findOperation(inquire);
+		ResultSet rs = null;
+		try {
+			rs = Database.findOperation(inquire);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return false;
+		}
+		//验证填写的收件人姓名和收件编号是否对应
 		try {
 			while(rs.next()) {
 				if(!name.equals(rs.getString("receiver_name"))) return false;
@@ -29,16 +36,25 @@ public class ReceiptDataImpl implements ReceiptDataService{
 		} catch (SQLException e) {
 			return false;
 		}
+		//保存订单信息
 		String sql = "insert into receipt values('";
 		sql += id + "','" + date + "','" + name + "');";
-		Database.operate(sql);
-		return true;
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean updateTimeRecord(int day, City source, City destination) {
 		String sql = "insert into time_record values('";
 		sql += source + "','" + destination + "'," + day + ");";
-		Database.operate(sql);
-		return true;
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

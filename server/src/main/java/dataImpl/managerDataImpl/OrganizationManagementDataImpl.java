@@ -1,12 +1,15 @@
 package dataImpl.managerDataImpl;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import dataService.managerDataService.OrganizationManagementDataService;
 import mysql.Database;
 import po.managerPO.OrganizationPO;
-import dataService.managerDataService.OrganizationManagementDataService;
+import po.managerPO.StaffPO;
 
 /**
  * description:数据服务层为机构管理提供服务的具体实现
@@ -18,40 +21,38 @@ public class OrganizationManagementDataImpl implements OrganizationManagementDat
 	ResultSet rs;
 	
 	public boolean addOrganization(OrganizationPO organizationPO) {
-		String type = organizationPO.getType();
-		String id = organizationPO.getId();
-		String name = organizationPO.getName();
-		ArrayList<String> staffInfo = organizationPO.getStaffInfo();
-		String val = "";
-		val = "'"+id+"','"+type+"','"+name+"','";
-		for(int i=0;i<staffInfo.size();i++){
-			val += staffInfo.get(i)+"\n";
+		String sql = "insert into organization values('";
+		sql += organizationPO.getId() + "','" + organizationPO.getType() 
+				+ "','" + organizationPO.getName() + "','" + organizationPO.isApproved()
+				+ "','" + organizationPO.isPassed() + "');";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
 		}
-		val+="'";
-		return Database.add("organization", val);
 	}
 	
 	public OrganizationPO findOrganization(String id) {
 		String type = null;
 		String Id = id;
 		String name = null;
-		String staffInfo = null;
+		boolean isApproved = false;
+		boolean isPassed = false;
 		try{
 			rs = Database.query("organization", "id", id);
-			while(rs.next()){
+			if(rs.next()){
 				type = rs.getString("type");
 				name = rs.getString("name");
-				staffInfo = rs.getString("staffinfo");
+				isApproved = Boolean.parseBoolean(rs.getString("is_approved"));
+				isPassed = Boolean.parseBoolean(rs.getString("is_passed"));
 			}
+			else return null;
 		} catch(SQLException e){
 			e.printStackTrace();
+			return null;
 		}
-		String[] staffinfo = staffInfo.split("\n");
-		ArrayList<String> staffId = new ArrayList<String>();
-		for(int i=0;i<staffinfo.length;i++){
-			staffId.add(staffinfo[i]);
-		}
-		return new OrganizationPO(type, Id, name, staffId);
+		return new OrganizationPO(type, Id, name, isApproved, isPassed);
 	}
 	
 	public boolean deleteOrganization(String id) {
@@ -59,16 +60,36 @@ public class OrganizationManagementDataImpl implements OrganizationManagementDat
 	}
 	
 	public boolean modifyOrganization(OrganizationPO organizationPO) {
-		String type = organizationPO.getType();
-		String id = organizationPO.getId();
-		String name = organizationPO.getName();
-		ArrayList<String> staffInfo = organizationPO.getStaffInfo();
-		String val ="";
-		val = "type='"+type+"',name='"+name+"',staffinfo='";
-		for(int i=0;i<staffInfo.size();i++){
-			val+=staffInfo.get(i)+"\n";
+		this.deleteOrganization(organizationPO.getId());
+		return this.addOrganization(organizationPO);
+	}
+
+	public List<StaffPO> findStaffInfos(String organizationId) throws RemoteException {
+		List<StaffPO> staffs = new ArrayList<StaffPO>();
+		String sql = "select * from staff where organization_id = '" + organizationId + "';";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				StaffPO temp = new StaffPO(rs.getString("name"), rs.getString("staff_id"), rs.getString("position"),
+						rs.getString("gender"), rs.getString("birthday"), rs.getString("salary"),
+						rs.getString("salary_type"), Boolean.parseBoolean(rs.getString("is_approved")),
+						Boolean.parseBoolean(rs.getString("is_passed")));
+				staffs.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
-		val+="'";
-		return Database.modify("organization", val, "id", id);
+		return staffs;
+	}
+
+	public boolean deleteStaffsByOrgId(String organizationId) throws RemoteException {
+		String sql = "delete from staff where organization_id = '" + organizationId + "';";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

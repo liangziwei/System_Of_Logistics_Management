@@ -1,10 +1,10 @@
 package businessLogic.businessLogicModel.managerModel;
 
 
+import dataService.managerDataService.StaffManagementDataService;
 import network.RMI;
 import po.managerPO.StaffPO;
 import vo.managerVO.StaffVO;
-import dataService.managerDataService.StaffManagementDataService;
 
 public class StaffManagement {
 
@@ -13,7 +13,7 @@ public class StaffManagement {
 	public boolean addStaff(StaffVO staffVO) {
 		boolean success = false;
 		try{
-			success = staffData.addStaff(this.staffVOTostaffPO(staffVO));
+			success = staffData.addStaff(StaffPO.staffVOTostaffPO(staffVO));
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -23,7 +23,9 @@ public class StaffManagement {
 	public StaffVO findStaff(String id) {
 		StaffVO staff = null;
 		try{
-			staff = this.staffPOTostaffVO(staffData.findStaff(id));
+			StaffPO staffPO = staffData.findStaff(id);
+			if(staffPO == null) return null;
+			staff = StaffPO.staffPOTostaffVO(staffPO);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -43,21 +45,11 @@ public class StaffManagement {
 	public boolean modifyStaff(StaffVO staffVO) {
 		boolean success = false;
 		try{
-			success = staffData.modifyStaff(this.staffVOTostaffPO(staffVO));
+			success = staffData.modifyStaff(StaffPO.staffVOTostaffPO(staffVO));
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return success;
 	}
 	
-	private StaffPO staffVOTostaffPO(StaffVO staffVO){
-		return new StaffPO(staffVO.getName(),staffVO.getId(),staffVO.getPosition(),
-				staffVO.getGender(),staffVO.getBirthday(),staffVO.getSalary());
-	}
-	
-	private StaffVO staffPOTostaffVO(StaffPO staffPO){
-		return new StaffVO(staffPO.getName(),staffPO.getId(),staffPO.getPosition(),
-				staffPO.getGender(),staffPO.getBirthday(),staffPO.getSalary());
-	}
-
 }

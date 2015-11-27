@@ -5,6 +5,10 @@ package stub.businessLogicImpl_stub.managerBLImpl_stub;
 import po.managerPO.OrganizationPO;
 import stub.dataImpl_stub.managerDataImpl_stub.OrganizationManagementDataImpl_Stub;
 import vo.managerVO.OrganizationVO;
+import vo.managerVO.StaffVO;
+
+import java.util.List;
+
 import businessLogicService.managerBLService.OrganizationManagementBLService;
 import dataService.managerDataService.OrganizationManagementDataService;
 
@@ -54,11 +58,23 @@ public class OrganizationManagementBLImpl_Stub implements OrganizationManagement
 	
 	private OrganizationPO organizationVOToOrganizationPO(OrganizationVO organizationVO) {
 		return new OrganizationPO(organizationVO.getType(), organizationVO.getId(), 
-				organizationVO.getName(),organizationVO.getStaffInfo() );
+				organizationVO.getName(), false, false);
 	}
 	
 	private OrganizationVO organizationPOToOrganizationVO(OrganizationPO organizationPO){
 		return new OrganizationVO(organizationPO.getType(), organizationPO.getId(), 
-				organizationPO.getName(),organizationPO.getStaffInfo());
+				organizationPO.getName(), false, false);
+	}
+
+	@Override
+	public List<StaffVO> getStaffInfos(String organizationId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteStaffByOrgId(String organizationId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

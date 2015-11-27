@@ -23,7 +23,7 @@ public class CostDataImpl implements CostDataService{
 		String remark = paymentPO.getRemark();
 		String val = "";
 		val = "'"+date+"',"+payAmount+",'"+name+"','"+account+"','"+entry+"','"
-		+remark+"',0,1";
+		+remark+"','false','false'";
 		return Database.add("payment", val);
 	}
 }

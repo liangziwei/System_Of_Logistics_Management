@@ -126,6 +126,13 @@ public class OrderInquirePanel extends DetailPanel{
 					error.setText("");
 					//查询订单信息
 					OrderVO order = orderService.getOrderInfoById(search.getText());
+					//如果查找不到该订单
+					if(order == null) {
+						error.setText("该订单不存在");
+						orderInfo.setVisible(false);
+						repaint();
+						return ;
+					}
 					orderInput.setOrderInfo(order.getSenderInfo(), order.getReceiverInfo(), order.getGoodsInfo());
 					//显示订单信息
 					orderInfo.setVisible(true);

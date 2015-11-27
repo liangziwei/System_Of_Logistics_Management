@@ -1,8 +1,8 @@
 package businessLogic.businessLogicController.managerController;
 
-import vo.managerVO.StaffVO;
 import businessLogic.businessLogicModel.managerModel.StaffManagement;
 import businessLogicService.managerBLService.StaffManagementBLService;
+import vo.managerVO.StaffVO;
 /**
  * description:为人员管理界面提供服务的具体实现
  * @author 张仁知
@@ -28,5 +28,4 @@ public class StaffManagementController implements StaffManagementBLService {
 	public boolean modifyStaff(StaffVO staffVO) {
 		return staff.modifyStaff(staffVO);
 	}
-
 }

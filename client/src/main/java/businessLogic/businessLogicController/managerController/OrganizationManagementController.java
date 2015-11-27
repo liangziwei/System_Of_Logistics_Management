@@ -1,6 +1,10 @@
 package businessLogic.businessLogicController.managerController;
 
 import vo.managerVO.OrganizationVO;
+import vo.managerVO.StaffVO;
+
+import java.util.List;
+
 import businessLogic.businessLogicModel.managerModel.OrganizationManagement;
 import businessLogicService.managerBLService.OrganizationManagementBLService;
 /**
@@ -30,4 +34,13 @@ public class OrganizationManagementController implements OrganizationManagementB
 		return organization.modifyOrganization(organizationVO);
 	}
 
+	@Override
+	public List<StaffVO> getStaffInfos(String organizationId) {
+		return organization.getStaffInfos(organizationId);
+	}
+
+	@Override
+	public boolean deleteStaffByOrgId(String organizationId) {
+		return organization.deleteStaffByOrgId(organizationId);
+	}
 }

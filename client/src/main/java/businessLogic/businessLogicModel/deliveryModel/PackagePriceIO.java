@@ -10,10 +10,7 @@ import network.RMI;
 import po.deliveryPO.PackPrice;
 
 public class PackagePriceIO {
-	
-	/**
-	 * 存储包装价格的格式为：5:10:1:2, 分别表示纸箱（5元）、木箱（10元）、快递袋（1元）、其它
-	 */
+
 	private static Map<PackageType, Double> table = new HashMap<PackageType, Double>();
 	
 	private static ConstantDataService constant = RMI.<ConstantDataService>getDataService("constant");

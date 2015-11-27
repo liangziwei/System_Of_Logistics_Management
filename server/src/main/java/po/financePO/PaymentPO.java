@@ -11,7 +11,6 @@ public class PaymentPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3743405899224889595L;
-	
 	/**
 	 * 付款日期
 	 */
@@ -39,15 +38,16 @@ public class PaymentPO implements Serializable{
 	/**
 	 * 是否已经被总经理的审批
 	 */
-	private boolean isApproved = false;
+	private boolean isApproved;
 	
 	/**
 	 * 审批是否通过
 	 */
-	private boolean isPassed = false;
+	private boolean isPassed;
 	
 	public PaymentPO(String date, double payAmount, String name,
-			String account, String entry, String remark) {
+			String account, String entry, String remark,
+			boolean isApproved, boolean isPassed) {
 		super();
 		this.date = date;
 		this.payAmount = payAmount;

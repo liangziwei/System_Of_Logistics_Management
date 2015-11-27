@@ -1,5 +1,6 @@
 package ui.managerui;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -13,6 +14,8 @@ public class SearchPanel extends JPanel{
 	private JLabel idLabel = null;
 	
 	private JTextField idText = new JTextField();
+	
+	private JLabel text = new JLabel();
 	
 	private JButton ok = new JButton("确定");
 	
@@ -44,6 +47,8 @@ public class SearchPanel extends JPanel{
 		this.cancel.setBounds(this.ok.getX() + buttonW + (startX >> 1),
 				this.ok.getY(), buttonW, buttonH);
 		this.cancel.setFont(wordFont);
+		//信息标签
+		this.text.setBounds(0, (int)(labelH * 1.2), labelW << 1, labelH);
 		//将组件添加到面板
 		this.setLayout(null);
 		this.setBounds(x, y, w, h);
@@ -51,6 +56,17 @@ public class SearchPanel extends JPanel{
 		this.add(this.idText);
 		this.add(this.ok);
 		this.add(this.cancel);
+		this.add(this.text);
+	}
+	
+	public void setText(String text, Font font, Color foreground) {
+		this.text.setFont(font);
+		this.text.setForeground(foreground);
+		this.text.setText(text);
+	}
+	
+	public void removeText() {
+		this.text.setText("");;
 	}
 	
 	public JButton getOk() {
@@ -59,5 +75,9 @@ public class SearchPanel extends JPanel{
 	
 	public JButton getCancel() {
 		return this.cancel;
+	}
+
+	public String getIdText() {
+		return idText.getText();
 	}
 }

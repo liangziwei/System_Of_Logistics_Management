@@ -1,5 +1,8 @@
 package ui.managerui.approvalformui;
 
-public class ApprovalFormPanel {
+import ui.baseui.DetailPanel;
+
+@SuppressWarnings("serial")
+public class ApprovalFormPanel extends DetailPanel{
 
 }

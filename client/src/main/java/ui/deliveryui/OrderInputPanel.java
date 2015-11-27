@@ -249,7 +249,6 @@ public class OrderInputPanel extends DetailPanel{
 		disableComponents();
 		//计算运费和时间
 		double weight = Double.parseDouble(goodsInfo.getWeight());
-		//TODO 还有包装费没算,根据总经理的价格常量
 		double pack = PackagePriceIO.getPackPrice(orderVO.getGoodsInfo().getPackageType());
 		double price = orderService.calculatePrice(otherInfo.getDeliveryType(),
 				weight, sender.getCity(), receiver.getCity()) + pack;

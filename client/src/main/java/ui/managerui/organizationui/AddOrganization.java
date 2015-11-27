@@ -1,16 +1,25 @@
 package ui.managerui.organizationui;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.managerController.OrganizationManagementController;
+import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.managerBLService.OrganizationManagementBLService;
 import ui.baseui.DetailPanel;
+import vo.managerVO.OrganizationVO;
 
 @SuppressWarnings("serial")
 public class AddOrganization extends DetailPanel{
+	
+	private OrganizationManagementBLService organization = new OrganizationManagementController();
 
 	private JLabel typeLabel = new JLabel("机构类型");
 	
@@ -27,6 +36,8 @@ public class AddOrganization extends DetailPanel{
 	private JButton ok = new JButton("确定");
 	
 	private JButton cancel = new JButton("取消");
+	
+	private JLabel tip = new JLabel();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
@@ -66,7 +77,7 @@ public class AddOrganization extends DetailPanel{
 		this.typeText.addItem("总部");
 		//机构名称标签
 		this.nameLabel.setBounds(this.typeLabel.getX(),
-				this.typeLabel.getY() + LABEL_H + (START_Y >> 1), LABEL_W, LABEL_W);
+				this.typeLabel.getY() + LABEL_H + (START_Y  >> 1), LABEL_W, LABEL_H);
 		this.nameLabel.setFont(WORD_FONT);
 		//机构名称文本框
 		this.nameText.setBounds(this.typeText.getX(), this.nameLabel.getY(), TEXT_W, TEXT_H);
@@ -78,6 +89,9 @@ public class AddOrganization extends DetailPanel{
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W << 1), this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
+		//提示标签
+		this.tip.setBounds(this.nameLabel.getX(), this.ok.getY(), LABEL_W, LABEL_H);
+		this.tip.setFont(WORD_FONT);
 		//将组件添加到面板
 		this.add(this.idLabel);
 		this.add(this.idText);
@@ -87,6 +101,56 @@ public class AddOrganization extends DetailPanel{
 		this.add(this.nameText);
 		this.add(this.ok);
 		this.add(this.cancel);
+		this.add(this.tip);
+		//增加事件监听
+		this.addListener();
 	}
 	
+	private void addListener() {
+		//确定按钮
+		this.ok.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//验证输入是否完整 TODO进行跟进一步的信息验证
+				tip.setForeground(Color.RED);
+				if(CommonLogic.isNull(idText.getText()) || CommonLogic.isNull(nameText.getText())) {
+					tip.setText("请把信息填写完整");
+					return ;
+				}
+				//保存信息
+				boolean res = organization.addOrganization(new OrganizationVO(typeText.getSelectedItem().toString(),
+						idText.getText(), nameText.getText(), false, false));
+				//保存成功
+				if(res) {
+					//清空用户输入
+					clearInfo();
+					//提示用户保存成功
+					tip.setForeground(Color.BLUE);
+					tip.setText("保存成功");
+				}
+				else {
+					tip.setForeground(Color.RED);
+					tip.setText("保存失败，请稍后重试");
+				}
+				repaint();
+			}
+		});
+		//取消按钮
+		this.cancel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//清空用户输入的信息
+				clearInfo();
+				//刷新面板
+				repaint();
+			}
+		});
+	}
+	
+	private void clearInfo() {
+		this.idText.setText("");
+		this.nameText.setText("");
+	}
 }

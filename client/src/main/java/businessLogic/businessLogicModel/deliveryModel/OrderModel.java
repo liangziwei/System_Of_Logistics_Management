@@ -31,7 +31,9 @@ public class OrderModel{
 			orderInfo = order.getOrderInfoById(id);
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			return null;
 		}
+		if(orderInfo == null) return null;
 		return OrderPO.orderPOToVO(orderInfo);
 	}
 
