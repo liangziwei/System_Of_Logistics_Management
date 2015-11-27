@@ -2,22 +2,24 @@ package ui.senderui;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.senderController.InquireController;
-import businessLogicService.senderBLService.InquireBLService;
-import constant.City;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
 import ui.viewcontroller.ViewController;
 import vo.senderVO.LogisticsVO;
+import businessLogic.businessLogicController.senderController.InquireController;
+import businessLogicService.senderBLService.InquireBLService;
+import constant.City;
 
 @SuppressWarnings("serial")
 public class InquirePanel extends JPanel{
@@ -37,27 +39,29 @@ public class InquirePanel extends JPanel{
 	
 	private JLabel orderLabel = new JLabel("订单条形码号");
 	
-	private JButton ok = new JButton("查询");
+	private JButton ok = new JButton("");
 	
-	private JButton cancel = new JButton("取消");
+	private JButton cancel = new JButton("");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
 	private static final int LABEL_W = 150;
 	
-	private static final int LABEL_H = 40;
+	private static final int LABEL_H = 30;
 	
 	private static final int TEXT_W = LABEL_W;
 	
 	private static final int TEXT_H = LABEL_H;
 	
-	private static final int BUTTON_W = 72;
+	private static final int BUTTON_W = 80;
 	
 	private static final int BUTTON_H = LABEL_H;
 	
 	
 	private static final int COMPONENT_GAP = (ExpressFrame.FRAME_W - LABEL_W - TEXT_W - (BUTTON_W << 1)) / 5;
 	
+	
+	private static Image BACKGROUND = new ImageIcon("picture/background.jpg").getImage();
 	/**
 	 *组件与组件的距离 
 	 */
@@ -67,25 +71,32 @@ public class InquirePanel extends JPanel{
 	 
 	public InquirePanel(ViewController viewController) {
 		this.viewController = viewController;
+		
+		this.repaint();
 		//面板
 		this.setLayout(null);
 		this.setBounds(0, 0, ExpressFrame.FRAME_W, ExpressFrame.FRAME_H);
 		//订单条形码号标签
-		this.orderLabel.setBounds(ORDER_X, ORDER_Y, LABEL_W, LABEL_H);
+		this.orderLabel.setBounds(ORDER_X+60, ORDER_Y, LABEL_W, LABEL_H);
 		this.orderLabel.setFont(WORD_FONT);
 		//订单条形码号文本框
 		this.search.setBounds(this.orderLabel.getX() + LABEL_W , this.orderLabel.getY(),
 				TEXT_W + COMPONENT_GAP, TEXT_H);
 		this.search.setFont(WORD_FONT);
+		this.search.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.search.getX() + TEXT_W + (COMPONENT_GAP << 1),
 				          this.search.getY(),
 				          BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
+		this.ok.setIcon(new ImageIcon("picture/查询.png"));
+		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + COMPONENT_GAP, this.ok.getY(),
 				BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
+		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+		this.cancel.setBorderPainted(false);
 		//把组件添加到面板
 		this.add(this.orderLabel);
 		this.add(this.search);
@@ -152,5 +163,10 @@ public class InquirePanel extends JPanel{
 			g.drawLine(x + i * 100 + 40, y + i * 70 + 40,
 					x + (i + 1) * 140 - 40, y + (i + 1) * (70 + 40) - 40);
 		}
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 }

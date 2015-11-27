@@ -1,5 +1,9 @@
 package ui.baseui;
 
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import ui.mainui.ExpressFrame;
@@ -24,9 +28,17 @@ public class DetailPanel extends JPanel{
 	
 	protected static final int CONTAINER_H = 900;
 	
+	private static Image BACKGROUND = new ImageIcon("picture/detail.jpg").getImage();
+	
 	public DetailPanel() {
+		this.repaint();
 		this.setBounds(TaskPanel.TASK_PANEL_W, TitlePanel.TITLE_PANEL_H,
 				DETAIL_PANEL_W, DETAIL_PANEL_H);
 		this.setLayout(null);
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 }

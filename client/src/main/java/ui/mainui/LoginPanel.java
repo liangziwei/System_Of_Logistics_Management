@@ -1,11 +1,14 @@
 package ui.mainui;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,9 +36,9 @@ public class LoginPanel extends JPanel{
 	
 	private JTextField pwField = new JTextField();
 	
-	private JButton ok = new JButton("确定");
+	private JButton ok = new JButton("");
 	
-	private JButton cancel = new JButton("取消");
+	private JButton cancel = new JButton("");
 	
 	private Font TEXT_FONT = new Font("宋体", Font.PLAIN, 20);
 	
@@ -87,8 +90,13 @@ public class LoginPanel extends JPanel{
 	
 	private static final int IDLABEL_Y = (ExpressFrame.FRAME_H - (LABEL_H << 1) - LABEL_GAP - TB_GAP - BUTTON_H) >> 1;
 	
+	//背景图片
+	private static Image BACKGROUND = new ImageIcon("picture/login.png").getImage();
+	
 	public LoginPanel(ViewController viewController) {
 		this.viewController = viewController;
+		
+		this.repaint();
 		//面板
 		this.setLayout(null);
 		this.setBounds(0, 0, ExpressFrame.FRAME_W, ExpressFrame.FRAME_H);
@@ -98,18 +106,24 @@ public class LoginPanel extends JPanel{
 		//账号文本框
 	    idField.setBounds(IDLABEL_X + LABEL_W + LT_GAP, IDLABEL_Y, TEXT_W, TEXT_H);
 		idField.setFont(TEXT_FONT);
+		idField.setOpaque(false);
 		//密码标签
 		this.pwLabel.setBounds(IDLABEL_X, IDLABEL_Y + LABEL_H + LABEL_GAP, LABEL_W, LABEL_H);
 		this.pwLabel.setFont(TEXT_FONT);
 		//密码文本框
 		pwField.setBounds(idField.getX(), this.pwLabel.getY(), TEXT_W, TEXT_H);
 		pwField.setFont(TEXT_FONT);
+		pwField.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(pwField.getX() + (TEXT_W >> 1), pwField.getY() + TB_GAP, BUTTON_W, BUTTON_H);
 		this.ok.setFont(TEXT_FONT);
+		this.ok.setIcon(new ImageIcon("picture/确定.png"));
+		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + BUTTON_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(TEXT_FONT);
+		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+		this.cancel.setBorderPainted(false);
 		//把组件添加到面板
 		this.add(this.idLabel);
 		this.add(idField);
@@ -150,5 +164,10 @@ public class LoginPanel extends JPanel{
 				viewController.switchView(ExpressPanel.class.getName());
 			}
 		});
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 }

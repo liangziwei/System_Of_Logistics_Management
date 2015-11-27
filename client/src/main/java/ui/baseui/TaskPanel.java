@@ -1,8 +1,11 @@
 package ui.baseui;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -56,6 +59,8 @@ public class TaskPanel extends JScrollPane{
 	
 	private static final int CONTAINER_H = 1000;
 	
+	private static Image BACKGROUND = new ImageIcon("picture/Tower.jpg").getImage();
+		
 	public TaskPanel() {
 		this.setBounds(0, TitlePanel.TITLE_PANEL_H, TASK_PANEL_W, TASK_PANEL_H);
 		
@@ -175,5 +180,10 @@ public class TaskPanel extends JScrollPane{
 			clickButton.setUnfold(true);
 			this.showTaskDetail(clickButton, belowButtons);
 		}
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 }
