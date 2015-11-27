@@ -10,6 +10,9 @@ public class LoadingDataImpl implements LoadingDataService {
 
 	public boolean AddLoadingFormDT(LoadingPO loadingPO) {
 		// TODO Auto-generated method stub
+		String loadingid = loadingPO.getloadingid();
+		String arrivalid = loadingPO.getarrivalid();
+		String 
 		return false;
 	}
 

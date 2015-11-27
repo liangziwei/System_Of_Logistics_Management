@@ -22,9 +22,9 @@ public class ManageRepository {
 //	MockGetRepository get = new MockGetRepository();
 //	MockSeeRepository see = new MockSeeRepository();
 	private ManageRepositoryDataService manageRepositoryDataService = RMI.<ManageRepositoryDataService>getDataService("manage");
-	private List<RepositoryVO> repositoryVOs;
-	private List<RepositoryInfoVO> repositoryVOs2;
-	private List<DeliveryInfoVO> deliveryInfoVOs;
+//	private List<RepositoryVO> repositoryVOs;
+//	private List<RepositoryInfoVO> repositoryVOs2;
+//	private List<DeliveryInfoVO> deliveryInfoVOs;
 
 	public List<RepositoryInfoVO> SeeRepositoryBL(String time) {
 		// TODO Auto-generated method stub
@@ -33,7 +33,18 @@ public class ManageRepository {
 //		for(int i=0;i<(repositoryPOs.size());i++){
 //			repositoryVOs2.add(this.RepositoryInfoPOtoRepositoryInfoVO(repositoryPOs.get(i)));
 //		}
-		return repositoryVOs2;
+		List<RepositoryInfoPO> listPO = null;
+		List<RepositoryInfoVO> listVO = null;
+		try {
+			listPO = manageRepositoryDataService.SeeRepositoryDT(time);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i=0;i<(listPO.size());i++){
+			listVO.add(this.RepositoryInfoPOtoRepositoryInfoVO(listPO.get(i)));
+		}
+		return listVO;
 	}
 
 	public List<DeliveryInfoVO> CheckRepositoryBL() {
@@ -43,7 +54,18 @@ public class ManageRepository {
 //		for(int i=0;i<(deliveryInfoPOs.size());i++){
 //			deliveryInfoVOs.add(this.DeliveryInfoPOtoDeliveryInfoVO(deliveryInfoPOs.get(i)));
 //		}
-		return deliveryInfoVOs;
+		List<DeliveryInfoPO> listPO2 = null;
+		List<DeliveryInfoVO> listVO2 = null;
+		try {
+			listPO2 = manageRepositoryDataService.CheckRepositoryDT();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i=0;i<(listPO2.size());i++){
+			listVO2.add(this.DeliveryInfoPOtoDeliveryInfoVO(listPO2.get(i)));
+		}
+		return listVO2;
 	}
 
 	public boolean SetWarnValueBL(AreaCodeType ID, int allNum, double WarnNum) {
@@ -69,6 +91,7 @@ public class ManageRepository {
 	public List<RepositoryVO> GetRepositoryInfoBL() {
 		// TODO Auto-generated method stub
 		List<RepositoryPO> repositoryPOs = new ArrayList<RepositoryPO>();
+		List<RepositoryVO> repositoryVOs = new ArrayList<RepositoryVO>();
 		try {
 			repositoryPOs = manageRepositoryDataService.GetRepositoryInfoDT();
 		} catch (RemoteException e) {

@@ -195,6 +195,7 @@ public class SeeTransferringListPanel extends DetailPanel{
 //		this.transfer.setLayout(null);
 		
 		this.add(transfer);
+		this.revalidate();
 		this.repaint();
 	}
 	
