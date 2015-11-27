@@ -12,7 +12,6 @@ public class LoadingDataImpl implements LoadingDataService {
 		// TODO Auto-generated method stub
 		String loadingid = loadingPO.getloadingid();
 		String arrivalid = loadingPO.getarrivalid();
-		String 
 		return false;
 	}
 
