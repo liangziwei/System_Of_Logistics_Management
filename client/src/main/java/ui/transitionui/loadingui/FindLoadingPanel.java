@@ -212,13 +212,13 @@ public class FindLoadingPanel extends DetailPanel{
 		this.arrivalidText.setText(loadingVO.getarrivalid());
 		switch (loadingVO.getway()) {
 		case PLANE:
-			this.wayBox.setToolTipText("飞机");
+			this.wayBox.setSelectedItem("飞机");
 			break;
 		case TRAIN:
-			this.wayBox.setToolTipText("火车");
+			this.wayBox.setSelectedItem("火车");
 			break;
 		case TRUCK:
-			this.wayBox.setToolTipText("汽车");
+			this.wayBox.setSelectedItem("汽车");
 			break;
 		}
 		this.wayidText.setText(loadingVO.getwayid());

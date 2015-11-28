@@ -257,13 +257,13 @@ public class FindTransferringPanel extends DetailPanel{
 		this.loadingdateTextday.setText(Date[2].trim());
 		switch (transferringVO.getway()) {
 		case PLANE:
-			loadingway.setToolTipText("飞机");
+			loadingway.setSelectedItem("飞机");
 			break;
 		case TRAIN:
-			loadingway.setToolTipText("火车");
+			loadingway.setSelectedItem("火车");
 			break;
 		case TRUCK:
-			loadingway.setToolTipText("汽车");
+			loadingway.setSelectedItem("汽车");
 			break;
 		}
 		this.loadingwayidText.setText(transferringVO.getwayid().trim());

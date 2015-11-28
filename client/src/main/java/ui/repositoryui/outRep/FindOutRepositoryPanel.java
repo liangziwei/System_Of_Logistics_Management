@@ -200,7 +200,7 @@ public class FindOutRepositoryPanel extends DetailPanel{
 			WAY = "汽车";
 			break;
 		}
-		loadingwayText.setToolTipText(WAY);
+		loadingwayText.setSelectedItem(WAY);
 		wayidText.setText(outRepositoryVO.getloadingid());
 	}
 	

@@ -399,16 +399,16 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		posidText.setText(inRepositoryVO.getposid().trim());
 		switch (inRepositoryVO.getareaCode()) {
 		case PLANEAREA:
-			this.areaidText.setToolTipText("航运区");
+			this.areaidText.setSelectedItem("航运区");
 			break;
 		case TRAINAREA:
-			this.areaidText.setToolTipText("铁运区");
+			this.areaidText.setSelectedItem("铁运区");
 			break;
 		case TRUCKAREA:
-			this.areaidText.setToolTipText("汽运区");
+			this.areaidText.setSelectedItem("汽运区");
 			break;
 		case MOTOAREA:
-			this.areaidText.setToolTipText("机动区");
+			this.areaidText.setSelectedItem("机动区");
 			break;
 		}
 	}
