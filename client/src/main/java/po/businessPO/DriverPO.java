@@ -3,6 +3,12 @@ package po.businessPO;
 import java.io.Serializable;
 
 public class DriverPO implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6242284594279622202L;
+	private boolean isWrong =false;
 	private String driverid;
 	private String name;
 	private String birthday;
@@ -65,6 +71,10 @@ public class DriverPO implements Serializable{
 	}
 	public void setDrivingDeadline(String drivingDeadline) {
 		this.drivingDeadline = drivingDeadline;
+	}
+
+	public void setWrong(boolean isWrong) {
+		this.isWrong = isWrong;
 	}
 	
 }

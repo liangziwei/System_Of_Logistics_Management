@@ -12,12 +12,18 @@ import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
 import ui.baseui.UserPanel;
-import ui.businessui.driverui.DriverPanel;
+import ui.businessui.driverui.AddDriverPanel;
+import ui.businessui.driverui.DeleteDriverPanel;
+import ui.businessui.driverui.FindDriverPanel;
+import ui.businessui.driverui.ModifyDriverPanel;
 import ui.businessui.entruckingui.EntruckingPanel;
 import ui.businessui.paymentui.PaymentPanel;
 import ui.businessui.receiveandsendui.ArrivalPanel;
 import ui.businessui.receiveandsendui.SendPanel;
-import ui.businessui.vehicleui.VehiclePanel;
+import ui.businessui.vehicleui.AddVehiclePanel;
+import ui.businessui.vehicleui.DeleteVehiclePanel;
+import ui.businessui.vehicleui.FindVehiclePanel;
+import ui.businessui.vehicleui.ModifyVehiclePanel;
 import ui.mainui.LoginPanel;
 import ui.viewcontroller.ViewController;
 
@@ -223,7 +229,7 @@ public class BusinessPanel extends UserPanel{
 				// TODO Auto-generated method stub
 				detail.setVisible(false);
 				//设置细节信息面板显示订单查询界面
-				detail = new VehiclePanel();
+				detail = new AddVehiclePanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局
@@ -238,7 +244,7 @@ public class BusinessPanel extends UserPanel{
 				// TODO Auto-generated method stub
 				detail.setVisible(false);
 				//设置细节信息面板显示订单查询界面
-				detail = new VehiclePanel();
+				detail = new FindVehiclePanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局
@@ -253,7 +259,7 @@ public class BusinessPanel extends UserPanel{
 				// TODO Auto-generated method stub
 				detail.setVisible(false);
 				//设置细节信息面板显示订单查询界面
-				detail = new VehiclePanel();
+				detail = new DeleteVehiclePanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局
@@ -268,7 +274,7 @@ public class BusinessPanel extends UserPanel{
 				// TODO Auto-generated method stub
 				detail.setVisible(false);
 				//设置细节信息面板显示订单查询界面
-				detail = new VehiclePanel();
+				detail = new ModifyVehiclePanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局
@@ -283,7 +289,51 @@ public class BusinessPanel extends UserPanel{
 				// TODO Auto-generated method stub
 				detail.setVisible(false);
 				//设置细节信息面板显示订单查询界面
-				detail = new DriverPanel();
+				detail = new AddDriverPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局
+				revalidate();
+			}
+			
+		});
+		
+		this.findDriv.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				detail.setVisible(false);
+				//设置细节信息面板显示订单查询界面
+				detail = new FindDriverPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局
+				revalidate();
+			}
+			
+		});
+		
+		this.delDriv.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				detail.setVisible(false);
+				//设置细节信息面板显示订单查询界面
+				detail = new DeleteDriverPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局
+				revalidate();
+			}
+			
+		});
+		this.modDriv.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				detail.setVisible(false);
+				//设置细节信息面板显示订单查询界面
+				detail = new ModifyDriverPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局

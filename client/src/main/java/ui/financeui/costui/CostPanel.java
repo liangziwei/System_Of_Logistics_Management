@@ -7,17 +7,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.financeController.CostController;
-import businessLogic.businessLogicModel.util.CommonLogic;
-import businessLogicService.financeBLService.CostBLService;
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
 import vo.financeVO.PaymentVO;
+import businessLogic.businessLogicController.financeController.CostController;
+import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.financeBLService.CostBLService;
 
 @SuppressWarnings("serial")
 public class CostPanel extends DetailPanel{
@@ -48,9 +49,9 @@ public class CostPanel extends DetailPanel{
 	
 	private JTextField noteText = new JTextField();
 	
-	private JButton ok = new JButton("确定");
+	private JButton ok = new JButton("");
 	
-	private JButton cancel = new JButton("取消");
+	private JButton cancel = new JButton("");
 	
 	private JLabel tip = new JLabel();
 	
@@ -94,43 +95,53 @@ public class CostPanel extends DetailPanel{
 		//付款日期文本框
 		this.dateText.setPanelBound(this.dateLabel.getX() + LABEL_W + LT_GAP, this.dateLabel.getY(), TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
+		this.dateText.setOpaque(false);
 		//付款金额标签
 		this.moneyLabel.setBounds(this.dateLabel.getX(), this.dateLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.moneyLabel.setFont(WORD_FONT);
 		//付款金额文本框
 		this.moneyText.setBounds(this.dateText.getX(), this.moneyLabel.getY(), TEXT_W, TEXT_H);
 		this.moneyText.setFont(WORD_FONT);
+		this.moneyText.setOpaque(false);
 		//付款人标签
 		this.nameLabel.setBounds(this.moneyLabel.getX(), this.moneyLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.nameLabel.setFont(WORD_FONT);
 		//付款人文本框
 		this.nameText.setBounds(this.moneyText.getX(), this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//付款账户标签
 		this.accountLabel.setBounds(this.nameLabel.getX(), this.nameLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.accountLabel.setFont(WORD_FONT);
 		//付款账户文本框
 		this.accountText.setBounds(this.nameText.getX(), this.accountLabel.getY(), TEXT_W, TEXT_H);
 		this.accountText.setFont(WORD_FONT);
+		this.accountText.setOpaque(false);
 		//条目标签
 		this.itemLabel.setBounds(this.accountLabel.getX(), this.accountLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.itemLabel.setFont(WORD_FONT);
 		//条目文本框
 		this.itemText.setBounds(this.accountText.getX(), this.itemLabel.getY(), TEXT_W, TEXT_H);
 		this.itemText.setFont(WORD_FONT);
+		this.itemText.setOpaque(false);
 		//备注标签
 		this.noteLabel.setBounds(this.itemLabel.getX(), this.itemLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.noteLabel.setFont(WORD_FONT);
 		//备注文本框
 		this.noteText.setBounds(this.itemText.getX(), this.noteLabel.getY(), TEXT_W, TEXT_H);
 		this.noteText.setFont(WORD_FONT);
+		this.noteText.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.noteText.getX() + (TEXT_W >> 1), this.noteText.getY() + TEXT_H + gap
 				, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
+		this.ok.setIcon(new ImageIcon("picture/确定.png"));
+		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W * 3 >> 1), this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
+		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+		this.cancel.setBorderPainted(false);
 		//提示标签
 		this.tip.setBounds(this.noteLabel.getX(), this.ok.getY(), LABEL_W, LABEL_H);
 		this.tip.setFont(WORD_FONT);

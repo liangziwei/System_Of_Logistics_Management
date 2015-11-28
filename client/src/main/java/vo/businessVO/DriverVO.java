@@ -2,6 +2,7 @@ package vo.businessVO;
 
 public class DriverVO {
 
+	private boolean isWrong =false;
 	private String driverid;
 	private String name;
 	private String birthday;
@@ -65,5 +66,9 @@ public class DriverVO {
 	public void setDrivingDeadline(String drivingDeadline) {
 		this.drivingDeadline = drivingDeadline;
 	}
-	
+
+	public boolean isWrong() {
+		return isWrong;
+	}
+
 }

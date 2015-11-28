@@ -5,8 +5,12 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.DriverDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.ReceiveAndSendDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.VehicleDataImpl_Stub;
 import dataImpl.businessDataImpl.PaymentDataImpl;
-import dataImpl.deliveryDataImpl.ConstantDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
@@ -26,9 +30,11 @@ import dataImpl.transitionDataImpl.LoadingDataImpl;
 import dataImpl.transitionDataImpl.ReceivingDataImpl;
 import dataImpl.transitionDataImpl.TransferringDataImpl;
 import dataService.administratorDataService.AdministratorDataService;
+import dataService.businessDataService.DriverDataService;
 import dataService.businessDataService.EntruckingDataService;
 import dataService.businessDataService.PaymentDataService;
-import dataService.deliveryDataService.ConstantDataService;
+import dataService.businessDataService.ReceiveAndSendDataService;
+import dataService.businessDataService.VehicleDataService;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.deliveryDataService.ReceiptDataService;
 import dataService.financeDataService.AccountDataService;
@@ -47,8 +53,6 @@ import dataService.senderDataService.InquireDataService;
 import dataService.transitionDataService.LoadingDataService;
 import dataService.transitionDataService.ReceivingDataService;
 import dataService.transitionDataService.TransferringDataService;
-import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
-import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_Stub;
 
 public class RMI {
 	
@@ -79,8 +83,6 @@ public class RMI {
 		initFinanceRMI();
 		//初始化系统管理人员的RMI连接
 		initAdministratorRMI();
-		//初始化获得常量的RMI连接
-		initGetConstant();
 		//提示服务器运行成功
 		System.out.println("Server is working...");
 	}
@@ -124,6 +126,20 @@ public class RMI {
 			PaymentDataService payment_stub = (PaymentDataService) UnicastRemoteObject.exportObject(payment, 0);
 			registry.bind("receivable", payment_stub);
 			
+//			ReceiveAndSendDataService receiveAndSend = new ReceiveAndSendDataImpl();
+			ReceiveAndSendDataService receiveAndSend = new ReceiveAndSendDataImpl_Stub();
+			ReceiveAndSendDataService receiveAndSend_stub = (ReceiveAndSendDataService) UnicastRemoteObject.exportObject(receiveAndSend, 0);
+			registry.bind("receiveAndSend", receiveAndSend_stub);
+			
+//			VehicleDataService vehicle = new VehicleDataImpl();
+			VehicleDataService vehicle = new VehicleDataImpl_Stub();
+			VehicleDataService vehicle_stub = (VehicleDataService) UnicastRemoteObject.exportObject(vehicle, 0);
+			registry.bind("vehicle", vehicle_stub);
+			
+//			DriverDataService driver = new DriverDataImpl();
+			DriverDataService driver = new DriverDataImpl_Stub();
+			DriverDataService driver_stub = (DriverDataService) UnicastRemoteObject.exportObject(driver, 0);
+			registry.bind("driver", driver_stub);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -235,13 +251,4 @@ public class RMI {
 		}
 	}
 
-	private static void initGetConstant() {
-		try {
-			ConstantDataService constant = new ConstantDataImpl();
-			ConstantDataService constant_stub = (ConstantDataService) UnicastRemoteObject.exportObject(constant, 0);
-			registry.bind("constant", constant_stub);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 }

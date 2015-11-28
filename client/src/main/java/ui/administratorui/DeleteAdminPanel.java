@@ -1,5 +1,6 @@
 package ui.administratorui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,15 +11,23 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.administratorController.AdministratorController;
+import constant.Authority;
+import constant.UserType;
 import ui.baseui.DetailPanel;
+import vo.administratorVO.AdministratorVO;
 
-public class AdminDetailPanel extends DetailPanel{
+public class DeleteAdminPanel extends DetailPanel {
+	private AdministratorController adminCon=new AdministratorController();
+	private AdministratorVO adminVO;
 	
 	private JLabel type=new JLabel("账户类型");
 	private JLabel name=new JLabel("姓名");
 	private JLabel id=new JLabel("账号");
 	private JLabel password=new JLabel("密码");
 	private JLabel limit=new JLabel("权限");
+	
+	private JLabel result=new JLabel();
 	
 	private JComboBox typeBox=new JComboBox();
 	private JTextField nameText=new JTextField();
@@ -53,9 +62,9 @@ public class AdminDetailPanel extends DetailPanel{
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
 	private boolean isFirstEnsure = true;
+	private boolean isOver=false;
 	
-	
-	public AdminDetailPanel(){
+	public DeleteAdminPanel(){
 		
 		this.id.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.id.setFont(WORD_FONT);
@@ -88,14 +97,18 @@ public class AdminDetailPanel extends DetailPanel{
 		
 		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W>>1,BUTTON_H);
 		this.query.setFont(WORD_FONT);
+		
+		this.result.setBounds(this.limit.getX() + LINE_GAP, this.limit.getY() + LABEL_H*4+ LINE_GAP,TEXT_W, BUTTON_H);
+//		this.result.setFont(WORD_FONT);
 		this.ok.setBounds(this.limit.getX() + TEXT_W, this.limit.getY() + LABEL_H*4+ LINE_GAP,BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
-		this.cancel.setVisible(false);
+//		this.cancel.setVisible(false);
 		
-		
+		this.disablePanel();
+		this.visible(false);
 		this.addListener();
 		this.addComponents();
 		
@@ -106,16 +119,47 @@ public class AdminDetailPanel extends DetailPanel{
 		this.query.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//验证收件信息是否合法
+				String userid=idText.getText();
+				if(isCorrect()){
+					
+				  adminVO=adminCon.findUser(userid);
+				  if(!adminVO.isWrong()){
+					visible(true);
+					passwordText.setText(adminVO.getPassword());
+					nameText.setText(adminVO.getName());
+					typeBox.setSelectedItem(adminVO.getType().toString());
+					limitBox.setSelectedItem(adminVO.getLimit().toString());		
+					result.setText("");
+				  }else{
+					visible(false);
+					result.setForeground(Color.RED);
+					result.setText("输入的司机编号不存在");
+				  }
 				
+				}else{
+					visible(false);
+					result.setForeground(Color.RED);
+					result.setText("输入格式错误 ");
+				}
+				repaint();
 			}
 		});
-		
+
 		this.ok.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//验证收件信息是否合法
-				
+				String userid=idText.getText();
+				if(adminCon.deleteUser(userid)){
+					ok.setVisible(false);
+					cancel.setVisible(false);
+					result.setForeground(Color.GREEN);
+					result.setText("删除成功");
+				}else{
+					ok.setVisible(false);
+					cancel.setVisible(false);
+					result.setText("删除失败");
+				}
+				repaint();
 			}
 		});
 		
@@ -124,13 +168,12 @@ public class AdminDetailPanel extends DetailPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				//设置取消按钮不可见
-				cancel.setVisible(false);
-				//设置状态为第一次点击确定按钮
-				isFirstEnsure = true;
-				//使组件可编辑
-				//消除提示信息
+				visible(false);
+				result.setText("");
+				repaint();
 			}
 		});
+		
 	}
 	
 	private void addComponents(){
@@ -145,7 +188,71 @@ public class AdminDetailPanel extends DetailPanel{
 		this.add(limit);
 		this.add(limitBox);
 		this.add(query);
+		this.add(result);
 		this.add(ok);
 		this.add(cancel);
+	}
+	
+private boolean isCorrect(){
+		
+		String typeStr=(String)typeBox.getSelectedItem();
+		String nameStr=nameText.getText();
+		String idStr=idText.getText();
+		String passwordStr=passwordText.getText();
+		String limitStr=(String)limitBox.getSelectedItem();
+		
+//		if(idStr.length()!=9&&!CommonLogic.isNumber(driveridStr)){
+//			driveridText.setText("");
+//			return false;
+//		}else if(birthdayStr.length()!=10){
+//			birthdayText.setText("");
+//			return false;
+//		}else if(!CommonLogic.isNumber(drivingDeadlineStr)){
+//			drivingDeadlineText.setText("");
+//			return false;
+//		}else if(idNumber.length()!=18){
+//			idNumberText.setText("");
+//			return false;
+//		}else if(!CommonLogic.isNumber(phoneStr)){
+//			phoneNumberText.setText("");
+//			return false;
+//		}
+		
+		return true;
+	}
+
+private void visible(boolean isVisible){
+	
+	this.name.setVisible(isVisible);
+	this.type.setVisible(isVisible);
+	this.password.setVisible(isVisible);
+	this.limit.setVisible(isVisible);
+	this.nameText.setVisible(isVisible);
+	this.typeBox.setVisible(isVisible);
+	this.passwordText.setVisible(isVisible);
+	this.limitBox.setVisible(isVisible);
+	ok.setVisible(isVisible);
+	cancel.setVisible(isVisible);
+	
+}
+	
+	private void disablePanel(){
+		this.typeBox.setEditable(false);
+		this.nameText.setEditable(false);
+		this.passwordText.setEditable(false);
+		this.limitBox.setEditable(false);
+	}
+	
+	private void enablePanel(){
+		this.typeBox.setEditable(true);
+		this.nameText.setEditable(true);
+		this.passwordText.setEditable(true);
+		this.limitBox.setEditable(true);
+	}
+	
+	private void setBlack(){
+		this.nameText.setText("");
+		this.idText.setText("");
+		this.passwordText.setText("");
 	}
 }

@@ -57,7 +57,7 @@ public class AdministratorPanel extends UserPanel{
 				//设置当前细节信息面板为不可见
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
-				detail = new AdminDetailPanel();
+				detail = new AddAdminPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘
@@ -71,7 +71,7 @@ public class AdministratorPanel extends UserPanel{
 				//设置当前细节信息面板为不可见
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
-				detail = new AdminDetailPanel();
+				detail = new DeleteAdminPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘
@@ -85,7 +85,7 @@ public class AdministratorPanel extends UserPanel{
 				//设置当前细节信息面板为不可见
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
-				detail = new AdminDetailPanel();
+				detail = new ModifyAdminPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘

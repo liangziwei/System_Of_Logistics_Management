@@ -1,5 +1,5 @@
 package constant;
 
 public enum CargoState{
-     DAMAGE,INTACT,lOSE;
+     完整,损坏,丢失;
 }

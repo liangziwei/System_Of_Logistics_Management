@@ -1,5 +1,7 @@
 package driver.ui_driver.businesssUI_driver;
 
+import java.rmi.RemoteException;
+
 import stub.businessLogicImpl_stub.businessBLImpl_stub.VehicleBLImpl_Stub;
 import vo.businessVO.VehicleVO;
 import businessLogicService.businessBLService.VehicleBLService;
@@ -8,7 +10,7 @@ public class VehicleUI_Driver {
 
 	private VehicleBLService vehicleBL=new VehicleBLImpl_Stub();
 	private VehicleVO vehicleVO;
-	public void driver(){
+	public void driver() throws RemoteException{
 		vehicleVO=new VehicleVO("025002011","苏A 02138","1");
 		if(vehicleBL.addVehicle(new VehicleVO("025002011","苏A 02138","1"))){
 			System.out.println("车辆信息添加成功");

@@ -1,14 +1,16 @@
 package businessLogic.businessLogicModel.businessModel;
 
-import mock.object.MockVehicleData;
+import network.RMI;
 import po.businessPO.VehiclePO;
+import stub.dataImpl_stub.businessDataImpl_stub.VehicleDataImpl_Stub;
 import vo.businessVO.VehicleVO;
 import dataService.businessDataService.VehicleDataService;
 
 public class Vehicle {
 
-    private VehicleDataService vehicleData=new MockVehicleData();
-	
+    private VehicleDataService vehicleData=new VehicleDataImpl_Stub();
+//	private VehicleDataService vehicleData=RMI.<VehicleDataService>getDataService("vehicle");
+    
 	public boolean addVehicle(VehicleVO vehicleVO) {
 		// TODO Auto-generated method stub
 		

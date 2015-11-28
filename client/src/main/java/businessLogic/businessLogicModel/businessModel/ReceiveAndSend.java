@@ -1,5 +1,8 @@
 package businessLogic.businessLogicModel.businessModel;
 
+import java.rmi.RemoteException;
+
+import network.RMI;
 import po.businessPO.ArrivalFormPO;
 import po.businessPO.SendFormPO;
 import stub.dataImpl_stub.businessDataImpl_stub.ReceiveAndSendDataImpl_Stub;
@@ -10,16 +13,29 @@ import dataService.businessDataService.ReceiveAndSendDataService;
 public class ReceiveAndSend {
 
 	private ReceiveAndSendDataService receiveAndSendData=new ReceiveAndSendDataImpl_Stub();
+//	private ReceiveAndSendDataService receiveAndSendData=RMI.<ReceiveAndSendDataService>getDataService("receiveAndSend");
 	
 	public boolean addReceiveFrom(ArrivalFormVO arrivalFormVO) {
 		// TODO Auto-generated method stub
 		
-		return receiveAndSendData.addReceiveFrom(arrivalVOToPO(arrivalFormVO));
+		try {
+			return receiveAndSendData.addReceiveFrom(arrivalVOToPO(arrivalFormVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean addSendFrom(SendFormVO sendFormVO) {
 		// TODO Auto-generated method stub
-		return receiveAndSendData.addSendFrom(sendFormVOToPO(sendFormVO));
+		try {
+			return receiveAndSendData.addSendFrom(sendFormVOToPO(sendFormVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	private ArrivalFormPO arrivalVOToPO(ArrivalFormVO arrivalFormVO){

@@ -342,13 +342,13 @@ public class ModifyReceivingPanel extends DetailPanel {
 		CargoState state =null;
 		switch (stat) {
 		case "损坏":
-			state = CargoState.DAMAGE;
+			state = CargoState.损坏;
 			break;
 		case "完整":
-			state =CargoState.INTACT;
+			state =CargoState.完整;
 			break;
 		case "丢失":
-			state = CargoState.lOSE;
+			state = CargoState.丢失;
 			break;
 		}
 		
@@ -386,13 +386,13 @@ public class ModifyReceivingPanel extends DetailPanel {
 		departureidText.setText(receivingVO.getdepartureid());
 		arrivalidText.setText(receivingVO.getarrivalid());
 		switch (receivingVO.getstate()) {
-		case DAMAGE:
+		case 损坏:
 			this.endState.setSelectedItem("损坏");
 			break;
-		case INTACT:
+		case 完整:
 			this.endState.setSelectedItem("完整");
 			break;
-		case lOSE:
+		case 丢失:
 			this.endState.setSelectedItem("丢失");
 			break;
 		}

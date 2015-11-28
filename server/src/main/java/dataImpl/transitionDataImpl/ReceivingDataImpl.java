@@ -8,7 +8,7 @@ public class ReceivingDataImpl implements ReceivingDataService {
 
 	public ReceivingPO FindReceivingFormDT(String receivingNumber) {
 		// TODO Auto-generated method stub
-		ReceivingPO receiving = new ReceivingPO("0025","2015-10-14", "2015100800001711","北京","南京",CargoState.lOSE);
+		ReceivingPO receiving = new ReceivingPO("0025","2015-10-14", "2015100800001711","北京","南京",CargoState.丢失);
 		return receiving;
 	}
 

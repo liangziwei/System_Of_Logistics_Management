@@ -233,13 +233,13 @@ public class FindReceivingPanel extends DetailPanel {
 		departureidText.setText(receivingVO.getdepartureid());
 		arrivalidText.setText(receivingVO.getarrivalid());
 		switch (receivingVO.getstate()) {
-		case DAMAGE:
+		case 损坏:
 			this.endState.setToolTipText("损坏");
 			break;
-		case INTACT:
+		case 完整:
 			this.endState.setToolTipText("完整");
 			break;
-		case lOSE:
+		case 丢失:
 			this.endState.setToolTipText("丢失");
 			break;
 		}
