@@ -88,6 +88,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		this.infoPanel.setBounds(START_X, START_Y, AddLoadingPanel.DETAIL_PANEL_W,
 				START_Y + (LABEL_H + COMPONENT_GAP_Y) * 3);
 		this.infoPanel.setLayout(null);
+		infoPanel.setOpaque(false);
 		// 初始化信息面板
 		this.initUI();
 		// 按钮面板
@@ -108,6 +109,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		this.buttonPanel.add(this.ok);
 		this.buttonPanel.add(this.cancel);
 		cancel.setVisible(false);
+		buttonPanel.setOpaque(false);
 		// 状态信息
 		this.state.setBounds(START_X, this.buttonPanel.getY() - BUTTON_H, (BUTTON_W << 2), BUTTON_W);
 		this.state.setFont(WORD_FONT);

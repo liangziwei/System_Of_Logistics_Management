@@ -119,6 +119,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		infoPanel.setLayout(null);
 		infoPanel.setVisible(false);
 		this.add(infoPanel);
+		infoPanel.setOpaque(false);
 
 		// 初始化信息面板
 		this.initUI();
@@ -139,6 +140,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		cancle2.setVisible(false);
 		this.add(buttonPanel);
 		this.buttonPanel.setVisible(false);
+		this.buttonPanel.setOpaque(false);
 
 		// 状态信息1
 		this.state1.setBounds(Deliveryid.getX(),

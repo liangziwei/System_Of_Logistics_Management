@@ -193,7 +193,7 @@ public class SeeTransferringListPanel extends DetailPanel{
 //		if(this.transfer != null) this.transfer.setVisible(false);
 //		this.transfer.setBounds(find.getX(),state.getY()+state.getHeight(),(LABEL_W+COMPONENT_GAP_X)*4,LABEL_H);
 //		this.transfer.setLayout(null);
-		
+		transfer.setOpaque(false);
 		this.add(transfer);
 		this.revalidate();
 		this.repaint();

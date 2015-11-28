@@ -116,6 +116,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		// 时间面板
 		datePanel.setBounds(5, 5, this.DETAIL_PANEL_W, LABEL_H + BUTTON_H);
 		datePanel.setLayout(null);
+		datePanel.setOpaque(false);
 		initdate();
 		// 状态信息
 		state.setBounds(datePanel.getX(), datePanel.getY() + datePanel.getHeight(), LABEL_W * 2,
@@ -125,6 +126,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 				(LABEL_H + COMPONENT_GAP_X) * 9);
 		infoPanel.setLayout(null);
 		infoPanel.setVisible(false);
+		infoPanel.setOpaque(false);
 		initinfo();
 		addPanels();
 //		showState("123121");

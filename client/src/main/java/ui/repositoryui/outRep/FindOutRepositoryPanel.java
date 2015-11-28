@@ -91,6 +91,7 @@ public class FindOutRepositoryPanel extends DetailPanel{
 		infoPanel.setLayout(null);
 		infoPanel.setVisible(false);
 		this.add(infoPanel);
+		infoPanel.setOpaque(false);
 
 		// 初始化信息面板
 		this.initUI();

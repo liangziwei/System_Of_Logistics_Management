@@ -91,13 +91,12 @@ public class RepositoryWarnPanel extends DetailPanel {
 		this.infoPanel.setBounds(START_X / 2, START_Y / 2, this.DETAIL_PANEL_W,
 				START_Y + (LABEL_H + COMPONENT_GAP_Y) * 3);
 		this.infoPanel.setLayout(null);
+		infoPanel.setOpaque(false);
 		// 初始化信息面板
 		this.initUI();
 		// 按钮面板
 		this.buttonPanel.setBounds(START_X + LABEL_W + COMPONENT_GAP_X + TEXTid_W,
 				infoPanel.getY() + infoPanel.getHeight(), (BUTTON_W << 1) + COMPONENT_GAP_Y, BUTTON_H);
-
-		this.buttonPanel.setLayout(null);
 		// 确定按钮
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
@@ -111,6 +110,7 @@ public class RepositoryWarnPanel extends DetailPanel {
 		this.buttonPanel.add(this.ok);
 		this.buttonPanel.add(this.cancel);
 		cancel.setVisible(false);
+		buttonPanel.setOpaque(false);
 		// 状态信息
 		this.state.setBounds(START_X, this.buttonPanel.getY() - BUTTON_H, (BUTTON_W << 2), BUTTON_W);
 		this.state.setFont(WORD_FONT);

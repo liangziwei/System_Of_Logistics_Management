@@ -165,6 +165,7 @@ public class FindInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(posid);
 		posidText.setBounds(posid.getX() + posid.getWidth() + COMPONENT_GAP_X, posid.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(posidText);
+		infoPanel.setOpaque(false);
 	}
 
 	private void addListener() {
