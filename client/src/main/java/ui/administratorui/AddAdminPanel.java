@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -38,13 +39,13 @@ public class AddAdminPanel extends DetailPanel{
 	
 	private JButton query = new JButton("查询");
 	
-	private JButton ok = new JButton("确定");
+	private JButton ok = new JButton("");
 	
-	private JButton cancel = new JButton("取消");
+	private JButton cancel = new JButton("");
 	
 	private static final int LABEL_W = 130;
 	
-	private static final int LABEL_H = 25;
+	private static final int LABEL_H = 30;
 
 	private static final int LINE_GAP = 18;
 	
@@ -56,7 +57,7 @@ public class AddAdminPanel extends DetailPanel{
 	
 	private static final int START_Y = START_X;
 	
-	private static final int BUTTON_W = LABEL_W+10;
+	private static final int BUTTON_W = LABEL_W-50;
 	
 	private static final int BUTTON_H = LABEL_H;
 	
@@ -71,23 +72,28 @@ public class AddAdminPanel extends DetailPanel{
 		this.id.setFont(WORD_FONT);
 		this.idText.setBounds(this.id.getX() + LABEL_W + LINE_GAP, this.id.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setOpaque(false);
 		
 		this.password.setBounds(START_X, this.id.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.password.setFont(WORD_FONT);
 		this.passwordText.setBounds(this.id.getX() + LABEL_W + LINE_GAP, this.password.getY(), TEXT_W, TEXT_H);
 		this.passwordText.setFont(WORD_FONT);
+		this.passwordText.setOpaque(false);
 		
 		
 		this.type.setBounds(START_X, this.password.getY()+ LABEL_H + (LINE_GAP<<1), LABEL_W, LABEL_H);
-		this.type.setFont(WORD_FONT);	
+		this.type.setFont(WORD_FONT);
+		this.type.setOpaque(false);
 		this.typeBox.setModel(new DefaultComboBoxModel(new String[] {"快递员", "营业厅业务员","中转中心业务员","仓库管理员","财务人员","总经理","系统管理员"}));
 		this.typeBox.setBounds(START_X + LABEL_W + LINE_GAP, this.type.getY(), LABEL_W+LINE_GAP, TEXT_H);
 		this.typeBox.setFont(WORD_FONT);
+		this.typeBox.setOpaque(false);
 		
 		this.name.setBounds(this.typeBox.getX()+LABEL_W+(LINE_GAP<<1), this.type.getY(), LABEL_W>>1, LABEL_H);
 		this.name.setFont(WORD_FONT);
 		this.nameText.setBounds(this.name.getX()+LABEL_W/2, this.name.getY(), TEXT_W/3, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		
 		
 		this.limit.setBounds(START_X, this.type.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
@@ -103,10 +109,12 @@ public class AddAdminPanel extends DetailPanel{
 //		this.result.setFont(WORD_FONT);
 		this.ok.setBounds(this.limit.getX() + TEXT_W, this.limit.getY() + LABEL_H*4+ LINE_GAP,BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
+		this.ok.setIcon(new ImageIcon("picture/确定.png"));
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		this.cancel.setVisible(false);
+		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
 		
 		
 		this.addListener();
@@ -131,7 +139,7 @@ public class AddAdminPanel extends DetailPanel{
 					if(isCorrect()){
 						   result.setForeground(Color.BLUE);
 						   result.setText("请确认信息输入无误，确认后点击提交");
-						   ok.setText("提交");
+						   ok.setIcon(new ImageIcon("picture/提交.png"));
 						   disablePanel();
 						   isFirstEnsure=false;
 					}else{
@@ -160,7 +168,7 @@ public class AddAdminPanel extends DetailPanel{
 						if(adminCon.addUser(adminVO)){
 							result.setForeground(Color.GREEN);
 							result.setText("保存成功！");
-							ok.setText("确认");
+							ok.setIcon(new ImageIcon("picture/确定.png"));
 							cancel.setVisible(false);
 							isOver=true;
 						}else{

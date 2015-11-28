@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -35,15 +36,15 @@ public class DeleteAdminPanel extends DetailPanel {
 	private JTextField passwordText=new JTextField();
 	private JComboBox limitBox = new JComboBox();
 	
-	private JButton query = new JButton("查询");
+	private JButton query = new JButton("");
 	
-	private JButton ok = new JButton("确定");
+	private JButton ok = new JButton("");
 	
-	private JButton cancel = new JButton("取消");
+	private JButton cancel = new JButton("");
 	
 	private static final int LABEL_W = 130;
 	
-	private static final int LABEL_H = 25;
+	private static final int LABEL_H = 30;
 
 	private static final int LINE_GAP = 18;
 	
@@ -55,7 +56,7 @@ public class DeleteAdminPanel extends DetailPanel {
 	
 	private static final int START_Y = START_X;
 	
-	private static final int BUTTON_W = LABEL_W+10;
+	private static final int BUTTON_W = LABEL_W-50;
 	
 	private static final int BUTTON_H = LABEL_H;
 	
@@ -70,23 +71,29 @@ public class DeleteAdminPanel extends DetailPanel {
 		this.id.setFont(WORD_FONT);
 		this.idText.setBounds(this.id.getX() + LABEL_W + LINE_GAP, this.id.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setOpaque(false);
 		
 		this.password.setBounds(START_X, this.id.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.password.setFont(WORD_FONT);
 		this.passwordText.setBounds(this.id.getX() + LABEL_W + LINE_GAP, this.password.getY(), TEXT_W, TEXT_H);
 		this.passwordText.setFont(WORD_FONT);
+		this.passwordText.setOpaque(false);
 		
 		
 		this.type.setBounds(START_X, this.password.getY()+ LABEL_H + (LINE_GAP<<1), LABEL_W, LABEL_H);
-		this.type.setFont(WORD_FONT);	
+		this.type.setFont(WORD_FONT);
+		this.type.setOpaque(false);
 		this.typeBox.setModel(new DefaultComboBoxModel(new String[] {"快递员", "营业厅业务员","中转中心业务员","仓库管理员","财务人员","总经理","系统管理员"}));
 		this.typeBox.setBounds(START_X + LABEL_W + LINE_GAP, this.type.getY(), LABEL_W+LINE_GAP, TEXT_H);
 		this.typeBox.setFont(WORD_FONT);
+		this.typeBox.setOpaque(false);
 		
 		this.name.setBounds(this.typeBox.getX()+LABEL_W+(LINE_GAP<<1), this.type.getY(), LABEL_W>>1, LABEL_H);
 		this.name.setFont(WORD_FONT);
+		this.name.setOpaque(false);
 		this.nameText.setBounds(this.name.getX()+LABEL_W/2, this.name.getY(), TEXT_W/3, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		
 		
 		this.limit.setBounds(START_X, this.type.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
@@ -94,17 +101,21 @@ public class DeleteAdminPanel extends DetailPanel {
 		this.limitBox.setModel(new DefaultComboBoxModel(new String[] {"高", "低"}));
 		this.limitBox.setBounds(this.limit.getX()+ LABEL_W +LINE_GAP, this.limit.getY(), TEXT_W>>2, TEXT_H);
 		this.limitBox.setFont(WORD_FONT);
+		this.limitBox.setOpaque(false);
 		
-		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W>>1,BUTTON_H);
+		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W,BUTTON_H);
 		this.query.setFont(WORD_FONT);
+		this.query.setIcon(new ImageIcon("picture/查询.png"));
 		
 		this.result.setBounds(this.limit.getX() + LINE_GAP, this.limit.getY() + LABEL_H*4+ LINE_GAP,TEXT_W, BUTTON_H);
 //		this.result.setFont(WORD_FONT);
 		this.ok.setBounds(this.limit.getX() + TEXT_W, this.limit.getY() + LABEL_H*4+ LINE_GAP,BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
+		this.ok.setIcon(new ImageIcon("picture/确定.png"));
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
+		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
 //		this.cancel.setVisible(false);
 		
 		this.disablePanel();
