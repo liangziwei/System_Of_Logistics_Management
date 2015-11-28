@@ -17,7 +17,7 @@ public class DetailPanel extends JPanel{
 	/**
 	 * 任务细节面板宽度
 	 */
-	protected static final int DETAIL_PANEL_W = ExpressFrame.FRAME_W - TaskPanel.TASK_PANEL_W - 10;
+	protected static final int DETAIL_PANEL_W = ExpressFrame.FRAME_W - TaskPanel.TASK_PANEL_W - 6;
 	
 	/**
 	 * 任务细节面板高度

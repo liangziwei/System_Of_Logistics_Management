@@ -177,7 +177,7 @@ public class BusinessPanel extends UserPanel{
 		this.vehicle.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				detail.setVisible(false);
+//				detail.setVisible(false);
 				task.resetTaskButtons(vehicle, vehiButtonList1);
 			}
 		});
