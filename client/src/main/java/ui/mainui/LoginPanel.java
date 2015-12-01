@@ -16,6 +16,7 @@ import ui.businessui.BusinessPanel;
 import ui.deliveryui.DeliveryPanel;
 import ui.financeui.FinancePanel;
 import ui.managerui.ManagerPanel;
+import ui.repositoryui.RepositoryPanel;
 import ui.transitionui.TransitionPanel;
 import ui.viewcontroller.ViewController;
 
@@ -45,7 +46,7 @@ public class LoginPanel extends JPanel{
 		USER_TABLE.put('C', BusinessPanel.class.getName());
 		USER_TABLE.put('D', ManagerPanel.class.getName());
 		USER_TABLE.put('E', TransitionPanel.class.getName());
-		USER_TABLE.put('F', BusinessPanel.class.getName());
+		USER_TABLE.put('F', RepositoryPanel.class.getName());
 		USER_TABLE.put('G', FinancePanel.class.getName());
 		USER_TABLE.put('H', AdministratorPanel.class.getName());
 	}

@@ -42,10 +42,10 @@ public interface AccountDataService extends Remote{
 	 * description:修改一个账户
 	 * 前置条件：在数据库中存在同样name的po
 	 * 后置条件：修改一个po
-	 * @param  name ,账户名称
+	 * @param oldName, 原来账户名称
+	 * @param newName, 修改后账户名称
 	 * @return 要修改的账户是否存在
 	 */
-	public boolean modifyAccount(String name) throws RemoteException;
-
+	public boolean modifyAccount(String oldName, String newName) throws RemoteException;
 
 }

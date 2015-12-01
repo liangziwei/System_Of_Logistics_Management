@@ -29,9 +29,9 @@ public class AccountController implements AccountBLService {
 		return account.deleteAccount(name);
 	}
 	
-	public boolean modifyAccount(String name) {
+	public boolean modifyAccount(String oldName, String newName) {
 		
-		return account.modifyAccount(name);
+		return account.modifyAccount(oldName, newName);
 	}
 
 }

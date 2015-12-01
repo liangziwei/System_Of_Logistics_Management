@@ -1,29 +1,36 @@
 package ui.financeui.accountui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.financeController.AccountController;
+import businessLogicService.financeBLService.AccountBLService;
 import ui.baseui.DetailPanel;
+import vo.financeVO.AccountVO;
 
 @SuppressWarnings("serial")
 public class InquireAccountPanel extends DetailPanel{
+	
+	private AccountBLService account = new AccountController();
 
 	private JLabel nameLabel = new JLabel("账户名称");
 	
 	private JTextField nameText = new JTextField();
 	
-	private JLabel moneyLabel = new JLabel("账户金额");
-	
-	private JTextField moneyText = new JTextField();
+	private JSeparator line = new JSeparator();
 	
 	private JButton ok = new JButton("确定");
 	
 	private JButton cancel = new JButton("取消");
+	
+	private JLabel tip = new JLabel();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 20);
 	
@@ -31,17 +38,17 @@ public class InquireAccountPanel extends DetailPanel{
 	
 	private static final int LABEL_H = 40;
 	
-	private static final int TEXT_W = LABEL_W * 3;
+	private static final int TEXT_W = LABEL_W << 1;
 	
 	private static final int TEXT_H = LABEL_H;
 	
 	private static final int BUTTON_W = 80;
 	
-	private static final int BUTTON_H = 30;
+	private static final int BUTTON_H = LABEL_H;
 	
-	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W) / 3;
+	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W - (BUTTON_W << 1)) / 3;
 	
-	private static final int START_Y = START_X;
+	private static final int START_Y = START_X >> 2;
 	
 	public InquireAccountPanel() {
 		//初始化界面
@@ -57,26 +64,28 @@ public class InquireAccountPanel extends DetailPanel{
 		//账户名称文本框
 		this.nameText.setBounds(LABEL_W + (START_X * 3 >> 1), this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
-		//账户金额标签
-		this.moneyLabel.setVisible(false);
-		//账户金额文本框
-		this.moneyText.setVisible(false);
 		//确定按钮
-		this.ok.setBounds(this.nameText.getX() + (TEXT_W >> 1), this.nameText.getY() + TEXT_H + (START_Y >> 1),
+		this.ok.setBounds(this.nameText.getX() + TEXT_W + (START_X >> 1), this.nameText.getY(),
 				BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W * 3 >> 1), this.ok.getY(),
 				BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
+		//提示标签
+		this.tip.setBounds(START_X >> 2, this.nameLabel.getY() + LABEL_H,
+				TEXT_W, TEXT_H);
+		this.tip.setFont(WORD_FONT);
+		//分割线
+		this.line.setBounds(0, this.tip.getY() + TEXT_H, DETAIL_PANEL_W, 5);
 		//将按钮添加到面板
 		this.setLayout(null);
+		this.add(this.line);
 		this.add(this.nameLabel);
 		this.add(this.nameText);
-		this.add(this.moneyLabel);
-		this.add(this.moneyText);
 		this.add(this.ok);
 		this.add(this.cancel);
+		this.add(this.tip);
 	}
 	
 	private void addListener() {
@@ -85,10 +94,20 @@ public class InquireAccountPanel extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-				//TODO test
-				resetUI();
+				//查找账户信息
+				AccountVO vo = account.findAccount(nameText.getText());
+				//如果没有找到账户信息
+				if(vo == null) {
+					tip.setForeground(Color.RED);
+					tip.setText("该账户不存在");
+				}
+				else {
+					tip.setText("");
+					AccountInfoPanel infomation = new AccountInfoPanel(0, tip.getY() + TEXT_H,
+							DETAIL_PANEL_W, DETAIL_PANEL_H - LABEL_H * 3, vo);
+					add(infomation);
+				}
+				repaint();
 			}
 		});
 		//取消按钮
@@ -96,37 +115,10 @@ public class InquireAccountPanel extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				//消除用户输入
+				nameText.setText("");
+				tip.setText("");
 			}
 		});
-	}
-	
-	private void resetUI() {
-		//账户名称标签
-		this.nameLabel.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
-		this.nameLabel.setFont(WORD_FONT);
-		//账户名称文本框
-		this.nameText.setBounds(LABEL_W + (START_X * 3 >> 1), this.nameLabel.getY(), TEXT_W, TEXT_H);
-		this.nameText.setFont(WORD_FONT);
-		this.nameText.setEditable(false);
-		//账户金额标签
-		this.moneyLabel.setBounds(this.nameLabel.getX(), this.nameLabel.getY() + LABEL_H + (START_Y >> 1),
-				LABEL_W, LABEL_H);
-		this.moneyLabel.setFont(WORD_FONT);
-		this.moneyLabel.setVisible(true);
-		//账户金额文本框
-		this.moneyText.setBounds(this.nameText.getX(), this.moneyLabel.getY(), TEXT_W, TEXT_H);
-		this.moneyText.setFont(WORD_FONT);
-		this.moneyText.setEditable(false);
-		this.moneyText.setVisible(true);
-		//确定按钮
-		this.ok.setBounds(this.moneyText.getX() + (TEXT_W >> 1), this.moneyText.getY() + TEXT_H + (START_Y >> 1),
-				BUTTON_W, BUTTON_H);
-		this.ok.setFont(WORD_FONT);
-		//取消按钮
-		this.cancel.setBounds(this.ok.getX() + (BUTTON_W * 3 >> 1), this.ok.getY(),
-				BUTTON_W, BUTTON_H);
-		this.cancel.setFont(WORD_FONT);
 	}
 }

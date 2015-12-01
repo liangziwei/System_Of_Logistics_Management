@@ -34,4 +34,10 @@ public class StatisticsBLImpl_Stub implements StatisticsBLSevice{
 		return new ReceivableVO(receivablePO.getDate(),receivablePO.getMoney(),
 				receivablePO.getCourier(),receivablePO.getDeliveryid());
 	}
+
+	@Override
+	public CostBenefitVO getCostBenefit(String startDate, String endDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

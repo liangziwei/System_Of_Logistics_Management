@@ -15,6 +15,7 @@ public class Account {
 			result = accountData.addAccount(this.AccountVOToAccountPO(accountVO));
 		} catch(Exception e){
 			e.printStackTrace();
+			return false;
 		}
 		return result;
 	}
@@ -22,9 +23,12 @@ public class Account {
 	public AccountVO findAccount(String name) {
 		AccountVO account = null;
 		try{
-			account = this.AccountPOToAccountVO(accountData.findAccount(name));
+			AccountPO po = accountData.findAccount(name);
+			if(po == null) return null;
+			account = this.AccountPOToAccountVO(po);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 		return account;
 	}
@@ -39,10 +43,10 @@ public class Account {
 		return result;
 	}
 	
-	public boolean modifyAccount(String name) {
+	public boolean modifyAccount(String oldName, String newName) {
 		boolean result = false;
 		try{
-			result = accountData.modifyAccount(name);
+			result = accountData.modifyAccount(oldName, newName);
 		} catch(Exception e){
 			e.printStackTrace();
 		}

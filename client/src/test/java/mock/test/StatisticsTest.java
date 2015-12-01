@@ -19,7 +19,7 @@ public class StatisticsTest {
 		StatisticsController statistics = new StatisticsController();
 				
 		List<ReceivableVO> ReceivableList = statistics.getReceivableList("2015-02-11", "2015-02-13");
-		CostBenefitVO costBenefit = statistics.getCostBenefit();
+		CostBenefitVO costBenefit = statistics.getCostBenefit("1", "2");
 		CostBenefitVO costbenefit = new CostBenefitVO(1000.0, 500.0, 500.0);
 		List<ReceivableVO> receivable = new ArrayList<ReceivableVO>();
 		ArrayList<String> deliveryid1 = new ArrayList<String>();

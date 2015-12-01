@@ -3,6 +3,8 @@ package po.businessPO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import vo.businessVO.ReceivableVO;
+
 public class ReceivablePO implements Serializable{
 	/**
 	 * 
@@ -21,6 +23,10 @@ public class ReceivablePO implements Serializable{
 		this.money = money;
 		this.courier = courier;
 		this.deliveryid = deliveryid;
+	}
+	
+	public static ReceivableVO ReceiptPOToVO(ReceivablePO po) {
+		return new ReceivableVO(po.getDate(), po.getMoney(), po.getCourier(), po.getDeliveryid());
 	}
 	
 	public String getDate() {

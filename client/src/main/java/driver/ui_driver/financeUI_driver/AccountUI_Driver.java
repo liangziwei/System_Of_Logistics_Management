@@ -22,7 +22,7 @@ public class AccountUI_Driver {
 				System.out.println("删除是否成功："+account.deleteAccount(null));
 				break;
 			case 3:
-				System.out.println("修改是否成功："+account.modifyAccount(null));
+//				System.out.println("修改是否成功："+account.modifyAccount(null));
 				break;
 			case 4:
 //				System.out.println("输入关键字（账户名称）进行查询：");

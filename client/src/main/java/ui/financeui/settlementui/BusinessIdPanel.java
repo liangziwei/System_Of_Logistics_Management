@@ -1,5 +1,6 @@
 package ui.financeui.settlementui;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -19,7 +20,7 @@ public class BusinessIdPanel extends JPanel{
 	
 	private JButton ok = new JButton("确定");
 	
-	private JButton cancel = new JButton("取消");
+	private JLabel tip = new JLabel();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
@@ -43,9 +44,10 @@ public class BusinessIdPanel extends JPanel{
 		//确定按钮
 		this.ok.setBounds(this.idText.getX() + textW + startX, this.idText.getY(), buttonW, buttonH);
 		this.ok.setFont(WORD_FONT);
-		//取消按钮
-		this.cancel.setBounds(this.ok.getX() + buttonW + startX, this.ok.getY(), buttonW, buttonH);
-		this.cancel.setFont(WORD_FONT);
+		//提示标签
+		this.tip.setBounds(0, h >> 1, textW, labelH);
+		this.tip.setFont(WORD_FONT);
+		this.tip.setForeground(Color.RED);
 		
 		//将组件添加到面板
 		this.setLayout(null);
@@ -53,15 +55,21 @@ public class BusinessIdPanel extends JPanel{
 		this.add(this.idLabel);
 		this.add(this.idText);
 		this.add(this.ok);
-		this.add(this.cancel);
+		this.add(this.tip);
+	}
+	
+	public void setTip(String text) {
+		this.tip.setText(text);
+		this.repaint();
+	}
+	
+	public void removeTip() {
+		this.tip.setText("");
+		this.repaint();
 	}
 	
 	public JButton getOk() {
 		return this.ok;
-	}
-	
-	public JButton getCancel() {
-		return this.cancel;
 	}
 	
 	public String getId() {
