@@ -1,5 +1,6 @@
 package ui.businessui.receiveandsendui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,13 +12,21 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ui.baseui.DetailPanel;
+import vo.businessVO.ArrivalFormVO;
+import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
+import constant.CargoState;
 
 public class ArrivalPanel extends DetailPanel {
 
+	private ReceiveAndSendController receAndSendCon=new ReceiveAndSendController();
+	private ArrivalFormVO arrivalVO;
+	
 	private JLabel date=new JLabel("到达日期");
 	private JLabel transitNumber=new JLabel("中转单编号");
 	private JLabel departPlace=new JLabel("出发地");
 	private JLabel state=new JLabel("货物到达状态");
+	
+	private JLabel result=new JLabel();
 	
 	private JTextField dateText=new JTextField();
 	private JTextField transitNumberText=new JTextField();
@@ -49,7 +58,7 @@ public class ArrivalPanel extends DetailPanel {
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
 	private boolean isFirstEnsure = true;
-	
+	private boolean isOver=false;
 	
 	public ArrivalPanel(){
 		this.date.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
@@ -73,6 +82,11 @@ public class ArrivalPanel extends DetailPanel {
 		this.stateBox.setModel(new DefaultComboBoxModel(new String[] {"完整", "损坏", "丢失"}));
 		this.stateBox.setFont(WORD_FONT);
 		
+		this.result.setBounds(this.state.getX()+ LINE_GAP , this.state.getY() + LABEL_H*5+ LINE_GAP,
+				TEXT_W, TEXT_H);
+		this.setFont(WORD_FONT);
+		this.result.setText("");
+		
 		this.ok.setBounds(this.state.getX() + TEXT_W, this.state.getY() + LABEL_H*5+ LINE_GAP,
 				BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
@@ -92,7 +106,57 @@ public class ArrivalPanel extends DetailPanel {
 		this.ok.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//验证收件信息是否合法
+				if(isFirstEnsure){
+					if(isCorrect()){
+						   result.setForeground(Color.BLUE);
+						   result.setText("请确认信息输入无误，确认后点击提交");
+						   ok.setText("提交");
+						   disablePanel();
+						   isFirstEnsure=false;
+					}else{
+						   result.setForeground(Color.RED);
+						   disablePanel();
+						   result.setText("信息输入格式有错误，请重新输入");
+					}
+					cancel.setVisible(true);
+				}else{
+					if(isOver){
+						result.setText("");
+						setBlack();
+						enablePanel();
+						isFirstEnsure=true;	
+						isOver=false;
+						
+					}else{
+						String dateStr=dateText.getText();
+						String transitNumberStr=transitNumberText.getText();
+						String departPlaceStr=departPlaceText.getText();
+						String stateStr=(String)stateBox.getSelectedItem();
+						System.out.println(stateStr);
+						CargoState cargoState;
+						if(stateStr.equals("完整")){
+							cargoState=CargoState.完整;
+						}else if(stateStr.equals("损坏")){
+							cargoState=CargoState.损坏;
+						}else{
+							cargoState=CargoState.丢失;
+						}
+						arrivalVO=new ArrivalFormVO(dateStr,transitNumberStr,departPlaceStr,cargoState);
+						
+						if(receAndSendCon.addReceiveFrom(arrivalVO)){
+							result.setForeground(Color.GREEN);
+							result.setText("保存成功！");
+							ok.setText("确认");
+							cancel.setVisible(false);
+							isOver=true;
+						}else{
+							result.setForeground(Color.RED);
+							result.setText("信息有误，保存失败");
+						}						
+					}
+					
+				}
+				repaint();
 				
 			}
 		});
@@ -101,12 +165,24 @@ public class ArrivalPanel extends DetailPanel {
 		this.cancel.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//设置取消按钮不可见
-				cancel.setVisible(false);
-				//设置状态为第一次点击确定按钮
-				isFirstEnsure = true;
-				//使组件可编辑
-				//消除提示信息
+				if(ok.getText().equals("提交")){
+					ok.setText("确定");
+					cancel.setVisible(false);
+					enablePanel();
+					isFirstEnsure = true;
+					result.setText("");
+				}else{
+				  cancel.setVisible(false);
+				
+				  //设置状态为第一次点击确定按钮
+				  isFirstEnsure = true;
+				  //使组件可编辑
+				  enablePanel();
+				  //消除提示信息
+				  result.setText("");
+				  
+				}
+				repaint();
 			}
 		});
 	}
@@ -120,7 +196,43 @@ public class ArrivalPanel extends DetailPanel {
 		this.add(departPlaceText);
 		this.add(state);
 		this.add(stateBox);
+		this.add(result);
 		this.add(ok);
 		this.add(cancel);
+	}
+	
+private boolean isCorrect(){
+		
+		String dateStr=dateText.getText();
+		String transitNumberStr=transitNumberText.getText();
+		String departPlaceStr=departPlaceText.getText();
+		String stateStr=stateBox.getToolTipText();
+		
+		if(dateStr.length()!=10){
+			dateText.setText("");
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private void disablePanel(){
+		this.dateText.setEditable(false);
+		this.transitNumberText.setEditable(false);
+		this.departPlaceText.setEditable(false);
+		this.stateBox.setEditable(false);
+	}
+	
+	private void enablePanel(){
+		this.dateText.setEditable(true);
+		this.transitNumberText.setEditable(true);
+		this.departPlaceText.setEditable(true);
+		this.stateBox.setEditable(true);
+	}
+	
+	private void setBlack(){
+		this.dateText.setText("");
+		this.transitNumberText.setText("");
+		this.departPlaceText.setText("");
 	}
 }

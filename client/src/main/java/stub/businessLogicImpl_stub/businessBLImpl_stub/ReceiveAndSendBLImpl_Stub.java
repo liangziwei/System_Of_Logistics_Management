@@ -1,5 +1,7 @@
 package stub.businessLogicImpl_stub.businessBLImpl_stub;
 
+import java.rmi.RemoteException;
+
 import po.businessPO.ArrivalFormPO;
 import po.businessPO.SendFormPO;
 import stub.dataImpl_stub.businessDataImpl_stub.ReceiveAndSendDataImpl_Stub;
@@ -15,12 +17,24 @@ public class ReceiveAndSendBLImpl_Stub implements ReceiveAndSendBLService{
 	public boolean addReceiveFrom(ArrivalFormVO arrivalFormVO) {
 		// TODO Auto-generated method stub
 		
-		return receiveAndSendData.addReceiveFrom(arrivalVOToPO(arrivalFormVO));
+		try {
+			return receiveAndSendData.addReceiveFrom(arrivalVOToPO(arrivalFormVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean addSendFrom(SendFormVO sendFormVO) {
 		// TODO Auto-generated method stub
-		return receiveAndSendData.addSendFrom(sendFormVOToPO(sendFormVO));
+		try {
+			return receiveAndSendData.addSendFrom(sendFormVOToPO(sendFormVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	private ArrivalFormPO arrivalVOToPO(ArrivalFormVO arrivalFormVO){

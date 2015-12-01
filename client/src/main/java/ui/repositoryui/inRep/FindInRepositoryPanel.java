@@ -165,6 +165,7 @@ public class FindInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(posid);
 		posidText.setBounds(posid.getX() + posid.getWidth() + COMPONENT_GAP_X, posid.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(posidText);
+		infoPanel.setOpaque(false);
 	}
 
 	private void addListener() {
@@ -214,16 +215,16 @@ public class FindInRepositoryPanel extends DetailPanel {
 		posidText.setText(inRepositoryVO.getposid().trim());
 		switch (inRepositoryVO.getareaCode()) {
 		case PLANEAREA:
-			this.areaidText.setToolTipText("航运区");
+			this.areaidText.setSelectedItem("航运区");
 			break;
 		case TRAINAREA:
-			this.areaidText.setToolTipText("铁运区");
+			this.areaidText.setSelectedItem("铁运区");
 			break;
 		case TRUCKAREA:
-			this.areaidText.setToolTipText("汽运区");
+			this.areaidText.setSelectedItem("汽运区");
 			break;
 		case MOTOAREA:
-			this.areaidText.setToolTipText("机动区");
+			this.areaidText.setSelectedItem("机动区");
 			break;
 		}
 	}

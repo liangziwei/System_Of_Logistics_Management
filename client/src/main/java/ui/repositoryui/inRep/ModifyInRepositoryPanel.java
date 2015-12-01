@@ -119,6 +119,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		infoPanel.setLayout(null);
 		infoPanel.setVisible(false);
 		this.add(infoPanel);
+		infoPanel.setOpaque(false);
 
 		// 初始化信息面板
 		this.initUI();
@@ -139,6 +140,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		cancle2.setVisible(false);
 		this.add(buttonPanel);
 		this.buttonPanel.setVisible(false);
+		this.buttonPanel.setOpaque(false);
 
 		// 状态信息1
 		this.state1.setBounds(Deliveryid.getX(),
@@ -399,16 +401,16 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		posidText.setText(inRepositoryVO.getposid().trim());
 		switch (inRepositoryVO.getareaCode()) {
 		case PLANEAREA:
-			this.areaidText.setToolTipText("航运区");
+			this.areaidText.setSelectedItem("航运区");
 			break;
 		case TRAINAREA:
-			this.areaidText.setToolTipText("铁运区");
+			this.areaidText.setSelectedItem("铁运区");
 			break;
 		case TRUCKAREA:
-			this.areaidText.setToolTipText("汽运区");
+			this.areaidText.setSelectedItem("汽运区");
 			break;
 		case MOTOAREA:
-			this.areaidText.setToolTipText("机动区");
+			this.areaidText.setSelectedItem("机动区");
 			break;
 		}
 	}

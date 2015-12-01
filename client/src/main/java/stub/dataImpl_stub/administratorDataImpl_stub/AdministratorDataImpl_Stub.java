@@ -24,7 +24,7 @@ public class AdministratorDataImpl_Stub implements AdministratorDataService {
 
 	public AdministratorPO findUser(String administratorid) {
 		// TODO Auto-generated method stub
-		return new AdministratorPO(UserType.COURIER,"小黄","B123456","0000",Authority.LOW);
+		return new AdministratorPO(UserType.快递员,"小黄","B123456","0000",Authority.低);
 	}
 
 	public String getPassword(String userid) {

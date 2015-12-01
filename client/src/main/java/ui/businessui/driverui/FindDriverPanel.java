@@ -1,5 +1,6 @@
 package ui.businessui.driverui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,10 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.businessController.DriverController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 import ui.baseui.DetailPanel;
+import vo.businessVO.DriverVO;
 
-public class DriverPanel extends DetailPanel{
-
+public class FindDriverPanel extends DetailPanel {
+	private DriverController driverCon=new DriverController();
+	private DriverVO driverVO;
+	
 	private JLabel driverid=new JLabel("司机编号");
 	private JLabel name=new JLabel("   姓名");
 	private JLabel birthday=new JLabel("出生日期");
@@ -19,6 +25,8 @@ public class DriverPanel extends DetailPanel{
 	private JLabel phoneNumber=new JLabel("手机号");
 	private JLabel gender=new JLabel("性别");
 	private JLabel drivingDeadline=new JLabel("行驶证期限");
+	
+	private JLabel result=new JLabel();
 	
 	private JTextField driveridText=new JTextField();
 	private JTextField nameText=new JTextField();
@@ -55,9 +63,9 @@ public class DriverPanel extends DetailPanel{
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
 	private boolean isFirstEnsure = true;
+	private boolean isOver=false;
 	
-	
-	public DriverPanel(){
+	public FindDriverPanel(){
 		this.driverid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.driverid.setFont(WORD_FONT);	
 		this.driveridText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
@@ -95,14 +103,18 @@ public class DriverPanel extends DetailPanel{
 		
 		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W>>1,BUTTON_H);
 		this.query.setFont(WORD_FONT);
-		this.ok.setBounds(this.phoneNumber.getX() + TEXT_W, this.phoneNumber.getY() + LABEL_H*4+ LINE_GAP,BUTTON_W, BUTTON_H);
-		this.ok.setFont(WORD_FONT);
-		//取消按钮
-		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
-		this.cancel.setFont(WORD_FONT);
-		this.cancel.setVisible(false);
 		
+		this.result.setBounds(this.phoneNumber.getX() +LINE_GAP, this.phoneNumber.getY() + LABEL_H*4+ LINE_GAP,TEXT_W, BUTTON_H);
+//		this.result.setFont(WORD_FONT);
+//		this.ok.setBounds(this.phoneNumber.getX() + TEXT_W, this.phoneNumber.getY() + LABEL_H*4+ LINE_GAP,BUTTON_W, BUTTON_H);
+//		this.ok.setFont(WORD_FONT);
+//		//取消按钮
+//		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
+//		this.cancel.setFont(WORD_FONT);
+//		this.cancel.setVisible(false);
 		
+		this.disablePanel();
+		this.visible(false);
 		this.addListener();
 		this.addComponents();
 		
@@ -113,31 +125,36 @@ public class DriverPanel extends DetailPanel{
 		this.query.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//验证收件信息是否合法
+				String driverid=driveridText.getText();
+				if(isCorrect()){
+					
+				  driverVO=driverCon.findDriver(driverid);
+				  if(!driverVO.isWrong()){
+					visible(true);
+					nameText.setText(driverVO.getName());
+					birthdayText.setText(driverVO.getBirthday());
+					idNumberText.setText(driverVO.getIdNumber());
+					phoneNumberText.setText(driverVO.getPhoneNumber());
+					genderText.setText(driverVO.getGender());
+					drivingDeadlineText.setText(driverVO.getDrivingDeadline());
+					
+					result.setText("");
+				  }else{
+					visible(false);
+					result.setForeground(Color.RED);
+					result.setText("输入的司机编号不存在");
+				  }
 				
+				}else{
+					visible(false);
+					result.setForeground(Color.RED);
+					result.setText("输入格式错误 ");
+				}
+				repaint();
 			}
 		});
 		
-		this.ok.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				//验证收件信息是否合法
-				
-			}
-		});
 		
-		//取消按钮
-		this.cancel.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				//设置取消按钮不可见
-				cancel.setVisible(false);
-				//设置状态为第一次点击确定按钮
-				isFirstEnsure = true;
-				//使组件可编辑
-				//消除提示信息
-			}
-		});
 	}
 	
 	private void addComponents(){
@@ -156,7 +173,75 @@ public class DriverPanel extends DetailPanel{
 		this.add(drivingDeadline);
 		this.add(drivingDeadlineText);
 		this.add(query);
-		this.add(ok);
-		this.add(cancel);
+		this.add(result);
+//		this.add(ok);
+//		this.add(cancel);
+	}
+	
+	private boolean isCorrect(){
+		
+		String driveridStr=driveridText.getText();
+		String nameStr=nameText.getText();
+		String birthdayStr=birthdayText.getText();
+		String idNumber=idNumberText.getText();
+		String phoneStr=phoneNumberText.getText();
+		String genderStr=genderText.getText();
+		String drivingDeadlineStr=drivingDeadlineText.getText();
+		
+		
+		if(driveridStr.length()!=9||!CommonLogic.isNumber(driveridStr)){
+			driveridText.setText("");
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private void visible(boolean isVisible){
+		
+		this.name.setVisible(isVisible);
+		this.birthday.setVisible(isVisible);
+		this.idNumber.setVisible(isVisible);
+		this.phoneNumber.setVisible(isVisible);
+		this.gender.setVisible(isVisible);
+		this.drivingDeadline.setVisible(isVisible);
+		this.nameText.setVisible(isVisible);
+		this.birthdayText.setVisible(isVisible);
+		this.idNumberText.setVisible(isVisible);
+		this.phoneNumberText.setVisible(isVisible);
+		this.genderText.setVisible(isVisible);
+		this.drivingDeadlineText.setVisible(isVisible);
+//		ok.setVisible(isVisible);
+		
+	}
+	
+	private void disablePanel(){
+//		this.driveridText.setEditable(false);
+		this.nameText.setEditable(false);
+		this.birthdayText.setEditable(false);
+		this.idNumberText.setEditable(false);
+		this.phoneNumberText.setEditable(false);
+		this.genderText.setEditable(false);
+		this.drivingDeadlineText.setEditable(false);
+	}
+	
+	private void enablePanel(){
+		this.driveridText.setEditable(true);
+		this.nameText.setEditable(true);
+		this.birthdayText.setEditable(true);
+		this.idNumberText.setEditable(true);
+		this.phoneNumberText.setEditable(true);
+		this.genderText.setEditable(true);
+		this.drivingDeadlineText.setEditable(true);
+	}
+	
+	private void setBlack(){
+		this.driveridText.setText("");
+		this.nameText.setText("");
+		this.birthdayText.setText("");
+		this.idNumberText.setText("");
+		this.phoneNumberText.setText("");
+		this.genderText.setText("");
+		this.drivingDeadlineText.setText("");
 	}
 }

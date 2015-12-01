@@ -1,5 +1,7 @@
 package driver.ui_driver.businesssUI_driver;
 
+import java.rmi.RemoteException;
+
 import stub.businessLogicImpl_stub.businessBLImpl_stub.DriverBLImpl_Stub;
 import vo.businessVO.DriverVO;
 import businessLogicService.businessBLService.DriverBLService;
@@ -7,7 +9,7 @@ import businessLogicService.businessBLService.DriverBLService;
 public class DriverUI_Driver {
 	private DriverBLService driverBL=new DriverBLImpl_Stub();
 	private DriverVO driverVO;
-	public void driver(){
+	public void driver() throws RemoteException{
 		driverVO=new DriverVO("025002011","doge","1997-11-11","111111111111111","12345098761","男","1");
 		if(driverBL.addDriver(new DriverVO("025002011","doge","1997-11-11","111111111111111","12345098761","男","1"))){
 			System.out.println("司机信息添加成功");

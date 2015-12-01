@@ -5,18 +5,19 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.deliveryController.ReceiptController;
-import businessLogicService.deliveryBLService.ReceiptBLService;
-import constant.LabelName;
-import constant.VerifyResult;
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
 import vo.deliveryVO.ReceiptVO;
 import vo.deliveryVO.VerifyMessage;
+import businessLogic.businessLogicController.deliveryController.ReceiptController;
+import businessLogicService.deliveryBLService.ReceiptBLService;
+import constant.LabelName;
+import constant.VerifyResult;
 
 @SuppressWarnings("serial")
 public class ReceiptPanel extends DetailPanel{
@@ -37,13 +38,13 @@ public class ReceiptPanel extends DetailPanel{
 	
 	private JLabel state = new JLabel();
 	
-	private JButton ok = new JButton("确定");
+	private JButton ok = new JButton("");
 	
-	private JButton cancel = new JButton("取消");
+	private JButton cancel = new JButton("");
 	
 	private static final int LABEL_W = 100;
 	
-	private static final int LABEL_H = 40;
+	private static final int LABEL_H = 30;
 	
 	/**
 	 * 每行信息之间的间隔
@@ -58,7 +59,7 @@ public class ReceiptPanel extends DetailPanel{
 	
 	private static final int START_Y = START_X;
 	
-	private static final int BUTTON_W = LABEL_W;
+	private static final int BUTTON_W = LABEL_W-20;
 	
 	private static final int BUTTON_H = LABEL_H;
 	
@@ -73,12 +74,14 @@ public class ReceiptPanel extends DetailPanel{
 		//名字文本框
 		this.nameText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//收件编号标签
 		this.idLabel.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.idLabel.setFont(WORD_FONT);
 		//收件编号文本框
 		this.idText.setBounds(this.nameText.getX(), this.idLabel.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setOpaque(false);
 		//收件日期标签
 		this.dateLabel.setBounds(START_X, this.idLabel.getY() + LABEL_H + LINE_GAP,
 				LABEL_W , LABEL_H);
@@ -87,14 +90,19 @@ public class ReceiptPanel extends DetailPanel{
 		this.date.setPanelBound(this.nameText.getX(), this.idLabel.getY() + LABEL_H + LINE_GAP,
 				TEXT_W << 1, TEXT_H);
 		this.date.setDate();
+		this.date.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.date.getX() + TEXT_W, this.date.getY() + LABEL_H + LINE_GAP,
 				BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
+		this.ok.setIcon(new ImageIcon("picture/确定.png"));
+		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		this.cancel.setVisible(false);
+		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+		this.cancel.setBorderPainted(false);
 		//错误提示
 		this.state.setBounds(this.idLabel.getX(),
 				this.dateLabel.getY() + (LABEL_H << 1), TEXT_W + LABEL_W, TEXT_H);

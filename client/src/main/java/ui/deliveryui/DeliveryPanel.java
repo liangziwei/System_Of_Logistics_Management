@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+
 import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
@@ -14,13 +16,13 @@ import ui.viewcontroller.ViewController;
 @SuppressWarnings("serial")
 public class DeliveryPanel extends UserPanel{
 
-	private TaskButton orderInput = new TaskButton("输入订单");
+	private TaskButton orderInput = new TaskButton("");
 
-	private TaskButton orderInquire = new TaskButton("查询订单");
+	private TaskButton orderInquire = new TaskButton("");
 
-	private TaskButton receipt = new TaskButton("记录收件信息");
+	private TaskButton receipt = new TaskButton("");
 	
-	private TaskButton exit = new TaskButton("退出");
+	private TaskButton exit = new TaskButton("");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
@@ -36,18 +38,26 @@ public class DeliveryPanel extends UserPanel{
 		//输入订单按钮
 		this.orderInput.setBounds(0, UserImagePanel.USER_PANEL_H, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.orderInput.setFont(WORD_FONT);
+		this.orderInput.setIcon(new ImageIcon("picture/输入订单.png"));
+		this.orderInput.setBorderPainted(false);
 		//查询订单按钮
 		this.orderInquire.setBounds(0, this.orderInput.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP,
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.orderInquire.setFont(WORD_FONT);
+		this.orderInquire.setIcon(new ImageIcon("picture/查询订单.png"));
+		this.orderInquire.setBorderPainted(false);
 		//记录收件信息按钮
 		this.receipt.setBounds(0, this.orderInquire.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.receipt.setFont(WORD_FONT);
+		this.receipt.setIcon(new ImageIcon("picture/记录收件信息.png"));
+		this.receipt.setBorderPainted(false);
 		//退出按钮
 		this.exit.setBounds(0, this.receipt.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP,
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.exit.setFont(WORD_FONT);
+		this.exit.setIcon(new ImageIcon("picture/退出.png"));
+		this.exit.setBorderPainted(false);
 		//面板添加按钮
 		this.task.setLayout(null);
 		this.task.add(orderInput);

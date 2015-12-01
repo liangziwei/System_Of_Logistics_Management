@@ -1,5 +1,5 @@
 package constant;
 
 public enum Authority {
-    HIGH,LOW;
+    高,低;
 }

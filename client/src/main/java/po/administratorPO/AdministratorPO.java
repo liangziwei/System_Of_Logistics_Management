@@ -9,6 +9,7 @@ public class AdministratorPO implements Serializable{
 	
 	private static final long serialVersionUID = 4363691605247598871L;
 
+	private boolean isWrong =false;
 	private UserType type;
 	private String name;
 	private String id;
@@ -55,6 +56,10 @@ public class AdministratorPO implements Serializable{
 	}
 	public void setLimit(Authority limit) {
 		this.limit = limit;
+	}
+
+	public void setWrong(boolean isWrong) {
+		this.isWrong = isWrong;
 	}
 
 }

@@ -10,7 +10,7 @@ public class ReceiveAndSendUI_Driver {
 
 	public void driver(){
 		ReceiveAndSendBLService receiveAndSend=new ReceiveAndSendBLImpl_Stub();
-		ArrivalFormVO arrivalFormVO=new ArrivalFormVO("2015-10-10","0250","025002",CargoState.INTACT);
+		ArrivalFormVO arrivalFormVO=new ArrivalFormVO("2015-10-10","0250","025002",CargoState.完整);
 		SendFormVO sendFormVO=new SendFormVO("2015-10-12","1234567890","派送员1");
 		if(receiveAndSend.addReceiveFrom(arrivalFormVO)){
 			System.out.println("到达单添加成功");

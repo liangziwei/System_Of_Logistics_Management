@@ -4,10 +4,19 @@ import java.io.Serializable;
 
 public class VehiclePO implements Serializable{
 
+	private static final long serialVersionUID = -8315962433797210107L;
+	
+	private boolean isWrong =false;
+	
 	private String vehicleid;
 	private String number;
 	private String age;
 	
+	public VehiclePO(){
+		this.vehicleid = null;
+		this.number = null;
+		this.age = null;
+	}
 	public VehiclePO(String vehicleid, String number, String age) {
 		this.vehicleid = vehicleid;
 		this.number = number;
@@ -32,6 +41,10 @@ public class VehiclePO implements Serializable{
 	}
 	public void setAge(String age) {
 		this.age = age;
+	}
+
+	public void setWrong(boolean isWrong) {
+		this.isWrong = isWrong;
 	}
 	
 }

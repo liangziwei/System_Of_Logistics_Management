@@ -3,6 +3,8 @@ package po.businessPO;
 import java.io.Serializable;
 
 public class SendFormPO implements Serializable{
+	
+	private static final long serialVersionUID = -2326119319668011673L;
 	private String date;	
 	private String deliveryid;
 	private String sender;

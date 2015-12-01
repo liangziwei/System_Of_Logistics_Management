@@ -1,5 +1,6 @@
 package ui.businessui.vehicleui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,13 +9,20 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.businessController.VehicleController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 import ui.baseui.DetailPanel;
+import vo.businessVO.VehicleVO;
 
-public class VehiclePanel extends DetailPanel{
+public class DeleteVehiclePanel extends DetailPanel {
+	private VehicleController vehicleCon=new VehicleController();
+	private VehicleVO vehicleVO;
 	
 	private JLabel vehicleid=new JLabel("车辆代号");
 	private JLabel number=new JLabel("车牌号");
 	private JLabel age=new JLabel("服役时间(年)");
+	
+	private JLabel result=new JLabel();
 	
 	private JTextField vehicleidText=new JTextField();
 	private JTextField numberText=new JTextField();
@@ -22,7 +30,7 @@ public class VehiclePanel extends DetailPanel{
 	
 	private JButton query = new JButton("查询");
 	
-	private JButton ok = new JButton("确定");
+	private JButton ok = new JButton("删除");
 	
 	private JButton cancel = new JButton("取消");
 	
@@ -47,9 +55,9 @@ public class VehiclePanel extends DetailPanel{
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
 	private boolean isFirstEnsure = true;
+	private boolean isOver=false;
 	
-	
-	public VehiclePanel(){
+	public DeleteVehiclePanel(){
 		this.vehicleid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.vehicleid.setFont(WORD_FONT);	
 		this.vehicleidText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
@@ -67,15 +75,22 @@ public class VehiclePanel extends DetailPanel{
 		
 		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W>>1,BUTTON_H);
 		this.query.setFont(WORD_FONT);
+		
+		this.result.setBounds(this.age.getX() + LINE_GAP, this.age.getY() + LABEL_H*6+ LINE_GAP,
+				BUTTON_W, BUTTON_H);
+//		this.result.setFont(WORD_FONT);
+		this.result.setText("");
+		
 		this.ok.setBounds(this.age.getX() + TEXT_W, this.age.getY() + LABEL_H*6+ LINE_GAP,
 				BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
-		this.cancel.setVisible(false);
+//		this.cancel.setVisible(false);
 		
-		
+		this.visible(false);
+		this.disablePanel();
 		this.addListener();
 		this.addComponents();
 		
@@ -86,16 +101,45 @@ public class VehiclePanel extends DetailPanel{
 		this.query.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//验证收件信息是否合法
+				String vehicleid=vehicleidText.getText();
+				if(isCorrect()){
+					
+				  vehicleVO=vehicleCon.findVehicle(vehicleid);
+				  if(!vehicleVO.isWrong()){
+					visible(true);
+					numberText.setText(vehicleVO.getNumber());
+					ageText.setText(vehicleVO.getAge());
+					result.setText("");
+				  }else{
+					visible(false);
+					result.setForeground(Color.RED);
+					result.setText("输入的车辆代号不存在");
+				  }
 				
+				}else{
+					visible(false);
+					result.setForeground(Color.RED);
+					result.setText("输入格式错误 ");
+				}
+				repaint();				
 			}
 		});
 		
 		this.ok.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//验证收件信息是否合法
-				
+				String vehicleid=vehicleidText.getText();
+				if(vehicleCon.deleteVehicle(vehicleid)){
+					ok.setVisible(false);
+					cancel.setVisible(false);
+					result.setForeground(Color.BLUE);
+					result.setText("删除成功");
+				}else{
+					ok.setVisible(false);
+					cancel.setVisible(false);
+					result.setText("删除失败");
+				}
+				repaint();
 			}
 		});
 		
@@ -104,11 +148,9 @@ public class VehiclePanel extends DetailPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				//设置取消按钮不可见
-				cancel.setVisible(false);
-				//设置状态为第一次点击确定按钮
-				isFirstEnsure = true;
-				//使组件可编辑
-				//消除提示信息
+				visible(false);
+				result.setText("");
+				repaint();
 			}
 		});
 	}
@@ -121,7 +163,50 @@ public class VehiclePanel extends DetailPanel{
 		this.add(age);
 		this.add(ageText);
 		this.add(query);
+		this.add(result);
 		this.add(ok);
 		this.add(cancel);
 	}
+	
+	private boolean isCorrect(){
+		
+		String vehicleidStr=vehicleidText.getText();
+		String numberStr=numberText.getText();
+		String ageStr=ageText.getText();
+		
+		if(vehicleidStr.length()!=9){
+			vehicleidText.setText("");
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private void visible(boolean isVisible){
+		number.setVisible(isVisible);
+		age.setVisible(isVisible);
+		
+		numberText.setVisible(isVisible);
+		ageText.setVisible(isVisible);
+		ok.setVisible(isVisible);
+		cancel.setVisible(isVisible);
+	}
+	
+	private void disablePanel(){
+		this.numberText.setEditable(false);
+		this.ageText.setEditable(false);
+	}
+	
+	private void enablePanel(){
+		this.vehicleidText.setEditable(true);
+		this.numberText.setEditable(true);
+		this.ageText.setEditable(true);
+	}
+	
+	private void setBlack(){
+		this.vehicleidText.setText("");
+		this.numberText.setText("");
+		this.ageText.setText("");
+	}
+	
 }

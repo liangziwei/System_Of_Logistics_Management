@@ -315,6 +315,8 @@ public class AddInRepositoryPanel extends DetailPanel {
 	}
 
 	private void addPanels() {
+		this.infoPanel.setOpaque(false);
+		this.buttonPanel.setOpaque(false);
 		this.add(this.infoPanel);
 		this.add(this.buttonPanel);
 		this.add(this.state);

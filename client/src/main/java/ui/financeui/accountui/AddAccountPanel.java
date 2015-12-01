@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,7 +30,7 @@ public class AddAccountPanel extends DetailPanel{
 	
 	private JTextField moneyText = new JTextField();
 	
-	private JButton ok = new JButton("确定");
+	private JButton ok = new JButton("");
 	
 	private JButton cancel = new JButton("取消");
 	
@@ -67,6 +68,7 @@ public class AddAccountPanel extends DetailPanel{
 		//账户名称文本框
 		this.nameText.setBounds(LABEL_W + (START_X * 3 >> 1), this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//账户金额标签
 		this.moneyLabel.setBounds(this.nameLabel.getX(), this.nameLabel.getY() + LABEL_H + (START_Y >> 1),
 				LABEL_W, LABEL_H);
@@ -74,10 +76,12 @@ public class AddAccountPanel extends DetailPanel{
 		//账户金额文本框
 		this.moneyText.setBounds(this.nameText.getX(), this.moneyLabel.getY(), TEXT_W, TEXT_H);
 		this.moneyText.setFont(WORD_FONT);
+		this.moneyText.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.moneyText.getX() + (TEXT_W >> 1), this.moneyText.getY() + TEXT_H + (START_Y >> 1),
 				BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
+		this.ok.setIcon(new ImageIcon("picture/确定.png"));
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W * 3 >> 1), this.ok.getY(),
 				BUTTON_W, BUTTON_H);

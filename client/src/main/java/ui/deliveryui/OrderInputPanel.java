@@ -10,19 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import businessLogic.businessLogicController.deliveryController.OrderController;
-import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
-import businessLogicService.deliveryBLService.OrderBLService;
-import constant.City;
-import constant.ClientType;
-import constant.LabelName;
-import constant.TransitionNode;
-import constant.VerifyResult;
 import po.deliveryPO.ClientInfo;
 import po.deliveryPO.GoodsInfo;
 import ui.baseui.DetailPanel;
@@ -31,6 +24,14 @@ import ui.deliveryui.orderInfo.GoodsInfoPanel;
 import ui.deliveryui.orderInfo.OtherInfoPanel;
 import vo.deliveryVO.OrderVO;
 import vo.deliveryVO.VerifyMessage;
+import businessLogic.businessLogicController.deliveryController.OrderController;
+import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
+import businessLogicService.deliveryBLService.OrderBLService;
+import constant.City;
+import constant.ClientType;
+import constant.LabelName;
+import constant.TransitionNode;
+import constant.VerifyResult;
 
 @SuppressWarnings("serial")
 public class OrderInputPanel extends DetailPanel{
@@ -59,9 +60,9 @@ public class OrderInputPanel extends DetailPanel{
 	
 	private JLabel state = new JLabel("" ,JLabel.CENTER);
 	
-	private JButton ok = new JButton("确定");
+	private JButton ok = new JButton("");
 	
-	private JButton cancel = new JButton("取消");
+	private JButton cancel = new JButton("");
 	
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
@@ -118,10 +119,14 @@ public class OrderInputPanel extends DetailPanel{
 		//确定按钮
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
+		this.ok.setIcon(new ImageIcon("picture/确定.png"));
+		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(BUTTON_W + PANEL_GAP, 0, BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		this.cancel.setVisible(false);
+		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+		this.cancel.setBorderPainted(false);
 		//添加事件监听
 		this.addListener();
 		//将按钮添加到按钮面板

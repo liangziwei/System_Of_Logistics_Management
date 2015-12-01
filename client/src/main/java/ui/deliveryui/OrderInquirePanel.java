@@ -5,18 +5,19 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.deliveryController.OrderController;
-import businessLogicService.deliveryBLService.OrderBLService;
-import constant.VerifyResult;
 import ui.baseui.DetailPanel;
 import vo.deliveryVO.OrderVO;
 import vo.deliveryVO.VerifyMessage;
+import businessLogic.businessLogicController.deliveryController.OrderController;
+import businessLogicService.deliveryBLService.OrderBLService;
+import constant.VerifyResult;
 
 @SuppressWarnings("serial")
 public class OrderInquirePanel extends DetailPanel{
@@ -39,9 +40,9 @@ public class OrderInquirePanel extends DetailPanel{
 
 	private JLabel orderLabel = new JLabel("订单条形码号");
 
-	private JButton inquire = new JButton("查询");
+	private JButton inquire = new JButton("");
 
-	private JButton cancel = new JButton("取消");
+	private JButton cancel = new JButton("");
 	
 	private JLabel error = new JLabel();
 	
@@ -49,13 +50,13 @@ public class OrderInquirePanel extends DetailPanel{
 	
 	private static final int LABEL_W = 100;
 	
-	private static final int LABEL_H = 40;
+	private static final int LABEL_H = 30;
 	
 	private static final int TEXT_W = LABEL_W;
 	
 	private static final int TEXT_H = LABEL_H;
 	
-	private static final int BUTTON_W = 64;
+	private static final int BUTTON_W = 80;
 	
 	private static final int BUTTON_H = LABEL_H;
 	
@@ -77,15 +78,20 @@ public class OrderInquirePanel extends DetailPanel{
 		this.search.setBounds(this.orderLabel.getX() + LABEL_W , this.orderLabel.getY(),
 				TEXT_W + COMPONENT_GAP, TEXT_H);
 		this.search.setFont(WORD_FONT);
+		this.search.setOpaque(false);
 		//确定按钮
 		this.inquire.setBounds(this.search.getX() + TEXT_W + (COMPONENT_GAP << 1),
 				this.search.getY(),
 				BUTTON_W, BUTTON_H);
 		this.inquire.setFont(WORD_FONT);
+		this.inquire.setIcon(new ImageIcon("picture/查询.png"));
+		this.inquire.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.inquire.getX() + BUTTON_W + COMPONENT_GAP, this.inquire.getY(),
 				BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
+		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+		this.cancel.setBorderPainted(false);
 		//错误信息
 		this.error.setBounds(this.search.getX(), this.search.getY() + (TEXT_H << 1), TEXT_W << 1, LABEL_H);
 		this.error.setFont(WORD_FONT);

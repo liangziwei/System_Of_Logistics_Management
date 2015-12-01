@@ -2,6 +2,7 @@ package vo.businessVO;
 
 public class VehicleVO {
 
+	private boolean isWrong =false;
 	private String vehicleid;
 	private String number;
 	private String age;
@@ -30,6 +31,11 @@ public class VehicleVO {
 	}
 	public void setAge(String age) {
 		this.age = age;
+	}
+
+
+	public boolean isWrong() {
+		return isWrong;
 	}
 	
 }

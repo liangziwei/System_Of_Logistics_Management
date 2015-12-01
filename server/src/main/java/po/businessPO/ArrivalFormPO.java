@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 public class ArrivalFormPO implements Serializable{
 
+	private static final long serialVersionUID = -6469790271856856083L;
 	private String date;
 	private String transitNumber;
 	private String departPlace;

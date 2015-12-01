@@ -21,7 +21,7 @@ public class AdministratorDataImpl implements AdministratorDataService {
 		String password = administratorPO.getPassword();
 		Authority limit = administratorPO.getLimit();
 		int limit1=0;
-		if(limit==Authority.HIGH){
+		if(limit==Authority.高){
 			limit1=1;
 		}
 		String val="";
@@ -44,7 +44,7 @@ public class AdministratorDataImpl implements AdministratorDataService {
 		String password = administratorPO.getPassword();
 		Authority limit = administratorPO.getLimit();
 		int limit1=0;
-		if(limit==Authority.HIGH){
+		if(limit==Authority.高){
 			limit1=1;
 		}
 		String val="";

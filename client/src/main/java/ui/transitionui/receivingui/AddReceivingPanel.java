@@ -275,13 +275,13 @@ public class AddReceivingPanel extends DetailPanel {
 		CargoState state = null;
 		switch (stat) {
 		case "损坏":
-			state = CargoState.DAMAGE;
+			state = CargoState.损坏;
 			break;
 		case "完整":
-			state = CargoState.INTACT;
+			state = CargoState.完整;
 			break;
 		case "丢失":
-			state = CargoState.lOSE;
+			state = CargoState.丢失;
 			break;
 		}
 

@@ -84,9 +84,12 @@ public class ApprovalFormPanel extends DetailPanel{
 			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
+				//查询单据信息
+				
 				if(form != null) form.setVisible(false);
 				//创建表格
-				Object[] names = new Object[]{""};
+				Object[] names = new Object[]{"单据编号"};
+				
 			}
 		});
 	}

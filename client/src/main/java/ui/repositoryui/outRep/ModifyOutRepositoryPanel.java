@@ -106,6 +106,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		infoPanel.setLayout(null);
 		infoPanel.setVisible(false);
 		this.add(infoPanel);
+		infoPanel.setOpaque(false);
 
 		// 初始化信息面板
 		this.initUI();
@@ -126,7 +127,8 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		cancle2.setVisible(false);
 		this.add(buttonPanel);
 		this.buttonPanel.setVisible(false);
-
+		buttonPanel.setOpaque(false);
+		
 		// 状态信息
 		this.state1.setBounds(Deliveryid.getX(),
 				Deliveryid.getY() + Deliveryid.getHeight() + AddLoadingPanel.COMPONENT_GAP_Y,
@@ -354,7 +356,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 			WAY = "汽车";
 			break;
 		}
-		loadingwayText.setToolTipText(WAY);
+		loadingwayText.setSelectedItem(WAY);
 		wayidText.setText(outRepositoryVO.getloadingid());
 	}
 

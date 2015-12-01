@@ -20,8 +20,8 @@ public class AdministratorUI_Driver {
 	}
 	
 	public void driver() throws RemoteException{
-		administratorVO=new AdministratorVO(UserType.BUSINESS,"dogee","C123456","0000",Authority.LOW);
-		if(administrator.addUser(new AdministratorVO(UserType.BUSINESS,"dogee","C123456","0000",Authority.LOW))){
+		administratorVO=new AdministratorVO(UserType.营业厅业务员,"dogee","C123456","0000",Authority.低);
+		if(administrator.addUser(new AdministratorVO(UserType.营业厅业务员,"dogee","C123456","0000",Authority.低))){
 			System.out.println("账户信息添加成功");
 		}else{
 			System.out.println("账户信息添加失败");

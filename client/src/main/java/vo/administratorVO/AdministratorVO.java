@@ -5,11 +5,13 @@ import constant.UserType;
 
 public class AdministratorVO {
 
+	private boolean isWrong =false;
+	
 	private UserType type;
 	private String name;
 	private String id;
 	private String password;
-	private Authority limit=Authority.LOW;
+	private Authority limit=Authority.低;
 	
 	public AdministratorVO(UserType type, String name, String id,
 			String password, Authority limit) {
@@ -52,5 +54,10 @@ public class AdministratorVO {
 	public void setLimit(Authority limit) {
 		this.limit = limit;
 	}
-	
+
+
+	public boolean isWrong() {
+		return isWrong;
+	}
+
 }

@@ -22,7 +22,7 @@ public class ReceivingUI_Driver {
 			int input = s.nextInt();
 			switch(input){
 			case 1:boolean add=receivingBLService.addReceivingFormBL
-					(new ReceivingVO("0025 010","2015-10-8", "20151008000017","北京","南京",CargoState.INTACT));
+					(new ReceivingVO("0025 010","2015-10-8", "20151008000017","北京","南京",CargoState.完整));
 			if(add){
 				System.out.println("添加成功");
 			}
@@ -31,7 +31,7 @@ public class ReceivingUI_Driver {
 			}
 			break;
 			case 2:boolean modify =receivingBLService.modifyReceivingFormBL
-					(new ReceivingVO("0025 010","2015-10-12", "20151008111017","北京","南京",CargoState.DAMAGE));
+					(new ReceivingVO("0025 010","2015-10-12", "20151008111017","北京","南京",CargoState.损坏));
 			if(modify){
 				System.out.println("修改成功");
 			}
