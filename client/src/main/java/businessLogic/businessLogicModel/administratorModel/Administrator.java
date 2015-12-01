@@ -15,7 +15,7 @@ public class Administrator {
 	public boolean addUser(AdministratorVO administratorVO) {
 		// TODO Auto-generated method stub
 		try {
-			return adminData.addUser(adminVOToPO(administratorVO));
+			return adminData.addUser(administratorVO.adminVOToPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +37,7 @@ public class Administrator {
 	public boolean modifyUser(AdministratorVO administratorVO) {
 		// TODO Auto-generated method stub
 		try {
-			return adminData.modifyUser(adminVOToPO(administratorVO));
+			return adminData.modifyUser(administratorVO.adminVOToPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +48,8 @@ public class Administrator {
 	public AdministratorVO findUser(String administratorid) {
 		// TODO Auto-generated method stub
 		try {
-			return adminPOToVO(adminData.findUser(administratorid));
+			AdministratorPO adminPO=adminData.findUser(administratorid);
+			return adminPO.adminPOToVO();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,10 +57,4 @@ public class Administrator {
 		}
 	}
 
-	private AdministratorPO adminVOToPO(AdministratorVO administratorVO){
-		return new AdministratorPO(administratorVO.getType(),administratorVO.getName(),administratorVO.getId(),administratorVO.getPassword(),administratorVO.getLimit());
-	}
-	private AdministratorVO adminPOToVO(AdministratorPO administratorPO){
-		return new AdministratorVO(administratorPO.getType(),administratorPO.getName(),administratorPO.getId(),administratorPO.getPassword(),administratorPO.getLimit());
-	}
 }

@@ -21,7 +21,7 @@ public class Entrucking {
 		// TODO Auto-generated method stub
 
 		try {
-			return entruckingData.addEntruckingFrom(entruckingVOToPO(entruckingVO));
+			return entruckingData.addEntruckingFrom(entruckingVO.entruckingVOToPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,10 +29,7 @@ public class Entrucking {
 		}
 	}
 	
-	private EntruckingPO entruckingVOToPO(EntruckingVO entruckingVO){
-		
-		return new EntruckingPO(entruckingVO.getDate(),entruckingVO.getBusinessHallid(),entruckingVO.getTransportNumber(),entruckingVO.getDestionation(),entruckingVO.getVehicleid(),entruckingVO.getSupervisor(),entruckingVO.getSupercargo(),entruckingVO.getFreight());
-	}
+	
 	
 	public double getFreight(){
 		double price=this.TransitPrice.getTransitPrice(TransitType.ROAD);

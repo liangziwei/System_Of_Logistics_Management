@@ -19,7 +19,7 @@ public class ReceiveAndSend {
 		// TODO Auto-generated method stub
 		
 		try {
-			return receiveAndSendData.addReceiveFrom(arrivalVOToPO(arrivalFormVO));
+			return receiveAndSendData.addReceiveFrom(arrivalFormVO.arrivalVOToPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,7 +30,7 @@ public class ReceiveAndSend {
 	public boolean addSendFrom(SendFormVO sendFormVO) {
 		// TODO Auto-generated method stub
 		try {
-			return receiveAndSendData.addSendFrom(sendFormVOToPO(sendFormVO));
+			return receiveAndSendData.addSendFrom(sendFormVO.sendFormVOToPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,10 +38,5 @@ public class ReceiveAndSend {
 		}
 	}
 
-	private ArrivalFormPO arrivalVOToPO(ArrivalFormVO arrivalFormVO){
-		return new ArrivalFormPO(arrivalFormVO.getDate(),arrivalFormVO.getTransitNumber(),arrivalFormVO.getDepartPlace(),arrivalFormVO.getState());
-	}
-	private SendFormPO sendFormVOToPO(SendFormVO sendFormVO){
-		return new SendFormPO(sendFormVO.getDate(),sendFormVO.getDeliveryid(),sendFormVO.getSender());
-	}
+	
 }

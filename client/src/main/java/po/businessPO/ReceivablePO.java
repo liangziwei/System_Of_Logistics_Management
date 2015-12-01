@@ -77,4 +77,7 @@ public class ReceivablePO implements Serializable{
 		this.isPassed = isPassed;
 	}
 	
+	public ReceivableVO receivablePOToVO(){
+		return new ReceivableVO(date,money,courier,deliveryid);
+	}
 }

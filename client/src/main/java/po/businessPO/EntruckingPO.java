@@ -2,6 +2,8 @@ package po.businessPO;
 
 import java.io.Serializable;
 
+import vo.businessVO.EntruckingVO;
+
 public class EntruckingPO implements Serializable{
 	/**
 	 * 
@@ -111,4 +113,8 @@ public class EntruckingPO implements Serializable{
 		this.isPassed = isPassed;
 	}
 
+	public EntruckingVO entruckingPOToVO(){
+		
+		return new EntruckingVO(date,businessHallid,transportNumber,destionation,vehicleid,supervisor,supercargo,freight);
+	}
 }

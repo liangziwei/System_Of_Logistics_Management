@@ -12,12 +12,13 @@ public class Driver {
 	private DriverDataService driverData=RMI.<DriverDataService>getDataService("driver");
 	public boolean addDriver(DriverVO driverVO) {
 		// TODO Auto-generated method stub
-		return driverData.addDriver(driverVOToPO(driverVO));
+		return driverData.addDriver(driverVO.driverVOToPO());
 	}
 
 	public DriverVO findDriver(String driverid) {
 		// TODO Auto-generated method stub
-		return driverPOToVO(driverData.findDriver(driverid));
+		DriverPO driverPO=driverData.findDriver(driverid);
+		return driverPO.driverPOToVO();
 	}
 
 	public boolean deleteDriver(String driverid) {
@@ -27,13 +28,7 @@ public class Driver {
 
 	public boolean modifyDriver(DriverVO driverVO) {
 		// TODO Auto-generated method stub
-		return driverData.modifyDriver(driverVOToPO(driverVO));
-	}
-	private DriverPO driverVOToPO(DriverVO driverVO){
-		return new DriverPO(driverVO.getDriverid(),driverVO.getName(),driverVO.getBirthday(),driverVO.getIdNumber(),driverVO.getPhoneNumber(),driverVO.getGender(),driverVO.getDrivingDeadline());
-	}
-	private DriverVO driverPOToVO(DriverPO driverPO){
-		return new DriverVO(driverPO.getDriverid(),driverPO.getName(),driverPO.getBirthday(),driverPO.getIdNumber(),driverPO.getPhoneNumber(),driverPO.getGender(),driverPO.getDrivingDeadline());
+		return driverData.modifyDriver(driverVO.driverVOToPO());
 	}
 
 }

@@ -16,7 +16,7 @@ public class Payment {
 		// TODO Auto-generated method stub
 		
 		try {
-			return paymentData.addPayentForm(receivableVOToPO(receivableVO));
+			return paymentData.addPayentForm(receivableVO.receivableVOToPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -24,7 +24,4 @@ public class Payment {
 		}
 	}
 	
-	private ReceivablePO receivableVOToPO(ReceivableVO receivableVO){
-		return new ReceivablePO(receivableVO.getDate(),receivableVO.getMoney(),receivableVO.getCourier(),receivableVO.getDeliveryid());
-	}
 }
