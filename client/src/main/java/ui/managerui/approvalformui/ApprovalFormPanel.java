@@ -93,4 +93,8 @@ public class ApprovalFormPanel extends DetailPanel{
 			}
 		});
 	}
+	
+	private<T> T findForm(T type) {
+		return null;
+	}
 }
