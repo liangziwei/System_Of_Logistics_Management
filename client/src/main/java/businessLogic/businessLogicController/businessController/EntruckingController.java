@@ -12,4 +12,7 @@ public class EntruckingController implements EntruckingBLService {
 		return entrucking.addEntruckingFrom(entruckingVO);
 	}
 
+	public double getFreight(){
+		return entrucking.getFreight();
+	}
 }

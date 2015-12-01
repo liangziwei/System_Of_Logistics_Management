@@ -1,6 +1,9 @@
 package stub.dataImpl_stub.financeDataImpl_stub;
 
 import po.financePO.AccountPO;
+
+import java.rmi.RemoteException;
+
 import dataService.financeDataService.AccountDataService;
 
 public class AccountDataImpl_Stub implements AccountDataService {
@@ -18,6 +21,11 @@ public class AccountDataImpl_Stub implements AccountDataService {
 	}
 	
 	public boolean modifyAccount(String name) {
+		return false;
+	}
+
+	public boolean modifyAccount(String oldName, String newName) throws RemoteException {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

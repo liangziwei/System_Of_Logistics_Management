@@ -4,65 +4,59 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataService.financeDataService.SettlementDataService;
 import network.RMI;
 import po.businessPO.ReceivablePO;
 import vo.businessVO.ReceivableVO;
-import dataService.financeDataService.SettlementDataService;
 
 public class Settlement {
 	
-	private SettlementDataService settlementData = null;
+	private SettlementDataService settlementData = RMI.<SettlementDataService>getDataService("settlement");
+	
+	private List<ReceivablePO> po = null;
 	
 	public List<ReceivableVO> showReceiList(String date) {
 		List<ReceivableVO> receivablevo = new ArrayList<ReceivableVO>();
 		try{
-			for(int i=0;i<settlementData.getReceiList(date).size();i++){
-				receivablevo.add(receivablePOToreceivableVO(settlementData.getReceiList(date).get(i)));
+			po = settlementData.getReceiList(date);
+			if(po == null) return null;
+			for(int i=0;i<po.size();i++){
+				receivablevo.add(ReceivablePO.ReceiptPOToVO((po.get(i))));
 			}
 		} catch(Exception e){
 			e.printStackTrace();
+			return null;
 		}
 		
 		return receivablevo;
 	}
 	
 	public double calculateSum() {
-		return 0.0;
+		double sum = 0.0;
+		if(this.po == null) return 0.0;
+		int size = this.po.size();
+		for(int i = 0; i < size; i++) {
+			sum += this.po.get(i).getMoney();
+		}
+		return sum;
 	}
 	
 	public List<ReceivableVO> showBusinessRecei( String id,String date) {
-//		List<ReceivableVO> receivablevo = new ArrayList<ReceivableVO>();
-//		for(int i=0;i<settlementData.getBusinessRecei(id, date).size();i++){
-//			receivablevo.add(receivablePOToreceivableVO(settlementData.getBusinessRecei(id, date).get(i)));
-//		}
-//		return receivablevo;
-		
-		//TODO TEST
-		List<ReceivableVO> receivables = new ArrayList<ReceivableVO>();
-		ArrayList<String> id1 = new ArrayList<String>();
-		id1.add("1000010000");
-		id1.add("1000010001");
-//		id1.add("1000010002");
-//		id1.add("1000010003");
-		ArrayList<String> id2 = new ArrayList<String>();
-		id2.add("0000010000");
-		id2.add("0000010001");
-//		id2.add("0000010002");
-//		id2.add("0000010003");
-		ArrayList<String> id3 = new ArrayList<String>();
-		id3.add("1000610000");
-		id3.add("1000610001");
-		id3.add("1000610002");
-		id3.add("1000610003");
-		receivables.add(new ReceivableVO("1990-1-1", 12.0, "A", id1));
-		receivables.add(new ReceivableVO("1990-1-1", 0.0, "B", id2));
-		receivables.add(new ReceivableVO("1990-1-1", 0.0, "C", id3));
-		return receivables;
+		try {
+			po = settlementData.getBusinessRecei(id, date);
+			if(po == null) return null;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
+		int size = po.size();
+		List<ReceivableVO> vo = new ArrayList<ReceivableVO>();
+		for(int i = 0; i < size; i++) {
+			vo.add(ReceivablePO.ReceiptPOToVO(po.get(i)));
+		}
+		return vo;
+	
 	}
 	
-	private ReceivableVO receivablePOToreceivableVO(ReceivablePO receivablePO){
-		return new ReceivableVO(receivablePO.getDate(),receivablePO.getMoney(),
-				receivablePO.getCourier(),receivablePO.getDeliveryid());
-	}
 
 }

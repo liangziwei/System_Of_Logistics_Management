@@ -53,4 +53,17 @@ public class DateInputPanel extends JPanel{
 		this.add(this.endDateL);
 		this.add(this.endDateT);
 	}
+	
+	public void clearInfo() {
+		this.startDateT.clearInfo();
+		this.endDateT.clearInfo();
+	}
+	
+	public String getStartDate() {
+		return this.startDateT.getDate();
+	}
+	
+	public String getEndDate() {
+		return this.endDateT.getDate();
+	}
 }

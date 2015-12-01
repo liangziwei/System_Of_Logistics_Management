@@ -63,7 +63,7 @@ public class ReceivablePanel extends JPanel{
 				labelW, labelH);
 		this.itemLabel.setFont(WORD_FONT);
 		//收款项文本框
-		this.itemContainer.setBounds(this.nameText.getX(), this.itemLabel.getY(), textW, textH * idNum);
+		this.itemContainer.setBounds(this.nameText.getX(), this.itemLabel.getY(), textW, textH * 3);
 		this.itemText.setPreferredSize(new Dimension(textW - 5, idNum * 20));
 		this.itemText.setFont(WORD_FONT);
 		String text = "";
@@ -84,6 +84,4 @@ public class ReceivablePanel extends JPanel{
 		this.add(this.itemLabel);
 		this.add(this.itemContainer);
 	}
-	
-	
 }

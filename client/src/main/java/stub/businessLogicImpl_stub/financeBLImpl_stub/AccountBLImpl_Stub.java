@@ -43,7 +43,7 @@ public class AccountBLImpl_Stub implements AccountBLService{
 	public boolean modifyAccount(String name) {
 		boolean success = false;
 		try{
-			success = account.modifyAccount(name);
+//			success = account.modifyAccount(name);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -56,6 +56,12 @@ public class AccountBLImpl_Stub implements AccountBLService{
 	
 	private AccountPO AccountVOToAccountPO(AccountVO accountVO){
 		return new AccountPO(accountVO.getName(),accountVO.getBalance());
+	}
+
+	@Override
+	public boolean modifyAccount(String oldName, String newName) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

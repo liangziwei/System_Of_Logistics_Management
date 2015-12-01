@@ -3,17 +3,15 @@ package dataImpl.financeDataImpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import dataService.financeDataService.AccountDataService;
 import mysql.Database;
 import po.financePO.AccountPO;
-import dataService.financeDataService.AccountDataService;
 
 /**
  * description:数据服务层为账户管理提供服务的具体实现
  * @author 张仁知
  */
 public class AccountDataImpl implements AccountDataService{
-	
-	ResultSet rs;
 	
 	public boolean addAccount(AccountPO accountPO) {
 		
@@ -26,16 +24,21 @@ public class AccountDataImpl implements AccountDataService{
 	}
 	
 	public AccountPO findAccount(String name) {
+		String sql = "select * from account where name = '" + name + "';";
+		ResultSet rs;
 		String accountName = name;
 		double balance = 0.0;
-		try{
-			rs = Database.query("account", "name", accountName);
-			while(rs.next()) {
+		try {
+			rs = Database.findOperation(sql);
+			if(rs.next()) {
 				balance = rs.getDouble("balance");
 			}
-		} catch(SQLException e) {
+			else return null;
+		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
+		
 		return new AccountPO(accountName, balance);
 	}
 	
@@ -44,11 +47,13 @@ public class AccountDataImpl implements AccountDataService{
 		return Database.delete("account", "name", name);
 	}
 	
-	public boolean modifyAccount(String name) {
-		String accountName = "张三";
-		String val ="";
-		val = "name='"+accountName+"'";
-		
-		return Database.modify("account", val, "name", name);
+	public boolean modifyAccount(String oldName, String newName) {
+		String sql = "update account set name = '" + newName + "' where name = '" + oldName + "';";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

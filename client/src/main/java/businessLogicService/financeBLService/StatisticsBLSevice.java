@@ -16,11 +16,13 @@ public interface StatisticsBLSevice {
 	 * description:显示成本收益表
 	 * 前置条件：启动成本经营统计分析
 	 * 后置条件：返回成本收益表
+	 * @param startDate, 开始日期
+	 * @param endDate, 结束日期
 	 * 需接口：StatisticsDataService.getReceivableList(),
 	 * 		StatisticsDataService.getPaymentList()
 	 * @return CostBenefitVO ,记录成本收益表信息的值对象，具体参照CostBenefitVO的定义
 	 */
-	public CostBenefitVO getCostBenefit();
+	public CostBenefitVO getCostBenefit(String startDate, String endDate);
 	
 	/**
 	 * description:  显示一段时间内的收款单记录

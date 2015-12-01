@@ -44,9 +44,10 @@ public interface AccountBLService {
 	 * 前置条件：启动账户管理
 	 * 后置条件：在数据库中修改一个账户信息
 	 * 需接口：AccountDataService.modifyAccount(String name)
-	 * @param AccountVO ,记录账户信息的值对象，具体参照AccountVO的定义
+	 * @param oldName, 原来账户的名称
+	 * @param newName, 修改后账户的名称
 	 * @return 修改是否成功
 	 */
-	public boolean modifyAccount(String name);
+	public boolean modifyAccount(String oldName, String newName);
 
 }

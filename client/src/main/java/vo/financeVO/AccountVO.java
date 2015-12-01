@@ -14,6 +14,8 @@ public class AccountVO {
 	 * 账户余额（只和收款单和付款单有关系，不可修改）
 	 */
 	private double balance;
+	
+	
 
 	public AccountVO(String name, double balance) {
 		super();

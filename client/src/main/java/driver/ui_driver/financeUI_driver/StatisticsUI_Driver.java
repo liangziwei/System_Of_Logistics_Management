@@ -15,9 +15,9 @@ public class StatisticsUI_Driver {
 			int input = s.nextInt();
 			switch(input) {
 			case 1:
-				System.out.println(statistics.getCostBenefit().getTotalIncome()+" "
-						+statistics.getCostBenefit().getTotalPayment()+" "
-						+statistics.getCostBenefit().getTotalProfit());
+//				System.out.println(statistics.getCostBenefit().getTotalIncome()+" "
+//						+statistics.getCostBenefit().getTotalPayment()+" "
+//						+statistics.getCostBenefit().getTotalProfit());
 				break;
 			case 2:
 				String startDate = "2015-02-11";

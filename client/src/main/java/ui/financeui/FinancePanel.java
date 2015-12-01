@@ -20,11 +20,10 @@ import ui.financeui.costui.CostPanel;
 import ui.financeui.originalInfoui.OriginalInfoPanel;
 import ui.financeui.settlementui.SettleAllPanel;
 import ui.financeui.settlementui.SettlePartPanel;
-import ui.financeui.statisticsui.ProfitPanel;
 import ui.financeui.statisticsui.RunPanel;
+import ui.financeui.statisticsui.ProfitPanel;
 import ui.mainui.LoginPanel;
 import ui.viewcontroller.ViewController;
-import vo.businessVO.ReceivableVO;
 
 @SuppressWarnings("serial")
 public class FinancePanel extends UserPanel{
@@ -349,49 +348,11 @@ public class FinancePanel extends UserPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				List<ReceivableVO> receivable = new ArrayList<ReceivableVO>();
-				ArrayList<String> deliveryid1 = new ArrayList<String>();
-				ArrayList<String> deliveryid2 = new ArrayList<String>();
-				ArrayList<String> deliveryid3 = new ArrayList<String>();
-				ArrayList<String> deliveryid4 = new ArrayList<String>();
-				deliveryid1.add("1234567890");
-				deliveryid1.add("1245678952");
-				deliveryid2.add("1245678552");
-				deliveryid2.add("1245453122");
-				deliveryid2.add("1245678212");
-				deliveryid3.add("1245655542");
-				deliveryid3.add("1245658952");
-				deliveryid3.add("1245675152");
-				deliveryid4.add("1245678212");
-				deliveryid4.add("1245655542");
-				deliveryid4.add("1245658952");
-				deliveryid4.add("1245675152");
-				receivable.add(new ReceivableVO("2015-02-11",100.0,"1",deliveryid1));
-				receivable.add(new ReceivableVO("2015-02-11",120.0,"2",deliveryid2));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"3",deliveryid3));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"4",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"5",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"6",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"7",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"8",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"9",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"10",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"11",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",100.0,"12",deliveryid1));
-				receivable.add(new ReceivableVO("2015-02-11",120.0,"13",deliveryid2));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"14",deliveryid3));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"15",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"16",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"17",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"18",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"19",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"20",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"21",deliveryid4));
-				receivable.add(new ReceivableVO("2015-02-11",145.0,"22",deliveryid4));
+				
 				//设置当前细节信息面板为不可见
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
-				detail = new ProfitPanel(receivable);
+				detail = new ProfitPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘

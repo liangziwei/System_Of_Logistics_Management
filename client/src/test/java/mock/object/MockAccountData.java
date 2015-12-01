@@ -1,6 +1,9 @@
 package mock.object;
 
 import po.financePO.AccountPO;
+
+import java.rmi.RemoteException;
+
 import dataService.financeDataService.AccountDataService;
 
 public class MockAccountData implements AccountDataService{
@@ -18,6 +21,12 @@ public class MockAccountData implements AccountDataService{
 	}
 	
 	public boolean modifyAccount(String name) {
+		return false;
+	}
+
+	@Override
+	public boolean modifyAccount(String oldName, String newName) throws RemoteException {
+		// TODO Auto-generated method stub
 		return false;
 	}
 }

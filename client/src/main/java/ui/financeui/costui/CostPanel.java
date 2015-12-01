@@ -143,7 +143,7 @@ public class CostPanel extends DetailPanel{
 		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
 		this.cancel.setBorderPainted(false);
 		//提示标签
-		this.tip.setBounds(this.noteLabel.getX(), this.ok.getY(), LABEL_W, LABEL_H);
+		this.tip.setBounds(this.noteLabel.getX(), this.ok.getY(), TEXT_W, TEXT_H);
 		this.tip.setFont(WORD_FONT);
 		//将按钮添加到面板
 		this.setLayout(null);

@@ -15,8 +15,8 @@ public class StatisticsController implements StatisticsBLSevice{
 	
 	private Statistics statistics = new Statistics();
 	
-	public CostBenefitVO getCostBenefit() {
-		return statistics.getCostBenefit();
+	public CostBenefitVO getCostBenefit(String startDate, String endDate) {
+		return statistics.getCostBenefit(startDate, endDate);
 	}
 	
 	public List<ReceivableVO> getReceivableList(String startDate,String endDate) {

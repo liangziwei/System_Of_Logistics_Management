@@ -7,6 +7,8 @@ import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicModel.util.CommonLogic;
+
 /**
  * 日期面板，用于用户输入日期(yyyy-mm-dd)
  */
@@ -102,6 +104,18 @@ public class DatePanel extends JPanel{
 	}
 	
 	public String getDate() {
-		return this.year.getText() + "-" + this.month.getText() + "-" + this.day.getText();
+		String year = this.year.getText();
+		if(CommonLogic.isNull(year)) year = "0000";
+		String month = this.month.getText();
+		month = month.length() < 2 ? "0" + month : month;
+		String day = this.day.getText();
+		day = day.length() < 2 ? "0" + day : day;
+		return year + "-" + month + "-" + day;
+	}
+	
+	public static String getCurrentDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date d = new Date();
+		return sdf.format(d);
 	}
 }

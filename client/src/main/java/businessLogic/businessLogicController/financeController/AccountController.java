@@ -1,7 +1,5 @@
 package businessLogic.businessLogicController.financeController;
 
-
-
 import vo.financeVO.AccountVO;
 import businessLogic.businessLogicModel.financeModel.Account;
 import businessLogicService.financeBLService.AccountBLService;
@@ -29,9 +27,9 @@ public class AccountController implements AccountBLService {
 		return account.deleteAccount(name);
 	}
 	
-	public boolean modifyAccount(String name) {
+	public boolean modifyAccount(String oldName, String newName) {
 		
-		return account.modifyAccount(name);
+		return account.modifyAccount(oldName, newName);
 	}
 
 }

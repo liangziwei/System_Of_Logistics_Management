@@ -1,5 +1,7 @@
 package businessLogic.businessLogicModel.util;
 
+import java.text.SimpleDateFormat;
+
 public class CommonLogic {
 
 	public static boolean isNull(String s) {
@@ -7,11 +9,7 @@ public class CommonLogic {
 	}
 	
 	public static boolean isNumber(String s) {
-		if(isNull(s)) return false;
-		for(int i = 0; i < s.length(); i++) {
-			if(s.charAt(i) > '9' || s.charAt(i) < '0') return false;
-		}
-		return true;
+		return s.matches("[0-9]+");
 	}
 	
 	public static boolean isDouble(String s) {
@@ -27,4 +25,17 @@ public class CommonLogic {
 	public static boolean isStaffType(char c) {
 		return c >= 'B' && c <= 'H';
 	}
+	
+	public static boolean isDate(String date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			sdf.setLenient(false);
+			sdf.parse(date);
+		}catch(Exception e) {
+//			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 }

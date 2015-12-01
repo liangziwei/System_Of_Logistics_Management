@@ -116,7 +116,7 @@ public class EntruckingPanel extends DetailPanel{
 		this.freight.setFont(WORD_FONT);
 		this.freightText.setBounds(this.dateText.getX(), this.freight.getY(), TEXT_W, TEXT_H);
 		this.freightText.setFont(WORD_FONT);
-		this.freightText.setText("600");
+		this.freightText.setText(String.valueOf(entruckingCon.getFreight()));
 		
 		
 		this.result.setBounds(this.freight.getX()+ LINE_GAP , this.freight.getY() + LABEL_H + LINE_GAP,
