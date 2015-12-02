@@ -44,4 +44,11 @@ public interface OrderDataService extends Remote{
 	 * @return List<TimeRecordPO> 返回时间记录持久化对象的列表
 	 */
 	public List<TimeRecordPO> getTimeRecords(City source, City destination)throws RemoteException;
+	
+	public List<OrderPO> getUnCheckOrder() throws RemoteException;
+	
+	public boolean updateUnCheckOrders(List<String> id) throws RemoteException;
+	
+	public boolean updateUnCheckOrder(String id) throws RemoteException;
+
 }
