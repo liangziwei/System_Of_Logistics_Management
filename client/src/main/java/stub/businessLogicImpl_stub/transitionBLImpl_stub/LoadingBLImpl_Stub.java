@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import businessLogicService.transitionBLService.LoadingBLService;
 import constant.City;
+import constant.LoadingType;
 import dataService.transitionDataService.LoadingDataService;
 import po.transitionPO.LoadingPO;
 import stub.dataImpl_stub.transitionDataImpl_stub.LoadingDataImpl_Stub;
@@ -25,7 +26,7 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 
 	public boolean addLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		double fare =this.loadingFare("南京", loadingVO.getarrivalid());
+		double fare =this.loadingFare("南京", loadingVO.getarrivalid(),loadingVO.getway());
 		loadingVO.setfare(fare);
 		LoadingPO loadingPO = this.LoadingVOtoLoadingPO(loadingVO);
 		try {
@@ -39,7 +40,7 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 
 	public boolean modifyLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		double fare =this.loadingFare("南京", loadingVO.getarrivalid());
+		double fare =this.loadingFare("南京", loadingVO.getarrivalid(),loadingVO.getway());
 		loadingVO.setfare(fare);
 		LoadingPO loadingPO = this.LoadingVOtoLoadingPO(loadingVO);
 		try {
@@ -51,10 +52,7 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 		return false;
 	}
 
-	public double loadingFare(String CityFrom, String CityTo) {
-		// TODO Auto-generated method stub
-		return 500;
-	}
+
 	
 	private LoadingVO LoadingPOtoLoadingVO(LoadingPO loadingPO){
 		LoadingVO loadingVO =new LoadingVO(loadingPO.getloadingid(), loadingPO.getarrivalid(), 
@@ -74,6 +72,12 @@ public class LoadingBLImpl_Stub implements LoadingBLService {
 	public boolean verify(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public double loadingFare(String CityFrom, String CityTo, LoadingType type) {
+		// TODO Auto-generated method stub
+		return 500;
 	}
 	
 }

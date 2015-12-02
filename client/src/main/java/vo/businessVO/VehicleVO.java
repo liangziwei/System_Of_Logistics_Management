@@ -1,5 +1,7 @@
 package vo.businessVO;
 
+import po.businessPO.VehiclePO;
+
 public class VehicleVO {
 
 	private boolean isWrong =false;
@@ -37,5 +39,7 @@ public class VehicleVO {
 	public boolean isWrong() {
 		return isWrong;
 	}
-	
+	public VehiclePO vehicleVOToPO(){
+		return new VehiclePO(vehicleid,number,age);
+	}
 }

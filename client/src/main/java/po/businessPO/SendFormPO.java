@@ -2,6 +2,8 @@ package po.businessPO;
 
 import java.io.Serializable;
 
+import vo.businessVO.SendFormVO;
+
 public class SendFormPO implements Serializable{
 	
 	private static final long serialVersionUID = -2326119319668011673L;
@@ -47,4 +49,7 @@ public class SendFormPO implements Serializable{
 		this.isPassed = isPassed;
 	}
 	
+	public SendFormVO sendFormPOToVO(){
+		return new SendFormVO(date,deliveryid,sender);
+	}
 }

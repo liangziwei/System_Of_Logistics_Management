@@ -2,6 +2,7 @@ package po.administratorPO;
 
 import java.io.Serializable;
 
+import vo.administratorVO.AdministratorVO;
 import constant.Authority;
 import constant.UserType;
 
@@ -61,5 +62,7 @@ public class AdministratorPO implements Serializable{
 	public void setWrong(boolean isWrong) {
 		this.isWrong = isWrong;
 	}
-
+	public AdministratorVO adminPOToVO(){
+		return new AdministratorVO(type,name,id,password,limit);
+	}
 }

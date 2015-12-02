@@ -1,5 +1,6 @@
 package vo.businessVO;
 
+import po.businessPO.ArrivalFormPO;
 import constant.CargoState;
 
 public class ArrivalFormVO {
@@ -48,5 +49,9 @@ public class ArrivalFormVO {
 
 	public void setState(CargoState state) {
 		this.state = state;
+	}
+	
+	public ArrivalFormPO arrivalVOToPO(){
+		return new ArrivalFormPO(date,transitNumber,departPlace,state);
 	}
 }

@@ -2,6 +2,8 @@ package po.businessPO;
 
 import java.io.Serializable;
 
+import vo.businessVO.VehicleVO;
+
 public class VehiclePO implements Serializable{
 
 	/**
@@ -44,5 +46,7 @@ public class VehiclePO implements Serializable{
 	public void setWrong(boolean isWrong) {
 		this.isWrong = isWrong;
 	}
-	
+	public VehicleVO vehiclePOToVO(){
+		return new VehicleVO(vehicleid,number,age);
+	}
 }

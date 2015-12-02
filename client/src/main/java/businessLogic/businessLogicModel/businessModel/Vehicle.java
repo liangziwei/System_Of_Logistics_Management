@@ -14,12 +14,13 @@ public class Vehicle {
 	public boolean addVehicle(VehicleVO vehicleVO) {
 		// TODO Auto-generated method stub
 		
-		return vehicleData.addVehicle(vehicleVOToPO(vehicleVO));
+		return vehicleData.addVehicle(vehicleVO.vehicleVOToPO());
 	}
 
 	public VehicleVO findVehicle(String vehicleid) {
 		// TODO Auto-generated method stub
-		return vehiclePOToVO(vehicleData.findVehicle(vehicleid));
+		VehiclePO vehiclePO=vehicleData.findVehicle(vehicleid);
+		return vehiclePO.vehiclePOToVO();
 	}
 
 	public boolean deleteVehicle(String vehicleid) {
@@ -29,12 +30,7 @@ public class Vehicle {
 
 	public boolean modifyVehicle(VehicleVO vehicleVO) {
 		// TODO Auto-generated method stub
-		return vehicleData.modifyVehicle(vehicleVOToPO(vehicleVO));
+		return vehicleData.modifyVehicle(vehicleVO.vehicleVOToPO());
 	}
-	private VehiclePO vehicleVOToPO(VehicleVO vehicleVO){
-		return new VehiclePO(vehicleVO.getVehicleid(),vehicleVO.getNumber(),vehicleVO.getAge());
-	}
-	private VehicleVO vehiclePOToVO(VehiclePO vehiclePO){
-		return new VehicleVO(vehiclePO.getVehicleid(),vehiclePO.getNumber(),vehiclePO.getAge());
-	}
+	
 }

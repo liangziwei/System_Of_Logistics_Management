@@ -304,7 +304,7 @@ public class ModifyLoadingPanel extends DetailPanel {
 		// 使所有组件不可编辑
 		disableComponents();
 		// 计算运费
-		String thefare = loadingservice.loadingFare("南京", loadingVO.getarrivalid()) + "";
+		String thefare = loadingservice.loadingFare("南京", loadingVO.getarrivalid(),loadingVO.getway()) + "";
 		// 显示运费
 		fareText.setText(thefare);
 		if (isFirstEnsure) {
