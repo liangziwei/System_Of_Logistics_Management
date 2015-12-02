@@ -1,5 +1,6 @@
 package stub.dataImpl_stub.deliveryDataImpl_stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,21 @@ public class OrderDataImpl_Stub implements OrderDataService{
 		timeRecord.add(new TimeRecordPO(City.SHANG_HAI, City.GUANG_ZHOU, 1));
 		timeRecord.add(new TimeRecordPO(City.BEI_JING, City.GUANG_ZHOU, 3));
 		return timeRecord;
+	}
+
+	public List<OrderPO> getUnCheckOrder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean updateUnCheckOrders(List<String> id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean updateUnCheckOrder(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
