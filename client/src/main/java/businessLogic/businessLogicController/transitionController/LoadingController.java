@@ -3,6 +3,7 @@ package businessLogic.businessLogicController.transitionController;
 import businessLogic.businessLogicModel.transitionModel.Loading;
 import businessLogicService.transitionBLService.LoadingBLService;
 import constant.City;
+import constant.LoadingType;
 import vo.transitionVO.LoadingVO;
 
 public class LoadingController implements LoadingBLService{
@@ -23,9 +24,9 @@ public class LoadingController implements LoadingBLService{
 		return loading.modifyLoadingFormBL(loadingVO);
 	}
 
-	public double loadingFare(String CityFrom, String CityTo) {
+	public double loadingFare(String CityFrom, String CityTo,LoadingType type) {
 		// TODO Auto-generated method stub
-		return loading.loadingFare(CityFrom, CityTo);
+		return loading.loadingFare(CityFrom, CityTo,type);
 	}
 	public boolean verify(LoadingVO loadingVO) {
 		boolean result = loading.verifyres(loadingVO);

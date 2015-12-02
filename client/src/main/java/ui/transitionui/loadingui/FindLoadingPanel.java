@@ -226,6 +226,8 @@ public class FindLoadingPanel extends DetailPanel{
 		this.supercargoidText.setText(loadingVO.getsupercargoid());
 		this.fareText.setText(loadingVO.getfare()+"");
 		List<String> deliveryID = loadingVO.getalldeliveryid();
+//		System.out.println(deliveryID);
+//		System.out.println("123");
 		for (String str: deliveryID){
 			alldeliveryidArea.append(str+"\n");
 		}

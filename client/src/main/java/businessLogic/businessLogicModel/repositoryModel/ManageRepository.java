@@ -33,8 +33,8 @@ public class ManageRepository {
 //		for(int i=0;i<(repositoryPOs.size());i++){
 //			repositoryVOs2.add(this.RepositoryInfoPOtoRepositoryInfoVO(repositoryPOs.get(i)));
 //		}
-		List<RepositoryInfoPO> listPO = null;
-		List<RepositoryInfoVO> listVO = null;
+		List<RepositoryInfoPO> listPO = new ArrayList<RepositoryInfoPO>();
+		List<RepositoryInfoVO> listVO = new ArrayList<RepositoryInfoVO>();
 		try {
 			listPO = manageRepositoryDataService.SeeRepositoryDT(time);
 		} catch (RemoteException e) {
@@ -54,8 +54,8 @@ public class ManageRepository {
 //		for(int i=0;i<(deliveryInfoPOs.size());i++){
 //			deliveryInfoVOs.add(this.DeliveryInfoPOtoDeliveryInfoVO(deliveryInfoPOs.get(i)));
 //		}
-		List<DeliveryInfoPO> listPO2 = null;
-		List<DeliveryInfoVO> listVO2 = null;
+		List<DeliveryInfoPO> listPO2 = new ArrayList<DeliveryInfoPO>();
+		List<DeliveryInfoVO> listVO2 = new ArrayList<DeliveryInfoVO>();
 		try {
 			listPO2 = manageRepositoryDataService.CheckRepositoryDT();
 		} catch (RemoteException e) {
@@ -63,29 +63,58 @@ public class ManageRepository {
 			e.printStackTrace();
 		}
 		for(int i=0;i<(listPO2.size());i++){
-			listVO2.add(this.DeliveryInfoPOtoDeliveryInfoVO(listPO2.get(i)));
+			DeliveryInfoVO deliveryInfoVO = this.DeliveryInfoPOtoDeliveryInfoVO(listPO2.get(i));
+			listVO2.add(deliveryInfoVO);
 		}
 		return listVO2;
 	}
 
 	public boolean SetWarnValueBL(AreaCodeType ID, int allNum, double WarnNum) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean set = false;
+		try {
+			set = manageRepositoryDataService.UpdataRepositoryWarnDT(allNum, WarnNum, ID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return set;
 	}
 
 	public double GetWarnNumBL(AreaCodeType ID) {
 		// TODO Auto-generated method stub
-		return 0.0;
+		double warnnnum = 0.0;
+		try {
+			warnnnum = manageRepositoryDataService.GetWarnNumDT(ID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return warnnnum;
 	}
 
 	public int GetRepositoryNumBL(AreaCodeType ID) {
 		// TODO Auto-generated method stub
-		return 0;
+		int num=0;
+		try {
+			num = manageRepositoryDataService.GetRepositoryNumDT(ID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return num;
 	}
 
 	public int GetRepositoryExistBL(AreaCodeType ID) {
 		// TODO Auto-generated method stub
-		return 0;
+		int exist = 0;
+		try {
+			exist = manageRepositoryDataService.GetRepositoryExistDT(ID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return exist;
 	}
 
 	public List<RepositoryVO> GetRepositoryInfoBL() {
@@ -98,7 +127,6 @@ public class ManageRepository {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		repositoryVOs = new ArrayList<RepositoryVO>();
 		for(int i=0;i<(repositoryPOs.size());i++){
 			RepositoryVO repositoryvo=this.RepositoryPOtoRepositoryVO(repositoryPOs.get(i));
 			repositoryVOs.add(repositoryvo);

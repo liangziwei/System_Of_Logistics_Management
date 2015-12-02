@@ -3,8 +3,11 @@ package businessLogic.businessLogicModel.transitionModel;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import businessLogic.businessLogicModel.deliveryModel.DistanceIO;
+import businessLogic.businessLogicModel.managerModel.TransitPriceIO;
 import constant.City;
 import constant.LoadingType;
+import constant.TransitType;
 import dataService.transitionDataService.LoadingDataService;
 import network.RMI;
 import po.transitionPO.LoadingPO;
@@ -35,7 +38,7 @@ public class Loading {
 
 	public boolean addLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		double faremoney = this.loadingFare("南京", loadingVO.getarrivalid());
+		double faremoney = this.loadingFare("南京", loadingVO.getarrivalid(),loadingVO.getway());
 		loadingVO.setfare(faremoney);
 		LoadingPO loadingPO = LoadingVOtoLoadingPO(loadingVO);
 		boolean add =false;
@@ -50,7 +53,7 @@ public class Loading {
 
 	public boolean modifyLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		double faremoney = this.loadingFare("南京", loadingVO.getarrivalid());
+		double faremoney = this.loadingFare("南京", loadingVO.getarrivalid(),loadingVO.getway());
 		loadingVO.setfare(faremoney);
 		LoadingPO loadingPO = LoadingVOtoLoadingPO(loadingVO);
 		boolean modify =false;
@@ -63,9 +66,58 @@ public class Loading {
 		return modify;
 	}
 
-	public double loadingFare(String CityFrom, String CityTo) {
+	public double loadingFare(String CityFrom, String CityTo,LoadingType type) {
 		// TODO Auto-generated method stub
-		return 0;
+		City from =null;
+		City to = null;
+		switch (CityFrom) {
+		case "南京":
+			from = City.NAN_JING;
+			break;
+		case "北京":
+			from = City.BEI_JING;
+			break;
+		case "上海":
+			from = City.SHANG_HAI;
+			break;
+		case "广州":
+			from = City.GUANG_ZHOU;
+			break;
+		}
+		switch (CityTo) {
+		case "南京":
+			from = City.NAN_JING;
+			break;
+		case "北京":
+			from = City.BEI_JING;
+			break;
+		case "上海":
+			from = City.SHANG_HAI;
+			break;
+		case "广州":
+			from = City.GUANG_ZHOU;
+			break;
+		}
+		double distance = DistanceIO.getDistance(from, to);
+		double weight =0;
+		TransitType transitType =null;
+		switch (type) {
+		case PLANE:
+			transitType = TransitType.AIR;
+			weight = 50;
+			break;
+		case TRAIN:
+			transitType = TransitType.RAILWAY;
+			weight = 2000;
+			break;
+		case TRUCK:
+			transitType = TransitType.ROAD;
+			weight = 10;
+			break;
+		}
+		double transitprice = TransitPriceIO.getTransitPrice(transitType);
+		
+		return (distance*transitprice*weight);
 	}
 	
 	private LoadingVO LoadingPOtoLoadingVO(LoadingPO loadingPO){
