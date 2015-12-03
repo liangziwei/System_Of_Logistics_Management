@@ -3,6 +3,7 @@ package ui.managerui.approvalformui;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import ui.baseui.DetailPanel;
+import vo.deliveryVO.OrderVO;
 
 @SuppressWarnings("serial")
 public class ApprovalFormPanel extends DetailPanel{
@@ -85,16 +87,23 @@ public class ApprovalFormPanel extends DetailPanel{
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				//查询单据信息
-				
+				List<OrderVO> vo = FindForm.getOrderVO();
 				if(form != null) form.setVisible(false);
 				//创建表格
+				int size = vo.size();
 				Object[] names = new Object[]{"单据编号"};
-				
+				Object[][] datas = new Object[size][1];
+				for(int i = 0; i < size; i++) {
+					datas[i][0] = vo.get(i).getGoodsInfo().getId();
+					System.out.println(datas[i][0]);
+				}
+				form = new JTable(datas, names);
+				form.setBounds(0, 100, 500, 500);
+				add(form);
+				repaint();
 			}
 		});
 	}
 	
-	private<T> T findForm(T type) {
-		return null;
-	}
+	
 }

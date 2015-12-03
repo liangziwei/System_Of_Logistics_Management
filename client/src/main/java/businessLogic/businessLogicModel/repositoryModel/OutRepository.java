@@ -2,6 +2,8 @@ package businessLogic.businessLogicModel.repositoryModel;
 
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import dataService.repositoryDataService.OutRepositoryDataService;
 import network.RMI;
@@ -33,8 +35,8 @@ public class OutRepository {
 		boolean result = false;
 		try {
 			boolean temp1 = outRepositoryDataService.ModifyOutRepositoryFormDT(outRepositoryPO);
-			boolean temp2 = outRepositoryDataService.UpdateRepositoryInfoDT(outRepositoryPO);
-			if (temp1&&temp2) {
+//			boolean temp2 = outRepositoryDataService.UpdateRepositoryInfoDT(outRepositoryPO);
+			if (temp1) {
 				result = true;
 			}
 		} catch (RemoteException e) {
@@ -82,13 +84,19 @@ public class OutRepository {
 			return false;
 		}
 		String[] aStrings =outRepositoryVO.getoutrepositorydate().split("-");
+		String date = "";
 		if(aStrings[0].equals(" ")||aStrings[1].equals(" ")||aStrings[2].equals(" ")){
 			outRepositoryVO.seterrorMsg("入库日期不能为空");
 			return false;
 		}
 		for(int i=0;i<3;i++){
 			aStrings[i] =aStrings[i].trim();
-			
+			if (i == 2) {
+				date += aStrings[i];
+			}
+			else {
+				date = date + aStrings[i] + "-";				
+			}
 		}
 		int[] aint = new int[3];
  		for(int i=0;i<3;i++){
@@ -101,6 +109,18 @@ public class OutRepository {
 		}
 		if (aint[2]<1||aint[2]>31) {
 			outRepositoryVO.seterrorMsg("日期输入错误");
+			return false;
+		}
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			// 设置lenient为false.
+			// 否则SimpleDateFormat会比较宽松地验证日期，比如2007-02-29会被接受，并转换成2007-03-01
+			format.setLenient(false);
+			format.parse(date);
+		} catch (ParseException e) {
+			// e.printStackTrace();
+			// 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
+			outRepositoryVO.seterrorMsg("日期输入有误");
 			return false;
 		}
 		if (outRepositoryVO.getarrivalid().equals("")) {

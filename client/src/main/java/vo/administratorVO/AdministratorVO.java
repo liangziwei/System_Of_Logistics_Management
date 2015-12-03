@@ -1,5 +1,6 @@
 package vo.administratorVO;
 
+import po.administratorPO.AdministratorPO;
 import constant.Authority;
 import constant.UserType;
 
@@ -60,4 +61,7 @@ public class AdministratorVO {
 		return isWrong;
 	}
 
+	public AdministratorPO adminVOToPO(){
+		return new AdministratorPO(type,name,id,password,limit);
+	}
 }

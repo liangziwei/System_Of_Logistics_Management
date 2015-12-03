@@ -1,5 +1,7 @@
 package vo.businessVO;
 
+import po.businessPO.SendFormPO;
+
 public class SendFormVO {
 
 	private String date;	
@@ -29,5 +31,8 @@ public class SendFormVO {
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
-	
+
+	public SendFormPO sendFormVOToPO(){
+		return new SendFormPO(date,deliveryid,sender);
+	}
 }

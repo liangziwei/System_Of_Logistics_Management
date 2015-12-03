@@ -125,7 +125,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		infoPanel.setBounds(state.getX(), state.getY() + state.getHeight(), LABEL_W + TEXT_W + COMPONENT_GAP_X * 2,
 				(LABEL_H + COMPONENT_GAP_X) * 9);
 		infoPanel.setLayout(null);
-		infoPanel.setVisible(false);
+		infoPanel.setVisible(true);
 		infoPanel.setOpaque(false);
 		initinfo();
 		addPanels();
@@ -271,6 +271,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		allRepository.setBounds(outMoney.getX(), outMoney.getY() + outMoney.getHeight() + COMPONENT_GAP_X, LABEL_W,
 				LABEL_H);
 		allRepository.setFont(WORD_FONT);
+		allRepository.setForeground(Color.white);
 		this.infoPanel.add(allRepository);
 		//
 		allRepositoryText.setBounds(allRepository.getX() + allRepository.getWidth() + COMPONENT_GAP_X / 2,

@@ -1,15 +1,14 @@
 package businessLogic.businessLogicModel.transitionModel;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import dataService.transitionDataService.TransferringDataService;
-import mock.object.MockTransferring;
 import network.RMI;
-import po.transitionPO.LoadingPO;
 import po.transitionPO.TransferringPO;
 import vo.transitionVO.TransferringVO;
 
@@ -99,6 +98,7 @@ public class Transferring {
 			return false;
 		}
 		String[] aStrings =transferringVO.getloadingdate().split("-");
+		String date = "";
 //		for(String x :aStrings){
 //			System.out.println(x+"1");
 //		}
@@ -108,7 +108,12 @@ public class Transferring {
 		}
 		for(int i=0;i<3;i++){
 			aStrings[i] =aStrings[i].trim();
-			
+			if (i == 2) {
+				date += aStrings[i];
+			}
+			else {
+				date = date + aStrings[i] + "-";				
+			}
 		}
 		int[] aint = new int[3];
  		for(int i=0;i<3;i++){
@@ -123,9 +128,20 @@ public class Transferring {
 			transferringVO.seterrorMsg("日期输入错误");
 			return false;
 		}
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			// 设置lenient为false.
+			// 否则SimpleDateFormat会比较宽松地验证日期，比如2007-02-29会被接受，并转换成2007-03-01
+			format.setLenient(false);
+			format.parse(date);
+		} catch (ParseException e) {
+			// e.printStackTrace();
+			// 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
+			transferringVO.seterrorMsg("日期输入有误");
+			return false;
+		}
 		
 
-		
 		if (transferringVO.getwayid().equals("")||transferringVO.getwayid().length()!=9) {
 			transferringVO.seterrorMsg("装运方式编号不能为空或输入错误(9位)");
 			return false;

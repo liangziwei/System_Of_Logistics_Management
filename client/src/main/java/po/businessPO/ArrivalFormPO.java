@@ -2,10 +2,10 @@ package po.businessPO;
 
 
 
-import constant.CargoState;
-
-
 import java.io.Serializable;
+
+import vo.businessVO.ArrivalFormVO;
+import constant.CargoState;
 
 
 
@@ -71,5 +71,7 @@ public class ArrivalFormPO implements Serializable{
 		this.isPassed = isPassed;
 	}
 	
-	
+	public ArrivalFormVO arrivalPOToVO(){
+		return new ArrivalFormVO(date,transitNumber,departPlace,state);
+	}
 }

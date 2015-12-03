@@ -1,5 +1,7 @@
 package vo.businessVO;
 
+import po.businessPO.EntruckingPO;
+
 public class EntruckingVO {
 
 	private String date;
@@ -89,4 +91,8 @@ public class EntruckingVO {
 		this.freight = freight;
 	}
 
+	public EntruckingPO entruckingVOToPO(){
+		
+		return new EntruckingPO(date,businessHallid,transportNumber,destionation,vehicleid,supervisor,supercargo,freight);
+	}
 }

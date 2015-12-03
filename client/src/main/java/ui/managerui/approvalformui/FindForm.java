@@ -1,18 +1,21 @@
 package ui.managerui.approvalformui;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import businessLogicService.repositoryBLService.OutRepositoryBLService;
 import dataService.businessDataService.EntruckingDataService;
 import dataService.businessDataService.PaymentDataService;
 import dataService.businessDataService.ReceiveAndSendDataService;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.repositoryDataService.InRepositoryDataService;
+import dataService.repositoryDataService.OutRepositoryDataService;
 import dataService.transitionDataService.LoadingDataService;
 import dataService.transitionDataService.ReceivingDataService;
 import dataService.transitionDataService.TransferringDataService;
 import network.RMI;
+import po.deliveryPO.OrderPO;
 import vo.businessVO.ArrivalFormVO;
 import vo.businessVO.EntruckingVO;
 import vo.businessVO.ReceivableVO;
@@ -42,10 +45,26 @@ public class FindForm {
 	
 	private static InRepositoryDataService in = RMI.<InRepositoryDataService>getDataService("inrepository");
 	
-	private static OutRepositoryBLService out = RMI.<OutRepositoryBLService>getDataService("outrepository");
+	private static OutRepositoryDataService out = RMI.<OutRepositoryDataService>getDataService("outrepository");
+	
+	private static Map<String, Object> table = null;
+	
+	public static<T> List<T> getUnCheckFormVO(String voName) {
+		return null;
+	}
 	
 	public static List<OrderVO> getOrderVO() {
 		List<OrderVO> vo = new ArrayList<OrderVO>();
+		List<OrderPO> po = null;
+		try {
+			po = order.getUnCheckOrder();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(OrderPO.orderPOToVO(po.get(i)));
+		}
 		return vo;
 	}
 	

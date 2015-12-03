@@ -2,6 +2,8 @@ package po.businessPO;
 
 import java.io.Serializable;
 
+import vo.businessVO.DriverVO;
+
 public class DriverPO implements Serializable{
 	
 	/**
@@ -76,5 +78,8 @@ public class DriverPO implements Serializable{
 	public void setWrong(boolean isWrong) {
 		this.isWrong = isWrong;
 	}
-	
+	public DriverVO driverPOToVO(){
+		return new DriverVO(driverid,name,birthday,idNumber,phoneNumber,gender,drivingDeadline);
+	}
+
 }

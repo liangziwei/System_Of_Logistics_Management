@@ -1,5 +1,7 @@
 package vo.businessVO;
 
+import po.businessPO.DriverPO;
+
 public class DriverVO {
 
 	private boolean isWrong =false;
@@ -69,6 +71,10 @@ public class DriverVO {
 
 	public boolean isWrong() {
 		return isWrong;
+	}
+	
+	public DriverPO driverVOToPO(){
+		return new DriverPO(driverid,name,birthday,idNumber,phoneNumber,gender,drivingDeadline);
 	}
 
 }

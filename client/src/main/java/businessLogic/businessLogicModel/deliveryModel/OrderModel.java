@@ -8,6 +8,7 @@ import constant.City;
 import constant.DeliveryType;
 import constant.LabelName;
 import constant.VerifyResult;
+import dataService.GetFormService;
 import dataService.deliveryDataService.OrderDataService;
 import network.RMI;
 import po.deliveryPO.ClientInfo;
@@ -21,7 +22,7 @@ import vo.deliveryVO.VerifyMessage;
  * description:为订单信息界面提供服务的具体实现
  * @author 肖安祥
  */
-public class OrderModel{
+public class OrderModel implements GetFormService{
 	
 	private  OrderDataService order = RMI.<OrderDataService>getDataService("order");
 	
@@ -103,6 +104,17 @@ public class OrderModel{
 		
 	}
 	
+	@Override
+	public <T> T getUncheckForm() {
+		List<OrderPO> po = null;
+		try {
+			po = order.getUnCheckOrder();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return (T) po;
+	}
+	
 	private static VerifyMessage verifySender(ClientInfo sender) {
 		if(CommonLogic.isNull(sender.getName())) //姓名
 			return new VerifyMessage(LabelName.SENDER_NAME, "寄件人姓名不能为空", VerifyResult.FAIL);
@@ -136,4 +148,5 @@ public class OrderModel{
 			return new VerifyMessage(LabelName.GOODS_ID, "订单条形码号应该为10位数字", VerifyResult.FAIL);
 		return new VerifyMessage(null, null, VerifyResult.SUCCESS);
 	}
+
 }

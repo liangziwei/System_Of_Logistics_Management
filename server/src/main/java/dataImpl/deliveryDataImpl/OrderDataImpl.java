@@ -1,5 +1,6 @@
 package dataImpl.deliveryDataImpl;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,78 +32,7 @@ public class OrderDataImpl implements OrderDataService{
 			e.printStackTrace();
 			return null;
 		}
-		//货物信息
-		String goods_id = id, number = null, weight = null, volumn = null, name = null;
-		DeliveryType deliveryType = null;
-		PackageType packageType = null;
-		List<TransitionNode> nodes = new ArrayList<TransitionNode>();
-		List<City> citys = new ArrayList<City>();
-		//寄件人信息
-		String sender_name = null, sender_addr = null, sender_com = null, sender_phone = null, sender_mobile = null;
-		City sender_city = null;
-		//收件人信息
-		String receiver_name = null, receiver_addr = null, receiver_com = null, receiver_phone = null, receiver_mobile = null;
-		City receiver_city = null;
-		//送件日期
-		String date = null;
-		//运费
-		String price = null;
-		//预估时间
-		String time = null;
-		try {
-			if(rs.next()) {
-				//货物信息
-				goods_id = rs.getString("goods_id");
-				number = new Integer(rs.getInt("goods_number")).toString();
-				weight = new Double(rs.getDouble("goods_weight")).toString();
-				volumn = new Double(rs.getDouble("goods_volumn")).toString();
-				name = rs.getString("goods_name");
-				deliveryType = DeliveryType.valueOf(rs.getString("goods_delivery_type"));
-				packageType = PackageType.valueOf(rs.getString("goods_package_type"));
-				String temp1 = rs.getString("goods_trace");
-				String[] temp2 = temp1.split("-");
-				for(int i = 0; i < temp2.length; i++) {
-					nodes.add(TransitionNode.valueOf(temp2[i]));
-				}
-				temp1 = rs.getString("goods_city");
-				temp2 = temp1.split("-");
-				for(int i = 0; i < temp2.length; i++) {
-					 citys.add(City.valueOf(temp2[i]));
-				}
-				//寄件人信息
-				sender_name = rs.getString("sender_name");
-				sender_addr = rs.getString("sender_address");
-				sender_com = rs.getString("sender_company");
-				sender_phone = rs.getString("sender_phone");
-				sender_mobile = rs.getString("sender_mobile");
-				sender_city = City.valueOf(rs.getString("sender_city"));
-				//收件人信息
-				receiver_name = rs.getString("receiver_name");
-				receiver_addr = rs.getString("receiver_address");
-				receiver_com = rs.getString("receiver_company");
-				receiver_phone = rs.getString("receiver_phone");
-				receiver_mobile = rs.getString("receiver_mobile");
-				receiver_city = City.valueOf(rs.getString("receiver_city"));
-				//送件日期
-				date = rs.getString("date");
-				//运费
-				price = new Double(rs.getDouble("price")).toString();
-				//预估时间
-				time = new Integer(rs.getInt("time")).toString();
-			}
-			else return null;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-		
-		return new OrderPO(
-				new ClientInfo(ClientType.SENDER, sender_name, sender_addr, sender_com,
-						sender_phone, sender_mobile, sender_city),
-				new ClientInfo(ClientType.RECEIVER, receiver_name, receiver_addr, receiver_com,
-						receiver_phone, receiver_mobile, receiver_city),
-				new GoodsInfo(number, goods_id, weight, name, volumn,
-						packageType, deliveryType, date, nodes, citys, time, price));
+		return this.createOrderPO(rs);
 	}
 
 	public boolean saveOrderInfo(OrderPO orderPO) {
@@ -176,4 +106,122 @@ public class OrderDataImpl implements OrderDataService{
 		return records;
 	}
 
+	public List<OrderPO> getUnCheckOrder() throws RemoteException {
+		List<OrderPO> po = new ArrayList<OrderPO>();
+		String sql = "select * from order_table where is_approved = 'false';";
+		ResultSet rs;
+		try {
+			rs = Database.findOperation(sql);
+			while(rs.next()) {
+				po.add(this.createOrderPO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
+
+	public boolean updateUnCheckOrders(List<String> id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean updateUnCheckOrder(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private OrderPO createOrderPO(ResultSet rs) {
+		//创建送件人信息
+		ClientInfo sender = this.createSenderInfo(rs);
+		//创建收件人信息
+		ClientInfo receiver = this.createReceiverInfo(rs);
+		//创建货物信息
+		GoodsInfo goods = this.createGoodsInfo(rs);
+
+		return new OrderPO(sender, receiver, goods);
+	}
+	
+	private ClientInfo createSenderInfo(ResultSet rs) {
+		//寄件人信息
+		String sender_name = null, sender_addr = null, sender_com = null, sender_phone = null, sender_mobile = null;
+		City sender_city = null;
+		//寄件人信息
+		try {
+			sender_name = rs.getString("sender_name");
+			sender_addr = rs.getString("sender_address");
+			sender_com = rs.getString("sender_company");
+			sender_phone = rs.getString("sender_phone");
+			sender_mobile = rs.getString("sender_mobile");
+			sender_city = City.valueOf(rs.getString("sender_city"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return new ClientInfo(ClientType.SENDER, sender_name, sender_addr, sender_com,
+				sender_phone, sender_mobile, sender_city);
+	}
+	
+	private ClientInfo createReceiverInfo(ResultSet rs) {
+		//收件人信息
+		String receiver_name = null, receiver_addr = null, receiver_com = null, receiver_phone = null, receiver_mobile = null;
+		City receiver_city = null;
+		//收件人信息
+		try {
+			receiver_name = rs.getString("receiver_name");
+			receiver_addr = rs.getString("receiver_address");
+			receiver_com = rs.getString("receiver_company");
+			receiver_phone = rs.getString("receiver_phone");
+			receiver_mobile = rs.getString("receiver_mobile");
+			receiver_city = City.valueOf(rs.getString("receiver_city"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return new ClientInfo(ClientType.RECEIVER, receiver_name, receiver_addr, receiver_com,
+				receiver_phone, receiver_mobile, receiver_city);
+	}
+	
+	private GoodsInfo createGoodsInfo(ResultSet rs) {
+		//货物信息
+		String goods_id = null, number = null, weight = null, volumn = null, name = null;
+		DeliveryType deliveryType = null;
+		PackageType packageType = null;
+		List<TransitionNode> nodes = new ArrayList<TransitionNode>();
+		List<City> citys = new ArrayList<City>();
+		//送件日期
+		String date = null;
+		//运费
+		String price = null;
+		//预估时间
+		String time = null;
+		try {
+			goods_id = rs.getString("goods_id");
+			number = new Integer(rs.getInt("goods_number")).toString();
+			weight = new Double(rs.getDouble("goods_weight")).toString();
+			volumn = new Double(rs.getDouble("goods_volumn")).toString();
+			name = rs.getString("goods_name");
+			deliveryType = DeliveryType.valueOf(rs.getString("goods_delivery_type"));
+			packageType = PackageType.valueOf(rs.getString("goods_package_type"));
+			String temp1 = rs.getString("goods_trace");
+			String[] temp2 = temp1.split("-");
+			for(int i = 0; i < temp2.length; i++) {
+				nodes.add(TransitionNode.valueOf(temp2[i]));
+			}
+			temp1 = rs.getString("goods_city");
+			temp2 = temp1.split("-");
+			for(int i = 0; i < temp2.length; i++) {
+				citys.add(City.valueOf(temp2[i]));
+			}
+			//送件日期
+			date = rs.getString("date");
+			//运费
+			price = new Double(rs.getDouble("price")).toString();
+			//预估时间
+			time = new Integer(rs.getInt("time")).toString();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return new GoodsInfo(number, goods_id, weight, name, volumn,
+				packageType, deliveryType, date, nodes, citys, time, price);
+	}
 }

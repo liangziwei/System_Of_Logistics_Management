@@ -1,6 +1,7 @@
 package businessLogicService.transitionBLService;
 
 import constant.City;
+import constant.LoadingType;
 import vo.transitionVO.LoadingVO;;
 
 /**
@@ -48,9 +49,10 @@ public interface LoadingBLService {
 	 * 需接口：无
 	 * @param CityFrom , 出发城市
 	 * @param CityFrom , 到达的某营业厅
+	 * @param LoadingType,装运方式
 	 * @return double, 返回装运单的运费值
 	 * */
-	public double loadingFare(String CityFrom,String CityTo);
+	public double loadingFare(String CityFrom,String CityTo,LoadingType type);
 	/**
 	 * description:判断输入是否正确
 	 * 前置条件：LoadingPanel

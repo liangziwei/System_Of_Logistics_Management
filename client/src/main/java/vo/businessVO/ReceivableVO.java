@@ -2,6 +2,8 @@ package vo.businessVO;
 
 import java.util.ArrayList;
 
+import po.businessPO.ReceivablePO;
+
 public class ReceivableVO {
 
 	private String date;
@@ -49,5 +51,7 @@ public class ReceivableVO {
 	public void setDeliveryid(ArrayList<String> deliveryid) {
 		this.deliveryid = deliveryid;
 	}
-	
+	public ReceivablePO receivableVOToPO(){
+		return new ReceivablePO(date,money,courier,deliveryid);
+	}
 }
