@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.administratorVO.AdministratorVO;
 import businessLogic.businessLogicController.administratorController.AdministratorController;
 import constant.Authority;
@@ -37,11 +38,11 @@ public class AddAdminPanel extends DetailPanel{
 	private JTextField passwordText=new JTextField();
 	private JComboBox limitBox = new JComboBox();
 	
-	private JButton query = new JButton("查询");
+	private LimpidButton query = new LimpidButton("","picture/查询.png");
 	
-	private JButton ok = new JButton("");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 130;
 	
@@ -109,13 +110,13 @@ public class AddAdminPanel extends DetailPanel{
 //		this.result.setFont(WORD_FONT);
 		this.ok.setBounds(this.limit.getX() + TEXT_W, this.limit.getY() + LABEL_H*4+ LINE_GAP,BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-		this.ok.setIcon(new ImageIcon("picture/确定.png"));
+//		this.ok.setIcon(new ImageIcon("picture/确定.png"));
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		this.cancel.setVisible(false);
-		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-		
+//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+//		
 		
 		this.addListener();
 		this.addComponents();
