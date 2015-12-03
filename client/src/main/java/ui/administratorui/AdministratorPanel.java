@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
+import ui.baseui.LimpidButton;
 import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
@@ -15,10 +16,10 @@ import ui.viewcontroller.ViewController;
 
 public class AdministratorPanel extends UserPanel{
 
-	private TaskButton addAdmin=new TaskButton("");
-	private TaskButton deleAdmin=new TaskButton("");
-	private TaskButton modAdmin=new TaskButton("");
-	private TaskButton exit = new TaskButton("");
+	private LimpidButton addAdmin=new LimpidButton("","picture/添加账户.png");
+	private LimpidButton deleAdmin=new LimpidButton("","picture/删除账户.png");
+	private LimpidButton modAdmin=new LimpidButton("","picture/修改账户.png");
+	private LimpidButton exit = new LimpidButton("","picture/退出.png");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
@@ -35,22 +36,22 @@ public class AdministratorPanel extends UserPanel{
 		//添加账户
 		this.addAdmin.setBounds(0, UserImagePanel.USER_PANEL_H, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.addAdmin.setFont(WORD_FONT);
-		this.addAdmin.setIcon(new ImageIcon("picture/添加账户.png"));
+//		this.addAdmin.setIcon(new ImageIcon("picture/添加账户.png"));
 		//删除账户		
 		this.deleAdmin.setBounds(0, this.addAdmin.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP,
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.deleAdmin.setFont(WORD_FONT);
-		this.deleAdmin.setIcon(new ImageIcon("picture/删除账户.png"));
+//		this.deleAdmin.setIcon(new ImageIcon("picture/删除账户.png"));
 		//修改账户
 		this.modAdmin.setBounds(0, this.deleAdmin.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.modAdmin.setFont(WORD_FONT);
-		this.modAdmin.setIcon(new ImageIcon("picture/修改账户.png"));
+//		this.modAdmin.setIcon(new ImageIcon("picture/修改账户.png"));
 		//退出
 		this.exit.setBounds(0, this.modAdmin.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.exit.setFont(WORD_FONT);
-		this.exit.setIcon(new ImageIcon("picture/退出2.png"));
+//		this.exit.setIcon(new ImageIcon("picture/退出.png"));
 		
 		this.task.setLayout(null);
 		this.task.add(addAdmin);

@@ -2,11 +2,11 @@ package businessLogic.businessLogicModel.businessModel;
 
 import java.rmi.RemoteException;
 
-import constant.TransitType;
 import network.RMI;
 import po.businessPO.EntruckingPO;
 import vo.businessVO.EntruckingVO;
 import businessLogic.businessLogicModel.managerModel.TransitPriceIO;
+import constant.TransitType;
 import dataService.businessDataService.EntruckingDataService;
 
 public class Entrucking {

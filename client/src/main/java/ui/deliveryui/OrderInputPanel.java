@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import po.deliveryPO.ClientInfo;
 import po.deliveryPO.GoodsInfo;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import ui.deliveryui.orderInfo.ClientInfoPanel;
 import ui.deliveryui.orderInfo.GoodsInfoPanel;
 import ui.deliveryui.orderInfo.OtherInfoPanel;
@@ -60,9 +61,9 @@ public class OrderInputPanel extends DetailPanel{
 	
 	private JLabel state = new JLabel("" ,JLabel.CENTER);
 	
-	private JButton ok = new JButton("");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
@@ -119,14 +120,14 @@ public class OrderInputPanel extends DetailPanel{
 		//确定按钮
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-		this.ok.setIcon(new ImageIcon("picture/确定.png"));
-		this.ok.setBorderPainted(false);
+//		this.ok.setIcon(new ImageIcon("picture/确定.png"));
+//		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(BUTTON_W + PANEL_GAP, 0, BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		this.cancel.setVisible(false);
-		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-		this.cancel.setBorderPainted(false);
+//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+//		this.cancel.setBorderPainted(false);
 		//添加事件监听
 		this.addListener();
 		//将按钮添加到按钮面板

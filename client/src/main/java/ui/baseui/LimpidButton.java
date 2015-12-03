@@ -18,11 +18,9 @@ public class LimpidButton extends JButton
 	MediaTracker mt;
 	int w;
 	int h;
- 
- public LimpidButton(String name,String imagePath)
- {            
-        try
-        {            
+
+	public LimpidButton(String name,String imagePath) {            
+        try {            
             img=new ImageIcon(imagePath).getImage(); //读取本地图片
             mt=new MediaTracker(this);//为此按钮添加媒体跟踪器
             mt.addImage(img,0);//在跟踪器添加图片，下标为0
@@ -57,10 +55,10 @@ public class LimpidButton extends JButton
             this.setIcon(new ImageIcon(image1)); //把刚才生成的半透明image变成ImageIcon,贴到按钮上去
             this.setRolloverIcon(new ImageIcon(image));
             this.setPressedIcon(new ImageIcon(image));//按下去的图标
-         }catch(Exception e)
-         {
+         }catch(Exception e) {
              e.printStackTrace();
           }
- }
+	}
+	
 }
  

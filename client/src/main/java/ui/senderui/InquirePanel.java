@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ui.baseui.LimpidButton;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
 import ui.viewcontroller.ViewController;
@@ -39,9 +40,9 @@ public class InquirePanel extends JPanel{
 	
 	private JLabel orderLabel = new JLabel("订单条形码号");
 	
-	private JButton ok = new JButton("");
+	private LimpidButton ok = new LimpidButton("","picture/查询.png");
 	
-	private JButton cancel = new JButton("");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
@@ -89,14 +90,14 @@ public class InquirePanel extends JPanel{
 				          this.search.getY(),
 				          BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-		this.ok.setIcon(new ImageIcon("picture/查询.png"));
-		this.ok.setBorderPainted(false);
+//		this.ok.setIcon(new ImageIcon("picture/查询.png"));
+//		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + COMPONENT_GAP, this.ok.getY(),
 				BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
-		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-		this.cancel.setBorderPainted(false);
+//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+//		this.cancel.setBorderPainted(false);
 		//把组件添加到面板
 		this.add(this.orderLabel);
 		this.add(this.search);
