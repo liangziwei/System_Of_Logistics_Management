@@ -7,7 +7,7 @@ import constant.CargoState;
  * 记录了接收单的信息
  * @author 阮威威
  */
-public class ReceivingVO {
+public class ReceivingVO{
 	/**
 	 * 中转中心编号（城市编号＋中转中心编号）
 	 */

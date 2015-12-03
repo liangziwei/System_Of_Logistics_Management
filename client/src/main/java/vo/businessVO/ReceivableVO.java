@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import po.businessPO.ReceivablePO;
 
-public class ReceivableVO {
+public class ReceivableVO{
 
 	private String date;
 	private double money;

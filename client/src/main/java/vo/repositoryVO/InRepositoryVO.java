@@ -1,15 +1,13 @@
 
 package vo.repositoryVO;
 
-import javax.crypto.interfaces.PBEKey;
-
 import constant.AreaCodeType;
 
 /**
  * 记录了入库单的信息
  * @author 阮威威
  */
-public class InRepositoryVO {
+public class InRepositoryVO{
 	/**
 	 * 快递的编号（十位数字）
 	 */

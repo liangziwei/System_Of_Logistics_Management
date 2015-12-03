@@ -8,7 +8,7 @@ import constant.LoadingType;
  * 记录了出库单的信息
  * @author 阮威威
  */
-public class OutRepositoryVO {
+public class OutRepositoryVO{
 	/**
 	 * 快递的编号（十位数字）
 	 */

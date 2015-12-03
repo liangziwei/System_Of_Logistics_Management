@@ -15,7 +15,7 @@ public class ApprovalFormUI_Driver {
 			int input = s.nextInt();
 			switch(input) {
 			case 1:
-				System.out.println("所有未审批单据："+approval.getUncheckedForms("2015-02-14"));
+//				System.out.println("所有未审批单据："+approval.getUncheckedForms("2015-02-14"));
 				break;
 			case 2:
 				go = false;

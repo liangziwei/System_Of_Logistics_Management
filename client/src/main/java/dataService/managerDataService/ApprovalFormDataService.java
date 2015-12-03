@@ -20,6 +20,6 @@ public interface ApprovalFormDataService extends Remote{
 	 * @return UncheckedFormPO , 返回未审批单据的值对象，具体参照UncheckedFormPO的定义
 	 */
 	
-	public UncheckedFormPO getUncheckedForms(String date) throws RemoteException;
+	public UncheckedFormPO getUncheckedForms() throws RemoteException;
 
 }

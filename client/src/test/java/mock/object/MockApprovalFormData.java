@@ -1,6 +1,9 @@
 package mock.object;
 
 import po.managerPO.UncheckedFormPO;
+
+import java.rmi.RemoteException;
+
 import dataService.managerDataService.ApprovalFormDataService;
 
 public class MockApprovalFormData implements ApprovalFormDataService{
@@ -25,6 +28,12 @@ public class MockApprovalFormData implements ApprovalFormDataService{
 //						"2015-10-27", trace, city)));
 		
 		
+		return null;
+	}
+
+	@Override
+	public UncheckedFormPO getUncheckedForms() throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

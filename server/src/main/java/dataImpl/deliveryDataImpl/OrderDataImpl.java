@@ -1,6 +1,5 @@
 package dataImpl.deliveryDataImpl;
 
-import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -104,31 +103,6 @@ public class OrderDataImpl implements OrderDataService{
 		}
 		
 		return records;
-	}
-
-	public List<OrderPO> getUnCheckOrder() throws RemoteException {
-		List<OrderPO> po = new ArrayList<OrderPO>();
-		String sql = "select * from order_table where is_approved = 'false';";
-		ResultSet rs;
-		try {
-			rs = Database.findOperation(sql);
-			while(rs.next()) {
-				po.add(this.createOrderPO(rs));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return po;
-	}
-
-	public boolean updateUnCheckOrders(List<String> id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean updateUnCheckOrder(String id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	private OrderPO createOrderPO(ResultSet rs) {
