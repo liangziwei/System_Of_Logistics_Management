@@ -77,7 +77,7 @@ public class BusinessPanel extends UserPanel{
 		this.payment.setBounds(0, this.receiveAndSend.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.payment.setFont(WORD_FONT);
-		this.payment.setIcon(new ImageIcon("picture/新建付款单.png"));
+		this.payment.setIcon(new ImageIcon("picture/新建收款单.png"));
 		this.vehicle.setBounds(0, this.payment.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.vehicle.setFont(WORD_FONT);

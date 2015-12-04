@@ -38,6 +38,7 @@ public class DateInputPanel extends JPanel{
 		this.startDateT.setPanelBound(this.startDateL.getX() + labelW + (dateX >> 1), this.startDateL.getY(),
 				textW, textH);
 		this.startDateT.setFont(WORD_FONT);
+		this.startDateT.setOpaque(false);
 		//结束日期标签
 		this.endDateL.setBounds(this.startDateT.getX() + textW + (dateX >> 1), this.startDateL.getY(),
 				labelW, labelH);
@@ -46,6 +47,7 @@ public class DateInputPanel extends JPanel{
 		this.endDateT.setPanelBound(this.endDateL.getX() + labelW + (dateX >> 1), this.endDateL.getY(),
 				textW, textH);
 		this.endDateT.setFont(WORD_FONT);
+		this.endDateT.setOpaque(false);
 		//将组件添加到面板
 		this.setLayout(null);
 		this.add(this.startDateL);

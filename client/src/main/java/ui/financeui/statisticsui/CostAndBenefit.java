@@ -7,13 +7,14 @@ import javax.swing.JLabel;
 
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 
 @SuppressWarnings("serial")
 public class CostAndBenefit extends DetailPanel{
 
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private JLabel startDateL = new JLabel("开始日期");
 	
@@ -25,9 +26,9 @@ public class CostAndBenefit extends DetailPanel{
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 20);
 	
-	private static final int LABEL_W = 60;
+	private static final int LABEL_W = 80;
 	
-	private static final int LABEL_H = 32;
+	private static final int LABEL_H = 30;
 	
 	private static final int TEXT_W = LABEL_W << 1;
 	
@@ -49,6 +50,7 @@ public class CostAndBenefit extends DetailPanel{
 		this.startDateT.setBounds(this.startDateL.getX() + LABEL_W + (START_DATE_X << 1), this.startDateL.getY(),
 				TEXT_W, TEXT_H);
 		this.startDateT.setFont(WORD_FONT);
+		this.startDateT.setOpaque(false);
 		//结束日期标签
 		this.endDateL.setBounds(this.startDateL.getX(), this.startDateL.getY() + LABEL_H + START_DATE_Y,
 				LABEL_W, LABEL_H);
@@ -56,6 +58,7 @@ public class CostAndBenefit extends DetailPanel{
 		//结束日期文本框
 		this.endDateT.setBounds(this.startDateT.getX(), this.endDateL.getY(), TEXT_W, TEXT_H);
 		this.endDateT.setFont(WORD_FONT);
+		this.endDateT.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.endDateT.getX() + (TEXT_W >> 1), this.endDateT.getY() + TEXT_H + START_DATE_Y,
 				BUTTON_W, BUTTON_H);

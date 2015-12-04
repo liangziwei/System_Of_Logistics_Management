@@ -15,6 +15,7 @@ import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.managerBLService.StaffManagementBLService;
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.managerVO.StaffVO;
 
 @SuppressWarnings("serial")
@@ -48,9 +49,9 @@ public class AddStaff extends DetailPanel{
 	
 	private JTextField salaryText = new JTextField();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private JLabel tip = new JLabel();
 	
@@ -64,9 +65,9 @@ public class AddStaff extends DetailPanel{
 	
 	private static final int TEXT_H = LABEL_H;
 	
-	private static final int BUTTON_W = 60;
+	private static final int BUTTON_W = 80;
 	
-	private static final int BUTTON_H = 36;
+	private static final int BUTTON_H = 30;
 	
 	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W) / 3;
 	
@@ -82,6 +83,7 @@ public class AddStaff extends DetailPanel{
 		this.nameText.setBounds(this.nameLabel.getX() + LABEL_W + (START_X >> 1),
 				this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//性别标签
 		this.genderLabel.setBounds(this.nameLabel.getX(),
 				this.nameText.getY() + gap, LABEL_W, LABEL_H);
@@ -91,6 +93,7 @@ public class AddStaff extends DetailPanel{
 		this.genderText.setFont(WORD_FONT);
 		this.genderText.addItem("男");
 		this.genderText.addItem("女");
+		this.setOpaque(false);
 		//编号标签
 		this.idLabel.setBounds(this.genderLabel.getX(),
 				this.genderLabel.getY() + gap, LABEL_W, LABEL_H);
@@ -98,6 +101,7 @@ public class AddStaff extends DetailPanel{
 		//编号文本框
 		this.idText.setBounds(this.genderText.getX(), this.idLabel.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setOpaque(false);
 		//职位标签
 		this.posLabel.setBounds(this.idLabel.getX(), this.idLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.posLabel.setFont(WORD_FONT);
@@ -109,12 +113,14 @@ public class AddStaff extends DetailPanel{
 		this.posText.addItem("中转中心业务员");
 		this.posText.addItem("中转中心库存管理人员");
 		this.posText.addItem("财务人员");
+		this.posText.setOpaque(false);
 		//出生日期标签
 		this.birthLabel.setBounds(this.posLabel.getX(), this.posLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.birthLabel.setFont(WORD_FONT);
 		//出生日期文本框
 		this.birthText.setPanelBound(this.posText.getX(), this.birthLabel.getY(), TEXT_W, TEXT_H);
 		this.birthText.setFont(WORD_FONT);
+		this.birthText.setOpaque(false);
 		//薪水标签
 		this.salaryLabel.setBounds(this.birthLabel.getX(), this.birthLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.salaryLabel.setFont(WORD_FONT);
@@ -128,6 +134,7 @@ public class AddStaff extends DetailPanel{
 		this.salaryText.setBounds(this.salaryType.getX() + this.salaryType.getWidth(),
 				this.salaryType.getY(), TEXT_W >> 1, TEXT_H);
 		this.salaryText.setFont(WORD_FONT);
+		this.salaryText.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.salaryText.getX(),
 				this.salaryText.getY() + TEXT_H + START_Y, BUTTON_W, BUTTON_H);

@@ -10,7 +10,8 @@ public class DatabaseConnect {
 
 	private static final String URL="jdbc:mysql://localhost/logistics_system";
 	private static final String USER="root";
-	private static final String PASSWORD="1282976747";
+//	private static final String PASSWORD="1282976747";
+	private static final String PASSWORD="blabla";
 
 	private static Connection conn=null;
 	
