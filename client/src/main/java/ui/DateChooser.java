@@ -400,8 +400,8 @@ public class DateChooser extends JPanel {
 		}
  
 		protected void paintComponent(Graphics g) {
-			g.setFont(font);
-			g.drawString("������ ����һ ���ڶ� ������ ������ ������ ������", 5, 10);
+			g.setFont(font); 
+			g.drawString("星期天  星期一 星期二  星期三  星期四  星期五 星期六", 5, 10);
 			g.drawLine(0, 15, getWidth(), 15);
 		}
  
@@ -643,7 +643,7 @@ public class DateChooser extends JPanel {
 			this.setBackground(new Color(160, 185, 215));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			final JLabel jl = new JLabel("今天: " + sdf.format(new Date()));
-			jl.setBounds(100,0,100, 20);
+			jl.setBounds(90,0,150, 20);
 			jl.setToolTipText("当前日期");
 			this.add(jl);
 			jl.addMouseListener(new MouseAdapter() {

@@ -13,7 +13,7 @@ import po.transitionPO.TransferringPO;
 public class TransferringDataImpl implements TransferringDataService {
 
 	ResultSet rs;
-	
+
 	public boolean AddTransferringFormDT(TransferringPO transferringPO) {
 		// TODO Auto-generated method stub
 		String transferringid = transferringPO.gettransferringid();
@@ -61,9 +61,10 @@ public class TransferringDataImpl implements TransferringDataService {
 		}
 		boolean add = false;
 		String val = "";
-		val = "loadingdate='" + loadingdate + "',way='" + way.toString() + "',wayid'" + wayid + "',departureid='" + departureid
-				+ "',arrivalid='" + arrivalid + "',supervisionid='" + supervisionid + "',containerid='" + containerid + "',theallDeliveryid='" + theallDeliveryid + "',fare="
-				+ fare + ",isApproved=0,isPassed=1";
+		val = "loadingdate='" + loadingdate + "',way='" + way.toString() + "',wayid＝'" + wayid + "',departureid='"
+				+ departureid + "',arrivalid='" + arrivalid + "',supervisionid='" + supervisionid + "',containerid='"
+				+ containerid + "',theallDeliveryid='" + theallDeliveryid + "',fare=" + fare
+				+ ",isApproved=0,isPassed=1";
 		return Database.modify("transferring", val, "transferringid", transferringid);
 	}
 
@@ -82,8 +83,8 @@ public class TransferringDataImpl implements TransferringDataService {
 		boolean isApproval = false;
 		boolean isPass = false;
 		try {
-			rs=Database.query("transferring","transferringid",transferringNumber);
-			while(rs.next()){
+			rs = Database.query("transferring", "transferringid", transferringNumber);
+			while (rs.next()) {
 				loadingdate = rs.getString("loadingdate");
 				way = LoadingType.valueOf(rs.getString("way"));
 				wayid = rs.getString("wayid");
@@ -96,17 +97,18 @@ public class TransferringDataImpl implements TransferringDataService {
 				isPass = Boolean.parseBoolean(rs.getString("isPassed"));
 				String deliver = rs.getString("alldeliveryid");
 				String[] del = deliver.split(" ");
-				for(String a:del){
+				for (String a : del) {
 					alldeliveryid.add(a);
 				}
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		if (way==null) {
+		if (way == null) {
 			return null;
 		}
-		TransferringPO transferringPO = new TransferringPO(loadingdate, transferringid, way, wayid, departureid, arrivalid, supervisionid, containerid, alldeliveryid);
+		TransferringPO transferringPO = new TransferringPO(loadingdate, transferringid, way, wayid, departureid,
+				arrivalid, supervisionid, containerid, alldeliveryid);
 		transferringPO.setfare(fare);
 		transferringPO.setisApproved(isApproval);
 		transferringPO.setisPassed(isPass);
@@ -115,19 +117,22 @@ public class TransferringDataImpl implements TransferringDataService {
 
 	public List<TransferringPO> GetTransferringInfoDT(String date) {
 		// TODO Auto-generated method stub
-//		List<TransferringPO> alltransferringPO = new ArrayList<TransferringPO>();
-//		List<String> alldeliveryid1 = new ArrayList<String>();
-//		alldeliveryid1.add("1110000123");
-//		alldeliveryid1.add("1110001342");
-//		alldeliveryid1.add("1110022123");
-//		List<String> alldeliveryid2 = new ArrayList<String>();
-//		alldeliveryid2.add("1110120123");
-//		alldeliveryid2.add("1111001342");
-//		alldeliveryid2.add("1110452123");
-//		alltransferringPO.add(new TransferringPO("2015-10-11", "017101000000127", LoadingType.PLANE, "139010001", "北京",
-//				"南京", "茗柯", "3", alldeliveryid1));
-//		alltransferringPO.add(new TransferringPO("2015-10-11", "017101000100127", LoadingType.TRAIN, "159010101", "北京",
-//				"南京", "haha", "2", alldeliveryid2));
+		// List<TransferringPO> alltransferringPO = new
+		// ArrayList<TransferringPO>();
+		// List<String> alldeliveryid1 = new ArrayList<String>();
+		// alldeliveryid1.add("1110000123");
+		// alldeliveryid1.add("1110001342");
+		// alldeliveryid1.add("1110022123");
+		// List<String> alldeliveryid2 = new ArrayList<String>();
+		// alldeliveryid2.add("1110120123");
+		// alldeliveryid2.add("1111001342");
+		// alldeliveryid2.add("1110452123");
+		// alltransferringPO.add(new TransferringPO("2015-10-11",
+		// "017101000000127", LoadingType.PLANE, "139010001", "北京",
+		// "南京", "茗柯", "3", alldeliveryid1));
+		// alltransferringPO.add(new TransferringPO("2015-10-11",
+		// "017101000100127", LoadingType.TRAIN, "159010101", "北京",
+		// "南京", "haha", "2", alldeliveryid2));
 		String sql = "SELECT * FROM transferring";
 		ResultSet rs = null;
 		try {
@@ -136,9 +141,9 @@ public class TransferringDataImpl implements TransferringDataService {
 			e.printStackTrace();
 			return null;
 		}
-		//List
+		// List
 		List<TransferringPO> thelist = new ArrayList<TransferringPO>();
-		//相关信息
+		// 相关信息
 		String transferringid = null;
 		String loadingdate = null;
 		LoadingType way = null;
@@ -149,9 +154,9 @@ public class TransferringDataImpl implements TransferringDataService {
 		String containerid = null;
 		double fare = 0.0;
 		try {
-			while(rs.next()){
+			while (rs.next()) {
 				loadingdate = rs.getString("loadingdate");
-				if(loadingdate.equals(date)){
+				if (loadingdate.equals(date)) {
 					transferringid = rs.getString("transferringid");
 					way = LoadingType.valueOf(rs.getString("way"));
 					wayid = rs.getString("wayid");
@@ -163,12 +168,13 @@ public class TransferringDataImpl implements TransferringDataService {
 					String deliver = rs.getString("alldeliveryid");
 					List<String> alldeliveryid = new ArrayList<String>();
 					String[] del = deliver.split(" ");
-					for(String a:del){
+					for (String a : del) {
 						alldeliveryid.add(a);
 					}
-					TransferringPO transferringPO = new TransferringPO(loadingdate, transferringid, way, wayid, departureid, arrivalid, supervisionid, containerid, alldeliveryid);
+					TransferringPO transferringPO = new TransferringPO(loadingdate, transferringid, way, wayid,
+							departureid, arrivalid, supervisionid, containerid, alldeliveryid);
 					transferringPO.setfare(fare);
-					thelist.add(transferringPO);			
+					thelist.add(transferringPO);
 				}
 			}
 		} catch (SQLException e) {
@@ -177,8 +183,7 @@ public class TransferringDataImpl implements TransferringDataService {
 		}
 		if (thelist.isEmpty()) {
 			return null;
-		}
-		else {			
+		} else {
 			return thelist;
 		}
 	}

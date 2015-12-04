@@ -18,9 +18,11 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import businessLogic.businessLogicController.repositoryController.OutRepositoryController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.repositoryBLService.OutRepositoryBLService;
 import constant.AreaCodeType;
 import constant.LoadingType;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.businessVO.ReceivableVO;
@@ -29,14 +31,16 @@ import vo.transitionVO.TransferringVO;
 
 public class SeeTransferringListPanel extends DetailPanel{
 	private OutRepositoryBLService outRepositoryBLService = new OutRepositoryController();
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	//组件
 	private JTable table = null;
 	private JLabel time = new JLabel("查询时间");
 	private JTextField timeyear = new JTextField();
-	private JTextField timemonth = new JTextField();
-	private JTextField timeday = new JTextField();
-	private JLabel apart1 = new JLabel("-");
-	private JLabel apart2 = new JLabel("-");
+//	private JTextField timemonth = new JTextField();
+//	private JTextField timeday = new JTextField();
+//	private JLabel apart1 = new JLabel("-");
+//	private JLabel apart2 = new JLabel("-");
 	private JButton find = new JButton("查询库存信息");
 	private JButton cancle = new JButton("取消");
 	private JScrollPane jScrollPane = new JScrollPane();
@@ -75,17 +79,18 @@ public class SeeTransferringListPanel extends DetailPanel{
 		//组件
 		time.setBounds(50, 10, LABEL_W, LABEL_H);
 		this.add(time);
-		timeyear.setBounds(time.getX()+time.getWidth()+COMPONENT_GAP_X, time.getY(), TEXT_W/2, TEXT_H);
+		timeyear.setBounds(time.getX()+time.getWidth()+COMPONENT_GAP_X, time.getY(), (TEXT_W/2)*3, TEXT_H);
+		dateChoose.register(timeyear);
 		this.add(timeyear);
-		apart1.setBounds(timeyear.getX()+timeyear.getWidth(), timeyear.getY(), 10, TEXT_H);
-		this.add(apart1);
-		timemonth.setBounds(apart1.getX()+apart1.getWidth(), apart1.getY(), TEXT_W /2, TEXT_H);
-		this.add(timemonth);
-		apart2.setBounds(timemonth.getX()+timemonth.getWidth(), timemonth.getY(), 10, TEXT_H);
-		this.add(apart2);
-		timeday.setBounds(apart2.getX()+apart2.getWidth(),apart2.getY(),TEXT_W /2,TEXT_H);
-		this.add(timeday);
-		find.setBounds(timeday.getX()+timeday.getWidth()+COMPONENT_GAP_X+10, timeday.getY(), LABEL_W+20, LABEL_H);
+//		apart1.setBounds(timeyear.getX()+timeyear.getWidth(), timeyear.getY(), 10, TEXT_H);
+//		this.add(apart1);
+//		timemonth.setBounds(apart1.getX()+apart1.getWidth(), apart1.getY(), TEXT_W /2, TEXT_H);
+//		this.add(timemonth);
+//		apart2.setBounds(timemonth.getX()+timemonth.getWidth(), timemonth.getY(), 10, TEXT_H);
+//		this.add(apart2);
+//		timeday.setBounds(apart2.getX()+apart2.getWidth(),apart2.getY(),TEXT_W /2,TEXT_H);
+//		this.add(timeday);
+		find.setBounds(timeyear.getX()+timeyear.getWidth()+COMPONENT_GAP_X+30, timeyear.getY(), LABEL_W+20, LABEL_H);
 		this.add(find);
 		cancle.setBounds(find.getX()+find.getWidth()+COMPONENT_GAP_X+10, find.getY(), LABEL_W+20, LABEL_H);
 		this.add(cancle);
@@ -105,12 +110,10 @@ public class SeeTransferringListPanel extends DetailPanel{
 				if (thedate.equals("empty")) {
 					showState("查询日期不能为空");
 				}
-				else if (thedate.equals("WrongMonth")) {
-					showState("查询月份错误");
+				else if (thedate.equals("WrongTime")) {
+					showState("查询时间错误错误");
 				}
-				else if (thedate.equals("WrongDay")) {
-					showState("查询日期错误");
-				}
+
 				else {
 					showState("");
 					List<TransferringVO> LIST = outRepositoryBLService.GetTransferringInfo(thedate);
@@ -130,8 +133,8 @@ public class SeeTransferringListPanel extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				timeyear.setText("");
-				timemonth.setText("");
-				timeday.setText("");
+//				timemonth.setText("");
+//				timeday.setText("");
 			}
 		});
 	}
@@ -200,44 +203,13 @@ public class SeeTransferringListPanel extends DetailPanel{
 	}
 	
 	private String getdate(){
-		if (timeyear.getText().equals("")||timemonth.getText().equals("")||timeday.getText().equals("")) {
+		if (timeyear.getText().equals("")) {
 			return "empty";
 		}
-		int year = Integer.parseInt(timeyear.getText().trim());
-		int month = Integer.parseInt(timemonth.getText().trim());
-		int day = Integer.parseInt(timeday.getText().trim());
-		if(month<1||month>12){
-			return "WrongMonth";
+		if (!CommonLogic.isDate(timeyear.getText().trim())) {
+			return "WrongTime";
 		}
-		if (day<1||day>31) {
-			return "WrongDay";
-		}
-		if (month==1||month==3||month==5||month==7||month==8||month==10||month==12) {
-			if (day>31) {
-				return "WrongDay";
-			}
-		}
-		if (month==4||month==6||month==9||month==11) {
-			if (day>30) {
-				return "WrongDay";
-			}
-		}
-		if (month==2) {
-			if (day>29) {
-				return "WrongDay";
-			}
-			if (year%400==0) {
-				if (day>28) {
-					return "WrongDay";
-				}
-			}
-			if (year%4==0&&year%100!=0) {
-				if (day>28) {
-					return "WrongDay";
-				}
-			}
-		}
-		String timedate = timeyear.getText().trim()+"-"+timemonth.getText().trim()+"-"+timeday.getText().trim();
+		String timedate = timeyear.getText().trim();
 		return timedate;
 		
 	}

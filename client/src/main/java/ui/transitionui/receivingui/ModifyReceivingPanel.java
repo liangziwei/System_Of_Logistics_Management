@@ -16,15 +16,18 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.transitionController.ReceivingController;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import constant.CargoState;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.transitionVO.ReceivingVO;
 
 public class ModifyReceivingPanel extends DetailPanel {
 	private ReceivingBLService receivingService = new ReceivingController();
-	// 添加下拉框
-	private JScrollPane jScrollPane = new JScrollPane();
-	private JPanel container = new JPanel();
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
+//	// 添加下拉框
+//	private JScrollPane jScrollPane = new JScrollPane();
+//	private JPanel container = new JPanel();
 	// 组件
 	private JLabel transferringid = new JLabel("中转单编号");
 
@@ -44,9 +47,9 @@ public class ModifyReceivingPanel extends DetailPanel {
 
 	private JTextField arrivaldateTextyear = new JTextField();
 
-	private JTextField arrivaldateTextmonth = new JTextField();
-
-	private JTextField arrivaldateTextday = new JTextField();
+//	private JTextField arrivaldateTextmonth = new JTextField();
+//
+//	private JTextField arrivaldateTextday = new JTextField();
 
 	private JTextField transitionidText = new JTextField();
 
@@ -112,29 +115,30 @@ public class ModifyReceivingPanel extends DetailPanel {
 		// TODO Auto-generated constructor stub
 		super();
 		//下拉框设置
-		container.setLayout(null);
-		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
-		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
-		jScrollPane.setViewportView(this.container);
-		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
-		super.add(jScrollPane);
+//		container.setLayout(null);
+//		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+//		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
+//		jScrollPane.setViewportView(this.container);
+//		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+//		super.add(jScrollPane);
 				
-		transferringid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
-		this.container.add(transferringid);
+		transferringid.setBounds(START_X, START_Y/2, LABEL_W, LABEL_H);
+		this.add(transferringid);
 		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), TEXTid_W, TEXT_H);
-		this.container.add(transferringidText);
+		this.add(transferringidText);
 		find.setBounds(transferringidText.getX() + transferringidText.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), BUTTON_W, BUTTON_H);
-		this.container.add(find);
+		this.add(find);
 		cancel1.setBounds(find.getX() + find.getWidth() + COMPONENT_GAP_X, find.getY(), BUTTON_W, BUTTON_H);
-		this.container.add(cancel1);
+		this.add(cancel1);
 
 		// 主信息面板设置
 		infoPanel.setBounds(transferringid.getX(), transferringid.getY() + transferringid.getHeight() + COMPONENT_GAP_Y,
-				AddLoadingPanel.DETAIL_PANEL_W, AddLoadingPanel.START_Y + (LABEL_H + COMPONENT_GAP_Y) * 3);
+				AddLoadingPanel.DETAIL_PANEL_W, AddLoadingPanel.START_Y + (LABEL_H + COMPONENT_GAP_Y) * 3-20);
 		this.infoPanel.setLayout(null);
-		this.container.add(infoPanel);
+		infoPanel.setOpaque(false);
+		this.add(infoPanel);
 		this.infoPanel.setVisible(false);
 		// 初始化信息面板
 		this.initUI();
@@ -153,7 +157,8 @@ public class ModifyReceivingPanel extends DetailPanel {
 		this.buttonPanel.add(this.ok);
 		this.buttonPanel.add(this.cancle2);
 		cancle2.setVisible(false);
-		this.container.add(buttonPanel);
+		buttonPanel.setOpaque(false);
+		this.add(buttonPanel);
 		this.buttonPanel.setVisible(false);
 
 		// 状态信息1
@@ -162,13 +167,13 @@ public class ModifyReceivingPanel extends DetailPanel {
 				(AddLoadingPanel.BUTTON_W << 2), AddLoadingPanel.BUTTON_W);
 		this.state1.setFont(AddLoadingPanel.WORD_FONT);
 		this.state1.setForeground(Color.RED);
-		this.container.add(state1);
+		this.add(state1);
 		
 		//状态信息2
 		this.state2.setBounds(AddLoadingPanel.START_X, this.buttonPanel.getY() - BUTTON_H, (BUTTON_W<<2), BUTTON_W);
 		this.state2.setFont(WORD_FONT);
 		this.state2.setForeground(Color.RED);
-		this.container.add(state2);
+		this.add(state2);
 		this.state2.setVisible(false);
 		// 添加事件监听
 		this.addListener();
@@ -179,25 +184,26 @@ public class ModifyReceivingPanel extends DetailPanel {
 		arrivaldate.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivaldate);
 		arrivaldateTextyear.setBounds(arrivaldate.getX() + arrivaldate.getWidth() + COMPONENT_GAP_X, arrivaldate.getY(),
-				TEXT_W / 2, TEXT_H);
+				(TEXT_W / 2)*3, TEXT_H);
+		dateChoose.register(arrivaldateTextyear);
 		this.infoPanel.add(arrivaldateTextyear);
-		JLabel apart1 = new JLabel("-");
-		JLabel apart2 = new JLabel("-");
-		apart1.setBounds(arrivaldateTextyear.getX() + arrivaldateTextyear.getWidth(), arrivaldateTextyear.getY(), 10,
-				TEXT_H);
-		this.infoPanel.add(apart1);
-		arrivaldateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
-		this.infoPanel.add(arrivaldateTextmonth);
-		apart2.setBounds(arrivaldateTextmonth.getX() + arrivaldateTextmonth.getWidth(), arrivaldate.getY(), 10, TEXT_H);
-		this.infoPanel.add(apart2);
-		arrivaldateTextday.setBounds(apart2.getX() + apart2.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
-		this.infoPanel.add(arrivaldateTextday);
+//		JLabel apart1 = new JLabel("-");
+//		JLabel apart2 = new JLabel("-");
+//		apart1.setBounds(arrivaldateTextyear.getX() + arrivaldateTextyear.getWidth(), arrivaldateTextyear.getY(), 10,
+//				TEXT_H);
+//		this.infoPanel.add(apart1);
+//		arrivaldateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
+//		this.infoPanel.add(arrivaldateTextmonth);
+//		apart2.setBounds(arrivaldateTextmonth.getX() + arrivaldateTextmonth.getWidth(), arrivaldate.getY(), 10, TEXT_H);
+//		this.infoPanel.add(apart2);
+//		arrivaldateTextday.setBounds(apart2.getX() + apart2.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
+//		this.infoPanel.add(arrivaldateTextday);
 		// 本中转中心编号
 		transitionid.setBounds(arrivaldate.getX(), arrivaldate.getY() + arrivaldate.getHeight() + COMPONENT_GAP_Y,
-				LABEL_W + 20, LABEL_H);
+				LABEL_W +11, LABEL_H);
 
 		this.infoPanel.add(transitionid);
-		transitionidText.setBounds(transferringid.getX() + transitionid.getWidth() + COMPONENT_GAP_X,
+		transitionidText.setBounds(transitionid.getX() + transitionid.getWidth() + COMPONENT_GAP_X,
 				transitionid.getY(), TEXTid_W, TEXT_H);
 		this.infoPanel.add(transitionidText);
 		// 出发地
@@ -278,8 +284,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 				
 				if (result) {
 					//重置接受单时间
-					receivingVO.setarrivaldate(arrivaldateTextyear.getText().trim() + "-"
-							+ arrivaldateTextmonth.getText().trim() + "-" + arrivaldateTextday.getText().trim());
+					receivingVO.setarrivaldate(arrivaldateTextyear.getText().trim());
 					throughVerifyOperation(receivingVO);   //验证成功
 					cancle2.setVisible(true);
 				}
@@ -317,7 +322,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 		}
 		else {
 			//添加装运信息
-			boolean save =receivingService.addReceivingFormBL(receivingVO);
+			boolean save =receivingService.modifyReceivingFormBL(receivingVO);
 			if(save) {		//保存成功
 				showState2("订单修改成功");
 				disableComponents();
@@ -334,7 +339,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 	
 	private ReceivingVO creatReceivingVO() {
 		String transfer = transferringidText.getText().trim();
-		String arrdate = arrivaldateTextyear.getText().trim()+" -"+arrivaldateTextmonth.getText().trim()+" -"+arrivaldateTextday.getText().trim()+" ";
+		String arrdate = arrivaldateTextyear.getText().trim();
 		String transition = transitionidText.getText().trim();
 		String depart = departureidText.getText().trim();
 		String arrive = arrivalidText.getText().trim();
@@ -359,8 +364,9 @@ public class ModifyReceivingPanel extends DetailPanel {
 		transferringidText.setEditable(false);
 		transitionidText.setEditable(false);
 		arrivaldateTextyear.setEditable(false);
-		arrivaldateTextmonth.setEditable(false);
-		arrivaldateTextday.setEditable(false);
+		dateChoose.setEnabled(false);
+//		arrivaldateTextmonth.setEditable(false);
+//		arrivaldateTextday.setEditable(false);
 		departureidText.setEditable(false);
 		arrivalidText.setEditable(false);
 		endState.setEnabled(false);
@@ -370,18 +376,19 @@ public class ModifyReceivingPanel extends DetailPanel {
 		transferringidText.setEditable(true);
 		transitionidText.setEditable(true);
 		arrivaldateTextyear.setEditable(true);
-		arrivaldateTextmonth.setEditable(true);
-		arrivaldateTextday.setEditable(true);
+		dateChoose.setEnabled(true);
+//		arrivaldateTextmonth.setEditable(true);
+//		arrivaldateTextday.setEditable(true);
 		departureidText.setEditable(true);
 		arrivalidText.setEditable(true);
 		endState.setEnabled(true);
 	}
 	
 	private void setinfo(ReceivingVO receivingVO) {
-		String[] ArrivalDate = receivingVO.getarrivaldate().split("-");
-		arrivaldateTextyear.setText(ArrivalDate[0]);
-		arrivaldateTextmonth.setText(ArrivalDate[1]);
-		arrivaldateTextday.setText(ArrivalDate[2]);
+//		String[] ArrivalDate = receivingVO.getarrivaldate().split("-");
+		arrivaldateTextyear.setText(receivingVO.getarrivaldate());
+//		arrivaldateTextmonth.setText(ArrivalDate[1]);
+//		arrivaldateTextday.setText(ArrivalDate[2]);
 		transitionidText.setText(receivingVO.gettransitionid());
 		departureidText.setText(receivingVO.getdepartureid());
 		arrivalidText.setText(receivingVO.getarrivalid());
