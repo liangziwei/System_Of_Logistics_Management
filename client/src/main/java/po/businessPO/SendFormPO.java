@@ -1,6 +1,7 @@
 package po.businessPO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import vo.businessVO.SendFormVO;
 
@@ -51,5 +52,14 @@ public class SendFormPO implements Serializable{
 	
 	public SendFormVO sendFormPOToVO(){
 		return new SendFormVO(date,deliveryid,sender);
+	}
+	
+	public static ArrayList<SendFormVO> sendFormPOListToVO(ArrayList<SendFormPO> po) {
+		ArrayList<SendFormVO> vo = new ArrayList<SendFormVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(po.get(i).sendFormPOToVO());
+		}
+		return vo;
 	}
 }

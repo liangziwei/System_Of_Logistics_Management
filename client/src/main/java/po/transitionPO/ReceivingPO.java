@@ -1,8 +1,10 @@
 package po.transitionPO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import constant.CargoState;
+import vo.transitionVO.ReceivingVO;
 
 /**
  * 记录了接收单的信息
@@ -103,5 +105,19 @@ public class ReceivingPO implements Serializable{
 	}
 	public boolean getisPassed() {
 		return isPassed;
+	}
+	
+	public ReceivingVO receivingPOToVO() {
+		return new ReceivingVO(this.transitionid, this.arrivaldate, 
+				this.transferringid, this.departureid, this.arrivalid, this.state);
+	}
+	
+	public static ArrayList<ReceivingVO> receivingPOListToVO(ArrayList<ReceivingPO> po) {
+		ArrayList<ReceivingVO> vo = new ArrayList<ReceivingVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(po.get(i).receivingPOToVO());
+		}
+		return vo;
 	}
 }

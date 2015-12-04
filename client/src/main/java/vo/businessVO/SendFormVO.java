@@ -1,8 +1,9 @@
 package vo.businessVO;
 
 import po.businessPO.SendFormPO;
+import vo.ApprovalFormVO;
 
-public class SendFormVO{
+public class SendFormVO extends ApprovalFormVO{
 
 	private String date;	
 	private String deliveryid;

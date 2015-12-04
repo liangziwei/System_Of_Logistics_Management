@@ -104,6 +104,20 @@ public class OrderDataImpl implements OrderDataService{
 		
 		return records;
 	}
+	
+	public ArrayList<OrderPO> getUncheckOrder() {
+		ArrayList<OrderPO> po = new ArrayList<OrderPO>();
+		String sql = "select * from order_table where is_approved = 'false';";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				po.add(this.createOrderPO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
 
 	private OrderPO createOrderPO(ResultSet rs) {
 		//创建送件人信息

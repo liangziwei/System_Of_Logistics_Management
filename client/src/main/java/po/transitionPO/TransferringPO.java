@@ -1,6 +1,7 @@
 package po.transitionPO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import constant.LoadingType;
@@ -8,6 +9,7 @@ import constant.LoadingType;
  * 记录了装运单的信息
  * @author 阮威威
  */
+import vo.transitionVO.TransferringVO;
 public class TransferringPO implements Serializable{
 	/**
 	 * 
@@ -150,5 +152,19 @@ public class TransferringPO implements Serializable{
 	}
 	public boolean getisPassed() {
 		return isPassed;
+	}
+	
+	public TransferringVO TransferringPOToVO() {
+		return new TransferringVO(this.loadingdate, this.transferringid, this.way, this.wayid,
+				this.departureid, this.arrivalid, this.supervisionid, this.containerid, this.alldeliveryid);
+	}
+	
+	public static ArrayList<TransferringVO> transferringPOListToVO(ArrayList<TransferringPO> po) {
+		ArrayList<TransferringVO> vo = new ArrayList<TransferringVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(po.get(i).TransferringPOToVO());
+		}
+		return vo;
 	}
 }
