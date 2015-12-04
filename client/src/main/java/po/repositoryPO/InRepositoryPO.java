@@ -1,8 +1,10 @@
 package po.repositoryPO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import constant.AreaCodeType;
+import vo.repositoryVO.InRepositoryVO;
 
 /**
  * 记录了入库单的信息
@@ -124,5 +126,19 @@ public class InRepositoryPO implements Serializable{
 	}
 	public boolean getisPassed() {
 		return isPassed;
+	}
+	
+	public InRepositoryVO inRepositoryPOToVO() {
+		return new InRepositoryVO(this.deliveryid, this.inrepositorydate, 
+				this.arrivalid, this.areaCode, this.rowid, this.shelfid, this.posid);
+	}
+	
+	public static ArrayList<InRepositoryVO> inRepositoryPOListToVO(ArrayList<InRepositoryPO> po) {
+		ArrayList<InRepositoryVO> vo = new ArrayList<InRepositoryVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(po.get(i).inRepositoryPOToVO());
+		}
+		return vo;
 	}
 }

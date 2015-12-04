@@ -1,6 +1,6 @@
 package vo.managerVO;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import vo.businessVO.ArrivalFormVO;
 import vo.businessVO.EntruckingVO;
@@ -22,53 +22,54 @@ public class UncheckedFormVO {
 	/**
 	 *未审批寄件单
 	 */
-	private List<OrderVO> orderlist;
+	private ArrayList<OrderVO> orderlist;
 	
 	/**
 	 *未审批装车单 
 	 */
-	private List<EntruckingVO> entruckinglist;
+	private ArrayList<EntruckingVO> entruckinglist;
 	/**
 	 *未审批营业厅到达单 
 	 */
-	private List<ArrivalFormVO> arrivalformlist;
+	private ArrayList<ArrivalFormVO> arrivalformlist;
 	/**
 	 *未审批收款单 
 	 */
-	private List<ReceivableVO> receivablelist;
+	private ArrayList<ReceivableVO> receivablelist;
 	/**
 	 *未审批派件单
 	 */
-	private List<SendFormVO> sendformlist;
+	private ArrayList<SendFormVO> sendformlist;
 	/**
 	 *未审批中转中心到达单 
 	 */
-	private List<ReceivingVO> receivinglist;
+	private ArrayList<ReceivingVO> receivinglist;
 	/**
 	 *未审批入库单 
 	 */
-	private List<InRepositoryVO> inrepositorylist;
+	private ArrayList<InRepositoryVO> inrepositorylist;
 	/**
 	 *未审批中转单 
 	 */
-	private List<TransferringVO> transferringlist;
+	private ArrayList<TransferringVO> transferringlist;
 	/**
 	 *未审批出库单 
 	 */
 	
-    private List<OutRepositoryVO> outrepositorylist;
+    private ArrayList<OutRepositoryVO> outrepositorylist;
 	/**
 	 *未审批付款单 
 	 */
-	private List<PaymentVO> paymentlist;
-	public UncheckedFormVO(List<OrderVO> orderlist,
-			List<EntruckingVO> entruckinglist,
-			List<ArrivalFormVO> arrivalformlist,
-			List<ReceivableVO> receivablelist, List<SendFormVO> sendformlist,
-			List<ReceivingVO> receivinglist,
-			List<InRepositoryVO> inrepositorylist,
-			List<TransferringVO> transferringlist,
-			List<OutRepositoryVO> outrepositorylist, List<PaymentVO> paymentlist) {
+	private ArrayList<PaymentVO> paymentlist;
+	
+	public UncheckedFormVO(ArrayList<OrderVO> orderlist,
+			ArrayList<EntruckingVO> entruckinglist,
+			ArrayList<ArrivalFormVO> arrivalformlist,
+			ArrayList<ReceivableVO> receivablelist, ArrayList<SendFormVO> sendformlist,
+			ArrayList<ReceivingVO> receivinglist,
+			ArrayList<InRepositoryVO> inrepositorylist,
+			ArrayList<TransferringVO> transferringlist,
+			ArrayList<OutRepositoryVO> outrepositorylist, ArrayList<PaymentVO> paymentlist) {
 		super();
 		this.orderlist = orderlist;
 		this.entruckinglist = entruckinglist;
@@ -81,64 +82,64 @@ public class UncheckedFormVO {
 		this.outrepositorylist = outrepositorylist;
 		this.paymentlist = paymentlist;
 	}
-	public List<OrderVO> getOrderlist() {
+	public ArrayList<OrderVO> getOrderlist() {
 		return orderlist;
 	}
-	public void setOrderlist(List<OrderVO> orderlist) {
+	public void setOrderlist(ArrayList<OrderVO> orderlist) {
 		this.orderlist = orderlist;
 	}
-	public List<EntruckingVO> getEntruckinglist() {
+	public ArrayList<EntruckingVO> getEntruckinglist() {
 		return entruckinglist;
 	}
-	public void setEntruckinglist(List<EntruckingVO> entruckinglist) {
+	public void setEntruckinglist(ArrayList<EntruckingVO> entruckinglist) {
 		this.entruckinglist = entruckinglist;
 	}
-	public List<ArrivalFormVO> getArrivalformlist() {
+	public ArrayList<ArrivalFormVO> getArrivalformlist() {
 		return arrivalformlist;
 	}
-	public void setArrivalformlist(List<ArrivalFormVO> arrivalformlist) {
+	public void setArrivalformlist(ArrayList<ArrivalFormVO> arrivalformlist) {
 		this.arrivalformlist = arrivalformlist;
 	}
-	public List<ReceivableVO> getReceivablelist() {
+	public ArrayList<ReceivableVO> getReceivablelist() {
 		return receivablelist;
 	}
-	public void setReceivablelist(List<ReceivableVO> receivablelist) {
+	public void setReceivablelist(ArrayList<ReceivableVO> receivablelist) {
 		this.receivablelist = receivablelist;
 	}
-	public List<SendFormVO> getSendformlist() {
+	public ArrayList<SendFormVO> getSendformlist() {
 		return sendformlist;
 	}
-	public void setSendformlist(List<SendFormVO> sendformlist) {
+	public void setSendformlist(ArrayList<SendFormVO> sendformlist) {
 		this.sendformlist = sendformlist;
 	}
-	public List<ReceivingVO> getReceivinglist() {
+	public ArrayList<ReceivingVO> getReceivinglist() {
 		return receivinglist;
 	}
-	public void setReceivinglist(List<ReceivingVO> receivinglist) {
+	public void setReceivinglist(ArrayList<ReceivingVO> receivinglist) {
 		this.receivinglist = receivinglist;
 	}
-	public List<InRepositoryVO> getInrepositorylist() {
+	public ArrayList<InRepositoryVO> getInrepositorylist() {
 		return inrepositorylist;
 	}
-	public void setInrepositorylist(List<InRepositoryVO> inrepositorylist) {
+	public void setInrepositorylist(ArrayList<InRepositoryVO> inrepositorylist) {
 		this.inrepositorylist = inrepositorylist;
 	}
-	public List<TransferringVO> getTransferringlist() {
+	public ArrayList<TransferringVO> getTransferringlist() {
 		return transferringlist;
 	}
-	public void setTransferringlist(List<TransferringVO> transferringlist) {
+	public void setTransferringlist(ArrayList<TransferringVO> transferringlist) {
 		this.transferringlist = transferringlist;
 	}
-	public List<OutRepositoryVO> getOutrepositorylist() {
+	public ArrayList<OutRepositoryVO> getOutrepositorylist() {
 		return outrepositorylist;
 	}
-	public void setOutrepositorylist(List<OutRepositoryVO> outrepositorylist) {
+	public void setOutrepositorylist(ArrayList<OutRepositoryVO> outrepositorylist) {
 		this.outrepositorylist = outrepositorylist;
 	}
-	public List<PaymentVO> getPaymentlist() {
+	public ArrayList<PaymentVO> getPaymentlist() {
 		return paymentlist;
 	}
-	public void setPaymentlist(List<PaymentVO> paymentlist) {
+	public void setPaymentlist(ArrayList<PaymentVO> paymentlist) {
 		this.paymentlist = paymentlist;
 	}
 	

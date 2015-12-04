@@ -14,6 +14,7 @@ import businessLogic.businessLogicController.managerController.OrganizationManag
 import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.managerBLService.OrganizationManagementBLService;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.managerVO.OrganizationVO;
 
 @SuppressWarnings("serial")
@@ -33,9 +34,9 @@ public class AddOrganization extends DetailPanel{
 	
 	private JTextField nameText = new JTextField();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private JLabel tip = new JLabel();
 	
@@ -49,9 +50,9 @@ public class AddOrganization extends DetailPanel{
 	
 	private static final int TEXT_H = LABEL_H;
 	
-	private static final int BUTTON_W = 72;
+	private static final int BUTTON_W = 80;
 	
-	private static final int BUTTON_H = 32;
+	private static final int BUTTON_H = 30;
 	
 	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W) / 3;
 	
@@ -65,6 +66,7 @@ public class AddOrganization extends DetailPanel{
 		this.idText.setBounds(this.idLabel.getX() + LABEL_W + (START_X >> 1),
 				this.idLabel.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setOpaque(false);
 		//机构类型标签
 		this.typeLabel.setBounds(this.idLabel.getX(),
 				this.idLabel.getY() + LABEL_H + (START_Y >> 1), LABEL_W, LABEL_H);
@@ -75,6 +77,7 @@ public class AddOrganization extends DetailPanel{
 		this.typeText.addItem("营业厅");
 		this.typeText.addItem("中转中心");
 		this.typeText.addItem("总部");
+		this.typeText.setOpaque(false);
 		//机构名称标签
 		this.nameLabel.setBounds(this.typeLabel.getX(),
 				this.typeLabel.getY() + LABEL_H + (START_Y  >> 1), LABEL_W, LABEL_H);
@@ -82,6 +85,7 @@ public class AddOrganization extends DetailPanel{
 		//机构名称文本框
 		this.nameText.setBounds(this.typeText.getX(), this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.nameText.getX() + (TEXT_W >> 1),
 				this.nameText.getY() + (TEXT_H << 1), BUTTON_W, BUTTON_H);

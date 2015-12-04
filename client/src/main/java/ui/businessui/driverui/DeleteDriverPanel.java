@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.businessController.DriverController;
 import businessLogic.businessLogicModel.util.CommonLogic;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.businessVO.DriverVO;
 
 public class DeleteDriverPanel extends DetailPanel {
@@ -36,15 +37,15 @@ public class DeleteDriverPanel extends DetailPanel {
 	private JTextField genderText=new JTextField();
 	private JTextField drivingDeadlineText=new JTextField();
 	
-	private JButton query = new JButton("查询");
+	private LimpidButton query = new LimpidButton("","picture/查询.png");
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/删除.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 140;
 	
-	private static final int LABEL_H = 25;
+	private static final int LABEL_H = 30;
 
 	private static final int LINE_GAP = 18;
 	
@@ -56,7 +57,7 @@ public class DeleteDriverPanel extends DetailPanel {
 	
 	private static final int START_Y = START_X;
 	
-	private static final int BUTTON_W = LABEL_W;
+	private static final int BUTTON_W = LABEL_W-60;
 	
 	private static final int BUTTON_H = LABEL_H;
 	
@@ -70,38 +71,45 @@ public class DeleteDriverPanel extends DetailPanel {
 		this.driverid.setFont(WORD_FONT);	
 		this.driveridText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.driveridText.setFont(WORD_FONT);
+		this.driveridText.setOpaque(false);
 		
 		this.name.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.name.setFont(WORD_FONT);
 		this.nameText.setBounds(this.driveridText.getX(), this.name.getY(), TEXT_W>>2, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		
 		this.gender.setBounds(START_X+(TEXT_W>>2)+ LABEL_W + (LINE_GAP<<2), this.name.getY() , LABEL_W>>1, LABEL_H);
 		this.gender.setFont(WORD_FONT);
 		this.genderText.setBounds(this.gender.getX()+ (LABEL_W>>1) + LINE_GAP, this.gender.getY(), TEXT_W>>2, TEXT_H);
 		this.genderText.setFont(WORD_FONT);
+		this.genderText.setOpaque(false);
 		
 		this.idNumber.setBounds(START_X, this.name.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.idNumber.setFont(WORD_FONT);
 		this.idNumberText.setBounds(this.driveridText.getX(), this.idNumber.getY(), TEXT_W, TEXT_H);
 		this.idNumberText.setFont(WORD_FONT);
+		this.idNumberText.setOpaque(false);
 		
 		this.birthday.setBounds(START_X, this.idNumber.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.birthday.setFont(WORD_FONT);
 		this.birthdayText.setBounds(this.driveridText.getX(), this.birthday.getY(), TEXT_W>>2, TEXT_H);
 		this.birthdayText.setFont(WORD_FONT);
+		this.birthdayText.setOpaque(false);
 		
 		this.drivingDeadline.setBounds(START_X+(TEXT_W>>2)+ LABEL_W + (LINE_GAP<<1), this.birthday.getY() , LABEL_W, LABEL_H);
 		this.drivingDeadline.setFont(WORD_FONT);
 		this.drivingDeadlineText.setBounds(this.drivingDeadline.getX()+ LABEL_W -LINE_GAP, this.drivingDeadline.getY(), TEXT_W>>2, TEXT_H);
 		this.drivingDeadlineText.setFont(WORD_FONT);
+		this.drivingDeadlineText.setOpaque(false);
 		
 		this.phoneNumber.setBounds(START_X, this.birthday.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.phoneNumber.setFont(WORD_FONT);
 		this.phoneNumberText.setBounds(this.driveridText.getX(), this.phoneNumber.getY(), TEXT_W, TEXT_H);
 		this.phoneNumberText.setFont(WORD_FONT);
+		this.phoneNumberText.setOpaque(false);
 		
-		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W>>1,BUTTON_H);
+		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W,BUTTON_H);
 		this.query.setFont(WORD_FONT);
 		
 		this.result.setBounds(this.phoneNumber.getX() +LINE_GAP, this.phoneNumber.getY() + LABEL_H*4+ LINE_GAP,TEXT_W, BUTTON_H);

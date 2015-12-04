@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.financeController.StatisticsController;
 import businessLogicService.financeBLService.StatisticsBLSevice;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.financeVO.CostBenefitVO;
 
 @SuppressWarnings("serial")
@@ -32,9 +33,9 @@ public class ProfitPanel extends DetailPanel{
 	
 	private JTextField profitText = new JTextField();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
@@ -50,9 +51,9 @@ public class ProfitPanel extends DetailPanel{
 	
 	private static final int PANEL_H = DETAIL_PANEL_H >> 2;
 	
-	private static final int BUTTON_W = 64;
+	private static final int BUTTON_W = 80;
 	
-	private static final int BUTTON_H = 32;
+	private static final int BUTTON_H = 30;
 	
 	private static final int COST_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W) / 3; 
 	
@@ -75,6 +76,7 @@ public class ProfitPanel extends DetailPanel{
 		this.costText.setBounds(this.costLabel.getX() + LABEL_W + (COST_X >> 1), this.costLabel.getY(),
 				TEXT_W, TEXT_H);
 		this.costText.setFont(WORD_FONT);
+		this.costText.setOpaque(false);
 		//总收益标签
 		this.earningsLabel.setBounds(this.costLabel.getX(), this.costLabel.getY() + LABEL_H + (COST_X >> 2),
 				LABEL_W, LABEL_H);
@@ -82,6 +84,7 @@ public class ProfitPanel extends DetailPanel{
 		//总收益文本框
 		this.earningsText.setBounds(this.costText.getX(), this.earningsLabel.getY(), TEXT_W, TEXT_H);
 		this.earningsText.setFont(WORD_FONT);
+		this.earningsText.setOpaque(false);
 		//总利润标签
 		this.profitLabel.setBounds(this.earningsLabel.getX(), this.earningsLabel.getY() + LABEL_H + (COST_X >> 2),
 				LABEL_W, LABEL_H);
@@ -89,6 +92,7 @@ public class ProfitPanel extends DetailPanel{
 		//总利润文本框
 		this.profitText.setBounds(this.earningsText.getX(), this.profitLabel.getY(), TEXT_W, TEXT_H);
 		this.profitText.setFont(WORD_FONT);
+		this.profitText.setOpaque(false);
 		//将组件添加到面板
 		this.add(this.dateInput);
 		this.add(this.ok);

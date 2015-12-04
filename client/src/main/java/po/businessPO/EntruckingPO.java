@@ -1,6 +1,7 @@
 package po.businessPO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import vo.businessVO.EntruckingVO;
 
@@ -116,5 +117,20 @@ public class EntruckingPO implements Serializable{
 	public EntruckingVO entruckingPOToVO(){
 		
 		return new EntruckingVO(date,businessHallid,transportNumber,destionation,vehicleid,supervisor,supercargo,freight);
+	}
+	
+	public static EntruckingPO entrucingVOToPO(EntruckingVO vo) {
+		return new EntruckingPO(vo.getDate(), vo.getBusinessHallid(), vo.getTransportNumber(),
+				vo.getDestionation(), vo.getVehicleid(), vo.getSupervisor(), 
+				vo.getSupercargo(), vo.getFreight());
+	}
+	
+	public static ArrayList<EntruckingVO> entruckingPOListToVO(ArrayList<EntruckingPO> po) {
+		ArrayList<EntruckingVO> vo = new ArrayList<EntruckingVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(po.get(i).entruckingPOToVO());
+		}
+		return vo;
 	}
 }

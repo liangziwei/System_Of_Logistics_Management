@@ -2,9 +2,7 @@ package po.managerPO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-import driver.ui_driver.financeUI_driver.SettlementUI_Driver;
 import po.businessPO.ArrivalFormPO;
 import po.businessPO.EntruckingPO;
 import po.businessPO.ReceivablePO;
@@ -40,53 +38,53 @@ public class UncheckedFormPO implements Serializable{
 	/**
 	 *未审批寄件单
 	 */
-	private List<OrderPO> orderlist;
+	private ArrayList<OrderPO> orderlist;
 	
 	/**
 	 *未审批装车单 
 	 */
-	private List<EntruckingPO> entruckinglist;
+	private ArrayList<EntruckingPO> entruckinglist;
 	/**
 	 *未审批营业厅到达单 
 	 */
-	private List<ArrivalFormPO> arrivalformlist;
+	private ArrayList<ArrivalFormPO> arrivalformlist;
 	/**
 	 *未审批收款单 
 	 */
-	private List<ReceivablePO> receivablelist;
+	private ArrayList<ReceivablePO> receivablelist;
 	/**
 	 *未审批派件单
 	 */
-	private List<SendFormPO> sendformlist;
+	private ArrayList<SendFormPO> sendformlist;
 	/**
 	 *未审批中转中心到达单 
 	 */
-	private List<ReceivingPO> receivinglist;
+	private ArrayList<ReceivingPO> receivinglist;
 	/**
 	 *未审批入库单 
 	 */
-	private List<InRepositoryPO> inrepositorylist;
+	private ArrayList<InRepositoryPO> inrepositorylist;
 	/**
 	 *未审批中转单 
 	 */
-	private List<TransferringPO> transferringlist;
+	private ArrayList<TransferringPO> transferringlist;
 	/**
 	 *未审批出库单 
 	 */
 	
-    private List<OutRepositoryPO> outrepositorylist;
+    private ArrayList<OutRepositoryPO> outrepositorylist;
 	/**
 	 *未审批付款单 
 	 */
-	private List<PaymentPO> paymentlist;
-	public UncheckedFormPO(List<OrderPO> orderlist,
-			List<EntruckingPO> entruckinglist,
-			List<ArrivalFormPO> arrivalformlist,
-			List<ReceivablePO> receivablelist, List<SendFormPO> sendformlist,
-			List<ReceivingPO> receivinglist,
-			List<InRepositoryPO> inrepositorylist,
-			List<TransferringPO> transferringlist,
-			List<OutRepositoryPO> outrepositorylist, List<PaymentPO> paymentlist) {
+	private ArrayList<PaymentPO> paymentlist;
+	public UncheckedFormPO(ArrayList<OrderPO> orderlist,
+			ArrayList<EntruckingPO> entruckinglist,
+			ArrayList<ArrivalFormPO> arrivalformlist,
+			ArrayList<ReceivablePO> receivablelist, ArrayList<SendFormPO> sendformlist,
+			ArrayList<ReceivingPO> receivinglist,
+			ArrayList<InRepositoryPO> inrepositorylist,
+			ArrayList<TransferringPO> transferringlist,
+			ArrayList<OutRepositoryPO> outrepositorylist, ArrayList<PaymentPO> paymentlist) {
 		super();
 		this.orderlist = orderlist;
 		this.entruckinglist = entruckinglist;
@@ -101,95 +99,79 @@ public class UncheckedFormPO implements Serializable{
 	}
 	
 	public static  UncheckedFormVO uncheckedFormPOToVO(UncheckedFormPO po){
-		List<OrderVO> order = createOrderList(po.getOrderlist());
-		List<EntruckingVO> entrucking;
-		List<ArrivalFormVO> arrival;
-		List<ReceivableVO> receivable;
-		List<SendFormVO> send;
-		List<ReceivingVO> receiving;
-		List<InRepositoryVO> in;
-		List<TransferringVO> transferring;
-		List<OutRepositoryVO> out;
-		List<PaymentVO> payment;
-		return new UncheckedFormVO(order, null, null, null, null, null, null, null, null, null);
+		ArrayList<OrderVO> order = OrderPO.orderPOListToVO(po.getOrderlist());
+		ArrayList<EntruckingVO> entrucking = EntruckingPO.entruckingPOListToVO(po.getEntruckinglist());
+		ArrayList<ArrivalFormVO> arrival = ArrivalFormPO.arrivalPOListToVO(po.getArrivalformlist());
+		ArrayList<ReceivableVO> receivable = ReceivablePO.receivablePOListToVO(po.getReceivablelist());
+		ArrayList<SendFormVO> send = SendFormPO.sendFormPOListToVO(po.getSendformlist());
+		ArrayList<ReceivingVO> receiving = ReceivingPO.receivingPOListToVO(po.getReceivinglist());
+		ArrayList<InRepositoryVO> in = InRepositoryPO.inRepositoryPOListToVO(po.getInrepositorylist());
+		ArrayList<TransferringVO> transferring = TransferringPO.transferringPOListToVO(po.getTransferringlist());
+		ArrayList<OutRepositoryVO> out = OutRepositoryPO.outRepositoryPOListToVO(po.getOutrepositorylist());
+		ArrayList<PaymentVO> payment = PaymentPO.paymentPOListToVO(po.getPaymentlist());
+		
+		return new UncheckedFormVO(order, entrucking, arrival, receivable, send,
+				receiving, in, transferring, out, payment);
 	}
 	
-	public List<OrderPO> getOrderlist() {
+	public ArrayList<OrderPO> getOrderlist() {
 		return orderlist;
 	}
-	public void setOrderlist(List<OrderPO> orderlist) {
+	public void setOrderlist(ArrayList<OrderPO> orderlist) {
 		this.orderlist = orderlist;
 	}
-	public List<EntruckingPO> getEntruckinglist() {
+	public ArrayList<EntruckingPO> getEntruckinglist() {
 		return entruckinglist;
 	}
-	public void setEntruckinglist(List<EntruckingPO> entruckinglist) {
+	public void setEntruckinglist(ArrayList<EntruckingPO> entruckinglist) {
 		this.entruckinglist = entruckinglist;
 	}
-	public List<ArrivalFormPO> getArrivalformlist() {
+	public ArrayList<ArrivalFormPO> getArrivalformlist() {
 		return arrivalformlist;
 	}
-	public void setArrivalformlist(List<ArrivalFormPO> arrivalformlist) {
+	public void setArrivalformlist(ArrayList<ArrivalFormPO> arrivalformlist) {
 		this.arrivalformlist = arrivalformlist;
 	}
-	public List<ReceivablePO> getReceivablelist() {
+	public ArrayList<ReceivablePO> getReceivablelist() {
 		return receivablelist;
 	}
-	public void setReceivablelist(List<ReceivablePO> receivablelist) {
+	public void setReceivablelist(ArrayList<ReceivablePO> receivablelist) {
 		this.receivablelist = receivablelist;
 	}
-	public List<SendFormPO> getSendformlist() {
+	public ArrayList<SendFormPO> getSendformlist() {
 		return sendformlist;
 	}
-	public void setSendformlist(List<SendFormPO> sendformlist) {
+	public void setSendformlist(ArrayList<SendFormPO> sendformlist) {
 		this.sendformlist = sendformlist;
 	}
-	public List<ReceivingPO> getReceivinglist() {
+	public ArrayList<ReceivingPO> getReceivinglist() {
 		return receivinglist;
 	}
-	public void setReceivinglist(List<ReceivingPO> receivinglist) {
+	public void setReceivinglist(ArrayList<ReceivingPO> receivinglist) {
 		this.receivinglist = receivinglist;
 	}
-	public List<InRepositoryPO> getInrepositorylist() {
+	public ArrayList<InRepositoryPO> getInrepositorylist() {
 		return inrepositorylist;
 	}
-	public void setInrepositorylist(List<InRepositoryPO> inrepositorylist) {
+	public void setInrepositorylist(ArrayList<InRepositoryPO> inrepositorylist) {
 		this.inrepositorylist = inrepositorylist;
 	}
-	public List<TransferringPO> getTransferringlist() {
+	public ArrayList<TransferringPO> getTransferringlist() {
 		return transferringlist;
 	}
-	public void setTransferringlist(List<TransferringPO> transferringlist) {
+	public void setTransferringlist(ArrayList<TransferringPO> transferringlist) {
 		this.transferringlist = transferringlist;
 	}
-	public List<OutRepositoryPO> getOutrepositorylist() {
+	public ArrayList<OutRepositoryPO> getOutrepositorylist() {
 		return outrepositorylist;
 	}
-	public void setOutrepositorylist(List<OutRepositoryPO> outrepositorylist) {
+	public void setOutrepositorylist(ArrayList<OutRepositoryPO> outrepositorylist) {
 		this.outrepositorylist = outrepositorylist;
 	}
-	public List<PaymentPO> getPaymentlist() {
+	public ArrayList<PaymentPO> getPaymentlist() {
 		return paymentlist;
 	}
-	public void setPaymentlist(List<PaymentPO> paymentlist) {
+	public void setPaymentlist(ArrayList<PaymentPO> paymentlist) {
 		this.paymentlist = paymentlist;
-	}
-	
-	private static List<OrderVO> createOrderList(List<OrderPO> po) {
-		List<OrderVO> vo = new ArrayList<OrderVO>();
-		int size = po.size();
-		for(int i = 0; i < size; i++) {
-			vo.add(OrderPO.orderPOToVO(po.get(i)));
-		}
-		return vo;
-	}
-	
-	private static List<EntruckingVO> createEntruckingVOList(List<EntruckingVO> po) {
-		List<EntruckingVO> vo = new ArrayList<EntruckingVO>();
-		int size = 0;
-		for(int i = 0; i < size; i++) {
-//			vo.add(EntruckingPO.(po.get(i)));
-		}
-		return vo;
 	}
 }

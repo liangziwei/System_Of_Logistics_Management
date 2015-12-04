@@ -1,6 +1,8 @@
 package dataImpl.repositoryDataImpl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import constant.AreaCodeType;
 import dataService.repositoryDataService.InRepositoryDataService;
@@ -134,6 +136,31 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 			// TODO: handle exception
 		}
 		return modify;
+	}
+	
+	public ArrayList<InRepositoryPO> getUncheckInRepository() {
+		ArrayList<InRepositoryPO> po = new ArrayList<InRepositoryPO>();
+		String sql = "select * from inRepository where isApproved = 0";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				po.add(this.createInRepositoryPO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
+	
+	private InRepositoryPO createInRepositoryPO(ResultSet rs) {
+		try {
+			return new InRepositoryPO(rs.getString("deliveryid"), rs.getString("inrepositorydate"),
+					rs.getString("arrivalid"), AreaCodeType.valueOf(rs.getString("areaCode")),
+					rs.getString("rowid"), rs.getString("shelfid"), rs.getString("posid"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

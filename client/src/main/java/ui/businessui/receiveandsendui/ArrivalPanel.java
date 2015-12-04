@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.businessVO.ArrivalFormVO;
 import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
 import constant.CargoState;
@@ -33,9 +34,9 @@ public class ArrivalPanel extends DetailPanel {
 	private JTextField departPlaceText=new JTextField();
 	private JComboBox stateBox = new JComboBox();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 120;
 	
@@ -51,9 +52,9 @@ public class ArrivalPanel extends DetailPanel {
 	
 	private static final int START_Y = START_X;
 	
-	private static final int BUTTON_W = LABEL_W;
+	private static final int BUTTON_W = LABEL_W-40;
 	
-	private static final int BUTTON_H = LABEL_H;
+	private static final int BUTTON_H = LABEL_H+5;
 	
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
@@ -65,22 +66,26 @@ public class ArrivalPanel extends DetailPanel {
 		this.date.setFont(WORD_FONT);	
 		this.dateText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
+		this.dateText.setOpaque(false);
 		
 		this.transitNumber.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.transitNumber.setFont(WORD_FONT);
 		this.transitNumberText.setBounds(this.dateText.getX(), this.transitNumber.getY(), TEXT_W, TEXT_H);
 		this.transitNumberText.setFont(WORD_FONT);
+		this.transitNumberText.setOpaque(false);
 		
 		this.departPlace.setBounds(START_X, this.transitNumber.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.departPlace.setFont(WORD_FONT);
 		this.departPlaceText.setBounds(this.dateText.getX(), this.departPlace.getY(), TEXT_W, TEXT_H);
 		this.departPlaceText.setFont(WORD_FONT);
+		this.departPlaceText.setOpaque(false);
 		
 		this.state.setBounds(START_X, this.departPlace.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.state.setFont(WORD_FONT);
 		this.stateBox.setBounds(this.dateText.getX(), this.state.getY(), LABEL_W, TEXT_H);
 		this.stateBox.setModel(new DefaultComboBoxModel(new String[] {"完整", "损坏", "丢失"}));
 		this.stateBox.setFont(WORD_FONT);
+		this.stateBox.setOpaque(false);
 		
 		this.result.setBounds(this.state.getX()+ LINE_GAP , this.state.getY() + LABEL_H*5+ LINE_GAP,
 				TEXT_W, TEXT_H);

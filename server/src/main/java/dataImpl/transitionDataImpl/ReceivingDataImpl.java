@@ -1,6 +1,8 @@
 package dataImpl.transitionDataImpl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import constant.CargoState;
 import dataService.transitionDataService.ReceivingDataService;
@@ -78,6 +80,44 @@ public class ReceivingDataImpl implements ReceivingDataService {
 		val = "transitionid='" + transitionid + "',arrivaldate='" + arrivaldate + "',departureid='" + departureid
 				+ "',arrivalid='" + arrivalid + "',state='" + state.toString() + "',isApproved=0,isPassed=1";
 		return Database.modify("receiving", val, "transferringid", transferringid);
+	}
+	
+	public ArrayList<ReceivingPO> getUncheckReceiving() {
+		ArrayList<ReceivingPO> po = new ArrayList<ReceivingPO>();
+		String sql = "select * from receiving where isApproved = 0;";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				po.add(this.createReceivingPO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
+	
+	private ReceivingPO createReceivingPO(ResultSet rs) {
+		try {
+			String temp = rs.getString("state");
+			CargoState state = null;
+			switch(temp) {
+			case "DAMAGE":
+				state = CargoState.损坏;
+				break;
+			case "INTACT":
+				state = CargoState.完整;
+				break;
+			case "LOSE":
+				state = CargoState.丢失;
+				break;
+			}
+			return new ReceivingPO(rs.getString("transitionid"), rs.getString("arrivaldate"),
+					rs.getString("transferringid"), rs.getString("departureid"),
+					rs.getString("arrivalid"), state);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

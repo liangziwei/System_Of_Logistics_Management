@@ -1,6 +1,9 @@
 package po.financePO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import vo.financeVO.PaymentVO;
 
 /**
  * 记录了付款单的信息
@@ -103,5 +106,19 @@ public class PaymentPO implements Serializable{
 	}
 	public void setPassed(boolean isPassed) {
 		this.isPassed = isPassed;
+	}
+	
+	public PaymentVO paymentPOToVO() {
+		return new PaymentVO(this.getDate(), this.payAmount, this.name, 
+				this.account, this.entry, this.remark, this.isApproved, this.isPassed);
+	}
+	
+	public static ArrayList<PaymentVO> paymentPOListToVO(ArrayList<PaymentPO> po) {
+		ArrayList<PaymentVO> vo = new ArrayList<PaymentVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(po.get(i).paymentPOToVO());
+		}
+		return vo;
 	}
 }

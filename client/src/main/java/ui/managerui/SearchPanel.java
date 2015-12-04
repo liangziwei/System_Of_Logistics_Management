@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ui.baseui.LimpidButton;
+
 @SuppressWarnings("serial")
 public class SearchPanel extends JPanel{
 
@@ -17,9 +19,9 @@ public class SearchPanel extends JPanel{
 	
 	private JLabel text = new JLabel();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	public SearchPanel(String labelText, Font wordFont, int x, int y, int w, int h) {
 		this.idLabel = new JLabel(labelText);
@@ -39,6 +41,7 @@ public class SearchPanel extends JPanel{
 		this.idText.setBounds(this.idLabel.getX() + labelW + (startX >> 2),
 				this.idLabel.getY(), textW, textH);
 		this.idText.setFont(wordFont);
+		this.idText.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.idText.getX() + textW + (startX >> 1),
 				this.idText.getY(), buttonW, buttonH);

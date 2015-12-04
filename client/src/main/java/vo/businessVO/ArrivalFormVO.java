@@ -2,8 +2,9 @@ package vo.businessVO;
 
 import constant.CargoState;
 import po.businessPO.ArrivalFormPO;
+import vo.ApprovalFormVO;
 
-public class ArrivalFormVO{
+public class ArrivalFormVO extends ApprovalFormVO{
 
 	private String date;
 	private String transitNumber;

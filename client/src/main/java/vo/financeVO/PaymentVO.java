@@ -1,9 +1,12 @@
 package vo.financeVO;
+
+import vo.ApprovalFormVO;
+
 /**
  * 记录了付款单的信息
  * @author 张仁知
  */
-public class PaymentVO {
+public class PaymentVO extends ApprovalFormVO{
 	/**
 	 * 付款日期
 	 */

@@ -187,5 +187,37 @@ public class TransferringDataImpl implements TransferringDataService {
 			return thelist;
 		}
 	}
+	
+	public ArrayList<TransferringPO> getUncheckTransferring() {
+		ArrayList<TransferringPO> po = new ArrayList<TransferringPO>();
+		String sql = "select * from transferring where isApproved = 0;";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				po.add(this.createTransferringPO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
 
+	private TransferringPO createTransferringPO(ResultSet rs) {
+		try {
+			String text = rs.getString("alldeliveryid");
+			String[] temp = text.split(" ");
+			List<String> id = new ArrayList<String>();
+			int len = temp.length;
+			for(int i = 0; i < len; i++) {
+				id.add(temp[i]);
+			}
+			return new TransferringPO(rs.getString("loadingdate"), rs.getString("transferringid"),
+					LoadingType.valueOf(rs.getString("way")), rs.getString("wayid"),
+					rs.getString("departureid"), rs.getString("arrivalid"),
+					rs.getString("supervisionid"), rs.getString("supercargoid"), id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

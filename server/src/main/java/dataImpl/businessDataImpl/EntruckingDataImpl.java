@@ -1,8 +1,12 @@
 package dataImpl.businessDataImpl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import dataService.businessDataService.EntruckingDataService;
 import mysql.Database;
 import po.businessPO.EntruckingPO;
-import dataService.businessDataService.EntruckingDataService;
 
 public class EntruckingDataImpl implements EntruckingDataService {
 	
@@ -30,5 +34,29 @@ public class EntruckingDataImpl implements EntruckingDataService {
 		
 		return Database.add("entrucking", val);
 	}
+	
+	public ArrayList<EntruckingPO> getUncheckEntrucking() {
+		ArrayList<EntruckingPO> po = new ArrayList<EntruckingPO>();
+		String sql = "select * from entrucking where isApproved = 0;";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				po.add(this.createEntruckingPO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
 
+	private EntruckingPO createEntruckingPO(ResultSet rs) {
+		try {
+			return new EntruckingPO(rs.getString("date"), rs.getString("businessHallid"), rs.getString("transportNumber"),
+					rs.getString("destionation"), rs.getString("vehicleid"),
+					rs.getString("supervisor "), rs.getString("supercargo"), rs.getDouble("freight"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

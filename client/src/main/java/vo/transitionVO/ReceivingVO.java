@@ -2,12 +2,13 @@
 package vo.transitionVO;
 
 import constant.CargoState;
+import vo.ApprovalFormVO;
 
 /**
  * 记录了接收单的信息
  * @author 阮威威
  */
-public class ReceivingVO{
+public class ReceivingVO extends ApprovalFormVO{
 	/**
 	 * 中转中心编号（城市编号＋中转中心编号）
 	 */
@@ -118,6 +119,10 @@ public class ReceivingVO{
 	}
 	public boolean getisPassed() {
 		return isPassed;
+	}
+	@Override
+	public String getDate() {
+		return this.arrivaldate;
 	}
 }
 

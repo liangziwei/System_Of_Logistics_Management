@@ -72,11 +72,13 @@ public class ModifyAdminPanel extends DetailPanel {
 		this.id.setFont(WORD_FONT);
 		this.idText.setBounds(this.id.getX() + LABEL_W + LINE_GAP, this.id.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setOpaque(false);
 		
 		this.password.setBounds(START_X, this.id.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.password.setFont(WORD_FONT);
 		this.passwordText.setBounds(this.id.getX() + LABEL_W + LINE_GAP, this.password.getY(), TEXT_W, TEXT_H);
 		this.passwordText.setFont(WORD_FONT);
+		this.passwordText.setOpaque(false);
 		
 		
 		this.type.setBounds(START_X, this.password.getY()+ LABEL_H + (LINE_GAP<<1), LABEL_W, LABEL_H);
@@ -84,11 +86,13 @@ public class ModifyAdminPanel extends DetailPanel {
 		this.typeBox.setModel(new DefaultComboBoxModel(new String[] {"快递员", "营业厅业务员","中转中心业务员","仓库管理员","财务人员","总经理","系统管理员"}));
 		this.typeBox.setBounds(START_X + LABEL_W + LINE_GAP, this.type.getY(), LABEL_W+LINE_GAP, TEXT_H);
 		this.typeBox.setFont(WORD_FONT);
+		this.typeBox.setOpaque(false);
 		
 		this.name.setBounds(this.typeBox.getX()+LABEL_W+(LINE_GAP<<1), this.type.getY(), LABEL_W>>1, LABEL_H);
 		this.name.setFont(WORD_FONT);
 		this.nameText.setBounds(this.name.getX()+LABEL_W/2, this.name.getY(), TEXT_W/3, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		
 		
 		this.limit.setBounds(START_X, this.type.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
@@ -96,6 +100,7 @@ public class ModifyAdminPanel extends DetailPanel {
 		this.limitBox.setModel(new DefaultComboBoxModel(new String[] {"高", "低"}));
 		this.limitBox.setBounds(this.limit.getX()+ LABEL_W +LINE_GAP, this.limit.getY(), TEXT_W>>2, TEXT_H);
 		this.limitBox.setFont(WORD_FONT);
+		this.limitBox.setOpaque(false);
 		
 		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W,BUTTON_H);
 		this.query.setFont(WORD_FONT);
