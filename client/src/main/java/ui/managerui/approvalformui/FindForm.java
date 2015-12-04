@@ -3,7 +3,6 @@ package ui.managerui.approvalformui;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import dataService.businessDataService.EntruckingDataService;
 import dataService.businessDataService.PaymentDataService;
@@ -47,26 +46,21 @@ public class FindForm {
 	
 	private static OutRepositoryDataService out = RMI.<OutRepositoryDataService>getDataService("outrepository");
 	
-	private static Map<String, Object> table = null;
-	
-	public static<T> List<T> getUnCheckFormVO(String voName) {
-		return null;
-	}
-	
-	public static List<OrderVO> getOrderVO() {
-		List<OrderVO> vo = new ArrayList<OrderVO>();
-		List<OrderPO> po = null;
-		try {
-			po = order.getUnCheckOrder();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		int size = po.size();
-		for(int i = 0; i < size; i++) {
-			vo.add(OrderPO.orderPOToVO(po.get(i)));
-		}
-		return vo;
-	}
+//	public static List<OrderVO> getOrderVO() {
+//		List<OrderVO> vo = new ArrayList<OrderVO>();
+//		List<OrderPO> po = null;
+//		try {
+//			po = order.getUnCheckOrder();
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			return vo;
+//		}
+//		int size = po.size();
+//		for(int i = 0; i < size; i++) {
+//			vo.add(OrderPO.orderPOToVO(po.get(i)));
+//		}
+//		return vo;
+//	}
 	
 	public static List<ReceivingVO> getReceivingVO() {
 		List<ReceivingVO> vo = new ArrayList<ReceivingVO>();

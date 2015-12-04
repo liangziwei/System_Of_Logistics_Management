@@ -1,7 +1,5 @@
 package businessLogic.businessLogicModel.managerModel;
 
-
-
 import network.RMI;
 import po.managerPO.UncheckedFormPO;
 import vo.managerVO.UncheckedFormVO;
@@ -12,18 +10,13 @@ public class ApprovalForm {
 	
 	private ApprovalFormDataService approvalFormData = RMI.<ApprovalFormDataService>getDataService("approvalForm");
 	
-	public UncheckedFormVO getUncheckedForms(String date) {
+	public UncheckedFormVO getUncheckedForms() {
 		UncheckedFormVO uncheckedForm = null;
 		try{
-			uncheckedForm = this.uncheckedFormPOTouncheckedFormVO(approvalFormData.getUncheckedForms(date));
+			uncheckedForm = UncheckedFormPO.uncheckedFormPOToVO(approvalFormData.getUncheckedForms());
 		} catch(Exception e){
 			e.printStackTrace();
 		}
 		return uncheckedForm;
 	}
-	
-	private UncheckedFormVO uncheckedFormPOTouncheckedFormVO(UncheckedFormPO uncheckedFormPO){
-		return null;
-	}
-	
 }

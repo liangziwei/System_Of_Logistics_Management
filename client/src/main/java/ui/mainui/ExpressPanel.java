@@ -1,6 +1,5 @@
 package ui.mainui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import ui.baseui.LimpidButton;
 import ui.senderui.InquirePanel;
 import ui.viewcontroller.ViewController;
 
@@ -19,9 +19,9 @@ public class ExpressPanel extends JPanel{
 	
 	private ViewController controller;
 	
-	private JButton login = new JButton("");
+	private LimpidButton login = new LimpidButton("","picture/用户登录.png");
 
-	private JButton logistics = new JButton("");
+	private LimpidButton logistics = new LimpidButton("","picture/物流信息查询.png");
 
 	public static final int BUTTON_W = 300;
 
@@ -56,14 +56,14 @@ public class ExpressPanel extends JPanel{
 		this.login.setSize(BUTTON_W, BUTTON_H);
 		this.login.setLocation(LOGIN_X, LOGIN_Y);
 		this.login.setFont(WORD_FONT);
-		this.login.setIcon(new ImageIcon("picture/用户登录.png"));
-		this.login.setBorderPainted(false);
+//		this.login.setIcon(new ImageIcon("picture/用户登录.png"));
+//		this.login.setBorderPainted(false);
 		//物流信息查询按钮
 		this.logistics.setSize(BUTTON_W, BUTTON_H);
 		this.logistics.setLocation(LOGISTICS_X, LOGISTICS_Y);
 		this.logistics.setFont(WORD_FONT);
-		this.logistics.setIcon(new ImageIcon("picture/物流信息查询.png"));
-		this.logistics.setBorderPainted(false);
+//		this.logistics.setIcon(new ImageIcon("picture/物流信息查询.png"));
+//		this.logistics.setBorderPainted(false);
 		//增加时间监听
 		this.addListener(this.login, this.logistics);
 		//增加组件到容器

@@ -7,7 +7,7 @@ import po.deliveryPO.GoodsInfo;
  * 记录了订单的信息
  * @author 肖安祥
  */
-public class OrderVO {
+public class OrderVO{
 
 	private ClientInfo senderInfo;
 	
@@ -45,4 +45,5 @@ public class OrderVO {
 	public void setGoodsInfo(GoodsInfo goodsInfo) {
 		this.goodsInfo = goodsInfo;
 	}
+
 }

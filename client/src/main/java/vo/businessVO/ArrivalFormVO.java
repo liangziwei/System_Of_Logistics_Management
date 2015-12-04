@@ -1,9 +1,9 @@
 package vo.businessVO;
 
-import po.businessPO.ArrivalFormPO;
 import constant.CargoState;
+import po.businessPO.ArrivalFormPO;
 
-public class ArrivalFormVO {
+public class ArrivalFormVO{
 
 	private String date;
 	private String transitNumber;

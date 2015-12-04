@@ -13,7 +13,7 @@ public class ApprovalFormBLImpl_Stub implements ApprovalFormBLService {
 	public UncheckedFormVO getUncheckedForms(String date) {
 		UncheckedFormVO uncheckedForm = null;
 		try{
-			uncheckedForm = this.uncheckedFormPOTouncheckedFormVO(approvalForm.getUncheckedForms(date));
+			uncheckedForm = this.uncheckedFormPOTouncheckedFormVO(approvalForm.getUncheckedForms());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -21,6 +21,12 @@ public class ApprovalFormBLImpl_Stub implements ApprovalFormBLService {
 	}
 
 	private UncheckedFormVO uncheckedFormPOTouncheckedFormVO(UncheckedFormPO uncheckedFormPO){
+		return null;
+	}
+
+	@Override
+	public UncheckedFormVO getUncheckedForms() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

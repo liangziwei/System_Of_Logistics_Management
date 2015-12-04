@@ -14,8 +14,8 @@ public class ApprovalFormController implements ApprovalFormBLService {
 	
 	private ApprovalForm approval = new ApprovalForm();
 	
-	public UncheckedFormVO getUncheckedForms(String date) {
-		return approval.getUncheckedForms(date);
+	public UncheckedFormVO getUncheckedForms() {
+		return approval.getUncheckedForms();
 	}
 
 }

@@ -1,8 +1,10 @@
 package po.managerPO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import driver.ui_driver.financeUI_driver.SettlementUI_Driver;
 import po.businessPO.ArrivalFormPO;
 import po.businessPO.EntruckingPO;
 import po.businessPO.ReceivablePO;
@@ -13,6 +15,17 @@ import po.repositoryPO.InRepositoryPO;
 import po.repositoryPO.OutRepositoryPO;
 import po.transitionPO.ReceivingPO;
 import po.transitionPO.TransferringPO;
+import vo.businessVO.ArrivalFormVO;
+import vo.businessVO.EntruckingVO;
+import vo.businessVO.ReceivableVO;
+import vo.businessVO.SendFormVO;
+import vo.deliveryVO.OrderVO;
+import vo.financeVO.PaymentVO;
+import vo.managerVO.UncheckedFormVO;
+import vo.repositoryVO.InRepositoryVO;
+import vo.repositoryVO.OutRepositoryVO;
+import vo.transitionVO.ReceivingVO;
+import vo.transitionVO.TransferringVO;
 
 /**
  * 记录了未审批单据的信息
@@ -86,6 +99,21 @@ public class UncheckedFormPO implements Serializable{
 		this.outrepositorylist = outrepositorylist;
 		this.paymentlist = paymentlist;
 	}
+	
+	public static  UncheckedFormVO uncheckedFormPOToVO(UncheckedFormPO po){
+		List<OrderVO> order = createOrderList(po.getOrderlist());
+		List<EntruckingVO> entrucking;
+		List<ArrivalFormVO> arrival;
+		List<ReceivableVO> receivable;
+		List<SendFormVO> send;
+		List<ReceivingVO> receiving;
+		List<InRepositoryVO> in;
+		List<TransferringVO> transferring;
+		List<OutRepositoryVO> out;
+		List<PaymentVO> payment;
+		return new UncheckedFormVO(order, null, null, null, null, null, null, null, null, null);
+	}
+	
 	public List<OrderPO> getOrderlist() {
 		return orderlist;
 	}
@@ -147,5 +175,21 @@ public class UncheckedFormPO implements Serializable{
 		this.paymentlist = paymentlist;
 	}
 	
-
+	private static List<OrderVO> createOrderList(List<OrderPO> po) {
+		List<OrderVO> vo = new ArrayList<OrderVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(OrderPO.orderPOToVO(po.get(i)));
+		}
+		return vo;
+	}
+	
+	private static List<EntruckingVO> createEntruckingVOList(List<EntruckingVO> po) {
+		List<EntruckingVO> vo = new ArrayList<EntruckingVO>();
+		int size = 0;
+		for(int i = 0; i < size; i++) {
+//			vo.add(EntruckingPO.(po.get(i)));
+		}
+		return vo;
+	}
 }

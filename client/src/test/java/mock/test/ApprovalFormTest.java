@@ -11,7 +11,7 @@ public class ApprovalFormTest {
 	@Test
 	public void test() {
 		ApprovalFormController approval = new ApprovalFormController();
-		assertEquals(null, approval.getUncheckedForms("2015-02-14"));
+		assertEquals(null, approval.getUncheckedForms());
 	}
 
 }

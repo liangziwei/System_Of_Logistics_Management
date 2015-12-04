@@ -43,22 +43,4 @@ public class OrderDataImpl_Stub implements OrderDataService{
 		return timeRecord;
 	}
 
-	@Override
-	public List<OrderPO> getUnCheckOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean updateUnCheckOrders(List<String> id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean updateUnCheckOrder(String id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ui.administratorui.AdministratorPanel;
+import ui.baseui.LimpidButton;
 import ui.businessui.BusinessPanel;
 import ui.deliveryui.DeliveryPanel;
 import ui.financeui.FinancePanel;
@@ -36,9 +37,9 @@ public class LoginPanel extends JPanel{
 	
 	private JTextField pwField = new JTextField();
 	
-	private JButton ok = new JButton("");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private Font TEXT_FONT = new Font("宋体", Font.PLAIN, 20);
 	
@@ -117,13 +118,13 @@ public class LoginPanel extends JPanel{
 		//确定按钮
 		this.ok.setBounds(pwField.getX() + (TEXT_W >> 1), pwField.getY() + TB_GAP, BUTTON_W, BUTTON_H);
 		this.ok.setFont(TEXT_FONT);
-		this.ok.setIcon(new ImageIcon("picture/确定.png"));
-		this.ok.setBorderPainted(false);
+//		this.ok.setIcon(new ImageIcon("picture/确定.png"));
+//		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + BUTTON_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(TEXT_FONT);
-		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-		this.cancel.setBorderPainted(false);
+//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+//		this.cancel.setBorderPainted(false);
 		//把组件添加到面板
 		this.add(this.idLabel);
 		this.add(idField);

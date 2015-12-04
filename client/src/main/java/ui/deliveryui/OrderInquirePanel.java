@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.deliveryVO.OrderVO;
 import vo.deliveryVO.VerifyMessage;
 import businessLogic.businessLogicController.deliveryController.OrderController;
@@ -40,9 +41,9 @@ public class OrderInquirePanel extends DetailPanel{
 
 	private JLabel orderLabel = new JLabel("订单条形码号");
 
-	private JButton inquire = new JButton("");
+	private LimpidButton inquire = new LimpidButton("","picture/查询.png");
 
-	private JButton cancel = new JButton("");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private JLabel error = new JLabel();
 	
@@ -84,14 +85,14 @@ public class OrderInquirePanel extends DetailPanel{
 				this.search.getY(),
 				BUTTON_W, BUTTON_H);
 		this.inquire.setFont(WORD_FONT);
-		this.inquire.setIcon(new ImageIcon("picture/查询.png"));
-		this.inquire.setBorderPainted(false);
+//		this.inquire.setIcon(new ImageIcon("picture/查询.png"));
+//		this.inquire.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.inquire.getX() + BUTTON_W + COMPONENT_GAP, this.inquire.getY(),
 				BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
-		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-		this.cancel.setBorderPainted(false);
+//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+//		this.cancel.setBorderPainted(false);
 		//错误信息
 		this.error.setBounds(this.search.getX(), this.search.getY() + (TEXT_H << 1), TEXT_W << 1, LABEL_H);
 		this.error.setFont(WORD_FONT);

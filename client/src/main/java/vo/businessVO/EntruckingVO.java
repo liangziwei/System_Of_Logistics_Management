@@ -2,7 +2,7 @@ package vo.businessVO;
 
 import po.businessPO.EntruckingPO;
 
-public class EntruckingVO {
+public class EntruckingVO{
 
 	private String date;
 	private String businessHallid;

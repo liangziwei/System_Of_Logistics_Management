@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ import constant.Authority;
 import constant.UserType;
 import businessLogic.businessLogicController.administratorController.AdministratorController;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.administratorVO.AdministratorVO;
 
 public class ModifyAdminPanel extends DetailPanel {
@@ -35,15 +37,15 @@ public class ModifyAdminPanel extends DetailPanel {
 	private JTextField passwordText=new JTextField();
 	private JComboBox limitBox = new JComboBox();
 	
-	private JButton query = new JButton("查询");
+	private LimpidButton query = new LimpidButton("","picture/查询.png");
 	
-	private JButton ok = new JButton("修改");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 130;
 	
-	private static final int LABEL_H = 25;
+	private static final int LABEL_H = 30;
 
 	private static final int LINE_GAP = 18;
 	
@@ -55,7 +57,7 @@ public class ModifyAdminPanel extends DetailPanel {
 	
 	private static final int START_Y = START_X;
 	
-	private static final int BUTTON_W = LABEL_W+10;
+	private static final int BUTTON_W = LABEL_W-50;
 	
 	private static final int BUTTON_H = LABEL_H;
 	
@@ -95,7 +97,7 @@ public class ModifyAdminPanel extends DetailPanel {
 		this.limitBox.setBounds(this.limit.getX()+ LABEL_W +LINE_GAP, this.limit.getY(), TEXT_W>>2, TEXT_H);
 		this.limitBox.setFont(WORD_FONT);
 		
-		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W>>1,BUTTON_H);
+		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W,BUTTON_H);
 		this.query.setFont(WORD_FONT);
 		
 		this.result.setBounds(this.limit.getX() + LINE_GAP, this.limit.getY() + LABEL_H*4+ LINE_GAP,TEXT_W, BUTTON_H);
@@ -152,7 +154,8 @@ public class ModifyAdminPanel extends DetailPanel {
 					if(isCorrect()){
 						   result.setForeground(Color.BLUE);
 						   result.setText("请确认信息输入无误，确认后点击提交");
-						   ok.setText("提交");
+//						   ok.setIcon(new ImageIcon("picture/提交.png"));
+						   ok.setRolloverIcon(new ImageIcon("picture/提交.png"));
 						   disablePanel();
 						   isFirstEnsure=false;
 					}else{
@@ -164,7 +167,8 @@ public class ModifyAdminPanel extends DetailPanel {
 				}else{
 					if(isOver){
 						result.setText("");
-						ok.setText("修改");
+						ok.setIcon(new ImageIcon("picture/修改.png"));
+						ok.setRolloverIcon(new ImageIcon("picture/修改.png"));
 						visible(false);
 						setBlack();
 						enablePanel();
@@ -183,7 +187,7 @@ public class ModifyAdminPanel extends DetailPanel {
 						if(adminCon.addUser(adminVO)){
 							result.setForeground(Color.GREEN);
 							result.setText("修改成功！");
-							ok.setText("确认");
+							ok.setIcon(new ImageIcon("picture/确定.png"));
 							cancel.setVisible(false);
 							isOver=true;
 						}else{

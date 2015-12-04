@@ -2,7 +2,7 @@ package vo.businessVO;
 
 import po.businessPO.SendFormPO;
 
-public class SendFormVO {
+public class SendFormVO{
 
 	private String date;	
 	private String deliveryid;
