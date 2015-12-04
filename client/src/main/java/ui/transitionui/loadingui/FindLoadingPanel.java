@@ -46,7 +46,7 @@ public class FindLoadingPanel extends DetailPanel{
 	
 	private JTextField loadingidText = new JTextField(11);
 	
-	private JTextField arrivalidText = new JTextField();
+	private JComboBox<String> arrivalidText = new JComboBox<String>();
 	
 	private JTextField wayidText = new JTextField();
 	
@@ -138,6 +138,10 @@ public class FindLoadingPanel extends DetailPanel{
 		arrivalid.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX()+arrivalid.getWidth()+COMPONENT_GAP_X,arrivalid.getY(),TEXT_W,TEXT_H);
+		arrivalidText.addItem("南京");
+		arrivalidText.addItem("北京");
+		arrivalidText.addItem("广州");
+		arrivalidText.addItem("上海");
 		this.infoPanel.add(arrivalidText);
 		way.setBounds(arrivalidText.getX()+arrivalidText.getWidth()+COMPONENT_GAP_X, arrivalid.getY(),LABEL_W, LABEL_H);
 		this.infoPanel.add(way);
@@ -209,7 +213,7 @@ public class FindLoadingPanel extends DetailPanel{
 	}
 	
 	private void setinfo(LoadingVO loadingVO) {
-		this.arrivalidText.setText(loadingVO.getarrivalid());
+		this.arrivalidText.setSelectedItem(loadingVO.getarrivalid());
 		switch (loadingVO.getway()) {
 		case PLANE:
 			this.wayBox.setSelectedItem("飞机");

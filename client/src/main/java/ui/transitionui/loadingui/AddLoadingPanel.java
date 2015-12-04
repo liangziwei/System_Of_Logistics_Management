@@ -48,7 +48,7 @@ public class AddLoadingPanel extends DetailPanel{
 	
 	private JTextField loadingidText = new JTextField();
 	
-	private JTextField arrivalidText = new JTextField();
+	private JComboBox<String> arrivalidText = new JComboBox<String>();
 	
 	private JTextField wayidText = new JTextField();
 	
@@ -159,11 +159,14 @@ public class AddLoadingPanel extends DetailPanel{
 		arrivalid.setBounds(loadingid.getX(), loadingid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX()+arrivalid.getWidth()+COMPONENT_GAP_X,arrivalid.getY(),TEXT_W,TEXT_H);
+		arrivalidText.addItem("南京");
+		arrivalidText.addItem("北京");
+		arrivalidText.addItem("广州");
+		arrivalidText.addItem("上海");
 		this.infoPanel.add(arrivalidText);
 		way.setBounds(arrivalidText.getX()+arrivalidText.getWidth()+COMPONENT_GAP_X, arrivalid.getY(),LABEL_W, LABEL_H);
 		this.infoPanel.add(way);
 		wayBox.setBounds(way.getX()+way.getWidth()+COMPONENT_GAP_X, way.getY(), TEXT_W, TEXT_H);
-		wayBox.setToolTipText("123");
 		wayBox.addItem("飞机");
 		wayBox.addItem("火车");
 		wayBox.addItem("汽车");
@@ -273,7 +276,7 @@ public class AddLoadingPanel extends DetailPanel{
 	
 	private LoadingVO creatLoadingVO(){
 		String loadid = loadingidText.getText().trim();
-		String arriveid = arrivalidText.getText().trim();
+		String arriveid = (String) arrivalidText.getSelectedItem();
 		String Wayid = wayidText.getText().trim();
 		String Supervis = supervisionidText.getText().trim();
 		String Supercar = supercargoidText.getText().trim();
@@ -307,7 +310,7 @@ public class AddLoadingPanel extends DetailPanel{
 	}
 	private void disableComponents() {
 		this.loadingidText.setEditable(false);
-		this.arrivalidText.setEditable(false);
+		this.arrivalidText.setEnabled(false);
 		this.wayBox.setEnabled(false);
 		this.wayidText.setEditable(false);
 		this.supercargoidText.setEditable(false);
@@ -317,7 +320,7 @@ public class AddLoadingPanel extends DetailPanel{
 	
 	private void enableComponents() {
 		this.loadingidText.setEditable(true);
-		this.arrivalidText.setEditable(true);
+		this.arrivalidText.setEnabled(true);
 		this.wayBox.setEnabled(true);
 		this.wayidText.setEditable(true);
 		this.supercargoidText.setEditable(true);

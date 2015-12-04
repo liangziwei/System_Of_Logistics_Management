@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.businessController.EntruckingController;
+import businessLogic.businessLogicModel.util.CommonLogic;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import vo.businessVO.EntruckingVO;
 
@@ -18,6 +20,8 @@ public class EntruckingPanel extends DetailPanel{
 	EntruckingVO entruckingVO;
 	
 	EntruckingController entruckingCon=new EntruckingController();
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	
 	private JLabel date=new JLabel("装车日期");
 	private JLabel businessHallid=new JLabel("营业厅编号");
@@ -75,7 +79,7 @@ public class EntruckingPanel extends DetailPanel{
 		this.date.setFont(WORD_FONT);	
 		this.dateText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
-		
+		dateChoose.register(dateText);
 		this.businessHallid.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.businessHallid.setFont(WORD_FONT);
 		this.businessHallidText.setBounds(this.dateText.getX(), this.businessHallid.getY(), TEXT_W, TEXT_H);
@@ -256,7 +260,7 @@ public class EntruckingPanel extends DetailPanel{
 		String vehiStr=vehicleidText.getText();		 
 		String freightStr=freightText.getText();//运费
 		
-		if(dateStr.length()!=10){
+		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
 			return false;
 		}else if(businessIDStr.length()!=6){

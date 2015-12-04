@@ -7,6 +7,7 @@ import java.util.List;
 import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import businessLogicService.transitionBLService.TransferringBLService;
 import constant.City;
+import constant.LoadingType;
 import dataService.transitionDataService.TransferringDataService;
 import po.transitionPO.TransferringPO;
 import stub.businessLogicImpl_stub.repositoryBLImpl_stub.ManageRepositoryBLImpl_Stub;
@@ -31,7 +32,7 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
-		double fare =this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid());
+		double fare =this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid(),transferringVO.getway());
 		transferringVO.setfare(fare);
 		TransferringPO transferringPO=this.TransferringVOtoTransferringPO(transferringVO);
 		try {
@@ -45,7 +46,7 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 
 	public boolean modifyTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
-		double fare =this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid());
+		double fare =this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid(),transferringVO.getway());
 		transferringVO.setfare(fare);
 		TransferringPO transferringPO=this.TransferringVOtoTransferringPO(transferringVO);
 		try {
@@ -55,11 +56,6 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 			e.printStackTrace();
 		}
 		return false;
-	}
-
-	public double tranferringFare(String CityFrom, String CityTo) {
-		// TODO Auto-generated method stub
-		return 500;
 	}
 
 	public List<RepositoryVO> getRepositoryInfo() {
@@ -106,6 +102,12 @@ public class TransferringBLImpl_Stub implements TransferringBLService{
 	public boolean verify(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public double tranferringFare(String CityFrom, String CityTo, LoadingType type) {
+		// TODO Auto-generated method stub
+		return 500;
 	}
 	
 
