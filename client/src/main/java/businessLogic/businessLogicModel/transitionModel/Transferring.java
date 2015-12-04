@@ -6,7 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import businessLogic.businessLogicModel.deliveryModel.DistanceIO;
+import businessLogic.businessLogicModel.managerModel.TransitPriceIO;
+import constant.City;
+import constant.LoadingType;
+import constant.TransitType;
 import dataService.transitionDataService.TransferringDataService;
 import network.RMI;
 import po.transitionPO.TransferringPO;
@@ -37,7 +41,7 @@ public class Transferring {
 
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
-		double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid());
+		double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid(),transferringVO.getway());
 		transferringVO.setfare(faremoney);
 		TransferringPO transferringPO = TransferringVOtoTransferringPO(transferringVO);
 		boolean add =false;
@@ -52,7 +56,7 @@ public class Transferring {
 
 	public boolean modifyTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
-		double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid());
+		double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid(),transferringVO.getway());
 		transferringVO.setfare(faremoney);
 		TransferringPO transferringPO = TransferringVOtoTransferringPO(transferringVO);
 		boolean modify =false;
@@ -65,9 +69,58 @@ public class Transferring {
 		return modify;
 	}
 
-	public double tranferringFare(String CityFrom, String CityTo) {
+	public double tranferringFare(String CityFrom, String CityTo,LoadingType type) {
 		// TODO Auto-generated method stub
-		return 0;
+		City from =null;
+		City to = null;
+		switch (CityFrom) {
+		case "南京":
+			from = City.NAN_JING;
+			break;
+		case "北京":
+			from = City.BEI_JING;
+			break;
+		case "上海":
+			from = City.SHANG_HAI;
+			break;
+		case "广州":
+			from = City.GUANG_ZHOU;
+			break;
+		}
+		switch (CityTo) {
+		case "南京":
+			to = City.NAN_JING;
+			break;
+		case "北京":
+			to = City.BEI_JING;
+			break;
+		case "上海":
+			to = City.SHANG_HAI;
+			break;
+		case "广州":
+			to = City.GUANG_ZHOU;
+			break;
+		}
+		double distance = DistanceIO.getDistance(from, to);
+		double weight =0;
+		TransitType transitType =null;
+		switch (type) {
+		case PLANE:
+			transitType = TransitType.AIR;
+			weight = 50;
+			break;
+		case TRAIN:
+			transitType = TransitType.RAILWAY;
+			weight = 2000;
+			break;
+		case TRUCK:
+			transitType = TransitType.ROAD;
+			weight = 10;
+			break;
+		}
+		double transitprice = TransitPriceIO.getTransitPrice(transitType);
+		
+		return (distance*transitprice*weight);
 	}
 
 

@@ -7,6 +7,7 @@ import businessLogic.businessLogicModel.transitionModel.Transferring;
 import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import businessLogicService.transitionBLService.TransferringBLService;
 import constant.City;
+import constant.LoadingType;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
@@ -30,9 +31,9 @@ public class TransferringController implements TransferringBLService{
 		return transferring.modifyTransferringFormBL(transferringVO);
 	}
 
-	public double tranferringFare(String CityFrom, String CityTo) {
+	public double tranferringFare(String CityFrom, String CityTo,LoadingType type) {
 		// TODO Auto-generated method stub
-		return transferring.tranferringFare(CityFrom, CityTo);
+		return transferring.tranferringFare(CityFrom, CityTo,type);
 	}
 
 	public List<RepositoryVO> getRepositoryInfo() {

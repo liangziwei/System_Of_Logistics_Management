@@ -86,16 +86,16 @@ public class Loading {
 		}
 		switch (CityTo) {
 		case "南京":
-			from = City.NAN_JING;
+			to = City.NAN_JING;
 			break;
 		case "北京":
-			from = City.BEI_JING;
+			to = City.BEI_JING;
 			break;
 		case "上海":
-			from = City.SHANG_HAI;
+			to = City.SHANG_HAI;
 			break;
 		case "广州":
-			from = City.GUANG_ZHOU;
+			to = City.GUANG_ZHOU;
 			break;
 		}
 		double distance = DistanceIO.getDistance(from, to);

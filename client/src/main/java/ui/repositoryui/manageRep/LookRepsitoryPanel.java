@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import businessLogic.businessLogicController.repositoryController.ManageRepositoryController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import constant.AreaCodeType;
 import ui.baseui.DatePanel;
@@ -129,7 +130,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		infoPanel.setOpaque(false);
 		initinfo();
 		addPanels();
-//		showState("123121");
+		// showState("123121");
 
 		AddListener();
 	}
@@ -139,7 +140,19 @@ public class LookRepsitoryPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
+				if (startyear.getText().trim().equals("")||startmonth.getText().trim().equals("")
+						|| startday.getText().trim().equals("") || endyear.getText().trim().equals("")
+						|| endmonth.getText().trim().equals("") || endday.getText().trim().equals("")) {
+					showState("时间不可为空");
+				}
+				else {
+					String starttime = startyear.getText().trim()+"-"+startmonth.getText().trim()+"-"+startday.getText().trim();
+					String endtime = endyear.getText().trim()+"-"+endmonth.getText().trim()+"-"+endday.getText().trim();
+					if (CommonLogic.isDate(starttime)&&CommonLogic.isDate(endtime)) {
+						String time = starttime+";"+endtime;
+						List<RepositoryInfoVO> list = manageRepositoryBLService.SeeRepositoryBL(time);
+					}
+				}
 			}
 		});
 
