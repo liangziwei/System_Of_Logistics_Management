@@ -18,7 +18,7 @@ import businessLogic.businessLogicController.financeController.OriginalInfoContr
 @SuppressWarnings("serial")
 public class OriginalInfoPanel extends DetailPanel{
 	
-	private OriginalInfoController originalInfoCon=new OriginalInfoController();
+	private OriginalInfoController originalInfoCon;
 	
 	private JLabel query=new JLabel("历史建账信息");
 	

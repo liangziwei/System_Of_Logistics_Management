@@ -5,6 +5,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.DriverDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.ReceiveAndSendDataImpl_Stub;
+import stub.dataImpl_stub.businessDataImpl_stub.VehicleDataImpl_Stub;
 import dataImpl.businessDataImpl.PaymentDataImpl;
 import dataImpl.deliveryDataImpl.ConstantDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
@@ -12,6 +17,7 @@ import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
 import dataImpl.financeDataImpl.CostDataImpl;
 import dataImpl.financeDataImpl.OriginalInfoDataImpl;
+import dataImpl.financeDataImpl.OriginalInfoRecordDataImpl;
 import dataImpl.financeDataImpl.SettlementDataImpl;
 import dataImpl.financeDataImpl.StatisticsDataImpl;
 import dataImpl.managerDataImpl.ApprovalFormDataImpl;
@@ -50,11 +56,6 @@ import dataService.senderDataService.InquireDataService;
 import dataService.transitionDataService.LoadingDataService;
 import dataService.transitionDataService.ReceivingDataService;
 import dataService.transitionDataService.TransferringDataService;
-import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
-import stub.dataImpl_stub.businessDataImpl_stub.DriverDataImpl_Stub;
-import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_Stub;
-import stub.dataImpl_stub.businessDataImpl_stub.ReceiveAndSendDataImpl_Stub;
-import stub.dataImpl_stub.businessDataImpl_stub.VehicleDataImpl_Stub;
 
 public class RMI {
 	
@@ -229,6 +230,12 @@ public class RMI {
 			OriginalInfoDataService originalInfo_stub =
 					(OriginalInfoDataService) UnicastRemoteObject.exportObject(originalInfo, 0);
 			registry.bind("originalInfo", originalInfo_stub);
+			
+			//建账查看访问接口
+			OriginalInfoDataService originalInfoRecord = new OriginalInfoRecordDataImpl();
+			OriginalInfoDataService originalInfoRecord_stub =
+					(OriginalInfoDataService) UnicastRemoteObject.exportObject(originalInfoRecord, 0);
+			registry.bind("originalInfoRecord", originalInfoRecord_stub);
 			//结算管理访问接口
 			SettlementDataService settlement = new SettlementDataImpl();
 			SettlementDataService settlement_stub = (SettlementDataService) UnicastRemoteObject.exportObject(settlement, 0);

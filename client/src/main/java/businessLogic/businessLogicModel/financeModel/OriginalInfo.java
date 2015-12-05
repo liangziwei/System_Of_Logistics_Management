@@ -20,8 +20,18 @@ import dataService.financeDataService.OriginalInfoDataService;
 
 public class OriginalInfo {
 
-	private OriginalInfoDataService originalInfo = RMI.<OriginalInfoDataService> getDataService("originalInfo");
+	private OriginalInfoDataService originalInfo;
 
+	public OriginalInfo(String order) {
+		// TODO Auto-generated constructor stub
+		if(order.equals("query")){
+			originalInfo = RMI.<OriginalInfoDataService> getDataService("originalInfoRecord");
+		}else{
+		
+			originalInfo = RMI.<OriginalInfoDataService> getDataService("originalInfo");
+		}
+	}
+	
 	public List<StaffVO> getStaffInfo(int year) {
 		// TODO Auto-generated method stub
 		List<StaffVO> list = null;

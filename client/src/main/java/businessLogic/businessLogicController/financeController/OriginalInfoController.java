@@ -17,8 +17,13 @@ import businessLogicService.financeBLService.OriginalInfoBLService;
  */
 public class OriginalInfoController implements OriginalInfoBLService{
 	
-	private OriginalInfo original = new OriginalInfo();
+	private OriginalInfo original;
 
+	public OriginalInfoController(String order) {
+		// TODO Auto-generated constructor stub
+		original = new OriginalInfo(order);
+	}
+	
 	public List<StaffVO> getStaffInfo(int year)  {
 		// TODO Auto-generated method stub
 		return original.getStaffInfo(year);

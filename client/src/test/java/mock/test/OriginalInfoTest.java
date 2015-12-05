@@ -20,7 +20,7 @@ public class OriginalInfoTest {
 
 	@Test
 	public void test() {
-		OriginalInfoController originalInfo = new OriginalInfoController();
+		OriginalInfoController originalInfo = new OriginalInfoController("create");
 		List<StaffVO> stafflist = originalInfo.getStaffInfo(2015);
 		List<OrganizationVO>  organizationlist = originalInfo.getOrganizationInfo(2015);
 		List<VehicleVO> vehiclelist = originalInfo.getVehicleInfo(2015);
