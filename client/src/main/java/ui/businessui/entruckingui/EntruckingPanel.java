@@ -263,13 +263,13 @@ public class EntruckingPanel extends DetailPanel{
 		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
 			return false;
-		}else if(businessIDStr.length()!=6){
+		}else if(!businessIDStr.matches("\\d{6}")){
 			businessHallidText.setText("");
 			return false;
-		}else if(transNumberStr.length()!=19){
+		}else if(!transNumberStr.matches("\\d{19}")){
 			transportNumberText.setText("");
 			return false;
-		}else if(vehiStr.length()!=9){
+		}else if(!vehiStr.matches("\\d{9}")){
 			vehicleidText.setText("");
 			return false;
 		}

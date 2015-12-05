@@ -11,12 +11,15 @@ import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.businessController.DriverController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import vo.businessVO.DriverVO;
 
 public class DeleteDriverPanel extends DetailPanel {
 	private DriverController driverCon=new DriverController();
 	private DriverVO driverVO;
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	
 	private JLabel driverid=new JLabel("司机编号");
 	private JLabel name=new JLabel("   姓名");
@@ -90,6 +93,7 @@ public class DeleteDriverPanel extends DetailPanel {
 		this.birthday.setFont(WORD_FONT);
 		this.birthdayText.setBounds(this.driveridText.getX(), this.birthday.getY(), TEXT_W>>2, TEXT_H);
 		this.birthdayText.setFont(WORD_FONT);
+		dateChoose.register(birthdayText);
 		
 		this.drivingDeadline.setBounds(START_X+(TEXT_W>>2)+ LABEL_W + (LINE_GAP<<1), this.birthday.getY() , LABEL_W, LABEL_H);
 		this.drivingDeadline.setFont(WORD_FONT);
@@ -216,7 +220,7 @@ public class DeleteDriverPanel extends DetailPanel {
 		String drivingDeadlineStr=drivingDeadlineText.getText();
 		
 		
-		if(driveridStr.length()!=9||!CommonLogic.isNumber(driveridStr)){
+		if(!driveridStr.matches("\\d{9}")){
 			driveridText.setText("");
 			return false;
 		}

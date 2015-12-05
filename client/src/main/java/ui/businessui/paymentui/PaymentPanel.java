@@ -11,14 +11,18 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import vo.businessVO.ReceivableVO;
 import businessLogic.businessLogicController.businessController.PaymentController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 
 public class PaymentPanel extends DetailPanel{
 	
 	private PaymentController paymentCon=new PaymentController();
 	private ReceivableVO receivableVO;
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	
 	private JLabel date=new JLabel("收款日期");
 	private JLabel money=new JLabel("收款金额");
@@ -65,6 +69,7 @@ public class PaymentPanel extends DetailPanel{
 		this.date.setFont(WORD_FONT);	
 		this.dateText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
+		dateChoose.register(dateText);
 		
 		this.money.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.money.setFont(WORD_FONT);
@@ -205,10 +210,13 @@ public class PaymentPanel extends DetailPanel{
 		String courierStr=courierText.getText();
 		String deliveryidStr=deliveryidText.getText();
 		
-		if(dateStr.length()!=10){
+		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
 			return false;
-		}else if(deliveryidStr.length()!=10){
+		}else if(!CommonLogic.isDouble(moneyStr)){
+			moneyText.setText("");
+			return false;
+		}else if(!deliveryidStr.matches("\\d{10}")){
 			deliveryidText.setText("");
 			return false;
 		}

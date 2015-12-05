@@ -11,15 +11,19 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import vo.businessVO.ArrivalFormVO;
 import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 import constant.CargoState;
 
 public class ArrivalPanel extends DetailPanel {
 
 	private ReceiveAndSendController receAndSendCon=new ReceiveAndSendController();
 	private ArrivalFormVO arrivalVO;
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	
 	private JLabel date=new JLabel("到达日期");
 	private JLabel transitNumber=new JLabel("中转单编号");
@@ -65,6 +69,7 @@ public class ArrivalPanel extends DetailPanel {
 		this.date.setFont(WORD_FONT);	
 		this.dateText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
+		dateChoose.register(dateText);
 		
 		this.transitNumber.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.transitNumber.setFont(WORD_FONT);
@@ -205,11 +210,12 @@ private boolean isCorrect(){
 		
 		String dateStr=dateText.getText();
 		String transitNumberStr=transitNumberText.getText();
-		String departPlaceStr=departPlaceText.getText();
-		String stateStr=stateBox.getToolTipText();
 		
-		if(dateStr.length()!=10){
+		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
+			return false;
+		}else if(!transitNumberStr.matches("\\d{11}")){
+			transitNumberText.setText("");
 			return false;
 		}
 		
