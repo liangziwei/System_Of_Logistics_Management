@@ -9,7 +9,7 @@ import po.businessPO.VehiclePO;
 import po.financePO.AccountPO;
 import po.managerPO.OrganizationPO;
 import po.managerPO.StaffPO;
-import po.repositoryPO.RepositoryInfoPO;
+import po.repositoryPO.RepositoryPO;
 
 public class OriginalInfoDataImpl_Stub implements OriginalInfoDataService{
 
@@ -39,12 +39,12 @@ public class OriginalInfoDataImpl_Stub implements OriginalInfoDataService{
 		return vehicle;
 	}
 
-	public List<RepositoryInfoPO> getRepositoryInfo(int year) {
-		List<RepositoryInfoPO> repository = new ArrayList<RepositoryInfoPO>();
-		repository.add(new RepositoryInfoPO("1232409000",AreaCodeType.PLANEAREA, "014","101","067", true));
-		repository.add(new RepositoryInfoPO("1232409120",AreaCodeType.PLANEAREA, "015","111","167", false));
-		repository.add(new RepositoryInfoPO("1232409010",AreaCodeType.TRAINAREA, "024","001","067", true));
-		repository.add(new RepositoryInfoPO("1682409010",AreaCodeType.TRUCKAREA, "064","041","014", false));
+	public List<RepositoryPO> getRepositoryInfo(int year) {
+		List<RepositoryPO> repository = new ArrayList<RepositoryPO>();
+		repository.add(new RepositoryPO("1232409000","","",AreaCodeType.PLANEAREA, "014","101","067"));
+		repository.add(new RepositoryPO("1232409120","","",AreaCodeType.PLANEAREA, "015","111","167"));
+		repository.add(new RepositoryPO("1232409010","","",AreaCodeType.TRAINAREA, "024","001","067"));
+		repository.add(new RepositoryPO("1682409010","","",AreaCodeType.TRUCKAREA, "064","041","014"));
 		return repository;
 	}
 

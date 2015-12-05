@@ -7,6 +7,7 @@ import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryInfoVO;
+import vo.repositoryVO.RepositoryVO;
 import businessLogic.businessLogicModel.financeModel.OriginalInfo;
 import businessLogicService.financeBLService.OriginalInfoBLService;
 
@@ -33,7 +34,7 @@ public class OriginalInfoController implements OriginalInfoBLService{
 		return original.getVehicleInfo(year);
 	}
 
-	public List<RepositoryInfoVO> getRepositoryInfo(int year) {
+	public List<RepositoryVO> getRepositoryInfo(int year) {
 		// TODO Auto-generated method stub
 		return original.getRepositoryInfo(year);
 	}

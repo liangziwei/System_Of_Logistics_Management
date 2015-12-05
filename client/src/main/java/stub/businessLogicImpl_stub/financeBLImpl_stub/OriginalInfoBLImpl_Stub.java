@@ -16,6 +16,7 @@ import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryInfoVO;
+import vo.repositoryVO.RepositoryVO;
 
 public class OriginalInfoBLImpl_Stub implements OriginalInfoBLService{
 
@@ -51,14 +52,14 @@ public class OriginalInfoBLImpl_Stub implements OriginalInfoBLService{
 		return list;
 	}
 
-	public List<RepositoryInfoVO> getRepositoryInfo(int year) {
-		List<RepositoryInfoVO> list = null;
-		try{
-			list = this.repositoryPOToVO(original.getRepositoryInfo(year));
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return list;
+	public List<RepositoryVO> getRepositoryInfo(int year) {
+//		List<RepositoryInfoVO> list = null;
+//		try{
+//			list = this.repositoryPOToVO(original.getRepositoryInfo(year));
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+		return null;
 	}
 
 	public List<AccountVO> getAccountInfo(int year) {

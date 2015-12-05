@@ -7,7 +7,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import constant.AreaCodeType;
@@ -23,7 +26,19 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 
 	public List<RepositoryInfoPO> SeeRepositoryDT(String time) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM repository";
+		//时间
+		String[] TIME = time.split("");
+//		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//        try {
+//            Date dt1 = df.parse(TIME[0]);
+//            Date dt2 = df.parse(TIME[1]);
+//        } catch (Exception exception) {
+//            exception.printStackTrace();
+//        }
+		// List
+		List<RepositoryInfoPO> thelist = new ArrayList<RepositoryInfoPO>();
+		//入库单
+		String sql = "SELECT * FROM inRepository";
 		ResultSet rs = null;
 		try {
 			rs = Database.findOperation(sql);
@@ -31,26 +46,59 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 			e.printStackTrace();
 			return null;
 		}
-		// List
-		List<RepositoryInfoPO> thelist = null;
 		// 相关信息
 		String deliveryid = null;
 		AreaCodeType areaCode = null;
 		String rowid = null;
 		String shelfid = null;
 		String posid = null;
+		String date = null;
 		try {
 			while (rs.next()) {
-				deliveryid = rs.getString("deliveryid");
-				areaCode = AreaCodeType.valueOf(rs.getString("areaCode"));
-				rowid = rs.getString("rowid");
-				shelfid = rs.getString("shelfid");
-				posid = rs.getString("posid");
-
+				date = rs.getString("inrepositorydate");
+				if (TIME[0].compareTo(date)<=0&&TIME[1].compareTo(date)>=0) {
+					deliveryid = rs.getString("deliveryid");
+					areaCode = AreaCodeType.valueOf(rs.getString("areaCode"));
+					rowid = rs.getString("rowid");
+					shelfid = rs.getString("shelfid");
+					posid = rs.getString("posid");
+					RepositoryInfoPO repositoryInfoPO = new RepositoryInfoPO(deliveryid, areaCode, rowid, shelfid, posid, true);
+					thelist.add(repositoryInfoPO);					
+				}
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
+//		//设置入库单的金额
+//		thelist=this.Price(thelist);
+		
+		//出库单
+		String sql2 = "SELECT * FROM outRepository";
+		ResultSet rs2 = null;
+		try {
+			rs2 = Database.findOperation(sql2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		String deliveryid2 = null;
+		String date2 = null;
+		try {
+			while (rs.next()) {
+				date2 = rs2.getString("outrepositorydate");
+				if (TIME[0].compareTo(date2)<=0&&TIME[1].compareTo(date2)>=0) {
+					deliveryid2 = rs2.getString("deliveryid");
+					RepositoryInfoPO repositoryInfoPOout = new RepositoryInfoPO(deliveryid, null, null, null, null, false);
+					thelist.add(repositoryInfoPOout);	
+				}			
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		//设置入、出库单的金额
+		thelist=this.Price(thelist);
 
 		return thelist;
 	}
@@ -277,10 +325,31 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 		return thelist;
 	}
+	
+	public List<RepositoryInfoPO> Price(List<RepositoryInfoPO> TherepositoryInfoPOs) {
+		ResultSet RS = null;
+		double fare = 0.0;
+		for(int i =0;i<TherepositoryInfoPOs.size();i++){
 
+//			rs = Database.findOperation(sql);
+			try {
+				RS=Database.query("order","goods_id",TherepositoryInfoPOs.get(i).getdeliveryid());
+				while(RS.next()){
+					fare = RS.getDouble("price");
+					TherepositoryInfoPOs.get(i).setmoney(fare);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		
+		return TherepositoryInfoPOs;
+	}
 
 }

@@ -9,6 +9,7 @@ import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryInfoVO;
+import vo.repositoryVO.RepositoryVO;
 
 public class OriginalInfoUI_Driver {
 
@@ -16,7 +17,7 @@ public class OriginalInfoUI_Driver {
 		OriginalInfoBLService original = new OriginalInfoBLImpl_Stub();
 		List<AccountVO> account =  original.getAccountInfo(1996);
 		List<OrganizationVO> organizaion = original.getOrganizationInfo(1996);
-		List<RepositoryInfoVO> repository = original.getRepositoryInfo(1996);
+		List<RepositoryVO> repository = original.getRepositoryInfo(1996);
 		List<StaffVO> staff = original.getStaffInfo(1996);
 		List<VehicleVO> vehicle = original.getVehicleInfo(1996);
 		System.out.println("期初账单信息如下：");
@@ -55,12 +56,12 @@ public class OriginalInfoUI_Driver {
 		}
 	}
 	
-	private static void showRepositoryInfo(List<RepositoryInfoVO> repository) {
+	private static void showRepositoryInfo(List<RepositoryVO> repository) {
 		System.out.println("库存信息如下：");
 		for(int i = 0; i < repository.size(); i++) {
 			System.out.println("第" + (i + 1) + "份快递的信息为：");
 			System.out.println("快递编号为：" + repository.get(i).getdeliveryid());
-			System.out.println("快递金额为：" + repository.get(i).getmoney());
+//			System.out.println("快递金额为：" + repository.get(i).getmoney());
 			System.out.println("区号为：" + repository.get(i).getareaCode());
 			System.out.println("排号为：" + repository.get(i).getrowid());
 			System.out.println("架号为： " + repository.get(i).getshelfid());

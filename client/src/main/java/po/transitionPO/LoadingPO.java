@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import constant.LoadingType;
+import vo.transitionVO.LoadingVO;
 
 /**
  * 记录了装运单的信息
@@ -131,5 +132,12 @@ public class LoadingPO implements Serializable{
 	}
 	public boolean getisPassed() {
 		return isPassed;
+	}
+	public static LoadingVO LoadingPOtoLoadingVO(LoadingPO loadingPO){
+		LoadingVO loadingVO =new LoadingVO(loadingPO.getloadingid(), loadingPO.getarrivalid(), 
+				loadingPO.getway(), loadingPO.getwayid(), loadingPO.getsupervisionid(), 
+				loadingPO.getsupercargoid(),loadingPO.getalldeliveryid());
+		loadingVO.setfare(loadingPO.getfare());
+		return loadingVO;
 	}
 }
