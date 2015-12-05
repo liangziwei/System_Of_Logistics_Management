@@ -111,6 +111,20 @@ public class OutRepositoryPO implements Serializable{
 				this.outrepositorydate, this.arrivalid, this.way, this.loadingid);
 	}
 	
+	public static OutRepositoryPO outRepositoryVOToPO(OutRepositoryVO vo) {
+		return new OutRepositoryPO(vo.getdeliveryid(), vo.getoutrepositorydate(),
+				vo.getarrivalid(), vo.getway(), vo.getloadingid());
+	}
+	
+	public static ArrayList<OutRepositoryPO> outRepositoryVOListToPO(ArrayList<OutRepositoryVO> list) {
+		ArrayList<OutRepositoryPO> po = new ArrayList<OutRepositoryPO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(outRepositoryVOToPO(list.get(i)));
+		}
+		return po;
+	}
+	
 	public static ArrayList<OutRepositoryVO>outRepositoryPOListToVO(ArrayList<OutRepositoryPO> po) {
 		ArrayList<OutRepositoryVO> vo = new ArrayList<OutRepositoryVO>();
 		int size = po.size();

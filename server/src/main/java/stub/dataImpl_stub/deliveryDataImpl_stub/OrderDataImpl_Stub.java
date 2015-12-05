@@ -58,4 +58,16 @@ public class OrderDataImpl_Stub implements OrderDataService{
 		return false;
 	}
 
+	@Override
+	public boolean approveOneOrder(OrderPO po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreOrder(ArrayList<OrderPO> po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

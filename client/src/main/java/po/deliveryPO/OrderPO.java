@@ -55,6 +55,15 @@ public class OrderPO implements Serializable{
 	public static OrderPO orderVOToPO(OrderVO orderVO) {
 		return new OrderPO(orderVO.getSenderInfo(), orderVO.getReceiverInfo(), orderVO.getGoodsInfo());
 	}
+	
+	public static ArrayList<OrderPO> orderVOListToPO(ArrayList<OrderVO> list) {
+		ArrayList<OrderPO> po = new ArrayList<OrderPO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(orderVOToPO(list.get(i)));
+		}
+		return po;
+	}
 
 	public ClientInfo getSenderInfo() {
 		return senderInfo;

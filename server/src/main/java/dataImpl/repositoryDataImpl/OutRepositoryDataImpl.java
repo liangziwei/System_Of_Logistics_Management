@@ -1,5 +1,6 @@
 package dataImpl.repositoryDataImpl;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -113,6 +114,27 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean approveOneOutRepository(OutRepositoryPO form) throws RemoteException {
+		String sql = "update outRepository set isApproved = 1, isPassed = 1 where "
+				+ "deliveryid = '" + form.getdeliveryid() + "';";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreOutRepository(ArrayList<OutRepositoryPO> form) throws RemoteException {
+		int size = form.size();
+		for(int i = 0; i < size; i++) {
+			this.approveOneOutRepository(form.get(i));
+		}
+		return true;
 	}
 
 }

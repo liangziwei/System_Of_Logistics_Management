@@ -42,7 +42,7 @@ public class Statistics {
 	}
 	private ReceivableVO receivablePOToreceivableVO(ReceivablePO receivablePO){
 		return new ReceivableVO(receivablePO.getDate(),receivablePO.getMoney(),
-				receivablePO.getCourier(),receivablePO.getDeliveryid());
+				receivablePO.getCourier(),receivablePO.getDeliveryid(),receivablePO.getBusinessID());
 	}
 	
 	private double calculateCost(String startDate, String endDate) {

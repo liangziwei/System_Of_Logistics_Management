@@ -125,6 +125,15 @@ public class EntruckingPO implements Serializable{
 				vo.getSupercargo(), vo.getFreight());
 	}
 	
+	public static ArrayList<EntruckingPO> entruckingVOListToPO(ArrayList<EntruckingVO> list) {
+		ArrayList<EntruckingPO> po = new ArrayList<EntruckingPO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(entrucingVOToPO(list.get(i)));
+		}
+		return po;
+	}
+	
 	public static ArrayList<EntruckingVO> entruckingPOListToVO(ArrayList<EntruckingPO> po) {
 		ArrayList<EntruckingVO> vo = new ArrayList<EntruckingVO>();
 		int size = po.size();

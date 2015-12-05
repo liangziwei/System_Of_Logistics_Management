@@ -2,6 +2,7 @@ package dataService.businessDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.businessPO.ReceivablePO;
 
@@ -19,4 +20,14 @@ public interface PaymentDataService extends Remote{
 	 *@return 添加是否成功
 	 */
 	public  boolean addPayentForm(ReceivablePO paymentPO)throws RemoteException;
+	
+	/**
+	 *审批一张收款单 
+	 */
+	public boolean approveOneReceivable(ReceivablePO form) throws RemoteException;
+	
+	/**
+	 *审批多张收款单 
+	 */
+	public boolean approveMoreReceivable(ArrayList<ReceivablePO> form) throws RemoteException;
 }

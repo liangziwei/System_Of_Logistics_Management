@@ -113,6 +113,20 @@ public class PaymentPO implements Serializable{
 				this.account, this.entry, this.remark, this.isApproved, this.isPassed);
 	}
 	
+	public static PaymentPO paymentVOToPO(PaymentVO vo) {
+		return new PaymentPO(vo.getDate(), vo.getPayAmount(), vo.getName(), 
+				vo.getAccount(), vo.getEntry(), vo.getRemark(), vo.isApproved(), vo.isPassed());
+	}
+	
+	public static ArrayList<PaymentPO> paymentVOListToPO(ArrayList<PaymentVO> list) {
+		ArrayList<PaymentPO> po = new ArrayList<PaymentPO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(paymentVOToPO(list.get(i)));
+		}
+		return po;
+	}
+	
 	public static ArrayList<PaymentVO> paymentPOListToVO(ArrayList<PaymentPO> po) {
 		ArrayList<PaymentVO> vo = new ArrayList<PaymentVO>();
 		int size = po.size();

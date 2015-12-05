@@ -1,5 +1,6 @@
 package dataImpl.transitionDataImpl;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -219,5 +220,26 @@ public class TransferringDataImpl implements TransferringDataService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean approveOneTransferring(TransferringPO form) throws RemoteException {
+		String sql = "update transferring set isApproved = 1, isPassed = 1 where "
+				+ "transferringid = '" + form.gettransferringid() + "';";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreTransferring(ArrayList<TransferringPO> form) throws RemoteException {
+		int size = form.size();
+		for(int i = 0; i < size; i++) {
+			this.approveOneTransferring(form.get(i));
+		}
+		return true;
 	}
 }

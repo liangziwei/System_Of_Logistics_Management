@@ -65,6 +65,8 @@ public class PaymentPanel extends DetailPanel{
 	
 	private boolean isOver=false;
 	
+	
+	private String businessID="025001";
 	public PaymentPanel(){
 		this.date.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.date.setFont(WORD_FONT);	
@@ -148,7 +150,7 @@ public class PaymentPanel extends DetailPanel{
 //							System.out.println(s);
 							deliveryList.add(s);
 						}
-						receivableVO=new ReceivableVO(dateStr,Double.parseDouble(moneyStr),courierStr,deliveryList);
+						receivableVO=new ReceivableVO(dateStr,Double.parseDouble(moneyStr),courierStr,deliveryList,businessID);
 						
 						if(paymentCon.addPayentForm(receivableVO)){
 							result.setForeground(Color.GREEN);

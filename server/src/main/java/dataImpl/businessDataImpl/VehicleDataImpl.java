@@ -18,7 +18,7 @@ public class VehicleDataImpl implements VehicleDataService {
 		String number=vehiclePO.getNumber();
 		String age=vehiclePO.getAge();
 		String var;
-		var="'"+vehicleid+"','"+number+"','"+age+"',0,1";
+		var="'"+vehicleid+"','"+number+"','"+age+"'";
 		return Database.add("vehicle", var);
 	}
 

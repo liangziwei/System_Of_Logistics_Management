@@ -124,6 +124,18 @@ public class OutRepositoryVO extends ApprovalFormVO{
 	public String getDate() {
 		return this.outrepositorydate;
 	}
+	
+	public String getWayString() {
+		switch(this.way) {
+		case PLANE:
+			return "飞机";
+		case TRAIN:
+			return "火车";
+		case TRUCK:
+			return "卡车";
+		}
+		return "";
+	}
 }
 
 

@@ -10,11 +10,12 @@ public class ReceivablePO implements Serializable{
 	private double money;
 	private String courier;//快递员
 	private ArrayList<String> deliveryid;
+	private String businessID;
 	private boolean isApproved=false; 
 	private boolean isPassed=true;
 	
 	public ReceivablePO(String date, double money, String courier,
-			ArrayList<String> deliveryid) {
+			ArrayList<String> deliveryid,String businessID) {
 		this.date = date;
 		this.money = money;
 		this.courier = courier;
@@ -67,6 +68,14 @@ public class ReceivablePO implements Serializable{
 
 	public void setPassed(boolean isPassed) {
 		this.isPassed = isPassed;
+	}
+
+	public String getBusinessID() {
+		return businessID;
+	}
+
+	public void setBusinessID(String businessID) {
+		this.businessID = businessID;
 	}
 	
 }
