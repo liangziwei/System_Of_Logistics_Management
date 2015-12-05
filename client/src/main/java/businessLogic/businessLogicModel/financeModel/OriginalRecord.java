@@ -19,7 +19,7 @@ import businessLogicService.financeBLService.OriginalInfoRecordBLService;
 import dataService.financeDataService.OriginalInfoDataService;
 import dataService.financeDataService.OriginalInfoRecordDataService;
 
-public class OriginalRecord implements OriginalInfoRecordBLService {
+public class OriginalRecord{
 
 	private OriginalInfoRecordDataService originalInfo= (OriginalInfoRecordDataService) RMI.<OriginalInfoDataService> getDataService("originalInfoRecord");;
 	
@@ -78,7 +78,6 @@ public class OriginalRecord implements OriginalInfoRecordBLService {
 		return list;
 	}
 
-	@Override
 	public boolean addStaffInfo(int year, List<StaffVO> list) {
 		// TODO Auto-generated method stub		
 		try {
@@ -90,7 +89,6 @@ public class OriginalRecord implements OriginalInfoRecordBLService {
 		}
 	}
 
-	@Override
 	public boolean addOrganizationInfo(int year, List<OrganizationVO> list) {
 		// TODO Auto-generated method stub
 		try {
@@ -102,7 +100,6 @@ public class OriginalRecord implements OriginalInfoRecordBLService {
 		}
 	}
 
-	@Override
 	public boolean addVehicleInfo(int year, List<VehicleVO> list) {
 		// TODO Auto-generated method stub
 		try {
@@ -114,7 +111,6 @@ public class OriginalRecord implements OriginalInfoRecordBLService {
 		}
 	}
 
-	@Override
 	public boolean addRepositoryInfo(int year, List<RepositoryVO> list) {
 		// TODO Auto-generated method stub
 		try {
@@ -126,7 +122,6 @@ public class OriginalRecord implements OriginalInfoRecordBLService {
 		}
 	}
 
-	@Override
 	public boolean addAccountInfo(int year, List<AccountVO> list) {
 		// TODO Auto-generated method stub
 		try {
@@ -138,7 +133,6 @@ public class OriginalRecord implements OriginalInfoRecordBLService {
 		}
 	}
 
-	@Override
 	public List<Integer> getYearList() {
 		// TODO Auto-generated method stub
 		try {
