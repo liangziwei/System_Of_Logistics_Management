@@ -25,7 +25,7 @@ public class PaymentBLImpl_Stub implements PaymentBLService{
 	}
 	
 	private ReceivablePO receivableVOToPO(ReceivableVO receivableVO){
-		return new ReceivablePO(receivableVO.getDate(),receivableVO.getMoney(),receivableVO.getCourier(),receivableVO.getDeliveryid());
+		return new ReceivablePO(receivableVO.getDate(),receivableVO.getMoney(),receivableVO.getCourier(),receivableVO.getDeliveryid(),receivableVO.getBusinessID());
 	}
 
 }

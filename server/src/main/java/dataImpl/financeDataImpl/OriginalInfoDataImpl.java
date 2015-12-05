@@ -17,7 +17,7 @@ import mysql.Database;
 public class OriginalInfoDataImpl implements OriginalInfoDataService{
 	
 	ResultSet rs;
-
+	@Override
 	public List<StaffPO> getStaffInfo(int year) {
 		// TODO Auto-generated method stub
 		List<StaffPO> thelist = new ArrayList<StaffPO>();
@@ -52,7 +52,7 @@ public class OriginalInfoDataImpl implements OriginalInfoDataService{
 		}
 		return thelist;
 	}
-
+	@Override
 	public List<OrganizationPO> getOrganizationInfo(int year) {
 		// TODO Auto-generated method stub
 		List<OrganizationPO> thelist = new ArrayList<OrganizationPO>();
@@ -81,7 +81,7 @@ public class OriginalInfoDataImpl implements OriginalInfoDataService{
 		}
 		return thelist;
 	}
-
+	@Override
 	public List<VehiclePO> getVehicleInfo(int year) {
 		// TODO Auto-generated method stub
 		List<VehiclePO> thelist = new ArrayList<VehiclePO>();
@@ -110,7 +110,7 @@ public class OriginalInfoDataImpl implements OriginalInfoDataService{
 		}
 		return thelist;
 	}
-
+	@Override
 	public List<RepositoryPO> getRepositoryInfo(int year) {
 		// TODO Auto-generated method stub
 		List<RepositoryPO> thelist = new ArrayList<RepositoryPO>();
@@ -148,7 +148,7 @@ public class OriginalInfoDataImpl implements OriginalInfoDataService{
 		
 		return thelist;
 	}
-
+	@Override
 	public List<AccountPO> getAccountInfo(int year) {
 		// TODO Auto-generated method stub
 		List<AccountPO> thelist = new ArrayList<AccountPO>();
