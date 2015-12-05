@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.businessController.DriverController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.DriverVO;
@@ -19,6 +20,8 @@ import vo.businessVO.VehicleVO;
 public class ModifyDriverPanel extends DetailPanel {
 	private DriverController driverCon=new DriverController();
 	private DriverVO driverVO;
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	
 	private JLabel driverid=new JLabel("司机编号");
 	private JLabel name=new JLabel("   姓名");
@@ -96,6 +99,7 @@ public class ModifyDriverPanel extends DetailPanel {
 		this.birthday.setFont(WORD_FONT);
 		this.birthdayText.setBounds(this.driveridText.getX(), this.birthday.getY(), TEXT_W>>2, TEXT_H);
 		this.birthdayText.setFont(WORD_FONT);
+		dateChoose.register(birthdayText);
 		this.birthdayText.setOpaque(false);
 		
 		this.drivingDeadline.setBounds(START_X+(TEXT_W>>2)+ LABEL_W + (LINE_GAP<<1), this.birthday.getY() , LABEL_W, LABEL_H);
@@ -285,16 +289,16 @@ public class ModifyDriverPanel extends DetailPanel {
 		String drivingDeadlineStr=drivingDeadlineText.getText();
 		
 		
-		if(driveridStr.length()!=9||!CommonLogic.isNumber(driveridStr)){
+		if(!driveridStr.matches("\\d{9}")){
 			driveridText.setText("");
 			return false;
-		}else if(birthdayStr.length()!=10){
+		}else if(!CommonLogic.isDate(birthdayStr)){
 			birthdayText.setText("");
 			return false;
 		}else if(!CommonLogic.isNumber(drivingDeadlineStr)){
 			drivingDeadlineText.setText("");
 			return false;
-		}else if(idNumber.length()!=18){
+		}else if(!idNumber.matches("\\w{18}")){
 			idNumberText.setText("");
 			return false;
 		}else if(!CommonLogic.isNumber(phoneStr)){
