@@ -151,7 +151,7 @@ public class FindVehiclePanel extends DetailPanel{
 		String numberStr=numberText.getText();
 		String ageStr=ageText.getText();
 		
-		if(vehicleidStr.length()!=9){
+		if(!vehicleidStr.matches("\\d{9}")){
 			vehicleidText.setText("");
 			return false;
 		}

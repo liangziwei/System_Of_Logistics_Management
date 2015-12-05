@@ -269,22 +269,10 @@ private boolean isCorrect(){
 		String passwordStr=passwordText.getText();
 		String limitStr=(String)limitBox.getSelectedItem();
 		
-//		if(idStr.length()!=9&&!CommonLogic.isNumber(driveridStr)){
-//			driveridText.setText("");
-//			return false;
-//		}else if(birthdayStr.length()!=10){
-//			birthdayText.setText("");
-//			return false;
-//		}else if(!CommonLogic.isNumber(drivingDeadlineStr)){
-//			drivingDeadlineText.setText("");
-//			return false;
-//		}else if(idNumber.length()!=18){
-//			idNumberText.setText("");
-//			return false;
-//		}else if(!CommonLogic.isNumber(phoneStr)){
-//			phoneNumberText.setText("");
-//			return false;
-//		}
+		if(!idStr.matches("[B-Hb-h][0-9]+")){
+			idText.setText("");
+			return false;
+		}
 		
 		return true;
 	}

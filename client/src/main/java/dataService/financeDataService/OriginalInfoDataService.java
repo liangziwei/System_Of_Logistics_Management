@@ -8,7 +8,7 @@ import po.businessPO.VehiclePO;
 import po.financePO.AccountPO;
 import po.managerPO.OrganizationPO;
 import po.managerPO.StaffPO;
-import po.repositoryPO.RepositoryInfoPO;
+import po.repositoryPO.RepositoryPO;
 
 public interface OriginalInfoDataService extends Remote{
 
@@ -48,9 +48,9 @@ public interface OriginalInfoDataService extends Remote{
 	 * 后置条件：根据年份查找所有的库存信息，并返回给逻辑层
 	 * 需接口：无
 	 * @param year 年份
-	 * @return List<RepositoryInfoPO>所有库存信息的持久化对象
+	 * @return List<RepositoryPO>所有库存信息的持久化对象
 	 */
-	public List<RepositoryInfoPO> getRepositoryInfo(int year) throws RemoteException;
+	public List<RepositoryPO> getRepositoryInfo(int year) throws RemoteException;
 	
 	/**
 	 * description:根据年份获得该年份的银行信息

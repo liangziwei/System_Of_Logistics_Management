@@ -43,7 +43,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 		
 		boolean modify = false;
 		String val = "";
-		val = "deliveryid='" + deliveryid + "',outrepositorydate='" + outrepositorydate + "',arrivalid='" + arrivalid
+		val = "outrepositorydate='" + outrepositorydate + "',arrivalid='" + arrivalid
 				+ "',way='" + way.toString() + "',loadingid='" + loadingid + "',isApproved=0,isPassed=1";
 		try {
 			modify = Database.modify("outRepository", val, "deliveryid", deliveryid);

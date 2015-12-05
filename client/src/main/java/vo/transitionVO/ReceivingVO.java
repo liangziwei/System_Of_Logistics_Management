@@ -2,6 +2,7 @@
 package vo.transitionVO;
 
 import constant.CargoState;
+import po.transitionPO.ReceivingPO;
 import vo.ApprovalFormVO;
 
 /**
@@ -123,6 +124,11 @@ public class ReceivingVO extends ApprovalFormVO{
 	@Override
 	public String getDate() {
 		return this.arrivaldate;
+	}
+	public static ReceivingPO ReceivingVOtoReceivingPO(ReceivingVO receivingVO) {
+		return new ReceivingPO(receivingVO.gettransitionid(), receivingVO.getarrivaldate(),
+				receivingVO.gettransferringid(), receivingVO.getdepartureid(), receivingVO.getarrivalid(),
+				receivingVO.getstate());
 	}
 }
 

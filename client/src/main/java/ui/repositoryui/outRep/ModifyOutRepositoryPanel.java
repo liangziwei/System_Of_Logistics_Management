@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.repositoryController.OutRepositoryController;
 import businessLogicService.repositoryBLService.OutRepositoryBLService;
 import constant.LoadingType;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import ui.transitionui.loadingui.AddLoadingPanel;
@@ -21,6 +22,8 @@ import vo.repositoryVO.OutRepositoryVO;
 
 public class ModifyOutRepositoryPanel extends DetailPanel {
 	private OutRepositoryBLService outRepositoryBLService = new OutRepositoryController();
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	// 组件
 	private JLabel Deliveryid = new JLabel("快递编号");
 	private JLabel outrepositorydate = new JLabel("出库日期");
@@ -153,8 +156,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		// 出库日期
 		outrepositorydate.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(outrepositorydate);
-		outrepositoryYear.setBounds(outrepositorydate.getX() + outrepositorydate.getWidth() + COMPONENT_GAP_X,
-				outrepositorydate.getY(), TEXT_W / 2, TEXT_H);
+		outrepositoryYear.setBounds(outrepositorydate.getX() + outrepositorydate.getWidth() + COMPONENT_GAP_X,outrepositorydate.getY(), TEXT_W / 2, TEXT_H);
 		outrepositoryYear.setOpaque(false);
 		this.infoPanel.add(outrepositoryYear);
 		JLabel apart1 = new JLabel("-");
@@ -170,6 +172,19 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		outrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
 		outrepositoryDay.setOpaque(false);
 		this.infoPanel.add(outrepositoryDay);
+		dateChoose.register(outrepositoryYear);
+		this.infoPanel.add(outrepositoryYear);
+//		JLabel apart1 = new JLabel("-");
+//		JLabel apart2 = new JLabel("-");
+//		apart1.setBounds(outrepositoryYear.getX() + outrepositoryYear.getWidth(), outrepositoryYear.getY(), 10, TEXT_H);
+//		this.infoPanel.add(apart1);
+//		outrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
+//		this.infoPanel.add(outrepositoryMonth);
+//		apart2.setBounds(outrepositoryMonth.getX() + outrepositoryMonth.getWidth(), outrepositoryMonth.getY(), 10,
+//				TEXT_H);
+//		this.infoPanel.add(apart2);
+//		outrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
+//		this.infoPanel.add(outrepositoryDay);
 		// 目的地
 		arrivalid.setBounds(outrepositorydate.getX(),
 				outrepositorydate.getY() + outrepositorydate.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
@@ -250,8 +265,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 				
 				if (result) {//验证成功
 					//重置出库时间
-					outRepositoryVO.setoutrepositorydate(outrepositoryYear.getText().trim() + "-"
-							+ outrepositoryMonth.getText().trim() + "-" + outrepositoryDay.getText().trim());
+					outRepositoryVO.setoutrepositorydate(outrepositoryYear.getText().trim());
 					throughVerifyOperation(outRepositoryVO);   
 					cancle2.setVisible(true);
 				}
@@ -306,8 +320,9 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 	private void disableComponents() {
 		DeliveryidText.setEditable(false);
 		outrepositoryYear.setEditable(false);
-		outrepositoryMonth.setEditable(false);
-		outrepositoryDay.setEditable(false);
+		dateChoose.setEnabled(false);
+//		outrepositoryMonth.setEditable(false);
+//		outrepositoryDay.setEditable(false);
 		arrivalidText.setEditable(false);
 		loadingwayText.setEnabled(false);
 		wayidText.setEditable(false);
@@ -316,8 +331,9 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 	private void enableComponents() {
 		DeliveryidText.setEditable(true);
 		outrepositoryYear.setEditable(true);
-		outrepositoryMonth.setEditable(true);
-		outrepositoryDay.setEditable(true);
+		dateChoose.setEnabled(true);
+//		outrepositoryMonth.setEditable(true);
+//		outrepositoryDay.setEditable(true);
 		arrivalidText.setEditable(true);
 		loadingwayText.setEnabled(true);
 		wayidText.setEditable(true);
@@ -325,8 +341,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 
 	private OutRepositoryVO creatOutRepository() {
 		String Delivery = DeliveryidText.getText().trim();
-		String outdate = outrepositoryYear.getText().trim() + " -" + outrepositoryMonth.getText().trim() + " -"
-				+ outrepositoryDay.getText().trim() + " ";
+		String outdate = outrepositoryYear.getText().trim();
 		String arrive = arrivalidText.getText().trim();
 		LoadingType type = null;
 		String way = (String) loadingwayText.getSelectedItem();
@@ -347,10 +362,10 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 	}
 
 	private void setinfo(OutRepositoryVO outRepositoryVO) {
-		String[] outdate = outRepositoryVO.getoutrepositorydate().split("-");
-		outrepositoryYear.setText(outdate[0]);
-		outrepositoryMonth.setText(outdate[1]);
-		outrepositoryDay.setText(outdate[2]);
+//		String[] outdate = outRepositoryVO.getoutrepositorydate().split("-");
+		outrepositoryYear.setText(outRepositoryVO.getoutrepositorydate());
+//		outrepositoryMonth.setText(outdate[1]);
+//		outrepositoryDay.setText(outdate[2]);
 		arrivalidText.setText(outRepositoryVO.getarrivalid());
 		String WAY = null;
 		switch (outRepositoryVO.getway()) {

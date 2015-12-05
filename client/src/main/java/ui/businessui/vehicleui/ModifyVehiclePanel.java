@@ -227,13 +227,14 @@ public class ModifyVehiclePanel extends DetailPanel {
 		String numberStr=numberText.getText();
 		String ageStr=ageText.getText();
 		
-		if(vehicleidStr.length()!=9){
+		if(!vehicleidStr.matches("\\d{9}")){
 			vehicleidText.setText("");
 			return false;
 		}else if(numberStr.length()>9){
 			numberText.setText("");
 			return false;
 		}else if(!CommonLogic.isNumber(ageStr)){
+			ageText.setText("");
 			return false;
 		}
 		

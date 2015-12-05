@@ -11,13 +11,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
 
 import ui.baseui.DetailPanel;
+
 import ui.baseui.LimpidButton;
+
+import businessLogic.businessLogicController.financeController.OriginalInfoController;
+
 
 @SuppressWarnings("serial")
 public class OriginalInfoPanel extends DetailPanel{
+	
+	private OriginalInfoController originalInfoCon;
+	
+	private JLabel query=new JLabel("历史建账信息");
+	
 	private JLabel OriginizationLabel=new JLabel("机构");
 	private JLabel staffLabel=new JLabel("人员");
 	private JLabel vehicleLabel=new JLabel("车辆");
