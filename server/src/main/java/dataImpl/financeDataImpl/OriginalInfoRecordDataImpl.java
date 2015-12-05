@@ -310,7 +310,20 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 	@Override
 	public List<Integer> getYearList() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		List<Integer> yearList=new ArrayList<Integer>();
+		String sql="SELECT distinct year FROM organizationRecord";
+		ResultSet rs = null;
+		try {
+			rs=Database.findOperation(sql);
+			while(rs.next()){
+			   yearList.add(rs.getInt("year"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return yearList;
 	}
 	
 
