@@ -33,9 +33,9 @@ public class StatisticsTest {
 		deliveryid3.add("1245655542");
 		deliveryid3.add("1245658952");
 		deliveryid3.add("1245675152");
-		receivable.add(new ReceivableVO("2015-02-11",100.0,"小红",deliveryid1));
-		receivable.add(new ReceivableVO("2015-02-12",120.0,"小李",deliveryid2));
-		receivable.add(new ReceivableVO("2015-02-13",145.0,"小王",deliveryid3));
+//		receivable.add(new ReceivableVO("2015-02-11",100.0,"小红",deliveryid1));
+//		receivable.add(new ReceivableVO("2015-02-12",120.0,"小李",deliveryid2));
+//		receivable.add(new ReceivableVO("2015-02-13",145.0,"小王",deliveryid3));
 		
 		assertEquals(receivable.size(), ReceivableList.size());
 		for(int i=0;i<receivable.size();i++){

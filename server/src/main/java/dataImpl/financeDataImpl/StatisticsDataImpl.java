@@ -1,9 +1,12 @@
 package dataImpl.financeDataImpl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import dataService.financeDataService.StatisticsDataService;
+import mysql.Database;
 import po.businessPO.ReceivablePO;
 import po.financePO.PaymentPO;
 
@@ -14,64 +17,74 @@ import po.financePO.PaymentPO;
 public class StatisticsDataImpl implements StatisticsDataService{
 
 	public List<ReceivablePO> getReceivableList(String startDate,String endDate) {
-		List<ReceivablePO> receivable = new ArrayList<ReceivablePO>();
-		ArrayList<String> deliveryid1 = new ArrayList<String>();
-		ArrayList<String> deliveryid2 = new ArrayList<String>();
-		ArrayList<String> deliveryid3 = new ArrayList<String>();
-		ArrayList<String> deliveryid4 = new ArrayList<String>();
-		deliveryid1.add("1234567890");
-		deliveryid1.add("1245678952");
-		deliveryid2.add("1245678552");
-		deliveryid2.add("1245453122");
-		deliveryid2.add("1245678212");
-		deliveryid3.add("1245655542");
-		deliveryid3.add("1245658952");
-		deliveryid3.add("1245675152");
-		deliveryid4.add("1245678212");
-		deliveryid4.add("1245655542");
-		deliveryid4.add("1245658952");
-		deliveryid4.add("1245675152");
-		receivable.add(new ReceivablePO("2015-02-11",100.0,"1",deliveryid1));
-		receivable.add(new ReceivablePO("2015-02-11",120.0,"2",deliveryid2));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"3",deliveryid3));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"4",deliveryid4));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"5",deliveryid4));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"6",deliveryid4));
-		return receivable;
+		List<ReceivablePO> po = new ArrayList<ReceivablePO>();
+		String sql = "select * from receivable where date >= '" + startDate
+				+ "' && date <= '" + endDate + "';";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				po.add(this.createReceivablePO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
 	}
 	
 	public List<ReceivablePO> getReceivableList() {
-		List<ReceivablePO> receivable = new ArrayList<ReceivablePO>();
-		ArrayList<String> deliveryid1 = new ArrayList<String>();
-		ArrayList<String> deliveryid2 = new ArrayList<String>();
-		ArrayList<String> deliveryid3 = new ArrayList<String>();
-		ArrayList<String> deliveryid4 = new ArrayList<String>();
-		deliveryid1.add("1234567890");
-		deliveryid1.add("1245678952");
-		deliveryid2.add("1245678552");
-		deliveryid2.add("1245453122");
-		deliveryid2.add("1245678212");
-		deliveryid3.add("1245655542");
-		deliveryid3.add("1245658952");
-		deliveryid3.add("1245675152");
-		deliveryid4.add("1245678212");
-		deliveryid4.add("1245655542");
-		deliveryid4.add("1245658952");
-		deliveryid4.add("1245675152");
-		receivable.add(new ReceivablePO("2015-02-11",100.0,"1",deliveryid1));
-		receivable.add(new ReceivablePO("2015-02-11",120.0,"2",deliveryid2));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"3",deliveryid3));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"4",deliveryid4));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"5",deliveryid4));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"6",deliveryid4));
-		return receivable;
+		List<ReceivablePO> po = new ArrayList<ReceivablePO>();
+		String sql = "select * from receivable;";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				po.add(this.createReceivablePO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
 	}
 	
 	public List<PaymentPO>	getPaymentList() {
 		List<PaymentPO> pay = new ArrayList<PaymentPO>();
-		pay.add(new PaymentPO(null, 10.0, null, null, null, null, false, false));
-		pay.add(new PaymentPO(null, 20.0, null, null, null, null, false, false));
-		pay.add(new PaymentPO(null, 30.0, null, null, null, null, false, false));
+		String sql = "select * from payment;";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				pay.add(this.createPaymentPO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return pay;
+	}
+	
+	private ReceivablePO createReceivablePO(ResultSet rs) {
+		ArrayList<String> id = new ArrayList<String>();;
+		try {
+			String idText = rs.getString("deliveryid");
+			String[] temp = idText.split(" ");
+			int size = temp.length;
+			for(int i = 0; i < size; i++) {
+				id.add(temp[i]);
+			}
+			return new ReceivablePO(rs.getString("date"), rs.getDouble("money"),
+					rs.getString("courier"), id, rs.getString("businessid"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private PaymentPO createPaymentPO(ResultSet rs) {
+		try {
+			return new PaymentPO(rs.getString("date"), rs.getDouble("payAmount"), rs.getString("name"),
+					rs.getString("account"), rs.getString("entry"), rs.getString("remark"),
+					Boolean.parseBoolean(rs.getString("is_approved")),
+					Boolean.parseBoolean(rs.getString("is_passed")));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

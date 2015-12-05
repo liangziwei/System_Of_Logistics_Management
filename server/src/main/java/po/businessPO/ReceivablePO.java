@@ -20,6 +20,7 @@ public class ReceivablePO implements Serializable{
 		this.money = money;
 		this.courier = courier;
 		this.deliveryid = deliveryid;
+		this.businessID = businessID;
 	}
 	
 	public String getDate() {

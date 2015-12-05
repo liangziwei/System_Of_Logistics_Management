@@ -21,7 +21,7 @@ public class OriginalInfoController implements OriginalInfoBLService{
 
 	public OriginalInfoController(String order) {
 		// TODO Auto-generated constructor stub
-		original = new OriginalInfo(order);
+		original = new OriginalInfo();
 	}
 	
 	public List<StaffVO> getStaffInfo(int year)  {

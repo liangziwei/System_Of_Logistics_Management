@@ -88,7 +88,7 @@ public class ApprovalForm {
 			}
 		case "收款单":
 			try {
-				return this.receivable.approveOneReceivable(ReceivablePO.ReceiptVOToPO((ReceivableVO) form));
+				return this.receivable.approveOneReceivable(ReceivablePO.receivableVOToPO((ReceivableVO) form));
 			} catch (RemoteException e) {
 				e.printStackTrace();
 				return false;

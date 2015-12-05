@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import businessLogic.businessLogicController.deliveryController.OrderController;
 import businessLogic.businessLogicController.managerController.ApprovalFormController;
 import businessLogicService.managerBLService.ApprovalFormBLService;
 import ui.baseui.DetailPanel;
@@ -233,7 +232,7 @@ public class ApprovalFormPanel extends DetailPanel{
 		this.tableNameMap.put("营业厅到达单", arrival);
 		//收款单列名
 		Object[] receivable = new Object[] {
-				"收款日期", "收款金额", "收款快递员"
+				"收款日期", "营业厅编号", "收款金额", "收款快递员"
 		};
 		this.tableNameMap.put("收款单", receivable);
 		//派件单列名
@@ -370,14 +369,15 @@ public class ApprovalFormPanel extends DetailPanel{
 	private Object[][] getReceivableData(ArrayList<ReceivableVO> list) {
 		int size = list.size();
 		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][3];
+		Object[][] data = new Object[rowNum][4];
 		ReceivableVO vo = null;
 		for(int i = 0; i < size; i++) {
 			vo = list.get(i);
-			//"收款日期", "收款金额", "收款快递员"
+			//"收款日期", "营业厅编号", "收款金额", "收款快递员"
 			data[i][0] = vo.getDate();
-			data[i][1] = vo.getMoney();
-			data[i][2] = vo.getCourier();
+			data[i][1] = vo.getBusinessID();
+			data[i][2] = vo.getMoney();
+			data[i][3] = vo.getCourier();
 		}
 		return data;
 	}

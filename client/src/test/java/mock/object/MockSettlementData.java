@@ -20,9 +20,9 @@ public class MockSettlementData implements SettlementDataService{
 		deliveryid3.add("1245655542");
 		deliveryid3.add("1245658952");
 		deliveryid3.add("1245675152");
-		receivable.add(new ReceivablePO("2015-02-11",100.0,"小红",deliveryid1));
-		receivable.add(new ReceivablePO("2015-02-11",120.0,"小李",deliveryid2));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"小王",deliveryid3));
+//		receivable.add(new ReceivablePO("2015-02-11",100.0,"小红",deliveryid1));
+//		receivable.add(new ReceivablePO("2015-02-11",120.0,"小李",deliveryid2));
+//		receivable.add(new ReceivablePO("2015-02-11",145.0,"小王",deliveryid3));
 		return receivable;
 	}
 	
@@ -39,9 +39,9 @@ public class MockSettlementData implements SettlementDataService{
 		deliveryid3.add("1245696542");
 		deliveryid3.add("1245651952");
 		deliveryid3.add("1245675452");
-		receivable.add(new ReceivablePO("2015-02-11",100.0,"小红",deliveryid1));
-		receivable.add(new ReceivablePO("2015-02-11",120.0,"小李",deliveryid2));
-		receivable.add(new ReceivablePO("2015-02-11",145.0,"小王",deliveryid3));
+//		receivable.add(new ReceivablePO("2015-02-11",100.0,"小红",deliveryid1));
+//		receivable.add(new ReceivablePO("2015-02-11",120.0,"小李",deliveryid2));
+//		receivable.add(new ReceivablePO("2015-02-11",145.0,"小王",deliveryid3));
 		return receivable;
 	}
 }
