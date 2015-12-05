@@ -13,7 +13,7 @@ public class PaymentUI_Driver {
 		deliveryid.add("1234567890");
 		deliveryid.add("0987654321");
 		PaymentBLService payment=new PaymentBLImpl_Stub();
-		ReceivableVO receivableVO=new ReceivableVO("2015-10-10",33,"快递员1",deliveryid);
+		ReceivableVO receivableVO=new ReceivableVO("2015-10-10",33,"快递员1",deliveryid,"025005");
 		if(payment.addPayentForm(receivableVO)){
 			System.out.println("收款单添加成功");
 		}else{

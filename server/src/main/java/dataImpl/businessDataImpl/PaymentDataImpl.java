@@ -55,7 +55,7 @@ public class PaymentDataImpl implements PaymentDataService {
 				id.add(temp[i]);
 			}
 			return new ReceivablePO(rs.getString("state"), rs.getDouble("money"), 
-					rs.getString("courier"), id);
+					rs.getString("courier"), id,rs.getString("businessID"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
