@@ -77,10 +77,15 @@ public class ClientInfoPanel extends JPanel{
 		this.mobileLabel.setFont(font);
 		//文本框
 		this.nameText.setFont(font);
+		this.nameText.setOpaque(false);
 		this.addressText.setFont(font);
+		this.addressText.setOpaque(false);
 		this.companyText.setFont(font);
+		this.companyText.setOpaque(false);
 		this.phoneText.setFont(font);
+		this.phoneText.setOpaque(false);
 		this.mobileText.setFont(font);
+		this.mobileText.setOpaque(false);
 	}
 	
 	private void setDefaultValue() {

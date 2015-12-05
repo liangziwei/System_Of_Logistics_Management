@@ -154,6 +154,8 @@ public class OrderInputPanel extends DetailPanel{
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H - 72));
 		//添加其他信息面板
+		this.sender.setBackground(null);
+		this.sender.setOpaque(false);
 		panel.add(this.sender);
 		panel.add(this.receiver);
 		panel.add(this.goodsInfo);
@@ -180,8 +182,12 @@ public class OrderInputPanel extends DetailPanel{
 		//信息面板
 		this.infoPanel.setLayout(null);
 		this.infoPanel.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		this.infoPanel.setBackground(null);
+		this.infoPanel.setOpaque(false);
 		this.container.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
 		this.container.setViewportView(this.infoPanel);
+		this.container.setOpaque(false);
+		this.container.getViewport().setOpaque(false);
 		this.container.getVerticalScrollBar().setUnitIncrement(15);
 		this.add(this.container);
 		int panelH = 0;

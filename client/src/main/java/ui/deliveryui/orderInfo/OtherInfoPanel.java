@@ -65,10 +65,15 @@ public class OtherInfoPanel extends JPanel{
 		this.timeLabel.setFont(font);
 		//文本框
 		this.idText.setFont(font);
+		this.idText.setOpaque(false);
 		this.typeText.setFont(font);
+		this.typeText.setOpaque(false);
 		this.packageText.setFont(font);
+		this.packageText.setOpaque(false);
 		this.dateText.setFont(font);
+		this.dateText.setOpaque(false);
 		this.timeText.setFont(font);
+		this.timeText.setOpaque(false);
 		//设置时间文本框不可编辑
 		this.timeText.setEditable(false);
 	}

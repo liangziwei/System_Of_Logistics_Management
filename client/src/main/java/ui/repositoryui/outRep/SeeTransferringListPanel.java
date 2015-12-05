@@ -46,11 +46,6 @@ public class SeeTransferringListPanel extends DetailPanel{
 
 	private LimpidButton cancle = new LimpidButton("","picture/取消.png");
 
-//	private JTextField timemonth = new JTextField();
-//	private JTextField timeday = new JTextField();
-//	private JLabel apart1 = new JLabel("-");
-//	private JLabel apart2 = new JLabel("-");
-
 	private JScrollPane jScrollPane = new JScrollPane();
 	
 	private JLabel state = new JLabel("", JLabel.CENTER);
@@ -104,14 +99,6 @@ public class SeeTransferringListPanel extends DetailPanel{
 		timeyear.setBounds(time.getX()+time.getWidth()+COMPONENT_GAP_X, time.getY(), (TEXT_W/2)*3, TEXT_H);
 		dateChoose.register(timeyear);
 		this.add(timeyear);
-//		apart1.setBounds(timeyear.getX()+timeyear.getWidth(), timeyear.getY(), 10, TEXT_H);
-//		this.add(apart1);
-//		timemonth.setBounds(apart1.getX()+apart1.getWidth(), apart1.getY(), TEXT_W /2, TEXT_H);
-//		this.add(timemonth);
-//		apart2.setBounds(timemonth.getX()+timemonth.getWidth(), timemonth.getY(), 10, TEXT_H);
-//		this.add(apart2);
-//		timeday.setBounds(apart2.getX()+apart2.getWidth(),apart2.getY(),TEXT_W /2,TEXT_H);
-//		this.add(timeday);
 		find.setBounds(timeyear.getX()+timeyear.getWidth()+COMPONENT_GAP_X+30, timeyear.getY(), LABEL_W+20, LABEL_H);
 		this.add(find);
 		cancle.setBounds(find.getX()+find.getWidth()+COMPONENT_GAP_X+10, find.getY(), LABEL_W+20, LABEL_H);
