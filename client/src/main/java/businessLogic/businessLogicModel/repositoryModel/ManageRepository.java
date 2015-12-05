@@ -151,9 +151,11 @@ public class ManageRepository {
 				repositoryPO.getrowid(), repositoryPO.getshelfid(), repositoryPO.getposid());
 	}
 	private RepositoryInfoVO RepositoryInfoPOtoRepositoryInfoVO(RepositoryInfoPO repositoryInfoPO){
-		return new RepositoryInfoVO(repositoryInfoPO.getdeliveryid(),repositoryInfoPO.getareaCode(), 
+		RepositoryInfoVO repositoryInfoVO = new RepositoryInfoVO(repositoryInfoPO.getdeliveryid(),repositoryInfoPO.getareaCode(), 
 				repositoryInfoPO.getrowid(), repositoryInfoPO.getshelfid(), 
 				repositoryInfoPO.getposid(), repositoryInfoPO.getbeinrepository());
+		repositoryInfoVO.setmoney(repositoryInfoPO.getmoney());
+		return repositoryInfoVO;
 	}
 	private DeliveryInfoVO DeliveryInfoPOtoDeliveryInfoVO(DeliveryInfoPO deliveryInfoPO){
 		return new DeliveryInfoVO(deliveryInfoPO.getdeliveryid(), deliveryInfoPO.getinrepositorydate(), 

@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import ui.DateChooser;
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
 import vo.repositoryVO.RepositoryInfoVO;
+import vo.repositoryVO.RepositoryVO;
 
 public class LookRepsitoryPanel extends DetailPanel {
 	ManageRepositoryBLService manageRepositoryBLService = new ManageRepositoryController();
@@ -130,7 +132,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		infoPanel.setBounds(state.getX(), state.getY() + state.getHeight(), LABEL_W + TEXT_W + COMPONENT_GAP_X * 2,
 				(LABEL_H + COMPONENT_GAP_X) * 9);
 		infoPanel.setLayout(null);
-		infoPanel.setVisible(true);
+		infoPanel.setVisible(false);
 		infoPanel.setOpaque(false);
 		initinfo();
 		addPanels();
@@ -144,8 +146,9 @@ public class LookRepsitoryPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (startyear.getText().trim().equals("")) {
-					showState("时间不可为空");
+				if (startyear.getText().trim().equals("")||(!CommonLogic.isDate(startyear.getText().trim()))) {
+//					infoPanel.setVisible(false);
+					showState("时间不可为空或时间输入有误");
 				}
 				else {
 					String starttime = startyear.getText().trim();
@@ -153,6 +156,13 @@ public class LookRepsitoryPanel extends DetailPanel {
 					if (CommonLogic.isDate(starttime)&&CommonLogic.isDate(endtime)) {
 						String time = starttime+";"+endtime;
 						List<RepositoryInfoVO> list = manageRepositoryBLService.SeeRepositoryBL(time);
+						List<RepositoryInfoVO> InRepInfo = BeinRepositoryInfo(list);
+						List<RepositoryInfoVO> OutRepInfo = BeoutRepositoryInfo(list);
+						List<RepositoryVO> allRep = manageRepositoryBLService.GetRepositoryInfoBL();
+						setinRepinfo(InRepInfo);
+						setoutRepinfo(OutRepInfo);
+						setallRep(allRep);
+						initTable(InRepInfo);
 					}
 				}
 			}
@@ -171,7 +181,48 @@ public class LookRepsitoryPanel extends DetailPanel {
 			}
 		});
 	}
-
+	//将RepositoryInfo转化为入库单集合与出库单集合
+	private List<RepositoryInfoVO> BeinRepositoryInfo(List<RepositoryInfoVO> repositoryInfoVOs) {
+		List<RepositoryInfoVO> inRep = new ArrayList<RepositoryInfoVO>();
+		for(int i=0;i<repositoryInfoVOs.size();i++){
+			if (repositoryInfoVOs.get(i).getbeinrepository()) {
+				inRep.add(repositoryInfoVOs.get(i));
+			}
+		}
+		
+		return inRep;
+	}
+	private List<RepositoryInfoVO> BeoutRepositoryInfo(List<RepositoryInfoVO> repositoryInfoVOs) {
+		List<RepositoryInfoVO> outRep = new ArrayList<RepositoryInfoVO>();
+		for(int i=0;i<repositoryInfoVOs.size();i++){
+			if (!repositoryInfoVOs.get(i).getbeinrepository()) {
+				outRep.add(repositoryInfoVOs.get(i));
+			}
+		}
+		return outRep;
+	}
+	//设置infoPanel
+	private void setinRepinfo(List<RepositoryInfoVO> repositoryInfoVOs) {
+		inRepositoryText.setText(repositoryInfoVOs.size()+"");
+		double money = 0.0;
+		for(int i=0;i<repositoryInfoVOs.size();i++){
+			money+=repositoryInfoVOs.get(i).getmoney();
+		}
+		inMoneyText.setText(money+"");
+	}
+	private void setoutRepinfo(List<RepositoryInfoVO> repositoryInfoVOs) {
+		outRepositoryText.setText(repositoryInfoVOs.size()+"");
+		double money = 0.0;
+		for(int i=0;i<repositoryInfoVOs.size();i++){
+			money+=repositoryInfoVOs.get(i).getmoney();
+		}
+		outMoneyText.setText(money+"");
+	}
+	private void setallRep(List<RepositoryVO> repositoryVOs) {
+		allRepositoryText.setText(repositoryVOs.size()+"");
+	}
+	
+	//初始化table面板
 	private void initTable(List<RepositoryInfoVO> list) {
 		// 设置列表
 		Object[] names = { "快递编号", "区号", "排号", "架号", "位号" };

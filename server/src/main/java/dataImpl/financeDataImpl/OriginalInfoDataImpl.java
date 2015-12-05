@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import constant.AreaCodeType;
 import po.businessPO.VehiclePO;
 import po.financePO.AccountPO;
 import po.managerPO.OrganizationPO;
@@ -112,13 +113,67 @@ public class OriginalInfoDataImpl implements OriginalInfoDataService{
 
 	public List<RepositoryPO> getRepositoryInfo(int year) {
 		// TODO Auto-generated method stub
-//		List<RepositoryInfoPO>
-		return null;
+		List<RepositoryPO> thelist = new ArrayList<RepositoryPO>();
+		String deliveryid = null;
+		String inrepositorydate = null;
+		String arrivalid = null;
+		AreaCodeType areaCode = null;
+		String rowid = null;
+		String shelfid = null;
+		String posid = null;
+		String sql = "SELECT * FROM repository";
+		ResultSet rs = null;
+		try {
+			rs = Database.findOperation(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		try {
+			while(rs.next()){
+				deliveryid = rs.getString("deliveryid");
+				inrepositorydate = rs.getString("inrepositorydate");
+				arrivalid = rs.getString("arrivalid");
+				areaCode = AreaCodeType.valueOf(rs.getString("areaCode"));
+				rowid = rs.getString("rowid");
+				shelfid = rs.getString("shelfid");
+				posid = rs.getString("posid");
+				RepositoryPO repositoryPO = new RepositoryPO(deliveryid, inrepositorydate, arrivalid, areaCode, rowid, shelfid, posid);
+				thelist.add(repositoryPO);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return thelist;
 	}
 
 	public List<AccountPO> getAccountInfo(int year) {
 		// TODO Auto-generated method stub
-		return null;
+		List<AccountPO> thelist = new ArrayList<AccountPO>();
+		String name = null;
+		double balance = 0.0;
+		String sql = "SELECT * FROM account";
+		ResultSet rs = null;
+		try {
+			rs = Database.findOperation(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		try {
+			while(rs.next()){
+				name = rs.getString("name");
+				balance = rs.getDouble("balance");
+				AccountPO accountPO = new AccountPO(name, balance);
+				thelist.add(accountPO);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return thelist;
 	}
 
 }

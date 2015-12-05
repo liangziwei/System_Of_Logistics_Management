@@ -27,7 +27,7 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 	public List<RepositoryInfoPO> SeeRepositoryDT(String time) {
 		// TODO Auto-generated method stub
 		//时间
-		String[] TIME = time.split("");
+		String[] TIME = time.split(";");
 //		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 //        try {
 //            Date dt1 = df.parse(TIME[0]);
