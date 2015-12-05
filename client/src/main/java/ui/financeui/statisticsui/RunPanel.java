@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import businessLogic.businessLogicController.financeController.StatisticsController;
 import businessLogicService.financeBLService.StatisticsBLSevice;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import ui.financeui.settlementui.ReceivablePanel;
 import vo.businessVO.ReceivableVO;
 
@@ -26,9 +27,9 @@ public class RunPanel extends DetailPanel{
 	
 	private JTable table = null;
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private List<ReceivableVO> list = null;
 	
@@ -58,11 +59,11 @@ public class RunPanel extends DetailPanel{
 		this.add(this.dateInput);
 		//确定按钮
 		int buttonX = this.dateInput.getX() + (this.dateInput.getWidth() >> 1) + (BUTTON_W << 1);
-		this.ok.setBounds(buttonX, DATE_H + 5, BUTTON_W, BUTTON_H);
+		this.ok.setBounds(buttonX, DATE_H + 5, 80, 30);
 		this.ok.setFont(WORD_FONT);
 		this.add(this.ok);
 		//取消按钮
-		this.cancel.setBounds(buttonX + (BUTTON_W << 1), this.ok.getY(), BUTTON_W, BUTTON_H);
+		this.cancel.setBounds(buttonX + (BUTTON_W << 1), this.ok.getY(), 80, 30);
 		this.cancel.setFont(WORD_FONT);
 		this.add(this.cancel);
 		//添加按钮事件监听

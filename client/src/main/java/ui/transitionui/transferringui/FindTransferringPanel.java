@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.transitionController.TransferringController;
 import businessLogicService.transitionBLService.TransferringBLService;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.transitionVO.TransferringVO;
 
@@ -56,9 +57,9 @@ public class FindTransferringPanel extends DetailPanel{
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton find = new JButton("查询");
+	private LimpidButton find = new LimpidButton("","picture/查询.png");
 
-	private JButton cancle1 = new JButton("取消查询");
+	private LimpidButton cancle1 = new LimpidButton("","picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 

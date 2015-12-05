@@ -6,7 +6,7 @@ import vo.businessVO.VehicleVO;
 import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
-import vo.repositoryVO.RepositoryInfoVO;
+import vo.repositoryVO.RepositoryVO;
 /**
  *业务逻辑层为展示层提供的期初建账服务
  *@author 肖安祥 
@@ -49,9 +49,9 @@ public interface OriginalInfoBLService {
 	 * 后置条件：根据年份查询所有的库存信息，返回给界面展示
 	 * 需接口：OriginalInfoDataService.getRepositoryInfo(int year)（根据年份查找所有的库存信息）
 	 * @param year 年份
-	 * @return List<RepositoryInfoVO> 所有库存信息的值对象
+	 * @return List<RepositoryVO> 所有库存信息的值对象
 	 */
-    public List<RepositoryInfoVO> getRepositoryInfo(int year);
+    public List<RepositoryVO> getRepositoryInfo(int year);
     
     /**
 	 * description:获得某一年份的银行信息

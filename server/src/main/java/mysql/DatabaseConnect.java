@@ -2,7 +2,9 @@ package mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 
@@ -10,8 +12,9 @@ public class DatabaseConnect {
 
 	private static final String URL="jdbc:mysql://localhost/logistics_system";
 	private static final String USER="root";
-	private static final String PASSWORD="1282976747";
-
+//	private static final String PASSWORD="blabla";
+//	private static final String PASSWORD="r4anwe5we5123456";
+	private static final String PASSWORD="X1231z60";
 	private static Connection conn=null;
 	
 	private static void connection() {

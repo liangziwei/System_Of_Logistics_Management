@@ -8,6 +8,7 @@ import java.util.List;
 
 import businessLogic.businessLogicModel.deliveryModel.DistanceIO;
 import businessLogic.businessLogicModel.managerModel.TransitPriceIO;
+import businessLogic.businessLogicModel.util.CommonLogic;
 import constant.City;
 import constant.LoadingType;
 import constant.TransitType;
@@ -146,56 +147,65 @@ public class Transferring {
 	}
 	
 	public boolean verify(TransferringVO transferringVO) {
-		if (transferringVO.gettransferringid() .equals("") || transferringVO.gettransferringid().length() != 15) {
+		if (transferringVO.gettransferringid() .equals("") || (!transferringVO
+				.gettransferringid().matches("\\d{15}"))) {
 			transferringVO.seterrorMsg("中转单编号为空或输入错误(15位)");
 			return false;
 		}
-		String[] aStrings =transferringVO.getloadingdate().split("-");
-		String date = "";
-//		for(String x :aStrings){
-//			System.out.println(x+"1");
+		if (transferringVO.getloadingdate().equals("")) {
+			transferringVO.seterrorMsg("时间不可为空");
+			return false;
+		}
+		if (!CommonLogic.isDate(transferringVO.getloadingdate())) {
+			transferringVO.seterrorMsg("时间输入错误");
+			return false;
+		}
+//		String[] aStrings =transferringVO.getloadingdate().split("-");
+//		String date = "";
+////		for(String x :aStrings){
+////			System.out.println(x+"1");
+////		}
+//		if(aStrings[0].equals(" ")||aStrings[1].equals(" ")||aStrings[2].equals(" ")){
+//			transferringVO.seterrorMsg("装运日期不能为空");
+//			return false;
 //		}
-		if(aStrings[0].equals(" ")||aStrings[1].equals(" ")||aStrings[2].equals(" ")){
-			transferringVO.seterrorMsg("装运日期不能为空");
-			return false;
-		}
-		for(int i=0;i<3;i++){
-			aStrings[i] =aStrings[i].trim();
-			if (i == 2) {
-				date += aStrings[i];
-			}
-			else {
-				date = date + aStrings[i] + "-";				
-			}
-		}
-		int[] aint = new int[3];
- 		for(int i=0;i<3;i++){
-			aint[i] = Integer.parseInt(aStrings[i]);
-			
-		}
-		if(aint[1]<1||aint[1]>12){
-			transferringVO.seterrorMsg("月份输入错误");
-			return false;
-		}
-		if (aint[2]<1||aint[2]>31) {
-			transferringVO.seterrorMsg("日期输入错误");
-			return false;
-		}
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			// 设置lenient为false.
-			// 否则SimpleDateFormat会比较宽松地验证日期，比如2007-02-29会被接受，并转换成2007-03-01
-			format.setLenient(false);
-			format.parse(date);
-		} catch (ParseException e) {
-			// e.printStackTrace();
-			// 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
-			transferringVO.seterrorMsg("日期输入有误");
-			return false;
-		}
+//		for(int i=0;i<3;i++){
+//			aStrings[i] =aStrings[i].trim();
+//			if (i == 2) {
+//				date += aStrings[i];
+//			}
+//			else {
+//				date = date + aStrings[i] + "-";				
+//			}
+//		}
+//		int[] aint = new int[3];
+// 		for(int i=0;i<3;i++){
+//			aint[i] = Integer.parseInt(aStrings[i]);
+//			
+//		}
+//		if(aint[1]<1||aint[1]>12){
+//			transferringVO.seterrorMsg("月份输入错误");
+//			return false;
+//		}
+//		if (aint[2]<1||aint[2]>31) {
+//			transferringVO.seterrorMsg("日期输入错误");
+//			return false;
+//		}
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//		try {
+//			// 设置lenient为false.
+//			// 否则SimpleDateFormat会比较宽松地验证日期，比如2007-02-29会被接受，并转换成2007-03-01
+//			format.setLenient(false);
+//			format.parse(date);
+//		} catch (ParseException e) {
+//			// e.printStackTrace();
+//			// 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
+//			transferringVO.seterrorMsg("日期输入有误");
+//			return false;
+//		}
 		
 
-		if (transferringVO.getwayid().equals("")||transferringVO.getwayid().length()!=9) {
+		if (transferringVO.getwayid().equals("")||(!transferringVO.getwayid().matches("\\d{9}"))) {
 			transferringVO.seterrorMsg("装运方式编号不能为空或输入错误(9位)");
 			return false;
 		}

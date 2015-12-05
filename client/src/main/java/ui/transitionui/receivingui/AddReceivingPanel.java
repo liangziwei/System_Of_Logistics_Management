@@ -16,14 +16,18 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.transitionController.ReceivingController;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import constant.CargoState;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.transitionVO.ReceivingVO;
 
 public class AddReceivingPanel extends DetailPanel {
 	private ReceivingBLService receivingService = new ReceivingController();
-	// 添加下拉框
-	private JScrollPane jScrollPane = new JScrollPane();
-	private JPanel container = new JPanel();
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
+//	// 添加下拉框
+//	private JScrollPane jScrollPane = new JScrollPane();
+//	private JPanel container = new JPanel();
 	// 组件
 	private JLabel transferringid = new JLabel("中转单编号");
 
@@ -43,9 +47,9 @@ public class AddReceivingPanel extends DetailPanel {
 
 	private JTextField arrivaldateTextyear = new JTextField();
 
-	private JTextField arrivaldateTextmonth = new JTextField();
-
-	private JTextField arrivaldateTextday = new JTextField();
+//	private JTextField arrivaldateTextmonth = new JTextField();
+//
+//	private JTextField arrivaldateTextday = new JTextField();
 
 	private JTextField transitionidText = new JTextField();
 
@@ -57,9 +61,9 @@ public class AddReceivingPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
@@ -101,24 +105,25 @@ public class AddReceivingPanel extends DetailPanel {
 	public AddReceivingPanel() {
 		// TODO Auto-generated constructor stub
 		super();
-		// 下拉框设置
-		container.setLayout(null);
-		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
-		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
-		jScrollPane.setViewportView(this.container);
-		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
-		super.add(jScrollPane);
+//		// 下拉框设置
+//		container.setLayout(null);
+//		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+//		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
+//		jScrollPane.setViewportView(this.container);
+//		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+//		super.add(jScrollPane);
 
 		// 主面板
-		this.infoPanel.setBounds(START_X, START_Y, this.DETAIL_PANEL_W, START_Y + (LABEL_H + COMPONENT_GAP_Y) * 4);
+		this.infoPanel.setBounds(START_X, START_Y/2, this.DETAIL_PANEL_W, START_Y + (LABEL_H + COMPONENT_GAP_Y) * 4-30);
 		this.infoPanel.setLayout(null);
+		infoPanel.setOpaque(false);;
 		// 初始化信息面板
 		this.initUI();
 		// 按钮面板
 		this.buttonPanel.setBounds(START_X + LABEL_W + COMPONENT_GAP_X + TEXTid_W,
 				infoPanel.getY() + infoPanel.getHeight(), (BUTTON_W << 1) + COMPONENT_GAP_Y, BUTTON_H);
-
 		this.buttonPanel.setLayout(null);
+		buttonPanel.setOpaque(false);
 		// 确定按钮
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
@@ -153,22 +158,23 @@ public class AddReceivingPanel extends DetailPanel {
 				transferringid.getY() + transferringid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivaldate);
 		arrivaldateTextyear.setBounds(arrivaldate.getX() + arrivaldate.getWidth() + COMPONENT_GAP_X, arrivaldate.getY(),
-				TEXT_W / 2, TEXT_H);
+				TEXT_W *(2), TEXT_H);
+		dateChoose.register(arrivaldateTextyear);
 		this.infoPanel.add(arrivaldateTextyear);
-		JLabel apart1 = new JLabel("-");
-		JLabel apart2 = new JLabel("-");
-		apart1.setBounds(arrivaldateTextyear.getX() + arrivaldateTextyear.getWidth(), arrivaldateTextyear.getY(), 10,
-				TEXT_H);
-		this.infoPanel.add(apart1);
-		arrivaldateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
-		this.infoPanel.add(arrivaldateTextmonth);
-		apart2.setBounds(arrivaldateTextmonth.getX() + arrivaldateTextmonth.getWidth(), arrivaldate.getY(), 10, TEXT_H);
-		this.infoPanel.add(apart2);
-		arrivaldateTextday.setBounds(apart2.getX() + apart2.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
-		this.infoPanel.add(arrivaldateTextday);
+//		JLabel apart1 = new JLabel("-");
+//		JLabel apart2 = new JLabel("-");
+//		apart1.setBounds(arrivaldateTextyear.getX() + arrivaldateTextyear.getWidth(), arrivaldateTextyear.getY(), 10,
+//				TEXT_H);
+//		this.infoPanel.add(apart1);
+//		arrivaldateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
+//		this.infoPanel.add(arrivaldateTextmonth);
+//		apart2.setBounds(arrivaldateTextmonth.getX() + arrivaldateTextmonth.getWidth(), arrivaldate.getY(), 10, TEXT_H);
+//		this.infoPanel.add(apart2);
+//		arrivaldateTextday.setBounds(apart2.getX() + apart2.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
+//		this.infoPanel.add(arrivaldateTextday);
 		// 本中转中心编号
 		transitionid.setBounds(arrivaldate.getX(), arrivaldate.getY() + arrivaldate.getHeight() + COMPONENT_GAP_Y,
-				LABEL_W + 20, LABEL_H);
+				LABEL_W +11, LABEL_H);
 
 		this.infoPanel.add(transitionid);
 		transitionidText.setBounds(transferringid.getX() + transitionid.getWidth() + COMPONENT_GAP_X,
@@ -212,8 +218,7 @@ public class AddReceivingPanel extends DetailPanel {
 
 				if (result) {
 					//重置接受单时间
-					receivingVO.setarrivaldate(arrivaldateTextyear.getText().trim() + "-"
-							+ arrivaldateTextmonth.getText().trim() + "-" + arrivaldateTextday.getText().trim());
+					receivingVO.setarrivaldate(arrivaldateTextyear.getText().trim());
 					throughVerifyOperation(receivingVO); // 验证成功
 					cancel.setVisible(true);
 				} else {
@@ -266,8 +271,7 @@ public class AddReceivingPanel extends DetailPanel {
 
 	private ReceivingVO creatReceivingVO() {
 		String transfer = transferringidText.getText().trim();
-		String arrdate = arrivaldateTextyear.getText().trim() + " -" + arrivaldateTextmonth.getText().trim() + " -"
-				+ arrivaldateTextday.getText().trim() + " ";
+		String arrdate = arrivaldateTextyear.getText().trim();
 		String transition = transitionidText.getText().trim();
 		String depart = departureidText.getText().trim();
 		String arrive = arrivalidText.getText().trim();
@@ -293,8 +297,9 @@ public class AddReceivingPanel extends DetailPanel {
 		transferringidText.setEditable(false);
 		transitionidText.setEditable(false);
 		arrivaldateTextyear.setEditable(false);
-		arrivaldateTextmonth.setEditable(false);
-		arrivaldateTextday.setEditable(false);
+		dateChoose.setEnabled(false);
+//		arrivaldateTextmonth.setEditable(false);
+//		arrivaldateTextday.setEditable(false);
 		departureidText.setEditable(false);
 		arrivalidText.setEditable(false);
 		endState.setEnabled(false);
@@ -304,17 +309,18 @@ public class AddReceivingPanel extends DetailPanel {
 		transferringidText.setEditable(true);
 		transitionidText.setEditable(true);
 		arrivaldateTextyear.setEditable(true);
-		arrivaldateTextmonth.setEditable(true);
-		arrivaldateTextday.setEditable(true);
+		dateChoose.setEnabled(true);
+//		arrivaldateTextmonth.setEditable(true);
+//		arrivaldateTextday.setEditable(true);
 		departureidText.setEditable(true);
 		arrivalidText.setEditable(true);
 		endState.setEnabled(true);
 	}
 
 	private void addPanels() {
-		this.container.add(this.infoPanel);
-		this.container.add(this.buttonPanel);
-		this.container.add(this.state);
+		this.add(this.infoPanel);
+		this.add(this.buttonPanel);
+		this.add(this.state);
 	}
 
 	private void showState(String msg) {

@@ -13,6 +13,7 @@ import javax.swing.JSeparator;
 import businessLogic.businessLogicController.managerController.OrganizationManagementController;
 import businessLogicService.managerBLService.OrganizationManagementBLService;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import ui.managerui.SearchPanel;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
@@ -30,9 +31,9 @@ public class DeleteOrganization extends  DetailPanel{
 	
 	private JLabel tip = new JLabel();
 	
-	private JButton delete = new JButton("删除");
+	private LimpidButton delete = new LimpidButton("","picture/删除.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	

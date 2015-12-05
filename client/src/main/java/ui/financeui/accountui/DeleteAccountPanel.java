@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.financeController.AccountController;
 import businessLogicService.financeBLService.AccountBLService;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.financeVO.AccountVO;
 
 @SuppressWarnings("serial")
@@ -24,21 +25,21 @@ public class DeleteAccountPanel extends DetailPanel{
 	
 	private JTextField nameText = new JTextField();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
 	private JSeparator line = new JSeparator();
 	
 	private JLabel tip = new JLabel();
 	
-	private JButton delete = new JButton("删除");
+	private LimpidButton delete = new LimpidButton("","picture/删除.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 20);
 	
 	private static final int LABEL_W = 100;
 	
-	private static final int LABEL_H = 40;
+	private static final int LABEL_H = 30;
 	
 	private static final int TEXT_W = LABEL_W * 3;
 	

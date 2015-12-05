@@ -46,7 +46,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		String posid = inRepository.getposid();
 		boolean modify = false;
 		String val = "";
-		val = "deliveryid='" + deliveryid + "',inrepositorydate='" + inrepositorydate + "',arrivalid='" + arrivalid
+		val ="inrepositorydate='" + inrepositorydate + "',arrivalid='" + arrivalid
 				+ "',areaCode='" + areaCode.toString() + "',rowid='" + rowid + "',shelfid='" + shelfid + "',posid='"
 				+ posid + "'," + "isApproved=0,isPassed=1";
 		try {

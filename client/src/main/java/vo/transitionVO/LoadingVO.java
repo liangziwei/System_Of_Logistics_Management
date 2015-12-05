@@ -4,6 +4,7 @@ package vo.transitionVO;
 import java.util.List;
 
 import constant.LoadingType;
+import po.transitionPO.LoadingPO;
 
 /**
  * 记录了装运单的信息
@@ -146,6 +147,13 @@ public class LoadingVO {
 	}
 	public boolean getVerifyResult() {
 		return VerifyResult;
+	}
+	public static LoadingPO LoadingVOtoLoadingPO(LoadingVO loadingVO){
+		LoadingPO loadingPO =new LoadingPO(loadingVO.getloadingid(), loadingVO.getarrivalid(), loadingVO.getway(),
+				loadingVO.getwayid(), loadingVO.getsupervisionid(), loadingVO.getsupercargoid(),
+				loadingVO.getalldeliveryid());
+		loadingPO.setfare(loadingVO.getfare());
+		return loadingPO;
 	}
 }
 

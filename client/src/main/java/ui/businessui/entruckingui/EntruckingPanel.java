@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -13,6 +14,7 @@ import businessLogic.businessLogicController.businessController.EntruckingContro
 import businessLogic.businessLogicModel.util.CommonLogic;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.businessVO.EntruckingVO;
 
 public class EntruckingPanel extends DetailPanel{
@@ -43,9 +45,9 @@ public class EntruckingPanel extends DetailPanel{
 	private JTextField supercargoText=new JTextField();//押运员
 	private JTextField freightText=new JTextField();//运费
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 100;
 	
@@ -66,7 +68,7 @@ public class EntruckingPanel extends DetailPanel{
 	
 	private static final int BUTTON_W = LABEL_W;
 	
-	private static final int BUTTON_H = LABEL_H;
+	private static final int BUTTON_H = LABEL_H+5;
 	
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
@@ -79,41 +81,49 @@ public class EntruckingPanel extends DetailPanel{
 		this.date.setFont(WORD_FONT);	
 		this.dateText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
-		dateChoose.register(dateText);
+
+		this.dateText.setOpaque(false);
+		
 		this.businessHallid.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.businessHallid.setFont(WORD_FONT);
 		this.businessHallidText.setBounds(this.dateText.getX(), this.businessHallid.getY(), TEXT_W, TEXT_H);
 		this.businessHallidText.setFont(WORD_FONT);
+		this.businessHallidText.setOpaque(false);
 		
 		this.transportNumber.setBounds(START_X, this.businessHallid.getY() + LABEL_H + LINE_GAP,
 				LABEL_W , LABEL_H);
 		this.transportNumber.setFont(WORD_FONT);
 		this.transportNumberText.setBounds(this.dateText.getX(), this.transportNumber.getY(), TEXT_W, TEXT_H);
 		this.transportNumberText.setFont(WORD_FONT);
+		this.transportNumberText.setOpaque(false);
 		
 		this.destionation.setBounds(START_X, this.transportNumber.getY() + LABEL_H + LINE_GAP,
 				LABEL_W , LABEL_H);
 		this.destionation.setFont(WORD_FONT);
 		this.destionationText.setBounds(this.dateText.getX(), this.destionation.getY(), TEXT_W, TEXT_H);
 		this.destionationText.setFont(WORD_FONT);
+		this.destionationText.setOpaque(false);
 		
 		this.vehicleid.setBounds(START_X, this.destionation.getY() + LABEL_H + LINE_GAP,
 				LABEL_W , LABEL_H);
 		this.vehicleid.setFont(WORD_FONT);
 		this.vehicleidText.setBounds(this.dateText.getX(), this.vehicleid.getY(), TEXT_W, TEXT_H);
 		this.vehicleidText.setFont(WORD_FONT);
+		this.vehicleidText.setOpaque(false);
 		
 		this.supervisor.setBounds(START_X, this.vehicleid.getY() + LABEL_H + LINE_GAP,
 				LABEL_W , LABEL_H);
 		this.supervisor.setFont(WORD_FONT);
 		this.supervisorText.setBounds(this.dateText.getX(), this.supervisor.getY(), TEXT_W, TEXT_H);
 		this.supervisorText.setFont(WORD_FONT);
+		this.supervisorText.setOpaque(false);
 		
 		this.supercargo.setBounds(START_X, this.supervisor.getY() + LABEL_H + LINE_GAP,
 				LABEL_W , LABEL_H);
 		this.supercargo.setFont(WORD_FONT);
 		this.supercargoText.setBounds(this.dateText.getX(), this.supercargo.getY(), TEXT_W, TEXT_H);
 		this.supercargoText.setFont(WORD_FONT);
+		this.supercargoText.setOpaque(false);
 		
 		this.freight.setBounds(START_X, this.supercargo.getY() + LABEL_H + LINE_GAP,
 				LABEL_W , LABEL_H);
@@ -121,6 +131,7 @@ public class EntruckingPanel extends DetailPanel{
 		this.freightText.setBounds(this.dateText.getX(), this.freight.getY(), TEXT_W, TEXT_H);
 		this.freightText.setFont(WORD_FONT);
 		this.freightText.setText(String.valueOf(entruckingCon.getFreight()));
+		this.freightText.setOpaque(false);
 		
 		
 		this.result.setBounds(this.freight.getX()+ LINE_GAP , this.freight.getY() + LABEL_H + LINE_GAP,
@@ -132,7 +143,9 @@ public class EntruckingPanel extends DetailPanel{
 		this.ok.setBounds(this.freight.getX() + TEXT_W, this.freight.getY() + LABEL_H + LINE_GAP,
 				BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-		this.ok.setText("确认");
+//		this.ok.setText("确认");
+//		this.ok.setIcon(new ImageIcon("picture/确认.png"));
+		
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
@@ -154,7 +167,8 @@ public class EntruckingPanel extends DetailPanel{
 				   if(isCorrect()){
 					   result.setForeground(Color.BLUE);
 					   result.setText("请确认信息输入无误，确认后点击提交");
-					   ok.setText("提交");
+//					   ok.setText("提交");
+					   ok.setIcon(new ImageIcon("picture/提交.png"));
 					   disablePanel();
 					   isFirstEnsure=false;
 				   }else{
@@ -187,7 +201,8 @@ public class EntruckingPanel extends DetailPanel{
 					if(entruckingCon.addEntruckingFrom(entruckingVO)){
 						result.setForeground(Color.GREEN);
 						result.setText("保存成功！");
-						ok.setText("确认");
+//						ok.setText("确认");
+						ok.setIcon(new ImageIcon("picture/确认.png"));
 						cancel.setVisible(false);
 						isOver=true;
 
@@ -263,13 +278,13 @@ public class EntruckingPanel extends DetailPanel{
 		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
 			return false;
-		}else if(businessIDStr.length()!=6){
+		}else if(!businessIDStr.matches("\\d{6}")){
 			businessHallidText.setText("");
 			return false;
-		}else if(transNumberStr.length()!=19){
+		}else if(!transNumberStr.matches("\\d{19}")){
 			transportNumberText.setText("");
 			return false;
-		}else if(vehiStr.length()!=9){
+		}else if(!vehiStr.matches("\\d{9}")){
 			vehicleidText.setText("");
 			return false;
 		}

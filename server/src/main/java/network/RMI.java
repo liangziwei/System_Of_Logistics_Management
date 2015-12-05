@@ -16,6 +16,7 @@ import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
 import dataImpl.financeDataImpl.CostDataImpl;
 import dataImpl.financeDataImpl.OriginalInfoDataImpl;
+import dataImpl.financeDataImpl.OriginalInfoRecordDataImpl;
 import dataImpl.financeDataImpl.SettlementDataImpl;
 import dataImpl.financeDataImpl.StatisticsDataImpl;
 import dataImpl.managerDataImpl.ApprovalFormDataImpl;
@@ -229,6 +230,12 @@ public class RMI {
 			OriginalInfoDataService originalInfo_stub =
 					(OriginalInfoDataService) UnicastRemoteObject.exportObject(originalInfo, 0);
 			registry.bind("originalInfo", originalInfo_stub);
+			
+			//建账查看访问接口
+			OriginalInfoDataService originalInfoRecord = new OriginalInfoRecordDataImpl();
+			OriginalInfoDataService originalInfoRecord_stub =
+					(OriginalInfoDataService) UnicastRemoteObject.exportObject(originalInfoRecord, 0);
+			registry.bind("originalInfoRecord", originalInfoRecord_stub);
 			//结算管理访问接口
 			SettlementDataService settlement = new SettlementDataImpl();
 			SettlementDataService settlement_stub = (SettlementDataService) UnicastRemoteObject.exportObject(settlement, 0);

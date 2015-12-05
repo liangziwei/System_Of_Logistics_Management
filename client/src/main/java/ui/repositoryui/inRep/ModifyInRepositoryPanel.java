@@ -18,13 +18,17 @@ import businessLogic.businessLogicController.transitionController.ReceivingContr
 import businessLogicService.repositoryBLService.InRepositoryBLService;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import constant.AreaCodeType;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.repositoryVO.InRepositoryVO;
 import vo.transitionVO.ReceivingVO;
 
 public class ModifyInRepositoryPanel extends DetailPanel {
 	private InRepositoryBLService inRepositoryBLService = new InRepositoryController();
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	// 组件
 	private JLabel Deliveryid = new JLabel("快递编号");
 	private JLabel inrepositorydate = new JLabel("入库日期");
@@ -36,8 +40,8 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 
 	private JTextField DeliveryidText = new JTextField();
 	private JTextField inrepositoryYear = new JTextField();
-	private JTextField inrepositoryMonth = new JTextField();
-	private JTextField inrepositoryDay = new JTextField();
+//	private JTextField inrepositoryMonth = new JTextField();
+//	private JTextField inrepositoryDay = new JTextField();
 	private JTextField arrivalidText = new JTextField();
 	private JComboBox<String> areaidText = new JComboBox<String>();
 	private JTextField rowidText = new JTextField();
@@ -48,13 +52,13 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton find = new JButton("查询");
+	private LimpidButton find = new LimpidButton("","picture/查询.png");
 
-	private JButton cancle1 = new JButton("取消");
+	private LimpidButton cancle1 = new LimpidButton("","picture/取消.png");
 
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private JButton cancle2 = new JButton("取消");
+	private LimpidButton cancle2 = new LimpidButton("","picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
@@ -106,6 +110,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		this.add(Deliveryid);
 		DeliveryidText.setBounds(Deliveryid.getX() + Deliveryid.getWidth() + COMPONENT_GAP_X, Deliveryid.getY(),
 				TEXTid_W, TEXT_H);
+		DeliveryidText.setOpaque(false);
 		this.add(DeliveryidText);
 		find.setBounds(DeliveryidText.getX() + DeliveryidText.getWidth() + COMPONENT_GAP_X, DeliveryidText.getY(),
 				LABEL_W, LABEL_H);
@@ -165,30 +170,33 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		inrepositorydate.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(inrepositorydate);
 		inrepositoryYear.setBounds(inrepositorydate.getX() + inrepositorydate.getWidth() + COMPONENT_GAP_X,
-				inrepositorydate.getY(), TEXT_W / 2, TEXT_H);
+				inrepositorydate.getY(), (TEXT_W / 2)*3, TEXT_H);
+		dateChoose.register(inrepositoryYear);
 		this.infoPanel.add(inrepositoryYear);
-		JLabel apart1 = new JLabel("-");
-		JLabel apart2 = new JLabel("-");
-		apart1.setBounds(inrepositoryYear.getX() + inrepositoryYear.getWidth(), inrepositoryYear.getY(), 10, TEXT_H);
-		this.infoPanel.add(apart1);
-		inrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
-		this.infoPanel.add(inrepositoryMonth);
-		apart2.setBounds(inrepositoryMonth.getX() + inrepositoryMonth.getWidth(), inrepositoryMonth.getY(), 10, TEXT_H);
-		this.infoPanel.add(apart2);
-		inrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
-		this.infoPanel.add(inrepositoryDay);
+//		JLabel apart1 = new JLabel("-");
+//		JLabel apart2 = new JLabel("-");
+//		apart1.setBounds(inrepositoryYear.getX() + inrepositoryYear.getWidth(), inrepositoryYear.getY(), 10, TEXT_H);
+//		this.infoPanel.add(apart1);
+//		inrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
+//		this.infoPanel.add(inrepositoryMonth);
+//		apart2.setBounds(inrepositoryMonth.getX() + inrepositoryMonth.getWidth(), inrepositoryMonth.getY(), 10, TEXT_H);
+//		this.infoPanel.add(apart2);
+//		inrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
+//		this.infoPanel.add(inrepositoryDay);
 		// 目的地
 		arrivalid.setBounds(inrepositorydate.getX(),
 				inrepositorydate.getY() + inrepositorydate.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setOpaque(false);
 		this.infoPanel.add(arrivalidText);
 		// 区号
 		areaid.setBounds(arrivalidText.getX() + arrivalidText.getWidth() + COMPONENT_GAP_Y, arrivalidText.getY(),
 				LABEL_W / 2, LABEL_H);
 		this.infoPanel.add(areaid);
 		areaidText.setBounds(areaid.getX() + areaid.getWidth() + COMPONENT_GAP_X, areaid.getY(), TEXT_W, TEXT_H);
+		areaidText.setOpaque(false);
 		areaidText.addItem("航运区");
 		areaidText.addItem("铁运区");
 		areaidText.addItem("汽运区");
@@ -198,18 +206,21 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		rowid.setBounds(arrivalid.getX(), arrivalid.getY() + arrivalid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(rowid);
 		rowidText.setBounds(rowid.getX() + rowid.getWidth() + COMPONENT_GAP_X, rowid.getY(), LABEL_W, LABEL_H);
+		rowidText.setOpaque(false);
 		this.infoPanel.add(rowidText);
 		// 架号
 		shelfid.setBounds(rowidText.getX() + rowidText.getWidth() + COMPONENT_GAP_Y, rowidText.getY(), LABEL_W / 2,
 				LABEL_H);
 		this.infoPanel.add(shelfid);
 		shelfidText.setBounds(shelfid.getX() + shelfid.getWidth() + COMPONENT_GAP_X, shelfid.getY(), LABEL_W, LABEL_H);
+		shelfidText.setOpaque(false);
 		this.infoPanel.add(shelfidText);
 		// 位号
 		posid.setBounds(shelfidText.getX() + shelfidText.getWidth() + COMPONENT_GAP_Y, shelfidText.getY(), LABEL_W / 2,
 				LABEL_H);
 		this.infoPanel.add(posid);
 		posidText.setBounds(posid.getX() + posid.getWidth() + COMPONENT_GAP_X, posid.getY(), LABEL_W, LABEL_H);
+		posidText.setOpaque(false);
 		this.infoPanel.add(posidText);
 	}
 
@@ -266,8 +277,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 				
 				if (result) {
 					// 重置入库时间
-					inRepositoryVO.setinrepositorydate(inrepositoryYear.getText().trim() + "-"
-							+ inrepositoryMonth.getText().trim() + "-" + inrepositoryDay.getText().trim());
+					inRepositoryVO.setinrepositorydate(inrepositoryYear.getText().trim());
 					throughVerifyOperation(inRepositoryVO);   //验证成功
 					cancle2.setVisible(true);
 				}
@@ -304,7 +314,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		}
 		else {
 			//添加装运信息
-			String save =inRepositoryBLService.addInRepositoryFormBL(inRepositoryVO);
+			String save =inRepositoryBLService.modifyInRepositoryFormBL(inRepositoryVO);
 			if(save.equals("true")) {		//保存成功
 				showState2("订单修改成功");
 				disableComponents();
@@ -342,8 +352,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 
 	private InRepositoryVO creatInRepository() {
 		String delivery = DeliveryidText.getText().trim();
-		String InRepDate = inrepositoryYear.getText().trim() + " -" + inrepositoryMonth.getText().trim() + " -"
-				+ inrepositoryDay.getText().trim() + " ";
+		String InRepDate = inrepositoryYear.getText().trim();
 		String arrive = arrivalidText.getText().trim();
 		String AREA = (String) areaidText.getSelectedItem();
 		AreaCodeType areacode = null;
@@ -370,8 +379,9 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 
 	private void disableComponents() {
 		inrepositoryYear.setEditable(false);
-		inrepositoryMonth.setEditable(false);
-		inrepositoryDay.setEditable(false);
+		dateChoose.setEnabled(false);
+//		inrepositoryMonth.setEditable(false);
+//		inrepositoryDay.setEditable(false);
 		arrivalidText.setEditable(false);
 		areaidText.setEnabled(false);
 		rowidText.setEditable(false);
@@ -381,8 +391,9 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 
 	private void enableComponents() {
 		inrepositoryYear.setEditable(true);
-		inrepositoryMonth.setEditable(true);
-		inrepositoryDay.setEditable(true);
+		dateChoose.setEnabled(true);
+//		inrepositoryMonth.setEditable(true);
+//		inrepositoryDay.setEditable(true);
 		arrivalidText.setEditable(true);
 		areaidText.setEnabled(true);
 		rowidText.setEditable(true);
@@ -391,10 +402,10 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 	}
 
 	private void setinfo(InRepositoryVO inRepositoryVO) {
-		String[] inrepositorydate = inRepositoryVO.getinrepositorydate().split("-");
-		inrepositoryYear.setText(inrepositorydate[0].trim());
-		inrepositoryMonth.setText(inrepositorydate[1].trim());
-		inrepositoryDay.setText(inrepositorydate[2].trim());
+//		String[] inrepositorydate = inRepositoryVO.getinrepositorydate().split("-");
+		inrepositoryYear.setText(inRepositoryVO.getinrepositorydate());
+//		inrepositoryMonth.setText(inrepositorydate[1].trim());
+//		inrepositoryDay.setText(inrepositorydate[2].trim());
 		arrivalidText.setText(inRepositoryVO.getarrivalid().trim());
 		rowidText.setText(inRepositoryVO.getrowid().trim());
 		shelfidText.setText(inRepositoryVO.getshelfid().trim());

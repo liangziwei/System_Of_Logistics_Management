@@ -11,14 +11,19 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.businessVO.ReceivableVO;
 import businessLogic.businessLogicController.businessController.PaymentController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 
 public class PaymentPanel extends DetailPanel{
 	
 	private PaymentController paymentCon=new PaymentController();
 	private ReceivableVO receivableVO;
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	
 	private JLabel date=new JLabel("收款日期");
 	private JLabel money=new JLabel("收款金额");
@@ -32,9 +37,9 @@ public class PaymentPanel extends DetailPanel{
 	private JTextField courierText=new JTextField();//快递员
 	private JTextArea deliveryidText=new JTextArea();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 120;
 	
@@ -50,9 +55,9 @@ public class PaymentPanel extends DetailPanel{
 	
 	private static final int START_Y = START_X>>1;
 	
-	private static final int BUTTON_W = LABEL_W;
+	private static final int BUTTON_W = LABEL_W-40;
 	
-	private static final int BUTTON_H = LABEL_H;
+	private static final int BUTTON_H = LABEL_H+5;
 	
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
@@ -65,21 +70,26 @@ public class PaymentPanel extends DetailPanel{
 		this.date.setFont(WORD_FONT);	
 		this.dateText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
+		dateChoose.register(dateText);
+		this.dateText.setOpaque(false);
 		
 		this.money.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.money.setFont(WORD_FONT);
 		this.moneyText.setBounds(this.dateText.getX(), this.money.getY(), TEXT_W, TEXT_H);
 		this.moneyText.setFont(WORD_FONT);
+		this.moneyText.setOpaque(false);
 		
 		this.courier.setBounds(START_X, this.money.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.courier.setFont(WORD_FONT);
 		this.courierText.setBounds(this.dateText.getX(), this.courier.getY(), TEXT_W, TEXT_H);
 		this.courierText.setFont(WORD_FONT);
+		this.courierText.setOpaque(false);
 		
 		this.deliveryid.setBounds(START_X, this.courier.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.deliveryid.setFont(WORD_FONT);
 		this.deliveryidText.setBounds(this.dateText.getX(), this.deliveryid.getY(), TEXT_W, TEXT_H<<2);
 		this.deliveryidText.setFont(WORD_FONT);
+//		this.deliveryidText.setOpaque(false);
 		
 		this.result.setBounds(this.deliveryid.getX()+ LINE_GAP , this.deliveryid.getY() + LABEL_H*6+ LINE_GAP,
 				TEXT_W, TEXT_H);
@@ -205,10 +215,13 @@ public class PaymentPanel extends DetailPanel{
 		String courierStr=courierText.getText();
 		String deliveryidStr=deliveryidText.getText();
 		
-		if(dateStr.length()!=10){
+		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
 			return false;
-		}else if(deliveryidStr.length()!=10){
+		}else if(!CommonLogic.isDouble(moneyStr)){
+			moneyText.setText("");
+			return false;
+		}else if(!deliveryidStr.matches("\\d{10}")){
 			deliveryidText.setText("");
 			return false;
 		}

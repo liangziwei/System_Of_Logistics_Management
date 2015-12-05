@@ -12,6 +12,7 @@ import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryInfoVO;
+import vo.repositoryVO.RepositoryVO;
 import businessLogic.businessLogicController.financeController.OriginalInfoController;
 import constant.AreaCodeType;
 
@@ -19,11 +20,11 @@ public class OriginalInfoTest {
 
 	@Test
 	public void test() {
-		OriginalInfoController originalInfo = new OriginalInfoController();
+		OriginalInfoController originalInfo = new OriginalInfoController("create");
 		List<StaffVO> stafflist = originalInfo.getStaffInfo(2015);
 		List<OrganizationVO>  organizationlist = originalInfo.getOrganizationInfo(2015);
 		List<VehicleVO> vehiclelist = originalInfo.getVehicleInfo(2015);
-		List<RepositoryInfoVO> repositoryInfolist = originalInfo.getRepositoryInfo(2015);
+		List<RepositoryVO> repositoryInfolist = originalInfo.getRepositoryInfo(2015);
 		List<AccountVO> accountlist = originalInfo.getAccountInfo(2015);
 		List<StaffVO> staff = new ArrayList<StaffVO>();
 //		staff.add(new StaffVO("小明", "B1235468", "快递员", "男",

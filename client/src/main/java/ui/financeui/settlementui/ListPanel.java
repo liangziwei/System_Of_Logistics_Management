@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import ui.baseui.LimpidButton;
 import vo.businessVO.ReceivableVO;
 
 @SuppressWarnings("serial")
@@ -18,7 +19,7 @@ public class ListPanel extends JPanel{
 	
 	private JScrollPane container = new JScrollPane();
 	
-	private JButton sumBtn = new JButton("合计");
+	private LimpidButton sumBtn = new LimpidButton("","picture/合计.png");
 	
 	private JTextField sumText = new JTextField();
 	

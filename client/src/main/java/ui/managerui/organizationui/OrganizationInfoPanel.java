@@ -59,8 +59,11 @@ public class OrganizationInfoPanel extends JPanel{
 	
 	public void setOrganizationInfo(OrganizationVO vo) {
 		this.idText.setText(vo.getId());
+		this.idText.setOpaque(false);
 		this.nameText.setText(vo.getName());
+		this.nameText.setOpaque(false);
 		this.typeText.setSelectedItem(vo.getType());
+		this.typeText.setOpaque(false);
 	}
 	
 	public OrganizationVO createOrganizationVO() {
@@ -94,6 +97,7 @@ public class OrganizationInfoPanel extends JPanel{
 		this.idText.setBounds(this.idLabel.getX() + LABEL_W + (startX >> 1),
 				this.idLabel.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setOpaque(false);
 		//机构类型标签
 		this.typeLabel.setBounds(this.idLabel.getX(),
 				this.idLabel.getY() + gap, LABEL_W, LABEL_H);
@@ -104,6 +108,7 @@ public class OrganizationInfoPanel extends JPanel{
 		this.typeText.addItem("营业厅");
 		this.typeText.addItem("中转中心");
 		this.typeText.addItem("总部");
+		this.typeText.setOpaque(false);
 		//机构名称标签
 		this.nameLabel.setBounds(this.typeLabel.getX(),
 				this.typeLabel.getY() + gap, LABEL_W, LABEL_H);
@@ -111,6 +116,7 @@ public class OrganizationInfoPanel extends JPanel{
 		//机构名称文本框
 		this.nameText.setBounds(this.typeText.getX(), this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//提示标签
 		this.tip.setBounds(this.nameLabel.getX(), this.nameText.getY() + (TEXT_H << 1), LABEL_W, LABEL_H);
 		this.tip.setFont(WORD_FONT);
