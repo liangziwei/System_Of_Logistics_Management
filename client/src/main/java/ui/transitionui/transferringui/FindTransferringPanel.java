@@ -45,8 +45,8 @@ public class FindTransferringPanel extends DetailPanel{
 	private JTextField loadingdateTextday = new JTextField();
 	private JComboBox<String> loadingway = new JComboBox<String>();
 	private JTextField loadingwayidText = new JTextField();
-	private JTextField departureidText = new JTextField();
-	private JTextField arrivalidText = new JTextField();
+	private JComboBox<String> departureidText = new JComboBox<String>();
+	private JComboBox<String> arrivalidText = new JComboBox<String>();
 	private JTextField supervisionidText = new JTextField();
 	private JTextField containeridText = new JTextField();
 	private JTextField fareText = new JTextField();
@@ -173,6 +173,10 @@ public class FindTransferringPanel extends DetailPanel{
 		this.infoPanel.add(departureid);
 		departureidText.setBounds(departureid.getX() + departureid.getWidth() + COMPONENT_GAP_X, departureid.getY(),
 				TEXT_W, TEXT_H);
+		departureidText.addItem("南京");
+		departureidText.addItem("北京");
+		departureidText.addItem("广州");
+		departureidText.addItem("上海");
 		this.infoPanel.add(departureidText);
 
 		arrivalid.setBounds(departureidText.getX() + departureidText.getWidth() + COMPONENT_GAP_X,
@@ -180,6 +184,10 @@ public class FindTransferringPanel extends DetailPanel{
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.addItem("南京");
+		arrivalidText.addItem("北京");
+		arrivalidText.addItem("广州");
+		arrivalidText.addItem("上海");
 		this.infoPanel.add(arrivalidText);
 
 		supervisionid.setBounds(departureid.getX(), departureid.getY() + departureid.getHeight() + COMPONENT_GAP_Y,
@@ -267,8 +275,8 @@ public class FindTransferringPanel extends DetailPanel{
 			break;
 		}
 		this.loadingwayidText.setText(transferringVO.getwayid().trim());
-		this.departureidText.setText(transferringVO.getdepartureid().trim());
-		this.arrivalidText.setText(transferringVO.getarrivalid().trim());
+		this.departureidText.setSelectedItem(transferringVO.getdepartureid().trim());
+		this.arrivalidText.setSelectedItem(transferringVO.getarrivalid().trim());
 		this.supervisionidText.setText(transferringVO.getsupervisionid().trim());
 		this.containeridText.setText(transferringVO.getcontainerid().trim());
 		List<String> deliveryID = transferringVO.getalldeliveryid();

@@ -21,9 +21,9 @@ import vo.transitionVO.ReceivingVO;
 
 public class FindReceivingPanel extends DetailPanel {
 	private ReceivingBLService receivingService = new ReceivingController();
-	// 添加下拉框
-	private JScrollPane jScrollPane = new JScrollPane();
-	private JPanel container = new JPanel();
+//	// 添加下拉框
+//	private JScrollPane jScrollPane = new JScrollPane();
+//	private JPanel container = new JPanel();
 	// 组件
 	private JLabel transferringid = new JLabel("中转单编号");
 
@@ -98,30 +98,31 @@ public class FindReceivingPanel extends DetailPanel {
 	public FindReceivingPanel() {
 		// TODO Auto-generated constructor stub
 		super();
-		// 下拉框设置
-		container.setLayout(null);
-		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
-		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
-		jScrollPane.setViewportView(this.container);
-		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
-		super.add(jScrollPane);
+//		// 下拉框设置
+//		container.setLayout(null);
+//		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+//		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
+//		jScrollPane.setViewportView(this.container);
+//		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+//		super.add(jScrollPane);
 				
 		transferringid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
-		this.container.add(transferringid);
+		this.add(transferringid);
 		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), TEXTid_W, TEXT_H);
-		this.container.add(transferringidText);
+		this.add(transferringidText);
 		find.setBounds(transferringidText.getX() + transferringidText.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), BUTTON_W, BUTTON_H);
-		this.container.add(find);
+		this.add(find);
 		cancel.setBounds(find.getX() + find.getWidth() + COMPONENT_GAP_X, find.getY(), BUTTON_W, BUTTON_H);
-		this.container.add(cancel);
+		this.add(cancel);
 
 		// 主信息面板设置
 		infoPanel.setBounds(transferringid.getX(), transferringid.getY() + transferringid.getHeight() + COMPONENT_GAP_Y,
 				AddLoadingPanel.DETAIL_PANEL_W, AddLoadingPanel.START_Y + (LABEL_H + COMPONENT_GAP_Y) * 5 + Area_H);
 		this.infoPanel.setLayout(null);
-		this.container.add(infoPanel);
+		infoPanel.setOpaque(false);
+		this.add(infoPanel);
 		this.infoPanel.setVisible(false);
 		// 初始化信息面板
 		this.initUI();
@@ -132,7 +133,7 @@ public class FindReceivingPanel extends DetailPanel {
 				(AddLoadingPanel.BUTTON_W << 2), AddLoadingPanel.BUTTON_W);
 		this.state.setFont(AddLoadingPanel.WORD_FONT);
 		this.state.setForeground(Color.RED);
-		this.container.add(state);
+		this.add(state);
 		// 添加事件监听
 		this.addListener();
 	}
@@ -157,7 +158,7 @@ public class FindReceivingPanel extends DetailPanel {
 		this.infoPanel.add(arrivaldateTextday);
 		// 本中转中心编号
 		transitionid.setBounds(arrivaldate.getX(), arrivaldate.getY() + arrivaldate.getHeight() + COMPONENT_GAP_Y,
-				LABEL_W + 20, LABEL_H);
+				LABEL_W +11, LABEL_H);
 
 		this.infoPanel.add(transitionid);
 		transitionidText.setBounds(transferringid.getX() + transitionid.getWidth() + COMPONENT_GAP_X,

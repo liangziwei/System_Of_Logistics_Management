@@ -1,8 +1,9 @@
 package dataImpl.repositoryDataImpl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-import constant.AreaCodeType;
 import constant.LoadingType;
 import dataService.repositoryDataService.OutRepositoryDataService;
 import mysql.Database;
@@ -42,7 +43,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 		
 		boolean modify = false;
 		String val = "";
-		val = "deliveryid='" + deliveryid + "',outrepositorydate='" + outrepositorydate + "',arrivalid='" + arrivalid
+		val = "outrepositorydate='" + outrepositorydate + "',arrivalid='" + arrivalid
 				+ "',way='" + way.toString() + "',loadingid='" + loadingid + "',isApproved=0,isPassed=1";
 		try {
 			modify = Database.modify("outRepository", val, "deliveryid", deliveryid);
@@ -88,6 +89,30 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 		// TODO Auto-generated method stub
 		
 		return Database.delete("repository", "deliveryid", outRepositoryPO.getdeliveryid());
+	}
+	
+	public ArrayList<OutRepositoryPO> getUncheckOutRepository() {
+		ArrayList<OutRepositoryPO> po = new ArrayList<OutRepositoryPO>();
+		String sql = "select * from outRepository where isApproved = 0;";
+		try {
+			ResultSet rs = Database.findOperation(sql);
+			while(rs.next()) {
+				po.add(this.createOutRepositoryPO(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
+	
+	private OutRepositoryPO createOutRepositoryPO(ResultSet rs) {
+		try {
+			return new OutRepositoryPO(rs.getString("deliveryid"), rs.getString("outrepositorydate"),
+					rs.getString("arrivalid"), LoadingType.valueOf(rs.getString("way")), rs.getString("loadingid"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

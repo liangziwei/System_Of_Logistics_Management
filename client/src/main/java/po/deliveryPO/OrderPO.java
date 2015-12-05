@@ -1,6 +1,7 @@
 package po.deliveryPO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import vo.deliveryVO.OrderVO;
 
@@ -93,5 +94,14 @@ public class OrderPO implements Serializable{
 
 	public void setPassed(boolean isPassed) {
 		this.isPassed = isPassed;
+	}
+	
+	public static ArrayList<OrderVO> orderPOListToVO(ArrayList<OrderPO> po) {
+		ArrayList<OrderVO> vo = new ArrayList<OrderVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(orderPOToVO(po.get(i)));
+		}
+		return vo;
 	}
 }

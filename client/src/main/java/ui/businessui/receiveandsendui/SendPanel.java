@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.businessVO.ReceivableVO;
 import vo.businessVO.SendFormVO;
 import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
@@ -33,9 +34,9 @@ public class SendPanel extends DetailPanel {
 	private JTextField deliveryidText=new JTextField();
 	private JTextField senderText=new JTextField();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 120;
 	
@@ -51,9 +52,9 @@ public class SendPanel extends DetailPanel {
 	
 	private static final int START_Y = START_X;
 	
-	private static final int BUTTON_W = LABEL_W;
+	private static final int BUTTON_W = LABEL_W-40;
 	
-	private static final int BUTTON_H = LABEL_H;
+	private static final int BUTTON_H = LABEL_H+5;
 	
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
@@ -66,16 +67,19 @@ public class SendPanel extends DetailPanel {
 		this.dateText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
 		dateChoose.register(dateText);
+		this.dateText.setOpaque(false);
 		
 		this.deliveryid.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.deliveryid.setFont(WORD_FONT);
 		this.deliveryidText.setBounds(this.dateText.getX(), this.deliveryid.getY(), TEXT_W, TEXT_H);
 		this.deliveryidText.setFont(WORD_FONT);
+		this.deliveryidText.setOpaque(false);
 		
 		this.sender.setBounds(START_X, this.deliveryid.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.sender.setFont(WORD_FONT);
 		this.senderText.setBounds(this.dateText.getX(), this.sender.getY(), TEXT_W, TEXT_H);
 		this.senderText.setFont(WORD_FONT);
+		this.senderText.setOpaque(false);
 		
 		
 		this.result.setBounds(this.sender.getX() + LINE_GAP, this.sender.getY() + LABEL_H*6+ LINE_GAP,

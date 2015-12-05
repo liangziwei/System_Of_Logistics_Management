@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.businessVO.SendFormVO;
 import vo.businessVO.VehicleVO;
 import businessLogic.businessLogicController.businessController.VehicleController;
@@ -30,15 +31,15 @@ public class AddVehiclePanel extends DetailPanel{
 	private JTextField numberText=new JTextField();
 	private JTextField ageText=new JTextField();
 	
-	private JButton query = new JButton("查询");
+	private LimpidButton query = new LimpidButton("","picture/查询.png");
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 150;
 	
-	private static final int LABEL_H = 25;
+	private static final int LABEL_H = 30;
 
 	private static final int LINE_GAP = 18;
 	
@@ -50,9 +51,9 @@ public class AddVehiclePanel extends DetailPanel{
 	
 	private static final int START_Y = START_X;
 	
-	private static final int BUTTON_W = LABEL_W;
+	private static final int BUTTON_W = LABEL_W-70;
 	
-	private static final int BUTTON_H = LABEL_H;
+	private static final int BUTTON_H = LABEL_H ;
 	
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
@@ -64,16 +65,19 @@ public class AddVehiclePanel extends DetailPanel{
 		this.vehicleid.setFont(WORD_FONT);	
 		this.vehicleidText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.vehicleidText.setFont(WORD_FONT);
+		this.vehicleidText.setOpaque(false);
 		
 		this.number.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.number.setFont(WORD_FONT);
 		this.numberText.setBounds(this.vehicleidText.getX(), this.number.getY(), TEXT_W, TEXT_H);
 		this.numberText.setFont(WORD_FONT);
+		this.numberText.setOpaque(false);
 		
 		this.age.setBounds(START_X, this.number.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.age.setFont(WORD_FONT);
 		this.ageText.setBounds(this.vehicleidText.getX(), this.age.getY(), TEXT_W>>2, TEXT_H);
 		this.ageText.setFont(WORD_FONT);
+		this.ageText.setOpaque(false);
 		
 		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W>>1,BUTTON_H);
 		this.query.setFont(WORD_FONT);

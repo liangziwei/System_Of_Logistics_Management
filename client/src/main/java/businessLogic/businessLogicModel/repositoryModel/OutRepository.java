@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import businessLogic.businessLogicModel.util.CommonLogic;
 import dataService.repositoryDataService.OutRepositoryDataService;
 import network.RMI;
 import po.repositoryPO.OutRepositoryPO;
@@ -79,55 +80,63 @@ public class OutRepository {
 	
 	public boolean verify(OutRepositoryVO outRepositoryVO) {
 		// TODO Auto-generated method stub
-		if (outRepositoryVO.getdeliveryid().equals("")||outRepositoryVO.getdeliveryid().length()!=10) {
+		if (outRepositoryVO.getdeliveryid().equals("")||(!outRepositoryVO.getdeliveryid().matches("\\d{10}"))) {
 			outRepositoryVO.seterrorMsg("快递编号不能为空或输入错误(10位)");
 			return false;
 		}
-		String[] aStrings =outRepositoryVO.getoutrepositorydate().split("-");
-		String date = "";
-		if(aStrings[0].equals(" ")||aStrings[1].equals(" ")||aStrings[2].equals(" ")){
-			outRepositoryVO.seterrorMsg("入库日期不能为空");
+		if (outRepositoryVO.getoutrepositorydate().equals("")) {
+			outRepositoryVO.seterrorMsg("出库日期不可为空");
 			return false;
 		}
-		for(int i=0;i<3;i++){
-			aStrings[i] =aStrings[i].trim();
-			if (i == 2) {
-				date += aStrings[i];
-			}
-			else {
-				date = date + aStrings[i] + "-";				
-			}
-		}
-		int[] aint = new int[3];
- 		for(int i=0;i<3;i++){
-			aint[i] = Integer.parseInt(aStrings[i]);
-			
-		}
-		if(aint[1]<1||aint[1]>12){
-			outRepositoryVO.seterrorMsg("月份输入错误");
+		if (!CommonLogic.isDate(outRepositoryVO.getoutrepositorydate())) {
+			outRepositoryVO.seterrorMsg("出库日期时间有误");
 			return false;
 		}
-		if (aint[2]<1||aint[2]>31) {
-			outRepositoryVO.seterrorMsg("日期输入错误");
-			return false;
-		}
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			// 设置lenient为false.
-			// 否则SimpleDateFormat会比较宽松地验证日期，比如2007-02-29会被接受，并转换成2007-03-01
-			format.setLenient(false);
-			format.parse(date);
-		} catch (ParseException e) {
-			// e.printStackTrace();
-			// 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
-			outRepositoryVO.seterrorMsg("日期输入有误");
-			return false;
-		}
+//		String[] aStrings =outRepositoryVO.getoutrepositorydate().split("-");
+//		String date = "";
+//		if(aStrings[0].equals(" ")||aStrings[1].equals(" ")||aStrings[2].equals(" ")){
+//			outRepositoryVO.seterrorMsg("入库日期不能为空");
+//			return false;
+//		}
+//		for(int i=0;i<3;i++){
+//			aStrings[i] =aStrings[i].trim();
+//			if (i == 2) {
+//				date += aStrings[i];
+//			}
+//			else {
+//				date = date + aStrings[i] + "-";				
+//			}
+//		}
+//		int[] aint = new int[3];
+// 		for(int i=0;i<3;i++){
+//			aint[i] = Integer.parseInt(aStrings[i]);
+//			
+//		}
+//		if(aint[1]<1||aint[1]>12){
+//			outRepositoryVO.seterrorMsg("月份输入错误");
+//			return false;
+//		}
+//		if (aint[2]<1||aint[2]>31) {
+//			outRepositoryVO.seterrorMsg("日期输入错误");
+//			return false;
+//		}
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//		try {
+//			// 设置lenient为false.
+//			// 否则SimpleDateFormat会比较宽松地验证日期，比如2007-02-29会被接受，并转换成2007-03-01
+//			format.setLenient(false);
+//			format.parse(date);
+//		} catch (ParseException e) {
+//			// e.printStackTrace();
+//			// 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
+//			outRepositoryVO.seterrorMsg("日期输入有误");
+//			return false;
+//		}
 		if (outRepositoryVO.getarrivalid().equals("")) {
 			outRepositoryVO.seterrorMsg("目的地不能为空");
 			return false;
 		}
-		if (outRepositoryVO.getloadingid().equals("")||outRepositoryVO.getloadingid().length()!=11) {
+		if (outRepositoryVO.getloadingid().equals("")||(!outRepositoryVO.getloadingid().matches("\\d{11}"))) {
 			outRepositoryVO.seterrorMsg("装运信息编号不能为空或输入错误(11位)");
 			return false;
 		}

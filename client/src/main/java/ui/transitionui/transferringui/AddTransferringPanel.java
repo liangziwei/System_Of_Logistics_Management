@@ -19,12 +19,14 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.transitionController.TransferringController;
 import businessLogicService.transitionBLService.TransferringBLService;
 import constant.LoadingType;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import vo.transitionVO.TransferringVO;
 
 public class AddTransferringPanel extends DetailPanel {
 	private TransferringBLService transferringBLService = new TransferringController();
-
+	
+	private DateChooser dateChoose=DateChooser.getInstance();
 	// 添加下拉框
 	private JScrollPane jScrollPane = new JScrollPane();
 	private JPanel container = new JPanel();
@@ -42,12 +44,12 @@ public class AddTransferringPanel extends DetailPanel {
 
 	private JTextField transferringidText = new JTextField();
 	private JTextField loadingdateTextyear = new JTextField();
-	private JTextField loadingdateTextmonth = new JTextField();
-	private JTextField loadingdateTextday = new JTextField();
+//	private JTextField loadingdateTextmonth = new JTextField();
+//	private JTextField loadingdateTextday = new JTextField();
 	private JComboBox<String> loadingway = new JComboBox<String>();
 	private JTextField loadingwayidText = new JTextField();
-	private JTextField departureidText = new JTextField();
-	private JTextField arrivalidText = new JTextField();
+	private JComboBox<String> departureidText = new JComboBox<String>();
+	private JComboBox<String> arrivalidText = new JComboBox<String>();
 	private JTextField supervisionidText = new JTextField();
 	private JTextField containeridText = new JTextField();
 	private JTextField fareText = new JTextField();
@@ -152,27 +154,28 @@ public class AddTransferringPanel extends DetailPanel {
 				transferringid.getY(), TEXTid_W, TEXT_H);
 		this.infoPanel.add(transferringidText);
 
-		JLabel apart1 = new JLabel("-");
-		JLabel apart2 = new JLabel("-");
+//		JLabel apart1 = new JLabel("-");
+//		JLabel apart2 = new JLabel("-");
 		loadingdate.setBounds(transferringid.getX(),
 				transferringid.getY() + transferringid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(loadingdate);
 		loadingdateTextyear.setBounds(loadingdate.getX() + loadingdate.getWidth() + COMPONENT_GAP_X, loadingdate.getY(),
-				TEXT_W / 3, TEXT_H);
+				TEXT_W , TEXT_H);
+		dateChoose.register(loadingdateTextyear);
 		this.infoPanel.add(loadingdateTextyear);
-		apart1.setBounds(loadingdateTextyear.getX() + loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10,
-				LABEL_H);
-		this.infoPanel.add(apart1);
-		loadingdateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 3, TEXT_H);
-		this.infoPanel.add(loadingdateTextmonth);
-		apart2.setBounds(loadingdateTextmonth.getX() + loadingdateTextmonth.getWidth(), loadingdateTextmonth.getY(), 10,
-				LABEL_H);
-		this.infoPanel.add(apart2);
-		loadingdateTextday.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 3, TEXT_H);
-		this.infoPanel.add(loadingdateTextday);
+//		apart1.setBounds(loadingdateTextyear.getX() + loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10,
+//				LABEL_H);
+//		this.infoPanel.add(apart1);
+//		loadingdateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 3, TEXT_H);
+//		this.infoPanel.add(loadingdateTextmonth);
+//		apart2.setBounds(loadingdateTextmonth.getX() + loadingdateTextmonth.getWidth(), loadingdateTextmonth.getY(), 10,
+//				LABEL_H);
+//		this.infoPanel.add(apart2);
+//		loadingdateTextday.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 3, TEXT_H);
+//		this.infoPanel.add(loadingdateTextday);
 
-		way.setBounds(loadingdateTextday.getX() + loadingdateTextday.getWidth() + COMPONENT_GAP_X,
-				loadingdateTextday.getY(), LABEL_W, LABEL_H);
+		way.setBounds(loadingdateTextyear.getX() + loadingdateTextyear.getWidth() + COMPONENT_GAP_X,
+				loadingdateTextyear.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(way);
 		loadingway.setBounds(way.getX() + way.getWidth() + COMPONENT_GAP_X, way.getY(), TEXT_W, TEXT_H);
 		this.infoPanel.add(loadingway);
@@ -192,6 +195,10 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(departureid);
 		departureidText.setBounds(departureid.getX() + departureid.getWidth() + COMPONENT_GAP_X, departureid.getY(),
 				TEXT_W, TEXT_H);
+		departureidText.addItem("南京");
+		departureidText.addItem("北京");
+		departureidText.addItem("广州");
+		departureidText.addItem("上海");
 		this.infoPanel.add(departureidText);
 
 		arrivalid.setBounds(departureidText.getX() + departureidText.getWidth() + COMPONENT_GAP_X,
@@ -199,6 +206,10 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.addItem("南京");
+		arrivalidText.addItem("北京");
+		arrivalidText.addItem("广州");
+		arrivalidText.addItem("上海");
 		this.infoPanel.add(arrivalidText);
 
 		supervisionid.setBounds(departureid.getX(), departureid.getY() + departureid.getHeight() + COMPONENT_GAP_Y,
@@ -245,8 +256,7 @@ public class AddTransferringPanel extends DetailPanel {
 
 				if (result) {
 					//重置中转单时间
-					transferringvo.setloadingdate(loadingdateTextyear.getText().trim() + "-"
-							+ loadingdateTextmonth.getText().trim() + "-" + loadingdateTextday.getText().trim());
+					transferringvo.setloadingdate(loadingdateTextyear.getText().trim());
 					throughVerifyOperation(transferringvo);
 					cancel.setVisible(true);
 					fare.setForeground(Color.red);
@@ -282,7 +292,7 @@ public class AddTransferringPanel extends DetailPanel {
 		disableComponents();
 		// 计算运费
 		String thefare = transferringBLService.tranferringFare(transferringVO.getdepartureid(),
-				transferringVO.getarrivalid()) + "";
+				transferringVO.getarrivalid(),transferringVO.getway()) + "";
 		// 显示运费
 		fareText.setText(thefare);
 		if (isFirstEnsure) {
@@ -307,8 +317,7 @@ public class AddTransferringPanel extends DetailPanel {
 
 	private TransferringVO creattransferringvo() {
 		String transferringid = transferringidText.getText().trim();
-		String date = loadingdateTextyear.getText().trim() + " -" + loadingdateTextmonth.getText().trim() + " -"
-				+ loadingdateTextday.getText().trim() + " ";
+		String date = loadingdateTextyear.getText().trim();
 		String WAY = (String) loadingway.getSelectedItem();
 		LoadingType loadingWAY = null;
 		switch (WAY) {
@@ -323,8 +332,8 @@ public class AddTransferringPanel extends DetailPanel {
 			break;
 		}
 		String loadingWAYid = loadingwayidText.getText().trim();
-		String departure = departureidText.getText().trim();
-		String arrival = arrivalidText.getText().trim();
+		String departure = (String) departureidText.getSelectedItem();
+		String arrival = (String) arrivalidText.getSelectedItem();
 		String supervision = supervisionidText.getText().trim();
 		String con = containeridText.getText().trim();
 		List<String> all = new ArrayList<String>();
@@ -345,12 +354,13 @@ public class AddTransferringPanel extends DetailPanel {
 	private void disableComponents() {
 		this.transferringidText.setEditable(false);
 		this.loadingdateTextyear.setEditable(false);
-		this.loadingdateTextmonth.setEditable(false);
-		this.loadingdateTextday.setEditable(false);
+		dateChoose.setEnabled(false);
+//		this.loadingdateTextmonth.setEditable(false);
+//		this.loadingdateTextday.setEditable(false);
 		this.loadingway.setEnabled(false);
 		this.loadingwayidText.setEditable(false);
-		this.departureidText.setEditable(false);
-		this.arrivalidText.setEditable(false);
+		this.departureidText.setEnabled(false);
+		this.arrivalidText.setEnabled(false);
 		this.supervisionidText.setEditable(false);
 		this.containeridText.setEditable(false);
 		this.alldeliveryidText.setEditable(false);
@@ -359,12 +369,13 @@ public class AddTransferringPanel extends DetailPanel {
 	private void enableComponents() {
 		this.transferringidText.setEditable(true);
 		this.loadingdateTextyear.setEditable(true);
-		this.loadingdateTextmonth.setEditable(true);
-		this.loadingdateTextday.setEditable(true);
+		dateChoose.setEnabled(true);
+//		this.loadingdateTextmonth.setEditable(true);
+//		this.loadingdateTextday.setEditable(true);
 		this.loadingway.setEnabled(true);
 		this.loadingwayidText.setEditable(true);
-		this.departureidText.setEditable(true);
-		this.arrivalidText.setEditable(true);
+		this.departureidText.setEnabled(true);
+		this.arrivalidText.setEnabled(true);
 		this.supervisionidText.setEditable(true);
 		this.containeridText.setEditable(true);
 		this.alldeliveryidText.setEditable(true);

@@ -3,9 +3,10 @@ package po.businessPO;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-import vo.businessVO.ArrivalFormVO;
 import constant.CargoState;
+import vo.businessVO.ArrivalFormVO;
 
 
 
@@ -73,5 +74,14 @@ public class ArrivalFormPO implements Serializable{
 	
 	public ArrivalFormVO arrivalPOToVO(){
 		return new ArrivalFormVO(date,transitNumber,departPlace,state);
+	}
+	
+	public static ArrayList<ArrivalFormVO> arrivalPOListToVO(ArrayList<ArrivalFormPO> po) {
+		ArrayList<ArrivalFormVO> vo = new ArrayList<ArrivalFormVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(po.get(i).arrivalPOToVO());
+		}
+		return vo;
 	}
 }

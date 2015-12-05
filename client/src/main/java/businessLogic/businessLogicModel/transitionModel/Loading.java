@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import businessLogic.businessLogicModel.deliveryModel.DistanceIO;
 import businessLogic.businessLogicModel.managerModel.TransitPriceIO;
+import businessLogic.businessLogicModel.util.CommonLogic;
 import constant.City;
 import constant.LoadingType;
 import constant.TransitType;
@@ -86,16 +87,16 @@ public class Loading {
 		}
 		switch (CityTo) {
 		case "南京":
-			from = City.NAN_JING;
+			to = City.NAN_JING;
 			break;
 		case "北京":
-			from = City.BEI_JING;
+			to = City.BEI_JING;
 			break;
 		case "上海":
-			from = City.SHANG_HAI;
+			to = City.SHANG_HAI;
 			break;
 		case "广州":
-			from = City.GUANG_ZHOU;
+			to = City.GUANG_ZHOU;
 			break;
 		}
 		double distance = DistanceIO.getDistance(from, to);
@@ -136,7 +137,7 @@ public class Loading {
 	}
 	
 	public boolean verifyres(LoadingVO loadingVO) {
-		if(loadingVO.getloadingid().equals("")||loadingVO.getloadingid().length()!=11){
+		if(loadingVO.getloadingid().equals("")||(!loadingVO.getloadingid().matches("\\d{11}"))){
 			loadingVO.seterrorMsg("装运单编号不能为空或装运单编号错误(11位)");
 			return false;
 		}
@@ -144,7 +145,7 @@ public class Loading {
 			loadingVO.seterrorMsg("到达地不能为空");
 			return false;
 		}
-		if (loadingVO.getwayid().equals("")||loadingVO.getwayid().length()!=9) {
+		if (loadingVO.getwayid().equals("")||(!loadingVO.getwayid().matches("\\d{9}"))) {
 			loadingVO.seterrorMsg("装运方式编号不能为空或编号输入错误(9位)");
 			return false;
 		}

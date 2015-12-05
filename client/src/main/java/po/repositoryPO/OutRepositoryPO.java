@@ -1,8 +1,10 @@
 package po.repositoryPO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import constant.LoadingType;
+import vo.repositoryVO.OutRepositoryVO;
 
 /**
  * 记录了出库单的信息
@@ -102,5 +104,19 @@ public class OutRepositoryPO implements Serializable{
 	}
 	public boolean getisPassed() {
 		return isPassed;
+	}
+	
+	public OutRepositoryVO outRepositoryPOToVO() {
+		return new OutRepositoryVO(this.deliveryid, 
+				this.outrepositorydate, this.arrivalid, this.way, this.loadingid);
+	}
+	
+	public static ArrayList<OutRepositoryVO>outRepositoryPOListToVO(ArrayList<OutRepositoryPO> po) {
+		ArrayList<OutRepositoryVO> vo = new ArrayList<OutRepositoryVO>();
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			vo.add(po.get(i).outRepositoryPOToVO());
+		}
+		return vo;
 	}
 }

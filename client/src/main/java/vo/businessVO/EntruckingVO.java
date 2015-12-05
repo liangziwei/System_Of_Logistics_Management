@@ -1,8 +1,9 @@
 package vo.businessVO;
 
 import po.businessPO.EntruckingPO;
+import vo.ApprovalFormVO;
 
-public class EntruckingVO{
+public class EntruckingVO extends ApprovalFormVO{
 
 	private String date;
 	private String businessHallid;

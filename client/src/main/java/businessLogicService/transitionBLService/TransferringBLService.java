@@ -2,6 +2,7 @@ package businessLogicService.transitionBLService;
 
 import java.util.List;
 
+import constant.LoadingType;
 import vo.repositoryVO.RepositoryVO;
 import vo.transitionVO.TransferringVO;
 
@@ -50,9 +51,10 @@ public interface TransferringBLService {
 	 * 需接口：无
 	 * @param CityFrom , 出发城市
 	 * @param CityTo , 到达城市
+	 * @param type,运送方式
 	 * @return double, 返回中转单的运费值
 	 * */
-	public double tranferringFare(String CityFrom,String CityTo);
+	public double tranferringFare(String CityFrom,String CityTo,LoadingType type);
 	/**
 	 * description:判断输入是否正确
 	 * 前置条件：LoadingPanel

@@ -2,12 +2,13 @@ package vo.deliveryVO;
 
 import po.deliveryPO.ClientInfo;
 import po.deliveryPO.GoodsInfo;
+import vo.ApprovalFormVO;
 
 /**
  * 记录了订单的信息
  * @author 肖安祥
  */
-public class OrderVO{
+public class OrderVO extends ApprovalFormVO{
 
 	private ClientInfo senderInfo;
 	
@@ -44,6 +45,11 @@ public class OrderVO{
 
 	public void setGoodsInfo(GoodsInfo goodsInfo) {
 		this.goodsInfo = goodsInfo;
+	}
+
+	@Override
+	public String getDate() {
+		return this.goodsInfo.getDate();
 	}
 
 }

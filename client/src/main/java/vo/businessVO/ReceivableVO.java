@@ -3,8 +3,9 @@ package vo.businessVO;
 import java.util.ArrayList;
 
 import po.businessPO.ReceivablePO;
+import vo.ApprovalFormVO;
 
-public class ReceivableVO{
+public class ReceivableVO extends ApprovalFormVO{
 
 	private String date;
 	private double money;
