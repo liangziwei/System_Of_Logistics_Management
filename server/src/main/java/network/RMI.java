@@ -5,12 +5,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
-import stub.dataImpl_stub.businessDataImpl_stub.DriverDataImpl_Stub;
-import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_Stub;
-import stub.dataImpl_stub.businessDataImpl_stub.ReceiveAndSendDataImpl_Stub;
-import stub.dataImpl_stub.businessDataImpl_stub.VehicleDataImpl_Stub;
+import dataImpl.businessDataImpl.DriverDataImpl;
+import dataImpl.businessDataImpl.EntruckingDataImpl;
 import dataImpl.businessDataImpl.PaymentDataImpl;
+import dataImpl.businessDataImpl.ReceiveAndSendDataImpl;
+import dataImpl.businessDataImpl.VehicleDataImpl;
 import dataImpl.deliveryDataImpl.ConstantDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
@@ -56,6 +55,7 @@ import dataService.senderDataService.InquireDataService;
 import dataService.transitionDataService.LoadingDataService;
 import dataService.transitionDataService.ReceivingDataService;
 import dataService.transitionDataService.TransferringDataService;
+import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
 
 public class RMI {
 	
@@ -122,7 +122,7 @@ public class RMI {
 		
 		try {
 //			EntruckingDataService entrucking = new EntruckingDataImpl();
-			EntruckingDataService entrucking = new EntruckingDataImpl_Stub();
+			EntruckingDataService entrucking = new EntruckingDataImpl();
 			EntruckingDataService entrucking_stub = (EntruckingDataService) UnicastRemoteObject.exportObject(entrucking, 0);
 			registry.bind("entrucking", entrucking_stub);
 			
@@ -132,17 +132,17 @@ public class RMI {
 			registry.bind("receivable", payment_stub);
 			
 //			ReceiveAndSendDataService receiveAndSend = new ReceiveAndSendDataImpl();
-			ReceiveAndSendDataService receiveAndSend = new ReceiveAndSendDataImpl_Stub();
+			ReceiveAndSendDataService receiveAndSend = new ReceiveAndSendDataImpl();
 			ReceiveAndSendDataService receiveAndSend_stub = (ReceiveAndSendDataService) UnicastRemoteObject.exportObject(receiveAndSend, 0);
 			registry.bind("receiveAndSend", receiveAndSend_stub);
 			
 //			VehicleDataService vehicle = new VehicleDataImpl();
-			VehicleDataService vehicle = new VehicleDataImpl_Stub();
+			VehicleDataService vehicle = new VehicleDataImpl();
 			VehicleDataService vehicle_stub = (VehicleDataService) UnicastRemoteObject.exportObject(vehicle, 0);
 			registry.bind("vehicle", vehicle_stub);
 			
 //			DriverDataService driver = new DriverDataImpl();
-			DriverDataService driver = new DriverDataImpl_Stub();
+			DriverDataService driver = new DriverDataImpl();
 			DriverDataService driver_stub = (DriverDataService) UnicastRemoteObject.exportObject(driver, 0);
 			registry.bind("driver", driver_stub);
 			

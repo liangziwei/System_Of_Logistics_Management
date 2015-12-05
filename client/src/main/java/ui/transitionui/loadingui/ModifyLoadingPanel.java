@@ -20,6 +20,7 @@ import businessLogic.businessLogicController.transitionController.LoadingControl
 import businessLogicService.transitionBLService.LoadingBLService;
 import constant.LoadingType;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.transitionVO.LoadingVO;
 
 public class ModifyLoadingPanel extends DetailPanel {
@@ -64,13 +65,13 @@ public class ModifyLoadingPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private JButton cancle2 = new JButton("取消");
+	private LimpidButton cancle2 = new LimpidButton("","取消.png");
 
-	private JButton find = new JButton("查询");
+	private LimpidButton find = new LimpidButton("","picture/查询.png");
 
-	private JButton cancle1 = new JButton("取消查询");
+	private LimpidButton cancle1 = new LimpidButton("","picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 

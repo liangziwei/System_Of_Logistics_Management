@@ -212,4 +212,30 @@ public class GoodsInfo implements Serializable{
 	public void setPassed(boolean isPassed) {
 		this.isPassed = isPassed;
 	}
+	
+	public String getPackageString() {
+		switch(this.packageType) {
+		case CARTON:
+			return "纸袋";
+		case COURIER_BAG:
+			return "快递袋";
+		case OTHER:
+			return "其他";
+		case WOODEN:
+			return "木箱";
+		}
+		return "";
+	}
+	
+	public String getDeliveryString() {
+		switch(this.deliveryType) {
+		case ECONOMIC:
+			return "经济快递";
+		case FAST:
+			return "特快";
+		case NORMAL:
+			return "普通快递";
+		}
+		return "";
+	}
 }

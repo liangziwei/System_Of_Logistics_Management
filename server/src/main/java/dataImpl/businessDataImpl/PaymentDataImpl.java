@@ -1,5 +1,6 @@
 package dataImpl.businessDataImpl;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,12 +55,33 @@ public class PaymentDataImpl implements PaymentDataService {
 			for(int i = 0; i < len; i++) {
 				id.add(temp[i]);
 			}
-			return new ReceivablePO(rs.getString("state"), rs.getDouble("money"), 
+			return new ReceivablePO(rs.getString("date"), rs.getDouble("money"), 
 					rs.getString("courier"), id,rs.getString("businessID"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean approveOneReceivable(ReceivablePO form) throws RemoteException {
+		String sql = "update receivable set isApproved = 1, isPassed = 1 where "
+				+ "money = " + form.getMoney() + ";";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreReceivable(ArrayList<ReceivablePO> form) throws RemoteException {
+		int size = form.size();
+		for(int i = 0; i < size; i++) {
+			this.approveOneReceivable(form.get(i));
+		}
+		return true;
 	}
 
 }

@@ -20,4 +20,5 @@ public interface InquireDataService extends Remote{
 	 * @return LogisticsPO：物流信息的持久化对象，具体参见LogisticsPO的定义
 	 */
 	public LogisticsPO getLogInfoById(String id)throws RemoteException;
+	
 }

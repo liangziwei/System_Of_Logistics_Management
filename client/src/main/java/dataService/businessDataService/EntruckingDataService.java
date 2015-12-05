@@ -2,6 +2,7 @@ package dataService.businessDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.businessPO.EntruckingPO;
 
@@ -19,4 +20,14 @@ public interface EntruckingDataService extends Remote{
 	 * @return 添加是否成功
 	 */
 	public boolean addEntruckingFrom(EntruckingPO entruckingPO)throws RemoteException;
+	
+	/**
+	 *审批一张装车单 
+	 */
+	public boolean approveOneEntrucking(EntruckingPO form) throws RemoteException;
+	
+	/**
+	 *审批多张装车单 
+	 */
+	public boolean approveMoreEntrucking(ArrayList<EntruckingPO> form) throws RemoteException;
 }

@@ -18,6 +18,7 @@ import businessLogicService.transitionBLService.ReceivingBLService;
 import constant.CargoState;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.transitionVO.ReceivingVO;
 
 public class AddReceivingPanel extends DetailPanel {
@@ -60,9 +61,9 @@ public class AddReceivingPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 

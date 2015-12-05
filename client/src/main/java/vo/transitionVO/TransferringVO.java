@@ -174,5 +174,17 @@ public class TransferringVO extends ApprovalFormVO{
 	public String getDate() {
 		return this.loadingdate;
 	}
+	
+	public String getLoadingTypeString() {
+		switch(this.way) {
+		case PLANE:
+			return "飞机";
+		case TRAIN:
+			return "火车";
+		case TRUCK:
+			return "卡车";
+		}
+		return "";
+	}
 }
 

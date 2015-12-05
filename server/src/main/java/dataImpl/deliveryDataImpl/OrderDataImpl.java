@@ -212,4 +212,25 @@ public class OrderDataImpl implements OrderDataService{
 		return new GoodsInfo(number, goods_id, weight, name, volumn,
 				packageType, deliveryType, date, nodes, citys, time, price);
 	}
+
+	@Override
+	public boolean approveOneOrder(OrderPO po) {
+		String sql = "update order_table set is_approved = 'true', is_passed = 'true'"
+				+ " where goods_id = '" + po.getGoodsInfo().getId() + "';";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreOrder(ArrayList<OrderPO> po) {
+		int size = po.size();
+		for(int i = 0; i < size; i++) {
+			this.approveOneOrder(po.get(i));
+		}
+		return true;
+	}
 }

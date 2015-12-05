@@ -1,5 +1,8 @@
 package stub.dataImpl_stub.repositoryDataImpl_stub;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
 import constant.LoadingType;
 import dataService.repositoryDataService.OutRepositoryDataService;
 import po.repositoryPO.OutRepositoryPO;
@@ -24,6 +27,18 @@ public class OutRepositoryDataImpl_Stub implements OutRepositoryDataService{
 	public boolean UpdateRepositoryInfoDT(OutRepositoryPO outRepositoryPO) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public boolean approveOneOutRepository(OutRepositoryPO form) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreOutRepository(ArrayList<OutRepositoryPO> form) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

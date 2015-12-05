@@ -145,5 +145,19 @@ public class InRepositoryVO extends ApprovalFormVO{
 	public String getDate() {
 		return this.inrepositorydate;
 	}
+	
+	public String getAreaCodeString() {
+		switch(this.areaCode) {
+		case MOTOAREA:
+			return "机动区";
+		case PLANEAREA:
+			return "航运区";
+		case TRAINAREA:
+			return "铁运区";
+		case TRUCKAREA:
+			return "汽运区";
+		}
+		return "";
+	}
 }
 

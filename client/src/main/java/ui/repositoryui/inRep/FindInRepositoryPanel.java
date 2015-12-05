@@ -15,6 +15,7 @@ import businessLogic.businessLogicController.repositoryController.InRepositoryCo
 import businessLogicService.repositoryBLService.InRepositoryBLService;
 import constant.AreaCodeType;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.repositoryVO.InRepositoryVO;
 
@@ -40,9 +41,10 @@ public class FindInRepositoryPanel extends DetailPanel {
 	private JTextField posidText = new JTextField();
 
 	private JPanel infoPanel = new JPanel();
-	private JButton find = new JButton("查询");
+	
+	private LimpidButton find = new LimpidButton("","picture/查询.png");
 
-	private JButton cancle = new JButton("取消查询");
+	private LimpidButton cancle = new LimpidButton("","picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
@@ -86,6 +88,7 @@ public class FindInRepositoryPanel extends DetailPanel {
 		this.add(Deliveryid);
 		DeliveryidText.setBounds(Deliveryid.getX() + Deliveryid.getWidth() + COMPONENT_GAP_X, Deliveryid.getY(),
 				TEXTid_W, TEXT_H);
+		DeliveryidText.setOpaque(false);
 		this.add(DeliveryidText);
 		find.setBounds(DeliveryidText.getX() + DeliveryidText.getWidth() + COMPONENT_GAP_X, DeliveryidText.getY(),
 				LABEL_W, LABEL_H);
@@ -137,12 +140,14 @@ public class FindInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setOpaque(false);
 		this.infoPanel.add(arrivalidText);
 		// 区号
 		areaid.setBounds(arrivalidText.getX() + arrivalidText.getWidth() + COMPONENT_GAP_Y, arrivalidText.getY(),
 				LABEL_W / 2, LABEL_H);
 		this.infoPanel.add(areaid);
 		areaidText.setBounds(areaid.getX() + areaid.getWidth() + COMPONENT_GAP_X, areaid.getY(), TEXT_W, TEXT_H);
+		areaidText.setOpaque(false);
 		areaidText.addItem("航运区");
 		areaidText.addItem("铁运区");
 		areaidText.addItem("汽运区");
@@ -152,18 +157,21 @@ public class FindInRepositoryPanel extends DetailPanel {
 		rowid.setBounds(arrivalid.getX(), arrivalid.getY() + arrivalid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(rowid);
 		rowidText.setBounds(rowid.getX() + rowid.getWidth() + COMPONENT_GAP_X, rowid.getY(), LABEL_W, LABEL_H);
+		rowidText.setOpaque(false);
 		this.infoPanel.add(rowidText);
 		// 架号
 		shelfid.setBounds(rowidText.getX() + rowidText.getWidth() + COMPONENT_GAP_Y, rowidText.getY(), LABEL_W / 2,
 				LABEL_H);
 		this.infoPanel.add(shelfid);
 		shelfidText.setBounds(shelfid.getX() + shelfid.getWidth() + COMPONENT_GAP_X, shelfid.getY(), LABEL_W, LABEL_H);
+		shelfidText.setOpaque(false);
 		this.infoPanel.add(shelfidText);
 		// 位号
 		posid.setBounds(shelfidText.getX() + shelfidText.getWidth() + COMPONENT_GAP_Y, shelfidText.getY(), LABEL_W / 2,
 				LABEL_H);
 		this.infoPanel.add(posid);
 		posidText.setBounds(posid.getX() + posid.getWidth() + COMPONENT_GAP_X, posid.getY(), LABEL_W, LABEL_H);
+		posidText.setOpaque(false);
 		this.infoPanel.add(posidText);
 		infoPanel.setOpaque(false);
 	}

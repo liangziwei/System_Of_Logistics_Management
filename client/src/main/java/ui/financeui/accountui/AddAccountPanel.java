@@ -15,6 +15,7 @@ import businessLogic.businessLogicController.financeController.AccountController
 import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.financeBLService.AccountBLService;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.financeVO.AccountVO;
 
 @SuppressWarnings("serial")
@@ -30,9 +31,9 @@ public class AddAccountPanel extends DetailPanel{
 	
 	private JTextField moneyText = new JTextField();
 	
-	private JButton ok = new JButton("");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private JLabel tip = new JLabel();
 	

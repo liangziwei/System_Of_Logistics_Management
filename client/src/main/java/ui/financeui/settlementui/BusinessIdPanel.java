@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ui.baseui.LimpidButton;
+
 /**
  * 输入营业厅编号的面板
  */
@@ -18,7 +20,7 @@ public class BusinessIdPanel extends JPanel{
 	
 	private JTextField idText = new JTextField();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
 	private JLabel tip = new JLabel();
 	
@@ -41,8 +43,9 @@ public class BusinessIdPanel extends JPanel{
 		//营业厅编号文本框
 		this.idText.setBounds(this.idLabel.getX() + labelW + (startX >> 1), this.idLabel.getY(), textW, textH);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setOpaque(false);
 		//确定按钮
-		this.ok.setBounds(this.idText.getX() + textW + startX, this.idText.getY(), buttonW, buttonH);
+		this.ok.setBounds(this.idText.getX() + textW + startX, this.idText.getY(), 80, 30);
 		this.ok.setFont(WORD_FONT);
 		//提示标签
 		this.tip.setBounds(0, h >> 1, textW, labelH);

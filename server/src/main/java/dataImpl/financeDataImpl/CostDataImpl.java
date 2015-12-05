@@ -2,6 +2,7 @@ package dataImpl.financeDataImpl;
 
 
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,5 +54,26 @@ public class CostDataImpl implements CostDataService{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean approveOnePayment(PaymentPO form) throws RemoteException {
+		String sql = "update payment set is_approved = 'true', is_passed = 'true' where "
+				+ "payAmount = " + form.getPayAmount() + ";";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean approveMorePayment(ArrayList<PaymentPO> form) throws RemoteException {
+		int size = form.size();
+		for(int i = 0; i < size; i++) {
+			this.approveOnePayment(form.get(i));
+		}
+		return true;
 	}
 }

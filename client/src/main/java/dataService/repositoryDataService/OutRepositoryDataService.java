@@ -2,6 +2,7 @@ package dataService.repositoryDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.repositoryPO.OutRepositoryPO;
 
@@ -51,4 +52,13 @@ public interface OutRepositoryDataService extends Remote{
 	 * */
 	public boolean UpdateRepositoryInfoDT(OutRepositoryPO outRepositoryPO)throws RemoteException;
 	
+	/**
+	 *审批一张出库单 
+	 */
+	public boolean approveOneOutRepository(OutRepositoryPO form) throws RemoteException;
+	
+	/**
+	 *审批多张出库单 
+	 */
+	public boolean approveMoreOutRepository(ArrayList<OutRepositoryPO> form) throws RemoteException;
 }

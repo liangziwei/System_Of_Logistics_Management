@@ -2,6 +2,7 @@ package dataService.deliveryDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import constant.City;
@@ -44,5 +45,15 @@ public interface OrderDataService extends Remote{
 	 * @return List<TimeRecordPO> 返回时间记录持久化对象的列表
 	 */
 	public List<TimeRecordPO> getTimeRecords(City source, City destination)throws RemoteException;
+	
+	/**
+	 * 审批一张订单
+	 */
+	public boolean approveOneOrder(OrderPO po) throws RemoteException;
+	
+	/**
+	 * 审批多张订单
+	 */
+	public boolean approveMoreOrder(ArrayList<OrderPO> po) throws RemoteException;
 	
 }

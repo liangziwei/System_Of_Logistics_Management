@@ -13,7 +13,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 import ui.baseui.DetailPanel;
+
+import ui.baseui.LimpidButton;
+
 import businessLogic.businessLogicController.financeController.OriginalInfoController;
+
 
 @SuppressWarnings("serial")
 public class OriginalInfoPanel extends DetailPanel{
@@ -29,9 +33,10 @@ public class OriginalInfoPanel extends DetailPanel{
 	private JLabel accountLabel=new JLabel("银行账户");
 	
 	private JScrollPane panel=new JScrollPane ();
-    private JButton ok = new JButton("确定");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
+	
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
@@ -45,9 +50,9 @@ public class OriginalInfoPanel extends DetailPanel{
 	private static final int TABEL_H = DETAIL_PANEL_H -150;
 	
 	
-	private static final int BUTTON_W = LABEL_W;
+	private static final int BUTTON_W = 80;
 	
-	private static final int BUTTON_H = LABEL_H;
+	private static final int BUTTON_H = 30;
 	
 	public OriginalInfoPanel() {
 		// TODO Auto-generated constructor stub

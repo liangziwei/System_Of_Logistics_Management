@@ -16,6 +16,7 @@ import businessLogicService.repositoryBLService.OutRepositoryBLService;
 import constant.LoadingType;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.repositoryVO.OutRepositoryVO;
 
@@ -32,8 +33,8 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 
 	private JTextField DeliveryidText = new JTextField();
 	private JTextField outrepositoryYear = new JTextField();
-//	private JTextField outrepositoryMonth = new JTextField();
-//	private JTextField outrepositoryDay = new JTextField();
+	private JTextField outrepositoryMonth = new JTextField();
+	private JTextField outrepositoryDay = new JTextField();
 	private JTextField arrivalidText = new JTextField();
 	private JComboBox<String> loadingwayText = new JComboBox<String>();
 	private JTextField wayidText = new JTextField();
@@ -42,13 +43,13 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton find = new JButton("查询");
+	private LimpidButton find = new LimpidButton("","picture/查询.png");
 
-	private JButton cancle1 = new JButton("取消查询");
+	private LimpidButton cancle1 = new LimpidButton("","picture/取消.png");
 
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private JButton cancle2 = new JButton("取消");
+	private LimpidButton cancle2 = new LimpidButton("","picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
@@ -97,6 +98,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		this.add(Deliveryid);
 		DeliveryidText.setBounds(Deliveryid.getX() + Deliveryid.getWidth() + COMPONENT_GAP_X, Deliveryid.getY(),
 				TEXTid_W, TEXT_H);
+		DeliveryidText.setOpaque(false);
 		this.add(DeliveryidText);
 		find.setBounds(DeliveryidText.getX() + DeliveryidText.getWidth() + COMPONENT_GAP_X, DeliveryidText.getY(),
 				LABEL_W, LABEL_H);
@@ -154,8 +156,22 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		// 出库日期
 		outrepositorydate.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(outrepositorydate);
-		outrepositoryYear.setBounds(outrepositorydate.getX() + outrepositorydate.getWidth() + COMPONENT_GAP_X,
-				outrepositorydate.getY(), (TEXT_W / 2)*3, TEXT_H);
+		outrepositoryYear.setBounds(outrepositorydate.getX() + outrepositorydate.getWidth() + COMPONENT_GAP_X,outrepositorydate.getY(), TEXT_W / 2, TEXT_H);
+		outrepositoryYear.setOpaque(false);
+		this.infoPanel.add(outrepositoryYear);
+		JLabel apart1 = new JLabel("-");
+		JLabel apart2 = new JLabel("-");
+		apart1.setBounds(outrepositoryYear.getX() + outrepositoryYear.getWidth(), outrepositoryYear.getY(), 10, TEXT_H);
+		this.infoPanel.add(apart1);
+		outrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
+		outrepositoryMonth.setOpaque(false);
+		this.infoPanel.add(outrepositoryMonth);
+		apart2.setBounds(outrepositoryMonth.getX() + outrepositoryMonth.getWidth(), outrepositoryMonth.getY(), 10,
+				TEXT_H);
+		this.infoPanel.add(apart2);
+		outrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
+		outrepositoryDay.setOpaque(false);
+		this.infoPanel.add(outrepositoryDay);
 		dateChoose.register(outrepositoryYear);
 		this.infoPanel.add(outrepositoryYear);
 //		JLabel apart1 = new JLabel("-");
@@ -175,6 +191,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setOpaque(false);
 		this.infoPanel.add(arrivalidText);
 		// 装运形式
 		loadingway.setBounds(arrivalidText.getX() + arrivalidText.getWidth() + COMPONENT_GAP_X, arrivalidText.getY(),
@@ -182,6 +199,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(loadingway);
 		loadingwayText.setBounds(loadingway.getX() + loadingway.getWidth() + COMPONENT_GAP_X, loadingway.getY(), TEXT_W,
 				TEXT_H);
+		loadingwayText.setOpaque(false);
 		loadingwayText.addItem("飞机");
 		loadingwayText.addItem("火车");
 		loadingwayText.addItem("汽车");
@@ -190,6 +208,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		wayid.setBounds(arrivalid.getX(), arrivalid.getY() + arrivalid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(wayid);
 		wayidText.setBounds(wayid.getX() + wayid.getWidth() + COMPONENT_GAP_X, wayid.getY(), TEXTid_W, TEXT_H);
+		wayidText.setOpaque(false);
 		this.infoPanel.add(wayidText);
 	}
 

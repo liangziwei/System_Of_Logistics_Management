@@ -76,6 +76,19 @@ public class ArrivalFormPO implements Serializable{
 		return new ArrivalFormVO(date,transitNumber,departPlace,state);
 	}
 	
+	public static ArrivalFormPO arrivalVOToPO(ArrivalFormVO vo) {
+		return new ArrivalFormPO(vo.getDate(), vo.getTransitNumber(), vo.getDepartPlace(), vo.getState());
+	}
+	
+	public static ArrayList<ArrivalFormPO> arrivalVOListToPO(ArrayList<ArrivalFormVO> list) {
+		ArrayList<ArrivalFormPO> po = new ArrayList<ArrivalFormPO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(arrivalVOToPO(list.get(i)));
+		}
+		return po;
+	}
+	
 	public static ArrayList<ArrivalFormVO> arrivalPOListToVO(ArrayList<ArrivalFormPO> po) {
 		ArrayList<ArrivalFormVO> vo = new ArrayList<ArrivalFormVO>();
 		int size = po.size();

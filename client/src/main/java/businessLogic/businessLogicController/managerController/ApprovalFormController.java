@@ -1,6 +1,10 @@
 package businessLogic.businessLogicController.managerController;
 
+import vo.ApprovalFormVO;
 import vo.managerVO.UncheckedFormVO;
+
+import java.util.ArrayList;
+
 import businessLogic.businessLogicModel.managerModel.ApprovalForm;
 import businessLogicService.managerBLService.ApprovalFormBLService;
 /**
@@ -16,6 +20,16 @@ public class ApprovalFormController implements ApprovalFormBLService {
 	
 	public UncheckedFormVO getUncheckedForms() {
 		return approval.getUncheckedForms();
+	}
+
+	@Override
+	public boolean approveOneForm(ApprovalFormVO form, String formType) {
+		return this.approval.approveOneForm(form, formType);
+	}
+
+	@Override
+	public boolean approveMoreForm(ArrayList<ApprovalFormVO> form, String formType) {
+		return this.approval.approveMoreForm(form, formType);
 	}
 
 }

@@ -1,5 +1,6 @@
 package stub.dataImpl_stub.transitionDataImpl_stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,18 @@ public class TransferringDataImpl_Stub implements TransferringDataService{
 		alltransferringPO.add(new TransferringPO("2015-10-12","01710100010127",LoadingType.TRAIN,
 				"159010101","北京", "南京", "haha", "2", alldeliveryid2));
 		return alltransferringPO;
+	}
+
+	@Override
+	public boolean approveOneTransferring(TransferringPO form) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreTransferring(ArrayList<TransferringPO> form) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

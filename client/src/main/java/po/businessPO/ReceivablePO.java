@@ -83,6 +83,15 @@ public class ReceivablePO implements Serializable{
 		return new ReceivableVO(date,money,courier,deliveryid,businessID);
 	}
 	
+	public static ArrayList<ReceivablePO> receivableVOListToPO(ArrayList<ReceivableVO> list) {
+		ArrayList<ReceivablePO> po = new ArrayList<ReceivablePO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(list.get(i).receivableVOToPO());
+		}
+		return po;
+	}
+	
 	public static ArrayList<ReceivableVO> receivablePOListToVO(ArrayList<ReceivablePO> po) {
 		ArrayList<ReceivableVO> vo = new ArrayList<ReceivableVO>();
 		int size = po.size();

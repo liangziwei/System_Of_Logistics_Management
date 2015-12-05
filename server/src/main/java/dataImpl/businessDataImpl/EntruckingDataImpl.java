@@ -1,5 +1,6 @@
 package dataImpl.businessDataImpl;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,10 +54,31 @@ public class EntruckingDataImpl implements EntruckingDataService {
 		try {
 			return new EntruckingPO(rs.getString("date"), rs.getString("businessHallid"), rs.getString("transportNumber"),
 					rs.getString("destionation"), rs.getString("vehicleid"),
-					rs.getString("supervisor "), rs.getString("supercargo"), rs.getDouble("freight"));
+					rs.getString("supervisor"), rs.getString("supercargo"), rs.getDouble("freight"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public boolean approveOneEntrucking(EntruckingPO form) throws RemoteException {
+		String sql = "update entrucking set isApproved = 1, isPassed = 1 where "
+				+ "transportNumber = '" + form.getTransportNumber() + "';";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean approveMoreEntrucking(ArrayList<EntruckingPO> form) throws RemoteException {
+		int size = form.size();
+		for(int i = 0; i < size; i++) {
+			this.approveOneEntrucking(form.get(i));
+		}
+		return true;
 	}
 }

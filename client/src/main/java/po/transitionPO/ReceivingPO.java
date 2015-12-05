@@ -112,6 +112,20 @@ public class ReceivingPO implements Serializable{
 				this.transferringid, this.departureid, this.arrivalid, this.state);
 	}
 	
+	public static ReceivingPO receivingVOToPO(ReceivingVO vo) {
+		return new ReceivingPO(vo.gettransitionid(), vo.getarrivaldate(),
+				vo.gettransferringid(), vo.getdepartureid(), vo.getarrivalid(), vo.getstate());
+	}
+	
+	public static ArrayList<ReceivingPO> receivingVOListToPO(ArrayList<ReceivingVO> list) {
+		ArrayList<ReceivingPO> po = new ArrayList<ReceivingPO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(receivingVOToPO(list.get(i)));
+		}
+		return po;
+	}
+	
 	public static ArrayList<ReceivingVO> receivingPOListToVO(ArrayList<ReceivingPO> po) {
 		ArrayList<ReceivingVO> vo = new ArrayList<ReceivingVO>();
 		int size = po.size();

@@ -20,6 +20,7 @@ import businessLogic.businessLogicController.transitionController.LoadingControl
 import businessLogicService.transitionBLService.LoadingBLService;
 import constant.LoadingType;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.transitionVO.LoadingVO;
 
 public class AddLoadingPanel extends DetailPanel{
@@ -64,9 +65,9 @@ public class AddLoadingPanel extends DetailPanel{
 	
 	private JPanel buttonPanel = new JPanel();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
@@ -155,10 +156,12 @@ public class AddLoadingPanel extends DetailPanel{
 		loadingid.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(loadingid);
 		loadingidText.setBounds(loadingid.getX()+LABEL_W+COMPONENT_GAP_X,loadingid.getY() , TEXTid_W, TEXT_H);
+		loadingidText.setOpaque(false);
 		this.infoPanel.add(loadingidText);
 		arrivalid.setBounds(loadingid.getX(), loadingid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX()+arrivalid.getWidth()+COMPONENT_GAP_X,arrivalid.getY(),TEXT_W,TEXT_H);
+		arrivalidText.setOpaque(false);
 		arrivalidText.addItem("南京");
 		arrivalidText.addItem("北京");
 		arrivalidText.addItem("广州");
@@ -167,6 +170,7 @@ public class AddLoadingPanel extends DetailPanel{
 		way.setBounds(arrivalidText.getX()+arrivalidText.getWidth()+COMPONENT_GAP_X, arrivalid.getY(),LABEL_W, LABEL_H);
 		this.infoPanel.add(way);
 		wayBox.setBounds(way.getX()+way.getWidth()+COMPONENT_GAP_X, way.getY(), TEXT_W, TEXT_H);
+		wayBox.setOpaque(false);
 		wayBox.addItem("飞机");
 		wayBox.addItem("火车");
 		wayBox.addItem("汽车");
@@ -174,14 +178,17 @@ public class AddLoadingPanel extends DetailPanel{
 		wayid.setBounds(arrivalid.getX(), arrivalid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(wayid);
 		wayidText.setBounds(wayid.getX()+wayid.getWidth()+COMPONENT_GAP_X, wayid.getY(), TEXTid_W, TEXT_H);
+		wayidText.setOpaque(false);
 		this.infoPanel.add(wayidText);
 		supervisionid.setBounds(wayid.getX(), wayid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(supervisionid);
 		supervisionidText.setBounds(supervisionid.getX()+supervisionid.getWidth()+COMPONENT_GAP_X, supervisionid.getY(), TEXT_W, TEXT_H);
+		supervisionidText.setOpaque(false);
 		this.infoPanel.add(supervisionidText);
 		supercargoid.setBounds(supervisionidText.getX()+supervisionidText.getWidth()+COMPONENT_GAP_X, supervisionid.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(supercargoid);
 		supercargoidText.setBounds(supercargoid.getX()+supercargoid.getWidth()+COMPONENT_GAP_X, supercargoid.getY(), TEXT_W, TEXT_H);
+		supercargoidText.setOpaque(false);
 		this.infoPanel.add(supercargoidText);
 		alldeliveryid.setBounds(supervisionid.getX(), supervisionid.getY()+supervisionid.getHeight()+COMPONENT_GAP_Y, TEXTid_W,LABEL_H);
 		this.infoPanel.add(alldeliveryid);
@@ -194,6 +201,7 @@ public class AddLoadingPanel extends DetailPanel{
 		fareText.setBounds(fare.getX()+fare.getWidth()+COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
 		fareText.setBackground(Color.GRAY);
 		fareText.setEditable(false);
+		fareText.setOpaque(false);
 		this.infoPanel.add(fareText);
 	
 	}

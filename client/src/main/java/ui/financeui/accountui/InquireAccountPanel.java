@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.financeController.AccountController;
 import businessLogicService.financeBLService.AccountBLService;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.financeVO.AccountVO;
 
 @SuppressWarnings("serial")
@@ -26,9 +27,9 @@ public class InquireAccountPanel extends DetailPanel{
 	
 	private JSeparator line = new JSeparator();
 	
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/查询.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private JLabel tip = new JLabel();
 	
@@ -36,7 +37,7 @@ public class InquireAccountPanel extends DetailPanel{
 	
 	private static final int LABEL_W = 100;
 	
-	private static final int LABEL_H = 40;
+	private static final int LABEL_H = 30;
 	
 	private static final int TEXT_W = LABEL_W << 1;
 	
