@@ -43,4 +43,16 @@ public class OrderDataImpl_Stub implements OrderDataService{
 		return timeRecord;
 	}
 
+	@Override
+	public boolean approveOneOrder(OrderPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreOrder(ArrayList<OrderPO> po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

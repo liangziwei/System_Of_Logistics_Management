@@ -1,5 +1,6 @@
 package dataImpl.transitionDataImpl;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -118,6 +119,27 @@ public class ReceivingDataImpl implements ReceivingDataService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean approveOneReceiving(ReceivingPO form) throws RemoteException {
+		String sql = "update receiving set isApproved = 1, isPassed = 1 where "
+				+ "transferringid = '" + form.gettransferringid() + "';";
+		try {
+			return Database.operate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreReceiving(ArrayList<ReceivingPO> form) throws RemoteException {
+		int size = form.size();
+		for(int i = 0; i < size; i++) {
+			this.approveOneReceiving(form.get(i));
+		}
+		return true;
 	}
 
 }

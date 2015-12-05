@@ -54,6 +54,19 @@ public class SendFormPO implements Serializable{
 		return new SendFormVO(date,deliveryid,sender);
 	}
 	
+	public static SendFormPO sendFormVOToPO(SendFormVO vo) {
+		return new SendFormPO(vo.getDate(), vo.getDeliveryid(), vo.getSender());
+	}
+	
+	public static ArrayList<SendFormPO> senFormVOListToPO(ArrayList<SendFormVO> list) {
+		ArrayList<SendFormPO> po = new ArrayList<SendFormPO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(sendFormVOToPO(list.get(i)));
+		}
+		return po;
+	}
+	
 	public static ArrayList<SendFormVO> sendFormPOListToVO(ArrayList<SendFormPO> po) {
 		ArrayList<SendFormVO> vo = new ArrayList<SendFormVO>();
 		int size = po.size();

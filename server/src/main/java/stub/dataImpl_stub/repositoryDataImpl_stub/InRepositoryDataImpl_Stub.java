@@ -1,6 +1,7 @@
 package stub.dataImpl_stub.repositoryDataImpl_stub;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import constant.AreaCodeType;
 import dataService.repositoryDataService.InRepositoryDataService;
@@ -29,6 +30,18 @@ public class InRepositoryDataImpl_Stub implements InRepositoryDataService{
 	}
 
 	public boolean modifyUpdateRepositoryInfoDT(InRepositoryPO inRepository) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean approveOneInRepository(InRepositoryPO form) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean approveMoreInRepository(ArrayList<InRepositoryPO> form) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -2,6 +2,7 @@ package dataService.repositoryDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.repositoryPO.InRepositoryPO;
 
@@ -44,7 +45,7 @@ public interface InRepositoryDataService extends Remote{
 	/**
 	 * description:根据入库单信息更新库存信息
 	 * 前置条件：逻辑层传送的InRepositoryPO不为null且格式正确
-	 * 后置条件：库存信息更新(添加)
+	 * 后置条件：库存信息更新(添加，修改)
 	 * 需接口：无
 	 * @param InRepositoryPO , 入库单信息的相关持久化对象存储，具体参照InRepositoryPO的定义
 	 * @return boolean, 返回给方法调用者库存信息是否更新成功
@@ -60,4 +61,14 @@ public interface InRepositoryDataService extends Remote{
 	 * @return boolean, 返回给方法调用者库存信息是否更新成功
 	 * */
 	public boolean modifyUpdateRepositoryInfoDT(InRepositoryPO inRepository)throws RemoteException;
+	
+	/**
+	 *审批一张入库单 
+	 */
+	public boolean approveOneInRepository(InRepositoryPO form) throws RemoteException;
+	
+	/**
+	 *审批多张入库单 
+	 */
+	public boolean approveMoreInRepository(ArrayList<InRepositoryPO> form) throws RemoteException;
 }

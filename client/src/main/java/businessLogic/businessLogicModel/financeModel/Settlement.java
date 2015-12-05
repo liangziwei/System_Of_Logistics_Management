@@ -21,7 +21,7 @@ public class Settlement {
 			po = settlementData.getReceiList(date);
 			if(po == null) return null;
 			for(int i=0;i<po.size();i++){
-				receivablevo.add(ReceivablePO.ReceiptPOToVO((po.get(i))));
+				receivablevo.add((po.get(i).receivablePOToVO()));
 			}
 		} catch(Exception e){
 			e.printStackTrace();
@@ -52,11 +52,8 @@ public class Settlement {
 		int size = po.size();
 		List<ReceivableVO> vo = new ArrayList<ReceivableVO>();
 		for(int i = 0; i < size; i++) {
-			vo.add(ReceivablePO.ReceiptPOToVO(po.get(i)));
+			vo.add(po.get(i).receivablePOToVO());
 		}
 		return vo;
-	
 	}
-	
-
 }

@@ -25,8 +25,8 @@ public class ReceivablePO implements Serializable{
 		this.deliveryid = deliveryid;
 	}
 	
-	public static ReceivableVO ReceiptPOToVO(ReceivablePO po) {
-		return new ReceivableVO(po.getDate(), po.getMoney(), po.getCourier(), po.getDeliveryid());
+	public static ReceivablePO ReceiptVOToPO(ReceivableVO vo) {
+		return new ReceivablePO(vo.getDate(), vo.getMoney(), vo.getCourier(), vo.getDeliveryid());
 	}
 	
 	public String getDate() {
@@ -79,6 +79,15 @@ public class ReceivablePO implements Serializable{
 	
 	public ReceivableVO receivablePOToVO(){
 		return new ReceivableVO(date,money,courier,deliveryid);
+	}
+	
+	public static ArrayList<ReceivablePO> receivableVOListToPO(ArrayList<ReceivableVO> list) {
+		ArrayList<ReceivablePO> po = new ArrayList<ReceivablePO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(ReceiptVOToPO(list.get(i)));
+		}
+		return po;
 	}
 	
 	public static ArrayList<ReceivableVO> receivablePOListToVO(ArrayList<ReceivablePO> po) {

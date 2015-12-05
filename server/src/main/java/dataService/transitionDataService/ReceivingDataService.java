@@ -2,6 +2,7 @@ package dataService.transitionDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.transitionPO.ReceivingPO;
 
@@ -40,5 +41,15 @@ public interface ReceivingDataService extends Remote{
 	 * @return ReceivingPO, 返回货物接受信息的持久化对象，具体参见ReceivingPO的定义
 	 */
 	public ReceivingPO FindReceivingFormDT(String receivingNumber)throws RemoteException;
+	
+	/**
+	 *审批一张中转中心到达单 
+	 */
+	public boolean approveOneReceiving(ReceivingPO form) throws RemoteException;
+	
+	/**
+	 *审批多张中转中心到达单 
+	 */
+	public boolean approveMoreReceiving(ArrayList<ReceivingPO> form) throws RemoteException;
 	
 }

@@ -2,6 +2,7 @@ package dataService.repositoryDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.repositoryPO.InRepositoryPO;
 
@@ -60,4 +61,14 @@ public interface InRepositoryDataService extends Remote{
 	 * @return boolean, 返回给方法调用者库存信息是否更新成功
 	 * */
 	public boolean modifyUpdateRepositoryInfoDT(InRepositoryPO inRepository)throws RemoteException;
+	
+	/**
+	 *审批一张入库单 
+	 */
+	public boolean approveOneInRepository(InRepositoryPO form) throws RemoteException;
+	
+	/**
+	 *审批多张入库单 
+	 */
+	public boolean approveMoreInRepository(ArrayList<InRepositoryPO> form) throws RemoteException;
 }

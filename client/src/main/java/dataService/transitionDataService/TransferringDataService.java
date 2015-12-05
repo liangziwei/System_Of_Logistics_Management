@@ -2,6 +2,7 @@ package dataService.transitionDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import po.transitionPO.TransferringPO;
@@ -51,5 +52,15 @@ public interface TransferringDataService extends Remote{
 	 * @return List<TransferringPO> 返回记录当天的中转单的持久化对象的列表
 	 */
 	public List<TransferringPO> GetTransferringInfoDT(String date)throws RemoteException;
+	
+	/**
+	 *审批一张中转单 
+	 */
+	public boolean approveOneTransferring(TransferringPO form) throws RemoteException;
+	
+	/**
+	 *审批多张中转单 
+	 */
+	public boolean approveMoreTransferring(ArrayList<TransferringPO> form) throws RemoteException;
 
 }

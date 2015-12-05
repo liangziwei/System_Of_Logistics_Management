@@ -154,16 +154,30 @@ public class TransferringPO implements Serializable{
 		return isPassed;
 	}
 	
-	public TransferringVO TransferringPOToVO() {
+	public TransferringVO transferringPOToVO() {
 		return new TransferringVO(this.loadingdate, this.transferringid, this.way, this.wayid,
 				this.departureid, this.arrivalid, this.supervisionid, this.containerid, this.alldeliveryid);
+	}
+	
+	public static TransferringPO transferringVOToPO(TransferringVO vo) {
+		return new TransferringPO(vo.getloadingdate(), vo.gettransferringid(), vo.getway(), vo.getwayid(), 
+				vo.getdepartureid(), vo.getarrivalid(), vo.getsupervisionid(), vo.getcontainerid(), vo.getalldeliveryid());
+	}
+	
+	public static ArrayList<TransferringPO> transferringVOListToPO(ArrayList<TransferringVO> list) {
+		ArrayList<TransferringPO> po = new ArrayList<TransferringPO>();
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			po.add(transferringVOToPO(list.get(i)));
+		}
+		return po;
 	}
 	
 	public static ArrayList<TransferringVO> transferringPOListToVO(ArrayList<TransferringPO> po) {
 		ArrayList<TransferringVO> vo = new ArrayList<TransferringVO>();
 		int size = po.size();
 		for(int i = 0; i < size; i++) {
-			vo.add(po.get(i).TransferringPOToVO());
+			vo.add(po.get(i).transferringPOToVO());
 		}
 		return vo;
 	}
