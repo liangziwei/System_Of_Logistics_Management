@@ -13,14 +13,15 @@ import businessLogic.businessLogicController.transitionController.TransferringCo
 import businessLogicService.transitionBLService.TransferringBLService;
 import constant.AreaCodeType;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.repositoryVO.RepositoryVO;
 
 public class SeeRepositoryPanel extends DetailPanel {
 	TransferringBLService transferring = new TransferringController();
 	// 组件
 	private JTable table = null;
-	private JButton find = new JButton("查询库存信息");
-	private JButton update = new JButton("更新");
+	private LimpidButton find = new LimpidButton("","picture/查询.png");
+	private LimpidButton update = new LimpidButton("","picture/更新.png");
 
 	private List<RepositoryVO> list = null;
 

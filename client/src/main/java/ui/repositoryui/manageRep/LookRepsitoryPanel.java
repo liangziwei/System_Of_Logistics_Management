@@ -22,6 +22,7 @@ import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import constant.AreaCodeType;
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.repositoryVO.RepositoryInfoVO;
 
 public class LookRepsitoryPanel extends DetailPanel {
@@ -48,8 +49,8 @@ public class LookRepsitoryPanel extends DetailPanel {
 	private JTextField endday = new JTextField();
 
 	private JTable table = null;
-	private JButton find = new JButton("查询");
-	private JButton cancle = new JButton("清空");
+	private LimpidButton find = new LimpidButton("","picture/查询.png");
+	private LimpidButton cancle = new LimpidButton("","picture/清空.png");
 	private JPanel datePanel = new JPanel() {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);

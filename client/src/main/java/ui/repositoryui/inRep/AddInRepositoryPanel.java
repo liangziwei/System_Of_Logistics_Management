@@ -15,6 +15,7 @@ import businessLogic.businessLogicController.repositoryController.InRepositoryCo
 import businessLogicService.repositoryBLService.InRepositoryBLService;
 import constant.AreaCodeType;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.repositoryVO.InRepositoryVO;
 
 public class AddInRepositoryPanel extends DetailPanel {
@@ -42,9 +43,9 @@ public class AddInRepositoryPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
@@ -125,6 +126,7 @@ public class AddInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(Deliveryid);
 		DeliveryidText.setBounds(Deliveryid.getX() + Deliveryid.getWidth() + COMPONENT_GAP_X, Deliveryid.getY(),
 				TEXTid_W, TEXT_H);
+		DeliveryidText.setOpaque(false);
 		this.infoPanel.add(DeliveryidText);
 		// 入库日期
 		inrepositorydate.setBounds(Deliveryid.getX(), Deliveryid.getY() + Deliveryid.getHeight() + COMPONENT_GAP_Y,
@@ -132,16 +134,19 @@ public class AddInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(inrepositorydate);
 		inrepositoryYear.setBounds(inrepositorydate.getX() + inrepositorydate.getWidth() + COMPONENT_GAP_X,
 				inrepositorydate.getY(), TEXT_W / 2, TEXT_H);
+		inrepositoryYear.setOpaque(false);
 		this.infoPanel.add(inrepositoryYear);
 		JLabel apart1 = new JLabel("-");
 		JLabel apart2 = new JLabel("-");
 		apart1.setBounds(inrepositoryYear.getX() + inrepositoryYear.getWidth(), inrepositoryYear.getY(), 10, TEXT_H);
 		this.infoPanel.add(apart1);
 		inrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
+		inrepositoryMonth.setOpaque(false);
 		this.infoPanel.add(inrepositoryMonth);
 		apart2.setBounds(inrepositoryMonth.getX() + inrepositoryMonth.getWidth(), inrepositoryMonth.getY(), 10, TEXT_H);
 		this.infoPanel.add(apart2);
 		inrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
+		inrepositoryDay.setOpaque(false);
 		this.infoPanel.add(inrepositoryDay);
 		// 目的地
 		arrivalid.setBounds(inrepositorydate.getX(),
@@ -149,12 +154,14 @@ public class AddInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setOpaque(false);
 		this.infoPanel.add(arrivalidText);
 		// 区号
 		areaid.setBounds(arrivalidText.getX() + arrivalidText.getWidth() + COMPONENT_GAP_Y, arrivalidText.getY(),
 				LABEL_W / 2, LABEL_H);
 		this.infoPanel.add(areaid);
 		areaidText.setBounds(areaid.getX() + areaid.getWidth() + COMPONENT_GAP_X, areaid.getY(), TEXT_W, TEXT_H);
+		areaidText.setOpaque(false);
 		areaidText.addItem("航运区");
 		areaidText.addItem("铁运区");
 		areaidText.addItem("汽运区");
@@ -164,18 +171,21 @@ public class AddInRepositoryPanel extends DetailPanel {
 		rowid.setBounds(arrivalid.getX(), arrivalid.getY() + arrivalid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(rowid);
 		rowidText.setBounds(rowid.getX() + rowid.getWidth() + COMPONENT_GAP_X, rowid.getY(), LABEL_W, LABEL_H);
+		rowidText.setOpaque(false);
 		this.infoPanel.add(rowidText);
 		// 架号
 		shelfid.setBounds(rowidText.getX() + rowidText.getWidth() + COMPONENT_GAP_Y, rowidText.getY(), LABEL_W / 2,
 				LABEL_H);
 		this.infoPanel.add(shelfid);
 		shelfidText.setBounds(shelfid.getX() + shelfid.getWidth() + COMPONENT_GAP_X, shelfid.getY(), LABEL_W, LABEL_H);
+		shelfidText.setOpaque(false);
 		this.infoPanel.add(shelfidText);
 		// 位号
 		posid.setBounds(shelfidText.getX() + shelfidText.getWidth() + COMPONENT_GAP_Y, shelfidText.getY(), LABEL_W / 2,
 				LABEL_H);
 		this.infoPanel.add(posid);
 		posidText.setBounds(posid.getX() + posid.getWidth() + COMPONENT_GAP_X, posid.getY(), LABEL_W, LABEL_H);
+		posidText.setOpaque(false);
 		this.infoPanel.add(posidText);
 	}
 

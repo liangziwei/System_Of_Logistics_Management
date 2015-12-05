@@ -14,6 +14,7 @@ import businessLogic.businessLogicController.repositoryController.ManageReposito
 import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import constant.AreaCodeType;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 
 public class RepositoryWarnPanel extends DetailPanel {
 	ManageRepositoryBLService manageRepositoryBLService = new ManageRepositoryController();
@@ -44,9 +45,9 @@ public class RepositoryWarnPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
@@ -139,24 +140,28 @@ public class RepositoryWarnPanel extends DetailPanel {
 		this.infoPanel.add(warnnum1);
 		warnnum1Text.setBounds(warnnum1.getX() + warnnum1.getWidth() + COMPONENT_GAP_X, warnnum1.getY(), TEXT_W,
 				TEXT_H);
+		warnnum1Text.setOpaque(false);
 		this.infoPanel.add(warnnum1Text);
 		warnnum2.setBounds(Train.getX() + Train.getWidth() + COMPONENT_GAP_X, Train.getY(), LABEL_W, LABEL_H);
 		warnnum2.setFont(WORD_FONT);
 		this.infoPanel.add(warnnum2);
 		warnnum2Text.setBounds(warnnum2.getX() + warnnum2.getWidth() + COMPONENT_GAP_X, warnnum2.getY(), TEXT_W,
 				TEXT_H);
+		warnnum2Text.setOpaque(false);
 		this.infoPanel.add(warnnum2Text);
 		warnnum3.setBounds(Truck.getX() + Truck.getWidth() + COMPONENT_GAP_X, Truck.getY(), LABEL_W, LABEL_H);
 		warnnum3.setFont(WORD_FONT);
 		this.infoPanel.add(warnnum3);
 		warnnum3Text.setBounds(warnnum3.getX() + warnnum3.getWidth() + COMPONENT_GAP_X, warnnum3.getY(), TEXT_W,
 				TEXT_H);
+		warnnum3Text.setOpaque(false);
 		this.infoPanel.add(warnnum3Text);
 		warnnum4.setBounds(Moto.getX() + Moto.getWidth() + COMPONENT_GAP_X, Moto.getY(), LABEL_W, LABEL_H);
 		warnnum4.setFont(WORD_FONT);
 		this.infoPanel.add(warnnum4);
 		warnnum4Text.setBounds(warnnum4.getX() + warnnum4.getWidth() + COMPONENT_GAP_X, warnnum4.getY(), TEXT_W,
 				TEXT_H);
+		warnnum4Text.setOpaque(false);
 		this.infoPanel.add(warnnum4Text);
 		// 当前区总容量
 		allnum1.setBounds(warnnum1Text.getX() + warnnum1Text.getWidth() + COMPONENT_GAP_X + 20, warnnum1Text.getY(),
@@ -164,24 +169,28 @@ public class RepositoryWarnPanel extends DetailPanel {
 		allnum1.setFont(WORD_FONT);
 		this.infoPanel.add(allnum1);
 		allnum1Text.setBounds(allnum1.getX() + allnum1.getWidth() + COMPONENT_GAP_X, allnum1.getY(), TEXT_W, TEXT_H);
+		allnum1Text.setOpaque(false);
 		this.infoPanel.add(allnum1Text);
 		allnum2.setBounds(warnnum2Text.getX() + warnnum2Text.getWidth() + COMPONENT_GAP_X + 20, warnnum2Text.getY(),
 				LABEL_W, LABEL_H);
 		allnum2.setFont(WORD_FONT);
 		this.infoPanel.add(allnum2);
 		allnum2Text.setBounds(allnum2.getX() + allnum2.getWidth() + COMPONENT_GAP_X, allnum2.getY(), TEXT_W, TEXT_H);
+		allnum2Text.setOpaque(false);
 		this.infoPanel.add(allnum2Text);
 		allnum3.setBounds(warnnum3Text.getX() + warnnum3Text.getWidth() + COMPONENT_GAP_X + 20, warnnum3Text.getY(),
 				LABEL_W, LABEL_H);
 		allnum3.setFont(WORD_FONT);
 		this.infoPanel.add(allnum3);
 		allnum3Text.setBounds(allnum3.getX() + allnum3.getWidth() + COMPONENT_GAP_X, allnum3.getY(), TEXT_W, TEXT_H);
+		allnum3Text.setOpaque(false);
 		this.infoPanel.add(allnum3Text);
 		allnum4.setBounds(warnnum4Text.getX() + warnnum4Text.getWidth() + COMPONENT_GAP_X + 20, warnnum4Text.getY(),
 				LABEL_W, LABEL_H);
 		allnum4.setFont(WORD_FONT);
 		this.infoPanel.add(allnum4);
 		allnum4Text.setBounds(allnum4.getX() + allnum4.getWidth() + COMPONENT_GAP_X, allnum4.getY(), TEXT_W, TEXT_H);
+		allnum4Text.setOpaque(false);
 		this.infoPanel.add(allnum4Text);
 	}
 

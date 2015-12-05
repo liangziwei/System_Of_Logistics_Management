@@ -20,6 +20,7 @@ import businessLogic.businessLogicController.transitionController.TransferringCo
 import businessLogicService.transitionBLService.TransferringBLService;
 import constant.LoadingType;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.transitionVO.TransferringVO;
 
 public class AddTransferringPanel extends DetailPanel {
@@ -57,9 +58,9 @@ public class AddTransferringPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton ok = new JButton("确定");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancle = new LimpidButton("","picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
@@ -128,15 +129,15 @@ public class AddTransferringPanel extends DetailPanel {
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
 		// 取消按钮
-		this.cancel.setBounds(BUTTON_W + COMPONENT_GAP_Y, 0, BUTTON_W, BUTTON_H);
-		this.cancel.setFont(WORD_FONT);
+		this.cancle.setBounds(BUTTON_W + COMPONENT_GAP_Y, 0, BUTTON_W, BUTTON_H);
+		this.cancle.setFont(WORD_FONT);
 		// 添加事件监听
 		this.addListener();
 		// 将按钮添加到按钮面板
 		this.buttonPanel.setLayout(null);
 		this.buttonPanel.add(this.ok);
-		this.buttonPanel.add(this.cancel);
-		cancel.setVisible(false);
+		this.buttonPanel.add(this.cancle);
+		cancle.setVisible(false);
 		// 状态信息
 		this.state.setBounds(START_X, this.buttonPanel.getY() - BUTTON_H, (BUTTON_W << 2), BUTTON_W);
 		this.state.setFont(WORD_FONT);
@@ -150,6 +151,7 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(transferringid);
 		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), TEXTid_W, TEXT_H);
+		transferringidText.setOpaque(false);
 		this.infoPanel.add(transferringidText);
 
 		JLabel apart1 = new JLabel("-");
@@ -185,6 +187,7 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(loadingwayid);
 		loadingwayidText.setBounds(loadingwayid.getX() + loadingwayid.getWidth() + COMPONENT_GAP_X, loadingwayid.getY(),
 				TEXTid_W, TEXT_H);
+		loadingwayidText.setOpaque(false);
 		this.infoPanel.add(loadingwayidText);
 
 		departureid.setBounds(loadingwayid.getX(), loadingwayid.getY() + loadingwayid.getHeight() + COMPONENT_GAP_Y,
@@ -192,6 +195,7 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(departureid);
 		departureidText.setBounds(departureid.getX() + departureid.getWidth() + COMPONENT_GAP_X, departureid.getY(),
 				TEXT_W, TEXT_H);
+		departureidText.setOpaque(false);
 		departureidText.addItem("南京");
 		departureidText.addItem("北京");
 		departureidText.addItem("广州");
@@ -203,6 +207,7 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setOpaque(false);
 		arrivalidText.addItem("南京");
 		arrivalidText.addItem("北京");
 		arrivalidText.addItem("广州");
@@ -214,6 +219,7 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(supervisionid);
 		supervisionidText.setBounds(supervisionid.getX() + supervisionid.getWidth() + COMPONENT_GAP_X,
 				supervisionid.getY(), TEXT_W, TEXT_H);
+		supervisionidText.setOpaque(false);
 		this.infoPanel.add(supervisionidText);
 
 		containerid.setBounds(supervisionidText.getX() + supervisionidText.getWidth() + COMPONENT_GAP_X,
@@ -221,6 +227,7 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(containerid);
 		containeridText.setBounds(containerid.getX() + containerid.getWidth() + COMPONENT_GAP_X, containerid.getY(),
 				TEXT_W, TEXT_H);
+		containeridText.setOpaque(false);
 		this.infoPanel.add(containeridText);
 
 		alldeliveryid.setBounds(supervisionid.getX(),
@@ -235,6 +242,7 @@ public class AddTransferringPanel extends DetailPanel {
 				LABEL_H);
 		this.infoPanel.add(fare);
 		fareText.setBounds(fare.getX() + fare.getWidth() + COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
+		fareText.setOpaque(false);
 		fareText.setBackground(Color.GRAY);
 		fareText.setEditable(false);
 		this.infoPanel.add(fareText);
@@ -256,7 +264,7 @@ public class AddTransferringPanel extends DetailPanel {
 					transferringvo.setloadingdate(loadingdateTextyear.getText().trim() + "-"
 							+ loadingdateTextmonth.getText().trim() + "-" + loadingdateTextday.getText().trim());
 					throughVerifyOperation(transferringvo);
-					cancel.setVisible(true);
+					cancle.setVisible(true);
 					fare.setForeground(Color.red);
 				} else {
 					verifyFailOperation(transferringvo);
@@ -267,7 +275,7 @@ public class AddTransferringPanel extends DetailPanel {
 			}
 		});
 
-		this.cancel.addActionListener(new ActionListener() {
+		this.cancle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -277,7 +285,7 @@ public class AddTransferringPanel extends DetailPanel {
 				state.setText("");
 				// 使信息可编辑
 				enableComponents();
-				cancel.setVisible(false);
+				cancle.setVisible(false);
 				// 重置运费
 				fareText.setText("");
 				fare.setForeground(Color.black);

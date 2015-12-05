@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.financeVO.PaymentVO;
 import businessLogic.businessLogicController.financeController.CostController;
 import businessLogic.businessLogicModel.util.CommonLogic;
@@ -49,9 +50,9 @@ public class CostPanel extends DetailPanel{
 	
 	private JTextField noteText = new JTextField();
 	
-	private JButton ok = new JButton("");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private JButton cancel = new JButton("");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private JLabel tip = new JLabel();
 	
@@ -135,13 +136,13 @@ public class CostPanel extends DetailPanel{
 		this.ok.setBounds(this.noteText.getX() + (TEXT_W >> 1), this.noteText.getY() + TEXT_H + gap
 				, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-		this.ok.setIcon(new ImageIcon("picture/确定.png"));
-		this.ok.setBorderPainted(false);
+//		this.ok.setIcon(new ImageIcon("picture/确定.png"));
+//		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W * 3 >> 1), this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
-		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-		this.cancel.setBorderPainted(false);
+//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
+//		this.cancel.setBorderPainted(false);
 		//提示标签
 		this.tip.setBounds(this.noteLabel.getX(), this.ok.getY(), TEXT_W, TEXT_H);
 		this.tip.setFont(WORD_FONT);

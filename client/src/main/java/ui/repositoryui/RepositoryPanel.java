@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import ui.baseui.TaskButton;
@@ -27,24 +28,24 @@ import ui.viewcontroller.ViewController;
 
 public class RepositoryPanel extends UserPanel {
 	// TaskButton
-	private TaskButton InRepository = new TaskButton("入库单管理");
-	private TaskButton OutRepository = new TaskButton("出库单管理");
-	private TaskButton LookRepository = new TaskButton("库存查看");
-	private TaskButton CheckDelivery = new TaskButton("库存盘点");
-	private TaskButton RepositoryWarn = new TaskButton("库存预警");
-	private TaskButton exit = new TaskButton("退出");
+	private TaskButton InRepository = new TaskButton("");
+	private TaskButton OutRepository = new TaskButton("");
+	private TaskButton LookRepository = new TaskButton("");
+	private TaskButton CheckDelivery = new TaskButton("");
+	private TaskButton RepositoryWarn = new TaskButton("");
+	private TaskButton exit = new TaskButton("");
 
 	// 入库单相关按钮
-	private JButton AddInRepository = new JButton("添加入库单");
-	private JButton ModifyInRepository = new JButton("修改入库单");
-	private JButton FindInRepository = new JButton("查询入库单");
+	private JButton AddInRepository = new JButton("");
+	private JButton ModifyInRepository = new JButton("");
+	private JButton FindInRepository = new JButton("");
 
 	// 出库单相关按钮
-	private JButton AddOutRepository = new JButton("添加出库单");
-	private JButton ModifyOutRepository = new JButton("修改出库单");
-	private JButton FindOutRepository = new JButton("查询出库单");
+	private JButton AddOutRepository = new JButton("");
+	private JButton ModifyOutRepository = new JButton("");
+	private JButton FindOutRepository = new JButton("");
 
-	private JButton SeeTransferringList = new JButton("查询中转单列表");
+	private JButton SeeTransferringList = new JButton("");
 
 
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
@@ -53,7 +54,7 @@ public class RepositoryPanel extends UserPanel {
 
 	private List<JButton> DetailButtonOutRepository = new ArrayList<JButton>();
 
-	private static final int BUTTON_WITH = TaskPanel.TASK_PANEL_W;
+	private static final int BUTTON_WITH = TaskPanel.BUTTON_W;
 
 	private static final int BUTTON_HEIGHT = 32;
 
@@ -64,13 +65,22 @@ public class RepositoryPanel extends UserPanel {
 		// TODO Auto-generated constructor stub
 		initUI();
 		addListenter();
-
+		
+		//入库管理
+		this.AddInRepository.setIcon(new ImageIcon("picture/添加入库单.png"));
+		this.ModifyInRepository.setIcon(new ImageIcon("picture/修改入库单.png"));
+		this.FindInRepository.setIcon(new ImageIcon("picture/查询入库单.png"));
 		DetailButtonInRepository.add(AddInRepository);
 		DetailButtonInRepository.add(ModifyInRepository);
 		DetailButtonInRepository.add(FindInRepository);
 		// 要展开的按钮
 		InRepository.setDetailButtons(DetailButtonInRepository); // 设置（添加）要展开的按钮
-
+		
+		//出库管理
+		this.AddOutRepository.setIcon(new ImageIcon("picture/添加出库单.png"));
+		this.ModifyOutRepository.setIcon(new ImageIcon("picture/修改出库单.png"));
+		this.FindOutRepository.setIcon(new ImageIcon("picture/查询出库单.png"));
+		this.SeeTransferringList.setIcon(new ImageIcon("picture/查询中转单列表.png"));
 		DetailButtonOutRepository.add(AddOutRepository);
 		DetailButtonOutRepository.add(ModifyOutRepository);
 		DetailButtonOutRepository.add(FindOutRepository);
@@ -85,25 +95,31 @@ public class RepositoryPanel extends UserPanel {
 		// 入库单相关操作按钮
 		this.InRepository.setBounds(0, UserImagePanel.USER_PANEL_H, BUTTON_WITH, BUTTON_HEIGHT);
 		this.InRepository.setFont(WORD_FONT);
+		this.InRepository.setIcon(new ImageIcon("picture/入库管理.png"));
 		// 出库单相关操作按钮
 		this.OutRepository.setBounds(0, this.InRepository.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH,
 				BUTTON_HEIGHT);
 		this.OutRepository.setFont(WORD_FONT);
+		this.OutRepository.setIcon(new ImageIcon("picture/出库管理.png"));
 		// 库存信息查看按钮
 		this.LookRepository.setBounds(0, this.OutRepository.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH,
 				BUTTON_HEIGHT);
 		this.LookRepository.setFont(WORD_FONT);
+		this.LookRepository.setIcon(new ImageIcon("picture/库存查看.png"));
 		//库存信息盘点按钮
 		this.CheckDelivery.setBounds(0, this.LookRepository.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH,
 				BUTTON_HEIGHT);
 		this.CheckDelivery.setFont(WORD_FONT);
+		this.CheckDelivery.setIcon(new ImageIcon("picture/库存盘点.png"));
 		//库存预警按钮
 		this.RepositoryWarn.setBounds(0, this.CheckDelivery.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH,
 				BUTTON_HEIGHT);
 		this.RepositoryWarn.setFont(WORD_FONT);
+		this.RepositoryWarn.setIcon(new ImageIcon("picture/库存预警.png"));
 		// 退出按钮
 		this.exit.setBounds(0, this.RepositoryWarn.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH, BUTTON_HEIGHT);
 		this.exit.setFont(WORD_FONT);
+		this.exit.setIcon(new ImageIcon("picture/退出.png"));
 		// 面板添加按钮
 		this.task.buttonContainer.add(InRepository);
 		this.task.buttonContainer.add(OutRepository);

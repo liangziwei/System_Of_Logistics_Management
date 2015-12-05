@@ -17,6 +17,7 @@ import businessLogic.businessLogicController.repositoryController.ManageReposito
 import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import constant.AreaCodeType;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.repositoryVO.DeliveryInfoVO;
 
 public class CheckDeliveryPanel extends DetailPanel {
@@ -30,7 +31,7 @@ public class CheckDeliveryPanel extends DetailPanel {
 	private JTable tabletra = null;
 	private JTable tabletru = null;
 	private JTable tablemo = null;
-	private JButton find = new JButton("库存盘点");
+	private LimpidButton find = new LimpidButton("","picture/库存盘点.png");
 	// private JButton update = new JButton("更新");
 
 	private JLabel plane = new JLabel("航运区");
