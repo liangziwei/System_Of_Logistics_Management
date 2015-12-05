@@ -1,5 +1,6 @@
 package ui.businessui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -149,6 +150,9 @@ public class BusinessPanel extends UserPanel{
 		this.task.buttonContainer.add(driver);
 		
 		this.task.buttonContainer.add(exit);
+		
+		this.task.buttonContainer.setOpaque(false);
+		
 	}
 	
 	private void addListener(){

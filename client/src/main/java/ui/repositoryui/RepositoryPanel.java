@@ -127,6 +127,7 @@ public class RepositoryPanel extends UserPanel {
 		this.task.buttonContainer.add(CheckDelivery);
 		this.task.buttonContainer.add(RepositoryWarn);
 		this.task.buttonContainer.add(exit);
+		this.task.buttonContainer.setOpaque(false);
 	}
 
 	private void addListenter() {

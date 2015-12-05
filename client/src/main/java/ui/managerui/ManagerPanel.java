@@ -154,6 +154,7 @@ public class ManagerPanel extends UserPanel{
 		this.task.buttonContainer.add(this.staff);
 		this.task.buttonContainer.add(this.statistics);
 		this.task.buttonContainer.add(this.exit);
+		this.task.buttonContainer.setOpaque(false);
 		
 		//添加按钮按钮事件监听
 		this.addListener();

@@ -1,5 +1,6 @@
 package ui.baseui;
 
+
 import javax.swing.JPanel;
 
 import ui.mainui.ExpressFrame;
@@ -26,4 +27,6 @@ public class UserPanel extends JPanel{
 		this.add(this.task);
 		this.add(this.detail);
 	}
+	
+
 }

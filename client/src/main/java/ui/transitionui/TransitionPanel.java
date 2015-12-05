@@ -134,7 +134,7 @@ public class TransitionPanel extends UserPanel {
 		this.task.buttonContainer.add(Transferring);
 		this.task.buttonContainer.add(Receiving);
 		this.task.buttonContainer.add(exit);
-
+		this.task.buttonContainer.setOpaque(false);
 	}
 
 	private void addListenter() {

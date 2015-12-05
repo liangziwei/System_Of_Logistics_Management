@@ -69,6 +69,8 @@ public class TaskPanel extends JScrollPane{
 		this.buttonContainer.add(this.user);
 		
 		this.setViewportView(this.buttonContainer);
+		this.getViewport().setOpaque(false);
+		this.setOpaque(false);
 		this.getVerticalScrollBar().setUnitIncrement(12);
 	}
 	

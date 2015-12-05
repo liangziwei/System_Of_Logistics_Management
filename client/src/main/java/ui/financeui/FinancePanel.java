@@ -164,6 +164,8 @@ public class FinancePanel extends UserPanel{
 		this.task.buttonContainer.add(this.statistics);
 		this.task.buttonContainer.add(this.originalInfo);
 		this.task.buttonContainer.add(this.exit);
+		
+		this.task.buttonContainer.setOpaque(false);
 	}
 	
 	private void addTaskListener() {

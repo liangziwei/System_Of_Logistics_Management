@@ -79,6 +79,8 @@ public class OtherInfoPanel extends JPanel{
 	}
 	
 	private void addComponent() {
+		this.setBackground(null);
+		this.setOpaque(false);
 		this.add(this.typeLabel);
 		this.add(this.typeText);
 		this.add(this.packageLabel);

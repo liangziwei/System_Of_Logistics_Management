@@ -131,6 +131,8 @@ public class ClientInfoPanel extends JPanel{
 	
 	private void addComponent() {
 		//将组件添加到面板
+		this.setBackground(null);
+		this.setOpaque(false);
 		this.add(this.identity);
 		this.add(this.nameLabel);
 		this.add(this.nameText);

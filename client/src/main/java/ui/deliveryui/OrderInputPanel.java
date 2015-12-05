@@ -114,6 +114,8 @@ public class OrderInputPanel extends DetailPanel{
 		super();
 		//初始化信息面板
 		this.initUI();
+		this.buttonPanel.setBackground(null);
+		this.buttonPanel.setOpaque(false);
 		//按钮面板
 		this.buttonPanel.setBounds(this.otherInfo.getX(),
 				this.otherInfo.getY() + this.otherInfo.getHeight() + PANEL_GAP,
