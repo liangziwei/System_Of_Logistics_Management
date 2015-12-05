@@ -30,9 +30,9 @@ public class SettlementTest {
 		deliveryid3.add("1245655542");
 		deliveryid3.add("1245658952");
 		deliveryid3.add("1245675152");
-		receivable.add(new ReceivableVO("2015-02-11",100.0,"小红",deliveryid1));
-		receivable.add(new ReceivableVO("2015-02-11",120.0,"小李",deliveryid2));
-		receivable.add(new ReceivableVO("2015-02-11",145.0,"小王",deliveryid3));
+//		receivable.add(new ReceivableVO("2015-02-11",100.0,"小红",deliveryid1));
+//		receivable.add(new ReceivableVO("2015-02-11",120.0,"小李",deliveryid2));
+//		receivable.add(new ReceivableVO("2015-02-11",145.0,"小王",deliveryid3));
 		List<ReceivableVO> businessrec = new ArrayList<ReceivableVO>();
 		ArrayList<String> delivery1 = new ArrayList<String>();
 		ArrayList<String> delivery2 = new ArrayList<String>();
@@ -45,9 +45,9 @@ public class SettlementTest {
 		delivery3.add("1245696542");
 		delivery3.add("1245651952");
 		delivery3.add("1245675452");
-		businessrec.add(new ReceivableVO("2015-02-11",100.0,"小红",delivery1));
-		businessrec.add(new ReceivableVO("2015-02-11",120.0,"小李",delivery2));
-		businessrec.add(new ReceivableVO("2015-02-11",145.0,"小王",delivery3));
+//		businessrec.add(new ReceivableVO("2015-02-11",100.0,"小红",delivery1));
+//		businessrec.add(new ReceivableVO("2015-02-11",120.0,"小李",delivery2));
+//		businessrec.add(new ReceivableVO("2015-02-11",145.0,"小王",delivery3));
 		
 		
 		assertEquals(receivable.size(), receilist.size());

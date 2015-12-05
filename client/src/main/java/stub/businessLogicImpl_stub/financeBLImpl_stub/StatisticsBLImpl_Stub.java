@@ -31,8 +31,9 @@ public class StatisticsBLImpl_Stub implements StatisticsBLSevice{
 	}
 	
 	private ReceivableVO receivablePOToreceivableVO(ReceivablePO receivablePO){
-		return new ReceivableVO(receivablePO.getDate(),receivablePO.getMoney(),
-				receivablePO.getCourier(),receivablePO.getDeliveryid());
+//		return new ReceivableVO(receivablePO.getDate(),receivablePO.getMoney(),
+//				receivablePO.getCourier(),receivablePO.getDeliveryid());
+		return null;
 	}
 
 	@Override
