@@ -2,6 +2,7 @@ package ui.businessui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -58,6 +59,8 @@ public class BusinessPanel extends UserPanel{
 	List<JButton> driverList=new ArrayList<JButton>();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
+	
+	private static Image head = new ImageIcon("picture/营业厅业务员.jpg").getImage();
 	
 	public BusinessPanel(ViewController viewController) {
 		super(viewController);
@@ -143,6 +146,8 @@ public class BusinessPanel extends UserPanel{
 		this.drivButtonList2.add(exit);
 		
 //		this.task.setLayout(null);
+		this.task.user.repaint();
+		this.task.user.setBackground(head);
 		this.task.buttonContainer.add(entrucking);
 		this.task.buttonContainer.add(receiveAndSend);
 		this.task.buttonContainer.add(payment);

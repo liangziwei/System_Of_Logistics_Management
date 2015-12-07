@@ -1,6 +1,7 @@
 package ui.deliveryui;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,6 +27,8 @@ public class DeliveryPanel extends UserPanel{
 	private LimpidButton exit = new LimpidButton("","picture/退出.png");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
+	
+	private static Image head = new ImageIcon("picture/快递员.jpg").getImage();
 	
 	public DeliveryPanel(ViewController controller) {
 		super(controller);
@@ -65,6 +68,10 @@ public class DeliveryPanel extends UserPanel{
 		this.task.add(orderInquire);
 		this.task.add(receipt);
 		this.task.add(exit);
+//		this.task.buttonContainer.setOpaque(false);
+		
+		this.task.user.repaint();
+		this.task.user.setBackground(head);
 	}
 	
 	private void addListener() {

@@ -1,6 +1,7 @@
 package ui.managerui;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -67,6 +68,8 @@ public class ManagerPanel extends UserPanel{
 	private JButton costBenefit = new JButton("");
 	
 	private TaskButton exit = new TaskButton("");
+	
+	private Image head = new ImageIcon("picture/总经理.jpg").getImage();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
@@ -155,6 +158,9 @@ public class ManagerPanel extends UserPanel{
 		this.task.buttonContainer.add(this.statistics);
 		this.task.buttonContainer.add(this.exit);
 		this.task.buttonContainer.setOpaque(false);
+				
+		this.task.user.repaint();
+		this.task.user.setBackground(head);
 		
 		//添加按钮按钮事件监听
 		this.addListener();
