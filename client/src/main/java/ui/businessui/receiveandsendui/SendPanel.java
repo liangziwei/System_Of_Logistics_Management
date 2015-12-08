@@ -4,20 +4,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
-import vo.businessVO.ReceivableVO;
 import vo.businessVO.SendFormVO;
 import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
 import businessLogic.businessLogicModel.util.CommonLogic;
 
+@SuppressWarnings("serial")
 public class SendPanel extends DetailPanel {
 
 	private ReceiveAndSendController receAndSendCon=new ReceiveAndSendController();
@@ -192,7 +190,6 @@ public class SendPanel extends DetailPanel {
 	private boolean isCorrect(){
 		
 		String dateStr=dateText.getText();
-		String senderStr=senderText.getText();
 		String deliveryidStr=deliveryidText.getText();
 		
 		if(!CommonLogic.isDate(dateStr)){

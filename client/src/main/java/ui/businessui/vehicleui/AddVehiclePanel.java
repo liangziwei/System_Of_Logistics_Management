@@ -5,17 +5,16 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
-import vo.businessVO.SendFormVO;
 import vo.businessVO.VehicleVO;
 import businessLogic.businessLogicController.businessController.VehicleController;
 import businessLogic.businessLogicModel.util.CommonLogic;
 
+@SuppressWarnings("serial")
 public class AddVehiclePanel extends DetailPanel{
 	
 	private VehicleController vehicleCon=new VehicleController();

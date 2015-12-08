@@ -6,6 +6,7 @@ public class VehiclePO implements Serializable{
 
 	private static final long serialVersionUID = -8315962433797210107L;
 	
+	@SuppressWarnings("unused")
 	private boolean isWrong =false;
 	
 	private String vehicleid;

@@ -3,8 +3,6 @@ package dataImpl.businessDataImpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import constant.Authority;
-import constant.UserType;
 import mysql.Database;
 import po.businessPO.VehiclePO;
 import dataService.businessDataService.VehicleDataService;

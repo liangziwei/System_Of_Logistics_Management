@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -18,6 +17,7 @@ import vo.businessVO.ReceivableVO;
 import businessLogic.businessLogicController.businessController.PaymentController;
 import businessLogic.businessLogicModel.util.CommonLogic;
 
+@SuppressWarnings("serial")
 public class PaymentPanel extends DetailPanel{
 	
 	private PaymentController paymentCon=new PaymentController();
@@ -214,7 +214,6 @@ public class PaymentPanel extends DetailPanel{
 		
 		String dateStr=dateText.getText();
 		String moneyStr=moneyText.getText();
-		String courierStr=courierText.getText();
 		String deliveryidStr=deliveryidText.getText();
 		
 		if(!CommonLogic.isDate(dateStr)){

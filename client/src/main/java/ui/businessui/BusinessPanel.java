@@ -1,6 +1,5 @@
 package ui.businessui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -31,6 +30,7 @@ import ui.businessui.vehicleui.ModifyVehiclePanel;
 import ui.mainui.LoginPanel;
 import ui.viewcontroller.ViewController;
 
+@SuppressWarnings("serial")
 public class BusinessPanel extends UserPanel{
 
 	private LimpidButton entrucking=new LimpidButton("","picture/新建装车单.png");

@@ -18,6 +18,7 @@ import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.ArrivalFormVO;
 
+@SuppressWarnings("serial")
 public class ArrivalPanel extends DetailPanel {
 
 	private ReceiveAndSendController receAndSendCon=new ReceiveAndSendController();
@@ -35,6 +36,7 @@ public class ArrivalPanel extends DetailPanel {
 	private JTextField dateText=new JTextField();
 	private JTextField transitNumberText=new JTextField();
 	private JTextField departPlaceText=new JTextField();
+	@SuppressWarnings("rawtypes")
 	private JComboBox stateBox = new JComboBox();
 	
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
@@ -64,6 +66,7 @@ public class ArrivalPanel extends DetailPanel {
 	private boolean isFirstEnsure = true;
 	private boolean isOver=false;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ArrivalPanel(){
 		this.date.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.date.setFont(WORD_FONT);	

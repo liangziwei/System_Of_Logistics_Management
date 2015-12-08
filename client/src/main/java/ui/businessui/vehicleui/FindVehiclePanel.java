@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -13,8 +12,8 @@ import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.VehicleVO;
 import businessLogic.businessLogicController.businessController.VehicleController;
-import businessLogic.businessLogicModel.util.CommonLogic;
 
+@SuppressWarnings("serial")
 public class FindVehiclePanel extends DetailPanel{
 	private VehicleController vehicleCon=new VehicleController();
 	private VehicleVO vehicleVO;
@@ -33,7 +32,6 @@ public class FindVehiclePanel extends DetailPanel{
 	
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
-	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 150;
 	
@@ -55,8 +53,6 @@ public class FindVehiclePanel extends DetailPanel{
 	
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
-	private boolean isFirstEnsure = true;
-	private boolean isOver=false;
 	
 	public FindVehiclePanel(){
 		this.vehicleid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
@@ -148,8 +144,6 @@ public class FindVehiclePanel extends DetailPanel{
 	private boolean isCorrect(){
 		
 		String vehicleidStr=vehicleidText.getText();
-		String numberStr=numberText.getText();
-		String ageStr=ageText.getText();
 		
 		if(!vehicleidStr.matches("\\d{9}")){
 			vehicleidText.setText("");

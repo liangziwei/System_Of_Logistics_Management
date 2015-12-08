@@ -5,16 +5,15 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.businessController.VehicleController;
-import businessLogic.businessLogicModel.util.CommonLogic;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.VehicleVO;
+import businessLogic.businessLogicController.businessController.VehicleController;
 
+@SuppressWarnings("serial")
 public class DeleteVehiclePanel extends DetailPanel {
 	private VehicleController vehicleCon=new VehicleController();
 	private VehicleVO vehicleVO;
@@ -55,8 +54,6 @@ public class DeleteVehiclePanel extends DetailPanel {
 	
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
-	private boolean isFirstEnsure = true;
-	private boolean isOver=false;
 	
 	public DeleteVehiclePanel(){
 		this.vehicleid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
@@ -175,9 +172,6 @@ public class DeleteVehiclePanel extends DetailPanel {
 	private boolean isCorrect(){
 		
 		String vehicleidStr=vehicleidText.getText();
-		String numberStr=numberText.getText();
-		String ageStr=ageText.getText();
-		
 		if(!vehicleidStr.matches("\\d{9}")){
 			vehicleidText.setText("");
 			return false;
@@ -199,18 +193,6 @@ public class DeleteVehiclePanel extends DetailPanel {
 	private void disablePanel(){
 		this.numberText.setEditable(false);
 		this.ageText.setEditable(false);
-	}
-	
-	private void enablePanel(){
-		this.vehicleidText.setEditable(true);
-		this.numberText.setEditable(true);
-		this.ageText.setEditable(true);
-	}
-	
-	private void setBlack(){
-		this.vehicleidText.setText("");
-		this.numberText.setText("");
-		this.ageText.setText("");
 	}
 	
 }

@@ -47,6 +47,7 @@ public class Database {
 	 * @return 添加是否成功
 	 */
 	public static boolean add(String table,String val){
+		@SuppressWarnings("unused")
 		int x;
 		String sql="INSERT INTO "+table+" VALUES("+val+")";
 		try {
@@ -67,6 +68,7 @@ public class Database {
 	 * @return 是否删除成功
 	 */
 	public static boolean delete(String table,String idname,String id){
+		@SuppressWarnings("unused")
 		int x;
 		String sql="DELETE FROM "+table+" WHERE "+idname+"="+"'"+id+"'";
 		try {
@@ -86,6 +88,7 @@ public class Database {
 	 * @return 修改是否成功
 	 */
 	public static boolean modify(String table,String val,String idname,String id){
+		@SuppressWarnings("unused")
 		int x;
 		String sql="UPDATE "+table+" SET "+val+" WHERE "+idname+"="+"'"+id+"'";;
 		try {
