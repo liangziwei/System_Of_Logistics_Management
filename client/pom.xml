@@ -24,7 +24,7 @@
     </dependency>
   </dependencies>
   
-  <build>
+<build>
  	<plugins>
  		<plugin> 
 			<groupId>edu.nju.software</groupId> 
@@ -36,5 +36,6 @@
 			</configuration> 
 		</plugin> 
  	</plugins>
- </build>
+ </build> 
+
 </project>
