@@ -52,7 +52,7 @@ public class FindDriverPanel extends DetailPanel {
 
 	private static final int LINE_GAP = 18;
 	
-	private static final int TEXT_W = LABEL_W *2;
+	private static final int TEXT_W = LABEL_W *2+20;
 	
 	private static final int TEXT_H = LABEL_H;
 	
@@ -96,12 +96,12 @@ public class FindDriverPanel extends DetailPanel {
 		
 		this.birthday.setBounds(START_X, this.idNumber.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.birthday.setFont(WORD_FONT);
-		this.birthdayText.setBounds(this.driveridText.getX(), this.birthday.getY(), TEXT_W>>2, TEXT_H);
+		this.birthdayText.setBounds(this.driveridText.getX(), this.birthday.getY(), TEXT_W/3, TEXT_H);
 		this.birthdayText.setFont(WORD_FONT);
 		dateChoose.register(birthdayText);
 		this.birthdayText.setOpaque(false);
 		
-		this.drivingDeadline.setBounds(START_X+(TEXT_W>>2)+ LABEL_W + (LINE_GAP<<1), this.birthday.getY() , LABEL_W, LABEL_H);
+		this.drivingDeadline.setBounds(START_X+(TEXT_W>>2)+ LABEL_W + (LINE_GAP<<1)+25, this.birthday.getY() , LABEL_W, LABEL_H);
 		this.drivingDeadline.setFont(WORD_FONT);
 		this.drivingDeadlineText.setBounds(this.drivingDeadline.getX()+ LABEL_W -LINE_GAP, this.drivingDeadline.getY(), TEXT_W>>2, TEXT_H);
 		this.drivingDeadlineText.setFont(WORD_FONT);
