@@ -80,21 +80,20 @@ public class OriginalInfo {
 
 	private List<StaffVO> StaffPOToStaffVO(List<StaffPO> staff) {
 		List<StaffVO> s = new ArrayList<StaffVO>();
-		// for(int i = 0; i < staff.size(); i++) {
-		// s.add(new StaffVO(staff.get(i).getName(), staff.get(i).getId(),
-		// staff.get(i).getPosition(),
-		// staff.get(i).getGender(), staff.get(i).getBirthday(),
-		// staff.get(i).getSalary()));
-		// }
+		for(StaffPO staffPO:staff){
+			s.add(new StaffVO(staffPO.getName(), staffPO.getId(),staffPO.getPosition(),staffPO.getGender(),
+			staffPO.getBirthday(),staffPO.getSalary(),null,true,false));
+		}
 		return s;
 	}
 
 	private List<OrganizationVO> OrganizationPOToVO(List<OrganizationPO> org) {
 		List<OrganizationVO> o = new ArrayList<OrganizationVO>();
-		for (int i = 0; i < org.size(); i++) {
+		for (OrganizationPO organizationPO:org) {
 			// o.add(new OrganizationVO(org.get(i).getType(),
 			// org.get(i).getId(),
 			// org.get(i).getName()));
+			o.add(new OrganizationVO(organizationPO.getType(),organizationPO.getId(),organizationPO.getName(),true,true));
 		}
 		return o;
 	}

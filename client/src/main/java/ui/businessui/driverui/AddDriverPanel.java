@@ -5,7 +5,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -13,7 +14,6 @@ import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.DriverVO;
-import vo.businessVO.VehicleVO;
 import businessLogic.businessLogicController.businessController.DriverController;
 import businessLogic.businessLogicModel.util.CommonLogic;
 
@@ -39,7 +39,7 @@ public class AddDriverPanel extends DetailPanel{
 	private JTextField birthdayText=new JTextField();
 	private JTextField idNumberText=new JTextField();
 	private JTextField phoneNumberText=new JTextField();
-	private JTextField genderText=new JTextField();
+	private JComboBox genderText=new JComboBox();
 	private JTextField drivingDeadlineText=new JTextField();
 	
 	private LimpidButton query = new LimpidButton("","picture/查询.png");
@@ -87,7 +87,9 @@ public class AddDriverPanel extends DetailPanel{
 		this.gender.setBounds(START_X+(TEXT_W>>2)+ LABEL_W + (LINE_GAP<<2), this.name.getY() , LABEL_W>>1, LABEL_H);
 		this.gender.setFont(WORD_FONT);
 		this.genderText.setBounds(this.gender.getX()+ (LABEL_W>>1) + LINE_GAP, this.gender.getY(), TEXT_W>>2, TEXT_H);
+		this.genderText.setModel(new DefaultComboBoxModel(new String[] {"男", "女"}));
 		this.genderText.setFont(WORD_FONT);
+		
 		this.genderText.setOpaque(false);
 		
 		this.idNumber.setBounds(START_X, this.name.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
@@ -173,7 +175,7 @@ public class AddDriverPanel extends DetailPanel{
 						String birthdayStr=birthdayText.getText();
 						String idNumber=idNumberText.getText();
 						String phoneStr=phoneNumberText.getText();
-						String genderStr=genderText.getText();
+						String genderStr=(String)genderText.getSelectedItem();
 						String drivingDeadlineStr=drivingDeadlineText.getText();
 						
 						driverVO=new DriverVO(driveridStr,nameStr,birthdayStr,idNumber,phoneStr,genderStr,drivingDeadlineStr);
@@ -251,7 +253,7 @@ public class AddDriverPanel extends DetailPanel{
 		String birthdayStr=birthdayText.getText();
 		String idNumber=idNumberText.getText();
 		String phoneStr=phoneNumberText.getText();
-		String genderStr=genderText.getText();
+		String genderStr=(String)genderText.getSelectedItem();
 		String drivingDeadlineStr=drivingDeadlineText.getText();
 		
 		
@@ -301,7 +303,6 @@ public class AddDriverPanel extends DetailPanel{
 		this.birthdayText.setText("");
 		this.idNumberText.setText("");
 		this.phoneNumberText.setText("");
-		this.genderText.setText("");
 		this.drivingDeadlineText.setText("");
 	}
 }
