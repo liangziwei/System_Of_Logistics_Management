@@ -27,19 +27,17 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
- 
  <build>
- 	<plugins>
- 		<plugin> 
-			<groupId>edu.nju.software</groupId> 
-			<artifactId>System_of_Logistics_Management</artifactId> 
-			<version>0.0.1-SNAPSHOT</version>
-			<configuration> 
-				<source>1.7</source> 
-				<target>1.7</target> 
-			</configuration> 
-		</plugin> 
- 	</plugins>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <source>1.7</source>
+              <target>1.7</target>
+            </configuration>
+      </plugin>
+    </plugins>
  </build>
   
  
