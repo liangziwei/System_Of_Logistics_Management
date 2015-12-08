@@ -172,6 +172,7 @@ public class ApprovalFormPanel extends DetailPanel{
 		//审批所有相同的单据
 		this.approveMore.addActionListener(new ActionListener() {
 			
+			@SuppressWarnings("unchecked")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tip.setText("");
@@ -285,6 +286,7 @@ public class ApprovalFormPanel extends DetailPanel{
 		formContainer.setViewportView(form);
 	}
 	
+	@SuppressWarnings("unchecked")
 	private Object[][] getTableData(String formType, ArrayList<? extends ApprovalFormVO> list) {
 		switch(formType) {
 		case "寄件单":

@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class LimpidButton extends JButton
 {
 	Image img;

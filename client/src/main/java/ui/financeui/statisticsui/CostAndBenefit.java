@@ -2,7 +2,6 @@ package ui.financeui.statisticsui;
 
 import java.awt.Font;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import ui.baseui.DatePanel;

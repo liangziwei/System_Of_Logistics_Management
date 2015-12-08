@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
@@ -65,14 +66,20 @@ public class TaskPanel extends JScrollPane{
 		this.setBounds(0, TitlePanel.TITLE_PANEL_H, TASK_PANEL_W, TASK_PANEL_H);
 		
 		this.user.repaint();
+		//按钮的容器
 		this.buttonContainer.setLayout(null);
 		this.buttonContainer.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
 		this.buttonContainer.add(this.user);
 		
+		//滚动条面板
 		this.setViewportView(this.buttonContainer);
 		this.getViewport().setOpaque(false);
 		this.setOpaque(false);
 		this.getVerticalScrollBar().setUnitIncrement(12);
+		
+		JScrollBar bar = this.getVerticalScrollBar();
+		bar.setOpaque(false);
+		bar.setUI(new MyScrollBarUI());
 	}
 	
 	/**

@@ -3,8 +3,6 @@ package ui.deliveryui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,12 +10,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import businessLogic.businessLogicController.deliveryController.OrderController;
+import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
+import businessLogicService.deliveryBLService.OrderBLService;
+import constant.City;
+import constant.ClientType;
+import constant.LabelName;
+import constant.TransitionNode;
+import constant.VerifyResult;
 import po.deliveryPO.ClientInfo;
 import po.deliveryPO.GoodsInfo;
 import ui.baseui.DetailPanel;
@@ -27,14 +31,6 @@ import ui.deliveryui.orderInfo.GoodsInfoPanel;
 import ui.deliveryui.orderInfo.OtherInfoPanel;
 import vo.deliveryVO.OrderVO;
 import vo.deliveryVO.VerifyMessage;
-import businessLogic.businessLogicController.deliveryController.OrderController;
-import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
-import businessLogicService.deliveryBLService.OrderBLService;
-import constant.City;
-import constant.ClientType;
-import constant.LabelName;
-import constant.TransitionNode;
-import constant.VerifyResult;
 
 @SuppressWarnings("serial")
 public class OrderInputPanel extends DetailPanel{

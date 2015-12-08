@@ -3,9 +3,8 @@ package driver.ui_driver.managerUI_driver;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import stub.businessLogicImpl_stub.managerBLImpl_stub.OrganizationManagementBLImpl_Stub;
-import vo.managerVO.OrganizationVO;
 import businessLogicService.managerBLService.OrganizationManagementBLService;
+import stub.businessLogicImpl_stub.managerBLImpl_stub.OrganizationManagementBLImpl_Stub;
 
 public class OrganizationManagementUI_DriverStub {
 	public static void main(String[] args) {

@@ -146,6 +146,7 @@ public class ApprovalForm {
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	public boolean approveMoreForm(ArrayList<? extends ApprovalFormVO> form, String formType) {
 		switch(formType) {
 		case "寄件单":

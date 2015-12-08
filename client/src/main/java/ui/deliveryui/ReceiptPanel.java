@@ -5,20 +5,18 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.deliveryController.ReceiptController;
+import businessLogicService.deliveryBLService.ReceiptBLService;
+import constant.LabelName;
+import constant.VerifyResult;
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.deliveryVO.ReceiptVO;
 import vo.deliveryVO.VerifyMessage;
-import businessLogic.businessLogicController.deliveryController.ReceiptController;
-import businessLogicService.deliveryBLService.ReceiptBLService;
-import constant.LabelName;
-import constant.VerifyResult;
 
 @SuppressWarnings("serial")
 public class ReceiptPanel extends DetailPanel{
