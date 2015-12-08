@@ -63,7 +63,7 @@ public class AddReceivingPanel extends DetailPanel {
 
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private LimpidButton cancel = new LimpidButton("","取消.png");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 

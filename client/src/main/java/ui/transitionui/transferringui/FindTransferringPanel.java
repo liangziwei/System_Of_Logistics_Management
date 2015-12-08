@@ -111,9 +111,9 @@ public class FindTransferringPanel extends DetailPanel{
 		container.add(transferringid);
 		transferringidText.setBounds(transferringid.getX()+transferringid.getWidth()+COMPONENT_GAP_X, transferringid.getY(), TEXTid_W, TEXT_H);
 		container.add(transferringidText);
-		find.setBounds(transferringidText.getX()+transferringidText.getWidth()+COMPONENT_GAP_X, transferringidText.getY(), LABEL_W, LABEL_H);
+		find.setBounds(transferringidText.getX()+transferringidText.getWidth()+COMPONENT_GAP_X, transferringidText.getY(), LABEL_W, LABEL_H-10);
 		container.add(find);
-		cancle1.setBounds(find.getX()+find.getWidth()+COMPONENT_GAP_X, find.getY(), LABEL_W, LABEL_H);
+		cancle1.setBounds(find.getX()+find.getWidth()+COMPONENT_GAP_X, find.getY(), LABEL_W, LABEL_H-10);
 		container.add(cancle1);
 		// 主面板
 		this.infoPanel.setBounds(transferringid.getX(), transferringid.getY()+transferringid.getHeight()+COMPONENT_GAP_Y, DETAIL_PANEL_W,

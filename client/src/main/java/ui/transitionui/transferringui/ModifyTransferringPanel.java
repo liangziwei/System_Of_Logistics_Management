@@ -63,7 +63,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private LimpidButton cancle2 = new LimpidButton("","取消.png");
+	private LimpidButton cancle2 = new LimpidButton("","picture/取消.png");
 
 	private LimpidButton find = new LimpidButton("","picture/查询.png");
 
@@ -128,9 +128,9 @@ public class ModifyTransferringPanel extends DetailPanel {
 				transferringid.getY(), TEXTid_W, TEXT_H);
 		container.add(transferringidText);
 		find.setBounds(transferringidText.getX() + transferringidText.getWidth() + COMPONENT_GAP_X,
-				transferringidText.getY(), LABEL_W, LABEL_H);
+				transferringidText.getY(), LABEL_W, LABEL_H-10);
 		container.add(find);
-		cancle1.setBounds(find.getX() + find.getWidth() + COMPONENT_GAP_X, find.getY(), LABEL_W, LABEL_H);
+		cancle1.setBounds(find.getX() + find.getWidth() + COMPONENT_GAP_X, find.getY(), LABEL_W, LABEL_H-10);
 		container.add(cancle1);
 		// 主面板
 		this.infoPanel.setBounds(transferringid.getX(),

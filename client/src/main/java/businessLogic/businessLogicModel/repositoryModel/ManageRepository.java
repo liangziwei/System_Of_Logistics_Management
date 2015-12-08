@@ -4,9 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import mock.object.MockCheckRepository;
-import mock.object.MockGetRepository;
-import mock.object.MockSeeRepository;
 import network.RMI;
 import po.repositoryPO.DeliveryInfoPO;
 import po.repositoryPO.RepositoryInfoPO;

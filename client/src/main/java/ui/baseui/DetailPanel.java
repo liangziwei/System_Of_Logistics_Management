@@ -37,7 +37,7 @@ public class DetailPanel extends JPanel{
 		this.setLayout(null);
 	}
 	
-	public void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
 	}

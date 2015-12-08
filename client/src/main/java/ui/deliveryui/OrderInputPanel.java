@@ -3,6 +3,8 @@ package ui.deliveryui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -112,6 +114,8 @@ public class OrderInputPanel extends DetailPanel{
 		super();
 		//初始化信息面板
 		this.initUI();
+		this.buttonPanel.setBackground(null);
+		this.buttonPanel.setOpaque(false);
 		//按钮面板
 		this.buttonPanel.setBounds(this.otherInfo.getX(),
 				this.otherInfo.getY() + this.otherInfo.getHeight() + PANEL_GAP,
@@ -152,6 +156,8 @@ public class OrderInputPanel extends DetailPanel{
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H - 72));
 		//添加其他信息面板
+		this.sender.setBackground(null);
+		this.sender.setOpaque(false);
 		panel.add(this.sender);
 		panel.add(this.receiver);
 		panel.add(this.goodsInfo);
@@ -178,8 +184,12 @@ public class OrderInputPanel extends DetailPanel{
 		//信息面板
 		this.infoPanel.setLayout(null);
 		this.infoPanel.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		this.infoPanel.setBackground(null);
+		this.infoPanel.setOpaque(false);
 		this.container.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
 		this.container.setViewportView(this.infoPanel);
+		this.container.setOpaque(false);
+		this.container.getViewport().setOpaque(false);
 		this.container.getVerticalScrollBar().setUnitIncrement(15);
 		this.add(this.container);
 		int panelH = 0;

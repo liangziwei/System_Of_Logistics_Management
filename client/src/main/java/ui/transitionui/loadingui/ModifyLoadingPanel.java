@@ -67,7 +67,7 @@ public class ModifyLoadingPanel extends DetailPanel {
 
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
-	private LimpidButton cancle2 = new LimpidButton("","取消.png");
+	private LimpidButton cancle2 = new LimpidButton("","picture/取消.png");
 
 	private LimpidButton find = new LimpidButton("","picture/查询.png");
 
@@ -125,10 +125,10 @@ public class ModifyLoadingPanel extends DetailPanel {
 				loadingid.getY(), AddLoadingPanel.TEXTid_W, AddLoadingPanel.TEXT_H);
 		this.container.add(this.loadingidText);
 		find.setBounds(loadingidText.getX() + loadingidText.getWidth() + AddLoadingPanel.COMPONENT_GAP_X,
-				loadingid.getY(), AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
+				loadingid.getY(), AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H-10);
 		this.container.add(find);
 		cancle1.setBounds(find.getX() + find.getWidth() + AddLoadingPanel.COMPONENT_GAP_X, loadingid.getY(),
-				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
+				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H-10);
 		this.container.add(cancle1);
 
 		// 信息面板的相关操作
