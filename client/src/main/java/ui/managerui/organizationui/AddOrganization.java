@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -94,7 +93,7 @@ public class AddOrganization extends DetailPanel{
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W << 1), this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		//提示标签
-		this.tip.setBounds(this.nameLabel.getX(), this.ok.getY(), LABEL_W, LABEL_H);
+		this.tip.setBounds(this.nameLabel.getX(), this.ok.getY(), LABEL_W << 1, LABEL_H);
 		this.tip.setFont(WORD_FONT);
 		//将组件添加到面板
 		this.add(this.idLabel);
@@ -116,12 +115,8 @@ public class AddOrganization extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//验证输入是否完整 TODO进行跟进一步的信息验证
 				tip.setForeground(Color.RED);
-				if(CommonLogic.isNull(idText.getText()) || CommonLogic.isNull(nameText.getText())) {
-					tip.setText("请把信息填写完整");
-					return ;
-				}
+				if(!verifyInput()) return ;
 				//保存信息
 				boolean res = organization.addOrganization(new OrganizationVO(typeText.getSelectedItem().toString(),
 						idText.getText(), nameText.getText(), false, false));
@@ -135,7 +130,7 @@ public class AddOrganization extends DetailPanel{
 				}
 				else {
 					tip.setForeground(Color.RED);
-					tip.setText("保存失败，请稍后重试");
+					tip.setText("请查看输入是否有误");
 				}
 				repaint();
 			}
@@ -156,5 +151,19 @@ public class AddOrganization extends DetailPanel{
 	private void clearInfo() {
 		this.idText.setText("");
 		this.nameText.setText("");
+	}
+	
+	private boolean verifyInput() {
+		//验证输入是否完整
+		if(CommonLogic.isNull(idText.getText()) || CommonLogic.isNull(nameText.getText())) {
+			tip.setText("请把信息填写完整");
+			return false;
+		}
+		//验证机构编号是否为六位数字
+		if(!CommonLogic.isNumber(idText.getText()) || idText.getText().length() != 6) {
+			tip.setText("机构编号应为6位的数字");
+			return false;
+		}
+		return true;
 	}
 }

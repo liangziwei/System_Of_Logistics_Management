@@ -81,4 +81,5 @@ public class EntruckingDataImpl implements EntruckingDataService {
 		}
 		return true;
 	}
+	
 }

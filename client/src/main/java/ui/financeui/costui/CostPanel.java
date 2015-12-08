@@ -7,19 +7,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.financeController.CostController;
+import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.financeBLService.CostBLService;
 import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.financeVO.PaymentVO;
-import businessLogic.businessLogicController.financeController.CostController;
-import businessLogic.businessLogicModel.util.CommonLogic;
-import businessLogicService.financeBLService.CostBLService;
 
 @SuppressWarnings("serial")
 public class CostPanel extends DetailPanel{
@@ -136,13 +134,9 @@ public class CostPanel extends DetailPanel{
 		this.ok.setBounds(this.noteText.getX() + (TEXT_W >> 1), this.noteText.getY() + TEXT_H + gap
 				, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-//		this.ok.setIcon(new ImageIcon("picture/确定.png"));
-//		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W * 3 >> 1), this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
-//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-//		this.cancel.setBorderPainted(false);
 		//提示标签
 		this.tip.setBounds(this.noteLabel.getX(), this.ok.getY(), TEXT_W, TEXT_H);
 		this.tip.setFont(WORD_FONT);
@@ -192,12 +186,9 @@ public class CostPanel extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//验证输入是否完整 TODO 进行更进一步的信息验证
+				//验证输入
 				tip.setForeground(Color.RED);
-				if(!isComplete()) {
-					tip.setText("请把信息填写完整");
-					return ;
-				}
+				if(!verifyInput()) return ;
 				//保存信息
 				boolean result = cost.addPayment(createPayment());
 				//如果保存成功
@@ -210,7 +201,7 @@ public class CostPanel extends DetailPanel{
 				}
 				else {
 					tip.setForeground(Color.RED);
-					tip.setText("保存失败，请重试");
+					tip.setText("保存失败");
 				}
 				repaint();
 			}
@@ -220,6 +211,7 @@ public class CostPanel extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tip.setText("");
 				//清空用户输入的信息
 				clearInfo();
 				//刷新面板
@@ -253,9 +245,25 @@ public class CostPanel extends DetailPanel{
 		});
 	}
 	
-	private boolean isComplete() {
-		return !(CommonLogic.isNull(this.dateText.getDate()) || CommonLogic.isNull(this.moneyText.getText())
+	private boolean verifyInput() {
+		//验证输入日期是否合法
+		if(!CommonLogic.isDate(this.dateText.getDate())) {
+			tip.setText("输入的日期不存在");
+			return false;
+		}
+		//验证输入是否完整
+		if(CommonLogic.isNull(this.dateText.getDate()) || CommonLogic.isNull(this.moneyText.getText())
 				|| CommonLogic.isNull(this.nameText.getText()) || CommonLogic.isNull(this.accountText.getText())
-				|| CommonLogic.isNull(this.noteText.getText()));
+				|| CommonLogic.isNull(this.noteText.getText())) {
+			tip.setText("请把信息填写完整");
+			return false;
+		}
+		//验证输入付款金额是否为数字
+		if(!CommonLogic.isDouble(this.moneyText.getText())) {
+			tip.setText("付款金额应该为数字");
+			return false;
+		}
+		tip.setText("");
+		return true;
 	}
 }

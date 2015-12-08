@@ -7,7 +7,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -76,8 +75,11 @@ public class RunPanel extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String startDate = dateInput.getStartDate();
+				String endDate = dateInput.getEndDate();
+				if(!dateInput.verifyInput(startDate, endDate)) return ;
 				//查找收款单列表
-				list = statistics.getReceivableList(dateInput.getStartDate(), dateInput.getEndDate());
+				list = statistics.getReceivableList(startDate, endDate);
 				//显示收款单列表
 				initTable(list);
 			}
@@ -142,4 +144,6 @@ public class RunPanel extends DetailPanel{
 		this.revalidate();
 		this.repaint();
 	}
+	
+	
 }

@@ -53,7 +53,7 @@ public class MakeDistancePanel extends DetailPanel{
 		//初始化按钮
 		this.initButtons();
 		//提示
-		this.tip.setBounds(this.container.getX(), this.ok.getY(), LABEL_W, LABEL_H);
+		this.tip.setBounds(this.container.getX(), this.ok.getY(), LABEL_W << 1, LABEL_H);
 		this.tip.setFont(WORD_FONT);
 		this.add(this.tip);
 	}
@@ -114,42 +114,7 @@ public class MakeDistancePanel extends DetailPanel{
 				//如果通过验证
 				if(isValidate) {
 					//保存修改
-					double nb = Double.parseDouble((String)distance.getValueAt(0, 2));
-					double ns = Double.parseDouble((String)distance.getValueAt(1, 2));
-					double ng = Double.parseDouble((String)distance.getValueAt(2, 2));
-					double bs = Double.parseDouble((String)distance.getValueAt(3, 2));
-					double bg = Double.parseDouble((String)distance.getValueAt(4, 2));
-					double sg = Double.parseDouble((String)distance.getValueAt(5, 2));
-					double local = Double.parseDouble((String)distance.getValueAt(6, 2));
-					
-					HashMap<City, Double> nan_jing = new HashMap<City, Double>();
-					nan_jing.put(City.NAN_JING, local);
-					nan_jing.put(City.BEI_JING, nb);
-					nan_jing.put(City.SHANG_HAI, ns);
-					nan_jing.put(City.GUANG_ZHOU, ng);
-					HashMap<City, Double> bei_jing = new HashMap<City, Double>();
-					bei_jing.put(City.NAN_JING, nb);
-					bei_jing.put(City.BEI_JING, local);
-					bei_jing.put(City.SHANG_HAI, bs);
-					bei_jing.put(City.GUANG_ZHOU, bg);
-					HashMap<City, Double> shang_hai = new HashMap<City, Double>();
-					shang_hai.put(City.NAN_JING, ns);
-					shang_hai.put(City.BEI_JING, bs);
-					shang_hai.put(City.SHANG_HAI, local);
-					shang_hai.put(City.GUANG_ZHOU, sg);
-					HashMap<City, Double> guang_zhou = new HashMap<City, Double>();
-					guang_zhou.put(City.NAN_JING, ng);
-					guang_zhou.put(City.BEI_JING, bg);
-					guang_zhou.put(City.SHANG_HAI, sg);
-					guang_zhou.put(City.GUANG_ZHOU, local);
-					Map<City, HashMap<City, Double>> table = new HashMap<City, HashMap<City, Double>>();
-					table.put(City.NAN_JING, nan_jing);
-					table.put(City.BEI_JING, bei_jing);
-					table.put(City.SHANG_HAI, shang_hai);
-					table.put(City.GUANG_ZHOU, guang_zhou);
-					
-					DistanceConstant d = new DistanceConstant(table);
-					DistanceIO.saveDistance(d);
+					saveConstant();
 					//提示
 					tip.setForeground(Color.BLUE);
 					tip.setText("修改成功");
@@ -161,5 +126,44 @@ public class MakeDistancePanel extends DetailPanel{
 				repaint();
 			}
 		});
+	}
+	
+	private void saveConstant() {
+		double nb = Double.parseDouble((String)distance.getValueAt(0, 2));
+		double ns = Double.parseDouble((String)distance.getValueAt(1, 2));
+		double ng = Double.parseDouble((String)distance.getValueAt(2, 2));
+		double bs = Double.parseDouble((String)distance.getValueAt(3, 2));
+		double bg = Double.parseDouble((String)distance.getValueAt(4, 2));
+		double sg = Double.parseDouble((String)distance.getValueAt(5, 2));
+		double local = Double.parseDouble((String)distance.getValueAt(6, 2));
+		
+		HashMap<City, Double> nan_jing = new HashMap<City, Double>();
+		nan_jing.put(City.NAN_JING, local);
+		nan_jing.put(City.BEI_JING, nb);
+		nan_jing.put(City.SHANG_HAI, ns);
+		nan_jing.put(City.GUANG_ZHOU, ng);
+		HashMap<City, Double> bei_jing = new HashMap<City, Double>();
+		bei_jing.put(City.NAN_JING, nb);
+		bei_jing.put(City.BEI_JING, local);
+		bei_jing.put(City.SHANG_HAI, bs);
+		bei_jing.put(City.GUANG_ZHOU, bg);
+		HashMap<City, Double> shang_hai = new HashMap<City, Double>();
+		shang_hai.put(City.NAN_JING, ns);
+		shang_hai.put(City.BEI_JING, bs);
+		shang_hai.put(City.SHANG_HAI, local);
+		shang_hai.put(City.GUANG_ZHOU, sg);
+		HashMap<City, Double> guang_zhou = new HashMap<City, Double>();
+		guang_zhou.put(City.NAN_JING, ng);
+		guang_zhou.put(City.BEI_JING, bg);
+		guang_zhou.put(City.SHANG_HAI, sg);
+		guang_zhou.put(City.GUANG_ZHOU, local);
+		Map<City, HashMap<City, Double>> table = new HashMap<City, HashMap<City, Double>>();
+		table.put(City.NAN_JING, nan_jing);
+		table.put(City.BEI_JING, bei_jing);
+		table.put(City.SHANG_HAI, shang_hai);
+		table.put(City.GUANG_ZHOU, guang_zhou);
+		
+		DistanceConstant d = new DistanceConstant(table);
+		DistanceIO.saveDistance(d);
 	}
 }
