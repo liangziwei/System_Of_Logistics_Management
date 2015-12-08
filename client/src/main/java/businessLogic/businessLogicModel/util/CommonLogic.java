@@ -32,7 +32,6 @@ public class CommonLogic {
 			sdf.setLenient(false);
 			sdf.parse(date);
 		}catch(Exception e) {
-//			e.printStackTrace();
 			return false;
 		}
 		return true;

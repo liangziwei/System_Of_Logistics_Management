@@ -6,18 +6,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
+import businessLogic.businessLogicModel.util.CommonLogic;
+import constant.CargoState;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.ArrivalFormVO;
-import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
-import businessLogic.businessLogicModel.util.CommonLogic;
-import constant.CargoState;
 
 public class ArrivalPanel extends DetailPanel {
 
@@ -167,7 +166,6 @@ public class ArrivalPanel extends DetailPanel {
 					
 				}
 				repaint();
-				
 			}
 		});
 		

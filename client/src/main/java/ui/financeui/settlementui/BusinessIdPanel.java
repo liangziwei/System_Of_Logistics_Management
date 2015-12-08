@@ -24,7 +24,7 @@ public class BusinessIdPanel extends JPanel{
 	
 	private JLabel tip = new JLabel();
 	
-	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
+	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 13);
 	
 	public BusinessIdPanel(int x, int y, int w, int h) {
 		//计算常量
@@ -34,8 +34,6 @@ public class BusinessIdPanel extends JPanel{
 		int startX = labelW;
 		int startY = h / 3;
 		int textH = labelH;
-		int buttonW = labelW;
-		int buttonH = labelH;
 		
 		//营业厅编号标签
 		this.idLabel.setBounds(startX, startY, labelW, labelH);

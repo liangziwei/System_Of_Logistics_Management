@@ -54,7 +54,7 @@ public class MakePricePanel extends DetailPanel{
 		//初始化按钮
 		this.initButtons();
 		//提示标签
-		this.tip.setBounds(this.container.getX(), this.ok.getY(), LABEL_W, LABEL_H);
+		this.tip.setBounds(this.container.getX(), this.ok.getY(), LABEL_W << 1, LABEL_H);
 		this.tip.setFont(WORD_FONT);
 		this.add(this.tip);
 	}
