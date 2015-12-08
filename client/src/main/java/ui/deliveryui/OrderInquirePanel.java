@@ -5,20 +5,18 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.deliveryController.OrderController;
+import businessLogicService.deliveryBLService.OrderBLService;
+import constant.VerifyResult;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.deliveryVO.OrderVO;
 import vo.deliveryVO.VerifyMessage;
-import businessLogic.businessLogicController.deliveryController.OrderController;
-import businessLogicService.deliveryBLService.OrderBLService;
-import constant.VerifyResult;
 
 @SuppressWarnings("serial")
 public class OrderInquirePanel extends DetailPanel{

@@ -9,7 +9,6 @@ import po.businessPO.VehiclePO;
 import po.financePO.AccountPO;
 import po.managerPO.OrganizationPO;
 import po.managerPO.StaffPO;
-import po.repositoryPO.RepositoryInfoPO;
 import po.repositoryPO.RepositoryPO;
 
 public class OriginalInfoDataImpl_Stub implements OriginalInfoDataService{

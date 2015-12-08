@@ -2,12 +2,9 @@ package driver.ui_driver.financeUI_driver;
 
 import java.util.Scanner;
 
-import businessLogicService.financeBLService.CostBLService;
-import stub.businessLogicImpl_stub.financeBLImpl_stub.CostBLImpl_Stub;
-
 public class CostUI_Driver {
 	public static void main(String[] args) {
-		CostBLService cost = new CostBLImpl_Stub();
+//		CostBLService cost = new CostBLImpl_Stub();
 		boolean go = true;
 		Scanner s = new Scanner(System.in);
 		while(go){

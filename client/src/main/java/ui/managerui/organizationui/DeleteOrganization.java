@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 
@@ -89,6 +88,7 @@ public class DeleteOrganization extends  DetailPanel{
 				//查询人员信息
 				List<StaffVO> list = organization.getStaffInfos(id);
 				//显示机构信息和人员信息
+				if(orgPanel != null) orgPanel.setVisible(false);
 				orgPanel = new OrganizationInfoPanel(orgId.getX(), orgId.getHeight(),
 						DETAIL_PANEL_W, DETAIL_PANEL_H * 5 / 6, list);
 				orgPanel.setOrganizationInfo(vo);

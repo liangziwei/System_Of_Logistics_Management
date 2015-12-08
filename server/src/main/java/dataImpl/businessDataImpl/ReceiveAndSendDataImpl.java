@@ -12,7 +12,7 @@ import po.businessPO.ArrivalFormPO;
 import po.businessPO.SendFormPO;
 
 public class ReceiveAndSendDataImpl implements ReceiveAndSendDataService {
-
+	
 	public boolean addReceiveFrom(ArrivalFormPO arrivalFormPO) {
 		// TODO Auto-generated method stub
 		String date=arrivalFormPO.getDate();
@@ -21,7 +21,7 @@ public class ReceiveAndSendDataImpl implements ReceiveAndSendDataService {
 		CargoState state=arrivalFormPO.getState();
 		String val="";
 		val="'"+date+"','"+transitNumber+"','"+departPlace+"','"+state.toString()+"',0,1";
-				
+		
 		return Database.add("arrivalform",val);
 	}
 

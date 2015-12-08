@@ -3,6 +3,7 @@ package businessLogic.businessLogicModel.financeModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataService.financeDataService.OriginalInfoDataService;
 import network.RMI;
 import po.businessPO.VehiclePO;
 import po.financePO.AccountPO;
@@ -14,7 +15,6 @@ import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryVO;
-import dataService.financeDataService.OriginalInfoDataService;
 
 public class OriginalInfo {
 	

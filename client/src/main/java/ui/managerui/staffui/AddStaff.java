@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -143,7 +142,7 @@ public class AddStaff extends DetailPanel{
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W << 1), this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		//提示标签
-		this.tip.setBounds(this.salaryLabel.getX(), this.ok.getY(), LABEL_W, LABEL_H);
+		this.tip.setBounds(this.salaryLabel.getX(), this.ok.getY(), LABEL_W << 1, LABEL_H);
 		this.tip.setFont(WORD_FONT);
 		//将组件添加到面板
 		this.add(this.nameLabel);
@@ -172,14 +171,9 @@ public class AddStaff extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//验证输入是否完整 TODO 进行更进一步的信息验证
+				//输入验证
 				tip.setForeground(Color.RED);
-				String id = idText.getText();
-				if(CommonLogic.isNull(nameText.getText()) || CommonLogic.isNull(id)
-						|| CommonLogic.isNull(birthText.getDate()) || CommonLogic.isNull(salaryText.getText())) {
-					tip.setText("请把信息填写完整");
-					return ;
-				}
+				if(!verifyInput()) return ;
 				//保存输入
 				boolean result = staff.addStaff(new StaffVO(nameText.getText(), idText.getText(),
 						(String)posText.getSelectedItem(), (String)genderText.getSelectedItem(),
@@ -195,7 +189,7 @@ public class AddStaff extends DetailPanel{
 				}
 				else {
 					tip.setForeground(Color.RED);
-					tip.setText("保存失败，请重试");
+					tip.setText("保存失败");
 				}
 				repaint();
 			}
@@ -218,5 +212,31 @@ public class AddStaff extends DetailPanel{
 		this.idText.setText("");
 		this.birthText.clearInfo();
 		this.salaryText.setText("");
+	}
+	
+	private boolean verifyInput() {
+		//验证输入是否完整
+		String id = idText.getText();
+		if(CommonLogic.isNull(nameText.getText()) || CommonLogic.isNull(id)
+				|| CommonLogic.isNull(birthText.getDate()) || CommonLogic.isNull(salaryText.getText())) {
+			tip.setText("请把信息填写完整");
+			return false;
+		}
+		//验证人员编号是否为9位数字
+		if(!CommonLogic.isNumber(id) || id.length() != 9) {
+			tip.setText("人员编号应为9位数字");
+			return false;
+		}
+		//验证日期是否符合格式
+		if(!CommonLogic.isDate(birthText.getDate())) {
+			tip.setText("该日期不存在");
+			return false;
+		}
+		//验证薪水是否为数字
+		if(!CommonLogic.isDouble(salaryText.getText())) {
+			tip.setText("薪水应该为数字");
+			return false;
+		}
+		return true;
 	}
 }

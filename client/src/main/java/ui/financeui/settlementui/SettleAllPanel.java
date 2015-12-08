@@ -49,9 +49,9 @@ public class SettleAllPanel extends DetailPanel{
 							DETAIL_PANEL_W >> 1, list.getY(),
 							DETAIL_PANEL_W >> 1, DETAIL_PANEL_H * 5 / 6);
 					add(receivable);
+					receivable.validate();
+					receivable.repaint();
 				}
-				receivable.validate();
-				receivable.repaint();
 			}
 		});
 	}

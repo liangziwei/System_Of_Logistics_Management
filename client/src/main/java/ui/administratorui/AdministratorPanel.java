@@ -39,29 +39,26 @@ public class AdministratorPanel extends UserPanel{
 		//添加账户
 		this.addAdmin.setBounds(0, UserImagePanel.USER_PANEL_H, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.addAdmin.setFont(WORD_FONT);
-//		this.addAdmin.setIcon(new ImageIcon("picture/添加账户.png"));
 		//删除账户		
 		this.deleAdmin.setBounds(0, this.addAdmin.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP,
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.deleAdmin.setFont(WORD_FONT);
-//		this.deleAdmin.setIcon(new ImageIcon("picture/删除账户.png"));
 		//修改账户
 		this.modAdmin.setBounds(0, this.deleAdmin.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.modAdmin.setFont(WORD_FONT);
-//		this.modAdmin.setIcon(new ImageIcon("picture/修改账户.png"));
 		//退出
 		this.exit.setBounds(0, this.modAdmin.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.exit.setFont(WORD_FONT);
-//		this.exit.setIcon(new ImageIcon("picture/退出.png"));
 		
-		this.task.setLayout(null);
-		this.task.add(addAdmin);
-		this.task.add(deleAdmin);
-		this.task.add(modAdmin);
-		this.task.add(exit);
+		this.task.buttonContainer.setLayout(null);
+		this.task.buttonContainer.add(addAdmin);
+		this.task.buttonContainer.add(deleAdmin);
+		this.task.buttonContainer.add(modAdmin);
+		this.task.buttonContainer.add(exit);
 		
+		this.task.buttonContainer.setOpaque(false);
 		this.task.user.setBackground(head);
 	}
 	

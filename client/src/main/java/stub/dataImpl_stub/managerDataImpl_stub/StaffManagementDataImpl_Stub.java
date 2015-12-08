@@ -1,11 +1,7 @@
 package stub.dataImpl_stub.managerDataImpl_stub;
 
-import po.managerPO.StaffPO;
-
-import java.rmi.RemoteException;
-import java.util.List;
-
 import dataService.managerDataService.StaffManagementDataService;
+import po.managerPO.StaffPO;
 
 public class StaffManagementDataImpl_Stub implements StaffManagementDataService {
 	public boolean addStaff(StaffPO staffPO) {

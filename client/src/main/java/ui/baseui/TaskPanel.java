@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
@@ -55,9 +56,9 @@ public class TaskPanel extends JScrollPane{
 	 */
 	private static final int DETAIL_BUTTON_X = (BUTTON_W - DETAIL_BUTTON_W) >> 1;
 	
-	private static final int CONTAINER_W = TASK_PANEL_W + 100;
+	private static final int CONTAINER_W = TASK_PANEL_W - 20;
 	
-	private static final int CONTAINER_H = 1000;
+	private static final int CONTAINER_H = TASK_PANEL_H - 10;
 	
 	private static Image BACKGROUND = new ImageIcon("picture/Tower.jpg").getImage();
 		
@@ -65,14 +66,20 @@ public class TaskPanel extends JScrollPane{
 		this.setBounds(0, TitlePanel.TITLE_PANEL_H, TASK_PANEL_W, TASK_PANEL_H);
 		
 		this.user.repaint();
+		//按钮的容器
 		this.buttonContainer.setLayout(null);
 		this.buttonContainer.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
 		this.buttonContainer.add(this.user);
 		
+		//滚动条面板
 		this.setViewportView(this.buttonContainer);
 		this.getViewport().setOpaque(false);
 		this.setOpaque(false);
 		this.getVerticalScrollBar().setUnitIncrement(12);
+		
+		JScrollBar bar = this.getVerticalScrollBar();
+		bar.setOpaque(false);
+		bar.setUI(new MyScrollBarUI());
 	}
 	
 	/**
@@ -183,6 +190,24 @@ public class TaskPanel extends JScrollPane{
 			clickButton.setUnfold(true);
 			this.showTaskDetail(clickButton, belowButtons);
 		}
+		
+		//获得最后一个按钮的Y坐标
+		int lastY = 0; 
+		if(belowButtons.size() == 0) {
+			lastY = clickButton.getY();
+		}
+		else {
+			TaskButton last = belowButtons.get(belowButtons.size() - 1);
+			lastY = last.getY();
+		}
+		//调整面板的高度
+		if(lastY + BUTTON_H < CONTAINER_H) {
+			this.buttonContainer.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		}
+		else {
+			this.buttonContainer.setPreferredSize(new Dimension(CONTAINER_W, lastY + (BUTTON_H << 1)));
+		}
+		this.revalidate();
 	}
 	
 	public void paintComponent(Graphics g) {

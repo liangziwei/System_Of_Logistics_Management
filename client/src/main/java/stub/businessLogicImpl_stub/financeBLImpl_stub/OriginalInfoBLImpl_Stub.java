@@ -9,13 +9,11 @@ import po.businessPO.VehiclePO;
 import po.financePO.AccountPO;
 import po.managerPO.OrganizationPO;
 import po.managerPO.StaffPO;
-import po.repositoryPO.RepositoryInfoPO;
 import stub.dataImpl_stub.financeDataImpl_stub.OriginalInfoDataImpl_Stub;
 import vo.businessVO.VehicleVO;
 import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
-import vo.repositoryVO.RepositoryInfoVO;
 import vo.repositoryVO.RepositoryVO;
 
 public class OriginalInfoBLImpl_Stub implements OriginalInfoBLService{
@@ -107,13 +105,13 @@ public class OriginalInfoBLImpl_Stub implements OriginalInfoBLService{
 		return a;
 	}
 	
-	private List<RepositoryInfoVO> repositoryPOToVO(List<RepositoryInfoPO> repository) {
-		List<RepositoryInfoVO> r = new ArrayList<RepositoryInfoVO>();
-		for(int i = 0; i < repository.size(); i++) {
-			r.add(new RepositoryInfoVO(repository.get(i).getdeliveryid(), repository.get(i).getareaCode(),
-					repository.get(i).getrowid(), repository.get(i).getshelfid(),
-					repository.get(i).getposid(), repository.get(i).getbeinrepository()));
-		}
-		return r;
-	}
+//	private List<RepositoryInfoVO> repositoryPOToVO(List<RepositoryInfoPO> repository) {
+//		List<RepositoryInfoVO> r = new ArrayList<RepositoryInfoVO>();
+//		for(int i = 0; i < repository.size(); i++) {
+//			r.add(new RepositoryInfoVO(repository.get(i).getdeliveryid(), repository.get(i).getareaCode(),
+//					repository.get(i).getrowid(), repository.get(i).getshelfid(),
+//					repository.get(i).getposid(), repository.get(i).getbeinrepository()));
+//		}
+//		return r;
+//	}
 }

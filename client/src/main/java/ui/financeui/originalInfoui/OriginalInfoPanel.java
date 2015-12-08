@@ -10,25 +10,22 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.sound.midi.MidiDevice.Info;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.JTableHeader;
 
+import businessLogic.businessLogicController.financeController.OriginalInfoController;
+import businessLogic.businessLogicController.financeController.OriginalRecordController;
+import businessLogicService.financeBLService.OriginalInfoRecordBLService;
+import constant.AreaCodeType;
 import ui.baseui.DetailPanel;
 import vo.businessVO.VehicleVO;
 import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 import vo.repositoryVO.RepositoryVO;
-import businessLogic.businessLogicController.financeController.OriginalInfoController;
-import businessLogic.businessLogicController.financeController.OriginalRecordController;
-import businessLogicService.financeBLService.OriginalInfoRecordBLService;
-import constant.AreaCodeType;
 
 @SuppressWarnings("serial")
 public class OriginalInfoPanel extends DetailPanel {
@@ -36,7 +33,7 @@ public class OriginalInfoPanel extends DetailPanel {
 	private OriginalInfoController originalInfoCon = new OriginalInfoController(null);
 	private OriginalInfoRecordBLService originalInfoRecordBLService = new OriginalRecordController();
 
-	private JLabel query = new JLabel("历史建账信息");
+//	private JLabel query = new JLabel("历史建账信息");
 
 	private JLabel OriginizationLabel = new JLabel("机构");
 	private JLabel staffLabel = new JLabel("人员");
@@ -68,7 +65,7 @@ public class OriginalInfoPanel extends DetailPanel {
 	private static final int LABEL_W = 120;
 	private static final int LABEL_H = 20;
 	private static final int START_X = 20;
-	private static final int START_Y = 20;
+//	private static final int START_Y = 20;
 	private static final int RowHeight = 20;
 	private static final int TABEL_W = DETAIL_PANEL_W - 80;
 

@@ -48,7 +48,7 @@ public class ReceivablePanel extends JPanel{
 		this.dateText.setPanelBound(this.dateLabel.getX() + labelW + ltGap, this.dateLabel.getY(),
 				textW, textH);
 		this.dateText.setFont(WORD_FONT);
-		this.dateText.setDate();
+		this.dateText.setDate(receivable.getDate());
 		//收款快递员标签
 		this.nameLabel.setBounds(this.dateLabel.getX(), this.dateLabel.getY() + labelH + ltGap,
 				labelW, labelH);

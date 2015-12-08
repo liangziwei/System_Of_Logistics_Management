@@ -2,11 +2,10 @@ package driver.ui_driver.managerUI_driver;
 
 import java.util.Scanner;
 
+import businessLogicService.managerBLService.MakeConstantBLService;
 import constant.City;
 import constant.TransitType;
 import stub.businessLogicImpl_stub.managerBLImpl_stub.MakeConstantBLImpl_Stub;
-import vo.financeVO.AccountVO;
-import businessLogicService.managerBLService.MakeConstantBLService;
 
 public class MakeConstantUI_Driver {
 	public static void main(String[] args) {

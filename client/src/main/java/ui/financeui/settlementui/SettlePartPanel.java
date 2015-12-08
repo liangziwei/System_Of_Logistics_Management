@@ -48,8 +48,11 @@ public class SettlePartPanel extends DetailPanel{
 				//根据营业厅编号查询当天的收款单
 				receivableVO = settle.showBusinessRecei(id.getId(), DatePanel.getCurrentDate());
 				//如果找不到，提示用户没有该收款单
-				if(receivableVO == null) {
+				if(receivableVO == null || receivableVO.size() == 0) {
+					if(receivable != null) receivable.setVisible(false);
+					if(list != null) list.setVisible(false);
 					id.setTip("该收款单不存在");
+					repaint();
 					return ;
 				}
 				else {
@@ -99,12 +102,13 @@ public class SettlePartPanel extends DetailPanel{
 	}
 	
 	private void showList(List<ReceivableVO> receivables, int x, int y, int w, int h) {
-		if(this.list != null) this.remove(this.list);
+		if(this.list != null) this.list.setVisible(false);
 		this.list = new ListPanel(receivables, x, y, w, h);
 		this.add(list);
 	}
 	
 	private void showReceivable(ReceivableVO vo) {
+		if(this.receivable != null) this.receivable.setVisible(false);
 		this.receivable = new ReceivablePanel(vo,
 				DETAIL_PANEL_W >> 1, this.list.getY(),
 				DETAIL_PANEL_W >> 1, DETAIL_PANEL_H * 5 / 6);

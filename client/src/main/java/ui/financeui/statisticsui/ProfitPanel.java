@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -113,6 +112,9 @@ public class ProfitPanel extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String startDate = dateInput.getStartDate();
+				String endDate = dateInput.getEndDate();
+				if(!dateInput.verifyInput(startDate, endDate)) return ;
 				//获得成本收益表值对象
 				CostBenefitVO vo = statistics.getCostBenefit(dateInput.getStartDate(), dateInput.getEndDate());
 				//显示成本收益表
