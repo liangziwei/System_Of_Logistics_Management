@@ -19,7 +19,7 @@ import vo.repositoryVO.RepositoryVO;
 import dataService.financeDataService.OriginalInfoDataService;
 
 public class OriginalInfo {
-
+	
 	private OriginalInfoDataService originalInfo = RMI.<OriginalInfoDataService> getDataService("originalInfo");
 	
 	

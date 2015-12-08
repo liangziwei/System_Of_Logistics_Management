@@ -109,10 +109,10 @@ public class FindLoadingPanel extends DetailPanel{
 				AddLoadingPanel.TEXTid_W,AddLoadingPanel.TEXT_H);
 		this.container.add(this.loadingidText);
 		find.setBounds(loadingidText.getX()+loadingidText.getWidth()+AddLoadingPanel.COMPONENT_GAP_X,loadingid.getY(),
-				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
+				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H-10);
 		this.container.add(find);
 		cancle.setBounds(find.getX()+find.getWidth()+AddLoadingPanel.COMPONENT_GAP_X, loadingid.getY(), 
-				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
+				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H-10);
 		this.container.add(cancle);
 		
 		//信息面板的相关操作

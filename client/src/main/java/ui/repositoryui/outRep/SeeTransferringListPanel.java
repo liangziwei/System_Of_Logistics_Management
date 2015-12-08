@@ -87,21 +87,8 @@ public class SeeTransferringListPanel extends DetailPanel{
 		//组件
 		time.setBounds(50, 10, LABEL_W, LABEL_H);
 		this.add(time);
-		timeyear.setBounds(time.getX()+time.getWidth()+COMPONENT_GAP_X, time.getY(), TEXT_W/2, TEXT_H);
-		timeyear.setOpaque(false);
-		this.add(timeyear);
-		apart1.setBounds(timeyear.getX()+timeyear.getWidth(), timeyear.getY(), 10, TEXT_H);
-		this.add(apart1);
-		timemonth.setBounds(apart1.getX()+apart1.getWidth(), apart1.getY(), TEXT_W /2, TEXT_H);
-		timemonth.setOpaque(false);
-		this.add(timemonth);
-		apart2.setBounds(timemonth.getX()+timemonth.getWidth(), timemonth.getY(), 10, TEXT_H);
-		this.add(apart2);
-		timeday.setBounds(apart2.getX()+apart2.getWidth(),apart2.getY(),TEXT_W /2,TEXT_H);
-		timeday.setOpaque(false);
-		this.add(timeday);
-		find.setBounds(timeday.getX()+timeday.getWidth()+COMPONENT_GAP_X+10, timeday.getY(), LABEL_W+20, LABEL_H);
 		timeyear.setBounds(time.getX()+time.getWidth()+COMPONENT_GAP_X, time.getY(), (TEXT_W/2)*3, TEXT_H);
+		timeyear.setOpaque(false);
 		dateChoose.register(timeyear);
 		this.add(timeyear);
 //		apart1.setBounds(timeyear.getX()+timeyear.getWidth(), timeyear.getY(), 10, TEXT_H);

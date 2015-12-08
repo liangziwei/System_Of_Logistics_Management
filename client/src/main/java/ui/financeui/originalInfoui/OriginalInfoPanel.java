@@ -33,7 +33,7 @@ import constant.AreaCodeType;
 @SuppressWarnings("serial")
 public class OriginalInfoPanel extends DetailPanel {
 
-	private OriginalInfoController originalInfoCon;
+	private OriginalInfoController originalInfoCon = new OriginalInfoController(null);
 	private OriginalInfoRecordBLService originalInfoRecordBLService = new OriginalRecordController();
 
 	private JLabel query = new JLabel("历史建账信息");
@@ -140,13 +140,23 @@ public class OriginalInfoPanel extends DetailPanel {
 	}
 
 	private void buildtable(String order, String theyear) {
-		originalInfoCon = new OriginalInfoController(order);
-		List<StaffVO> staffVOs = originalInfoCon.getStaffInfo(Integer.parseInt(theyear));
-		List<VehicleVO> vehicleVOs = originalInfoCon.getVehicleInfo(Integer.parseInt(theyear));
-		List<OrganizationVO> organizationVOs = originalInfoCon.getOrganizationInfo(Integer.parseInt(theyear));
-		List<RepositoryVO> repositoryVOs = originalInfoCon.getRepositoryInfo(Integer.parseInt(theyear));
-		List<AccountVO> accountVOs = originalInfoCon.getAccountInfo(Integer.parseInt(theyear));
-		addLabelListener(staffVOs, vehicleVOs, organizationVOs, repositoryVOs, accountVOs);
+		if (order.equals("creat")) {
+//			originalInfoCon = new OriginalInfoController(order);
+			List<StaffVO> staffVOs = originalInfoCon.getStaffInfo(Integer.parseInt(theyear));
+			List<VehicleVO> vehicleVOs = originalInfoCon.getVehicleInfo(Integer.parseInt(theyear));
+			List<OrganizationVO> organizationVOs = originalInfoCon.getOrganizationInfo(Integer.parseInt(theyear));
+			List<RepositoryVO> repositoryVOs = originalInfoCon.getRepositoryInfo(Integer.parseInt(theyear));
+			List<AccountVO> accountVOs = originalInfoCon.getAccountInfo(Integer.parseInt(theyear));
+			addLabelListener(staffVOs, vehicleVOs, organizationVOs, repositoryVOs, accountVOs);
+		}
+		else{
+			List<StaffVO> staffVOs = originalInfoRecordBLService.getStaffInfo(Integer.parseInt(theyear));
+			List<VehicleVO> vehicleVOs = originalInfoRecordBLService.getVehicleInfo(Integer.parseInt(theyear));
+			List<OrganizationVO> organizationVOs = originalInfoRecordBLService.getOrganizationInfo(Integer.parseInt(theyear));
+			List<RepositoryVO> repositoryVOs = originalInfoRecordBLService.getRepositoryInfo(Integer.parseInt(theyear));
+			List<AccountVO> accountVOs = originalInfoRecordBLService.getAccountInfo(Integer.parseInt(theyear));
+			addLabelListener(staffVOs, vehicleVOs, organizationVOs, repositoryVOs, accountVOs);
+		}
 
 	}
 
@@ -292,7 +302,7 @@ public class OriginalInfoPanel extends DetailPanel {
 		repaint();
 	}
 
-	// 账单查询相关操作
+//	// 账单查询相关操作
 
 	// 账单（各年份）的表
 	private void creatyearlist() {
@@ -338,7 +348,6 @@ public class OriginalInfoPanel extends DetailPanel {
 				super.mouseReleased(e);
 				showinfopanel(allyear.get(yeartable.getSelectedRow()));
 			}
-
 		});
 	}
 
@@ -368,6 +377,7 @@ public class OriginalInfoPanel extends DetailPanel {
 				buttonPanel.setVisible(true);
 				state.setVisible(true);
 				yearpane.setVisible(false);
+				InfoPanel.setVisible(false);
 				find.setVisible(false);
 				creatinfopanel();
 			}
