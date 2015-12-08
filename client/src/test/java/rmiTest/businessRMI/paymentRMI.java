@@ -1,16 +1,14 @@
 package rmiTest.businessRMI;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 
 import org.junit.Test;
 
-import vo.businessVO.ReceivableVO;
 import businessLogic.businessLogicController.businessController.PaymentController;
 
 public class paymentRMI {
 
+	@SuppressWarnings("unused")
 	@Test
 	public void test() {
 		ArrayList<String> s=new ArrayList<String>();

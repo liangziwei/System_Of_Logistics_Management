@@ -3,9 +3,8 @@ package businessLogic.businessLogicController.administratorController;
 import java.rmi.RemoteException;
 
 import network.RMI;
-import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
-import dataService.administratorDataService.AdministratorDataService;
 import businessLogicService.administratorBLService.LoginBLService;
+import dataService.administratorDataService.AdministratorDataService;
 
 public class LoginBL implements LoginBLService{
 	

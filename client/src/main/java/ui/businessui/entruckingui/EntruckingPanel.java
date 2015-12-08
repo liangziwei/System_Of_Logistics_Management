@@ -6,17 +6,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.businessController.EntruckingController;
-import businessLogic.businessLogicModel.util.CommonLogic;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.EntruckingVO;
+import businessLogic.businessLogicController.businessController.EntruckingController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 
+@SuppressWarnings("serial")
 public class EntruckingPanel extends DetailPanel{
 	
 	EntruckingVO entruckingVO;
@@ -81,7 +81,7 @@ public class EntruckingPanel extends DetailPanel{
 		this.date.setFont(WORD_FONT);	
 		this.dateText.setBounds(START_X + LABEL_W + LINE_GAP, START_Y, TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
-
+		dateChoose.register(dateText);
 		this.dateText.setOpaque(false);
 		
 		this.businessHallid.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
@@ -271,9 +271,7 @@ public class EntruckingPanel extends DetailPanel{
 		String dateStr=dateText.getText();
 		String businessIDStr=businessHallidText.getText();
 		String transNumberStr=transportNumberText.getText();
-		String destStr=destionationText.getText();
 		String vehiStr=vehicleidText.getText();		 
-		String freightStr=freightText.getText();//运费
 		
 		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");

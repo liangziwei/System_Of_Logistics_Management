@@ -17,6 +17,7 @@ import vo.businessVO.DriverVO;
 import businessLogic.businessLogicController.businessController.DriverController;
 import businessLogic.businessLogicModel.util.CommonLogic;
 
+@SuppressWarnings("serial")
 public class AddDriverPanel extends DetailPanel{
 
 	private DriverController driverCon=new DriverController();
@@ -39,6 +40,7 @@ public class AddDriverPanel extends DetailPanel{
 	private JTextField birthdayText=new JTextField();
 	private JTextField idNumberText=new JTextField();
 	private JTextField phoneNumberText=new JTextField();
+	@SuppressWarnings("rawtypes")
 	private JComboBox genderText=new JComboBox();
 	private JTextField drivingDeadlineText=new JTextField();
 	
@@ -71,6 +73,7 @@ public class AddDriverPanel extends DetailPanel{
 	private boolean isFirstEnsure = true;
 	private boolean isOver=false;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public AddDriverPanel(){
 		this.driverid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.driverid.setFont(WORD_FONT);	
@@ -249,11 +252,9 @@ public class AddDriverPanel extends DetailPanel{
 	private boolean isCorrect(){
 		
 		String driveridStr=driveridText.getText();
-		String nameStr=nameText.getText();
 		String birthdayStr=birthdayText.getText();
 		String idNumber=idNumberText.getText();
 		String phoneStr=phoneNumberText.getText();
-		String genderStr=(String)genderText.getSelectedItem();
 		String drivingDeadlineStr=drivingDeadlineText.getText();
 		
 		

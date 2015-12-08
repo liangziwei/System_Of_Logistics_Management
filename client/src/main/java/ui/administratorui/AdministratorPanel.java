@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 
 import ui.baseui.LimpidButton;
-import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
 import ui.baseui.UserPanel;
 import ui.mainui.LoginPanel;
 import ui.viewcontroller.ViewController;
 
+@SuppressWarnings("serial")
 public class AdministratorPanel extends UserPanel{
 
 	private LimpidButton addAdmin=new LimpidButton("","picture/添加账户.png");

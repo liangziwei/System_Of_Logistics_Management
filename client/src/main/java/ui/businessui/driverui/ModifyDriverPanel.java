@@ -5,18 +5,17 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.businessController.DriverController;
-import businessLogic.businessLogicModel.util.CommonLogic;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.DriverVO;
-import vo.businessVO.VehicleVO;
+import businessLogic.businessLogicController.businessController.DriverController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 
+@SuppressWarnings("serial")
 public class ModifyDriverPanel extends DetailPanel {
 	private DriverController driverCon=new DriverController();
 	private DriverVO driverVO;
@@ -281,11 +280,9 @@ public class ModifyDriverPanel extends DetailPanel {
 	private boolean isCorrect(){
 		
 		String driveridStr=driveridText.getText();
-		String nameStr=nameText.getText();
 		String birthdayStr=birthdayText.getText();
 		String idNumber=idNumberText.getText();
 		String phoneStr=phoneNumberText.getText();
-		String genderStr=genderText.getText();
 		String drivingDeadlineStr=drivingDeadlineText.getText();
 		
 		

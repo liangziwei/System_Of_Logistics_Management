@@ -6,7 +6,6 @@ import vo.businessVO.VehicleVO;
 import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
-import vo.repositoryVO.RepositoryInfoVO;
 import vo.repositoryVO.RepositoryVO;
 import businessLogic.businessLogicModel.financeModel.OriginalInfo;
 import businessLogicService.financeBLService.OriginalInfoBLService;

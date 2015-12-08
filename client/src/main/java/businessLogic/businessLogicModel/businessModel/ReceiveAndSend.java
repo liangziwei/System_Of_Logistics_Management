@@ -2,9 +2,6 @@ package businessLogic.businessLogicModel.businessModel;
 
 import java.rmi.RemoteException;
 
-import network.RMI;
-import po.businessPO.ArrivalFormPO;
-import po.businessPO.SendFormPO;
 import stub.dataImpl_stub.businessDataImpl_stub.ReceiveAndSendDataImpl_Stub;
 import vo.businessVO.ArrivalFormVO;
 import vo.businessVO.SendFormVO;

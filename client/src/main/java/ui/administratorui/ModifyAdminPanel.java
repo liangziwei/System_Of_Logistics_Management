@@ -7,18 +7,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import constant.Authority;
-import constant.UserType;
-import businessLogic.businessLogicController.administratorController.AdministratorController;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.administratorVO.AdministratorVO;
+import businessLogic.businessLogicController.administratorController.AdministratorController;
+import constant.Authority;
+import constant.UserType;
 
+@SuppressWarnings("serial")
 public class ModifyAdminPanel extends DetailPanel {
 	private AdministratorController adminCon=new AdministratorController();
 	private AdministratorVO adminVO;
@@ -31,10 +31,12 @@ public class ModifyAdminPanel extends DetailPanel {
 	
 	private JLabel result=new JLabel();
 	
+	@SuppressWarnings("rawtypes")
 	private JComboBox typeBox=new JComboBox();
 	private JTextField nameText=new JTextField();
 	private JTextField idText=new JTextField();
 	private JTextField passwordText=new JTextField();
+	@SuppressWarnings("rawtypes")
 	private JComboBox limitBox = new JComboBox();
 	
 	private LimpidButton query = new LimpidButton("","picture/查询.png");
@@ -66,6 +68,7 @@ public class ModifyAdminPanel extends DetailPanel {
 	private boolean isFirstEnsure = true;
 	private boolean isOver=false;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ModifyAdminPanel(){
 		
 		this.id.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
@@ -263,11 +266,7 @@ public class ModifyAdminPanel extends DetailPanel {
 	
 private boolean isCorrect(){
 		
-		String typeStr=(String)typeBox.getSelectedItem();
-		String nameStr=nameText.getText();
 		String idStr=idText.getText();
-		String passwordStr=passwordText.getText();
-		String limitStr=(String)limitBox.getSelectedItem();
 		
 		if(!idStr.matches("[B-Hb-h][0-9]+")){
 			idText.setText("");

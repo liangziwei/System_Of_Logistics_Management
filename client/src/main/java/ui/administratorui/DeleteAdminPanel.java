@@ -6,19 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.administratorController.AdministratorController;
-import constant.Authority;
-import constant.UserType;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.administratorVO.AdministratorVO;
+import businessLogic.businessLogicController.administratorController.AdministratorController;
 
+@SuppressWarnings("serial")
 public class DeleteAdminPanel extends DetailPanel {
 	private AdministratorController adminCon=new AdministratorController();
 	private AdministratorVO adminVO;
@@ -31,10 +28,12 @@ public class DeleteAdminPanel extends DetailPanel {
 	
 	private JLabel result=new JLabel();
 	
+	@SuppressWarnings("rawtypes")
 	private JComboBox typeBox=new JComboBox();
 	private JTextField nameText=new JTextField();
 	private JTextField idText=new JTextField();
 	private JTextField passwordText=new JTextField();
+	@SuppressWarnings("rawtypes")
 	private JComboBox limitBox = new JComboBox();
 	
 	private LimpidButton query = new LimpidButton("","picture/查询.png");
@@ -63,9 +62,7 @@ public class DeleteAdminPanel extends DetailPanel {
 	
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
-	private boolean isFirstEnsure = true;
-	private boolean isOver=false;
-	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DeleteAdminPanel(){
 		
 		this.id.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
@@ -207,11 +204,7 @@ public class DeleteAdminPanel extends DetailPanel {
 	
 private boolean isCorrect(){
 		
-		String typeStr=(String)typeBox.getSelectedItem();
-		String nameStr=nameText.getText();
 		String idStr=idText.getText();
-		String passwordStr=passwordText.getText();
-		String limitStr=(String)limitBox.getSelectedItem();
 		
 		if(!idStr.matches("[B-Hb-h][0-9]+")){
 			idText.setText("");
@@ -241,18 +234,5 @@ private void visible(boolean isVisible){
 		this.nameText.setEditable(false);
 		this.passwordText.setEditable(false);
 		this.limitBox.setEditable(false);
-	}
-	
-	private void enablePanel(){
-		this.typeBox.setEditable(true);
-		this.nameText.setEditable(true);
-		this.passwordText.setEditable(true);
-		this.limitBox.setEditable(true);
-	}
-	
-	private void setBlack(){
-		this.nameText.setText("");
-		this.idText.setText("");
-		this.passwordText.setText("");
 	}
 }

@@ -10,6 +10,7 @@ public class DriverPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 6242284594279622202L;
+	@SuppressWarnings("unused")
 	private boolean isWrong =false;
 	private String driverid;
 	private String name;

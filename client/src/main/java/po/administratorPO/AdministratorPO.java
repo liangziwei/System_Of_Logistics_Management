@@ -10,6 +10,7 @@ public class AdministratorPO implements Serializable{
 	
 	private static final long serialVersionUID = 4363691605247598871L;
 
+	@SuppressWarnings("unused")
 	private boolean isWrong =false;
 	private UserType type;
 	private String name;
