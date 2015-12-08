@@ -1,6 +1,7 @@
 package ui.administratorui;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +21,8 @@ public class AdministratorPanel extends UserPanel{
 	private LimpidButton deleAdmin=new LimpidButton("","picture/删除账户.png");
 	private LimpidButton modAdmin=new LimpidButton("","picture/修改账户.png");
 	private LimpidButton exit = new LimpidButton("","picture/退出.png");
+	
+	private Image head = new ImageIcon("picture/管理员.jpg").getImage();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
@@ -58,6 +61,8 @@ public class AdministratorPanel extends UserPanel{
 		this.task.add(deleAdmin);
 		this.task.add(modAdmin);
 		this.task.add(exit);
+		
+		this.task.user.setBackground(head);
 	}
 	
 	private void addListener(){

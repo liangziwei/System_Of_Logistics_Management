@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 @SuppressWarnings("serial")
 public class TaskPanel extends JScrollPane{
 	
-	protected UserImagePanel user = new UserImagePanel();
+	public UserImagePanel user = new UserImagePanel();
 	
 	/**
 	 *包含任务按钮的容器 
@@ -64,11 +64,14 @@ public class TaskPanel extends JScrollPane{
 	public TaskPanel() {
 		this.setBounds(0, TitlePanel.TITLE_PANEL_H, TASK_PANEL_W, TASK_PANEL_H);
 		
+		this.user.repaint();
 		this.buttonContainer.setLayout(null);
 		this.buttonContainer.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
 		this.buttonContainer.add(this.user);
 		
 		this.setViewportView(this.buttonContainer);
+		this.getViewport().setOpaque(false);
+		this.setOpaque(false);
 		this.getVerticalScrollBar().setUnitIncrement(12);
 	}
 	

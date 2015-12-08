@@ -1,6 +1,7 @@
 package ui.financeui;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -58,6 +59,8 @@ public class FinancePanel extends UserPanel{
 	private TaskButton originalInfo = new TaskButton("");
 	
 	private TaskButton exit = new TaskButton("");
+	
+	private Image head = new ImageIcon("picture/财务人员.jpg").getImage();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 
@@ -164,6 +167,10 @@ public class FinancePanel extends UserPanel{
 		this.task.buttonContainer.add(this.statistics);
 		this.task.buttonContainer.add(this.originalInfo);
 		this.task.buttonContainer.add(this.exit);
+		
+		this.task.buttonContainer.setOpaque(false);
+		
+		this.task.user.setBackground(head);
 	}
 	
 	private void addTaskListener() {

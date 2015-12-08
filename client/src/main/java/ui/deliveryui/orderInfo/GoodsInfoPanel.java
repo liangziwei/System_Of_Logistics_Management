@@ -54,10 +54,15 @@ public class GoodsInfoPanel extends JPanel{
 		this.priceLabel.setFont(font);
 		//文本框
 		this.numText.setFont(font);
+		this.numText.setOpaque(false);
 		this.nameText.setFont(font);
+		this.nameText.setOpaque(false);
 		this.volumnText.setFont(font);
+		this.volumnText.setOpaque(false);
 		this.weightText.setFont(font);
+		this.weightText.setOpaque(false);
 		this.priceText.setFont(font);
+		this.priceText.setOpaque(false);
 	}
 	
 	public void clearInfo() {
@@ -97,6 +102,8 @@ public class GoodsInfoPanel extends JPanel{
 
 	private void addComponent() {
 		//将组件添加到面板
+		this.setBackground(null);
+		this.setOpaque(false);
 		this.add(this.nameLabel);
 		this.add(this.numLabel);
 		this.add(this.weightLabel);

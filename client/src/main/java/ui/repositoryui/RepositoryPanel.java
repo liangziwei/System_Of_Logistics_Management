@@ -1,6 +1,7 @@
 package ui.repositoryui;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class RepositoryPanel extends UserPanel {
 	private JButton FindOutRepository = new JButton("");
 
 	private JButton SeeTransferringList = new JButton("");
+	
+	private Image head = new ImageIcon("picture/中转中心仓库管理员.jpg").getImage();
 
 
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
@@ -127,6 +130,9 @@ public class RepositoryPanel extends UserPanel {
 		this.task.buttonContainer.add(CheckDelivery);
 		this.task.buttonContainer.add(RepositoryWarn);
 		this.task.buttonContainer.add(exit);
+		this.task.buttonContainer.setOpaque(false);
+		
+		this.task.user.setBackground(head);
 	}
 
 	private void addListenter() {
