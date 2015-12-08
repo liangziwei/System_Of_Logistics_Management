@@ -5,17 +5,16 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.businessController.DriverController;
-import businessLogic.businessLogicModel.util.CommonLogic;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.DriverVO;
+import businessLogic.businessLogicController.businessController.DriverController;
 
+@SuppressWarnings("serial")
 public class FindDriverPanel extends DetailPanel {
 	private DriverController driverCon=new DriverController();
 	private DriverVO driverVO;
@@ -42,8 +41,10 @@ public class FindDriverPanel extends DetailPanel {
 	
 	private LimpidButton query = new LimpidButton("","picture/查询.png");
 	
+	@SuppressWarnings("unused")
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
+	@SuppressWarnings("unused")
 	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static final int LABEL_W = 140;
@@ -66,8 +67,6 @@ public class FindDriverPanel extends DetailPanel {
 	
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
-	private boolean isFirstEnsure = true;
-	private boolean isOver=false;
 	
 	public FindDriverPanel(){
 		this.driverid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
@@ -193,12 +192,6 @@ public class FindDriverPanel extends DetailPanel {
 	private boolean isCorrect(){
 		
 		String driveridStr=driveridText.getText();
-		String nameStr=nameText.getText();
-		String birthdayStr=birthdayText.getText();
-		String idNumber=idNumberText.getText();
-		String phoneStr=phoneNumberText.getText();
-		String genderStr=genderText.getText();
-		String drivingDeadlineStr=drivingDeadlineText.getText();
 		
 		
 		if(!driveridStr.matches("\\d{9}")){
@@ -235,25 +228,5 @@ public class FindDriverPanel extends DetailPanel {
 		this.phoneNumberText.setEditable(false);
 		this.genderText.setEditable(false);
 		this.drivingDeadlineText.setEditable(false);
-	}
-	
-	private void enablePanel(){
-		this.driveridText.setEditable(true);
-		this.nameText.setEditable(true);
-		this.birthdayText.setEditable(true);
-		this.idNumberText.setEditable(true);
-		this.phoneNumberText.setEditable(true);
-		this.genderText.setEditable(true);
-		this.drivingDeadlineText.setEditable(true);
-	}
-	
-	private void setBlack(){
-		this.driveridText.setText("");
-		this.nameText.setText("");
-		this.birthdayText.setText("");
-		this.idNumberText.setText("");
-		this.phoneNumberText.setText("");
-		this.genderText.setText("");
-		this.drivingDeadlineText.setText("");
 	}
 }

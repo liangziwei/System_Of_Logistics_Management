@@ -7,7 +7,7 @@ public class VehicleDataImpl_Stub implements VehicleDataService {
 
 	public boolean addVehicle(VehiclePO vehiclePO) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public VehiclePO findVehicle(String vehicleid) {
@@ -17,12 +17,12 @@ public class VehicleDataImpl_Stub implements VehicleDataService {
 
 	public boolean deleteVehicle(String vehicleid) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public boolean modifyVehicle(VehiclePO vehiclePO) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

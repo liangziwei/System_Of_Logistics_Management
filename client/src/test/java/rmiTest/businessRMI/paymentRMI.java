@@ -8,6 +8,7 @@ import businessLogic.businessLogicController.businessController.PaymentControlle
 
 public class paymentRMI {
 
+	@SuppressWarnings("unused")
 	@Test
 	public void test() {
 		ArrayList<String> s=new ArrayList<String>();

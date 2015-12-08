@@ -2,7 +2,6 @@ package businessLogic.businessLogicModel.administratorModel;
 
 import java.rmi.RemoteException;
 
-import network.RMI;
 import po.administratorPO.AdministratorPO;
 import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
 import vo.administratorVO.AdministratorVO;

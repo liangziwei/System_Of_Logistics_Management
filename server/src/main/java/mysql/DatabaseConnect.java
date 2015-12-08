@@ -12,6 +12,7 @@ public class DatabaseConnect {
 	private static final String USER="root";
 //	private static final String PASSWORD="blabla";
 	private static final String PASSWORD="r4anwe5we5123456";
+//	private static final String PASSWORD="r4anwe5we5123456";
 //	private static final String PASSWORD="X1231z60";
 //	private static final String PASSWORD = "1282976747";
 

@@ -1,6 +1,5 @@
 package businessLogic.businessLogicModel.businessModel;
 
-import network.RMI;
 import po.businessPO.VehiclePO;
 import stub.dataImpl_stub.businessDataImpl_stub.VehicleDataImpl_Stub;
 import vo.businessVO.VehicleVO;

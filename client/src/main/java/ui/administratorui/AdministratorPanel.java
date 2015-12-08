@@ -14,6 +14,7 @@ import ui.baseui.UserPanel;
 import ui.mainui.LoginPanel;
 import ui.viewcontroller.ViewController;
 
+@SuppressWarnings("serial")
 public class AdministratorPanel extends UserPanel{
 
 	private LimpidButton addAdmin=new LimpidButton("","picture/添加账户.png");
