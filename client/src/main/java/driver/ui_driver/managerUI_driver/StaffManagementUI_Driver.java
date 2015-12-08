@@ -2,9 +2,8 @@ package driver.ui_driver.managerUI_driver;
 
 import java.util.Scanner;
 
-import stub.businessLogicImpl_stub.managerBLImpl_stub.StaffManagementBLImpl_Stub;
-import vo.managerVO.StaffVO;
 import businessLogicService.managerBLService.StaffManagementBLService;
+import stub.businessLogicImpl_stub.managerBLImpl_stub.StaffManagementBLImpl_Stub;
 
 public class StaffManagementUI_Driver {
 	public static void main(String[] args) {

@@ -7,9 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import po.businessPO.ReceivablePO;
-import vo.businessVO.ReceivableVO;
 import businessLogic.businessLogicController.financeController.SettlementController;
+import vo.businessVO.ReceivableVO;
 
 public class SettlementTest {
 

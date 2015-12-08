@@ -1,6 +1,6 @@
 package mock.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,9 @@ import org.junit.Test;
 
 import businessLogic.businessLogicController.repositoryController.OutRepositoryController;
 import businessLogicService.repositoryBLService.OutRepositoryBLService;
-import constant.City;
 import constant.LoadingType;
 import mock.object.MockTransferring;
 import po.transitionPO.TransferringPO;
-import vo.repositoryVO.RepositoryInfoVO;
 import vo.transitionVO.TransferringVO;
 
 public class TransferringList {
