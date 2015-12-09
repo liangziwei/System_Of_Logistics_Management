@@ -22,5 +22,9 @@ public class StatisticsController implements StatisticsBLSevice{
 	public List<ReceivableVO> getReceivableList(String startDate,String endDate) {
 		return statistics.getReceivableList(startDate, endDate);
 	}
+	
+	public void outExcel(List<ReceivableVO> list){
+		 statistics.outExcel(list);
+	}
 
 }
