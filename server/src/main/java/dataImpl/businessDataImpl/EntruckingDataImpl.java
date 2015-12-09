@@ -4,10 +4,11 @@ import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-import dataService.businessDataService.EntruckingDataService;
 import mysql.Database;
 import po.businessPO.EntruckingPO;
+import dataService.businessDataService.EntruckingDataService;
 
 public class EntruckingDataImpl implements EntruckingDataService {
 	
@@ -18,6 +19,7 @@ public class EntruckingDataImpl implements EntruckingDataService {
 	private String vehicleid;
 	private String supervisor;//监装员
 	private String supercargo;//押运员
+	private List<String> deliveryIDList;
 	private double freight;//运费
 	public boolean addEntruckingFrom(EntruckingPO entruckingPO) {
 		// TODO Auto-generated method stub
@@ -29,6 +31,7 @@ public class EntruckingDataImpl implements EntruckingDataService {
 		supervisor=entruckingPO.getSupervisor();
 		supercargo=entruckingPO.getSupercargo();
 		freight=entruckingPO.getFreight();
+		deliveryIDList=entruckingPO.getDeliveryIDList();
 		
 		String val="";
 		val="'"+date+"','"+businessHallid+"','"+transportNumber+"','"+destionation+"','"+vehicleid+"','"+supervisor+"','"+supercargo+"',"+freight+",0,1";

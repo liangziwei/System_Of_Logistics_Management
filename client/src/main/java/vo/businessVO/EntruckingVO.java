@@ -1,5 +1,8 @@
 package vo.businessVO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import po.businessPO.EntruckingPO;
 import vo.ApprovalFormVO;
 
@@ -12,6 +15,7 @@ public class EntruckingVO extends ApprovalFormVO{
 	private String vehicleid;
 	private String supervisor;//监装员
 	private String supercargo;//押运员
+	private List<String> deliveryIDList=new ArrayList<String>();
 	private double freight;//运费
 	
 
@@ -90,6 +94,14 @@ public class EntruckingVO extends ApprovalFormVO{
 
 	public void setFreight(double freight) {
 		this.freight = freight;
+	}
+
+	public List<String> getDeliveryIDList() {
+		return deliveryIDList;
+	}
+
+	public void setDeliveryIDList(List<String> deliveryIDList) {
+		this.deliveryIDList = deliveryIDList;
 	}
 
 	public EntruckingPO entruckingVOToPO(){
