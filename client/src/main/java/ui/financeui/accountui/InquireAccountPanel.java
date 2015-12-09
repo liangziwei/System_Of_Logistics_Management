@@ -64,6 +64,7 @@ public class InquireAccountPanel extends DetailPanel{
 		//账户名称文本框
 		this.nameText.setBounds(LABEL_W + (START_X * 3 >> 1), this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.nameText.getX() + TEXT_W + (START_X >> 1), this.nameText.getY(),
 				BUTTON_W, BUTTON_H);

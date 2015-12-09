@@ -12,15 +12,15 @@ import ui.deliveryui.OrderInputPanel;
 @SuppressWarnings("serial")
 public class GoodsInfoPanel extends JPanel{
 
-	private JLabel numLabel = new JLabel("原件数");
+	private JLabel numLabel = new JLabel("原件数（个）");
 	
-	private JLabel weightLabel = new JLabel("实际重量");
+	private JLabel weightLabel = new JLabel("重量（KG）");
 	
-	private JLabel volumnLabel = new JLabel("体积");
+	private JLabel volumnLabel = new JLabel("体积（cm^3）");
 	
 	private JLabel nameLabel = new JLabel("物品名称");
 	
-	private JLabel priceLabel = new JLabel("运费");
+	private JLabel priceLabel = new JLabel("运费（元）");
 	
 	private JTextField numText = new JTextField();
 	
@@ -43,6 +43,8 @@ public class GoodsInfoPanel extends JPanel{
 		this.setDefaultValue();
 		//将组件添加到主面板
 		this.addComponent();
+		//将输入框设置为透明
+		this.setOpaque();
 	}
 	
 	public void setWordFont(Font font) {
@@ -54,15 +56,10 @@ public class GoodsInfoPanel extends JPanel{
 		this.priceLabel.setFont(font);
 		//文本框
 		this.numText.setFont(font);
-		this.numText.setOpaque(false);
 		this.nameText.setFont(font);
-		this.nameText.setOpaque(false);
 		this.volumnText.setFont(font);
-		this.volumnText.setOpaque(false);
 		this.weightText.setFont(font);
-		this.weightText.setOpaque(false);
 		this.priceText.setFont(font);
-		this.priceText.setOpaque(false);
 	}
 	
 	public void clearInfo() {
@@ -71,6 +68,14 @@ public class GoodsInfoPanel extends JPanel{
 		this.volumnText.setText("");
 		this.weightText.setText("");
 		this.priceText.setText("");
+	}
+	
+	private void setOpaque() {
+		this.numText.setOpaque(false);
+		this.nameText.setOpaque(false);
+		this.volumnText.setOpaque(false);
+		this.weightText.setOpaque(false);
+		this.priceText.setOpaque(false);
 	}
 	
 	private void setDefaultValue() {

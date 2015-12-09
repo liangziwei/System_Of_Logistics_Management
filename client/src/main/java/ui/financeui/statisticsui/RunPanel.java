@@ -26,6 +26,8 @@ public class RunPanel extends DetailPanel{
 	
 	private JTable table = null;
 	
+	private JScrollPane tableContainer = new JScrollPane();
+	
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
 	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
@@ -67,6 +69,8 @@ public class RunPanel extends DetailPanel{
 		this.add(this.cancel);
 		//添加按钮事件监听
 		this.addButtonListener();
+		//表格面板
+		this.add(this.tableContainer);
 	}
 	
 	private void addButtonListener() {
@@ -82,6 +86,8 @@ public class RunPanel extends DetailPanel{
 				list = statistics.getReceivableList(startDate, endDate);
 				//显示收款单列表
 				initTable(list);
+				
+				repaint();
 			}
 		});
 		//取消按钮
@@ -91,6 +97,9 @@ public class RunPanel extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//清空用户输入
 				dateInput.clearInfo();
+				//隐藏收款单列表和收款单详细信息
+				if(tableContainer != null) tableContainer.setVisible(false);
+				if(panel != null) panel.setVisible(false);
 			}
 		});
 	}
@@ -114,10 +123,10 @@ public class RunPanel extends DetailPanel{
 		int rowH = 20;
 		this.table.setRowHeight(rowH);
 		//将表格添加到主面板
-		JScrollPane container = new JScrollPane();
-		container.setBounds(DATE_H >> 1, 5 + DATE_H, TABLE_W - (DATE_H >> 1), TABLE_H);
-		container.setViewportView(this.table);
-		this.add(container);
+		this.tableContainer.setBounds(DATE_H >> 1, 5 + DATE_H, TABLE_W - (DATE_H >> 1), TABLE_H);
+		this.tableContainer.setViewportView(this.table);
+		this.tableContainer.setVisible(true);
+		this.revalidate();
 		//添加表格监听
 		this.addTableListener();
 	}
@@ -128,7 +137,10 @@ public class RunPanel extends DetailPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				super.mouseReleased(e);
-				showReceivable(list.get(table.getSelectedRow()));
+				int select = table.getSelectedRow();
+				if(select >= 0 && select < list.size()) {
+					showReceivable(list.get(table.getSelectedRow()));
+				}
 			}
 			
 		});
@@ -142,8 +154,5 @@ public class RunPanel extends DetailPanel{
 				RECEIVABLE_W, RECEIVABLE_H);
 		this.add(panel);
 		this.revalidate();
-		this.repaint();
 	}
-	
-	
 }

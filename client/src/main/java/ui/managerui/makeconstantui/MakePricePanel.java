@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,6 +17,7 @@ import constant.TransitType;
 import po.deliveryPO.PackPrice;
 import po.deliveryPO.TransitPrice;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 
 @SuppressWarnings("serial")
 public class MakePricePanel extends DetailPanel{
@@ -26,17 +26,15 @@ public class MakePricePanel extends DetailPanel{
 	
 	private JScrollPane container = new JScrollPane();
 	
-	private JButton ok = new JButton("确定");
-	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
 	private JLabel tip = new JLabel();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
-	private static final int BUTTON_W = 80;
+	private static final int BUTTON_W = 140;
 	
-	private static final int BUTTON_H = 39;
+	private static final int BUTTON_H = 42;
 	
 	private static final int LABEL_W = BUTTON_W;
 	
@@ -86,16 +84,11 @@ public class MakePricePanel extends DetailPanel{
 	
 	private void initButtons() {
 		//确定按钮
-		this.ok.setBounds(this.container.getX() + (TABLE_W >> 1), 
+		this.ok.setBounds(this.container.getX() + (TABLE_W >> 1) - (BUTTON_W >> 1), 
 				this.container.getY() + this.container.getHeight() + (BUTTON_H * 3 >> 1), BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-		//取消按钮
-		this.cancel.setBounds(this.ok.getX() + (BUTTON_W << 1), this.ok.getY(), BUTTON_W, BUTTON_H);
-		this.cancel.setFont(WORD_FONT);
-		this.cancel.setVisible(false);
 		//将按钮添加到面板
 		this.add(this.ok);
-		this.add(this.cancel);
 		//添加事件监听
 		this.addListener();
 	}
@@ -138,14 +131,6 @@ public class MakePricePanel extends DetailPanel{
 				}
 				//刷新面板
 				repaint();
-			}
-		});
-		//取消按钮
-		this.cancel.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
 			}
 		});
 	}

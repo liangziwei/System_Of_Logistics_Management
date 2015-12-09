@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.financeController.CostController;
 import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.financeBLService.CostBLService;
-import ui.baseui.DatePanel;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.financeVO.PaymentVO;
@@ -26,7 +26,9 @@ public class CostPanel extends DetailPanel{
 
 	private JLabel dateLabel = new JLabel("付款日期");
 	
-	private DatePanel dateText = new DatePanel();
+	private JTextField dateText = new JTextField();
+	
+	private DateChooser dateChooser = DateChooser.getInstance();
 	
 	private JLabel moneyLabel = new JLabel("付款金额");
 	
@@ -92,9 +94,10 @@ public class CostPanel extends DetailPanel{
 		this.dateLabel.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.dateLabel.setFont(WORD_FONT);
 		//付款日期文本框
-		this.dateText.setPanelBound(this.dateLabel.getX() + LABEL_W + LT_GAP, this.dateLabel.getY(), TEXT_W, TEXT_H);
+		this.dateText.setBounds(this.dateLabel.getX() + LABEL_W + LT_GAP, this.dateLabel.getY(), TEXT_W, TEXT_H);
 		this.dateText.setFont(WORD_FONT);
 		this.dateText.setOpaque(false);
+		this.dateChooser.register(this.dateText);
 		//付款金额标签
 		this.moneyLabel.setBounds(this.dateLabel.getX(), this.dateLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.moneyLabel.setFont(WORD_FONT);
@@ -160,7 +163,7 @@ public class CostPanel extends DetailPanel{
 	}
 	
 	private PaymentVO createPayment() {
-		return new PaymentVO(this.dateText.getDate(), Double.parseDouble(this.moneyText.getText()),
+		return new PaymentVO(this.dateText.getText(), Double.parseDouble(this.moneyText.getText()),
 				this.nameText.getText(), this.accountText.getText(), 
 				(String)this.itemText.getSelectedItem(), this.noteText.getText(), false, false);
 	}
@@ -174,7 +177,7 @@ public class CostPanel extends DetailPanel{
 	
 	private void clearInfo() {
 		this.nameText.setText("");
-		this.dateText.clearInfo();
+		this.dateText.setText("");
 		this.moneyText.setText("");
 		this.accountText.setText("");
 		this.noteText.setText("");
@@ -247,12 +250,12 @@ public class CostPanel extends DetailPanel{
 	
 	private boolean verifyInput() {
 		//验证输入日期是否合法
-		if(!CommonLogic.isDate(this.dateText.getDate())) {
+		if(!CommonLogic.isDate(this.dateText.getText())) {
 			tip.setText("输入的日期不存在");
 			return false;
 		}
 		//验证输入是否完整
-		if(CommonLogic.isNull(this.dateText.getDate()) || CommonLogic.isNull(this.moneyText.getText())
+		if(CommonLogic.isNull(this.dateText.getText()) || CommonLogic.isNull(this.moneyText.getText())
 				|| CommonLogic.isNull(this.nameText.getText()) || CommonLogic.isNull(this.accountText.getText())
 				|| CommonLogic.isNull(this.noteText.getText())) {
 			tip.setText("请把信息填写完整");
