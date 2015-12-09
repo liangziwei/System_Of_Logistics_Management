@@ -34,5 +34,7 @@ public interface StatisticsBLSevice {
 	 * @return List<ReceivableVO> ,返回记录收款单信息对象的列表
 	 */
 	public List<ReceivableVO> getReceivableList(String startDate,String endDate);
+	
+	public void outExcel(List<ReceivableVO> list);
 
 }
