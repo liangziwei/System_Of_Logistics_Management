@@ -16,6 +16,7 @@ public class ExcelTest {
 	@Test
 	public void test() {
 		StatisticsController statCon=new StatisticsController();
+		String fileSave = "d:\\workbook.xls";
 		List<ReceivableVO> receivable = new ArrayList<ReceivableVO>();
 		ArrayList<String> deliveryid1 = new ArrayList<String>();
 		ArrayList<String> deliveryid2 = new ArrayList<String>();
@@ -31,7 +32,7 @@ public class ExcelTest {
 		receivable.add(new ReceivableVO("2015-02-11",100.0,"小红",deliveryid1,"02500001"));
 		receivable.add(new ReceivableVO("2015-02-12",120.0,"小李",deliveryid2,"02500002"));
 		receivable.add(new ReceivableVO("2015-02-13",145.0,"小王",deliveryid3,"02500003"));
-		statCon.outExcel(receivable);
+		statCon.outExcel(fileSave, receivable);
 	}
 
 }

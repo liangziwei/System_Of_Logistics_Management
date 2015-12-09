@@ -86,7 +86,7 @@ public class Statistics {
 		return income;
 	}
 	
-	public void outExcel(List<ReceivableVO> list) {
+	public void outExcel(String fileSave, List<ReceivableVO> list) {
 		HSSFWorkbook wb = new HSSFWorkbook();//创建了一个excel文件
 		HSSFSheet sheet = wb.createSheet("经营情况表");//创建了一个工作簿
 		sheet.setDefaultColumnWidth(20);//设置统一单元格宽度
@@ -148,7 +148,7 @@ public class Statistics {
         }//外循环
         FileOutputStream fileOut = null;  
         try{              
-            fileOut = new FileOutputStream("d:\\workbook.xls");  
+            fileOut = new FileOutputStream(fileSave);  
             wb.write(fileOut);  
             //fileOut.close();  
 //            System.out.print("OK");  
