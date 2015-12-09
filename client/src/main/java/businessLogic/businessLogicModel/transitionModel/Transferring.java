@@ -18,7 +18,7 @@ import po.transitionPO.TransferringPO;
 import vo.transitionVO.TransferringVO;
 
 public class Transferring {
-//	MockTransferring mockTransferring = new MockTransferring();
+	//	MockTransferring mockTransferring = new MockTransferring();
 	private TransferringDataService transferringDataService = RMI.<TransferringDataService>getDataService("transferring");
 	
 	public TransferringVO findTransferringFormBL(String transferringNumber) {

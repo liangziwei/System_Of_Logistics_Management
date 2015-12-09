@@ -5,17 +5,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import businessLogic.businessLogicController.financeController.StatisticsController;
-import businessLogicService.financeBLService.StatisticsBLSevice;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import ui.financeui.settlementui.ReceivablePanel;
 import vo.businessVO.ReceivableVO;
+import businessLogic.businessLogicController.financeController.StatisticsController;
+import businessLogicService.financeBLService.StatisticsBLSevice;
 
 @SuppressWarnings("serial")
 public class RunPanel extends DetailPanel{
@@ -31,6 +34,8 @@ public class RunPanel extends DetailPanel{
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
 	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
+	
+	private LimpidButton excel = new LimpidButton("", "picture/导出报表.png");
 	
 	private List<ReceivableVO> list = null;
 	
@@ -67,6 +72,10 @@ public class RunPanel extends DetailPanel{
 		this.cancel.setBounds(buttonX + (BUTTON_W << 1), this.ok.getY(), 80, 30);
 		this.cancel.setFont(WORD_FONT);
 		this.add(this.cancel);
+		//导出报表按钮
+		this.excel.setBounds(160, 428, 80, 30);
+		this.excel.setFont(WORD_FONT);
+		this.add(this.excel);
 		//添加按钮事件监听
 		this.addButtonListener();
 		//表格面板
@@ -100,6 +109,27 @@ public class RunPanel extends DetailPanel{
 				//隐藏收款单列表和收款单详细信息
 				if(tableContainer != null) tableContainer.setVisible(false);
 				if(panel != null) panel.setVisible(false);
+			}
+		});
+		//导出报表按钮
+		this.excel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(list!=null){
+					String fileSave = "d:\\workbook.xls";
+					JFileChooser jfc=new JFileChooser();  
+			        jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG ); 
+			        jfc.showSaveDialog(new JLabel());  
+			        File file=jfc.getSelectedFile(); 
+			        fileSave = file.getAbsolutePath();
+			        int i = fileSave.lastIndexOf(".");
+			        String extention = fileSave.substring(i+1);
+			        if(!extention.equals("xls")){
+			        	 fileSave+=".xls";
+			        }			           
+					statistics.outExcel(fileSave,list);		
+				}		
 			}
 		});
 	}

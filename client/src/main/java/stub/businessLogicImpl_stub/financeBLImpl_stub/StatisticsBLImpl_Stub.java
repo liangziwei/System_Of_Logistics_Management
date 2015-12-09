@@ -41,4 +41,8 @@ public class StatisticsBLImpl_Stub implements StatisticsBLSevice{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void outExcel(String fileSave, List<ReceivableVO> list) {
+		
+	}
 }

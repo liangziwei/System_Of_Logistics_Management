@@ -1,6 +1,8 @@
 package po.businessPO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntruckingPO implements Serializable{
 	
@@ -13,6 +15,7 @@ public class EntruckingPO implements Serializable{
 	private String supervisor;//监装员
 	private String supercargo;//押运员
 	private double freight;//运费
+	private List<String> deliveryIDList=new ArrayList<String>();
 	private boolean isApproved=false; 
 	private boolean isPassed=true;
 
@@ -91,6 +94,14 @@ public class EntruckingPO implements Serializable{
 
 	public void setFreight(double freight) {
 		this.freight = freight;
+	}
+
+	public List<String> getDeliveryIDList() {
+		return deliveryIDList;
+	}
+
+	public void setDeliveryIDList(List<String> deliveryIDList) {
+		this.deliveryIDList = deliveryIDList;
 	}
 
 	public boolean isApproved() {

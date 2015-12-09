@@ -2,6 +2,7 @@ package businessLogic.businessLogicModel.businessModel;
 
 import java.rmi.RemoteException;
 
+import po.businessPO.EntruckingPO;
 import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_stub;
 import vo.businessVO.EntruckingVO;
 import businessLogic.businessLogicModel.managerModel.TransitPriceIO;
@@ -18,9 +19,10 @@ public class Entrucking {
 	
 	public boolean addEntruckingFrom(EntruckingVO entruckingVO) {
 		// TODO Auto-generated method stub
-
+		EntruckingPO entruckingPO=entruckingVO.entruckingVOToPO();
+		entruckingPO.setDeliveryIDList(entruckingVO.getDeliveryIDList());
 		try {
-			return entruckingData.addEntruckingFrom(entruckingVO.entruckingVOToPO());
+			return entruckingData.addEntruckingFrom(entruckingPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

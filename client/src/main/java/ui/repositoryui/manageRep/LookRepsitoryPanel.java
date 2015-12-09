@@ -1,15 +1,12 @@
 package ui.repositoryui.manageRep;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,7 +19,6 @@ import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.repositoryBLService.ManageRepositoryBLService;
 import constant.AreaCodeType;
 import ui.DateChooser;
-import ui.baseui.DatePanel;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.repositoryVO.RepositoryInfoVO;
@@ -30,10 +26,10 @@ import vo.repositoryVO.RepositoryVO;
 
 public class LookRepsitoryPanel extends DetailPanel {
 	ManageRepositoryBLService manageRepositoryBLService = new ManageRepositoryController();
-	
-	private DateChooser dateChoose1 =DateChooser.getInstance();
-	private DateChooser dateChoose2 =DateChooser.getInstance();
-	
+
+	private DateChooser dateChoose1 = DateChooser.getInstance();
+	private DateChooser dateChoose2 = DateChooser.getInstance();
+
 	private JLabel inRepository = new JLabel("入库单数量");
 	private JLabel outRepository = new JLabel("出库单数量");
 	private JLabel inMoney = new JLabel("入库金额");
@@ -48,31 +44,42 @@ public class LookRepsitoryPanel extends DetailPanel {
 	private JTextField outMoneyText = new JTextField();
 	private JTextField allRepositoryText = new JTextField();
 	private JTextField startyear = new JTextField();
-//	private JTextField startmonth = new JTextField();
-//	private JTextField startday = new JTextField();
+	// private JTextField startmonth = new JTextField();
+	// private JTextField startday = new JTextField();
 	private JTextField endyear = new JTextField();
-//	private JTextField endmonth = new JTextField();
-//	private JTextField endday = new JTextField();
+	// private JTextField endmonth = new JTextField();
+	// private JTextField endday = new JTextField();
 
 	private JTable table = null;
-	private LimpidButton find = new LimpidButton("","picture/查询.png");
-	private LimpidButton cancle = new LimpidButton("","picture/清空.png");
+	JScrollPane jScrollPaneTable = null;
+	private LimpidButton find = new LimpidButton("", "picture/查询.png");
+	private LimpidButton cancle = new LimpidButton("", "picture/清空.png");
 	private JPanel datePanel = new JPanel() {
-//		public void paintComponent(Graphics g) {
-//			super.paintComponent(g);
-//			g.setColor(Color.gray);
-//			// 开始日期
-//			g.drawLine(startyear.getX() + startyear.getWidth(), startyear.getY() + BUTTON_H / 2,
-//					startyear.getX() + startyear.getWidth() + 10, startyear.getY() + BUTTON_H / 2);
-//			g.drawLine(startmonth.getX() + startmonth.getWidth(), startyear.getY() + BUTTON_H / 2,
-//					startmonth.getX() + startmonth.getWidth() + 10, startyear.getY() + BUTTON_H / 2);
-//			// 结束日期
-//			g.drawLine(endyear.getX() + endyear.getWidth(), endyear.getY() + BUTTON_H / 2,
-//					endyear.getX() + endyear.getWidth() + 10, endyear.getY() + BUTTON_H / 2);
-//			g.drawLine(endmonth.getX() + endmonth.getWidth(), endyear.getY() + BUTTON_H / 2,
-//					endmonth.getX() + endmonth.getWidth() + 10, endyear.getY() + BUTTON_H / 2);
-//		}
+		// public void paintComponent(Graphics g) {
+		// super.paintComponent(g);
+		// g.setColor(Color.gray);
+		// // 开始日期
+		// g.drawLine(startyear.getX() + startyear.getWidth(), startyear.getY()
+		// + BUTTON_H / 2,
+		// startyear.getX() + startyear.getWidth() + 10, startyear.getY() +
+		// BUTTON_H / 2);
+		// g.drawLine(startmonth.getX() + startmonth.getWidth(),
+		// startyear.getY() + BUTTON_H / 2,
+		// startmonth.getX() + startmonth.getWidth() + 10, startyear.getY() +
+		// BUTTON_H / 2);
+		// // 结束日期
+		// g.drawLine(endyear.getX() + endyear.getWidth(), endyear.getY() +
+		// BUTTON_H / 2,
+		// endyear.getX() + endyear.getWidth() + 10, endyear.getY() + BUTTON_H /
+		// 2);
+		// g.drawLine(endmonth.getX() + endmonth.getWidth(), endyear.getY() +
+		// BUTTON_H / 2,
+		// endmonth.getX() + endmonth.getWidth() + 10, endyear.getY() + BUTTON_H
+		// / 2);
+		// }
 	};
+	private JPanel tablePanel = new JPanel();
+
 	private JPanel infoPanel = new JPanel();
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
@@ -129,13 +136,20 @@ public class LookRepsitoryPanel extends DetailPanel {
 		// 状态信息
 		state.setBounds(datePanel.getX(), datePanel.getY() + datePanel.getHeight(), LABEL_W * 2,
 				TEXT_H + COMPONENT_GAP_X);
+		state.setFont(WORD_FONT);
+		state.setForeground(Color.red);
 		// 信息面板
-		infoPanel.setBounds(state.getX(), state.getY() + state.getHeight(), LABEL_W + TEXT_W + COMPONENT_GAP_X * 2,
+		infoPanel.setBounds(state.getX(), state.getY() + state.getHeight(), LABEL_W + TEXT_W + COMPONENT_GAP_X,
 				(LABEL_H + COMPONENT_GAP_X) * 9);
 		infoPanel.setLayout(null);
 		infoPanel.setVisible(false);
 		infoPanel.setOpaque(false);
 		initinfo();
+
+		// tablePanel
+		tablePanel.setBounds(inRepositoryText.getX() + inRepositoryText.getWidth() + 10,
+				find.getY() + find.getHeight() + COMPONENT_GAP_Y, Area_W, Area_H + LABEL_H * 3);
+		tablePanel.setOpaque(false);
 		addPanels();
 		// showState("123121");
 
@@ -147,15 +161,21 @@ public class LookRepsitoryPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (startyear.getText().trim().equals("")||(!CommonLogic.isDate(startyear.getText().trim()))) {
-//					infoPanel.setVisible(false);
+				if (startyear.getText().trim().equals("") || endyear.getText().trim().equals("")
+						|| (!CommonLogic.isDate(startyear.getText().trim()))
+						|| (!CommonLogic.isDate(endyear.getText().trim()))) {
+					// infoPanel.setVisible(false);
+					infoPanel.setVisible(false);
+					if (jScrollPaneTable!=null) {
+						tablePanel.remove(jScrollPaneTable);						
+					}
 					showState("时间不可为空或时间输入有误");
-				}
-				else {
+				} else {
+					showState("");
 					String starttime = startyear.getText().trim();
 					String endtime = endyear.getText().trim();
-					if (CommonLogic.isDate(starttime)&&CommonLogic.isDate(endtime)) {
-						String time = starttime+";"+endtime;
+					if (CommonLogic.isDate(starttime) && CommonLogic.isDate(endtime)) {
+						String time = starttime + ";" + endtime;
 						List<RepositoryInfoVO> list = manageRepositoryBLService.SeeRepositoryBL(time);
 						List<RepositoryInfoVO> InRepInfo = BeinRepositoryInfo(list);
 						List<RepositoryInfoVO> OutRepInfo = BeoutRepositoryInfo(list);
@@ -164,6 +184,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 						setoutRepinfo(OutRepInfo);
 						setallRep(allRep);
 						initTable(InRepInfo);
+						infoPanel.setVisible(true);
 					}
 				}
 			}
@@ -174,56 +195,63 @@ public class LookRepsitoryPanel extends DetailPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				startyear.setText("");
-//				startmonth.setText("");
-//				startday.setText("");
+				// startmonth.setText("");
+				// startday.setText("");
 				endyear.setText("");
-//				endmonth.setText("");
-//				endday.setText("");
+				// endmonth.setText("");
+				// endday.setText("");
+				infoPanel.setVisible(false);
+				tablePanel.remove(jScrollPaneTable);
 			}
 		});
 	}
-	//将RepositoryInfo转化为入库单集合与出库单集合
+
+	// 将RepositoryInfo转化为入库单集合与出库单集合
 	private List<RepositoryInfoVO> BeinRepositoryInfo(List<RepositoryInfoVO> repositoryInfoVOs) {
 		List<RepositoryInfoVO> inRep = new ArrayList<RepositoryInfoVO>();
-		for(int i=0;i<repositoryInfoVOs.size();i++){
+		for (int i = 0; i < repositoryInfoVOs.size(); i++) {
 			if (repositoryInfoVOs.get(i).getbeinrepository()) {
 				inRep.add(repositoryInfoVOs.get(i));
 			}
 		}
-		
+
 		return inRep;
 	}
+
 	private List<RepositoryInfoVO> BeoutRepositoryInfo(List<RepositoryInfoVO> repositoryInfoVOs) {
 		List<RepositoryInfoVO> outRep = new ArrayList<RepositoryInfoVO>();
-		for(int i=0;i<repositoryInfoVOs.size();i++){
+		for (int i = 0; i < repositoryInfoVOs.size(); i++) {
 			if (!repositoryInfoVOs.get(i).getbeinrepository()) {
 				outRep.add(repositoryInfoVOs.get(i));
 			}
 		}
 		return outRep;
 	}
-	//设置infoPanel
+
+	// 设置infoPanel
 	private void setinRepinfo(List<RepositoryInfoVO> repositoryInfoVOs) {
-		inRepositoryText.setText(repositoryInfoVOs.size()+"");
+		inRepositoryText.setText(repositoryInfoVOs.size() + "");
 		double money = 0.0;
-		for(int i=0;i<repositoryInfoVOs.size();i++){
-			money+=repositoryInfoVOs.get(i).getmoney();
+		for (int i = 0; i < repositoryInfoVOs.size(); i++) {
+			money += repositoryInfoVOs.get(i).getmoney();
 		}
-		inMoneyText.setText(money+"");
+		inMoneyText.setText(money + "");
 	}
+
 	private void setoutRepinfo(List<RepositoryInfoVO> repositoryInfoVOs) {
-		outRepositoryText.setText(repositoryInfoVOs.size()+"");
+		outRepositoryText.setText(repositoryInfoVOs.size() + "");
 		double money = 0.0;
-		for(int i=0;i<repositoryInfoVOs.size();i++){
-			money+=repositoryInfoVOs.get(i).getmoney();
+		for (int i = 0; i < repositoryInfoVOs.size(); i++) {
+			money += repositoryInfoVOs.get(i).getmoney();
 		}
-		outMoneyText.setText(money+"");
+		outMoneyText.setText(money + "");
 	}
+
 	private void setallRep(List<RepositoryVO> repositoryVOs) {
-		allRepositoryText.setText(repositoryVOs.size()+"");
+		allRepositoryText.setText(repositoryVOs.size() + "");
 	}
-	
-	//初始化table面板
+
+	// 初始化table面板
 	private void initTable(List<RepositoryInfoVO> list) {
 		// 设置列表
 		Object[] names = { "快递编号", "区号", "排号", "架号", "位号" };
@@ -259,34 +287,39 @@ public class LookRepsitoryPanel extends DetailPanel {
 		int rowH = 20;
 		this.table.setRowHeight(rowH);
 		// 添加列表
-		JScrollPane jScrollPane = new JScrollPane();
-		jScrollPane.setBounds(40, find.getY() + find.getHeight() + COMPONENT_GAP_Y, Area_W + LABEL_W, Area_H + LABEL_H);
-		jScrollPane.setViewportView(table);
-		add(jScrollPane);
+		jScrollPaneTable = new JScrollPane();
+		jScrollPaneTable.setBounds(0, 0, Area_W - 30, Area_H + LABEL_H * 2);
+		jScrollPaneTable.setViewportView(table);
+		this.tablePanel.add(jScrollPaneTable);
 	}
 
 	private void initdate() {
 		startdate.setBounds(0, (LABEL_H + BUTTON_H) / 2, LABEL_W, BUTTON_H);
 		startdate.setFont(WORD_FONT);
 		this.datePanel.add(startdate);
-		startyear.setBounds(startdate.getX() + startdate.getWidth() + 5, startdate.getY(), date_W*3+30, BUTTON_H);
+		startyear.setBounds(startdate.getX() + startdate.getWidth() + 5, startdate.getY(), date_W * 3 + 30, BUTTON_H);
 		dateChoose1.register(startyear);
 		this.datePanel.add(startyear);
-//		startmonth.setBounds(startyear.getX() + startyear.getWidth() + 10, startyear.getY(), date_W, BUTTON_H);
-//		this.datePanel.add(startmonth);
-//		startday.setBounds(startmonth.getX() + startmonth.getWidth() + 10, startmonth.getY(), date_W, BUTTON_H);
-//		this.datePanel.add(startday);
+		// startmonth.setBounds(startyear.getX() + startyear.getWidth() + 10,
+		// startyear.getY(), date_W, BUTTON_H);
+		// this.datePanel.add(startmonth);
+		// startday.setBounds(startmonth.getX() + startmonth.getWidth() + 10,
+		// startmonth.getY(), date_W, BUTTON_H);
+		// this.datePanel.add(startday);
 
-		enddate.setBounds(startyear.getX() + startyear.getWidth() + COMPONENT_GAP_X, startdate.getY(), LABEL_W, BUTTON_H);
+		enddate.setBounds(startyear.getX() + startyear.getWidth() + COMPONENT_GAP_X, startdate.getY(), LABEL_W,
+				BUTTON_H);
 		enddate.setFont(WORD_FONT);
 		this.datePanel.add(enddate);
-		endyear.setBounds(enddate.getX() + enddate.getWidth() + 5, enddate.getY(), date_W*3+30, BUTTON_H);
+		endyear.setBounds(enddate.getX() + enddate.getWidth() + 5, enddate.getY(), date_W * 3 + 30, BUTTON_H);
 		dateChoose2.register(endyear);
 		this.datePanel.add(endyear);
-//		endmonth.setBounds(endyear.getX() + endyear.getWidth() + 10, endyear.getY(), date_W, BUTTON_H);
-//		this.datePanel.add(endmonth);
-//		endday.setBounds(endmonth.getX() + endmonth.getWidth() + 10, endmonth.getY(), date_W, BUTTON_H);
-//		this.datePanel.add(endday);
+		// endmonth.setBounds(endyear.getX() + endyear.getWidth() + 10,
+		// endyear.getY(), date_W, BUTTON_H);
+		// this.datePanel.add(endmonth);
+		// endday.setBounds(endmonth.getX() + endmonth.getWidth() + 10,
+		// endmonth.getY(), date_W, BUTTON_H);
+		// this.datePanel.add(endday);
 
 		find.setBounds(endyear.getX() + endyear.getWidth() + COMPONENT_GAP_X, endyear.getY(), BUTTON_W, BUTTON_H);
 		find.setFont(WORD_FONT);
@@ -353,10 +386,11 @@ public class LookRepsitoryPanel extends DetailPanel {
 		this.add(datePanel);
 		this.add(state);
 		this.add(infoPanel);
+		this.add(tablePanel);
 	}
 
 	private void showState(String msg) {
-		this.state.setText(msg);
+		this.state.setText("<html>"+msg+"</html>");
 		this.repaint();
 	}
 }
