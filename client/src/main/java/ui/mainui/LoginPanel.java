@@ -123,7 +123,7 @@ public class LoginPanel extends JPanel{
 		pwField.setOpaque(false);
 		
 		//错误提示
-		this.hint.setBounds(pwField.getX()+20, pwField.getY() + TB_GAP, 120, BUTTON_H);
+		this.hint.setBounds(idLabel.getX()+20, pwField.getY() + TB_GAP, 180, BUTTON_H);
 		this.hint.setFont(TEXT_FONT);
 		//确定按钮
 		this.ok.setBounds(pwField.getX() + (TEXT_W >> 1), pwField.getY() + TB_GAP, BUTTON_W, BUTTON_H);
@@ -164,11 +164,12 @@ public class LoginPanel extends JPanel{
 					hint.setForeground(Color.RED);
 					hint.setText("账号輸入格式错误");
 				}else{
-				    //设置当前页面不可见
-					setVisible(false);
-					//跳转到相应用户的界面
+				    
 					String password=pwField.getText();
 					if(login.login(id, password)){
+						//设置当前页面不可见
+						setVisible(false);
+						//跳转到相应用户的界面
 						hint.setText("");
 						viewController.switchView(USER_TABLE.get(id.charAt(0)));
 					}else{
