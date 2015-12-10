@@ -6,6 +6,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import network.RMI;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
@@ -16,14 +18,12 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import dataService.financeDataService.StatisticsDataService;
 import po.businessPO.ReceivablePO;
 import po.financePO.PaymentPO;
-import stub.dataImpl_stub.financeDataImpl_stub.StatisticsDataImpl_Stub;
 import vo.businessVO.ReceivableVO;
 import vo.financeVO.CostBenefitVO;
 
 public class Statistics {
 
-//	private StatisticsDataService statisticsData = RMI.<StatisticsDataService>getDataService("statistics");
-	private StatisticsDataService statisticsData =new StatisticsDataImpl_Stub();
+	private StatisticsDataService statisticsData = RMI.<StatisticsDataService>getDataService("statistics");
 	public CostBenefitVO getCostBenefit(String startDate, String endDate) {
 		//计算总成本
 		double cost = this.calculateCost(startDate, endDate);
