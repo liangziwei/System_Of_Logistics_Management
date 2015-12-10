@@ -24,7 +24,6 @@ public class DatabaseConnect {
 //	private static final String PASSWORD="X1231z60";
 //	private static final String PASSWORD = "1282976747";
 
-	
 
 	private static Connection conn=null;
 	

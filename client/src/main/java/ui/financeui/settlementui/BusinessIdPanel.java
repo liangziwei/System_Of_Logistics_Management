@@ -52,6 +52,7 @@ public class BusinessIdPanel extends JPanel{
 		
 		//将组件添加到面板
 		this.setLayout(null);
+		this.setOpaque(false);
 		this.setBounds(x, y, w, h);
 		this.add(this.idLabel);
 		this.add(this.idText);

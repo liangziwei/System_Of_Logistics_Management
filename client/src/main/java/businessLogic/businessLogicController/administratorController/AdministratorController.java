@@ -1,15 +1,15 @@
 package businessLogic.businessLogicController.administratorController;
 
-import vo.administratorVO.AdministratorVO;
 import businessLogic.businessLogicModel.administratorModel.Administrator;
 import businessLogicService.administratorBLService.AdministratorBLService;
+import vo.administratorVO.AdministratorVO;
 
 public class AdministratorController implements AdministratorBLService {
 
 	private Administrator admin=new Administrator();
 	
 	public boolean addUser(AdministratorVO administratorVO) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub    
 		return admin.addUser(administratorVO);
 	}
 

@@ -13,12 +13,12 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import dataService.financeDataService.StatisticsDataService;
 import po.businessPO.ReceivablePO;
 import po.financePO.PaymentPO;
 import stub.dataImpl_stub.financeDataImpl_stub.StatisticsDataImpl_Stub;
 import vo.businessVO.ReceivableVO;
 import vo.financeVO.CostBenefitVO;
-import dataService.financeDataService.StatisticsDataService;
 
 public class Statistics {
 
@@ -86,7 +86,7 @@ public class Statistics {
 		return income;
 	}
 	
-	public void outExcel(List<ReceivableVO> list) {
+	public void outExcel(String fileSave, List<ReceivableVO> list) {
 		HSSFWorkbook wb = new HSSFWorkbook();//创建了一个excel文件
 		HSSFSheet sheet = wb.createSheet("经营情况表");//创建了一个工作簿
 		sheet.setDefaultColumnWidth(20);//设置统一单元格宽度
@@ -148,7 +148,7 @@ public class Statistics {
         }//外循环
         FileOutputStream fileOut = null;  
         try{              
-            fileOut = new FileOutputStream("d:\\workbook.xls");  
+            fileOut = new FileOutputStream(fileSave);  
             wb.write(fileOut);  
             //fileOut.close();  
 //            System.out.print("OK");  

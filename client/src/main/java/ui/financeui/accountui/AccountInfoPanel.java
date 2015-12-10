@@ -35,6 +35,7 @@ public class AccountInfoPanel extends JPanel{
 		//账户名称文本框
 		this.nameText.setBounds(labelW + (startX * 3 >> 1), this.nameLabel.getY(), textW, textH);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//账户金额标签
 		this.moneyLabel.setBounds(this.nameLabel.getX(), this.nameLabel.getY() + labelH + startY,
 				labelW, labelH);
@@ -42,8 +43,10 @@ public class AccountInfoPanel extends JPanel{
 		//账户金额文本框
 		this.moneyText.setBounds(this.nameText.getX(), this.moneyLabel.getY(), textW, textH);
 		this.moneyText.setFont(WORD_FONT);
+		this.moneyText.setOpaque(false);
 		//主面板
 		this.setLayout(null);
+		this.setOpaque(false);
 		this.setBounds(x, y, w, h);
 		this.add(this.nameLabel);
 		this.add(this.nameText);

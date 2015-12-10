@@ -66,6 +66,7 @@ public class AddOrganization extends DetailPanel{
 				this.idLabel.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
 		this.idText.setOpaque(false);
+		this.idText.setOpaque(false);
 		//机构类型标签
 		this.typeLabel.setBounds(this.idLabel.getX(),
 				this.idLabel.getY() + LABEL_H + (START_Y >> 1), LABEL_W, LABEL_H);

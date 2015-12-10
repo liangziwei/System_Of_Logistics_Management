@@ -83,14 +83,10 @@ public class OrderInquirePanel extends DetailPanel{
 				this.search.getY(),
 				BUTTON_W, BUTTON_H);
 		this.inquire.setFont(WORD_FONT);
-//		this.inquire.setIcon(new ImageIcon("picture/查询.png"));
-//		this.inquire.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.inquire.getX() + BUTTON_W + COMPONENT_GAP, this.inquire.getY(),
 				BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
-//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-//		this.cancel.setBorderPainted(false);
 		//错误信息
 		this.error.setBounds(this.search.getX(), this.search.getY() + (TEXT_H << 1), TEXT_W << 1, LABEL_H);
 		this.error.setFont(WORD_FONT);
@@ -111,6 +107,7 @@ public class OrderInquirePanel extends DetailPanel{
 		this.orderInfo.setVisible(false);
 		this.container.setViewportView(this.orderInfo);
 		this.container.setVisible(false);
+		this.container.setOpaque(false);
 		this.add(this.container);
 	}
 	
@@ -131,6 +128,7 @@ public class OrderInquirePanel extends DetailPanel{
 					error.setText("");
 					//查询订单信息
 					OrderVO order = orderService.getOrderInfoById(search.getText());
+					
 					//如果查找不到该订单
 					if(order == null) {
 						error.setText("该订单不存在");
@@ -142,6 +140,8 @@ public class OrderInquirePanel extends DetailPanel{
 					//显示订单信息
 					orderInfo.setVisible(true);
 					container.setVisible(true);
+					System.out.println(orderInfo.getPreferredSize().getWidth());
+					System.out.println(orderInfo.getPreferredSize().getHeight());
 				}
 				repaint();
 			}

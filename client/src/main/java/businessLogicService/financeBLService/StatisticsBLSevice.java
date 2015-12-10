@@ -35,6 +35,6 @@ public interface StatisticsBLSevice {
 	 */
 	public List<ReceivableVO> getReceivableList(String startDate,String endDate);
 	
-	public void outExcel(List<ReceivableVO> list);
+	public void outExcel(String fileSave, List<ReceivableVO> list);
 
 }

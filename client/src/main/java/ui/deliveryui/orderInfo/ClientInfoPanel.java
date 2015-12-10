@@ -56,6 +56,8 @@ public class ClientInfoPanel extends JPanel{
 		this.setDefaultValue();
 		//将组件添加到面板
 		this.addComponent();
+		//设置输入框为透明
+		this.setOpaque();
 	}
 	
 	public void clearInfo() {
@@ -64,6 +66,14 @@ public class ClientInfoPanel extends JPanel{
 		this.companyText.setText("可不填");
 		this.phoneText.setText("可不填");
 		this.mobileText.setText("");
+	}
+	
+	private void setOpaque() {
+		this.nameText.setOpaque(false);
+		this.addressText.setOpaque(false);
+		this.companyText.setOpaque(false);
+		this.phoneText.setOpaque(false);
+		this.mobileText.setOpaque(false);
 	}
 	
 	
@@ -77,15 +87,10 @@ public class ClientInfoPanel extends JPanel{
 		this.mobileLabel.setFont(font);
 		//文本框
 		this.nameText.setFont(font);
-		this.nameText.setOpaque(false);
 		this.addressText.setFont(font);
-		this.addressText.setOpaque(false);
 		this.companyText.setFont(font);
-		this.companyText.setOpaque(false);
 		this.phoneText.setFont(font);
-		this.phoneText.setOpaque(false);
 		this.mobileText.setFont(font);
-		this.mobileText.setOpaque(false);
 	}
 	
 	private void setDefaultValue() {

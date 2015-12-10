@@ -45,12 +45,12 @@ public class SettleAllPanel extends DetailPanel{
 				int row = list.getSelectedRow();
 				if(row < receivableVO.size()) {
 					//收款单详细信息面板
+					if(receivable != null) receivable.setVisible(false);
 					receivable = new ReceivablePanel(receivableVO.get(row),
 							DETAIL_PANEL_W >> 1, list.getY(),
 							DETAIL_PANEL_W >> 1, DETAIL_PANEL_H * 5 / 6);
 					add(receivable);
-					receivable.validate();
-					receivable.repaint();
+					receivable.revalidate();
 				}
 			}
 		});

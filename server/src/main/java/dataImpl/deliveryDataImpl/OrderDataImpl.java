@@ -27,11 +27,16 @@ public class OrderDataImpl implements OrderDataService{
 		ResultSet rs;
 		try {
 			rs = Database.findOperation("select * from order_table where goods_id = '" + id + "';");
+			if(rs.next()) {
+				return this.createOrderPO(rs);
+			}
+			else {
+				return null;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return this.createOrderPO(rs);
 	}
 
 	public boolean saveOrderInfo(OrderPO orderPO) {

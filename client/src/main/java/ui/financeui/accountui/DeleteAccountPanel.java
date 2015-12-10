@@ -30,6 +30,8 @@ public class DeleteAccountPanel extends DetailPanel{
 	
 	private JLabel tip = new JLabel();
 	
+	private AccountInfoPanel panel = null;
+	
 	private LimpidButton delete = new LimpidButton("","picture/删除.png");
 	
 	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
@@ -66,6 +68,7 @@ public class DeleteAccountPanel extends DetailPanel{
 		//账户名称文本框
 		this.nameText.setBounds(LABEL_W + (START_X * 3 >> 1), this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//确定按钮
 		this.ok.setBounds(this.nameText.getX() + TEXT_W + START_X, this.nameText.getY(),
 				BUTTON_W, BUTTON_H);
@@ -122,7 +125,8 @@ public class DeleteAccountPanel extends DetailPanel{
 				delete.setVisible(true);
 				cancel.setVisible(true);
 				//展示账户信息
-				AccountInfoPanel panel = new AccountInfoPanel(0, tip.getY() + TEXT_H,
+				if(panel != null) panel.setVisible(false);
+				panel = new AccountInfoPanel(0, tip.getY() + TEXT_H,
 							DETAIL_PANEL_W, DETAIL_PANEL_H - LABEL_H * 3, vo);
 				add(panel);
 				//刷新面板
@@ -169,7 +173,10 @@ public class DeleteAccountPanel extends DetailPanel{
 		nameText.setText("");
 		//展现确认按钮
 		ok.setVisible(true);
+		//隐藏账户信息面板
+		if(this.panel != null) this.panel.setVisible(false);
 		//刷新面板
 		repaint();
 	}
+	
 }

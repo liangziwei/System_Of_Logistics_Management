@@ -128,6 +128,8 @@ public class ProfitPanel extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//清空用户输入
 				dateInput.clearInfo();
+				//清空成本与收益信息
+				clearCostBenfit();
 			}
 		});
 	}
@@ -136,6 +138,14 @@ public class ProfitPanel extends DetailPanel{
 		this.costText.setText(new Double(vo.getTotalPayment()).toString());
 		this.earningsText.setText(new Double(vo.getTotalIncome()).toString());
 		this.profitText.setText(new Double(vo.getTotalProfit()).toString());
+		this.repaint();
+	}
+	
+	//清空成本与收益信息
+	private void clearCostBenfit() {
+		this.costText.setText("");
+		this.earningsText.setText("");
+		this.profitText.setText("");
 		this.repaint();
 	}
 }
