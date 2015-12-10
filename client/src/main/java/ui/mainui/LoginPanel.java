@@ -1,5 +1,6 @@
 package ui.mainui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -22,15 +23,19 @@ import ui.managerui.ManagerPanel;
 import ui.repositoryui.RepositoryPanel;
 import ui.transitionui.TransitionPanel;
 import ui.viewcontroller.ViewController;
+import businessLogic.businessLogicController.administratorController.LoginBL;
 
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel{
 	
 	private ViewController viewController;
+	private LoginBL login;
 	
 	private JLabel idLabel = new JLabel("账号");
 	
 	private JLabel pwLabel = new JLabel("密码");
+	
+	private JLabel hint=new JLabel();//错误提示
 	
 	private JTextField idField= new JTextField();
 	
@@ -93,8 +98,10 @@ public class LoginPanel extends JPanel{
 	//背景图片
 	private static Image BACKGROUND = new ImageIcon("picture/login.png").getImage();
 	
+	
 	public LoginPanel(ViewController viewController) {
 		this.viewController = viewController;
+		this.login=new LoginBL();
 		
 		this.repaint();
 		//面板
@@ -114,6 +121,10 @@ public class LoginPanel extends JPanel{
 		pwField.setBounds(idField.getX(), this.pwLabel.getY(), TEXT_W, TEXT_H);
 		pwField.setFont(TEXT_FONT);
 		pwField.setOpaque(false);
+		
+		//错误提示
+		this.hint.setBounds(pwField.getX()+20, pwField.getY() + TB_GAP, 120, BUTTON_H);
+		this.hint.setFont(TEXT_FONT);
 		//确定按钮
 		this.ok.setBounds(pwField.getX() + (TEXT_W >> 1), pwField.getY() + TB_GAP, BUTTON_W, BUTTON_H);
 		this.ok.setFont(TEXT_FONT);
@@ -129,6 +140,7 @@ public class LoginPanel extends JPanel{
 		this.add(idField);
 		this.add(this.pwLabel);
 		this.add(pwField);
+		this.add(hint);
 		this.add(this.ok);
 		this.add(this.cancel);
 		//增加时间监听
@@ -147,11 +159,23 @@ public class LoginPanel extends JPanel{
 				//TODO 测试代码
 				//跳转页面
 				String id = idField.getText();
-				if(id == null || id.equals("")) return;
-				//设置当前页面不可见
-				setVisible(false);
-				//跳转到相应用户的界面
-				viewController.switchView(USER_TABLE.get(id.charAt(0)));
+				id=id.toUpperCase();
+				if(id == null ||!id.matches("[B-H][0-9]{9}")) {
+					hint.setForeground(Color.RED);
+					hint.setText("账号輸入格式错误");
+				}else{
+				    //设置当前页面不可见
+					setVisible(false);
+					//跳转到相应用户的界面
+					String password=pwField.getText();
+					if(login.login(id, password)){
+						hint.setText("");
+						viewController.switchView(USER_TABLE.get(id.charAt(0)));
+					}else{
+						hint.setForeground(Color.RED);
+						hint.setText("账号或密码输入错误");
+					}
+				}
 			}
 		});
 		

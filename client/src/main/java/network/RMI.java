@@ -1,8 +1,14 @@
 package network;
 
+import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 public class RMI {
 	
@@ -10,7 +16,8 @@ public class RMI {
 	
 	static {
 		try {
-			registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
+			String ip=getConfig();
+			registry = LocateRegistry.getRegistry(ip, 1099);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -32,5 +39,31 @@ public class RMI {
 			e.printStackTrace();
 		}
 		return service;
+	}
+	
+	private static String getConfig(){
+		String ip="127.0.0.1";
+		try {  
+            File f = new File("server.xml");  
+            if (!f.exists()) {  
+                System.out.println("  Error : Config file doesn't exist!");  
+                System.exit(1);  
+            }  
+            SAXReader reader = new SAXReader();  
+            Document doc;  
+            doc = reader.read(f);  
+            Element root = doc.getRootElement();  
+            Element data;  
+            Iterator<?> itr = root.elementIterator("VALUE");  
+            data = (Element) itr.next();  
+  
+            ip = data.elementText("server").trim();  
+             
+  
+        } catch (Exception ex) {  
+            System.out.println("Error : " + ex.toString());
+            return ip;
+        }
+		return ip;
 	}
 }

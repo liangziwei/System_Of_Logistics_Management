@@ -32,9 +32,12 @@ public class EntruckingDataImpl implements EntruckingDataService {
 		supercargo=entruckingPO.getSupercargo();
 		freight=entruckingPO.getFreight();
 		deliveryIDList=entruckingPO.getDeliveryIDList();
-		
+		String deliveryStr=deliveryIDList.get(0);
+		for(int i=1;i<deliveryIDList.size();i++){
+			deliveryStr+=" "+deliveryIDList.get(i);
+		}
 		String val="";
-		val="'"+date+"','"+businessHallid+"','"+transportNumber+"','"+destionation+"','"+vehicleid+"','"+supervisor+"','"+supercargo+"',"+freight+",0,1";
+		val="'"+date+"','"+businessHallid+"','"+transportNumber+"','"+destionation+"','"+vehicleid+"','"+supervisor+"','"+supercargo+"','"+deliveryStr+"',"+freight+",0,1";
 		
 		return Database.add("entrucking", val);
 	}
