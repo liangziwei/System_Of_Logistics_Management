@@ -70,6 +70,12 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+//		try {
+//			rs.close();
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 //		//设置入库单的金额
 //		thelist=this.Price(thelist);
 		
@@ -84,12 +90,29 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 		}
 		String deliveryid2 = null;
 		String date2 = null;
+		AreaCodeType areaCode2 = null;
+		String rowid2 = null;
+		String shelfid2 = null;
+		String posid2 = null;
 		try {
-			while (rs.next()) {
+			while (rs2.next()) {
 				date2 = rs2.getString("outrepositorydate");
 				if (TIME[0].compareTo(date2)<=0&&TIME[1].compareTo(date2)>=0) {
 					deliveryid2 = rs2.getString("deliveryid");
-					RepositoryInfoPO repositoryInfoPOout = new RepositoryInfoPO(deliveryid, null, null, null, null, false);
+					try {
+						ResultSet rs3 = Database.query("inRepository", "deliveryid", deliveryid2);
+						while (rs3.next()) {
+							areaCode2 = AreaCodeType.valueOf(rs3.getString("areaCode"));
+							rowid2 = rs3.getString("rowid");
+							shelfid2 = rs3.getString("shelfid");
+							posid2 = rs3.getString("posid");
+						}
+						rs3.close();
+					} catch (Exception e) {
+						// TODO: handle exception
+						e.printStackTrace();
+					}
+					RepositoryInfoPO repositoryInfoPOout = new RepositoryInfoPO(deliveryid, areaCode2, rowid2, shelfid2, posid2, false);
 					thelist.add(repositoryInfoPOout);	
 				}			
 			}
@@ -97,6 +120,8 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		
 		//设置入、出库单的金额
 		thelist=this.Price(thelist);
 
@@ -313,14 +338,13 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 		try {
 			while (rs.next()) {
 				deliveryid = rs.getString("deliveryid");
-				inrepositorydate = rs.getString("inrepositorydate");
-				arrivalid = rs.getString("arrivalid");
+				inrepositorydate = rs.getString("arrivalid");
 				areaCode = AreaCodeType.valueOf(rs.getString("areaCode"));
 				rowid = rs.getString("rowid");
 				shelfid = rs.getString("shelfid");
 				posid = rs.getString("posid");
 				RepositoryPO repositoryPO = new RepositoryPO(deliveryid, inrepositorydate, arrivalid, areaCode, rowid,
-						shelfid, posid);
+						shelfid, posid);                                                       
 				thelist.add(repositoryPO);
 			}
 		} catch (Exception e) {
@@ -332,15 +356,17 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 	}
 	
 	public List<RepositoryInfoPO> Price(List<RepositoryInfoPO> TherepositoryInfoPOs) {
-		ResultSet RS = null;
 		double fare = 0.0;
 		for(int i =0;i<TherepositoryInfoPOs.size();i++){
+			String ID = TherepositoryInfoPOs.get(i).getdeliveryid();
+//			ResultSet rs = null;
 
 //			rs = Database.findOperation(sql);
 			try {
-				RS=Database.query("order","goods_id",TherepositoryInfoPOs.get(i).getdeliveryid());
-				while(RS.next()){
-					fare = RS.getDouble("price");
+//				ResultSet rs=Database.query("order","goods_id",ID);
+				ResultSet rs = Database.findOperation("select * from order where goods_id = '" + ID + "';");
+				while(rs.next()){
+					fare = rs.getDouble("price");
 					TherepositoryInfoPOs.get(i).setmoney(fare);
 				}
 			} catch (Exception e) {
