@@ -1,7 +1,10 @@
-package po.deliveryPO;
+package po.constant;
 
 import java.io.Serializable;
 
+/**
+ *不同运输方式每公里每吨的运输价格常量 
+ */
 public class TransitPrice implements Serializable{
 
 	/**

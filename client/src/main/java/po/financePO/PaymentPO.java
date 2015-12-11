@@ -3,13 +3,14 @@ package po.financePO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import dataService.Approvable;
 import vo.financeVO.PaymentVO;
 
 /**
  * 记录了付款单的信息
  * @author 张仁知
  */
-public class PaymentPO implements Serializable{
+public class PaymentPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

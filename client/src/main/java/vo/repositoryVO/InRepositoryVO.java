@@ -2,13 +2,13 @@
 package vo.repositoryVO;
 
 import constant.AreaCodeType;
-import vo.ApprovalFormVO;
+import dataService.Approvable;
 
 /**
  * 记录了入库单的信息
  * @author 阮威威
  */
-public class InRepositoryVO extends ApprovalFormVO{
+public class InRepositoryVO implements Approvable{
 	/**
 	 * 快递的编号（十位数字）
 	 */
@@ -140,10 +140,6 @@ public class InRepositoryVO extends ApprovalFormVO{
 	}
 	public boolean getVerifyResult() {
 		return VerifyResult;
-	}
-	@Override
-	public String getDate() {
-		return this.inrepositorydate;
 	}
 	
 	public String getAreaCodeString() {

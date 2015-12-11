@@ -2,15 +2,15 @@ package dataService.repositoryDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
+import dataService.ApproveFormService;
 import po.repositoryPO.InRepositoryPO;
 
 /**
  *description:数据服务层为中转中心库存管理的入库单信息管理提供的服务 
  * @author 阮威威
  */
-public interface InRepositoryDataService extends Remote{
+public interface InRepositoryDataService extends Remote, ApproveFormService{
 	
 	/**
 	 * description:添加新的入库单信息
@@ -62,13 +62,4 @@ public interface InRepositoryDataService extends Remote{
 	 * */
 	public boolean modifyUpdateRepositoryInfoDT(InRepositoryPO inRepository)throws RemoteException;
 	
-	/**
-	 *审批一张入库单 
-	 */
-	public boolean approveOneInRepository(InRepositoryPO form) throws RemoteException;
-	
-	/**
-	 *审批多张入库单 
-	 */
-	public boolean approveMoreInRepository(ArrayList<InRepositoryPO> form) throws RemoteException;
 }

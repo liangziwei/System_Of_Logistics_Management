@@ -2,10 +2,10 @@ package dataService.deliveryDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 
 import constant.City;
+import dataService.ApproveFormService;
 import po.deliveryPO.OrderPO;
 import po.deliveryPO.TimeRecordPO;
 
@@ -13,7 +13,7 @@ import po.deliveryPO.TimeRecordPO;
  * description:数据服务层为订单信息逻辑处理提供的服务
  * @author 肖安祥
  */
-public interface OrderDataService extends Remote{
+public interface OrderDataService extends Remote, ApproveFormService{
 
 	/**
 	 * description:通过订单条形码号得到相应的订单信息
@@ -45,15 +45,4 @@ public interface OrderDataService extends Remote{
 	 * @return List<TimeRecordPO> 返回时间记录持久化对象的列表
 	 */
 	public List<TimeRecordPO> getTimeRecords(City source, City destination)throws RemoteException;
-	
-	/**
-	 * 审批一张订单
-	 */
-	public boolean approveOneOrder(OrderPO po) throws RemoteException;
-	
-	/**
-	 * 审批多张订单
-	 */
-	public boolean approveMoreOrder(ArrayList<OrderPO> po) throws RemoteException;
-	
 }

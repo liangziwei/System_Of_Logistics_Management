@@ -9,6 +9,7 @@ import constant.ClientType;
 import constant.DeliveryType;
 import constant.PackageType;
 import constant.TransitionNode;
+import dataService.Approvable;
 import dataService.deliveryDataService.OrderDataService;
 import po.deliveryPO.ClientInfo;
 import po.deliveryPO.GoodsInfo;
@@ -59,15 +60,16 @@ public class OrderDataImpl_Stub implements OrderDataService{
 	}
 
 	@Override
-	public boolean approveOneOrder(OrderPO po) {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean approveMoreOrder(ArrayList<OrderPO> po) {
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

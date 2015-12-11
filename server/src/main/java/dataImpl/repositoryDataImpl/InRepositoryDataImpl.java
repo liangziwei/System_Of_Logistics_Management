@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import constant.AreaCodeType;
+import dataService.Approvable;
 import dataService.repositoryDataService.InRepositoryDataService;
 import mysql.Database;
 import po.repositoryPO.InRepositoryPO;
@@ -164,10 +165,24 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		return null;
 	}
 
+//	@Override
+//	public boolean approveOneInRepository(InRepositoryPO form) throws RemoteException {
+//		
+//	}
+//
+//	@Override
+//	public boolean approveMoreInRepository(ArrayList<InRepositoryPO> form) throws RemoteException {
+//		int size = form.size();
+//		for(int i = 0; i < size; i++) {
+//			this.approveOneInRepository(form.get(i));
+//		}
+//		return true;
+//	}
+
 	@Override
-	public boolean approveOneInRepository(InRepositoryPO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = "update inRepository set isApproved = 1, isPassed = 1 where "
-				+ "deliveryid = '" + form.getdeliveryid() + "';";
+				+ "deliveryid = '" + ((InRepositoryPO)form).getdeliveryid() + "';";
 		try {
 			return Database.operate(sql);
 		} catch (SQLException e) {
@@ -177,12 +192,9 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 	}
 
 	@Override
-	public boolean approveMoreInRepository(ArrayList<InRepositoryPO> form) throws RemoteException {
-		int size = form.size();
-		for(int i = 0; i < size; i++) {
-			this.approveOneInRepository(form.get(i));
-		}
-		return true;
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

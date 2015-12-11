@@ -1,4 +1,4 @@
-package po.deliveryPO;
+package po.constant;
 
 import java.io.Serializable;
 

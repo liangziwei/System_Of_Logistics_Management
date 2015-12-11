@@ -5,6 +5,7 @@ import po.businessPO.ReceivablePO;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import dataService.Approvable;
 import dataService.businessDataService.PaymentDataService;
 
 public class PaymentDataImpl_Stub implements  PaymentDataService {
@@ -15,15 +16,16 @@ public class PaymentDataImpl_Stub implements  PaymentDataService {
 	}
 
 	@Override
-	public boolean approveOneReceivable(ReceivablePO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean approveMoreReceivable(ArrayList<ReceivablePO> form) throws RemoteException {
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

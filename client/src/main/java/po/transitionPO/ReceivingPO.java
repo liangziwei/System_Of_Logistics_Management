@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import constant.CargoState;
+import dataService.Approvable;
 import vo.transitionVO.ReceivingVO;
 
 /**
  * 记录了接收单的信息
  * @author 阮威威
  */
-public class ReceivingPO implements Serializable{
+public class ReceivingPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

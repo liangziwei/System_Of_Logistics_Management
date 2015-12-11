@@ -3,10 +3,10 @@ package vo.businessVO;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataService.Approvable;
 import po.businessPO.EntruckingPO;
-import vo.ApprovalFormVO;
 
-public class EntruckingVO extends ApprovalFormVO{
+public class EntruckingVO implements Approvable{
 
 	private String date;
 	private String businessHallid;

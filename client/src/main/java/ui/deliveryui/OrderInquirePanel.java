@@ -140,8 +140,6 @@ public class OrderInquirePanel extends DetailPanel{
 					//显示订单信息
 					orderInfo.setVisible(true);
 					container.setVisible(true);
-					System.out.println(orderInfo.getPreferredSize().getWidth());
-					System.out.println(orderInfo.getPreferredSize().getHeight());
 				}
 				repaint();
 			}

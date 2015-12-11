@@ -1,12 +1,11 @@
 package businessLogic.businessLogicController.managerController;
 
-import vo.ApprovalFormVO;
-import vo.managerVO.UncheckedFormVO;
-
 import java.util.ArrayList;
 
 import businessLogic.businessLogicModel.managerModel.ApprovalForm;
 import businessLogicService.managerBLService.ApprovalFormBLService;
+import dataService.Approvable;
+import vo.managerVO.UncheckedFormVO;
 /**
  * description:为审批单据界面提供服务的具体实现
  * @author 张仁知
@@ -23,12 +22,12 @@ public class ApprovalFormController implements ApprovalFormBLService {
 	}
 
 	@Override
-	public boolean approveOneForm(ApprovalFormVO form, String formType) {
+	public boolean approveOneForm(Approvable form, String formType) {
 		return this.approval.approveOneForm(form, formType);
 	}
 
 	@Override
-	public boolean approveMoreForm(ArrayList<ApprovalFormVO> form, String formType) {
+	public boolean approveMoreForm(ArrayList<Approvable> form, String formType) {
 		return this.approval.approveMoreForm(form, formType);
 	}
 

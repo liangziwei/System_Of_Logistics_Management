@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataService.Approvable;
 import vo.businessVO.EntruckingVO;
 
-public class EntruckingPO implements Serializable{
+public class EntruckingPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

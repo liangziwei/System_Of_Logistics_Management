@@ -2,15 +2,15 @@ package dataService.businessDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
+import dataService.ApproveFormService;
 import po.businessPO.EntruckingPO;
 
 /**
  * description:数据服务层为装车管理提供的服务 
  * @author 张云飞
  */
-public interface EntruckingDataService extends Remote{
+public interface EntruckingDataService extends Remote, ApproveFormService{
 	
 	/**
 	 * description:通过传入装车单信息新建一个装车单
@@ -21,13 +21,4 @@ public interface EntruckingDataService extends Remote{
 	 */
 	public boolean addEntruckingFrom(EntruckingPO entruckingPO)throws RemoteException;
 	
-	/**
-	 *审批一张装车单 
-	 */
-	public boolean approveOneEntrucking(EntruckingPO form) throws RemoteException;
-	
-	/**
-	 *审批多张装车单 
-	 */
-	public boolean approveMoreEntrucking(ArrayList<EntruckingPO> form) throws RemoteException;
 }

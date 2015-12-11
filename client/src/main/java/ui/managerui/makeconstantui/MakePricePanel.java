@@ -9,18 +9,18 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
-import businessLogic.businessLogicModel.managerModel.TransitPriceIO;
+import businessLogic.businessLogicController.managerController.MakeConstantController;
 import businessLogic.businessLogicModel.util.CommonLogic;
-import constant.PackageType;
-import constant.TransitType;
-import po.deliveryPO.PackPrice;
-import po.deliveryPO.TransitPrice;
+import businessLogicService.managerBLService.MakeConstantBLService;
+import po.constant.PackPrice;
+import po.constant.TransitPrice;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 
 @SuppressWarnings("serial")
 public class MakePricePanel extends DetailPanel{
+	
+	private MakeConstantBLService makePrice = new MakeConstantController();
 	
 	private JTable price = null;
 	
@@ -63,14 +63,16 @@ public class MakePricePanel extends DetailPanel{
 				"类型", "价格"
 		};
 		//数据
+		PackPrice pack = this.makePrice.getPackPrice();  //快递包装费
+		TransitPrice transit = this.makePrice.getTransitPrice();
 		Object[][] datas = new Object[][] {
-			{"木箱包装费(元)", PackagePriceIO.getPackPrice(PackageType.WOODEN) + ""},
-			{"纸箱包装费(元)", PackagePriceIO.getPackPrice(PackageType.CARTON) + ""},
-			{"快递袋包装费(元)", PackagePriceIO.getPackPrice(PackageType.COURIER_BAG) + ""},
-			{"其他包装费(元)", PackagePriceIO.getPackPrice(PackageType.OTHER) + ""},
-			{"飞机每公里每吨(元)", TransitPriceIO.getTransitPrice(TransitType.AIR) + ""},
-			{"汽车每公里每吨(元)", TransitPriceIO.getTransitPrice(TransitType.ROAD) + ""},
-			{"火车每公里每吨(元)", TransitPriceIO.getTransitPrice(TransitType.RAILWAY) + ""}
+			{"木箱包装费(元)", pack.getWooden() + ""},
+			{"纸箱包装费(元)", pack.getCarton() + ""},
+			{"快递袋包装费(元)", pack.getCourierBag() + ""},
+			{"其他包装费(元)", pack.getOther() + ""},
+			{"飞机每公里每吨(元)", transit.getAir() + ""},
+			{"汽车每公里每吨(元)", transit.getRailway() + ""},
+			{"火车每公里每吨(元)", transit.getRoad() + ""}
 		};
 		this.price = new JTable(datas, names);
 		this.price.setRowHeight(32);
@@ -108,19 +110,10 @@ public class MakePricePanel extends DetailPanel{
 				}
 				//如果合法
 				if(isValidate) {
-					//保存修改
-					String carton = (String)price.getValueAt(1, 1);
-					String wooden = (String)price.getValueAt(0, 1);
-					String courier = (String)price.getValueAt(2, 1);
-					String other = (String)price.getValueAt(3, 1);
-					PackagePriceIO.storePackPrice(new PackPrice(Double.parseDouble(carton),
-							Double.parseDouble(wooden), Double.parseDouble(courier),
-							Double.parseDouble(other)));
-					String air = (String)price.getValueAt(4, 1);
-					String railway = (String)price.getValueAt(6, 1);
-					String road = (String)price.getValueAt(5, 1);
-					TransitPriceIO.saveTransitPrice(new TransitPrice(Double.parseDouble(air),
-							Double.parseDouble(railway), Double.parseDouble(road)));
+					//保存快递包装价格常量
+					savePackPrice();
+					//保存运输 价格常量
+					saveTranstiPrice();
 					//提示
 					tip.setForeground(Color.BLUE);
 					tip.setText("修改成功");
@@ -133,5 +126,29 @@ public class MakePricePanel extends DetailPanel{
 				repaint();
 			}
 		});
+	}
+	
+	/**
+	 *将对价格常量的修改保存
+	 */
+	private void savePackPrice() {
+		String carton = (String)price.getValueAt(1, 1);
+		String wooden = (String)price.getValueAt(0, 1);
+		String courier = (String)price.getValueAt(2, 1);
+		String other = (String)price.getValueAt(3, 1);
+		this.makePrice.setPackPrice(new PackPrice(Double.parseDouble(carton),
+				Double.parseDouble(wooden), Double.parseDouble(courier),
+				Double.parseDouble(other)));
+	}
+	
+	/**
+	 * 将对运输价格常量的修改保存
+	 */
+	private void saveTranstiPrice() {
+		String air = (String)price.getValueAt(4, 1);
+		String railway = (String)price.getValueAt(6, 1);
+		String road = (String)price.getValueAt(5, 1);
+		this.makePrice.setTransitPrice(new TransitPrice(Double.parseDouble(air),
+				Double.parseDouble(railway), Double.parseDouble(road)));
 	}
 }

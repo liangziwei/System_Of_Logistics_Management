@@ -76,6 +76,7 @@ public class RunPanel extends DetailPanel{
 		this.excel.setBounds(160, 428, 80, 30);
 		this.excel.setFont(WORD_FONT);
 		this.add(this.excel);
+		this.excel.setVisible(false);
 		//添加按钮事件监听
 		this.addButtonListener();
 		//表格面板
@@ -95,6 +96,10 @@ public class RunPanel extends DetailPanel{
 				list = statistics.getReceivableList(startDate, endDate);
 				//显示收款单列表
 				initTable(list);
+				//隐藏收款单详细信息
+				if(panel != null) panel.setVisible(false);
+				//显示导出报表按钮
+				excel.setVisible(true);
 				
 				repaint();
 			}
@@ -109,6 +114,8 @@ public class RunPanel extends DetailPanel{
 				//隐藏收款单列表和收款单详细信息
 				if(tableContainer != null) tableContainer.setVisible(false);
 				if(panel != null) panel.setVisible(false);
+				//隐藏导出报表按钮
+				excel.setVisible(false);
 			}
 		});
 		//导出报表按钮
@@ -184,5 +191,6 @@ public class RunPanel extends DetailPanel{
 				RECEIVABLE_W, RECEIVABLE_H);
 		this.add(panel);
 		this.revalidate();
+		this.repaint();
 	}
 }

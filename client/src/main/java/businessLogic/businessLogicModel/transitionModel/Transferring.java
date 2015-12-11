@@ -1,13 +1,10 @@
 package businessLogic.businessLogicModel.transitionModel;
 
 import java.rmi.RemoteException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import businessLogic.businessLogicModel.deliveryModel.DistanceIO;
-import businessLogic.businessLogicModel.managerModel.TransitPriceIO;
+import businessLogic.businessLogicModel.managerModel.MakeConstant;
 import businessLogic.businessLogicModel.util.CommonLogic;
 import constant.City;
 import constant.LoadingType;
@@ -102,7 +99,8 @@ public class Transferring {
 			to = City.GUANG_ZHOU;
 			break;
 		}
-		double distance = DistanceIO.getDistance(from, to);
+		MakeConstant constant = new MakeConstant();
+		double distance = constant.getDistance(from, to);
 		double weight =0;
 		TransitType transitType =null;
 		switch (type) {
@@ -119,7 +117,7 @@ public class Transferring {
 			weight = 10;
 			break;
 		}
-		double transitprice = TransitPriceIO.getTransitPrice(transitType);
+		double transitprice = constant.getTransitPrice(transitType);
 		
 		return (distance*transitprice*weight);
 	}

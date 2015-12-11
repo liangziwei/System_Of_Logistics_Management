@@ -1,18 +1,12 @@
 package businessLogic.businessLogicModel.managerModel;
 
-import java.rmi.RemoteException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-import dataService.businessDataService.EntruckingDataService;
-import dataService.businessDataService.PaymentDataService;
-import dataService.businessDataService.ReceiveAndSendDataService;
-import dataService.deliveryDataService.OrderDataService;
-import dataService.financeDataService.CostDataService;
+import dataService.Approvable;
 import dataService.managerDataService.ApprovalFormDataService;
-import dataService.repositoryDataService.InRepositoryDataService;
-import dataService.repositoryDataService.OutRepositoryDataService;
-import dataService.transitionDataService.ReceivingDataService;
-import dataService.transitionDataService.TransferringDataService;
 import network.RMI;
 import po.businessPO.ArrivalFormPO;
 import po.businessPO.EntruckingPO;
@@ -25,7 +19,7 @@ import po.repositoryPO.InRepositoryPO;
 import po.repositoryPO.OutRepositoryPO;
 import po.transitionPO.ReceivingPO;
 import po.transitionPO.TransferringPO;
-import vo.ApprovalFormVO;
+import ui.managerui.approvalformui.TableTypeName;
 import vo.businessVO.ArrivalFormVO;
 import vo.businessVO.EntruckingVO;
 import vo.businessVO.ReceivableVO;
@@ -42,24 +36,51 @@ public class ApprovalForm {
 	
 	private ApprovalFormDataService approvalFormData = RMI.<ApprovalFormDataService>getDataService("approvalForm");
 	
-	private OrderDataService order = RMI.<OrderDataService>getDataService("order");
+	private ApproveFormModel approve = new ApproveFormModel();
 	
-	private EntruckingDataService entrucking = RMI.<EntruckingDataService>getDataService("entrucking");
+	private Map<String, Method> approvePOMap = new HashMap<String, Method>();
 	
-	private PaymentDataService receivable = RMI.<PaymentDataService>getDataService("receivable");
+	public ApprovalForm() {
+		//初始化单据名称与VO转PO方法的映射表
+		try {
+			//订单
+			this.approvePOMap.put(TableTypeName.ORDER_NAME,
+					OrderPO.class.getMethod("orderVOToPO", OrderVO.class));
+			//装车单
+			this.approvePOMap.put(TableTypeName.ENTRUCKING_NAME,
+					EntruckingPO.class.getMethod("entrucingVOToPO", EntruckingVO.class));
+			//营业厅到达单
+			this.approvePOMap.put(TableTypeName.ARRIVAL_NAME, 
+					ArrivalFormPO.class.getMethod("arrivalVOToPO", ArrivalFormVO.class));
+			//收款单
+			this.approvePOMap.put(TableTypeName.RECEIVABLE_NAME, 
+					ReceivablePO.class.getMethod("receivableVOToPO", ReceivableVO.class));
+			//派送单
+			this.approvePOMap.put(TableTypeName.SEND_NAME,
+					SendFormPO.class.getMethod("sendFormVOToPO", SendFormVO.class));
+			//中转中心到达单
+			this.approvePOMap.put(TableTypeName.RECEIVING_NAME,
+					ReceivingPO.class.getMethod("receivingVOToPO", ReceivingVO.class));
+			//入库单
+			this.approvePOMap.put(TableTypeName.IN_NAME, 
+					InRepositoryPO.class.getMethod("inRepositoryVOToPO", InRepositoryVO.class));
+			//中转单
+			this.approvePOMap.put(TableTypeName.TRANSFERRING_NAME, 
+					TransferringPO.class.getMethod("transferringVOToPO", TransferringVO.class));
+			//出库单
+			this.approvePOMap.put(TableTypeName.OUT_NAME,
+					OutRepositoryPO.class.getMethod("outRepositoryVOToPO", OutRepositoryVO.class));
+			//收款单
+			this.approvePOMap.put(TableTypeName.PAYMENT_NAME,
+					PaymentPO.class.getMethod("paymentVOToPO", PaymentVO.class));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
-	private ReceiveAndSendDataService recAndSend = RMI.<ReceiveAndSendDataService>getDataService("receiveAndSend");
-	
-	private ReceivingDataService receiving = RMI.<ReceivingDataService>getDataService("receiving");
-	
-	private InRepositoryDataService in = RMI.<InRepositoryDataService>getDataService("inrepository");
-	
-	private TransferringDataService transferring = RMI.<TransferringDataService>getDataService("transferring");
-	
-	private OutRepositoryDataService out = RMI.<OutRepositoryDataService>getDataService("outrepository");
-	
-	private CostDataService payment = RMI.<CostDataService>getDataService("cost");
-	
+	/**
+	 *获得所有的未审批单据 
+	 */
 	public UncheckedFormVO getUncheckedForms() {
 		UncheckedFormVO uncheckedForm = null;
 		try{
@@ -70,166 +91,31 @@ public class ApprovalForm {
 		return uncheckedForm;
 	}
 
-	public boolean approveOneForm(ApprovalFormVO form, String formType) {
-		switch(formType) {
-		case "寄件单":
-			try {
-				return this.order.approveOneOrder(OrderPO.orderVOToPO((OrderVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "装车单":
-			try {
-				return this.entrucking.approveOneEntrucking(EntruckingPO.entrucingVOToPO((EntruckingVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "收款单":
-			try {
-				return this.receivable.approveOneReceivable(ReceivablePO.receivableVOToPO((ReceivableVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "营业厅到达单":
-			try {
-				return this.recAndSend.approveOneArrivalForm(ArrivalFormPO.arrivalVOToPO((ArrivalFormVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "派件单":
-			try {
-				this.recAndSend.approveOneSendForm(SendFormPO.sendFormVOToPO((SendFormVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "中转中心到达单":
-			try {
-				return this.receiving.approveOneReceiving(ReceivingPO.receivingVOToPO((ReceivingVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "入库单":
-			try {
-				return this.in.approveOneInRepository(InRepositoryPO.inRepositoryVOToPO((InRepositoryVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "中转单":
-			try {
-				return this.transferring.approveOneTransferring(TransferringPO.transferringVOToPO((TransferringVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "出库单":
-			try {
-				return this.out.approveOneOutRepository(OutRepositoryPO.outRepositoryVOToPO((OutRepositoryVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "付款单":
-			try {
-				return this.payment.approveOnePayment(PaymentPO.paymentVOToPO((PaymentVO) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
+	/**
+	 *审批通过一张单据 
+	 */
+	public boolean approveOneForm(Approvable form, String formType) {
+		try {
+			//根据单据类型获得相应单据VO转PO的方法
+			Method method = this.approvePOMap.get(formType);
+			//调用方法将单据VO转成PO
+			Approvable po = (Approvable) method.invoke(OrderPO.class, form);
+			//根据单据类型调用相应方法更改数据库中单据的审批状态
+			return this.approve.approveForm(formType, po);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return false;
 	}
-
-	@SuppressWarnings("unchecked")
-	public boolean approveMoreForm(ArrayList<? extends ApprovalFormVO> form, String formType) {
-		switch(formType) {
-		case "寄件单":
-			try {
-				return this.order.approveMoreOrder
-						(OrderPO.orderVOListToPO((ArrayList<OrderVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "装车单":
-			try {
-				return this.entrucking.approveMoreEntrucking
-						(EntruckingPO.entruckingVOListToPO((ArrayList<EntruckingVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "收款单":
-			try {
-				return this.receivable.approveMoreReceivable
-						(ReceivablePO.receivableVOListToPO((ArrayList<ReceivableVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "营业厅到达单":
-			try {
-				return this.recAndSend.approveMoreArrivalForm
-						(ArrivalFormPO.arrivalVOListToPO((ArrayList<ArrivalFormVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "派件单":
-			try {
-				return this.recAndSend.approveMoreSendForm
-				(SendFormPO.senFormVOListToPO((ArrayList<SendFormVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "中转中心到达单":
-			try {
-				return this.receiving.approveMoreReceiving
-						(ReceivingPO.receivingVOListToPO((ArrayList<ReceivingVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "入库单":
-			try {
-				return this.in.approveMoreInRepository
-						(InRepositoryPO.inRepositoryVOListToPO((ArrayList<InRepositoryVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "中转单":
-			try {
-				return this.transferring.approveMoreTransferring
-						(TransferringPO.transferringVOListToPO((ArrayList<TransferringVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "出库单":
-			try {
-				return this.out.approveMoreOutRepository
-						(OutRepositoryPO.outRepositoryVOListToPO((ArrayList<OutRepositoryVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		case "付款单":
-			try {
-				return this.payment.approveMorePayment
-						(PaymentPO.paymentVOListToPO((ArrayList<PaymentVO>) form));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
+	
+	/**
+	 *审批通过多张单据 
+	 */
+	public boolean approveMoreForm(ArrayList<? extends Approvable> form, String formType) {
+		int size = form.size();
+		for(int i = 0; i < size; i++) {
+			this.approveOneForm(form.get(i), formType);
 		}
-		return false;
+		return true;
 	}
 }

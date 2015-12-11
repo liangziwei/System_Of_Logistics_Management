@@ -3,6 +3,7 @@ package businessLogic.businessLogicModel.deliveryModel;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import businessLogic.businessLogicModel.managerModel.MakeConstant;
 import businessLogic.businessLogicModel.util.CommonLogic;
 import constant.City;
 import constant.DeliveryType;
@@ -63,9 +64,10 @@ public class OrderModel{
 
 	public static double calculatePrice(DeliveryType type, double weight, City source, City destination) {
 		//获得城市距离
-		double distance = DistanceTable.getDistance(source, destination);
+		MakeConstant constant = new MakeConstant();
+		double distance = constant.getDistance(source, destination);
 		//计算价格(标准快递的运费价格=公里数/1000*23元每公斤)
-		double price = PriceTable.calculatePrice(type, distance, weight);
+		double price = DeliveryPriceTable.calculatePrice(type, distance, weight);
 		
 		return price;
 	}	

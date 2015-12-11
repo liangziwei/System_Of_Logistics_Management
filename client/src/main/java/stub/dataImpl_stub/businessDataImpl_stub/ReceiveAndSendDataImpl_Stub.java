@@ -6,6 +6,7 @@ import po.businessPO.SendFormPO;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import dataService.Approvable;
 import dataService.businessDataService.ReceiveAndSendDataService;
 
 public class ReceiveAndSendDataImpl_Stub implements ReceiveAndSendDataService {
@@ -21,25 +22,13 @@ public class ReceiveAndSendDataImpl_Stub implements ReceiveAndSendDataService {
 	}
 
 	@Override
-	public boolean approveOneArrivalForm(ArrivalFormPO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean approveMoreArrivalForm(ArrayList<ArrivalFormPO> form) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean approveOneSendForm(SendFormPO form) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean approveMoreSendForm(ArrayList<SendFormPO> form) throws RemoteException {
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

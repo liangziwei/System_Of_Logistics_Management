@@ -3,13 +3,14 @@ package po.deliveryPO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import dataService.Approvable;
 import vo.deliveryVO.OrderVO;
 
 /**
  * 订单的持久化对象
  * @author 肖安祥
  */
-public class OrderPO implements Serializable{
+public class OrderPO implements Serializable, Approvable{
 
 	/**
 	 * 

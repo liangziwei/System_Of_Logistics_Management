@@ -50,11 +50,13 @@ public class OrganizationInfoPanel extends JPanel{
 	public OrganizationInfoPanel(int x, int y, int w, int h, List<StaffVO> staffVO) {
 		//主面板
 		this.setBounds(x, y, w, h);
+		this.setOpaque(false);
 		this.setLayout(null);
 		//机构信息面板
-		this.initOrganizationPanel(w, h);
+		this.initOrganizationPanel(0, 0, w >> 1, h);
 		//人员信息面板
-		this.initStaffPanel(w, h, staffVO);
+		this.initStaffPanel(w >> 1, this.idText.getY(), (w >> 1) - 50, 
+				this.nameText.getY() + this.nameText.getHeight() - this.idText.getY(), staffVO);
 	}
 	
 	public void setOrganizationInfo(OrganizationVO vo) {
@@ -79,10 +81,10 @@ public class OrganizationInfoPanel extends JPanel{
 		this.staffInfo.setEnabled(true);
 	}
 	
-	private void initOrganizationPanel(int w, int h) {
+	private void initOrganizationPanel(int x, int y, int w, int h) {
 		//机构信息面板
 		this.orgPanel.setLayout(null);
-		this.orgPanel.setBounds(0, 0, w >> 1, h);
+		this.orgPanel.setBounds(x, y, w, h);
 		this.add(this.orgPanel);
 
 		//组件起始坐标
@@ -128,11 +130,13 @@ public class OrganizationInfoPanel extends JPanel{
 		this.orgPanel.add(this.nameLabel);
 		this.orgPanel.add(this.nameText);
 		this.orgPanel.add(this.tip);
+		this.orgPanel.setOpaque(false);
 	}
 	
-	private void initStaffPanel(int w, int h, List<StaffVO> staffVO) {
+	private void initStaffPanel(int x, int y, int w, int h, List<StaffVO> staffVO) {
 		//表格容器的边界
-		this.container.setBounds((w >> 1) + 2, 0, w >> 1, h);
+		this.container.setBounds(x, y, w, h);
+		this.container.setOpaque(false);
 		this.add(this.container);
 		//表格
 	    //列名
@@ -140,8 +144,9 @@ public class OrganizationInfoPanel extends JPanel{
 				"人员编号", "姓名", "职位"
 		};
 		//数据
-		int staffNum = staffVO.size();
-		int rowNum = staffNum < 14 ? 14 : staffNum;
+		int staffNum = staffVO.size();	
+		int defaultRow = 8;  //默认表格行数
+		int rowNum = staffNum < defaultRow ? defaultRow : staffNum;
 		Object[][] datas = new Object[rowNum][3];
 		StaffVO temp = null;
 		for(int i = 0; i < staffNum; i++) {
@@ -151,9 +156,10 @@ public class OrganizationInfoPanel extends JPanel{
 			datas[i][2] = temp.getPosition();
 		}
 		this.staffInfo = new JTable(datas, names);
-		int rowH = h >> 4;
+		int rowH = (int) (h / (defaultRow + 0.5));
 		this.staffInfo.setRowHeight(rowH);
-		this.staffInfo.setPreferredSize(new Dimension(w >> 1, (rowNum + 1) * rowH));
+		int height = rowNum * rowH > h ? rowNum * rowH : h - (rowH >> 1) - 10;
+		this.staffInfo.setPreferredSize(new Dimension(w >> 1, height));
 		this.staffInfo.setFont(WORD_FONT);
 		//把把表格加入表格容器
 		this.container.setViewportView(this.staffInfo);

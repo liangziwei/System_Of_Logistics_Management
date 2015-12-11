@@ -2,15 +2,15 @@ package dataService.transitionDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
+import dataService.ApproveFormService;
 import po.transitionPO.ReceivingPO;
 
 /**
  *description:数据服务层为中转中心货物接收信息管理提供的服务 
  * @author 阮威威
  */
-public interface ReceivingDataService extends Remote{
+public interface ReceivingDataService extends Remote, ApproveFormService{
 	
 	/**
 	 * description:添加新的货物接收单信息
@@ -42,14 +42,5 @@ public interface ReceivingDataService extends Remote{
 	 */
 	public ReceivingPO FindReceivingFormDT(String receivingNumber)throws RemoteException;
 	
-	/**
-	 *审批一张中转中心到达单 
-	 */
-	public boolean approveOneReceiving(ReceivingPO form) throws RemoteException;
-	
-	/**
-	 *审批多张中转中心到达单 
-	 */
-	public boolean approveMoreReceiving(ArrayList<ReceivingPO> form) throws RemoteException;
 	
 }

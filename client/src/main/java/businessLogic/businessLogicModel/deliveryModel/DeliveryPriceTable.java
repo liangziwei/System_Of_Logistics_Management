@@ -5,7 +5,10 @@ import java.util.Map;
 
 import constant.DeliveryType;
 
-public class PriceTable {
+/**
+ *快递方式价格比例表 
+ */
+public class DeliveryPriceTable {
 
 	private static Map<DeliveryType, Integer> PRICE_TABLE = new HashMap<DeliveryType, Integer>();
 	

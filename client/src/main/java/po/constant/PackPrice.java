@@ -1,7 +1,10 @@
-package po.deliveryPO;
+package po.constant;
 
 import java.io.Serializable;
 
+/**
+ *包装费价格 
+ */
 public class PackPrice implements Serializable{
 
 	/**

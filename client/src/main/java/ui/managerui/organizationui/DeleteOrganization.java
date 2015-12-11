@@ -34,6 +34,10 @@ public class DeleteOrganization extends  DetailPanel{
 	
 	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
+	private static final int BUTTON_W = 80;
+	
+	private static final int BUTTON_H = 30;
+	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
 	public DeleteOrganization() {
@@ -43,20 +47,18 @@ public class DeleteOrganization extends  DetailPanel{
 		this.separator.setBounds(0, this.orgId.getHeight(), DETAIL_PANEL_W, 10);
 		this.add(this.separator);
 		
-		int buttonW = (int) (orgId.getHeight() * 0.8);
-		int buttonH = orgId.getHeight() >> 1;
 		//删除按钮
-		this.delete.setBounds(orgId.getWidth() >> 1, (int)(orgId.getHeight()* 0.1), buttonW, buttonH);
+		this.delete.setBounds(orgId.getWidth() >> 1, (int)(orgId.getHeight()* 0.1), BUTTON_W, BUTTON_H);
 		this.delete.setFont(WORD_FONT);
 		this.delete.setVisible(false);
 		this.add(this.delete);
 		//取消按钮
-		this.cancel.setBounds(this.delete.getX() + (buttonW << 1), this.delete.getY(), buttonW, buttonH);
+		this.cancel.setBounds(this.delete.getX() + (BUTTON_W << 1), this.delete.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		this.cancel.setVisible(false);
 		this.add(this.cancel);
 		//提示标签
-		this.tip.setBounds(buttonW, this.delete.getY(), buttonW << 1, buttonH);
+		this.tip.setBounds(BUTTON_W, this.delete.getY(), BUTTON_W << 1, BUTTON_H);
 		this.tip.setFont(WORD_FONT);
 		tip.setForeground(Color.RED);
 		this.add(this.tip);
@@ -111,6 +113,8 @@ public class DeleteOrganization extends  DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//隐藏机构和人员信息面板
 				orgPanel.setVisible(false);
+				//消除提示信息
+				orgId.removeText();
 			}
 		});
 		//确定删除按钮
@@ -144,6 +148,9 @@ public class DeleteOrganization extends  DetailPanel{
 		orgPanel.setVisible(false);
 		//显示查询面板
 		orgId.setVisible(true);
+		//消除提示信息
+		this.tip.setText("");
+				
 		repaint();
 	}
 }

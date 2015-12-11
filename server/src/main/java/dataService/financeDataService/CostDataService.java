@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import dataService.ApproveFormService;
 import po.financePO.PaymentPO;
 
 
@@ -13,7 +14,7 @@ import po.financePO.PaymentPO;
  */
 
 
-public interface CostDataService extends Remote{
+public interface CostDataService extends Remote, ApproveFormService{
 
 
 	/**
@@ -26,13 +27,13 @@ public interface CostDataService extends Remote{
 	
 	public boolean addPayment(PaymentPO paymentPO) throws RemoteException;
 	
-	/**
-	 *审批一张付款单 
-	 */
-	public boolean approveOnePayment(PaymentPO form) throws RemoteException;
-	
-	/**
-	 *审批多张付款单 
-	 */
-	public boolean approveMorePayment(ArrayList<PaymentPO> form) throws RemoteException;
+//	/**
+//	 *审批一张付款单 
+//	 */
+//	public boolean approveOnePayment(PaymentPO form) throws RemoteException;
+//	
+//	/**
+//	 *审批多张付款单 
+//	 */
+//	public boolean approveMorePayment(ArrayList<PaymentPO> form) throws RemoteException;
 }

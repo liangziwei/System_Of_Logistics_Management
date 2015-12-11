@@ -1,5 +1,6 @@
 package dataImpl.deliveryDataImpl;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import constant.ClientType;
 import constant.DeliveryType;
 import constant.PackageType;
 import constant.TransitionNode;
+import dataService.Approvable;
 import dataService.deliveryDataService.OrderDataService;
 import mysql.Database;
 import po.deliveryPO.ClientInfo;
@@ -218,10 +220,31 @@ public class OrderDataImpl implements OrderDataService{
 				packageType, deliveryType, date, nodes, citys, time, price);
 	}
 
+//	@Override
+//	public boolean approveOneOrder(OrderPO po) {
+//		String sql = "update order_table set is_approved = 'true', is_passed = 'true'"
+//				+ " where goods_id = '" + po.getGoodsInfo().getId() + "';";
+//		try {
+//			return Database.operate(sql);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean approveMoreOrder(ArrayList<OrderPO> po) {
+//		int size = po.size();
+//		for(int i = 0; i < size; i++) {
+//			this.approveOneOrder(po.get(i));
+//		}
+//		return true;
+//	}
+
 	@Override
-	public boolean approveOneOrder(OrderPO po) {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = "update order_table set is_approved = 'true', is_passed = 'true'"
-				+ " where goods_id = '" + po.getGoodsInfo().getId() + "';";
+				+ " where goods_id = '" + ((OrderPO)form).getGoodsInfo().getId() + "';";
 		try {
 			return Database.operate(sql);
 		} catch (SQLException e) {
@@ -231,11 +254,8 @@ public class OrderDataImpl implements OrderDataService{
 	}
 
 	@Override
-	public boolean approveMoreOrder(ArrayList<OrderPO> po) {
-		int size = po.size();
-		for(int i = 0; i < size; i++) {
-			this.approveOneOrder(po.get(i));
-		}
-		return true;
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
