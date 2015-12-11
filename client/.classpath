@@ -30,5 +30,6 @@
 	<classpathentry kind="lib" path="D:/software/development/ide/eclipse/eclipse/myplugins/poi-3.13/poi-ooxml-3.13-20150929.jar"/>
 	<classpathentry kind="lib" path="D:/software/development/ide/eclipse/eclipse/myplugins/poi-3.13/poi-ooxml-schemas-3.13-20150929.jar"/>
 	<classpathentry kind="lib" path="D:/software/development/ide/eclipse/eclipse/myplugins/poi-3.13/poi-scratchpad-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="lib/dom4j-2.0.0-RC1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<CONFIG>  
+    <VALUE>  
+        <!-- mysql连接设置 -->  
+  		<url>jdbc:mysql://localhost/logistics_system</url>
+        <user>root</user>  
+        <pass>1282976747</pass>  
+        <port>3306</port>  
+    </VALUE>  
+</CONFIG>  

@@ -268,7 +268,7 @@ private boolean isCorrect(){
 		
 		String idStr=idText.getText();
 		
-		if(!idStr.matches("[B-Hb-h][0-9]+")){
+		if(!idStr.matches("[B-H][0-9]{9}")){
 			idText.setText("");
 			return false;
 		}

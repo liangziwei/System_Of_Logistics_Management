@@ -106,6 +106,8 @@ public class EntruckingVO implements Approvable{
 
 	public EntruckingPO entruckingVOToPO(){
 		
-		return new EntruckingPO(date,businessHallid,transportNumber,destionation,vehicleid,supervisor,supercargo,freight);
+		EntruckingPO po=new EntruckingPO(date,businessHallid,transportNumber,destionation,vehicleid,supervisor,supercargo,freight);
+		po.setDeliveryIDList(deliveryIDList);
+		return po;
 	}
 }
