@@ -3,12 +3,13 @@ package po.repositoryPO;
 import java.io.Serializable;
 
 import constant.LoadingType;
+import dataService.Approvable;
 
 /**
  * 记录了出库单的信息
  * @author 阮威威
  */
-public class OutRepositoryPO implements Serializable{
+public class OutRepositoryPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

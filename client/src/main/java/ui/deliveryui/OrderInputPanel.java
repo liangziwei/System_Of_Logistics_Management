@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import businessLogic.businessLogicController.deliveryController.OrderController;
-import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
+import businessLogic.businessLogicModel.managerModel.MakeConstant;
 import businessLogicService.deliveryBLService.OrderBLService;
 import constant.City;
 import constant.ClientType;
@@ -272,7 +272,8 @@ public class OrderInputPanel extends DetailPanel{
 		disableComponents();
 		//计算运费和时间
 		double weight = Double.parseDouble(goodsInfo.getWeight());
-		double pack = PackagePriceIO.getPackPrice(orderVO.getGoodsInfo().getPackageType());
+		MakeConstant constant = new MakeConstant();
+		double pack = constant.getPackPrice(orderVO.getGoodsInfo().getPackageType());
 		double price = orderService.calculatePrice(otherInfo.getDeliveryType(),
 				weight, sender.getCity(), receiver.getCity()) + pack;
 		int day = orderService.calculateTime(sender.getCity(), receiver.getCity());

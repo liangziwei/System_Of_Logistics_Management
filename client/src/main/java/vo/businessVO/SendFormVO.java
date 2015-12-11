@@ -1,9 +1,9 @@
 package vo.businessVO;
 
+import dataService.Approvable;
 import po.businessPO.SendFormPO;
-import vo.ApprovalFormVO;
 
-public class SendFormVO extends ApprovalFormVO{
+public class SendFormVO implements Approvable{
 
 	private String date;	
 	private String deliveryid;

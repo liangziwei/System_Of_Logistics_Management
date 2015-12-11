@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.managerController.StaffManagementController;
 import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.managerBLService.StaffManagementBLService;
-import ui.baseui.DatePanel;
+import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.managerVO.StaffVO;
@@ -40,7 +40,7 @@ public class AddStaff extends DetailPanel{
 	
 	private JLabel birthLabel = new JLabel("出生日期");
 	
-	private DatePanel birthText = new DatePanel();
+	private JTextField birthText = new JTextField();
 	
 	private JLabel salaryLabel = new JLabel("薪水");
 	
@@ -53,6 +53,8 @@ public class AddStaff extends DetailPanel{
 	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private JLabel tip = new JLabel();
+	
+	private DateChooser dateChooser = DateChooser.getInstance();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
@@ -117,9 +119,10 @@ public class AddStaff extends DetailPanel{
 		this.birthLabel.setBounds(this.posLabel.getX(), this.posLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.birthLabel.setFont(WORD_FONT);
 		//出生日期文本框
-		this.birthText.setPanelBound(this.posText.getX(), this.birthLabel.getY(), TEXT_W, TEXT_H);
+		this.birthText.setBounds(this.posText.getX(), this.birthLabel.getY(), TEXT_W, TEXT_H);
 		this.birthText.setFont(WORD_FONT);
 		this.birthText.setOpaque(false);
+		this.dateChooser.register(this.birthText);
 		//薪水标签
 		this.salaryLabel.setBounds(this.birthLabel.getX(), this.birthLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.salaryLabel.setFont(WORD_FONT);
@@ -177,7 +180,7 @@ public class AddStaff extends DetailPanel{
 				//保存输入
 				boolean result = staff.addStaff(new StaffVO(nameText.getText(), idText.getText(),
 						(String)posText.getSelectedItem(), (String)genderText.getSelectedItem(),
-						birthText.getDate(), salaryText.getText(), (String)salaryType.getSelectedItem(),
+						birthText.getText(), salaryText.getText(), (String)salaryType.getSelectedItem(),
 						false, false));
 				//如果保存成功
 				if(result) {
@@ -210,7 +213,7 @@ public class AddStaff extends DetailPanel{
 	private void clearInfo() {
 		this.nameText.setText("");
 		this.idText.setText("");
-		this.birthText.clearInfo();
+		this.birthText.setText("");;
 		this.salaryText.setText("");
 	}
 	
@@ -218,7 +221,7 @@ public class AddStaff extends DetailPanel{
 		//验证输入是否完整
 		String id = idText.getText();
 		if(CommonLogic.isNull(nameText.getText()) || CommonLogic.isNull(id)
-				|| CommonLogic.isNull(birthText.getDate()) || CommonLogic.isNull(salaryText.getText())) {
+				|| CommonLogic.isNull(birthText.getText()) || CommonLogic.isNull(salaryText.getText())) {
 			tip.setText("请把信息填写完整");
 			return false;
 		}
@@ -228,7 +231,7 @@ public class AddStaff extends DetailPanel{
 			return false;
 		}
 		//验证日期是否符合格式
-		if(!CommonLogic.isDate(birthText.getDate())) {
+		if(!CommonLogic.isDate(birthText.getText())) {
 			tip.setText("该日期不存在");
 			return false;
 		}

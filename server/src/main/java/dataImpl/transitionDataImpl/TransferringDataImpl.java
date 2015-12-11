@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constant.LoadingType;
+import dataService.Approvable;
 import dataService.transitionDataService.TransferringDataService;
 import mysql.Database;
 import po.transitionPO.TransferringPO;
@@ -222,10 +223,24 @@ public class TransferringDataImpl implements TransferringDataService {
 		return null;
 	}
 
+//	@Override
+//	public boolean approveOneTransferring(TransferringPO form) throws RemoteException {
+//		
+//	}
+//
+//	@Override
+//	public boolean approveMoreTransferring(ArrayList<TransferringPO> form) throws RemoteException {
+//		int size = form.size();
+//		for(int i = 0; i < size; i++) {
+//			this.approveOneTransferring(form.get(i));
+//		}
+//		return true;
+//	}
+
 	@Override
-	public boolean approveOneTransferring(TransferringPO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = "update transferring set isApproved = 1, isPassed = 1 where "
-				+ "transferringid = '" + form.gettransferringid() + "';";
+				+ "transferringid = '" + ((TransferringPO)form).gettransferringid() + "';";
 		try {
 			return Database.operate(sql);
 		} catch (SQLException e) {
@@ -235,11 +250,8 @@ public class TransferringDataImpl implements TransferringDataService {
 	}
 
 	@Override
-	public boolean approveMoreTransferring(ArrayList<TransferringPO> form) throws RemoteException {
-		int size = form.size();
-		for(int i = 0; i < size; i++) {
-			this.approveOneTransferring(form.get(i));
-		}
-		return true;
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

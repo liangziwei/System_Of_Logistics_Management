@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import constant.CargoState;
+import dataService.Approvable;
 import dataService.transitionDataService.ReceivingDataService;
 import po.transitionPO.ReceivingPO;
 
@@ -26,13 +27,13 @@ public class ReceivingDataImpl_Stub implements ReceivingDataService{
 	}
 
 	@Override
-	public boolean approveOneReceiving(ReceivingPO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean approveMoreReceiving(ArrayList<ReceivingPO> form) throws RemoteException {
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

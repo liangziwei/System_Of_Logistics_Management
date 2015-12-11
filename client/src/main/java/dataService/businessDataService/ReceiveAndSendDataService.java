@@ -2,8 +2,8 @@ package dataService.businessDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
+import dataService.ApproveFormService;
 import po.businessPO.ArrivalFormPO;
 import po.businessPO.SendFormPO;
 
@@ -11,7 +11,7 @@ import po.businessPO.SendFormPO;
  *description:数据服务层为接受和派件提供的服务
  *@author 张云飞 
  */
-public interface ReceiveAndSendDataService extends Remote{
+public interface ReceiveAndSendDataService extends Remote, ApproveFormService{
 
 	/**
 	 *description:通过传入到达单信息新建一个到达单
@@ -30,25 +30,5 @@ public interface ReceiveAndSendDataService extends Remote{
 	 * @return 添加是否成功
 	 */
 	public boolean addSendFrom(SendFormPO sendFormPO)throws RemoteException;
-	
-	/**
-	 * 审批一张到达单
-	 */
-	public boolean approveOneArrivalForm(ArrivalFormPO form) throws RemoteException;
-	
-	/**
-	 * 审批多张到达单
-	 */
-	public boolean approveMoreArrivalForm(ArrayList<ArrivalFormPO> form) throws RemoteException;
-	
-	/**
-	 * 审批一张派送单
-	 */
-	public boolean approveOneSendForm(SendFormPO form) throws RemoteException;
-	
-	/**
-	 *审批多张派送单 
-	 */
-	public boolean approveMoreSendForm(ArrayList<SendFormPO> form) throws RemoteException;
 	
 }

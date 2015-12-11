@@ -2,14 +2,14 @@
 package vo.transitionVO;
 
 import constant.CargoState;
+import dataService.Approvable;
 import po.transitionPO.ReceivingPO;
-import vo.ApprovalFormVO;
 
 /**
  * 记录了接收单的信息
  * @author 阮威威
  */
-public class ReceivingVO extends ApprovalFormVO{
+public class ReceivingVO implements Approvable{
 	/**
 	 * 中转中心编号（城市编号＋中转中心编号）
 	 */
@@ -120,10 +120,6 @@ public class ReceivingVO extends ApprovalFormVO{
 	}
 	public boolean getisPassed() {
 		return isPassed;
-	}
-	@Override
-	public String getDate() {
-		return this.arrivaldate;
 	}
 	public static ReceivingPO ReceivingVOtoReceivingPO(ReceivingVO receivingVO) {
 		return new ReceivingPO(receivingVO.gettransitionid(), receivingVO.getarrivaldate(),

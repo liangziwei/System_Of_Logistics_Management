@@ -6,13 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 
 import businessLogic.businessLogicController.managerController.OrganizationManagementController;
 import businessLogicService.managerBLService.OrganizationManagementBLService;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import ui.managerui.SearchPanel;
 import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
@@ -30,11 +30,15 @@ public class ModifyOrganization extends DetailPanel{
 	
 	private JLabel tip = new JLabel();
 	
-	private JButton modify = new JButton("修改");
+	private LimpidButton modify = new LimpidButton("","picture/修改.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
+	
+	private static final int BUTTON_W = 80;
+	
+	private static final int BUTTON_H = 30;
 	
 	public ModifyOrganization() {
 		//机构信息查询面板
@@ -43,20 +47,18 @@ public class ModifyOrganization extends DetailPanel{
 		this.separator.setBounds(0, this.orgId.getHeight(), DETAIL_PANEL_W, 10);
 		this.add(this.separator);
 
-		int buttonW = (int) (orgId.getHeight() * 0.8);
-		int buttonH = orgId.getHeight() >> 1;
 		//修改按钮
-		this.modify.setBounds(orgId.getWidth() >> 1, (int)(orgId.getHeight()* 0.1), buttonW, buttonH);
+		this.modify.setBounds(orgId.getWidth() >> 1, (int)(orgId.getHeight()* 0.1), BUTTON_W, BUTTON_H);
 		this.modify.setFont(WORD_FONT);
 		this.modify.setVisible(false);
 		this.add(this.modify);
 		//取消按钮
-		this.cancel.setBounds(this.modify.getX() + (buttonW << 1), this.modify.getY(), buttonW, buttonH);
+		this.cancel.setBounds(this.modify.getX() + (BUTTON_W << 1), this.modify.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		this.cancel.setVisible(false);
 		this.add(this.cancel);
 		//提示标签
-		this.tip.setBounds(buttonW, this.modify.getY(), buttonW << 1, buttonH);
+		this.tip.setBounds(BUTTON_W, this.modify.getY(), BUTTON_W << 1, BUTTON_H);
 		this.tip.setFont(WORD_FONT);
 		tip.setForeground(Color.RED);
 		this.add(this.tip);
@@ -112,6 +114,10 @@ public class ModifyOrganization extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//隐藏机构和人员信息面板
 				orgPanel.setVisible(false);
+				//消除提示信息
+				orgId.removeText();
+				
+				repaint();
 			}
 		});
 		//确定删除按钮
@@ -139,12 +145,15 @@ public class ModifyOrganization extends DetailPanel{
 	
 	private void backToInquire() {
 		//隐藏删除按钮
-		modify.setVisible(false);
-		cancel.setVisible(false);
+		this.modify.setVisible(false);
+		this.cancel.setVisible(false);
 		//隐藏人员信息面板
-		orgPanel.setVisible(false);
+		this.orgPanel.setVisible(false);
 		//显示查询面板
-		orgId.setVisible(true);
-		repaint();
+		this.orgId.setVisible(true);
+		//消除提示信息
+		this.tip.setText("");
+		
+		this.repaint();
 	}
 }

@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import constant.LoadingType;
+import dataService.Approvable;
 import vo.repositoryVO.OutRepositoryVO;
 
 /**
  * 记录了出库单的信息
  * @author 阮威威
  */
-public class OutRepositoryPO implements Serializable{
+public class OutRepositoryPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

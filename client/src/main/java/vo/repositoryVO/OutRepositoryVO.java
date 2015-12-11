@@ -3,13 +3,13 @@ package vo.repositoryVO;
 
 
 import constant.LoadingType;
-import vo.ApprovalFormVO;
+import dataService.Approvable;
 
 /**
  * 记录了出库单的信息
  * @author 阮威威
  */
-public class OutRepositoryVO extends ApprovalFormVO{
+public class OutRepositoryVO implements Approvable{
 	/**
 	 * 快递的编号（十位数字）
 	 */
@@ -119,10 +119,6 @@ public class OutRepositoryVO extends ApprovalFormVO{
 	}
 	public boolean getVerifyResult() {
 		return VerifyResult;
-	}
-	@Override
-	public String getDate() {
-		return this.outrepositorydate;
 	}
 	
 	public String getWayString() {

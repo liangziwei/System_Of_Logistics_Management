@@ -24,7 +24,7 @@ public class OtherInfoPanel extends JPanel{
 	
 	private JLabel dateLabel = new JLabel("日期");
 	
-	private JLabel timeLabel = new JLabel("预估时间");
+	private JLabel timeLabel = new JLabel("时间（天）");
 	
 	private JComboBox<String> typeText = new JComboBox<String>();
 	

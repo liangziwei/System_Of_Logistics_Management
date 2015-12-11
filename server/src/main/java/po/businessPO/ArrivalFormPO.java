@@ -3,13 +3,13 @@ package po.businessPO;
 
 
 import constant.CargoState;
-
+import dataService.Approvable;
 
 import java.io.Serializable;
 
 
 
-public class ArrivalFormPO implements Serializable{
+public class ArrivalFormPO implements Serializable, Approvable{
 
 	private static final long serialVersionUID = -6469790271856856083L;
 	private String date;

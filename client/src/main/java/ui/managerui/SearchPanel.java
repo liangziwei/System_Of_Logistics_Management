@@ -54,6 +54,7 @@ public class SearchPanel extends JPanel{
 		this.text.setBounds(0, (int)(labelH * 1.2), labelW << 1, labelH);
 		//将组件添加到面板
 		this.setLayout(null);
+		this.setOpaque(false);
 		this.setBounds(x, y, w, h);
 		this.add(this.idLabel);
 		this.add(this.idText);
@@ -66,10 +67,12 @@ public class SearchPanel extends JPanel{
 		this.text.setFont(font);
 		this.text.setForeground(foreground);
 		this.text.setText(text);
+		this.repaint();
 	}
 	
 	public void removeText() {
-		this.text.setText("");;
+		this.text.setText("");
+		this.repaint();
 	}
 	
 	public JButton getOk() {
@@ -82,5 +85,9 @@ public class SearchPanel extends JPanel{
 
 	public String getIdText() {
 		return idText.getText();
+	}
+	
+	public void clearIdText() {
+		this.idText.setText("");
 	}
 }

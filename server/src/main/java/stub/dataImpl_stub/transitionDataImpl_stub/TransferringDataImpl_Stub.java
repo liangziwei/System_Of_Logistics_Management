@@ -6,6 +6,7 @@ import java.util.List;
 
 import constant.City;
 import constant.LoadingType;
+import dataService.Approvable;
 import dataService.transitionDataService.TransferringDataService;
 import po.transitionPO.TransferringPO;
 
@@ -51,15 +52,16 @@ public class TransferringDataImpl_Stub implements TransferringDataService{
 	}
 
 	@Override
-	public boolean approveOneTransferring(TransferringPO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean approveMoreTransferring(ArrayList<TransferringPO> form) throws RemoteException {
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

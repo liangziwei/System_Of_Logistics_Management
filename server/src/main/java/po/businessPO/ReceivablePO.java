@@ -3,7 +3,9 @@ package po.businessPO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ReceivablePO implements Serializable{
+import dataService.Approvable;
+
+public class ReceivablePO implements Serializable, Approvable{
 	
 	private static final long serialVersionUID = 6976620841885362041L;
 	private String date;

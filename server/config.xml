@@ -4,7 +4,7 @@
         <!-- mysql连接设置 -->  
   		<url>jdbc:mysql://localhost/logistics_system</url>
         <user>root</user>  
-        <pass>X1231z60</pass>  
+        <pass>1282976747</pass>  
         <port>3306</port>  
     </VALUE>  
 </CONFIG>  

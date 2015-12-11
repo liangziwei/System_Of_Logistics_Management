@@ -4,13 +4,13 @@ package vo.transitionVO;
 import java.util.List;
 
 import constant.LoadingType;
-import vo.ApprovalFormVO;
+import dataService.Approvable;
 
 /**
  * 记录了装运单的信息
  * @author 阮威威
  */
-public class TransferringVO extends ApprovalFormVO{
+public class TransferringVO implements Approvable{
 	
 	/**
 	 * 装车（机）日期（yyyy-mm-dd）
@@ -169,10 +169,6 @@ public class TransferringVO extends ApprovalFormVO{
 	}
 	public boolean getVerifyResult() {
 		return VerifyResult;
-	}
-	@Override
-	public String getDate() {
-		return this.loadingdate;
 	}
 	
 	public String getLoadingTypeString() {

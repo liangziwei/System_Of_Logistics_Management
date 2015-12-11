@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import constant.LoadingType;
+import dataService.Approvable;
 /**
  * 记录了装运单的信息
  * @author 阮威威
  */
-public class TransferringPO implements Serializable{
+public class TransferringPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

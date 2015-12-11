@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import constant.AreaCodeType;
+import dataService.Approvable;
 import vo.repositoryVO.InRepositoryVO;
 
 /**
  * 记录了入库单的信息
  * @author 阮威威
  */
-public class InRepositoryPO implements Serializable{
+public class InRepositoryPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

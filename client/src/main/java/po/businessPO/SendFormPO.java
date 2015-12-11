@@ -3,9 +3,10 @@ package po.businessPO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import dataService.Approvable;
 import vo.businessVO.SendFormVO;
 
-public class SendFormPO implements Serializable{
+public class SendFormPO implements Serializable, Approvable{
 	
 	private static final long serialVersionUID = -2326119319668011673L;
 	private String date;	

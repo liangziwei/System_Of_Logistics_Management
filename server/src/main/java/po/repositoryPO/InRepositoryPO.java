@@ -3,12 +3,13 @@ package po.repositoryPO;
 import java.io.Serializable;
 
 import constant.AreaCodeType;
+import dataService.Approvable;
 
 /**
  * 记录了入库单的信息
  * @author 阮威威
  */
-public class InRepositoryPO implements Serializable{
+public class InRepositoryPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */
