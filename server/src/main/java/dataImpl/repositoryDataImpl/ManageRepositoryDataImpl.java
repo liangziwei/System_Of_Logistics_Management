@@ -13,9 +13,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 import constant.AreaCodeType;
 import dataService.repositoryDataService.ManageRepositoryDataService;
 import mysql.Database;
+import mysql.DatabaseConnect;
 import po.repositoryPO.DeliveryInfoPO;
 import po.repositoryPO.RepositoryInfoPO;
 import po.repositoryPO.RepositoryPO;
@@ -47,7 +50,7 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 			return null;
 		}
 		// 相关信息
-		String deliveryid = null;
+		String deliveryid1 = null;
 		AreaCodeType areaCode = null;
 		String rowid = null;
 		String shelfid = null;
@@ -57,12 +60,12 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 			while (rs.next()) {
 				date = rs.getString("inrepositorydate");
 				if (TIME[0].compareTo(date)<=0&&TIME[1].compareTo(date)>=0) {
-					deliveryid = rs.getString("deliveryid");
+					deliveryid1 = rs.getString("deliveryid");
 					areaCode = AreaCodeType.valueOf(rs.getString("areaCode"));
 					rowid = rs.getString("rowid");
 					shelfid = rs.getString("shelfid");
 					posid = rs.getString("posid");
-					RepositoryInfoPO repositoryInfoPO = new RepositoryInfoPO(deliveryid, areaCode, rowid, shelfid, posid, true);
+					RepositoryInfoPO repositoryInfoPO = new RepositoryInfoPO(deliveryid1, areaCode, rowid, shelfid, posid, true);
 					thelist.add(repositoryInfoPO);					
 				}
 			}
@@ -88,39 +91,43 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 			e.printStackTrace();
 			return null;
 		}
-		String deliveryid2 = null;
+		//相关信息（出库单）
 		String date2 = null;
 		AreaCodeType areaCode2 = null;
 		String rowid2 = null;
 		String shelfid2 = null;
 		String posid2 = null;
+		List<String> deliveryID = new ArrayList<String>();
 		try {
 			while (rs2.next()) {
 				date2 = rs2.getString("outrepositorydate");
 				if (TIME[0].compareTo(date2)<=0&&TIME[1].compareTo(date2)>=0) {
-					deliveryid2 = rs2.getString("deliveryid");
-					try {
-						ResultSet rs3 = Database.query("inRepository", "deliveryid", deliveryid2);
-						while (rs3.next()) {
-							areaCode2 = AreaCodeType.valueOf(rs3.getString("areaCode"));
-							rowid2 = rs3.getString("rowid");
-							shelfid2 = rs3.getString("shelfid");
-							posid2 = rs3.getString("posid");
-						}
-						rs3.close();
-					} catch (Exception e) {
-						// TODO: handle exception
-						e.printStackTrace();
-					}
-					RepositoryInfoPO repositoryInfoPOout = new RepositoryInfoPO(deliveryid, areaCode2, rowid2, shelfid2, posid2, false);
-					thelist.add(repositoryInfoPOout);	
+					String deliveryid2 = rs2.getString("deliveryid");
+					deliveryID.add(deliveryid2);
 				}			
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+		for(String del:deliveryID){
+			try {
+				ResultSet rs3 = Database.query("inRepository", "deliveryid", del);
+				while (rs3.next()) {
+					areaCode2 = AreaCodeType.valueOf(rs3.getString("areaCode"));
+					rowid2 = rs3.getString("rowid");
+					shelfid2 = rs3.getString("shelfid");
+					posid2 = rs3.getString("posid");
+				}
+//						rs3.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			RepositoryInfoPO repositoryInfoPOout = new RepositoryInfoPO(del, areaCode2, rowid2, shelfid2, posid2, false);
+			thelist.add(repositoryInfoPOout);	
+			
+		}
 		
 		//设置入、出库单的金额
 		thelist=this.Price(thelist);
@@ -364,7 +371,7 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 //			rs = Database.findOperation(sql);
 			try {
 //				ResultSet rs=Database.query("order","goods_id",ID);
-				ResultSet rs = Database.findOperation("select * from order where goods_id = '" + ID + "';");
+				ResultSet rs = Database.findOperation("select * from order_table where goods_id = '" + ID + "';");
 				while(rs.next()){
 					fare = rs.getDouble("price");
 					TherepositoryInfoPOs.get(i).setmoney(fare);
