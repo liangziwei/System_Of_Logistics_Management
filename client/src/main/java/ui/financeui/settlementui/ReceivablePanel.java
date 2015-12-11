@@ -49,6 +49,7 @@ public class ReceivablePanel extends JPanel{
 				textW, textH);
 		this.dateText.setFont(WORD_FONT);
 		this.dateText.setDate(receivable.getDate());
+		this.dateText.setOpaque(false);
 		//收款快递员标签
 		this.nameLabel.setBounds(this.dateLabel.getX(), this.dateLabel.getY() + labelH + ltGap,
 				labelW, labelH);
@@ -58,6 +59,7 @@ public class ReceivablePanel extends JPanel{
 		this.nameText.setFont(WORD_FONT);
 		this.nameText.setText(receivable.getCourier());
 		this.nameText.setEditable(false);
+		this.nameText.setOpaque(false);
 		//收款项标签
 		this.itemLabel.setBounds(this.nameLabel.getX(), this.nameLabel.getY() + labelH + ltGap,
 				labelW, labelH);
@@ -73,10 +75,13 @@ public class ReceivablePanel extends JPanel{
 		text = text + "总金额为： " + receivable.getMoney() + "\n";
 		this.itemText.setText(text);
 		this.itemText.setEditable(false);
+		this.itemText.setOpaque(false);
 		this.itemContainer.setViewportView(this.itemText);
+		this.itemContainer.setOpaque(false);
 		//将组件添加到面板
 		this.setBounds(x, y, w, h);
 		this.setLayout(null);
+		this.setOpaque(false);
 		this.add(this.dateLabel);
 		this.add(this.dateText);
 		this.add(this.nameLabel);

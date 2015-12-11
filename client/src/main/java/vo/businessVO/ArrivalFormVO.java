@@ -1,10 +1,10 @@
 package vo.businessVO;
 
 import constant.CargoState;
+import dataService.Approvable;
 import po.businessPO.ArrivalFormPO;
-import vo.ApprovalFormVO;
 
-public class ArrivalFormVO extends ApprovalFormVO{
+public class ArrivalFormVO implements Approvable{
 
 	private String date;
 	private String transitNumber;
@@ -55,4 +55,5 @@ public class ArrivalFormVO extends ApprovalFormVO{
 	public ArrivalFormPO arrivalVOToPO(){
 		return new ArrivalFormPO(date,transitNumber,departPlace,state);
 	}
+	
 }

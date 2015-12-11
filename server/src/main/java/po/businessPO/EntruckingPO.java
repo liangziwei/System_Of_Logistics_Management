@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntruckingPO implements Serializable{
+import dataService.Approvable;
+
+public class EntruckingPO implements Serializable, Approvable{
 	
 	private static final long serialVersionUID = -5974465357631427989L;
 	private String date;

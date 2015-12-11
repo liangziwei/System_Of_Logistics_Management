@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constant.LoadingType;
+import dataService.Approvable;
 /**
  * 记录了装运单的信息
  * @author 阮威威
  */
 import vo.transitionVO.TransferringVO;
-public class TransferringPO implements Serializable{
+public class TransferringPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

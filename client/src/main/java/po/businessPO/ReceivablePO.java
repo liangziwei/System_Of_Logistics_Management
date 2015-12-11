@@ -3,9 +3,10 @@ package po.businessPO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import dataService.Approvable;
 import vo.businessVO.ReceivableVO;
 
-public class ReceivablePO implements Serializable{
+public class ReceivablePO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

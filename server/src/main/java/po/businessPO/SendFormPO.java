@@ -2,7 +2,9 @@ package po.businessPO;
 
 import java.io.Serializable;
 
-public class SendFormPO implements Serializable{
+import dataService.Approvable;
+
+public class SendFormPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */

@@ -5,13 +5,13 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import businessLogic.businessLogicController.managerController.StaffManagementController;
 import businessLogicService.managerBLService.StaffManagementBLService;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import ui.managerui.SearchPanel;
 import vo.managerVO.StaffVO;
 
@@ -24,9 +24,9 @@ public class ModifyStaff extends DetailPanel{
 	
 	private StaffInfoPanel staffInfo = null;
 	
-	private JButton modify = new JButton("修改");
+	private LimpidButton modify = new LimpidButton("","picture/修改.png");
 	
-	private JButton cancel = new JButton("取消");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	private JLabel tip = new JLabel();
 	
@@ -42,10 +42,11 @@ public class ModifyStaff extends DetailPanel{
 		//人员信息面板
 		this.container.setBounds(0, DETAIL_PANEL_H / 6, DETAIL_PANEL_W, DETAIL_PANEL_H / 6 * 5);
 		this.container.getVerticalScrollBar().setUnitIncrement(15);
+		this.container.setVisible(false);
 		this.add(this.container);
 		
-		int buttonW = (int) (staffId.getHeight() * 0.8);
-		int buttonH = staffId.getHeight() >> 1;
+		int buttonW = 80;
+		int buttonH = 30;
 		//修改按钮
 		this.modify.setBounds(staffId.getWidth() >> 1, (int)(staffId.getHeight()* 0.1), buttonW, buttonH);
 		this.modify.setFont(WORD_FONT);
@@ -132,6 +133,9 @@ public class ModifyStaff extends DetailPanel{
 		container.setVisible(false);
 		//显示查询面板
 		staffId.setVisible(true);
+		//消除错误提示
+		this.tip.setText("");
+		
 		repaint();
 	}
 }

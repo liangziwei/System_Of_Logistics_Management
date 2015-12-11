@@ -1,18 +1,20 @@
 package ui.managerui.staffui;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ui.baseui.DatePanel;
-import ui.baseui.DetailPanel;
 import vo.managerVO.StaffVO;
 
 @SuppressWarnings("serial")
-public class StaffInfoPanel extends DetailPanel{
+public class StaffInfoPanel extends JPanel{
 
 	private JLabel nameLabel = new JLabel("姓名");
 	
@@ -50,9 +52,11 @@ public class StaffInfoPanel extends DetailPanel{
 	
 	private static final int TEXT_H = LABEL_H;
 	
-	private static final int START_X = (DETAIL_PANEL_W - LABEL_W - TEXT_W) / 3;
+	private static final int START_X = (750 - LABEL_W - TEXT_W) / 3;
 	
 	private static final int START_Y = START_X >> 2;
+	
+	private static Image BACKGROUND = new ImageIcon("picture/detail.jpg").getImage();
 	
 	public StaffInfoPanel() {
 		//标签与标签之间的距离
@@ -64,6 +68,7 @@ public class StaffInfoPanel extends DetailPanel{
 		this.nameText.setBounds(this.nameLabel.getX() + LABEL_W + (START_X >> 1),
 				this.nameLabel.getY(), TEXT_W, TEXT_H);
 		this.nameText.setFont(WORD_FONT);
+		this.nameText.setOpaque(false);
 		//性别标签
 		this.genderLabel.setBounds(this.nameLabel.getX(),
 				this.nameText.getY() + gap, LABEL_W, LABEL_H);
@@ -73,6 +78,7 @@ public class StaffInfoPanel extends DetailPanel{
 		this.genderText.setFont(WORD_FONT);
 		this.genderText.addItem("男");
 		this.genderText.addItem("女");
+		this.genderText.setOpaque(false);
 		//编号标签
 		this.idLabel.setBounds(this.genderLabel.getX(),
 				this.genderLabel.getY() + gap, LABEL_W, LABEL_H);
@@ -80,6 +86,7 @@ public class StaffInfoPanel extends DetailPanel{
 		//编号文本框
 		this.idText.setBounds(this.genderText.getX(), this.idLabel.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setOpaque(false);
 		//职位标签
 		this.posLabel.setBounds(this.idLabel.getX(), this.idLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.posLabel.setFont(WORD_FONT);
@@ -97,6 +104,7 @@ public class StaffInfoPanel extends DetailPanel{
 		//出生日期文本框
 		this.birthText.setPanelBound(this.posText.getX(), this.birthLabel.getY(), TEXT_W, TEXT_H);
 		this.birthText.setFont(WORD_FONT);
+		this.birthText.setOpaque(false);
 		//薪水标签
 		this.salaryLabel.setBounds(this.birthLabel.getX(), this.birthLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.salaryLabel.setFont(WORD_FONT);
@@ -110,7 +118,10 @@ public class StaffInfoPanel extends DetailPanel{
 		this.salaryText.setBounds(this.salaryType.getX() + this.salaryType.getWidth(),
 				this.salaryType.getY(), TEXT_W >> 1, TEXT_H);
 		this.salaryText.setFont(WORD_FONT);
+		this.salaryText.setOpaque(false);
 		//将组件添加到面板
+		this.setLayout(null);
+		this.setOpaque(false);
 		this.add(this.nameLabel);
 		this.add(this.nameText);
 		this.add(this.genderLabel);
@@ -142,5 +153,11 @@ public class StaffInfoPanel extends DetailPanel{
 				(String)posText.getSelectedItem(), (String)genderText.getSelectedItem(),
 				birthText.getDate(), salaryText.getText(), (String)salaryType.getSelectedItem(),
 				false, false);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 }

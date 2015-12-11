@@ -51,6 +51,7 @@ public class ListPanel extends JPanel{
 		//列表容器
 		this.container.setBounds(0, 0, panelW, panelH >> 1);
 		this.container.setViewportView(this.list);
+		this.container.setOpaque(false);
 		//合计按钮
 		int btnW = panelW >> 2;
 		int btnH = btnW >> 1;
@@ -62,10 +63,12 @@ public class ListPanel extends JPanel{
 		int textH = btnH;
 		this.sumText.setBounds(panelW * 5 >> 3, this.sumBtn.getY(), textW, textH);
 		this.sumText.setFont(WORD_FONT);
+		this.sumText.setOpaque(false);
 		
 		//主面板
 		this.setBounds(x, y, panelW, panelH - 7);
 		this.setLayout(null);
+		this.setOpaque(false);
 		this.add(this.container);
 		this.add(this.sumBtn);
 		this.add(this.sumText);

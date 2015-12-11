@@ -10,7 +10,6 @@ import dataImpl.businessDataImpl.EntruckingDataImpl;
 import dataImpl.businessDataImpl.PaymentDataImpl;
 import dataImpl.businessDataImpl.ReceiveAndSendDataImpl;
 import dataImpl.businessDataImpl.VehicleDataImpl;
-import dataImpl.deliveryDataImpl.ConstantDataImpl;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
@@ -36,7 +35,6 @@ import dataService.businessDataService.EntruckingDataService;
 import dataService.businessDataService.PaymentDataService;
 import dataService.businessDataService.ReceiveAndSendDataService;
 import dataService.businessDataService.VehicleDataService;
-import dataService.deliveryDataService.ConstantDataService;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.deliveryDataService.ReceiptDataService;
 import dataService.financeDataService.AccountDataService;
@@ -86,8 +84,6 @@ public class RMI {
 		initFinanceRMI();
 		//初始化系统管理人员的RMI连接
 		initAdministratorRMI();
-		//初始化获得常量的RMI连接
-		initGetConstant();
 		//提示服务器运行成功
 		System.out.println("Server is working...");
 	}
@@ -262,13 +258,4 @@ public class RMI {
 		}
 	}
 
-	private static void initGetConstant() {
-		try {
-			ConstantDataService constant = new ConstantDataImpl();
-			ConstantDataService constant_stub = (ConstantDataService) UnicastRemoteObject.exportObject(constant, 0);
-			registry.bind("constant", constant_stub);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 }

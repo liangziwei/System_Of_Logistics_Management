@@ -3,6 +3,8 @@ package ui.deliveryui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,12 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import businessLogic.businessLogicController.deliveryController.OrderController;
-import businessLogic.businessLogicModel.deliveryModel.PackagePriceIO;
+import businessLogic.businessLogicModel.managerModel.MakeConstant;
 import businessLogicService.deliveryBLService.OrderBLService;
 import constant.City;
 import constant.ClientType;
@@ -106,6 +109,8 @@ public class OrderInputPanel extends DetailPanel{
 	 */
 	private boolean isFirstEnsure = true;
 	
+	private static Image BACKGROUND = new ImageIcon("picture/订单查询.jpg").getImage();
+	
 	public OrderInputPanel() {
 		super();
 		//初始化信息面板
@@ -120,14 +125,10 @@ public class OrderInputPanel extends DetailPanel{
 		//确定按钮
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-//		this.ok.setIcon(new ImageIcon("picture/确定.png"));
-//		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(BUTTON_W + PANEL_GAP, 0, BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		this.cancel.setVisible(false);
-//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-//		this.cancel.setBorderPainted(false);
 		//添加事件监听
 		this.addListener();
 		//将按钮添加到按钮面板
@@ -148,12 +149,22 @@ public class OrderInputPanel extends DetailPanel{
 	 */
 	public JPanel OrderInfoView() {
 		//创建面板
-		JPanel panel = new JPanel();
+		JPanel panel = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(BACKGROUND, 0, 0, this.getWidth(),this.getHeight(), null);
+			}
+		};
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H - 72));
 		//添加其他信息面板
-		this.sender.setBackground(null);
 		this.sender.setOpaque(false);
+		this.receiver.setOpaque(false);
+		this.goodsInfo.setOpaque(false);
+		this.otherInfo.setOpaque(false);
+		panel.setOpaque(false);
+		
 		panel.add(this.sender);
 		panel.add(this.receiver);
 		panel.add(this.goodsInfo);
@@ -261,7 +272,8 @@ public class OrderInputPanel extends DetailPanel{
 		disableComponents();
 		//计算运费和时间
 		double weight = Double.parseDouble(goodsInfo.getWeight());
-		double pack = PackagePriceIO.getPackPrice(orderVO.getGoodsInfo().getPackageType());
+		MakeConstant constant = new MakeConstant();
+		double pack = constant.getPackPrice(orderVO.getGoodsInfo().getPackageType());
 		double price = orderService.calculatePrice(otherInfo.getDeliveryType(),
 				weight, sender.getCity(), receiver.getCity()) + pack;
 		int day = orderService.calculateTime(sender.getCity(), receiver.getCity());

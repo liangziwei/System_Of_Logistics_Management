@@ -6,11 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -18,8 +18,9 @@ import javax.swing.JTable;
 
 import businessLogic.businessLogicController.managerController.ApprovalFormController;
 import businessLogicService.managerBLService.ApprovalFormBLService;
+import dataService.Approvable;
 import ui.baseui.DetailPanel;
-import vo.ApprovalFormVO;
+import ui.baseui.LimpidButton;
 import vo.businessVO.ArrivalFormVO;
 import vo.businessVO.EntruckingVO;
 import vo.businessVO.ReceivableVO;
@@ -37,35 +38,87 @@ public class ApprovalFormPanel extends DetailPanel{
 	
 	private ApprovalFormBLService approve = new ApprovalFormController();
 	
-	private JLabel typeLabel = new JLabel("单据类型");
-
-	private JComboBox<String> typeText = new JComboBox<String>();
-	
-	private JScrollPane formContainer = new JScrollPane();
-	
-	private JTable form = null;
-	
-	private JButton approveOne = new JButton("通过审批");
-	
-	private JButton approveMore = new JButton("批量审批");
-	
-	private JLabel tip = new JLabel();
-	
 	private UncheckedFormVO uncheck = this.approve.getUncheckedForms();
 	
 	/**
 	 * 单据名称与单据列表的映射
 	 */
-	private Map<String, ArrayList<? extends ApprovalFormVO>> formListMap
-			= new HashMap<String, ArrayList<? extends ApprovalFormVO>>();
+	private Map<String, ArrayList<? extends Approvable>> formListMap
+			= new HashMap<String, ArrayList<? extends Approvable>>();
 	
 	/**
-	 * 单据名称与具体单据数据信息的映射
+	 * 单据名称与获得单据方法的映射
 	 */
-	private Map<String, Object[]> tableNameMap = new HashMap<String, Object[]>();
+	private static Map<String, Method> TABLE_GETTER_METHOD = new HashMap<String, Method>();
+	
+	/**
+	 * 表格默认列数
+	 */
+	private static final int ROW_NUM = 10; 
+	
+	/**
+	 *获得待审批单据的表格的构造器
+	 */
+	private static ApproveTableCreator TABLE_CREATOR = new ApproveTableCreator(ROW_NUM);
+	
+	/**
+	 *初始化单据 名称与获得单据的 方法的映射表
+	 */
+	static {
+		try {
+			//订单
+			TABLE_GETTER_METHOD.put(TableTypeName.ORDER_NAME,
+					TABLE_CREATOR.getClass().getMethod("getOrderTable", new ArrayList<OrderVO>().getClass()));
+			//装车单
+			TABLE_GETTER_METHOD.put(TableTypeName.ENTRUCKING_NAME, 
+					TABLE_CREATOR.getClass().getMethod("getEntruckingTable", new ArrayList<EntruckingVO>().getClass()));
+			//收款单
+			TABLE_GETTER_METHOD.put(TableTypeName.RECEIVABLE_NAME,
+					TABLE_CREATOR.getClass().getMethod("getReceivableTable", new ArrayList<ReceivableVO>().getClass()));
+			//营业厅到达单
+			TABLE_GETTER_METHOD.put(TableTypeName.ARRIVAL_NAME, 
+					TABLE_CREATOR.getClass().getMethod("getArrivalTable", new ArrayList<ArrivalFormVO>().getClass()));
+			//派送单
+			TABLE_GETTER_METHOD.put(TableTypeName.SEND_NAME,
+					TABLE_CREATOR.getClass().getMethod("getSendTable", new ArrayList<SendFormVO>().getClass()));
+			//中转中心到达单
+			TABLE_GETTER_METHOD.put(TableTypeName.RECEIVING_NAME,
+					TABLE_CREATOR.getClass().getMethod("getReceivingTable", new ArrayList<ReceivingVO>().getClass()));
+			//入库单
+			TABLE_GETTER_METHOD.put(TableTypeName.IN_NAME,
+					TABLE_CREATOR.getClass().getMethod("getInRepositoryTable", new ArrayList<InRepositoryVO>().getClass()));
+			//中转单
+			TABLE_GETTER_METHOD.put(TableTypeName.TRANSFERRING_NAME,
+					TABLE_CREATOR.getClass().getMethod("getTransferringTable", new ArrayList<TransferringVO>().getClass()));
+			//出库单
+			TABLE_GETTER_METHOD.put(TableTypeName.OUT_NAME,
+					TABLE_CREATOR.getClass().getMethod("getOutRepositoryTable", new ArrayList<OutRepositoryVO>().getClass()));
+			//付款单
+			TABLE_GETTER_METHOD.put(TableTypeName.PAYMENT_NAME,
+					TABLE_CREATOR.getClass().getMethod("getPaymentTable", new ArrayList<PaymentVO>().getClass()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//组件
+	private JLabel typeLabel = new JLabel("单据类型");
+
+	private JComboBox<String> typeText = new JComboBox<String>();
+
+	private JScrollPane formContainer = new JScrollPane();
+
+	private JTable form = null;
+
+	private LimpidButton approveOne = new LimpidButton("","picture/通过审批.png");
+
+	private LimpidButton approveMore = new LimpidButton("","picture/批量审批.png");
+
+	private JLabel tip = new JLabel();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
+	//常量
 	private static final int LABEL_W = DETAIL_PANEL_W / 12;
 	
 	private static final int LABEL_H = LABEL_W >> 1;
@@ -86,13 +139,43 @@ public class ApprovalFormPanel extends DetailPanel{
 	
 	private static final int START_Y = START_X >> 2;
 	
-	private static final int ROW_NUM = 10;
-	
 	public ApprovalFormPanel() {
 		//初始化单据名字-数据VO列表的映射表
 		this.initFormListMap();
-		//初始化单据名字-表格列名的映射表
-		this.initTableName();
+		//初始化界面
+		this.initUI();
+	}
+	
+	/**
+	 * 初始化单据名字-数据VO列表的映射表
+	 */
+	private void initFormListMap() {
+		//寄件单
+		this.formListMap.put(TableTypeName.ORDER_NAME, this.uncheck.getOrderlist());
+		//装车单
+		this.formListMap.put(TableTypeName.ENTRUCKING_NAME, this.uncheck.getEntruckinglist());
+		//营业厅到达单
+		this.formListMap.put(TableTypeName.ARRIVAL_NAME, this.uncheck.getArrivalformlist());
+		//收款单
+		this.formListMap.put(TableTypeName.RECEIVABLE_NAME, this.uncheck.getReceivablelist());
+		//派件单
+		this.formListMap.put(TableTypeName.SEND_NAME, this.uncheck.getSendformlist());
+		//中转中心到达单
+		this.formListMap.put(TableTypeName.RECEIVING_NAME, this.uncheck.getReceivinglist());
+		//入库单
+		this.formListMap.put(TableTypeName.IN_NAME, this.uncheck.getInrepositorylist());
+		//中转单
+		this.formListMap.put(TableTypeName.TRANSFERRING_NAME, this.uncheck.getTransferringlist());
+		//出库单
+		this.formListMap.put(TableTypeName.OUT_NAME, this.uncheck.getOutrepositorylist());
+		//付款单
+		this.formListMap.put(TableTypeName.PAYMENT_NAME, this.uncheck.getPaymentlist());
+	}
+	
+	/**
+	 * 初始化界面
+	 */
+	private void initUI() {
 		//类型标签
 		this.typeLabel.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		this.typeLabel.setFont(WORD_FONT);
@@ -100,20 +183,20 @@ public class ApprovalFormPanel extends DetailPanel{
 		this.typeText.setBounds(this.typeLabel.getX() + (LABEL_W * 3 >> 1), this.typeLabel.getY(),
 				TEXT_W, TEXT_H);
 		this.typeText.setFont(WORD_FONT);
-		this.addTypeItem();    //增加下拉框选项
+		this.addTypeItem();    //增加单据类型选项
 		this.addTypeItemListener();			
 		//单据表格
-		this.setTable("寄件单");
+		this.initTableUI("寄件单");
 		//审批一张单按钮
 		this.approveOne.setBounds(this.typeLabel.getX(), this.formContainer.getY() +
 				this.formContainer.getHeight() + (LABEL_H * 3 >> 1), BUTTON_W, BUTTON_H);
 		this.approveOne.setFont(WORD_FONT);
+		this.addApproveOneListener();
 		//审批多张单按钮
 		this.approveMore.setBounds(this.approveOne.getX() + (int)(BUTTON_W * 2.5),
 				this.approveOne.getY(), BUTTON_W, BUTTON_H);
 		this.approveMore.setFont(WORD_FONT);
-		//添加按钮监听
-		this.addButtonListener();
+		this.addApproveMoreListener();;
 		//提示标签
 		this.tip.setBounds(this.typeText.getX() + TEXT_W + TEXT_H,
 				this.typeText.getY(),TEXT_W, TEXT_H);
@@ -128,6 +211,35 @@ public class ApprovalFormPanel extends DetailPanel{
 		this.add(this.tip);
 	}
 	
+	/**
+	 * 增加单据类型选项
+	 */
+	private void addTypeItem() {
+		//寄件单
+		this.typeText.addItem(TableTypeName.ORDER_NAME);
+		//装车单
+		this.typeText.addItem(TableTypeName.ENTRUCKING_NAME);
+		//营业厅到达单
+		this.typeText.addItem(TableTypeName.ARRIVAL_NAME);
+		//收款单
+		this.typeText.addItem(TableTypeName.RECEIVABLE_NAME);
+		//派件单
+		this.typeText.addItem(TableTypeName.SEND_NAME);
+		//中转中心到达单
+		this.typeText.addItem(TableTypeName.RECEIVING_NAME);
+		//入库单
+		this.typeText.addItem(TableTypeName.IN_NAME);
+		//中转单
+		this.typeText.addItem(TableTypeName.TRANSFERRING_NAME);
+		//出库单
+		this.typeText.addItem(TableTypeName.OUT_NAME);
+		//付款单
+		this.typeText.addItem(TableTypeName.PAYMENT_NAME);
+	}
+	
+	/**
+	 *添加对单据下拉选项 的监听
+	 */
 	private void addTypeItemListener() {
 		this.typeText.addItemListener(new ItemListener() {
 			
@@ -135,21 +247,45 @@ public class ApprovalFormPanel extends DetailPanel{
 			public void itemStateChanged(ItemEvent e) {
 				if(form != null) form.setVisible(false);
 				//根据用户的选择的表格类型获得相应单据的编号
-				setTable((String)typeText.getSelectedItem());				
+				initTableUI((String)typeText.getSelectedItem());				
 				//刷新面板
 				repaint();
 			}
 		});
 	}
 	
-	private void addButtonListener() {
-		//审批一张单据
+	/**
+	 * 初始化单据表格界面
+	 * @param formType, 要展示的表格类型
+	 */
+	private void initTableUI(String formType) {
+		//根据单据名称获得对应单据VO列表
+		ArrayList<? extends Approvable> vo = formListMap.get(formType);
+		int size = vo.size();
+		int formNum = size < ROW_NUM ? ROW_NUM : size;
+		try {
+			//根据单据名称获得单据表格
+			form = (JTable) TABLE_GETTER_METHOD.get(formType).invoke(TABLE_CREATOR, formListMap.get(formType));
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		//表格容器
+		formContainer.setBounds(START_X >> 1, typeLabel.getY() + (LABEL_H << 1),
+				TABLE_W, TABLE_H - 7);
+		form.setRowHeight(TABLE_H / (formNum + 1));
+		form.setFont(WORD_FONT);
+		formContainer.setViewportView(form);
+	}
+	
+	/**
+	 * 添加对审批一张单据按钮的监听
+	 */
+	private void addApproveOneListener() {
 		this.approveOne.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String type = (String)typeText.getSelectedItem();
-				ArrayList<? extends ApprovalFormVO> selectedForm = formListMap.get(type);//当前要审批的单据列表
+				ArrayList<? extends Approvable> selectedForm = formListMap.get(type);//当前要审批的单据列表
 				int formNum = selectedForm.size();
 				int select = form.getSelectedRow();
 				//如果用户没有选择单据,提示用户进行选择
@@ -165,346 +301,30 @@ public class ApprovalFormPanel extends DetailPanel{
 				approve.approveOneForm(selectedForm.get(select), type);
 				//更新单据列表的显示
 				formListMap.get(type).remove(select);
-				setTable(type);
+				initTableUI(type);
 				repaint();
 			}
 		});
-		//审批所有相同的单据
+	}
+	
+	/**
+	 * 添加对审批多张单据按钮的监听
+	 */
+	private void addApproveMoreListener() {
 		this.approveMore.addActionListener(new ActionListener() {
-			
 			@SuppressWarnings("unchecked")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tip.setText("");
 				String type = (String)typeText.getSelectedItem();
-				ArrayList<? extends ApprovalFormVO> selectedForm = formListMap.get(type);//当前要审批的单据列表
+				ArrayList<? extends Approvable> selectedForm = formListMap.get(type);//当前要审批的单据列表
 				//更新单据审批状态
-				approve.approveMoreForm((ArrayList<ApprovalFormVO>) selectedForm, type);
+				approve.approveMoreForm((ArrayList<Approvable>) selectedForm, type);
 				//更新单据列表的显示
 				formListMap.get(type).clear();;
-				setTable(type);
+				initTableUI(type);
 				repaint();
 			}
 		});
 	}
-	
-	private void initFormListMap() {
-		this.formListMap.put("寄件单", this.uncheck.getOrderlist());
-		this.formListMap.put("装车单", this.uncheck.getEntruckinglist());
-		this.formListMap.put("营业厅到达单", this.uncheck.getArrivalformlist());
-		this.formListMap.put("收款单", this.uncheck.getReceivablelist());
-		this.formListMap.put("派件单", this.uncheck.getSendformlist());
-		this.formListMap.put("中转中心到达单", this.uncheck.getReceivinglist());
-		this.formListMap.put("入库单", this.uncheck.getInrepositorylist());
-		this.formListMap.put("中转单", this.uncheck.getTransferringlist());
-		this.formListMap.put("出库单", this.uncheck.getOutrepositorylist());
-		this.formListMap.put("付款单", this.uncheck.getPaymentlist());
-	}
-	
-	private void addTypeItem() {
-		this.typeText.addItem("寄件单");
-		this.typeText.addItem("装车单");
-		this.typeText.addItem("营业厅到达单");
-		this.typeText.addItem("收款单");
-		this.typeText.addItem("派件单");
-		this.typeText.addItem("中转中心到达单");
-		this.typeText.addItem("入库单");
-		this.typeText.addItem("中转单");
-		this.typeText.addItem("出库单");
-		this.typeText.addItem("付款单");
-	}
-	
-	private void initTableName() {
-		//寄件单列名
-		Object[] order = new Object[] {
-				"建单日期", "订单条形码号", "快递类型", "包装类型", "运费", "预估时间"
-		};
-		this.tableNameMap.put("寄件单", order);
-		//装车单列名
-		Object[] entrucking = new Object[] {
-				"装车日期", "营业厅编号", "汽运编号", "到达地", "车辆代号", "监装员", "押运员", "运费"
-		};
-		
-		this.tableNameMap.put("装车单", entrucking);
-		//营业厅到达单列名
-		Object[] arrival = new Object[] {
-				"到达日期", "中转单编号", "出发地", "货物到达状态"
-		};
-		this.tableNameMap.put("营业厅到达单", arrival);
-		//收款单列名
-		Object[] receivable = new Object[] {
-				"收款日期", "营业厅编号", "收款金额", "收款快递员"
-		};
-		this.tableNameMap.put("收款单", receivable);
-		//派件单列名
-		Object[] send = new Object[] {
-				"到达日期", "订单条形码号", "派送员"
-		};
-		this.tableNameMap.put("派件单", send);
-		//中转中心到达单列名
-		Object[] receiving = new Object[] {
-				"到达日期", "中转单编号", "本中转中心编号", "出发地", "到达地", "货物到达状态"
-		};
-		this.tableNameMap.put("中转中心到达单", receiving);
-		//入库单列名
-		Object[] in = new Object[] {
-				"入库日期", "快递编号", "目的地", "区号", "排号", "架号", "位号"
-		};
-		this.tableNameMap.put("入库单", in);
-		//中转单列名
-		Object[] transferring = new Object[] {
-				"装车日期", "中转单编号", "装运方式编号", "运送方式", "出发地", "目的地", "监装员", "货柜号"
-		};
-		this.tableNameMap.put("中转单", transferring);
-		//出库单列名
-		Object[] out = new Object[] {
-				"出库日期", "快递编号", "目的地", "装运方式", "装运信息编号"
-		};
-		this.tableNameMap.put("出库单", out);
-		//付款单列名
-		Object[] payment = new Object[] {
-				"付款日期", "付款金额", "付款人", "付款账户", "条目", "备注"
-		};
-		this.tableNameMap.put("付款单", payment);
-	}
-	
-	private void setTable(String formType) {
-		//单据表格
-		//列名
-		Object[] names = this.tableNameMap.get(formType);
-		String[] date = this.getDate(formType);
-		int dateLen = date.length;
-		int formNum = dateLen < ROW_NUM ? ROW_NUM : dateLen;
-		//数据
-		Object[][] datas = this.getTableData(formType, this.formListMap.get(formType));
-		form = new JTable(datas, names);
-		//表格容器
-		formContainer.setBounds(START_X >> 1, typeLabel.getY() + (LABEL_H << 1),
-				TABLE_W, TABLE_H - 7);
-		form.setRowHeight(TABLE_H / (formNum + 1));
-		form.setFont(WORD_FONT);
-		formContainer.setViewportView(form);
-	}
-	
-	@SuppressWarnings("unchecked")
-	private Object[][] getTableData(String formType, ArrayList<? extends ApprovalFormVO> list) {
-		switch(formType) {
-		case "寄件单":
-			return this.getOrderData((ArrayList<OrderVO>)list);
-		case "装车单":
-			return this.getEntruckingData((ArrayList<EntruckingVO>) list);
-		case "营业厅到达单":
-			return this.getArrivalData((ArrayList<ArrivalFormVO>) list);
-		case "收款单":
-			return this.getReceivableData((ArrayList<ReceivableVO>) list);
-		case "派件单":
-			return this.getSendData((ArrayList<SendFormVO>) list);
-		case "中转中心到达单":
-			return this.getReceivingData((ArrayList<ReceivingVO>) list);
-		case "入库单":
-			return this.getInRepositoryData((ArrayList<InRepositoryVO>) list);
-		case "中转单":
-			return this.getTransferringData((ArrayList<TransferringVO>) list);
-		case "出库单":
-			return this.getOutRepositoryData((ArrayList<OutRepositoryVO>) list);
-		case "付款单":
-			return this.getPaymentData((ArrayList<PaymentVO>) list);
-		}
-		return new Object[1][ROW_NUM];
-	}
-	
-	private Object[][] getOrderData(ArrayList<OrderVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][6];
-		OrderVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"建单日期", "订单条形码号", "快递类型", "包装类型", "运费", "预估时间"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.getGoodsInfo().getId();
-			data[i][2] = vo.getGoodsInfo().getDeliveryString();
-			data[i][3] = vo.getGoodsInfo().getPackageString();
-			data[i][4] = vo.getGoodsInfo().getPrice();
-			data[i][5] = vo.getGoodsInfo().getTime();
-		}
-		return data;
-	}
-	
-	private Object[][] getEntruckingData(ArrayList<EntruckingVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][8];
-		EntruckingVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"装车日期", "营业厅编号", "汽运编号", "到达地", "车辆代号", "监装员", "押运员", "运费"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.getBusinessHallid();
-			data[i][2] = vo.getTransportNumber();
-			data[i][3] = vo.getDestionation();
-			data[i][4] = vo.getVehicleid();
-			data[i][5] = vo.getSupervisor();
-			data[i][6] = vo.getSupercargo();
-			data[i][7] = vo.getFreight();
-		}
-		return data;
-	}
-	
-	private Object[][] getArrivalData(ArrayList<ArrivalFormVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][4];
-		ArrivalFormVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"到达日期", "中转单编号", "出发地", "货物到达状态"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.getTransitNumber();
-			data[i][2] = vo.getDepartPlace();
-			data[i][3] = vo.getState();
-		}
-		
-		return data;
-	}
-	
-	private Object[][] getReceivableData(ArrayList<ReceivableVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][4];
-		ReceivableVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"收款日期", "营业厅编号", "收款金额", "收款快递员"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.getBusinessID();
-			data[i][2] = vo.getMoney();
-			data[i][3] = vo.getCourier();
-		}
-		return data;
-	}
-	
-	private Object[][] getReceivingData(ArrayList<ReceivingVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][6];
-		ReceivingVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"到达日期", "中转单编号", "本中转中心编号", "出发地", "到达地", "货物到达状态"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.gettransferringid();
-			data[i][2] = vo.gettransitionid();
-			data[i][3] = vo.getdepartureid();
-			data[i][4] = vo.getarrivalid();
-			data[i][5] = vo.getstate();
-		}
-		return data;
-	}
-	
-	private Object[][] getSendData(ArrayList<SendFormVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][3];
-		SendFormVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"到达日期", "订单条形码号", "派送员"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.getDeliveryid();
-			data[i][2] = vo.getSender();
-		}
-		return data;
-	}
-	
-	private Object[][] getInRepositoryData(ArrayList<InRepositoryVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][7];
-		InRepositoryVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"入库日期", "快递编号", "目的地", "区号", "排号", "架号", "位号"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.getdeliveryid();
-			data[i][2] = vo.getarrivalid();
-			data[i][3] = vo.getAreaCodeString();
-			data[i][4] = vo.getrowid();
-			data[i][5] = vo.getshelfid();
-			data[i][6] = vo.getposid();
-		}
-		return data;
-	}
-	
-	private Object[][] getTransferringData(ArrayList<TransferringVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][8];
-		TransferringVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"装车日期", "中转单编号", "装运方式编号", "运送方式", "出发地", "目的地", "监装员", "货柜号"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.gettransferringid();
-			data[i][2] = vo.getwayid();
-			data[i][3] = vo.getLoadingTypeString();
-			data[i][4] = vo.getdepartureid();
-			data[i][5] = vo.getarrivalid();
-			data[i][6] = vo.getsupervisionid();
-			data[i][7] = vo.getcontainerid();
-		}
-		return data;
-	}
-	
-	private Object[][] getOutRepositoryData(ArrayList<OutRepositoryVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][5];
-		OutRepositoryVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"出库日期", "快递编号", "目的地", "装运方式", "装运信息编号"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.getdeliveryid();
-			data[i][2] = vo.getarrivalid();
-			data[i][3] = vo.getWayString();
-			data[i][4] = vo.getloadingid();
-		}
-		return data;
-	}
-	
-	private Object[][] getPaymentData(ArrayList<PaymentVO> list) {
-		int size = list.size();
-		int rowNum = this.calculateRowNumber(list);
-		Object[][] data = new Object[rowNum][6];
-		PaymentVO vo = null;
-		for(int i = 0; i < size; i++) {
-			vo = list.get(i);
-			//"付款日期", "付款金额", "付款人", "付款账户", "条目", "备注"
-			data[i][0] = vo.getDate();
-			data[i][1] = vo.getPayAmount();
-			data[i][2] = vo.getName();
-			data[i][3] = vo.getAccount();
-			data[i][4] = vo.getEntry();
-			data[i][5] = vo.getRemark();
-		}
-		return data;
-	}
-	
-	private int calculateRowNumber(ArrayList<? extends ApprovalFormVO> list) {
-		int size = list.size();
-		int rowNum = size < ROW_NUM ? ROW_NUM : size;
-		return rowNum;
-	}
-	
-	private String[] getDate(String type) {
-		ArrayList<? extends ApprovalFormVO> form = this.formListMap.get(type);
-		int size = form.size();
-		String[] date = new String[size];
-		for(int i = 0; i < size; i++) {
-			date[i] = form.get(i).getDate();
-		}
-		return date;
-	}
-	
 }

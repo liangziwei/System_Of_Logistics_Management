@@ -6,11 +6,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import constant.CargoState;
+import dataService.Approvable;
 import vo.businessVO.ArrivalFormVO;
 
 
 
-public class ArrivalFormPO implements Serializable{
+public class ArrivalFormPO implements Serializable, Approvable{
 
 	/**
 	 * 

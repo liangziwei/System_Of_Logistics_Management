@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import constant.LoadingType;
+import dataService.Approvable;
 import dataService.repositoryDataService.OutRepositoryDataService;
 import po.repositoryPO.OutRepositoryPO;
 
@@ -30,15 +31,16 @@ public class OutRepositoryDataImpl_Stub implements OutRepositoryDataService{
 	}
 
 	@Override
-	public boolean approveOneOutRepository(OutRepositoryPO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean approveMoreOutRepository(ArrayList<OutRepositoryPO> form) throws RemoteException {
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

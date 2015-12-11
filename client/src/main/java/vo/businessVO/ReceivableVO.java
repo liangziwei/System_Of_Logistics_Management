@@ -2,10 +2,10 @@ package vo.businessVO;
 
 import java.util.ArrayList;
 
+import dataService.Approvable;
 import po.businessPO.ReceivablePO;
-import vo.ApprovalFormVO;
 
-public class ReceivableVO extends ApprovalFormVO{
+public class ReceivableVO implements Approvable{
 
 	private String date;
 	private double money;

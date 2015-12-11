@@ -3,9 +3,9 @@ package dataService.deliveryDataService;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import po.deliveryPO.DistanceConstant;
-import po.deliveryPO.PackPrice;
-import po.deliveryPO.TransitPrice;
+import po.constant.DistanceTable;
+import po.constant.PackPrice;
+import po.constant.TransitPrice;
 
 public interface ConstantDataService extends Remote{
 
@@ -32,11 +32,11 @@ public interface ConstantDataService extends Remote{
 	/**
 	 * 获得距离常量(城市之间路线的距离)
 	 */
-	public DistanceConstant getDistantceConstant() throws RemoteException;
+	public DistanceTable getDistantceConstant() throws RemoteException;
 	
 	/**
 	 * 保存距离常量
 	 */
-	public boolean saveDistanceConstant(DistanceConstant distance) throws RemoteException;
+	public boolean saveDistanceConstant(DistanceTable distance) throws RemoteException;
 	
 }

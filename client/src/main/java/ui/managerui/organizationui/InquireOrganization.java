@@ -76,6 +76,8 @@ public class InquireOrganization extends DetailPanel{
 				if(orgPanel != null) {
 					orgPanel.setVisible(false);
 				}
+				//消除提示信息
+				orgId.removeText();
 			}
 		});
 	}

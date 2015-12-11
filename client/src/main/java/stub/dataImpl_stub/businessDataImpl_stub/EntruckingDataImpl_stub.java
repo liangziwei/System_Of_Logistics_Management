@@ -5,6 +5,7 @@ import po.businessPO.EntruckingPO;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import dataService.Approvable;
 import dataService.businessDataService.EntruckingDataService;
 
 public class EntruckingDataImpl_stub implements EntruckingDataService{
@@ -15,13 +16,13 @@ public class EntruckingDataImpl_stub implements EntruckingDataService{
 	}
 
 	@Override
-	public boolean approveOneEntrucking(EntruckingPO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean approveMoreEntrucking(ArrayList<EntruckingPO> form) throws RemoteException {
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

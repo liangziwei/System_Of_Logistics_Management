@@ -3,10 +3,10 @@ package vo.businessVO;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataService.Approvable;
 import po.businessPO.EntruckingPO;
-import vo.ApprovalFormVO;
 
-public class EntruckingVO extends ApprovalFormVO{
+public class EntruckingVO implements Approvable{
 
 	private String date;
 	private String businessHallid;
@@ -106,6 +106,8 @@ public class EntruckingVO extends ApprovalFormVO{
 
 	public EntruckingPO entruckingVOToPO(){
 		
-		return new EntruckingPO(date,businessHallid,transportNumber,destionation,vehicleid,supervisor,supercargo,freight);
+		EntruckingPO po=new EntruckingPO(date,businessHallid,transportNumber,destionation,vehicleid,supervisor,supercargo,freight);
+		po.setDeliveryIDList(deliveryIDList);
+		return po;
 	}
 }

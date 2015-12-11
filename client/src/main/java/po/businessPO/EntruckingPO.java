@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataService.Approvable;
 import vo.businessVO.EntruckingVO;
 
-public class EntruckingPO implements Serializable{
+public class EntruckingPO implements Serializable, Approvable{
 	/**
 	 * 
 	 */
@@ -125,14 +126,18 @@ public class EntruckingPO implements Serializable{
 	}
 
 	public EntruckingVO entruckingPOToVO(){
-		
-		return new EntruckingVO(date,businessHallid,transportNumber,destionation,vehicleid,supervisor,supercargo,freight);
+		EntruckingVO vo=new EntruckingVO(date,businessHallid,transportNumber,destionation,vehicleid,supervisor,supercargo,freight);
+		vo.setDeliveryIDList(deliveryIDList);
+		return vo;
 	}
 	
 	public static EntruckingPO entrucingVOToPO(EntruckingVO vo) {
-		return new EntruckingPO(vo.getDate(), vo.getBusinessHallid(), vo.getTransportNumber(),
+		EntruckingPO po= new EntruckingPO(vo.getDate(), vo.getBusinessHallid(), vo.getTransportNumber(),
 				vo.getDestionation(), vo.getVehicleid(), vo.getSupervisor(), 
 				vo.getSupercargo(), vo.getFreight());
+		po.setDeliveryIDList(vo.getDeliveryIDList());
+		return po;
+		
 	}
 	
 	public static ArrayList<EntruckingPO> entruckingVOListToPO(ArrayList<EntruckingVO> list) {

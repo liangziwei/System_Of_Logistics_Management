@@ -2,16 +2,16 @@ package dataService.transitionDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 
+import dataService.ApproveFormService;
 import po.transitionPO.TransferringPO;
 
 /**
  *description:数据服务层为中转中心中转信息管理提供的服务 
  * @author 阮威威
  */
-public interface TransferringDataService extends Remote{
+public interface TransferringDataService extends Remote, ApproveFormService{
 	
 	/**
 	 * description:添加新的中转单
@@ -53,14 +53,4 @@ public interface TransferringDataService extends Remote{
 	 */
 	public List<TransferringPO> GetTransferringInfoDT(String date)throws RemoteException;
 	
-	/**
-	 *审批一张中转单 
-	 */
-	public boolean approveOneTransferring(TransferringPO form) throws RemoteException;
-	
-	/**
-	 *审批多张中转单 
-	 */
-	public boolean approveMoreTransferring(ArrayList<TransferringPO> form) throws RemoteException;
-
 }

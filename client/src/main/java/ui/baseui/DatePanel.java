@@ -29,6 +29,10 @@ public class DatePanel extends JPanel{
 		//主面板
 		this.setLayout(null);
 		this.setVisible(true);
+		//设置文本框为透明
+		this.year.setOpaque(false);
+		this.month.setOpaque(false);
+		this.day.setOpaque(false);
 	}
 	
 	/**

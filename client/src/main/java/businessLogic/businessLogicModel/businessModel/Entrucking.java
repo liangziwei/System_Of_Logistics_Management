@@ -2,12 +2,13 @@ package businessLogic.businessLogicModel.businessModel;
 
 import java.rmi.RemoteException;
 
-import po.businessPO.EntruckingPO;
-import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_stub;
-import vo.businessVO.EntruckingVO;
-import businessLogic.businessLogicModel.managerModel.TransitPriceIO;
+import businessLogic.businessLogicModel.managerModel.MakeConstant;
 import constant.TransitType;
 import dataService.businessDataService.EntruckingDataService;
+import po.businessPO.EntruckingPO;
+import po.constant.TransitPrice;
+import stub.dataImpl_stub.businessDataImpl_stub.EntruckingDataImpl_stub;
+import vo.businessVO.EntruckingVO;
 
 public class Entrucking {
 
@@ -15,7 +16,6 @@ public class Entrucking {
 //	private EntruckingDataService entruckingData=RMI.<EntruckingDataService>getDataService("entrucking");
 	
 	private static double freight=0;
-	private TransitPriceIO TransitPrice=new TransitPriceIO();
 	
 	public boolean addEntruckingFrom(EntruckingVO entruckingVO) {
 		// TODO Auto-generated method stub
@@ -33,8 +33,8 @@ public class Entrucking {
 	
 	
 	public double getFreight(){
-		@SuppressWarnings("static-access")
-		double price=TransitPrice.getTransitPrice(TransitType.ROAD);
+		MakeConstant constant = new MakeConstant();
+		double price=constant.getTransitPrice(TransitType.ROAD);
 		freight=300*price;
 		return freight;
 	}

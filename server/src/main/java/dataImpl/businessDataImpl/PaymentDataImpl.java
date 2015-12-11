@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dataService.Approvable;
 import dataService.businessDataService.PaymentDataService;
 import mysql.Database;
 import po.businessPO.ReceivablePO;
@@ -63,10 +64,24 @@ public class PaymentDataImpl implements PaymentDataService {
 		return null;
 	}
 
+//	@Override
+//	public boolean approveOneReceivable(ReceivablePO form) throws RemoteException {
+//		
+//	}
+//
+//	@Override
+//	public boolean approveMoreReceivable(ArrayList<ReceivablePO> form) throws RemoteException {
+//		int size = form.size();
+//		for(int i = 0; i < size; i++) {
+//			this.approveOneReceivable(form.get(i));
+//		}
+//		return true;
+//	}
+
 	@Override
-	public boolean approveOneReceivable(ReceivablePO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = "update receivable set isApproved = 1, isPassed = 1 where "
-				+ "money = " + form.getMoney() + ";";
+				+ "money = " + ((ReceivablePO)form).getMoney() + ";";
 		try {
 			return Database.operate(sql);
 		} catch (SQLException e) {
@@ -76,12 +91,9 @@ public class PaymentDataImpl implements PaymentDataService {
 	}
 
 	@Override
-	public boolean approveMoreReceivable(ArrayList<ReceivablePO> form) throws RemoteException {
-		int size = form.size();
-		for(int i = 0; i < size; i++) {
-			this.approveOneReceivable(form.get(i));
-		}
-		return true;
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

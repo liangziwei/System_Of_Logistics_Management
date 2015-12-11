@@ -24,6 +24,8 @@ public class InquireStaff extends DetailPanel{
 	
 	private JScrollPane container = new JScrollPane();
 	
+	private StaffInfoPanel staffInfo = new StaffInfoPanel();
+	
 	public InquireStaff() {
 		//添加搜索人员信息的面板
 		this.add(this.staffId);
@@ -32,6 +34,7 @@ public class InquireStaff extends DetailPanel{
 		//人员信息面板
 		this.container.setBounds(0, DETAIL_PANEL_H / 6, DETAIL_PANEL_W, DETAIL_PANEL_H / 6 * 5);
 		this.container.getVerticalScrollBar().setUnitIncrement(15);
+		this.container.setVisible(false);
 		this.add(this.container);
 	}
 
@@ -52,8 +55,7 @@ public class InquireStaff extends DetailPanel{
 				}
 				//显示人员信息显示面板
 				container.setVisible(true);
-				container.setViewportView(new StaffInfoPanel()
-						.getStaffInfoPanel(staffVO));
+				container.setViewportView(staffInfo.getStaffInfoPanel(staffVO));
 				//刷新面板
 				repaint();
 			}
@@ -65,6 +67,10 @@ public class InquireStaff extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//隐藏人员信息显示面板
 				container.setVisible(false);
+				//清除用户输入的人员编号
+				staffId.clearIdText();
+				
+				repaint();
 			}
 		});
 	}

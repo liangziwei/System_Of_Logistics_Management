@@ -8,6 +8,7 @@ import java.util.List;
 
 import mysql.Database;
 import po.businessPO.EntruckingPO;
+import dataService.Approvable;
 import dataService.businessDataService.EntruckingDataService;
 
 public class EntruckingDataImpl implements EntruckingDataService {
@@ -32,9 +33,12 @@ public class EntruckingDataImpl implements EntruckingDataService {
 		supercargo=entruckingPO.getSupercargo();
 		freight=entruckingPO.getFreight();
 		deliveryIDList=entruckingPO.getDeliveryIDList();
-		
+		String deliveryStr=deliveryIDList.get(0);
+		for(int i=1;i<deliveryIDList.size();i++){
+			deliveryStr+=" "+deliveryIDList.get(i);
+		}
 		String val="";
-		val="'"+date+"','"+businessHallid+"','"+transportNumber+"','"+destionation+"','"+vehicleid+"','"+supervisor+"','"+supercargo+"',"+freight+",0,1";
+		val="'"+date+"','"+businessHallid+"','"+transportNumber+"','"+destionation+"','"+vehicleid+"','"+supervisor+"','"+supercargo+"','"+deliveryStr+"',"+freight+",0,1";
 		
 		return Database.add("entrucking", val);
 	}
@@ -64,10 +68,24 @@ public class EntruckingDataImpl implements EntruckingDataService {
 		}
 	}
 
+//	@Override
+//	public boolean approveOneEntrucking(EntruckingPO form) throws RemoteException {
+//		
+//	}
+//
+//	@Override
+//	public boolean approveMoreEntrucking(ArrayList<EntruckingPO> form) throws RemoteException {
+//		int size = form.size();
+//		for(int i = 0; i < size; i++) {
+//			this.approveOneEntrucking(form.get(i));
+//		}
+//		return true;
+//	}
+
 	@Override
-	public boolean approveOneEntrucking(EntruckingPO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = "update entrucking set isApproved = 1, isPassed = 1 where "
-				+ "transportNumber = '" + form.getTransportNumber() + "';";
+				+ "transportNumber = '" + ((EntruckingPO)form).getTransportNumber() + "';";
 		try {
 			return Database.operate(sql);
 		} catch (SQLException e) {
@@ -77,12 +95,9 @@ public class EntruckingDataImpl implements EntruckingDataService {
 	}
 
 	@Override
-	public boolean approveMoreEntrucking(ArrayList<EntruckingPO> form) throws RemoteException {
-		int size = form.size();
-		for(int i = 0; i < size; i++) {
-			this.approveOneEntrucking(form.get(i));
-		}
-		return true;
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

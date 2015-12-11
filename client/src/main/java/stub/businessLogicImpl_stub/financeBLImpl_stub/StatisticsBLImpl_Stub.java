@@ -42,7 +42,7 @@ public class StatisticsBLImpl_Stub implements StatisticsBLSevice{
 		return null;
 	}
 	
-	public void outExcel(List<ReceivableVO> list) {
+	public void outExcel(String fileSave, List<ReceivableVO> list) {
 		
 	}
 }

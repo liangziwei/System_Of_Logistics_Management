@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import constant.AreaCodeType;
+import dataService.Approvable;
 import dataService.repositoryDataService.InRepositoryDataService;
 import po.repositoryPO.InRepositoryPO;
 
@@ -35,13 +36,13 @@ public class InRepositoryDataImpl_Stub implements InRepositoryDataService{
 	}
 
 	@Override
-	public boolean approveOneInRepository(InRepositoryPO form) throws RemoteException {
+	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean approveMoreInRepository(ArrayList<InRepositoryPO> form) throws RemoteException {
+	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

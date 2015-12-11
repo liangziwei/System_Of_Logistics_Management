@@ -1,12 +1,12 @@
 package vo.financeVO;
 
-import vo.ApprovalFormVO;
+import dataService.Approvable;
 
 /**
  * 记录了付款单的信息
  * @author 张仁知
  */
-public class PaymentVO extends ApprovalFormVO{
+public class PaymentVO implements Approvable{
 	/**
 	 * 付款日期
 	 */

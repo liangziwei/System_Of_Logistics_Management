@@ -2,14 +2,9 @@ package driver.ui_driver.managerUI_driver;
 
 import java.util.Scanner;
 
-import businessLogicService.managerBLService.MakeConstantBLService;
-import constant.City;
-import constant.TransitType;
-import stub.businessLogicImpl_stub.managerBLImpl_stub.MakeConstantBLImpl_Stub;
-
 public class MakeConstantUI_Driver {
 	public static void main(String[] args) {
-		MakeConstantBLService makeConstant = new MakeConstantBLImpl_Stub();
+//		MakeConstantBLService makeConstant = new MakeConstantBLImpl_Stub();
 		boolean go=true;
 		Scanner s = new Scanner(System.in);
 		while(go) {
@@ -17,12 +12,12 @@ public class MakeConstantUI_Driver {
 			int input = s.nextInt();
 			switch(input) {
 			case 1:
-				System.out.println("制定城市距离是否成功："	+
-						makeConstant.setDistance(1000.0, City.BEI_JING, City.GUANG_ZHOU));
+//				System.out.println("制定城市距离是否成功："	+
+//						makeConstant.setDistance(1000.0, City.BEI_JING, City.GUANG_ZHOU));
 				break;
 			case 2:
-				System.out.println("制定价格常量是否成功："	+
-						makeConstant.setTransitPrice(25.0, TransitType.RAILWAY));
+//				System.out.println("制定价格常量是否成功："	+
+//						makeConstant.setTransitPrice(25.0, TransitType.RAILWAY));
 				break;
 			case 3:
 				go = false;

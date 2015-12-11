@@ -2,7 +2,7 @@ package businessLogicService.managerBLService;
 
 import java.util.ArrayList;
 
-import vo.ApprovalFormVO;
+import dataService.Approvable;
 import vo.managerVO.UncheckedFormVO;
 
 /**
@@ -23,10 +23,10 @@ public interface ApprovalFormBLService {
 	/**
 	 *审批一张单据 
 	 */
-	public boolean approveOneForm(ApprovalFormVO form, String formType);
+	public boolean approveOneForm(Approvable form, String formType);
 	
 	/**
 	 *审批多张单据 
 	 */
-	public boolean approveMoreForm(ArrayList<ApprovalFormVO> form, String formType);
+	public boolean approveMoreForm(ArrayList<Approvable> form, String formType);
 }

@@ -80,12 +80,11 @@ public class SettlePartPanel extends DetailPanel{
 				super.mouseReleased(e);
 				//显示收款单详细内容
 				int row = list.getSelectedRow();
-				if(receivableVO.size() > row) {
+				if(receivableVO.size() > row && row >= 0) {
 					showReceivable(receivableVO.get(row));
+					//刷新收款单详细内容面板
+					receivable.revalidate();
 				}
-				//刷新收款单详细内容面板
-				receivable.validate();
-				receivable.repaint();
 			}
 		});
 		//合计按钮

@@ -1,14 +1,14 @@
 package vo.deliveryVO;
 
+import dataService.Approvable;
 import po.deliveryPO.ClientInfo;
 import po.deliveryPO.GoodsInfo;
-import vo.ApprovalFormVO;
 
 /**
  * 记录了订单的信息
  * @author 肖安祥
  */
-public class OrderVO extends ApprovalFormVO{
+public class OrderVO implements Approvable{
 
 	private ClientInfo senderInfo;
 	
@@ -47,7 +47,6 @@ public class OrderVO extends ApprovalFormVO{
 		this.goodsInfo = goodsInfo;
 	}
 
-	@Override
 	public String getDate() {
 		return this.goodsInfo.getDate();
 	}
