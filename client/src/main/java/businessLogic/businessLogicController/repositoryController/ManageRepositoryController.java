@@ -52,6 +52,36 @@ public class ManageRepositoryController implements ManageRepositoryBLService{
 		// TODO Auto-generated method stub	
 		return manageRepository.verify(warn, all);
 	}
+
+	@Override
+	public void allExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		manageRepository.Excel(fileSave, list);
+	}
+
+	@Override
+	public void plExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		manageRepository.Excel(fileSave, list);
+	}
+
+	@Override
+	public void traExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		manageRepository.Excel(fileSave, list);
+	}
+
+	@Override
+	public void truExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		manageRepository.Excel(fileSave, list);
+	}
+
+	@Override
+	public void moExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		manageRepository.Excel(fileSave, list);
+	}
 	
 
 

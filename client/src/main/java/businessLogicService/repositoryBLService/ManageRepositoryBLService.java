@@ -93,6 +93,49 @@ public interface ManageRepositoryBLService {
 	 * @return boolean, 返回验证结果
 	 * */
 	public boolean verify(String warn,String all);
-	
-	
+	/**
+	 * description:导出全部库存信息
+	 * 前置条件：选择导出
+	 * 后置条件：导出文件
+	 * 需接口：无
+	 * @param fileSave:保存地址
+	 * @param list:相关信息
+	 * */
+	public void allExcel(String fileSave,List<DeliveryInfoVO> list);
+	/**
+	 * description:导出库存信息
+	 * 前置条件：选择导出
+	 * 后置条件：导出文件
+	 * 需接口：无
+	 * @param fileSave:保存地址
+	 * @param list:相关信息
+	 * */
+	public void plExcel(String fileSave,List<DeliveryInfoVO> list);
+	/**
+	 * description:导出库存信息
+	 * 前置条件：选择导出
+	 * 后置条件：导出文件
+	 * 需接口：无
+	 * @param fileSave:保存地址
+	 * @param list:相关信息
+	 * */
+	public void traExcel(String fileSave,List<DeliveryInfoVO> list);
+	/**
+	 * description:导出库存信息
+	 * 前置条件：选择导出
+	 * 后置条件：导出文件
+	 * 需接口：无
+	 * @param fileSave:保存地址
+	 * @param list:相关信息
+	 * */
+	public void truExcel(String fileSave,List<DeliveryInfoVO> list);
+	/**
+	 * description:导出库存信息
+	 * 前置条件：选择导出
+	 * 后置条件：导出文件
+	 * 需接口：无
+	 * @param fileSave:保存地址
+	 * @param list:相关信息
+	 * */
+	public void moExcel(String fileSave,List<DeliveryInfoVO> list);
 }

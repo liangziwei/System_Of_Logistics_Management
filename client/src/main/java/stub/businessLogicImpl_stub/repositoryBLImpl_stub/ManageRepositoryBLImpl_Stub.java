@@ -135,4 +135,34 @@ public class ManageRepositoryBLImpl_Stub implements ManageRepositoryBLService{
 		return false;
 	}
 
+	@Override
+	public void allExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void plExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void traExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void truExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moExcel(String fileSave, List<DeliveryInfoVO> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
