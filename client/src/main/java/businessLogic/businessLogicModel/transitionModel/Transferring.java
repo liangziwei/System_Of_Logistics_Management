@@ -2,6 +2,7 @@ package businessLogic.businessLogicModel.transitionModel;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import businessLogic.businessLogicModel.managerModel.MakeConstant;
@@ -9,6 +10,8 @@ import businessLogic.businessLogicModel.util.CommonLogic;
 import constant.City;
 import constant.LoadingType;
 import constant.TransitType;
+import dataService.deliveryDataService.OrderDataService;
+import dataService.managerDataService.MakeConstantDataService;
 import dataService.transitionDataService.TransferringDataService;
 import network.RMI;
 import po.transitionPO.TransferringPO;
@@ -17,6 +20,8 @@ import vo.transitionVO.TransferringVO;
 public class Transferring {
 	//	MockTransferring mockTransferring = new MockTransferring();
 	private TransferringDataService transferringDataService = RMI.<TransferringDataService>getDataService("transferring");
+	private MakeConstantDataService makeConstantDataService = RMI.<MakeConstantDataService>getDataService("makeConstant");
+	private OrderDataService order = RMI.<OrderDataService>getDataService("order");
 	
 	public TransferringVO findTransferringFormBL(String transferringNumber) {
 		// TODO Auto-generated method stub
@@ -39,17 +44,41 @@ public class Transferring {
 
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
-		double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid(),transferringVO.getway());
-		transferringVO.setfare(faremoney);
-		TransferringPO transferringPO = TransferringVOtoTransferringPO(transferringVO);
-		boolean add =false;
+		//编辑物流轨迹
+		boolean trace = false;
+		HashMap<String, String> constant = null;
 		try {
-			add = transferringDataService.AddTransferringFormDT(transferringPO);
-		} catch (RemoteException e) {
+			constant = makeConstantDataService.getIDTable();
+		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-		return add;
+		String position = constant.get(transferringVO.gettransferringid().substring(0, 3));
+		for(String del:(transferringVO.getalldeliveryid())){
+			try {
+				trace = order.setTrace(del, position+"中转中心");
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//保存中转单
+		if (trace) {
+			double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid(),transferringVO.getway());
+			transferringVO.setfare(faremoney);
+			TransferringPO transferringPO = TransferringVOtoTransferringPO(transferringVO);
+			boolean add =false;
+			try {
+				add = transferringDataService.AddTransferringFormDT(transferringPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return add;			
+		}
+		else {
+			return trace;
+		}
 	}
 
 	public boolean modifyTransferringFormBL(TransferringVO transferringVO) {

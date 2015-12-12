@@ -31,6 +31,8 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 			add = Database.add("outRepository", val);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			return false;
 		}
 		return add;
 	}

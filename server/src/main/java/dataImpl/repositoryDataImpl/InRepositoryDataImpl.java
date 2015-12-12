@@ -32,6 +32,8 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 			add = Database.add("inRepository", val);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			return false;
 		}
 		return add;
 	}
@@ -116,6 +118,8 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 			add = Database.add("repository", val);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			return false;
 		}
 		return add;
 	}

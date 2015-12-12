@@ -35,6 +35,8 @@ public class LoadingDataImpl implements LoadingDataService {
 			add = Database.add("loading", val);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			return false;
 		}
 		return add;
 	}
