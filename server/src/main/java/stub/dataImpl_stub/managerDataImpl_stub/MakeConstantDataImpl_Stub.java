@@ -1,6 +1,7 @@
 package stub.dataImpl_stub.managerDataImpl_stub;
 
 import java.rmi.RemoteException;
+import java.util.HashMap;
 
 import dataService.managerDataService.MakeConstantDataService;
 import po.constant.DistanceTable;
@@ -43,5 +44,11 @@ public class MakeConstantDataImpl_Stub implements MakeConstantDataService{
 	public boolean saveDistanceConstant(DistanceTable distance) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public HashMap<String, String> getIDTable() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
