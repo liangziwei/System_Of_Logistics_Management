@@ -2,6 +2,7 @@ package dataService.managerDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.HashMap;
 
 import po.constant.DistanceTable;
 import po.constant.PackPrice;
@@ -42,4 +43,9 @@ public interface MakeConstantDataService extends Remote{
 	 * 保存距离常量
 	 */
 	public boolean saveDistanceConstant(DistanceTable distance) throws RemoteException;
+	
+	/**
+	 * 获取城市与城市编号的表
+	 */
+	public  HashMap<String, String> getIDTable() throws RemoteException;
 }

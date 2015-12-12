@@ -8,6 +8,7 @@ public class SendFormVO implements Approvable{
 	private String date;	
 	private String deliveryid;
 	private String sender;
+	private String businessID;
 	
 	public SendFormVO(String date, String deliveryid, String sender) {
 		this.date = date;
@@ -33,6 +34,12 @@ public class SendFormVO implements Approvable{
 		this.sender = sender;
 	}
 
+	public String getBusinessID() {
+		return businessID;
+	}
+	public void setBusinessID(String businessID) {
+		this.businessID = businessID;
+	}
 	public SendFormPO sendFormVOToPO(){
 		return new SendFormPO(date,deliveryid,sender);
 	}

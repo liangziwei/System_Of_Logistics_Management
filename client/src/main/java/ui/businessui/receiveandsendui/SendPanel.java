@@ -24,13 +24,15 @@ public class SendPanel extends DetailPanel {
 	private DateChooser dateChoose=DateChooser.getInstance();
 	
 	private JLabel date=new JLabel("到达日期");	
+	private JLabel businessid=new JLabel("营业厅编号");
 	private JLabel deliveryid=new JLabel("订单条形码号");
 	private JLabel sender=new JLabel("派送员");
 	private JLabel result=new JLabel();
 	
-	private JTextField dateText=new JTextField();	
-	private JTextField deliveryidText=new JTextField();
-	private JTextField senderText=new JTextField();
+	private JTextField dateText=new JTextField("");
+	private JTextField businessidText=new JTextField("");
+	private JTextField deliveryidText=new JTextField("");
+	private JTextField senderText=new JTextField("");
 	
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
@@ -67,7 +69,13 @@ public class SendPanel extends DetailPanel {
 		dateChoose.register(dateText);
 		this.dateText.setOpaque(false);
 		
-		this.deliveryid.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
+		this.businessid.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
+		this.businessid.setFont(WORD_FONT);
+		this.businessidText.setBounds(this.dateText.getX(), this.deliveryid.getY(), TEXT_W, TEXT_H);
+		this.businessidText.setFont(WORD_FONT);
+		this.businessidText.setOpaque(false);
+		
+		this.deliveryid.setBounds(START_X, this.businessid.getY() + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.deliveryid.setFont(WORD_FONT);
 		this.deliveryidText.setBounds(this.dateText.getX(), this.deliveryid.getY(), TEXT_W, TEXT_H);
 		this.deliveryidText.setFont(WORD_FONT);
@@ -128,9 +136,10 @@ public class SendPanel extends DetailPanel {
 						String dateStr=dateText.getText();
 						String senderStr=senderText.getText();
 						String deliveryidStr=deliveryidText.getText();
+						String businessidStr=businessidText.getText();
 						
 						sendVO=new SendFormVO(dateStr,deliveryidStr,senderStr);
-						
+						sendVO.setBusinessID(businessidStr);
 						if(receAndSendCon.addSendFrom(sendVO)){
 							result.setForeground(Color.GREEN);
 							result.setText("保存成功！");
@@ -178,6 +187,8 @@ public class SendPanel extends DetailPanel {
 	private void addComponents(){
 		this.add(date);
 		this.add(dateText);
+		this.add(businessid);
+		this.add(businessidText);
 		this.add(deliveryid);
 		this.add(deliveryidText);
 		this.add(sender);
@@ -190,10 +201,14 @@ public class SendPanel extends DetailPanel {
 	private boolean isCorrect(){
 		
 		String dateStr=dateText.getText();
+		String businessStr=businessidText.getText();
 		String deliveryidStr=deliveryidText.getText();
 		
 		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
+			return false;
+		}else if(!businessStr.matches("\\d{6}")){
+			businessidText.setText("");
 			return false;
 		}else if(!deliveryidStr.matches("\\d{10}")){
 			deliveryidText.setText("");
@@ -206,18 +221,21 @@ public class SendPanel extends DetailPanel {
 	private void disablePanel(){
 		this.dateText.setEditable(false);
 		this.senderText.setEditable(false);
+		this.businessidText.setEditable(false);
 		this.deliveryidText.setEditable(false);
 	}
 	
 	private void enablePanel(){
 		this.dateText.setEditable(true);
 		this.senderText.setEditable(true);
+		this.businessidText.setEditable(true);
 		this.deliveryidText.setEditable(true);
 	}
 	
 	private void setBlack(){
 		this.dateText.setText("");
 		this.senderText.setText("");
+		this.businessidText.setText("");
 		this.deliveryidText.setText("");
 	}
 }
