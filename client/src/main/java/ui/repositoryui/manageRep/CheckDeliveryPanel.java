@@ -35,11 +35,11 @@ public class CheckDeliveryPanel extends DetailPanel {
 	private JTable tabletru = null;
 	private JTable tablemo = null;
 	private LimpidButton find = new LimpidButton("", "picture/库存盘点.png");
-	private JButton excel = new JButton("全部库存信息导出");
-	private JButton excelPlane = new JButton("航运区导出");
-	private JButton excelTrain = new JButton("铁运区导出");
-	private JButton exceltruck = new JButton("汽运区导出");
-	private JButton excelmoto = new JButton("机动区导出");
+	private LimpidButton excel = new LimpidButton("", "picture/全部库存信息导出.png");
+	private LimpidButton excelPlane = new LimpidButton("","picture/航运区导出.png");
+	private LimpidButton excelTrain = new LimpidButton("","picture/铁运区导出.png");
+	private LimpidButton exceltruck = new LimpidButton("","picture/汽运区导出.png");
+	private LimpidButton excelmoto = new LimpidButton("","picture/机动区导出.png");
 	// private JButton update = new JButton("更新");
 
 	private JLabel plane = new JLabel("航运区");
