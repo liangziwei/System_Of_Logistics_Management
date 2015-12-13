@@ -1,6 +1,5 @@
 package businessLogicService.transitionBLService;
 
-import constant.City;
 import constant.LoadingType;
 import vo.transitionVO.LoadingVO;;
 

@@ -1,8 +1,6 @@
 package businessLogic.businessLogicModel.transitionModel;
 
 import java.rmi.RemoteException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import businessLogic.businessLogicModel.util.CommonLogic;
 import dataService.transitionDataService.ReceivingDataService;
