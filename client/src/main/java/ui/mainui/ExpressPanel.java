@@ -56,14 +56,10 @@ public class ExpressPanel extends JPanel{
 		this.login.setSize(BUTTON_W, BUTTON_H);
 		this.login.setLocation(LOGIN_X, LOGIN_Y);
 		this.login.setFont(WORD_FONT);
-//		this.login.setIcon(new ImageIcon("picture/用户登录.png"));
-//		this.login.setBorderPainted(false);
 		//物流信息查询按钮
 		this.logistics.setSize(BUTTON_W, BUTTON_H);
 		this.logistics.setLocation(LOGISTICS_X, LOGISTICS_Y);
 		this.logistics.setFont(WORD_FONT);
-//		this.logistics.setIcon(new ImageIcon("picture/物流信息查询.png"));
-//		this.logistics.setBorderPainted(false);
 		//增加时间监听
 		this.addListener(this.login, this.logistics);
 		//增加组件到容器
