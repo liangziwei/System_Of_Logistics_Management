@@ -6,9 +6,9 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Iterator;
 
+import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.dom4j.Document;
 
 public class RMI {
 	
@@ -33,14 +33,23 @@ public class RMI {
 	@SuppressWarnings("unchecked")
 	public static<T> T getDataService(String key) {
 		T service = null;
+		Reconnect<T> reconnect = null;
+		Thread connectThread = null;
 		try {
 			service = (T) registry.lookup(key);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//启动重连网络的线程
+			reconnect = new Reconnect<T>(registry, key);
+			connectThread = new Thread(reconnect);
+			connectThread.start();
 		}
+		
 		return service;
 	}
 	
+	/**
+	 *从xml配置文件获得服务端IP地址 
+	 */
 	private static String getConfig(){
 		String ip="127.0.0.1";
 		try {  
