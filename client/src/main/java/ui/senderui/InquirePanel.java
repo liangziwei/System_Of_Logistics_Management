@@ -1,11 +1,15 @@
 package ui.senderui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,14 +17,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.senderController.InquireController;
+import businessLogicService.senderBLService.InquireBLService;
+import constant.City;
 import ui.baseui.LimpidButton;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
 import ui.viewcontroller.ViewController;
 import vo.senderVO.LogisticsVO;
-import businessLogic.businessLogicController.senderController.InquireController;
-import businessLogicService.senderBLService.InquireBLService;
-import constant.City;
 
 @SuppressWarnings("serial")
 public class InquirePanel extends JPanel{
@@ -29,10 +33,7 @@ public class InquirePanel extends JPanel{
 	
 	private InquireBLService inquireService = new InquireController();
 	
-	/**
-	 * 是否显示物流信息
-	 */
-	private boolean isShow = false;
+	private boolean isShow = false;	//是否显示物流信息
 	
 	private LogisticsVO logisticsInfo;
 	
@@ -43,6 +44,23 @@ public class InquirePanel extends JPanel{
 	private LimpidButton ok = new LimpidButton("","picture/查询.png");
 	
 	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
+	
+	private static Image NAN_JING = new ImageIcon("picture/city/nan_jing.png").getImage();
+	
+	private static Image BEI_JING = new ImageIcon("picture/city/bei_jing.png").getImage();
+	
+	private static Image SHANG_HAI = new ImageIcon("picture/city/shang_hai.png").getImage();
+	
+	private static Image GUANG_ZHOU = new ImageIcon("picture/city/guang_zhou.png").getImage();
+	
+	private static Map<City, Image> CITY_IMG_MAP = new HashMap<City, Image>();
+	
+	static {
+		CITY_IMG_MAP.put(City.NAN_JING, NAN_JING);
+		CITY_IMG_MAP.put(City.BEI_JING, BEI_JING);
+		CITY_IMG_MAP.put(City.SHANG_HAI, SHANG_HAI);
+		CITY_IMG_MAP.put(City.GUANG_ZHOU, GUANG_ZHOU);
+	}
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
@@ -58,22 +76,17 @@ public class InquirePanel extends JPanel{
 	
 	private static final int BUTTON_H = LABEL_H;
 	
-	
 	private static final int COMPONENT_GAP = (ExpressFrame.FRAME_W - LABEL_W - TEXT_W - (BUTTON_W << 1)) / 5;
 	
-	
 	private static Image BACKGROUND = new ImageIcon("picture/background.jpg").getImage();
-	/**
-	 *组件与组件的距离 
-	 */
-	private static final int ORDER_X = COMPONENT_GAP;
+	
+	private static final int ORDER_X = COMPONENT_GAP;	//组件与组件的距离 
 	
 	private static final int ORDER_Y = COMPONENT_GAP; 	
 	 
 	public InquirePanel(ViewController viewController) {
 		this.viewController = viewController;
 		
-		this.repaint();
 		//面板
 		this.setLayout(null);
 		this.setBounds(0, 0, ExpressFrame.FRAME_W, ExpressFrame.FRAME_H);
@@ -90,14 +103,10 @@ public class InquirePanel extends JPanel{
 				          this.search.getY(),
 				          BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-//		this.ok.setIcon(new ImageIcon("picture/查询.png"));
-//		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + COMPONENT_GAP, this.ok.getY(),
 				BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
-//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-//		this.cancel.setBorderPainted(false);
 		//把组件添加到面板
 		this.add(this.orderLabel);
 		this.add(this.search);
@@ -152,17 +161,37 @@ public class InquirePanel extends JPanel{
 		super.paint(g);
 		if(!isShow) return ;
 		//TODO 绘制物流轨迹
-		List<City> trace = this.logisticsInfo.getTrace();
-		trace.size();
-		int x = 100;
-		int y = 200;
-		for(int i = 0; i < trace.size(); i++) {
-			g.fillRect(x + i * 100, y + i * 70, 40, 40);
-			g.drawString(trace.get(i) + "", x + i * 100 + 40 + 40, y + i * 70 + 20);
+		List<City> trace = new ArrayList<City>();
+		trace.add(City.NAN_JING);
+		trace.add(City.BEI_JING);
+		trace.add(City.SHANG_HAI);
+		trace.add(City.GUANG_ZHOU);
+		int size = trace.size();
+		int startX = 100;	//第一张图片X坐标
+		int startY = 200;	//第一张图片Y坐标
+		int yGap = 30;		//图片之间在Y轴上的距离
+		int xGap = 210;		//图片之间在X轴上的距离
+		Image img = null;
+		for(int i = 0; i < size; i++) {
+			img = CITY_IMG_MAP.get(trace.get(i));
+			int imgW = img.getWidth(null);		
+			int imgH = img.getHeight(null);		
+			g.drawImage(CITY_IMG_MAP.get(trace.get(i)),
+					startX + i * xGap, startY + yGap * i,
+					imgW, imgH, null);
 		}
-		for(int i = 0; i < trace.size() - 1; i++) {
-			g.drawLine(x + i * 100 + 40, y + i * 70 + 40,
-					x + (i + 1) * 140 - 40, y + (i + 1) * (70 + 40) - 40);
+		//绘制图片之间的连线
+		g.setColor(Color.WHITE);
+		int x1 , x2 , y1, y2, w, h;
+		for(int i = 0; i < size - 1; i++) {
+			img = CITY_IMG_MAP.get(trace.get(i));
+			w = img.getWidth(null);
+			h = img.getHeight(null);
+			x1 = startX + w + i * xGap;
+			y1 = startY + (h >> 1) + i * yGap;
+			x2 = x1 + xGap - w;
+			y2 = y1 + yGap;
+			g.drawLine(x1, y1, x2, y2);
 		}
 	}
 	
