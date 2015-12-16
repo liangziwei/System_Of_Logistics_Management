@@ -18,7 +18,6 @@ public class InquireDataImpl implements InquireDataService{
 	public LogisticsPO getLogInfoById(String id) {
 		OrderDataService order = new OrderDataImpl();
 		LogisticsPO po = null;
-		City.BEI_JING
 		try {
 			OrderPO temp = order.getOrderInfoById(id);
 			po = new LogisticsPO(null, temp.getGoodsInfo().getCity());
