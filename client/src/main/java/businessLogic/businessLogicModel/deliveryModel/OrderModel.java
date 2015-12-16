@@ -138,6 +138,15 @@ public class OrderModel{
 			return new VerifyMessage(LabelName.GOODS_NAME, "物品名称不能为空", VerifyResult.FAIL);
 		if(goods.getId().length() != 10 || !CommonLogic.isNumber(goods.getId()))//订单条形码号
 			return new VerifyMessage(LabelName.GOODS_ID, "订单条形码号应该为10位数字", VerifyResult.FAIL);
+		//检测用户输入的订单条形码号是否已经存在
+		OrderDataService service = RMI.<OrderDataService>getDataService("order");
+		try {
+			OrderPO po = service.getOrderInfoById(goods.getId());
+			if(po != null) return new VerifyMessage(LabelName.GOODS_ID, "该订单条形码号已经存在", VerifyResult.FAIL);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return new VerifyMessage(null, null, VerifyResult.SUCCESS);
 	}
+	
 }

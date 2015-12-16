@@ -28,6 +28,8 @@ import businessLogic.businessLogicController.administratorController.LoginBL;
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel{
 	
+	private static boolean DEBUG = true;
+	
 	private ViewController viewController;
 	private LoginBL login;
 	
@@ -128,13 +130,9 @@ public class LoginPanel extends JPanel{
 		//确定按钮
 		this.ok.setBounds(pwField.getX() + (TEXT_W >> 1), pwField.getY() + TB_GAP, BUTTON_W, BUTTON_H);
 		this.ok.setFont(TEXT_FONT);
-//		this.ok.setIcon(new ImageIcon("picture/确定.png"));
-//		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + BUTTON_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(TEXT_FONT);
-//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-//		this.cancel.setBorderPainted(false);
 		//把组件添加到面板
 		this.add(this.idLabel);
 		this.add(idField);
@@ -152,11 +150,16 @@ public class LoginPanel extends JPanel{
 		this.ok.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//验证账号密码的正确性
-				//如果正确，将账号和密码文本框内容清空，跳转页面
-				//如果错误，提示错误信息
 				
-				//TODO 测试代码
+				if(DEBUG) {
+					String id = idField.getText();
+					id=id.toUpperCase();
+					//设置当前页面不可见
+					setVisible(false);
+					viewController.switchView(USER_TABLE.get(id.charAt(0)));
+					return ;
+				}
+				
 				//跳转页面
 				String id = idField.getText();
 				id=id.toUpperCase();
