@@ -22,8 +22,8 @@ import vo.repositoryVO.OutRepositoryVO;
 
 public class ModifyOutRepositoryPanel extends DetailPanel {
 	private OutRepositoryBLService outRepositoryBLService = new OutRepositoryController();
-	
-	private DateChooser dateChoose=DateChooser.getInstance();
+
+	private DateChooser dateChoose = DateChooser.getInstance();
 	// 组件
 	private JLabel Deliveryid = new JLabel("快递编号");
 	private JLabel outrepositorydate = new JLabel("出库日期");
@@ -33,8 +33,8 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 
 	private JTextField DeliveryidText = new JTextField();
 	private JTextField outrepositoryYear = new JTextField();
-	private JTextField outrepositoryMonth = new JTextField();
-	private JTextField outrepositoryDay = new JTextField();
+	// private JTextField outrepositoryMonth = new JTextField();
+	// private JTextField outrepositoryDay = new JTextField();
 	private JTextField arrivalidText = new JTextField();
 	private JComboBox<String> loadingwayText = new JComboBox<String>();
 	private JTextField wayidText = new JTextField();
@@ -43,13 +43,13 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private LimpidButton find = new LimpidButton("","picture/查询.png");
+	private LimpidButton find = new LimpidButton("", "picture/查询.png");
 
-	private LimpidButton cancle1 = new LimpidButton("","picture/取消.png");
+	private LimpidButton cancle1 = new LimpidButton("", "picture/取消.png");
 
-	private LimpidButton ok = new LimpidButton("","picture/确定.png");
+	private LimpidButton ok = new LimpidButton("", "picture/确定.png");
 
-	private LimpidButton cancle2 = new LimpidButton("","picture/取消.png");
+	private LimpidButton cancle2 = new LimpidButton("", "picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
@@ -133,7 +133,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		this.add(buttonPanel);
 		this.buttonPanel.setVisible(false);
 		buttonPanel.setOpaque(false);
-		
+
 		// 状态信息
 		this.state1.setBounds(Deliveryid.getX(),
 				Deliveryid.getY() + Deliveryid.getHeight() + AddLoadingPanel.COMPONENT_GAP_Y,
@@ -156,35 +156,27 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		// 出库日期
 		outrepositorydate.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(outrepositorydate);
-		outrepositoryYear.setBounds(outrepositorydate.getX() + outrepositorydate.getWidth() + COMPONENT_GAP_X,outrepositorydate.getY(), TEXT_W / 2, TEXT_H);
+		outrepositoryYear.setBounds(outrepositorydate.getX() + outrepositorydate.getWidth() + COMPONENT_GAP_X,
+				outrepositorydate.getY(), (TEXT_W / 2) * 3, TEXT_H);
 		outrepositoryYear.setOpaque(false);
 		this.infoPanel.add(outrepositoryYear);
-		JLabel apart1 = new JLabel("-");
-		JLabel apart2 = new JLabel("-");
-		apart1.setBounds(outrepositoryYear.getX() + outrepositoryYear.getWidth(), outrepositoryYear.getY(), 10, TEXT_H);
-		this.infoPanel.add(apart1);
-		outrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
-		outrepositoryMonth.setOpaque(false);
-		this.infoPanel.add(outrepositoryMonth);
-		apart2.setBounds(outrepositoryMonth.getX() + outrepositoryMonth.getWidth(), outrepositoryMonth.getY(), 10,
-				TEXT_H);
-		this.infoPanel.add(apart2);
-		outrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
-		outrepositoryDay.setOpaque(false);
-		this.infoPanel.add(outrepositoryDay);
 		dateChoose.register(outrepositoryYear);
 		this.infoPanel.add(outrepositoryYear);
-//		JLabel apart1 = new JLabel("-");
-//		JLabel apart2 = new JLabel("-");
-//		apart1.setBounds(outrepositoryYear.getX() + outrepositoryYear.getWidth(), outrepositoryYear.getY(), 10, TEXT_H);
-//		this.infoPanel.add(apart1);
-//		outrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
-//		this.infoPanel.add(outrepositoryMonth);
-//		apart2.setBounds(outrepositoryMonth.getX() + outrepositoryMonth.getWidth(), outrepositoryMonth.getY(), 10,
-//				TEXT_H);
-//		this.infoPanel.add(apart2);
-//		outrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
-//		this.infoPanel.add(outrepositoryDay);
+		// JLabel apart1 = new JLabel("-");
+		// JLabel apart2 = new JLabel("-");
+		// apart1.setBounds(outrepositoryYear.getX() +
+		// outrepositoryYear.getWidth(), outrepositoryYear.getY(), 10, TEXT_H);
+		// this.infoPanel.add(apart1);
+		// outrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(),
+		// apart1.getY(), TEXT_W / 2, TEXT_H);
+		// this.infoPanel.add(outrepositoryMonth);
+		// apart2.setBounds(outrepositoryMonth.getX() +
+		// outrepositoryMonth.getWidth(), outrepositoryMonth.getY(), 10,
+		// TEXT_H);
+		// this.infoPanel.add(apart2);
+		// outrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(),
+		// apart2.getY(), TEXT_W / 2, TEXT_H);
+		// this.infoPanel.add(outrepositoryDay);
 		// 目的地
 		arrivalid.setBounds(outrepositorydate.getX(),
 				outrepositorydate.getY() + outrepositorydate.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
@@ -227,19 +219,19 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 					// 设置相关面板可见
 					buttonPanel.setVisible(true);
 					state2.setVisible(true);
-					
+
 					state1.setVisible(false);
 					// 重新布局
 					revalidate();
 				} else {
-					//设置当前的信息面板不可见
+					// 设置当前的信息面板不可见
 					infoPanel.setVisible(false);
-					//设置相关面板不可见
+					// 设置相关面板不可见
 					buttonPanel.setVisible(false);
 					state2.setVisible(false);
-					
+
 					state1.setVisible(true);
-					//重新布局
+					// 重新布局
 					revalidate();
 					showState1("出库单编号错误或出库单不存在！");
 				}
@@ -253,27 +245,26 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 				DeliveryidText.setText("");
 			}
 		});
-		
+
 		this.ok.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//创建接收单对象
+				// 创建接收单对象
 				OutRepositoryVO outRepositoryVO = creatOutRepository();
-				//验证输入是否规范
+				// 验证输入是否规范
 				boolean result = outRepositoryBLService.verify(outRepositoryVO);
-				
-				if (result) {//验证成功
-					//重置出库时间
+
+				if (result) {// 验证成功
+					// 重置出库时间
 					outRepositoryVO.setoutrepositorydate(outrepositoryYear.getText().trim());
-					throughVerifyOperation(outRepositoryVO);   
+					throughVerifyOperation(outRepositoryVO);
 					cancle2.setVisible(true);
+				} else {
+					verifyFailOperation(outRepositoryVO); // 验证失败
 				}
-				else {
-					verifyFailOperation(outRepositoryVO);   //验证失败
-				}
-				
-				//刷新页面
+
+				// 刷新页面
 				repaint();
 			}
 		});
@@ -282,11 +273,11 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//回到第一次点击确定的状态
+				// 回到第一次点击确定的状态
 				isFirstEnsure = true;
-				//使提示信息消失
+				// 使提示信息消失
 				state2.setText("");
-				//使信息可编辑
+				// 使信息可编辑
 				enableComponents();
 				cancle2.setVisible(false);
 			}
@@ -321,8 +312,8 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(false);
 		outrepositoryYear.setEditable(false);
 		dateChoose.setEnabled(false);
-//		outrepositoryMonth.setEditable(false);
-//		outrepositoryDay.setEditable(false);
+		// outrepositoryMonth.setEditable(false);
+		// outrepositoryDay.setEditable(false);
 		arrivalidText.setEditable(false);
 		loadingwayText.setEnabled(false);
 		wayidText.setEditable(false);
@@ -332,8 +323,8 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(true);
 		outrepositoryYear.setEditable(true);
 		dateChoose.setEnabled(true);
-//		outrepositoryMonth.setEditable(true);
-//		outrepositoryDay.setEditable(true);
+		// outrepositoryMonth.setEditable(true);
+		// outrepositoryDay.setEditable(true);
 		arrivalidText.setEditable(true);
 		loadingwayText.setEnabled(true);
 		wayidText.setEditable(true);
@@ -362,10 +353,10 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 	}
 
 	private void setinfo(OutRepositoryVO outRepositoryVO) {
-//		String[] outdate = outRepositoryVO.getoutrepositorydate().split("-");
+		// String[] outdate = outRepositoryVO.getoutrepositorydate().split("-");
 		outrepositoryYear.setText(outRepositoryVO.getoutrepositorydate());
-//		outrepositoryMonth.setText(outdate[1]);
-//		outrepositoryDay.setText(outdate[2]);
+		// outrepositoryMonth.setText(outdate[1]);
+		// outrepositoryDay.setText(outdate[2]);
 		arrivalidText.setText(outRepositoryVO.getarrivalid());
 		String WAY = null;
 		switch (outRepositoryVO.getway()) {

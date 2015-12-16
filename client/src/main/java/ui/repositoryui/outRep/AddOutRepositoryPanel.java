@@ -10,14 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.repositoryController.OutRepositoryController;
+import businessLogicService.repositoryBLService.OutRepositoryBLService;
+import constant.LoadingType;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.repositoryVO.OutRepositoryVO;
-import businessLogic.businessLogicController.repositoryController.OutRepositoryController;
-import businessLogicService.repositoryBLService.OutRepositoryBLService;
-import constant.LoadingType;
 
 public class AddOutRepositoryPanel extends DetailPanel {
 	private OutRepositoryBLService outRepositoryBLService = new OutRepositoryController();
@@ -32,8 +32,8 @@ public class AddOutRepositoryPanel extends DetailPanel {
 
 	private JTextField DeliveryidText = new JTextField();
 	private JTextField outrepositoryYear = new JTextField();
-	private JTextField outrepositoryMonth = new JTextField();
-	private JTextField outrepositoryDay = new JTextField();
+//	private JTextField outrepositoryMonth = new JTextField();
+//	private JTextField outrepositoryDay = new JTextField();
 	private JTextField arrivalidText = new JTextField();
 	private JComboBox<String> loadingwayText = new JComboBox<String>();
 	private JTextField wayidText = new JTextField();
@@ -134,22 +134,9 @@ public class AddOutRepositoryPanel extends DetailPanel {
 				LABEL_W, LABEL_H);
 		this.infoPanel.add(outrepositorydate);
 		outrepositoryYear.setBounds(outrepositorydate.getX() + outrepositorydate.getWidth() + COMPONENT_GAP_X,
-				outrepositorydate.getY(), TEXT_W / 2, TEXT_H);
+				outrepositorydate.getY(), (TEXT_W / 2)*3, TEXT_H);
 		outrepositoryYear.setOpaque(false);
 		this.infoPanel.add(outrepositoryYear);
-		JLabel apart1 = new JLabel("-");
-		JLabel apart2 = new JLabel("-");
-		apart1.setBounds(outrepositoryYear.getX() + outrepositoryYear.getWidth(), outrepositoryYear.getY(), 10, TEXT_H);
-		this.infoPanel.add(apart1);
-		outrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
-		outrepositoryMonth.setOpaque(false);
-		this.infoPanel.add(outrepositoryMonth);
-		apart2.setBounds(outrepositoryMonth.getX() + outrepositoryMonth.getWidth(), outrepositoryMonth.getY(), 10,
-				TEXT_H);
-		this.infoPanel.add(apart2);
-		outrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
-		outrepositoryDay.setOpaque(false);
-		this.infoPanel.add(outrepositoryDay);
 		dateChoose.register(outrepositoryYear);
 		this.infoPanel.add(outrepositoryYear);
 //		JLabel apart1 = new JLabel("-");
