@@ -47,6 +47,12 @@ public interface OrderDataService extends Remote, ApproveFormService{
 	public List<TimeRecordPO> getTimeRecords(City source, City destination)throws RemoteException;
 	
 	/**
+	 *@param place 所到达地点 
+	 * @return 是否成功设置
+	 */
+	public boolean setTrace(String deliveryid,String place)throws RemoteException;
+	
+	/**
 	 * 审批一张订单
 	 */
 //	public boolean approveOneOrder(OrderPO po) throws RemoteException;

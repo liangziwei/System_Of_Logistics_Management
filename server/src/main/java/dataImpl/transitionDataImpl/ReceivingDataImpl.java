@@ -66,6 +66,8 @@ public class ReceivingDataImpl implements ReceivingDataService {
 			add = Database.add("receiving", val);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			return false;
 		}
 		return add;
 	}

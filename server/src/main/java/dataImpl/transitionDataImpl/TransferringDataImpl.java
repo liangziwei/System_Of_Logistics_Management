@@ -41,6 +41,8 @@ public class TransferringDataImpl implements TransferringDataService {
 			add = Database.add("transferring", val);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			return false;
 		}
 		return add;
 	}

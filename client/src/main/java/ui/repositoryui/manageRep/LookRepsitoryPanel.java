@@ -183,7 +183,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 						setinRepinfo(InRepInfo);
 						setoutRepinfo(OutRepInfo);
 						setallRep(allRep);
-						initTable(InRepInfo);
+						initTable(list);
 						infoPanel.setVisible(true);
 					}
 				}
@@ -254,10 +254,10 @@ public class LookRepsitoryPanel extends DetailPanel {
 	// 初始化table面板
 	private void initTable(List<RepositoryInfoVO> list) {
 		// 设置列表
-		Object[] names = { "快递编号", "区号", "排号", "架号", "位号" };
+		Object[] names = { "快递编号", "区号", "排号", "架号", "位号" ,"出/入库"};
 
 		int size = list.size();
-		Object[][] datas = new Object[size][5];
+		Object[][] datas = new Object[size][6];
 		for (int i = 0; i < size; i++) {
 			AreaCodeType area = list.get(i).getareaCode();
 			String AREA = null;
@@ -275,8 +275,15 @@ public class LookRepsitoryPanel extends DetailPanel {
 				AREA = "机动区";
 				break;
 			}
+			String beinRep = null;
+			if (list.get(i).getbeinrepository()) {
+				beinRep = "入库单";
+			}
+			else {
+				beinRep = "出库单";
+			}
 			datas[i] = new Object[] { list.get(i).getdeliveryid(), AREA, list.get(i).getrowid(),
-					list.get(i).getshelfid(), list.get(i).getposid() };
+					list.get(i).getshelfid(), list.get(i).getposid(),beinRep };
 		}
 		DefaultTableModel model = new DefaultTableModel(datas, names) {
 			public boolean isCellEditable(int row, int column) {
@@ -373,7 +380,6 @@ public class LookRepsitoryPanel extends DetailPanel {
 		allRepository.setBounds(outMoney.getX(), outMoney.getY() + outMoney.getHeight() + COMPONENT_GAP_X, LABEL_W,
 				LABEL_H);
 		allRepository.setFont(WORD_FONT);
-		allRepository.setForeground(Color.white);
 		this.infoPanel.add(allRepository);
 		//
 		allRepositoryText.setBounds(allRepository.getX() + allRepository.getWidth() + COMPONENT_GAP_X / 2,

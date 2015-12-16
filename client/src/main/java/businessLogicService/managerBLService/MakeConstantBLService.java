@@ -1,5 +1,6 @@
 package businessLogicService.managerBLService;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,4 +50,5 @@ public interface MakeConstantBLService {
 	 *获得运输费用常量 
 	 */
 	public TransitPrice getTransitPrice();
+	
 }

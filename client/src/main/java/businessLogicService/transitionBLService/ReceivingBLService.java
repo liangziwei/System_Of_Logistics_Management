@@ -1,6 +1,5 @@
 package businessLogicService.transitionBLService;
 
-import businessLogic.businessLogicModel.transitionModel.Receiving;
 import vo.transitionVO.ReceivingVO;
 
 /**

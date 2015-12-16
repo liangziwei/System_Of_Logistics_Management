@@ -45,4 +45,10 @@ public interface OrderDataService extends Remote, ApproveFormService{
 	 * @return List<TimeRecordPO> 返回时间记录持久化对象的列表
 	 */
 	public List<TimeRecordPO> getTimeRecords(City source, City destination)throws RemoteException;
+	
+	/**
+	 *@param place 所到达地点 
+	 * @return 是否成功设置
+	 */
+	public boolean setTrace(String deliveryid,String place)throws RemoteException;
 }

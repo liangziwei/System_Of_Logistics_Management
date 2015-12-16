@@ -57,4 +57,11 @@ public class OrderDataImpl_Stub implements OrderDataService{
 		return false;
 	}
 
+	@Override
+	public boolean setTrace(String deliveryid, String place)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

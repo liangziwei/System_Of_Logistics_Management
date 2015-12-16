@@ -3,8 +3,10 @@ package dataImpl.managerDataImpl;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
@@ -155,4 +157,26 @@ public class MakeConstantDataImpl implements MakeConstantDataService{
 		return false;
 	}
 
+	public  HashMap<String, String> getIDTable(){
+		HashMap<String, String> map =new HashMap<String, String>();
+		
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("data/idTable.txt"));
+			String data;
+			while((data=br.readLine())!=null){
+				String[] s=data.split(" ");
+				map.put(s[0], s[1]);
+			}
+			br.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
 }

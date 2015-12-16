@@ -258,4 +258,25 @@ public class OrderDataImpl implements OrderDataService{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean setTrace(String deliveryid,String place) throws RemoteException {
+		// TODO Auto-generated method stub
+		ResultSet rs;
+		String sql="SELECT goods_trace FROM order_table WHERE goods_id='"+deliveryid+"'";
+		String trace="";
+		try {
+			rs=Database.findOperation(sql);
+			while(rs.next()){
+				trace=rs.getString("goods_trace");
+			} 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		trace+="-"+place;
+		String val="goods_trace='"+trace+"'";
+		return Database.modify("order_table",val,"goods_id",deliveryid);
+	}
 }
