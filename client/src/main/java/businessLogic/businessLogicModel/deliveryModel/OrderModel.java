@@ -130,6 +130,8 @@ public class OrderModel{
 			return new VerifyMessage(LabelName.GOODS_NUM, "原件数应该为数字", VerifyResult.FAIL);
 		if(!CommonLogic.isDouble(goods.getWeight()))//重量
 			return new VerifyMessage(LabelName.GOODS_WEIGHT, "物品重量应该为数字", VerifyResult.FAIL);
+		if(Double.parseDouble(goods.getWeight()) <= 0)
+			return new VerifyMessage(LabelName.GOODS_WEIGHT, "物品重量应该为正数", VerifyResult.FAIL);
 		if(!CommonLogic.isDouble(goods.getSize()))//体积
 			return new VerifyMessage(LabelName.GOODS_VOLUMN, "物品体积应该为数字", VerifyResult.FAIL);
 		if(CommonLogic.isNull(goods.getName()))//名称
