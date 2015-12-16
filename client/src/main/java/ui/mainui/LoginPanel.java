@@ -154,6 +154,7 @@ public class LoginPanel extends JPanel{
 				//跳转页面
 				String id = idField.getText();
 				id=id.toUpperCase();
+				setVisible(false);
 				viewController.switchView(USER_TABLE.get(id.charAt(0)));
 //				if(id == null ||(!id.matches("[B-H][0-9]{9}")&&!id.equalsIgnoreCase("admin"))) {
 //					hint.setForeground(Color.RED);

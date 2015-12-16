@@ -56,7 +56,7 @@ public class Transferring {
 		String position = constant.get(transferringVO.gettransferringid().substring(0, 3));
 		for(String del:(transferringVO.getalldeliveryid())){
 			try {
-				trace = order.setTrace(del, position+"中转中心");
+				trace = order.setTrace(del, position+"中转中心发出");
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -179,6 +179,18 @@ public class Transferring {
 			transferringVO.seterrorMsg("中转单编号为空或输入错误(15位)");
 			return false;
 		}
+		HashMap<String, String> constant = null;
+		try {
+			constant = makeConstantDataService.getIDTable();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String position = constant.get(transferringVO.gettransferringid().substring(0, 3));
+		if (position==null) {
+			transferringVO.seterrorMsg("中转单编号前3位数字应为城市编号");
+			return false;
+		}
 		if (transferringVO.getloadingdate().equals("")) {
 			transferringVO.seterrorMsg("时间不可为空");
 			return false;
@@ -255,6 +267,14 @@ public class Transferring {
 		if (transferringVO.getalldeliveryid()==null) {
 			transferringVO.seterrorMsg("所有装运单号不能为空");
 			return false;
+		}
+		for(String id:(transferringVO.getalldeliveryid())){
+			if (id.matches("\\d{10}")) {
+			}
+			else {
+				transferringVO.seterrorMsg("所有装运单号均为10位数字");
+				return false;
+			}
 		}
 		
 		return true;

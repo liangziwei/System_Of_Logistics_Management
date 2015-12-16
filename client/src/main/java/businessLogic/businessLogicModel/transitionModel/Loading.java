@@ -159,6 +159,14 @@ public class Loading {
 			loadingVO.seterrorMsg("所有订单条形码号不能为空");
 			return false;
 		}
+		for(String id:(loadingVO.getalldeliveryid())){
+			if (id.matches("\\d{10}")) {
+			}
+			else {
+				loadingVO.seterrorMsg("所有订单条形码号均为10位数字");
+				return false;
+			}
+		}
 		return true;
 	}
 }
