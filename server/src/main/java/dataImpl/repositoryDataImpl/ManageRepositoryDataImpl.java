@@ -345,7 +345,8 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 		try {
 			while (rs.next()) {
 				deliveryid = rs.getString("deliveryid");
-				inrepositorydate = rs.getString("arrivalid");
+				inrepositorydate = rs.getString("inrepositorydate");
+				arrivalid = rs.getString("arrivalid");
 				areaCode = AreaCodeType.valueOf(rs.getString("areaCode"));
 				rowid = rs.getString("rowid");
 				shelfid = rs.getString("shelfid");
