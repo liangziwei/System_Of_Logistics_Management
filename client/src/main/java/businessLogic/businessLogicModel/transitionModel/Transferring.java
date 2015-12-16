@@ -53,10 +53,11 @@ public class Transferring {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String position = constant.get(transferringVO.gettransferringid().substring(0, 3));
+//		String position = constant.get(transferringVO.gettransferringid().substring(0, 3));
+		String position = transferringVO.getdepartureid();
 		for(String del:(transferringVO.getalldeliveryid())){
 			try {
-				trace = order.setTrace(del, position+"中转中心发出");
+				trace = order.setTrace(del, position+"中转中心");
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
