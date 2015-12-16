@@ -1,11 +1,12 @@
 package dataImpl.senderDataImpl;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.rmi.RemoteException;
 
 import constant.City;
-import constant.TransitionNode;
+import dataImpl.deliveryDataImpl.OrderDataImpl;
+import dataService.deliveryDataService.OrderDataService;
 import dataService.senderDataService.InquireDataService;
+import po.deliveryPO.OrderPO;
 import po.senderPO.LogisticsPO;
 
 /**
@@ -15,14 +16,24 @@ import po.senderPO.LogisticsPO;
 public class InquireDataImpl implements InquireDataService{
 
 	public LogisticsPO getLogInfoById(String id) {
+		OrderDataService order = new OrderDataImpl();
+		LogisticsPO po = null;
+		City.BEI_JING
+		try {
+			OrderPO temp = order.getOrderInfoById(id);
+			po = new LogisticsPO(null, temp.getGoodsInfo().getCity());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return po;
 		//临时数据
-		TransitionNode state = TransitionNode.SENDER_TRANSI_CENTER;
-		List<City> trace = new ArrayList<City>();
-		trace.add(City.BEI_JING);
-		trace.add(City.NAN_JING);
-		trace.add(City.SHANG_HAI);
-		trace.add(City.GUANG_ZHOU);
-		return new LogisticsPO(state, trace);
+//		TransitionNode state = TransitionNode.SENDER_TRANSI_CENTER;
+//		List<City> trace = new ArrayList<City>();
+//		trace.add(City.BEI_JING);
+//		trace.add(City.NAN_JING);
+//		trace.add(City.SHANG_HAI);
+//		trace.add(City.GUANG_ZHOU);
+//		return new LogisticsPO(state, trace);
 	}
 
 }

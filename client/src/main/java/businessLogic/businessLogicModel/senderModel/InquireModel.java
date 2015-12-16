@@ -19,6 +19,7 @@ public class InquireModel{
 		LogisticsPO logistics = null;
 		try {
 			logistics = this.inquire.getLogInfoById(id);
+			if(logistics == null) return null;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

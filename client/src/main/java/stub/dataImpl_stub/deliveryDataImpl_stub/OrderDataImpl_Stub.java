@@ -22,7 +22,7 @@ public class OrderDataImpl_Stub implements OrderDataService{
 		// TODO Auto-generated method stub
 		List<TransitionNode> trace = new ArrayList<TransitionNode>();
 		List<City> city = new ArrayList<City>();
-		trace.add(TransitionNode.RECEIVER_BUSINESS_HALL);
+		trace.add(TransitionNode.BUSINESS_HALL);
 		return new OrderPO(new ClientInfo(ClientType.SENDER, "张三", "南京市", null, null, "12345678901", City.NAN_JING),
 				new ClientInfo(ClientType.RECEIVER, "李四", "上海市", null, null, "00000000000", City.SHANG_HAI),
 				new GoodsInfo("1", id, "2", "衣服", "2*2*2", 

@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -160,12 +159,15 @@ public class InquirePanel extends JPanel{
 	public void paint(Graphics g) {
 		super.paint(g);
 		if(!isShow) return ;
-		//TODO 绘制物流轨迹
-		List<City> trace = new ArrayList<City>();
+		
+		LogisticsVO vo = this.inquireService.getLogInfoById(this.search.getText());
+		//TODO 检测
+		List<City> trace =vo.getTrace();
 		trace.add(City.NAN_JING);
 		trace.add(City.BEI_JING);
 		trace.add(City.SHANG_HAI);
 		trace.add(City.GUANG_ZHOU);
+		//绘制物流轨迹
 		int size = trace.size();
 		int startX = 100;	//第一张图片X坐标
 		int startY = 200;	//第一张图片Y坐标

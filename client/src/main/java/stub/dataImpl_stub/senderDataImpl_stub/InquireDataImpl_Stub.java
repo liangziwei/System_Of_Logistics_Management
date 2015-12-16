@@ -15,7 +15,7 @@ public class InquireDataImpl_Stub implements InquireDataService{
 		List<City> trace = new ArrayList<City>();
 		trace.add(City.SHANG_HAI);
 		trace.add(City.BEI_JING);
-		LogisticsPO po = new LogisticsPO(TransitionNode.RECEIVER_BUSINESS_HALL, trace);
+		LogisticsPO po = new LogisticsPO(TransitionNode.BUSINESS_HALL, trace);
 		po.setExit(true);
 		return po;
 	}

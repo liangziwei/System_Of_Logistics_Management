@@ -341,7 +341,7 @@ public class OrderInputPanel extends DetailPanel{
 				receiver.getClientName(), receiver.getAddress(), receiver.getCompany(),
 				receiver.getPhoneNumber(), receiver.getMobilbeNumber(), receiver.getCity());
 		List<TransitionNode> node = new ArrayList<TransitionNode>();
-		node.add(TransitionNode.SENDER_BUSINESS_HALL);
+		node.add(TransitionNode.BUSINESS_HALL);
 		List<City> city = new ArrayList<City>();
 		city.add(sender.getCity());
 		GoodsInfo goods = new GoodsInfo(goodsInfo.getNumber(), otherInfo.getID(), goodsInfo.getWeight(),
