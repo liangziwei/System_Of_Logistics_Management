@@ -29,7 +29,7 @@ public class CalPriceTest {
 		assertEquals(83.697, p3, 3);
 		//溢出
 		double p4 = order.calculatePrice(DeliveryType.NORMAL, Double.MAX_VALUE, City.GUANG_ZHOU, City.BEI_JING);
-		assert(p4 < 0);
+		assertEquals(new Double(p4).toString(), "Infinity");
 	}
 
 }

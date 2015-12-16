@@ -38,7 +38,7 @@ public class ApproveTableCreator {
 		Object[] order = new Object[] {"建单日期", "订单条形码号", "快递类型", "包装类型", "运费", "预估时间"};
 		TABLE_NAME_MAP.put(TableTypeName.ORDER_NAME, order);
 		//装车单列名
-		Object[] entrucking = new Object[] {"装车日期", "营业厅编号","汽运编号","到达地","车辆代号","监装员","押运员","运费"};
+		Object[] entrucking = new Object[] {"装车日期", "营业厅编号","到达地","车辆代号","监装员","押运员","运费"};
 		TABLE_NAME_MAP.put(TableTypeName.ENTRUCKING_NAME, entrucking);
 		//营业厅到达单列名
 		Object[] arrival = new Object[] {"到达日期", "中转单编号", "出发地", "货物到达状态"};
@@ -56,13 +56,13 @@ public class ApproveTableCreator {
 		Object[] in = new Object[] {"入库日期", "快递编号", "目的地", "区号", "排号", "架号", "位号"};
 		TABLE_NAME_MAP.put(TableTypeName.IN_NAME, in);
 		//中转单列名
-		Object[] transferring = new Object[] {"装车日期","中转单编号","装运方式编号","运送方式","出发地","目的地","监装员","货柜号"};
+		Object[] transferring = new Object[] {"装车日期","装运方式编号","运送方式","出发地","目的地","监装员","货柜号"};
 		TABLE_NAME_MAP.put(TableTypeName.TRANSFERRING_NAME, transferring);
 		//出库单列名
 		Object[] out = new Object[] {"出库日期", "快递编号", "目的地", "装运方式", "装运信息编号"};
 		TABLE_NAME_MAP.put(TableTypeName.OUT_NAME, out);
 		//付款单列名
-		Object[] payment = new Object[] {"付款日期", "付款金额", "付款人", "付款账户", "条目", "备注"};
+		Object[] payment = new Object[] {"付款日期", "付款金额", "付款人", "付款账户", "条目"};
 		TABLE_NAME_MAP.put(TableTypeName.PAYMENT_NAME, payment);
 	}
 	
@@ -102,15 +102,14 @@ public class ApproveTableCreator {
 		EntruckingVO vo = null;
 		for(int i = 0; i < size; i++) {
 			vo = list.get(i);
-			//"装车日期", "营业厅编号", "汽运编号", "到达地", "车辆代号", "监装员", "押运员", "运费"
+			//"装车日期", "营业厅编号", "到达地", "车辆代号", "监装员", "押运员", "运费"
 			data[i][0] = vo.getDate();
 			data[i][1] = vo.getBusinessHallid();
-			data[i][2] = vo.getTransportNumber();
-			data[i][3] = vo.getDestionation();
-			data[i][4] = vo.getVehicleid();
-			data[i][5] = vo.getSupervisor();
-			data[i][6] = vo.getSupercargo();
-			data[i][7] = vo.getFreight();
+			data[i][2] = vo.getDestionation();
+			data[i][3] = vo.getVehicleid();
+			data[i][4] = vo.getSupervisor();
+			data[i][5] = vo.getSupercargo();
+			data[i][6] = vo.getFreight();
 		}
 		return new JTable(data, TABLE_NAME_MAP.get(TableTypeName.ENTRUCKING_NAME));
 	}
@@ -225,15 +224,14 @@ public class ApproveTableCreator {
 		TransferringVO vo = null;
 		for(int i = 0; i < size; i++) {
 			vo = list.get(i);
-			//"装车日期", "中转单编号", "装运方式编号", "运送方式", "出发地", "目的地", "监装员", "货柜号"
+			//"装车日期", "装运方式编号", "运送方式", "出发地", "目的地", "监装员", "货柜号"
 			data[i][0] = vo.getloadingdate();
-			data[i][1] = vo.gettransferringid();
-			data[i][2] = vo.getwayid();
-			data[i][3] = vo.getLoadingTypeString();
-			data[i][4] = vo.getdepartureid();
-			data[i][5] = vo.getarrivalid();
-			data[i][6] = vo.getsupervisionid();
-			data[i][7] = vo.getcontainerid();
+			data[i][1] = vo.getwayid();
+			data[i][2] = vo.getLoadingTypeString();
+			data[i][3] = vo.getdepartureid();
+			data[i][4] = vo.getarrivalid();
+			data[i][5] = vo.getsupervisionid();
+			data[i][6] = vo.getcontainerid();
 		}
 		return new JTable(data, TABLE_NAME_MAP.get(TableTypeName.TRANSFERRING_NAME));
 	}
@@ -268,13 +266,12 @@ public class ApproveTableCreator {
 		PaymentVO vo = null;
 		for(int i = 0; i < size; i++) {
 			vo = list.get(i);
-			//"付款日期", "付款金额", "付款人", "付款账户", "条目", "备注"
+			//"付款日期", "付款金额", "付款人", "付款账户", "条目"
 			data[i][0] = vo.getDate();
 			data[i][1] = vo.getPayAmount();
 			data[i][2] = vo.getName();
 			data[i][3] = vo.getAccount();
 			data[i][4] = vo.getEntry();
-			data[i][5] = vo.getRemark();
 		}
 		return new JTable(data, TABLE_NAME_MAP.get(TableTypeName.PAYMENT_NAME));
 	}
