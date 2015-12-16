@@ -87,43 +87,43 @@ public class SeeRepositoryPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+//				DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 //				tableModel.setRowCount(0);// 清除原有行
 				List<RepositoryVO> LIST2 = transferring.getRepositoryInfo();
-				if (LIST2.size() > list.size()) {
-					for (int i = list.size(); i < LIST2.size(); i++) {
-						String[] arr = new String[7];
-						arr[0] = LIST2.get(i).getdeliveryid();
-						arr[1] = LIST2.get(i).getinrepositorydate();
-						arr[2] = LIST2.get(i).getarrivalid();
-						AreaCodeType area = LIST2.get(i).getareaCode();
-						String AREA = null;
-						switch (area) {
-						case PLANEAREA:
-							AREA = "航运区";
-							break;
-						case TRAINAREA:
-							AREA = "铁运区";
-							break;
-						case TRUCKAREA:
-							AREA = "汽运区";
-							break;
-						case MOTOAREA:
-							AREA = "机动区";
-							break;
-						}
-						arr[3] = AREA;
-						arr[4] = LIST2.get(i).getrowid();
-						arr[5] = LIST2.get(i).getshelfid();
-						arr[6] = LIST2.get(i).getposid();
-						// 添加数据到表格
-						tableModel.addRow(arr);
-					}
-				}
-				else {
+//				if (LIST2.size() > list.size()) {
+//					for (int i = list.size(); i < LIST2.size(); i++) {
+//						String[] arr = new String[7];
+//						arr[0] = LIST2.get(i).getdeliveryid();
+//						arr[1] = LIST2.get(i).getinrepositorydate();
+//						arr[2] = LIST2.get(i).getarrivalid();
+//						AreaCodeType area = LIST2.get(i).getareaCode();
+//						String AREA = null;
+//						switch (area) {
+//						case PLANEAREA:
+//							AREA = "航运区";
+//							break;
+//						case TRAINAREA:
+//							AREA = "铁运区";
+//							break;
+//						case TRUCKAREA:
+//							AREA = "汽运区";
+//							break;
+//						case MOTOAREA:
+//							AREA = "机动区";
+//							break;
+//						}
+//						arr[3] = AREA;
+//						arr[4] = LIST2.get(i).getrowid();
+//						arr[5] = LIST2.get(i).getshelfid();
+//						arr[6] = LIST2.get(i).getposid();
+//						// 添加数据到表格
+//						tableModel.addRow(arr);
+//					}
+//				}
+//				else {
 					thetablepanel.remove(jScrollPane);
 					initTabel(LIST2);
-				}
+//				}
 			}
 		});
 	}
