@@ -91,8 +91,24 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 
 	public boolean UpdateRepositoryInfoDT(OutRepositoryPO outRepositoryPO) {
 		// TODO Auto-generated method stub
+		String deliveryid = outRepositoryPO.getdeliveryid();
+		String date = null;
+		try {
+			rs=Database.query("inRepository","deliveryid",deliveryid);
+			while(rs.next()){
+				date = rs.getString("inrepositorydate");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		
-		return Database.delete("repository", "deliveryid", outRepositoryPO.getdeliveryid());
+		if (date==null) {
+			return false;
+		}
+		else {
+			return Database.delete("repository", "deliveryid", outRepositoryPO.getdeliveryid());			
+		}
 	}
 	
 	public ArrayList<OutRepositoryPO> getUncheckOutRepository() {

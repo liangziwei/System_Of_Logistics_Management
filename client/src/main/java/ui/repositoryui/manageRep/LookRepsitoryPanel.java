@@ -169,22 +169,27 @@ public class LookRepsitoryPanel extends DetailPanel {
 					if (jScrollPaneTable!=null) {
 						tablePanel.remove(jScrollPaneTable);						
 					}
+					isFirstEnsure = true;
 					showState("时间不可为空或时间输入有误");
+					
 				} else {
-					showState("");
-					String starttime = startyear.getText().trim();
-					String endtime = endyear.getText().trim();
-					if (CommonLogic.isDate(starttime) && CommonLogic.isDate(endtime)) {
-						String time = starttime + ";" + endtime;
-						List<RepositoryInfoVO> list = manageRepositoryBLService.SeeRepositoryBL(time);
-						List<RepositoryInfoVO> InRepInfo = BeinRepositoryInfo(list);
-						List<RepositoryInfoVO> OutRepInfo = BeoutRepositoryInfo(list);
-						List<RepositoryVO> allRep = manageRepositoryBLService.GetRepositoryInfoBL();
-						setinRepinfo(InRepInfo);
-						setoutRepinfo(OutRepInfo);
-						setallRep(allRep);
-						initTable(list);
-						infoPanel.setVisible(true);
+					if (isFirstEnsure) {
+						showState("");
+						String starttime = startyear.getText().trim();
+						String endtime = endyear.getText().trim();
+						if (CommonLogic.isDate(starttime) && CommonLogic.isDate(endtime)) {
+							String time = starttime + ";" + endtime;
+							List<RepositoryInfoVO> list = manageRepositoryBLService.SeeRepositoryBL(time);
+							List<RepositoryInfoVO> InRepInfo = BeinRepositoryInfo(list);
+							List<RepositoryInfoVO> OutRepInfo = BeoutRepositoryInfo(list);
+							List<RepositoryVO> allRep = manageRepositoryBLService.GetRepositoryInfoBL();
+							setinRepinfo(InRepInfo);
+							setoutRepinfo(OutRepInfo);
+							setallRep(allRep);
+							initTable(list);
+							infoPanel.setVisible(true);
+						}
+						isFirstEnsure = false;
 					}
 				}
 			}
@@ -202,6 +207,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 				// endday.setText("");
 				infoPanel.setVisible(false);
 				tablePanel.remove(jScrollPaneTable);
+				isFirstEnsure = true;
 			}
 		});
 	}

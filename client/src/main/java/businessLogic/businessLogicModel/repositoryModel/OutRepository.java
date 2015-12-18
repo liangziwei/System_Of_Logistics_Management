@@ -16,10 +16,12 @@ public class OutRepository {
 		OutRepositoryPO outRepositoryPO = OutRepositoryVOtoOutRepositoryPO(outRepositoryVO);
 		boolean result = false;
 		try {
-			boolean temp1 = outRepositoryDataService.AddOutRepositoryFormDT(outRepositoryPO);
 			boolean temp2 = outRepositoryDataService.UpdateRepositoryInfoDT(outRepositoryPO);
-			if (temp1&&temp2) {
-				result = true;
+			if (temp2) {
+				boolean temp1 = outRepositoryDataService.AddOutRepositoryFormDT(outRepositoryPO);				
+				if (temp1&&temp2) {
+					result = true;
+				}
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
