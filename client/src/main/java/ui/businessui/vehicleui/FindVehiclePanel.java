@@ -24,9 +24,9 @@ public class FindVehiclePanel extends DetailPanel{
 	
 	private JLabel result=new JLabel();
 	
-	private JTextField vehicleidText=new JTextField();
-	private JTextField numberText=new JTextField();
-	private JTextField ageText=new JTextField();
+	private JTextField vehicleidText=new JTextField("");
+	private JTextField numberText=new JTextField("");
+	private JTextField ageText=new JTextField("");
 	
 	private LimpidButton query = new LimpidButton("","picture/查询.png");
 	

@@ -1,5 +1,7 @@
 package stub.businessLogicImpl_stub.businessBLImpl_stub;
 
+import java.rmi.RemoteException;
+
 import po.businessPO.DriverPO;
 import stub.dataImpl_stub.businessDataImpl_stub.DriverDataImpl_Stub;
 import vo.businessVO.DriverVO;
@@ -12,22 +14,46 @@ public class DriverBLImpl_Stub implements DriverBLService{
 
 	public boolean addDriver(DriverVO driverVO) {
 		// TODO Auto-generated method stub
-		return driverData.addDriver(driverVOToPO(driverVO));
+		try {
+			return driverData.addDriver(driverVOToPO(driverVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public DriverVO findDriver(String driverid) {
 		// TODO Auto-generated method stub
-		return driverPOToVO(driverData.findDriver(driverid));
+		try {
+			return driverPOToVO(driverData.findDriver(driverid));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public boolean deleteDriver(String driverid) {
 		// TODO Auto-generated method stub
-		return driverData.deleteDriver(driverid);
+		try {
+			return driverData.deleteDriver(driverid);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean modifyDriver(DriverVO driverVO) {
 		// TODO Auto-generated method stub
-		return driverData.modifyDriver(driverVOToPO(driverVO));
+		try {
+			return driverData.modifyDriver(driverVOToPO(driverVO));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 	private DriverPO driverVOToPO(DriverVO driverVO){
 		return new DriverPO(driverVO.getDriverid(),driverVO.getName(),driverVO.getBirthday(),driverVO.getIdNumber(),driverVO.getPhoneNumber(),driverVO.getGender(),driverVO.getDrivingDeadline());

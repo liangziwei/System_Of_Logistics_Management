@@ -71,7 +71,7 @@ public class SendPanel extends DetailPanel {
 		
 		this.businessid.setBounds(START_X, START_Y + LABEL_H + LINE_GAP, LABEL_W, LABEL_H);
 		this.businessid.setFont(WORD_FONT);
-		this.businessidText.setBounds(this.dateText.getX(), this.deliveryid.getY(), TEXT_W, TEXT_H);
+		this.businessidText.setBounds(this.dateText.getX(), this.businessid.getY(), TEXT_W, TEXT_H);
 		this.businessidText.setFont(WORD_FONT);
 		this.businessidText.setOpaque(false);
 		
@@ -89,7 +89,7 @@ public class SendPanel extends DetailPanel {
 		
 		
 		this.result.setBounds(this.sender.getX() + LINE_GAP, this.sender.getY() + LABEL_H*6+ LINE_GAP,
-				BUTTON_W, BUTTON_H);
+				TEXT_W, BUTTON_H);
 		this.result.setText("");
 		
 		this.ok.setBounds(this.sender.getX() + TEXT_W, this.sender.getY() + LABEL_H*6+ LINE_GAP,
@@ -203,6 +203,7 @@ public class SendPanel extends DetailPanel {
 		String dateStr=dateText.getText();
 		String businessStr=businessidText.getText();
 		String deliveryidStr=deliveryidText.getText();
+		String senderStr=senderText.getText();
 		
 		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
@@ -212,6 +213,8 @@ public class SendPanel extends DetailPanel {
 			return false;
 		}else if(!deliveryidStr.matches("\\d{10}")){
 			deliveryidText.setText("");
+			return false;
+		}else if(senderStr.length()<1){
 			return false;
 		}
 		

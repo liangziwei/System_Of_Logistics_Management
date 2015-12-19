@@ -220,7 +220,7 @@ private boolean isCorrect(){
 		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
 			return false;
-		}else if(!transitNumberStr.matches("\\d{11}")){
+		}else if(!transitNumberStr.matches("\\d{15}")&&!transitNumberStr.matches("\\d{19}")){
 			transitNumberText.setText("");
 			return false;
 		}

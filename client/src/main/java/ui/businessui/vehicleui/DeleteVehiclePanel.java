@@ -78,7 +78,7 @@ public class DeleteVehiclePanel extends DetailPanel {
 		this.query.setFont(WORD_FONT);
 		
 		this.result.setBounds(this.age.getX() + LINE_GAP, this.age.getY() + LABEL_H*6+ LINE_GAP,
-				BUTTON_W, BUTTON_H);
+				TEXT_W, BUTTON_H);
 //		this.result.setFont(WORD_FONT);
 		this.result.setText("");
 		

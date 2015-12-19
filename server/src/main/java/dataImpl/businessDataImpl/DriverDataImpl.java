@@ -41,7 +41,7 @@ public class DriverDataImpl implements DriverDataService {
 				nameStr=rs.getString("name");
 				birthdayStr=rs.getString("birthday");
 				idNumber=rs.getString("idNumber");
-				phoneStr=rs.getString("phone");
+				phoneStr=rs.getString("phoneNumber");
 				genderStr=rs.getString("gender");
 				drivingDeadlineStr=rs.getString("drivingDeadline");
 			}  
@@ -73,7 +73,7 @@ public class DriverDataImpl implements DriverDataService {
 		String drivingDeadlineStr=driverPO.getDrivingDeadline();
 		
 		String var;
-		var="name='"+nameStr+"',birthday='"+birthdayStr+"',idNumber='"+idNumber+"',phoneNumber='"+phoneStr+"',gender'"+genderStr+"',drivingDeadline'"+drivingDeadlineStr+"'";
+		var="name='"+nameStr+"',birthday='"+birthdayStr+"',idNumber='"+idNumber+"',phoneNumber='"+phoneStr+"',gender='"+genderStr+"',drivingDeadline='"+drivingDeadlineStr+"'";
 		return Database.modify("driver", var, "driverid", driverid);
 
 	}

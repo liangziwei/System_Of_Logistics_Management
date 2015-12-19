@@ -2,14 +2,14 @@ package businessLogic.businessLogicModel.businessModel;
 
 import java.rmi.RemoteException;
 
-import stub.dataImpl_stub.businessDataImpl_stub.PaymentDataImpl_Stub;
+import network.RMI;
 import vo.businessVO.ReceivableVO;
 import dataService.businessDataService.PaymentDataService;
 
 public class Payment {
 
-	private PaymentDataService paymentData=new PaymentDataImpl_Stub();
-//	private PaymentDataService paymentData=RMI.<PaymentDataService>getDataService("receivable");
+//	private PaymentDataService paymentData=new PaymentDataImpl_Stub();
+	private PaymentDataService paymentData=RMI.<PaymentDataService>getDataService("receivable");
 	
 	public boolean addPayentForm(ReceivableVO receivableVO) {
 		// TODO Auto-generated method stub

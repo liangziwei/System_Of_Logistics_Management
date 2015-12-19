@@ -215,17 +215,21 @@ public class PaymentPanel extends DetailPanel{
 		String dateStr=dateText.getText();
 		String moneyStr=moneyText.getText();
 		String deliveryidStr=deliveryidText.getText();
-		
+		String [] str=deliveryidStr.split("\n");
 		if(!CommonLogic.isDate(dateStr)){
 			dateText.setText("");
 			return false;
 		}else if(!CommonLogic.isDouble(moneyStr)){
 			moneyText.setText("");
 			return false;
-		}else if(!deliveryidStr.matches("\\d{10}")){
+		}
+			
+		for(String s:str){
+		  if(!s.matches("\\d{10}")){
 			deliveryidText.setText("");
 			return false;
-		}
+		  }
+		}  
 		
 		return true;
 	}

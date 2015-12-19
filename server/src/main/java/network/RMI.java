@@ -5,6 +5,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import dataImpl.administratorDataImpl.AdministratorDataImpl;
 import dataImpl.businessDataImpl.DriverDataImpl;
 import dataImpl.businessDataImpl.EntruckingDataImpl;
 import dataImpl.businessDataImpl.PaymentDataImpl;
@@ -53,7 +54,6 @@ import dataService.senderDataService.InquireDataService;
 import dataService.transitionDataService.LoadingDataService;
 import dataService.transitionDataService.ReceivingDataService;
 import dataService.transitionDataService.TransferringDataService;
-import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
 
 public class RMI {
 	
@@ -249,8 +249,8 @@ public class RMI {
 	private static void initAdministratorRMI() {
 		try {
 			//用户信息访问接口
-//			AdministratorDataService admin = new AdministratorDataImpl();
-			AdministratorDataService admin = new AdministratorDataImpl_Stub();
+			AdministratorDataService admin = new AdministratorDataImpl();
+//			AdministratorDataService admin = new AdministratorDataImpl_Stub();
 			AdministratorDataService stub = (AdministratorDataService) UnicastRemoteObject.exportObject(admin, 0);
 			registry.bind("administrator", stub);
 		} catch (Exception e) {

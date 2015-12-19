@@ -82,7 +82,7 @@ public class ModifyVehiclePanel extends DetailPanel {
 		
 		this.result.setBounds(this.age.getX() + LINE_GAP, this.age.getY() + LABEL_H*6+ LINE_GAP,
 				TEXT_W, BUTTON_H);
-		this.result.setFont(WORD_FONT);
+//		this.result.setFont(WORD_FONT);
 		this.result.setText("");
 		
 		this.ok.setBounds(this.age.getX() + TEXT_W, this.age.getY() + LABEL_H*6+ LINE_GAP,
@@ -108,7 +108,7 @@ public class ModifyVehiclePanel extends DetailPanel {
 				if(isIDCorrect()){
 					
 				  vehicleVO=vehicleCon.findVehicle(vehicleid);
-				  if(!vehicleVO.isWrong()){
+				  if(!vehicleVO.isWrong()&&(vehicleVO.getNumber())!=null){
 					visible(true);
 					numberText.setText(vehicleVO.getNumber());
 					ageText.setText(vehicleVO.getAge());

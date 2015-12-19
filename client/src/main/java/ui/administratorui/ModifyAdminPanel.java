@@ -117,7 +117,7 @@ public class ModifyAdminPanel extends DetailPanel {
 		this.cancel.setFont(WORD_FONT);
 //		this.cancel.setVisible(false);
 		
-		this.disablePanel();
+//		this.disablePanel();
 		this.visible(false);
 		this.addListener();
 		this.addComponents();
@@ -192,7 +192,7 @@ public class ModifyAdminPanel extends DetailPanel {
 						
 						adminVO=new AdministratorVO(UserType.valueOf(typeStr),nameStr,idStr,passwordStr,Authority.valueOf(limitStr));
 						
-						if(adminCon.addUser(adminVO)){
+						if(adminCon.modifyUser(adminVO)){
 							result.setForeground(Color.GREEN);
 							result.setText("修改成功！");
 							ok.setIcon(new ImageIcon("picture/确定.png"));

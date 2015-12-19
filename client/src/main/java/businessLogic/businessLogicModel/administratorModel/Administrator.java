@@ -2,15 +2,15 @@ package businessLogic.businessLogicModel.administratorModel;
 
 import java.rmi.RemoteException;
 
+import network.RMI;
 import po.administratorPO.AdministratorPO;
-import stub.dataImpl_stub.administratorDataImpl_stub.AdministratorDataImpl_Stub;
 import vo.administratorVO.AdministratorVO;
 import dataService.administratorDataService.AdministratorDataService;
 
 public class Administrator {
 
-	private AdministratorDataService adminData=new AdministratorDataImpl_Stub();
-//	private AdministratorDataService adminData=RMI.<AdministratorDataService>getDataService("administrator");
+//	private AdministratorDataService adminData=new AdministratorDataImpl_Stub();
+	private AdministratorDataService adminData=RMI.<AdministratorDataService>getDataService("administrator");
 	public boolean addUser(AdministratorVO administratorVO) {
 		// TODO Auto-generated method stub
 		try {

@@ -59,14 +59,17 @@ public class AdministratorDataImpl implements AdministratorDataService {
 		String name = null;
 		String id=administratorid;
 		String password = null;
-		Authority limit = null;
+		Authority limit = Authority.高;
 		try {
 			rs=Database.query("administrator", "id", administratorid);
 			while(rs.next()){
 			  type=UserType.valueOf(rs.getString("type"));
 			  name=rs.getString("name");
 			  password=rs.getString("password");
-			  limit=Authority.valueOf(rs.getString("limit1"));
+			  int limit1=(rs.getInt("limit1"));
+			  if(limit1==0){
+				  limit = Authority.低; 
+			  }
 			}  
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -14,8 +14,6 @@ public class ReceiveAndSend {
 
 //	private ReceiveAndSendDataService receiveAndSendData=new ReceiveAndSendDataImpl_Stub();
 	private ReceiveAndSendDataService receiveAndSendData=RMI.<ReceiveAndSendDataService>getDataService("receiveAndSend");
-	private MakeConstantDataService constantData=RMI.<MakeConstantDataService>getDataService("makeConstant");
-	private OrderDataService order=RMI.<OrderDataService>getDataService("order");
 	
 	public boolean addReceiveFrom(ArrivalFormVO arrivalFormVO) {
 		// TODO Auto-generated method stub
@@ -30,6 +28,8 @@ public class ReceiveAndSend {
 
 	public boolean addSendFrom(SendFormVO sendFormVO) {
 		// TODO Auto-generated method stub
+		MakeConstantDataService constantData=RMI.<MakeConstantDataService>getDataService("makeConstant");
+		OrderDataService order=RMI.<OrderDataService>getDataService("order");
 		String businessID=sendFormVO.getBusinessID();
 		String deliveryID=sendFormVO.getDeliveryid();
 		String place="";
