@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableCellEditor;
 
 import businessLogic.businessLogicController.managerController.MakeConstantController;
 import businessLogic.businessLogicModel.util.CommonLogic;
@@ -101,6 +102,13 @@ public class MakePricePanel extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//使修改的单元格变为不可编辑
+				if(price.isEditing()) {
+					int row = price.getEditingRow();
+					int col = price.getEditingColumn();
+					TableCellEditor editor = price.getCellEditor(row, col);
+					editor.stopCellEditing();
+				}
 				//验证包装 输入是否合法
 				int rowNum = price.getRowCount();
 				boolean isValidate = true;

@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableCellEditor;
 
 import businessLogic.businessLogicController.managerController.MakeConstantController;
 import businessLogic.businessLogicModel.util.CommonLogic;
@@ -111,6 +112,13 @@ public class MakeDistancePanel extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//使修改的单元格变为不可编辑
+				if(distance.isEditing()) {
+					int row = distance.getEditingRow();
+					int col = distance.getEditingColumn();
+					TableCellEditor editor = distance.getCellEditor(row, col);
+					editor.stopCellEditing();
+				}
 				//验证数据的合理性
 				boolean isValidate = true;
 				int rowNum = distance.getRowCount();

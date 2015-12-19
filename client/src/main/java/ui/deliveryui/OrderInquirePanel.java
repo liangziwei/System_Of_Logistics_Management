@@ -2,9 +2,12 @@ package ui.deliveryui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -46,6 +49,8 @@ public class OrderInquirePanel extends DetailPanel{
 	private JLabel error = new JLabel();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
+	
+	private static Image BACKGROUND = new ImageIcon("picture/订单查询.jpg").getImage();
 	
 	private static final int LABEL_W = 100;
 	
@@ -103,11 +108,9 @@ public class OrderInquirePanel extends DetailPanel{
 		this.container.setBounds(0, orderLabel.getY() + (LABEL_H << 1),
 				DETAIL_PANEL_W - 30, DETAIL_PANEL_H - (LABEL_H << 2));
 		this.container.getVerticalScrollBar().setUnitIncrement(15);
-		this.orderInfo = this.orderInput.OrderInfoView();
-		this.orderInfo.setVisible(false);
-		this.container.setViewportView(this.orderInfo);
 		this.container.setVisible(false);
 		this.container.setOpaque(false);
+		this.container.getViewport().setOpaque(false);
 		this.add(this.container);
 	}
 	
@@ -137,9 +140,10 @@ public class OrderInquirePanel extends DetailPanel{
 						return ;
 					}
 					orderInput.setOrderInfo(order.getSenderInfo(), order.getReceiverInfo(), order.getGoodsInfo());
+					orderInfo = orderInput.OrderInfoView();
 					//显示订单信息
-					orderInfo.setVisible(true);
 					container.setVisible(true);
+					container.setViewportView(orderInfo);
 				}
 				repaint();
 			}
@@ -150,10 +154,16 @@ public class OrderInquirePanel extends DetailPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				//将当前细节信息面板设置为初始页面
-				orderInfo.setVisible(false);
+				container.setVisible(false);
 			}
 		});
 	}
 	
-	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(BACKGROUND, 0, orderLabel.getY() + (LABEL_H << 1),
+				DETAIL_PANEL_W - 30, DETAIL_PANEL_H - (LABEL_H << 2), null);
+	}
+
 }

@@ -45,9 +45,10 @@ public class StatisticsDataImpl implements StatisticsDataService{
 		return po;
 	}
 	
-	public List<PaymentPO>	getPaymentList() {
+	public List<PaymentPO>	getPaymentList(String startDate,String endDate) {
 		List<PaymentPO> pay = new ArrayList<PaymentPO>();
-		String sql = "select * from payment;";
+		String sql = "select * from payment where date <= '" + endDate
+				+ "' && date >= '" + startDate + "';";
 		try {
 			ResultSet rs = Database.findOperation(sql);
 			while(rs.next()) {

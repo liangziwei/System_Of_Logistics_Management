@@ -80,28 +80,29 @@ public class ReceiptModel{
 	}
 	
 	public static VerifyMessage verifyReceiptInfo(ReceiptVO receiptVO) {
-		VerifyMessage msg = new VerifyMessage();
 		String name = receiptVO.getName();
 		String id = receiptVO.getOrderID();
-		//验证姓名
+		
 		if(CommonLogic.isNull(name)) {
-			msg.setResult(VerifyResult.FAIL);
-			msg.setErrorMsg("姓名不能为空");
-			msg.setLabel(LabelName.RECEIVER_NAME);
+			return new VerifyMessage(LabelName.RECEIVER_NAME, "姓名不能为空", VerifyResult.FAIL);
 		}
-		else if(CommonLogic.isNull(id)) {
-			msg.setResult(VerifyResult.FAIL);
-			msg.setErrorMsg("订单条形码号不能为空");
-			msg.setLabel(LabelName.GOODS_ID);
+		if(CommonLogic.isNull(id)) {
+			return new VerifyMessage(LabelName.GOODS_ID, "订单条形码号不能为空", VerifyResult.FAIL);
 		}
-		else if(id.length() != 10 || !CommonLogic.isNumber(id)) {
-			msg.setResult(VerifyResult.FAIL);
-			msg.setErrorMsg("订单条形码号应该为10位数字");
-			msg.setLabel(LabelName.GOODS_ID);
+		if(id.length() != 10 || !CommonLogic.isNumber(id)) {
+			return new VerifyMessage(LabelName.GOODS_ID, "订单条形码号应该为10位数字", VerifyResult.FAIL);
 		}
-		else {
-			msg.setResult(VerifyResult.SUCCESS);
+		OrderDataService order = RMI.getDataService("order");
+		try {
+			OrderPO po = order.getOrderInfoById(id);
+			if(po == null) return new VerifyMessage(LabelName.GOODS_ID, "该订单不存在", VerifyResult.FAIL);
+			if(!po.getReceiverInfo().getName().equals(name)) {
+				return new VerifyMessage(LabelName.RECEIVER_NAME, 
+						"该订单信息对应的姓名为:" + po.getReceiverInfo().getName(), VerifyResult.FAIL);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
-		return msg;
+		return new VerifyMessage(null, null, VerifyResult.SUCCESS);
 	}
 }

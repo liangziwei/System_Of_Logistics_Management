@@ -3,6 +3,7 @@ package businessLogic.businessLogicModel.businessModel;
 import java.rmi.RemoteException;
 
 import network.RMI;
+import network.RemoteExceptionHandler;
 import po.businessPO.EntruckingPO;
 import vo.businessVO.EntruckingVO;
 import businessLogic.businessLogicModel.managerModel.MakeConstant;
@@ -10,9 +11,10 @@ import constant.TransitType;
 import dataService.businessDataService.EntruckingDataService;
 
 public class Entrucking {
+	
+	private static final String KEY = "entrucking";
 
-//	private EntruckingDataService entruckingData=new EntruckingDataImpl_stub();
-	private EntruckingDataService entruckingData=RMI.<EntruckingDataService>getDataService("entrucking");
+	private EntruckingDataService entruckingData=RMI.<EntruckingDataService>getDataService(KEY);
 	
 	private static double freight=0;
 	
@@ -23,7 +25,7 @@ public class Entrucking {
 		try {
 			return entruckingData.addEntruckingFrom(entruckingPO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			new RemoteExceptionHandler<EntruckingDataService>(KEY);
 			e.printStackTrace();
 			return false;
 		}

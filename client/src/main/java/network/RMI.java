@@ -33,18 +33,17 @@ public class RMI {
 	@SuppressWarnings("unchecked")
 	public static<T> T getDataService(String key) {
 		T service = null;
-		Reconnect<T> reconnect = null;
-		Thread connectThread = null;
 		try {
 			service = (T) registry.lookup(key);
 		} catch (Exception e) {
-			//启动重连网络的线程
-			reconnect = new Reconnect<T>(registry, key);
-			connectThread = new Thread(reconnect);
-			connectThread.start();
+			new RemoteExceptionHandler<T>(key);
 		}
 		
 		return service;
+	}
+	
+	public static Registry getRegistry() {
+		return registry;
 	}
 	
 	/**

@@ -165,6 +165,12 @@ public class AddOrganization extends DetailPanel{
 			tip.setText("机构编号应为6位的数字");
 			return false;
 		}
+		//验证该机构信息是否已经存在
+		OrganizationVO vo = organization.findOrganization(idText.getText());
+		if(vo != null) {
+			tip.setText("该机构信息已经存在");
+			return false;
+		}
 		return true;
 	}
 }

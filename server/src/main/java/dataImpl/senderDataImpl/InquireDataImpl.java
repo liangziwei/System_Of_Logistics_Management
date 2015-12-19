@@ -2,7 +2,6 @@ package dataImpl.senderDataImpl;
 
 import java.rmi.RemoteException;
 
-import constant.City;
 import dataImpl.deliveryDataImpl.OrderDataImpl;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.senderDataService.InquireDataService;

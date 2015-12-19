@@ -246,6 +246,7 @@ public class ClientInfoPanel extends JPanel{
 	 */
 	public void setClientInfo(String name, String address, String company,
 			String phone, String mobile, City city) {
+		this.setOpaque(false);
 		this.nameText.setText(name);
 		this.addressText.setText(address);
 		this.companyText.setText(company);

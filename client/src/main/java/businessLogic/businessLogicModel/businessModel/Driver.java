@@ -4,13 +4,16 @@ import po.businessPO.DriverPO;
 import stub.dataImpl_stub.businessDataImpl_stub.DriverDataImpl_Stub;
 import vo.businessVO.DriverVO;
 import dataService.businessDataService.DriverDataService;
+import network.RemoteExceptionHandler;
 
 public class Driver {
 
 	private DriverDataService driverData=new DriverDataImpl_Stub();
 //	private DriverDataService driverData=RMI.<DriverDataService>getDataService("driver");
+	
+	private static final String KEY = "driver";
+	
 	public boolean addDriver(DriverVO driverVO) {
-		// TODO Auto-generated method stub
 		return driverData.addDriver(driverVO.driverVOToPO());
 	}
 

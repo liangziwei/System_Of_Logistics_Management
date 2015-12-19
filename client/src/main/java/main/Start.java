@@ -1,5 +1,7 @@
 package main;
 
+import network.RMI;
+import network.RemoteExceptionHandler;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
 import ui.viewcontroller.ViewController;
@@ -19,5 +21,7 @@ public class Start {
 		//刷新面板
 		frame.repaint();
 		
+		//初始化网络异常处理的成员变量
+		RemoteExceptionHandler.setRegistry(RMI.getRegistry());
 	}
 }
