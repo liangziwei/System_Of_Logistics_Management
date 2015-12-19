@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -237,6 +239,24 @@ public class LoginPanel extends JPanel{
 				setVisible(false);
 				//回到开始界面
 				viewController.switchView(ExpressPanel.class.getName());
+			}
+		});
+		
+		idField.addKeyListener(new KeyAdapter() {
+			
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					ok.doClick();
+				}
+			}
+		});
+		
+		pwField.addKeyListener(new KeyAdapter() {
+
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					ok.doClick();
+				}
 			}
 		});
 	}

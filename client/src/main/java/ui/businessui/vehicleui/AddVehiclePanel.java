@@ -207,7 +207,7 @@ public class AddVehiclePanel extends DetailPanel{
 		if(!vehicleidStr.matches("\\d{9}")){
 			vehicleidText.setText("");
 			return false;
-		}else if(numberStr.length()>9){
+		}else if(numberStr.length()>9||numberStr.length()<7){
 			numberText.setText("");
 			return false;
 		}else if(!CommonLogic.isNumber(ageStr)){

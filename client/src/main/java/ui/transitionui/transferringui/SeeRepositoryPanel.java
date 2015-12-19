@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +25,9 @@ public class SeeRepositoryPanel extends DetailPanel {
 	private LimpidButton update = new LimpidButton("","picture/更新.png");
 
 	private List<RepositoryVO> list = null;
+	
+	private JPanel thetablepanel = new JPanel();
+	private JScrollPane jScrollPane = new JScrollPane();
 
 	public static final int LABEL_W = 80;
 	public static final int LABEL_H = 40;
@@ -53,10 +57,14 @@ public class SeeRepositoryPanel extends DetailPanel {
 		super();
 
 		// 按钮
-		find.setBounds(START_X, 10, TEXT_W, LABEL_H);
+		find.setBounds(START_X*2, 10, LABEL_W, LABEL_H-10);
 		add(find);
-		update.setBounds(find.getX() + find.getWidth() + COMPONENT_GAP_Y * 4, find.getY(), TEXT_W, LABEL_H);
+		update.setBounds(find.getX() + find.getWidth() + COMPONENT_GAP_Y * 4, find.getY(), LABEL_W, LABEL_H-10);
 		add(update);
+		
+		thetablepanel.setBounds(30, find.getY() + find.getHeight() + COMPONENT_GAP_Y, Area_W + LABEL_W+10, Area_H + LABEL_H+10);
+		thetablepanel.setOpaque(false);
+		add(thetablepanel);
 
 		addListener();
 
@@ -79,39 +87,43 @@ public class SeeRepositoryPanel extends DetailPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+//				DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 //				tableModel.setRowCount(0);// 清除原有行
 				List<RepositoryVO> LIST2 = transferring.getRepositoryInfo();
-				if (LIST2.size() > list.size()) {
-					for (int i = list.size(); i < LIST2.size(); i++) {
-						String[] arr = new String[7];
-						arr[0] = LIST2.get(i).getdeliveryid();
-						arr[1] = LIST2.get(i).getinrepositorydate();
-						arr[2] = LIST2.get(i).getarrivalid();
-						AreaCodeType area = LIST2.get(i).getareaCode();
-						String AREA = null;
-						switch (area) {
-						case PLANEAREA:
-							AREA = "航运区";
-							break;
-						case TRAINAREA:
-							AREA = "铁运区";
-							break;
-						case TRUCKAREA:
-							AREA = "汽运区";
-							break;
-						case MOTOAREA:
-							AREA = "机动区";
-							break;
-						}
-						arr[3] = AREA;
-						arr[4] = LIST2.get(i).getrowid();
-						arr[5] = LIST2.get(i).getshelfid();
-						arr[6] = LIST2.get(i).getposid();
-						// 添加数据到表格
-						tableModel.addRow(arr);
-					}
-				}
+//				if (LIST2.size() > list.size()) {
+//					for (int i = list.size(); i < LIST2.size(); i++) {
+//						String[] arr = new String[7];
+//						arr[0] = LIST2.get(i).getdeliveryid();
+//						arr[1] = LIST2.get(i).getinrepositorydate();
+//						arr[2] = LIST2.get(i).getarrivalid();
+//						AreaCodeType area = LIST2.get(i).getareaCode();
+//						String AREA = null;
+//						switch (area) {
+//						case PLANEAREA:
+//							AREA = "航运区";
+//							break;
+//						case TRAINAREA:
+//							AREA = "铁运区";
+//							break;
+//						case TRUCKAREA:
+//							AREA = "汽运区";
+//							break;
+//						case MOTOAREA:
+//							AREA = "机动区";
+//							break;
+//						}
+//						arr[3] = AREA;
+//						arr[4] = LIST2.get(i).getrowid();
+//						arr[5] = LIST2.get(i).getshelfid();
+//						arr[6] = LIST2.get(i).getposid();
+//						// 添加数据到表格
+//						tableModel.addRow(arr);
+//					}
+//				}
+//				else {
+					thetablepanel.remove(jScrollPane);
+					initTabel(LIST2);
+//				}
 			}
 		});
 	}
@@ -145,16 +157,16 @@ public class SeeRepositoryPanel extends DetailPanel {
 		}
 		DefaultTableModel model = new DefaultTableModel(datas, names) {
 			public boolean isCellEditable(int row, int column) {
-				return true;
+				return false;
 			}
 		};
 		this.table = new JTable(model);
 		int rowH = 20;
 		this.table.setRowHeight(rowH);
 		// 添加列表
-		JScrollPane jScrollPane = new JScrollPane();
-		jScrollPane.setBounds(40, find.getY() + find.getHeight() + COMPONENT_GAP_Y, Area_W + LABEL_W, Area_H + LABEL_H);
+		
+		jScrollPane.setBounds(10, 0, Area_W + LABEL_W, Area_H + LABEL_H);
 		jScrollPane.setViewportView(table);
-		add(jScrollPane);
+		thetablepanel.add(jScrollPane);
 	}
 }

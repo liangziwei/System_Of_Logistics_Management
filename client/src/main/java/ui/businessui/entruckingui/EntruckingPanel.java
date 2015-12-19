@@ -48,14 +48,14 @@ public class EntruckingPanel extends DetailPanel {
 	private JLabel result = new JLabel();
 
 	private JTextField dateText = new JTextField();
-	private JTextField businessHallidText = new JTextField();
-	private JTextField transportNumberText = new JTextField();
-	private JTextField destionationText = new JTextField();
-	private JTextField vehicleidText = new JTextField();
-	private JTextField supervisorText = new JTextField();// 监装员
-	private JTextField supercargoText = new JTextField();// 押运员
-	private JTextField freightText = new JTextField();// 运费
-	private JTextArea alldeliveryidArea = new JTextArea();
+	private JTextField businessHallidText = new JTextField("");
+	private JTextField transportNumberText = new JTextField("");
+	private JTextField destionationText = new JTextField("");
+	private JTextField vehicleidText = new JTextField("");
+	private JTextField supervisorText = new JTextField("");// 监装员
+	private JTextField supercargoText = new JTextField("");// 押运员
+	private JTextField freightText = new JTextField("");// 运费
+	private JTextArea alldeliveryidArea = new JTextArea("");
 
 	private LimpidButton ok = new LimpidButton("", "picture/确定.png");
 
@@ -317,9 +317,13 @@ public class EntruckingPanel extends DetailPanel {
 			vehicleidText.setText("");
 			return false;
 		}
-		else if (alldeliveryidArea.getText().trim().equals("")) {
-			return false;
-		}
+			String alldeli = alldeliveryidArea.getText();
+			String[] alldeli1 = alldeli.split("\n");
+			for(String q:alldeli1){
+				if(!q.matches("\\d{10}")){
+					return false;
+				}
+			}
 
 		return true;
 	}

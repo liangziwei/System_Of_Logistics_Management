@@ -37,7 +37,7 @@ public class OriginalInfoDataImpl implements OriginalInfoDataService{
 		}
 		try {
 			while(rs.next()){
-				staffid = rs.getString("id");
+				staffid = rs.getString("staff_id");
 				name = rs.getString("name");
 				position = rs.getString("position");
 				gender = rs.getString("gender");

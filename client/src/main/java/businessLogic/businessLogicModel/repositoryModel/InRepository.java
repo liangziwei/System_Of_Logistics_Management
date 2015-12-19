@@ -17,10 +17,12 @@ public class InRepository {
 		InRepositoryPO inRepositoryPO = InRepositoryVOtoInRepositoryPO(inRepositoryVO);
 		boolean add = false;
 		try {
-			boolean temp1 = inRepositoryDataService.AddInRepositoryFormDT(inRepositoryPO);
 			boolean temp2 = inRepositoryDataService.UpdateRepositoryInfoDT(inRepositoryPO);
-			if (temp1 && temp2) {
-				add = true;
+			if (temp2) {
+				boolean temp1 = inRepositoryDataService.AddInRepositoryFormDT(inRepositoryPO);
+				if (temp1 && temp2) {
+					add = true;
+				}				
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -34,10 +36,12 @@ public class InRepository {
 		InRepositoryPO inRepositoryPO = InRepositoryVOtoInRepositoryPO(inRepositoryVO);
 		boolean modify = false;
 		try {
-			boolean temp1 = inRepositoryDataService.ModifyInRepositoryFormDT(inRepositoryPO);
 			boolean temp2 = inRepositoryDataService.modifyUpdateRepositoryInfoDT(inRepositoryPO);
-			if (temp1 && temp2) {
-				modify = true;
+			if (temp2) {
+				boolean temp1 = inRepositoryDataService.ModifyInRepositoryFormDT(inRepositoryPO);
+				if (temp1 && temp2) {
+					modify = true;
+				}				
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

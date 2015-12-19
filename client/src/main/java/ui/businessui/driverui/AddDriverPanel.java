@@ -124,9 +124,9 @@ public class AddDriverPanel extends DetailPanel{
 		this.query.setBounds(START_X+TEXT_W+ LABEL_W + LINE_GAP,START_Y,BUTTON_W,BUTTON_H);
 		this.query.setFont(WORD_FONT);
 		
-		this.result.setBounds(this.phoneNumber.getX() +LINE_GAP, this.phoneNumber.getY() + LABEL_H*4+ LINE_GAP,TEXT_W, BUTTON_H);
+		this.result.setBounds(this.phoneNumber.getX() +LINE_GAP, this.phoneNumber.getY() + LABEL_H*3+ LINE_GAP,TEXT_W, BUTTON_H);
 //		this.result.setFont(WORD_FONT);
-		this.ok.setBounds(this.phoneNumber.getX() + TEXT_W, this.phoneNumber.getY() + LABEL_H*4+ LINE_GAP,BUTTON_W, BUTTON_H);
+		this.ok.setBounds(this.phoneNumber.getX() + TEXT_W, this.phoneNumber.getY() + LABEL_H*3+ LINE_GAP,BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
