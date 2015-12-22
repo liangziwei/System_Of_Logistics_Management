@@ -127,6 +127,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 		this.add(transferringid);
 		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), TEXTid_W, TEXT_H);
+		transferringidText.setOpaque(false);
 		this.add(transferringidText);
 		find.setBounds(transferringidText.getX() + transferringidText.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), BUTTON_W, BUTTON_H);
@@ -187,6 +188,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 		arrivaldateTextyear.setBounds(arrivaldate.getX() + arrivaldate.getWidth() + COMPONENT_GAP_X, arrivaldate.getY(),
 				(TEXT_W / 2)*3, TEXT_H);
 		dateChoose.register(arrivaldateTextyear);
+		arrivaldateTextyear.setOpaque(false);
 		this.infoPanel.add(arrivaldateTextyear);
 //		JLabel apart1 = new JLabel("-");
 //		JLabel apart2 = new JLabel("-");
@@ -206,6 +208,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 		this.infoPanel.add(transitionid);
 		transitionidText.setBounds(transitionid.getX() + transitionid.getWidth() + COMPONENT_GAP_X,
 				transitionid.getY(), TEXTid_W, TEXT_H);
+		transitionidText.setOpaque(false);
 		this.infoPanel.add(transitionidText);
 		// 出发地
 		departureid.setBounds(transitionid.getX(), transitionid.getY() + transitionid.getHeight() + COMPONENT_GAP_Y,
@@ -213,6 +216,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 		this.infoPanel.add(departureid);
 		departureidText.setBounds(departureid.getX() + departureid.getWidth() + COMPONENT_GAP_X, departureid.getY(),
 				TEXT_W, TEXT_H);
+		departureidText.setOpaque(false);
 		this.infoPanel.add(departureidText);
 		// 到达地
 		arrivalid.setBounds(departureidText.getX() + departureidText.getWidth() + COMPONENT_GAP_Y, departureid.getY(),
@@ -220,6 +224,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setOpaque(false);
 		this.infoPanel.add(arrivalidText);
 		// 货物到达状态
 		statelabel.setBounds(departureid.getX(), departureid.getY() + departureid.getHeight() + COMPONENT_GAP_Y,

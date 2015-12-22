@@ -40,6 +40,9 @@ public class Receiving {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			if (transferringPO==null) {
+				return false;
+			}
 			for(String del1:(transferringPO.getalldeliveryid())){
 				try {
 					trace = order.setTrace(del1, pos1 + "中转中心");
@@ -112,9 +115,13 @@ public class Receiving {
 
 	public boolean verifyres(ReceivingVO receivingVO) {
 
-		if (receivingVO.gettransferringid().equals("") || (!receivingVO.gettransferringid().matches("\\d{16}")
-				|| (!receivingVO.gettransferringid().matches("\\d{19}")))) {
+		if (receivingVO.gettransferringid().equals("") || ((!receivingVO.gettransferringid().matches("\\d{16}"))
+				&& (!receivingVO.gettransferringid().matches("\\d{19}")))) {
 			receivingVO.seterrorMsg("中转单编号不能为空或输入错误(16位或19位)");
+			return false;
+		}
+		if (receivingVO.gettransitionid().equals("") || (!receivingVO.gettransitionid().matches("\\d{4}"))) {
+			receivingVO.seterrorMsg("本中转中心编号不能为空或者输入错误(4位)");
 			return false;
 		}
 		HashMap<String, String> constant = null;
@@ -183,10 +190,7 @@ public class Receiving {
 		// return false;
 		// }
 
-		if (receivingVO.gettransitionid().equals("") || (!receivingVO.gettransitionid().matches("\\d{4}"))) {
-			receivingVO.seterrorMsg("本中转中心编号不能为空或者输入错误(4位)");
-			return false;
-		}
+
 
 		if (receivingVO.getdepartureid().equals("")) {
 			receivingVO.seterrorMsg("出发地不能为空");

@@ -176,8 +176,8 @@ public class Transferring {
 	
 	public boolean verify(TransferringVO transferringVO) {
 		if (transferringVO.gettransferringid() .equals("") || (!transferringVO
-				.gettransferringid().matches("\\d{15}"))) {
-			transferringVO.seterrorMsg("中转单编号为空或输入错误(15位)");
+				.gettransferringid().matches("\\d{16}"))) {
+			transferringVO.seterrorMsg("中转单编号为空或输入错误(16位)");
 			return false;
 		}
 		HashMap<String, String> constant = null;

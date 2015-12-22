@@ -110,6 +110,7 @@ public class FindTransferringPanel extends DetailPanel{
 		transferringid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		container.add(transferringid);
 		transferringidText.setBounds(transferringid.getX()+transferringid.getWidth()+COMPONENT_GAP_X, transferringid.getY(), TEXTid_W, TEXT_H);
+		transferringidText.setOpaque(false);
 		container.add(transferringidText);
 		find.setBounds(transferringidText.getX()+transferringidText.getWidth()+COMPONENT_GAP_X, transferringidText.getY(), LABEL_W, LABEL_H-10);
 		container.add(find);
@@ -143,14 +144,17 @@ public class FindTransferringPanel extends DetailPanel{
 		this.infoPanel.add(loadingdate);
 		loadingdateTextyear.setBounds(loadingdate.getX() + loadingdate.getWidth() + COMPONENT_GAP_X, loadingdate.getY(),
 				TEXT_W/3, TEXT_H);
+		loadingdateTextyear.setOpaque(false);
 		this.infoPanel.add(loadingdateTextyear);
 		apart1.setBounds(loadingdateTextyear.getX()+loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10, LABEL_H);
 		this.infoPanel.add(apart1);
 		loadingdateTextmonth.setBounds(apart1.getX()+apart1.getWidth(),apart1.getY(),TEXT_W/3,TEXT_H);
+		loadingdateTextmonth.setOpaque(false);
 		this.infoPanel.add(loadingdateTextmonth);
 		apart2.setBounds(loadingdateTextmonth.getX()+loadingdateTextmonth.getWidth(),loadingdateTextmonth.getY(),10,LABEL_H);
 		this.infoPanel.add(apart2);
 		loadingdateTextday.setBounds(apart2.getX()+apart2.getWidth(), apart2.getY(), TEXT_W/3, TEXT_H);
+		loadingdateTextday.setOpaque(false);
 		this.infoPanel.add(loadingdateTextday);
 		
 		way.setBounds(loadingdateTextday.getX() + loadingdateTextday.getWidth() + COMPONENT_GAP_X, loadingdateTextday.getY(),
@@ -167,6 +171,7 @@ public class FindTransferringPanel extends DetailPanel{
 		this.infoPanel.add(loadingwayid);
 		loadingwayidText.setBounds(loadingwayid.getX() + loadingwayid.getWidth() + COMPONENT_GAP_X, loadingwayid.getY(),
 				TEXTid_W, TEXT_H);
+		loadingwayidText.setOpaque(false);
 		this.infoPanel.add(loadingwayidText);
 
 		departureid.setBounds(loadingwayid.getX(), loadingwayid.getY() + loadingwayid.getHeight() + COMPONENT_GAP_Y,
@@ -174,6 +179,7 @@ public class FindTransferringPanel extends DetailPanel{
 		this.infoPanel.add(departureid);
 		departureidText.setBounds(departureid.getX() + departureid.getWidth() + COMPONENT_GAP_X, departureid.getY(),
 				TEXT_W, TEXT_H);
+		departureidText.setOpaque(false);
 		departureidText.addItem("南京");
 		departureidText.addItem("北京");
 		departureidText.addItem("广州");
@@ -196,6 +202,7 @@ public class FindTransferringPanel extends DetailPanel{
 		this.infoPanel.add(supervisionid);
 		supervisionidText.setBounds(supervisionid.getX() + supervisionid.getWidth() + COMPONENT_GAP_X,
 				supervisionid.getY(), TEXT_W, TEXT_H);
+		supervisionidText.setOpaque(false);
 		this.infoPanel.add(supervisionidText);
 
 		containerid.setBounds(supervisionidText.getX() + supervisionidText.getWidth() + COMPONENT_GAP_X,
@@ -203,6 +210,7 @@ public class FindTransferringPanel extends DetailPanel{
 		this.infoPanel.add(containerid);
 		containeridText.setBounds(containerid.getX() + containerid.getWidth() + COMPONENT_GAP_X, containerid.getY(),
 				TEXT_W, TEXT_H);
+		containeridText.setOpaque(false);
 		this.infoPanel.add(containeridText);
 
 		alldeliveryid.setBounds(supervisionid.getX(),
@@ -212,6 +220,9 @@ public class FindTransferringPanel extends DetailPanel{
 		scrollPane.setBounds(alldeliveryid.getX(), alldeliveryid.getY() + alldeliveryid.getHeight(), Area_W, Area_H);
 		this.infoPanel.add(scrollPane);
 		scrollPane.setViewportView(alldeliveryidText);
+		scrollPane.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		alldeliveryidText.setOpaque(false);
 
 		fare.setBounds(alldeliveryid.getX(), scrollPane.getY() + scrollPane.getHeight() + COMPONENT_GAP_Y - 15, LABEL_W,
 				LABEL_H);
@@ -219,6 +230,7 @@ public class FindTransferringPanel extends DetailPanel{
 		fareText.setBounds(fare.getX() + fare.getWidth() + COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
 		fareText.setBackground(Color.GRAY);
 		fareText.setEditable(false);
+		fareText.setOpaque(false);
 		this.infoPanel.add(fareText);
 	}
 	

@@ -126,6 +126,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 		container.add(transferringid);
 		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), TEXTid_W, TEXT_H);
+		transferringidText.setOpaque(false);
 		container.add(transferringidText);
 		find.setBounds(transferringidText.getX() + transferringidText.getWidth() + COMPONENT_GAP_X,
 				transferringidText.getY(), LABEL_W, LABEL_H-10);
@@ -186,6 +187,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 		loadingdateTextyear.setBounds(loadingdate.getX() + loadingdate.getWidth() + COMPONENT_GAP_X, loadingdate.getY(),
 				TEXT_W , TEXT_H);
 		dateChoose.register(loadingdateTextyear);
+		loadingdateTextyear.setOpaque(false);
 		this.infoPanel.add(loadingdateTextyear);
 //		apart1.setBounds(loadingdateTextyear.getX() + loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10,
 //				LABEL_H);
@@ -212,6 +214,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 		this.infoPanel.add(loadingwayid);
 		loadingwayidText.setBounds(loadingwayid.getX() + loadingwayid.getWidth() + COMPONENT_GAP_X, loadingwayid.getY(),
 				TEXTid_W, TEXT_H);
+		loadingwayidText.setOpaque(false);
 		this.infoPanel.add(loadingwayidText);
 
 		departureid.setBounds(loadingwayid.getX(), loadingwayid.getY() + loadingwayid.getHeight() + COMPONENT_GAP_Y,
@@ -241,6 +244,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 		this.infoPanel.add(supervisionid);
 		supervisionidText.setBounds(supervisionid.getX() + supervisionid.getWidth() + COMPONENT_GAP_X,
 				supervisionid.getY(), TEXT_W, TEXT_H);
+		supervisionidText.setOpaque(false);
 		this.infoPanel.add(supervisionidText);
 
 		containerid.setBounds(supervisionidText.getX() + supervisionidText.getWidth() + COMPONENT_GAP_X,
@@ -248,6 +252,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 		this.infoPanel.add(containerid);
 		containeridText.setBounds(containerid.getX() + containerid.getWidth() + COMPONENT_GAP_X, containerid.getY(),
 				TEXT_W, TEXT_H);
+		containeridText.setOpaque(false);
 		this.infoPanel.add(containeridText);
 
 		alldeliveryid.setBounds(supervisionid.getX(),
@@ -257,6 +262,9 @@ public class ModifyTransferringPanel extends DetailPanel {
 		scrollPane.setBounds(alldeliveryid.getX(), alldeliveryid.getY() + alldeliveryid.getHeight(), Area_W, Area_H);
 		this.infoPanel.add(scrollPane);
 		scrollPane.setViewportView(alldeliveryidText);
+		scrollPane.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		alldeliveryidText.setOpaque(false);
 
 		fare.setBounds(alldeliveryid.getX(), scrollPane.getY() + scrollPane.getHeight() + COMPONENT_GAP_Y - 15, LABEL_W,
 				LABEL_H);
@@ -264,6 +272,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 		fareText.setBounds(fare.getX() + fare.getWidth() + COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
 		fareText.setBackground(Color.GRAY);
 		fareText.setEditable(false);
+		fareText.setOpaque(false);
 		this.infoPanel.add(fareText);
 	}
 

@@ -171,6 +171,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(inrepositorydate);
 		inrepositoryYear.setBounds(inrepositorydate.getX() + inrepositorydate.getWidth() + COMPONENT_GAP_X,
 				inrepositorydate.getY(), (TEXT_W / 2)*3, TEXT_H);
+		inrepositoryYear.setOpaque(false);
 		dateChoose.register(inrepositoryYear);
 		this.infoPanel.add(inrepositoryYear);
 //		JLabel apart1 = new JLabel("-");
@@ -201,6 +202,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		areaidText.addItem("铁运区");
 		areaidText.addItem("汽运区");
 		areaidText.addItem("机动区");
+		areaidText.setOpaque(false);
 		this.infoPanel.add(areaidText);
 		// 排号
 		rowid.setBounds(arrivalid.getX(), arrivalid.getY() + arrivalid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);

@@ -8,10 +8,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import businessLogic.businessLogicController.transitionController.ReceivingController;
 import businessLogicService.transitionBLService.ReceivingBLService;
@@ -152,6 +155,7 @@ public class AddReceivingPanel extends DetailPanel {
 		this.infoPanel.add(transferringid);
 		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), TEXTid_W, TEXT_H);
+		transferringidText.setOpaque(false);
 		this.infoPanel.add(transferringidText);
 		// 到达日期
 		arrivaldate.setBounds(transferringid.getX(),
@@ -160,6 +164,7 @@ public class AddReceivingPanel extends DetailPanel {
 		arrivaldateTextyear.setBounds(arrivaldate.getX() + arrivaldate.getWidth() + COMPONENT_GAP_X, arrivaldate.getY(),
 				TEXT_W *(2), TEXT_H);
 		dateChoose.register(arrivaldateTextyear);
+		arrivaldateTextyear.setOpaque(false);
 		this.infoPanel.add(arrivaldateTextyear);
 //		JLabel apart1 = new JLabel("-");
 //		JLabel apart2 = new JLabel("-");
@@ -179,6 +184,7 @@ public class AddReceivingPanel extends DetailPanel {
 		this.infoPanel.add(transitionid);
 		transitionidText.setBounds(transferringid.getX() + transitionid.getWidth() + COMPONENT_GAP_X,
 				transitionid.getY(), TEXTid_W, TEXT_H);
+		transitionidText.setOpaque(false);
 		this.infoPanel.add(transitionidText);
 		// 出发地
 		departureid.setBounds(transitionid.getX(), transitionid.getY() + transitionid.getHeight() + COMPONENT_GAP_Y,
@@ -186,6 +192,7 @@ public class AddReceivingPanel extends DetailPanel {
 		this.infoPanel.add(departureid);
 		departureidText.setBounds(departureid.getX() + departureid.getWidth() + COMPONENT_GAP_X, departureid.getY(),
 				TEXT_W, TEXT_H);
+		departureidText.setOpaque(false);
 		this.infoPanel.add(departureidText);
 		// 到达地
 		arrivalid.setBounds(departureidText.getX() + departureidText.getWidth() + COMPONENT_GAP_Y, departureid.getY(),
@@ -193,6 +200,7 @@ public class AddReceivingPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setOpaque(false);
 		this.infoPanel.add(arrivalidText);
 		// 货物到达状态
 		statelabel.setBounds(departureid.getX(), departureid.getY() + departureid.getHeight() + COMPONENT_GAP_Y,
@@ -204,6 +212,7 @@ public class AddReceivingPanel extends DetailPanel {
 		endState.addItem("损坏");
 		endState.addItem("丢失");
 		this.infoPanel.add(endState);
+		
 	}
 
 	private void addListener() {
@@ -259,7 +268,7 @@ public class AddReceivingPanel extends DetailPanel {
 				showState("订单保存成功");
 				disableComponents();
 			} else { // TODO 保存失败，说明保存失败的原因或者提出建议
-				showState("订单保存失败");
+				showState("订单保存失败，注意检查中转单编号");
 			}
 		}
 	}

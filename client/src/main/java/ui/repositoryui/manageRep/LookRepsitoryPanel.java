@@ -311,6 +311,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		startdate.setFont(WORD_FONT);
 		this.datePanel.add(startdate);
 		startyear.setBounds(startdate.getX() + startdate.getWidth() + 5, startdate.getY(), date_W * 3 + 30, BUTTON_H);
+		startyear.setOpaque(false);
 		dateChoose1.register(startyear);
 		this.datePanel.add(startyear);
 		// startmonth.setBounds(startyear.getX() + startyear.getWidth() + 10,
@@ -325,6 +326,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		enddate.setFont(WORD_FONT);
 		this.datePanel.add(enddate);
 		endyear.setBounds(enddate.getX() + enddate.getWidth() + 5, enddate.getY(), date_W * 3 + 30, BUTTON_H);
+		endyear.setOpaque(false);
 		dateChoose2.register(endyear);
 		this.datePanel.add(endyear);
 		// endmonth.setBounds(endyear.getX() + endyear.getWidth() + 10,
@@ -350,6 +352,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		//
 		inRepositoryText.setBounds(inRepository.getX() + inRepository.getWidth() + COMPONENT_GAP_X / 2,
 				inRepository.getY(), LABEL_W, LABEL_H);
+		inRepositoryText.setOpaque(false);
 		inRepositoryText.setEditable(false);
 		this.infoPanel.add(inRepositoryText);
 		// 入库金额
@@ -360,6 +363,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		//
 		inMoneyText.setBounds(inMoney.getX() + inMoney.getWidth() + COMPONENT_GAP_X / 2, inMoney.getY(), LABEL_W,
 				LABEL_H);
+		inMoneyText.setOpaque(false);
 		inMoneyText.setEditable(false);
 		this.infoPanel.add(inMoneyText);
 		// 出库单数量
@@ -370,6 +374,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		//
 		outRepositoryText.setBounds(outRepository.getX() + outRepository.getWidth() + COMPONENT_GAP_X / 2,
 				outRepository.getY(), LABEL_W, LABEL_H);
+		outRepositoryText.setOpaque(false);
 		outRepositoryText.setEditable(false);
 		this.infoPanel.add(outRepositoryText);
 		// 出库金额
@@ -380,6 +385,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		//
 		outMoneyText.setBounds(outMoney.getX() + outMoney.getWidth() + COMPONENT_GAP_X / 2, outMoney.getY(), LABEL_W,
 				LABEL_H);
+		outMoneyText.setOpaque(false);
 		outMoneyText.setEditable(false);
 		this.infoPanel.add(outMoneyText);
 		// 库存总数
@@ -390,6 +396,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		//
 		allRepositoryText.setBounds(allRepository.getX() + allRepository.getWidth() + COMPONENT_GAP_X / 2,
 				allRepository.getY(), LABEL_W, LABEL_H);
+		allRepositoryText.setOpaque(false);
 		allRepositoryText.setEditable(false);
 		this.infoPanel.add(allRepositoryText);
 	}
