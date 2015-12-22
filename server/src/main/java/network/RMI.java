@@ -5,6 +5,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import dataImpl.NetworkTestImpl;
 import dataImpl.administratorDataImpl.AdministratorDataImpl;
 import dataImpl.businessDataImpl.DriverDataImpl;
 import dataImpl.businessDataImpl.EntruckingDataImpl;
@@ -30,6 +31,7 @@ import dataImpl.senderDataImpl.InquireDataImpl;
 import dataImpl.transitionDataImpl.LoadingDataImpl;
 import dataImpl.transitionDataImpl.ReceivingDataImpl;
 import dataImpl.transitionDataImpl.TransferringDataImpl;
+import dataService.NetworkTest;
 import dataService.administratorDataService.AdministratorDataService;
 import dataService.businessDataService.DriverDataService;
 import dataService.businessDataService.EntruckingDataService;
@@ -84,8 +86,20 @@ public class RMI {
 		initFinanceRMI();
 		//初始化系统管理人员的RMI连接
 		initAdministratorRMI();
+		//初始化网络测试的RMI连接
+		initTestRMI();
 		//提示服务器运行成功
 		System.out.println("Server is working...");
+	}
+
+	private static void initTestRMI() {
+		try {
+			NetworkTest test = new NetworkTestImpl();
+			NetworkTest stub = (NetworkTest) UnicastRemoteObject.exportObject(test, 0);
+			registry.bind("test", stub);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void initSenderRMI() {
@@ -117,27 +131,22 @@ public class RMI {
 	private static void initBusinessRMI() {
 		
 		try {
-//			EntruckingDataService entrucking = new EntruckingDataImpl();
 			EntruckingDataService entrucking = new EntruckingDataImpl();
 			EntruckingDataService entrucking_stub = (EntruckingDataService) UnicastRemoteObject.exportObject(entrucking, 0);
 			registry.bind("entrucking", entrucking_stub);
 			
 			PaymentDataService payment = new PaymentDataImpl();
-//			PaymentDataService payment = new PaymentDataImpl_Stub();
 			PaymentDataService payment_stub = (PaymentDataService) UnicastRemoteObject.exportObject(payment, 0);
 			registry.bind("receivable", payment_stub);
 			
-//			ReceiveAndSendDataService receiveAndSend = new ReceiveAndSendDataImpl();
 			ReceiveAndSendDataService receiveAndSend = new ReceiveAndSendDataImpl();
 			ReceiveAndSendDataService receiveAndSend_stub = (ReceiveAndSendDataService) UnicastRemoteObject.exportObject(receiveAndSend, 0);
 			registry.bind("receiveAndSend", receiveAndSend_stub);
 			
-//			VehicleDataService vehicle = new VehicleDataImpl();
 			VehicleDataService vehicle = new VehicleDataImpl();
 			VehicleDataService vehicle_stub = (VehicleDataService) UnicastRemoteObject.exportObject(vehicle, 0);
 			registry.bind("vehicle", vehicle_stub);
 			
-//			DriverDataService driver = new DriverDataImpl();
 			DriverDataService driver = new DriverDataImpl();
 			DriverDataService driver_stub = (DriverDataService) UnicastRemoteObject.exportObject(driver, 0);
 			registry.bind("driver", driver_stub);
@@ -163,7 +172,7 @@ public class RMI {
 			ManageRepositoryDataService manage_stub = (ManageRepositoryDataService) UnicastRemoteObject.exportObject(manage, 0);
 			registry.bind("manage", manage_stub);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	
@@ -182,7 +191,7 @@ public class RMI {
 			TransferringDataService transferring_stub = (TransferringDataService) UnicastRemoteObject.exportObject(transferring,0);
 			registry.bind("transferring", transferring_stub);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	
@@ -250,7 +259,6 @@ public class RMI {
 		try {
 			//用户信息访问接口
 			AdministratorDataService admin = new AdministratorDataImpl();
-//			AdministratorDataService admin = new AdministratorDataImpl_Stub();
 			AdministratorDataService stub = (AdministratorDataService) UnicastRemoteObject.exportObject(admin, 0);
 			registry.bind("administrator", stub);
 		} catch (Exception e) {

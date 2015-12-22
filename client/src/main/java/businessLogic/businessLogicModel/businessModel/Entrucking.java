@@ -2,13 +2,12 @@ package businessLogic.businessLogicModel.businessModel;
 
 import java.rmi.RemoteException;
 
-import network.RMI;
-import network.RemoteExceptionHandler;
-import po.businessPO.EntruckingPO;
-import vo.businessVO.EntruckingVO;
 import businessLogic.businessLogicModel.managerModel.MakeConstant;
 import constant.TransitType;
 import dataService.businessDataService.EntruckingDataService;
+import network.RMI;
+import po.businessPO.EntruckingPO;
+import vo.businessVO.EntruckingVO;
 
 public class Entrucking {
 	
@@ -25,7 +24,6 @@ public class Entrucking {
 		try {
 			return entruckingData.addEntruckingFrom(entruckingPO);
 		} catch (RemoteException e) {
-			new RemoteExceptionHandler<EntruckingDataService>(KEY);
 			e.printStackTrace();
 			return false;
 		}

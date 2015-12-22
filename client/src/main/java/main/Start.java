@@ -1,7 +1,7 @@
 package main;
 
 import network.RMI;
-import network.RemoteExceptionHandler;
+import network.Reconnect;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
 import ui.viewcontroller.ViewController;
@@ -21,7 +21,9 @@ public class Start {
 		//刷新面板
 		frame.repaint();
 		
-		//初始化网络异常处理的成员变量
-		RemoteExceptionHandler.setRegistry(RMI.getRegistry());
+		//每隔5分钟检查一下网络连接是否正常
+		Runnable connect = new Reconnect(RMI.getRegistry(), frame);
+		Thread check = new Thread(connect);
+		check.start();
 	}
 }

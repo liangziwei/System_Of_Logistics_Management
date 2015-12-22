@@ -94,14 +94,10 @@ public class ReceiptPanel extends DetailPanel{
 		this.ok.setBounds(this.date.getX() + TEXT_W, this.date.getY() + LABEL_H + LINE_GAP,
 				BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
-//		this.ok.setIcon(new ImageIcon("picture/确定.png"));
-//		this.ok.setBorderPainted(false);
 		//取消按钮
 		this.cancel.setBounds(this.ok.getX() + BUTTON_W + LINE_GAP, this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		this.cancel.setVisible(false);
-//		this.cancel.setIcon(new ImageIcon("picture/取消.png"));
-//		this.cancel.setBorderPainted(false);
 		//错误提示
 		this.state.setBounds(this.idLabel.getX(),
 				this.dateLabel.getY() + (LABEL_H << 1), TEXT_W + LABEL_W, TEXT_H);

@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 import java.util.HashMap;
 
 import businessLogic.businessLogicModel.util.CommonLogic;
+import constant.City;
+import constant.TransitionNode;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.managerDataService.MakeConstantDataService;
 import dataService.transitionDataService.ReceivingDataService;
@@ -19,7 +21,7 @@ public class Receiving {
 			.<MakeConstantDataService> getDataService("makeConstant");
 	private OrderDataService order = RMI.<OrderDataService> getDataService("order");
 	private TransferringDataService transferringDataService = RMI.<TransferringDataService>getDataService("transferring");
-
+	
 	public boolean addReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
 		// 编辑物流轨迹
@@ -31,8 +33,10 @@ public class Receiving {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		if (receivingVO.gettransferringid().matches("\\d{16}")) {
+		if (constant != null && receivingVO.gettransferringid().matches("\\d{16}")) {
 			String pos1 = receivingVO.gettransitionid().substring(0, 3);
+			String cityStr = constant.get(pos1);
+			City city = this.strToCity(cityStr);
 			TransferringPO transferringPO =null;
 			try {
 				transferringPO = transferringDataService.FindTransferringFormDT(receivingVO.gettransferringid().trim());
@@ -42,7 +46,7 @@ public class Receiving {
 			}
 			for(String del1:(transferringPO.getalldeliveryid())){
 				try {
-					trace = order.setTrace(del1, pos1 + "中转中心");
+					trace = order.setTrace(del1, TransitionNode.TRANSI_CENTER, city);
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -198,5 +202,19 @@ public class Receiving {
 			return false;
 		}
 		return true;
+	}
+	
+	private City strToCity(String city) {
+		switch(city) {
+		case "南京":
+			return City.NAN_JING;
+		case "北京":
+			return City.BEI_JING;
+		case "上海":
+			return City.SHANG_HAI;
+		case "广州":
+			return City.GUANG_ZHOU;
+		}
+		return null;
 	}
 }

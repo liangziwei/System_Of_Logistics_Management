@@ -3,13 +3,14 @@ package businessLogic.businessLogicModel.businessModel;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 
-import network.RMI;
-import network.RemoteExceptionHandler;
-import vo.businessVO.ArrivalFormVO;
-import vo.businessVO.SendFormVO;
+import constant.City;
+import constant.TransitionNode;
 import dataService.businessDataService.ReceiveAndSendDataService;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.managerDataService.MakeConstantDataService;
+import network.RMI;
+import vo.businessVO.ArrivalFormVO;
+import vo.businessVO.SendFormVO;
 
 public class ReceiveAndSend {
 	
@@ -27,7 +28,6 @@ public class ReceiveAndSend {
 			ReceiveAndSendDataService receiveAndSendData=RMI.<ReceiveAndSendDataService>getDataService(REC_AND_SEND);
 			return receiveAndSendData.addReceiveFrom(arrivalFormVO.arrivalVOToPO());
 		} catch (RemoteException e) {
-			new RemoteExceptionHandler<ReceiveAndSendDataService>(REC_AND_SEND);
 			e.printStackTrace();
 			return false;
 		}
@@ -43,16 +43,12 @@ public class ReceiveAndSend {
 		HashMap<String, String> idTable = new HashMap<String, String>();
 		try {
 			idTable=constantData.getIDTable();
+			place=idTable.get(businessID.substring(0, 3));
+			City city = this.strToCity(place);
+			if(city != null) {
+				order.setTrace(deliveryID, TransitionNode.BUSINESS_HALL, city);
+			}
 		} catch (RemoteException e) {
-			new RemoteExceptionHandler<MakeConstantDataService>(CONSTANT);
-			e.printStackTrace();
-			return false;
-		}
-		try {
-			place=idTable.get(businessID.substring(0, 3))+"营业厅";
-		    order.setTrace(deliveryID, place);
-		} catch (RemoteException e) {
-			new RemoteExceptionHandler<OrderDataService>(ORDER);
 			e.printStackTrace();
 			return false;
 		}
@@ -60,11 +56,22 @@ public class ReceiveAndSend {
 		try {
 			return receiveAndSendData.addSendFrom(sendFormVO.sendFormVOToPO());
 		} catch (RemoteException e) {
-			new RemoteExceptionHandler<ReceiveAndSendDataService>(REC_AND_SEND);
 			e.printStackTrace();
 			return false;
 		}
 	}
 
-	
+	private City strToCity(String city) {
+		switch(city) {
+		case "南京":
+			return City.NAN_JING;
+		case "北京":
+			return City.BEI_JING;
+		case "上海":
+			return City.SHANG_HAI;
+		case "广州":
+			return City.GUANG_ZHOU;
+		}
+		return null;
+	}
 }

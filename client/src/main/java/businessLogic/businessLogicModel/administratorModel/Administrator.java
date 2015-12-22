@@ -2,11 +2,10 @@ package businessLogic.businessLogicModel.administratorModel;
 
 import java.rmi.RemoteException;
 
+import dataService.administratorDataService.AdministratorDataService;
 import network.RMI;
 import po.administratorPO.AdministratorPO;
 import vo.administratorVO.AdministratorVO;
-import dataService.administratorDataService.AdministratorDataService;
-import network.RemoteExceptionHandler;
 
 public class Administrator {
 
@@ -19,7 +18,6 @@ public class Administrator {
 		try {
 			return adminData.addUser(administratorVO.adminVOToPO());
 		} catch (RemoteException e) {
-			new RemoteExceptionHandler<AdministratorDataService>(KEY);
 			e.printStackTrace();
 			return false;
 		}
@@ -30,7 +28,6 @@ public class Administrator {
 		try {
 			return adminData.deleteUser(administratorid);
 		} catch (RemoteException e) {
-			new RemoteExceptionHandler<AdministratorDataService>(KEY);
 			e.printStackTrace();
 			return false;
 		}
@@ -41,7 +38,6 @@ public class Administrator {
 		try {
 			return adminData.modifyUser(administratorVO.adminVOToPO());
 		} catch (RemoteException e) {
-			new RemoteExceptionHandler<AdministratorDataService>(KEY);
 			e.printStackTrace();
 			return false;
 		}
@@ -53,7 +49,6 @@ public class Administrator {
 			AdministratorPO adminPO=adminData.findUser(administratorid);
 			return adminPO.adminPOToVO();
 		} catch (RemoteException e) {
-			new RemoteExceptionHandler<AdministratorDataService>(KEY);
 			e.printStackTrace();
 			return null;
 		}

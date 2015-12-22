@@ -19,7 +19,7 @@ public class InquireDataImpl implements InquireDataService{
 		LogisticsPO po = null;
 		try {
 			OrderPO temp = order.getOrderInfoById(id);
-			po = new LogisticsPO(null, temp.getGoodsInfo().getCity());
+			po = new LogisticsPO(temp.getGoodsInfo().getTransitNode(), temp.getGoodsInfo().getCity());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

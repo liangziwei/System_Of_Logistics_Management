@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import constant.City;
+import constant.TransitionNode;
 import dataService.ApproveFormService;
 import po.deliveryPO.OrderPO;
 import po.deliveryPO.TimeRecordPO;
@@ -50,16 +51,5 @@ public interface OrderDataService extends Remote, ApproveFormService{
 	 *@param place 所到达地点 
 	 * @return 是否成功设置
 	 */
-	public boolean setTrace(String deliveryid,String place)throws RemoteException;
-	
-	/**
-	 * 审批一张订单
-	 */
-//	public boolean approveOneOrder(OrderPO po) throws RemoteException;
-//	
-//	/**
-//	 * 审批多张订单
-//	 */
-//	public boolean approveMoreOrder(ArrayList<OrderPO> po) throws RemoteException;
-	
+	public boolean setTrace(String deliveryid, TransitionNode node, City city)throws RemoteException;
 }

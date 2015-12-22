@@ -36,7 +36,7 @@ public class RMI {
 		try {
 			service = (T) registry.lookup(key);
 		} catch (Exception e) {
-			new RemoteExceptionHandler<T>(key);
+			e.printStackTrace();
 		}
 		
 		return service;

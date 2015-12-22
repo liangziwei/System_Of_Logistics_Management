@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import businessLogic.businessLogicController.senderController.InquireController;
 import businessLogicService.senderBLService.InquireBLService;
 import constant.City;
+import constant.TransitionNode;
 import ui.baseui.LimpidButton;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
@@ -161,26 +162,29 @@ public class InquirePanel extends JPanel{
 		if(!isShow) return ;
 		
 		LogisticsVO vo = this.inquireService.getLogInfoById(this.search.getText());
-		//TODO 检测
+		//获得物流节点与城市
+		List<TransitionNode> node = vo.getState();
 		List<City> trace =vo.getTrace();
-		trace.add(City.NAN_JING);
-		trace.add(City.BEI_JING);
-		trace.add(City.SHANG_HAI);
-		trace.add(City.GUANG_ZHOU);
-		//绘制物流轨迹
+		
+		//绘制城市轨迹与物流节点轨迹
 		int size = trace.size();
 		int startX = 100;	//第一张图片X坐标
 		int startY = 200;	//第一张图片Y坐标
 		int yGap = 30;		//图片之间在Y轴上的距离
 		int xGap = 210;		//图片之间在X轴上的距离
 		Image img = null;
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("宋体", Font.PLAIN, 25));
 		for(int i = 0; i < size; i++) {
 			img = CITY_IMG_MAP.get(trace.get(i));
 			int imgW = img.getWidth(null);		
-			int imgH = img.getHeight(null);		
+			int imgH = img.getHeight(null);	
+			int x = startX + i * xGap;
+			int y = startY + yGap * i;
 			g.drawImage(CITY_IMG_MAP.get(trace.get(i)),
-					startX + i * xGap, startY + yGap * i,
+					x, y,
 					imgW, imgH, null);
+			g.drawString(this.toString(node.get(i)), x + 38, y + (int)(imgH * 1.4));
 		}
 		//绘制图片之间的连线
 		g.setColor(Color.WHITE);
@@ -200,5 +204,15 @@ public class InquirePanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
+	}
+	
+	private String toString(TransitionNode node) {
+		switch(node) {
+		case BUSINESS_HALL:
+			return "营业厅";
+		case TRANSI_CENTER:
+			return "中转中心";
+		}
+		return null;
 	}
 }

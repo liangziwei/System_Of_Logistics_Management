@@ -45,7 +45,7 @@ public interface MakeConstantDataService extends Remote{
 	public boolean saveDistanceConstant(DistanceTable distance) throws RemoteException;
 	
 	/**
-	 * 获取城市与城市编号的表
+	 * 获取城市编号与城市的表
 	 */
 	public  HashMap<String, String> getIDTable() throws RemoteException;
 }
