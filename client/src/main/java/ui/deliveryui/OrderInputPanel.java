@@ -3,8 +3,6 @@ package ui.deliveryui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -109,8 +106,6 @@ public class OrderInputPanel extends DetailPanel{
 	 */
 	private boolean isFirstEnsure = true;
 	
-	private static Image BACKGROUND = new ImageIcon("picture/订单查询.jpg").getImage();
-	
 	public OrderInputPanel() {
 		super();
 		//初始化信息面板
@@ -149,13 +144,7 @@ public class OrderInputPanel extends DetailPanel{
 	 */
 	public JPanel OrderInfoView() {
 		//创建面板
-		JPanel panel = new JPanel() {
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(BACKGROUND, 0, 0, this.getWidth(),this.getHeight(), null);
-			}
-		};
+		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H - 72));
 		//添加其他信息面板

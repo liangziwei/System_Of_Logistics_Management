@@ -2,15 +2,17 @@ package businessLogic.businessLogicModel.businessModel;
 
 import java.rmi.RemoteException;
 
+import dataService.businessDataService.DriverDataService;
 import network.RMI;
 import po.businessPO.DriverPO;
 import vo.businessVO.DriverVO;
-import dataService.businessDataService.DriverDataService;
 
 public class Driver {
 
-//	private DriverDataService driverData=new DriverDataImpl_Stub();
-	private DriverDataService driverData=RMI.<DriverDataService>getDataService("driver");
+	private DriverDataService driverData=RMI.<DriverDataService>getDataService(KEY);
+	
+	private static final String KEY = "driver";
+	
 	public boolean addDriver(DriverVO driverVO) {
 		// TODO Auto-generated method stub
 		try {

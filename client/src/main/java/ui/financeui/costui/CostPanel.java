@@ -11,12 +11,15 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.financeController.AccountController;
 import businessLogic.businessLogicController.financeController.CostController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.financeBLService.AccountBLService;
 import businessLogicService.financeBLService.CostBLService;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
+import vo.financeVO.AccountVO;
 import vo.financeVO.PaymentVO;
 
 @SuppressWarnings("serial")
@@ -264,6 +267,13 @@ public class CostPanel extends DetailPanel{
 		//验证输入付款金额是否为数字
 		if(!CommonLogic.isDouble(this.moneyText.getText())) {
 			tip.setText("付款金额应该为数字");
+			return false;
+		}
+		//验证付款账户是否存在
+		AccountBLService account = new AccountController();
+		AccountVO vo = account.findAccount(this.accountText.getText());
+		if(vo == null) {
+			tip.setText("该账户不存在");
 			return false;
 		}
 		tip.setText("");

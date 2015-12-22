@@ -21,7 +21,7 @@ public class LogisticsPO implements Serializable{
 	 * 物品的货运状态（派件中、到达寄件人营业厅、到达寄件人中转中心、
 	 * 到达收件人中转中心、到达收件人营业厅、收件）
 	 */
-	private TransitionNode state;
+	private List<TransitionNode> state;
 	
 	/**
 	 * 物流轨迹（从寄出点到当前位置所经过的所有站点）
@@ -30,18 +30,17 @@ public class LogisticsPO implements Serializable{
 	
 	private boolean isExit;
 
-	public LogisticsPO(TransitionNode state, List<City> trace) {
+	public LogisticsPO(List<TransitionNode> state, List<City> trace) {
 		super();
 		this.state = state;
 		this.trace = trace;
 	}
-	
 
-	public TransitionNode getState() {
+	public List<TransitionNode> getState() {
 		return state;
 	}
 
-	public void setState(TransitionNode state) {
+	public void setState(List<TransitionNode> state) {
 		this.state = state;
 	}
 

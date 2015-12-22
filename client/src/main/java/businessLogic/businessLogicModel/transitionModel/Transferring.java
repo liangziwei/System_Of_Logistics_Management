@@ -10,6 +10,7 @@ import businessLogic.businessLogicModel.util.CommonLogic;
 import constant.City;
 import constant.LoadingType;
 import constant.TransitType;
+import constant.TransitionNode;
 import dataService.deliveryDataService.OrderDataService;
 import dataService.managerDataService.MakeConstantDataService;
 import dataService.transitionDataService.TransferringDataService;
@@ -53,16 +54,19 @@ public class Transferring {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-//		String position = constant.get(transferringVO.gettransferringid().substring(0, 3));
 		String position = transferringVO.getdepartureid();
-		for(String del:(transferringVO.getalldeliveryid())){
-			try {
-				trace = order.setTrace(del, position+"中转中心");
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		City city = this.strToCity(position);
+		if(constant != null && city != null) {
+			for(String del:(transferringVO.getalldeliveryid())){
+				try {
+					trace = order.setTrace(del, TransitionNode.TRANSI_CENTER, city);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
+		
 		//保存中转单
 		if (trace) {
 			double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid(),transferringVO.getway());
@@ -296,5 +300,19 @@ public class Transferring {
 				transferringPO.getalldeliveryid());
 		transferringVO.setfare(transferringPO.getfare());
 		return transferringVO;
+	}
+	
+	private City strToCity(String city) {
+		switch(city) {
+		case "南京":
+			return City.NAN_JING;
+		case "北京":
+			return City.BEI_JING;
+		case "上海":
+			return City.SHANG_HAI;
+		case "广州":
+			return City.GUANG_ZHOU;
+		}
+		return null;
 	}
 }

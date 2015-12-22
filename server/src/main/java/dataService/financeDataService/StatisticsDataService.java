@@ -13,7 +13,7 @@ import po.financePO.PaymentPO;
  * @author 张仁知
  */
 
-public interface StatisticsDataService extends Remote {
+public interface StatisticsDataService extends Remote{
 	
 	/**
 	 * description:  显示一段时间内的收款单记录
@@ -39,6 +39,6 @@ public interface StatisticsDataService extends Remote {
 	 * 后置条件：返回所有付款单列表
 	 * @return List<ReceivablePO> ,返回记录付款单信息对象的列表
 	 */
-	public List<PaymentPO>	getPaymentList() throws RemoteException;
+	public List<PaymentPO>	getPaymentList(String startDate, String endDate) throws RemoteException;
 
 }

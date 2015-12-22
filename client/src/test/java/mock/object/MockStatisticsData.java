@@ -1,5 +1,6 @@
 package mock.object;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,5 +56,11 @@ public class MockStatisticsData implements StatisticsDataService{
 //		payment.add(new PaymentPO("2015-05-15", 10000.0, "向华胜",
 //				"南京大学", "人员工资", "2015年4月"));
 		return payment;
+	}
+
+	@Override
+	public List<PaymentPO> getPaymentList(String startDate, String endDate) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

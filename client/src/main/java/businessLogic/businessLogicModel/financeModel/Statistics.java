@@ -57,7 +57,7 @@ public class Statistics {
 	private double calculateCost(String startDate, String endDate) {
 		List<PaymentPO> pay = null;
 		try {
-			pay = statisticsData.getPaymentList();
+			pay = statisticsData.getPaymentList(startDate, endDate);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return 0.0;

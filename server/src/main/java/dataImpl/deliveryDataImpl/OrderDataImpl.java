@@ -220,26 +220,6 @@ public class OrderDataImpl implements OrderDataService{
 				packageType, deliveryType, date, nodes, citys, time, price);
 	}
 
-//	@Override
-//	public boolean approveOneOrder(OrderPO po) {
-//		String sql = "update order_table set is_approved = 'true', is_passed = 'true'"
-//				+ " where goods_id = '" + po.getGoodsInfo().getId() + "';";
-//		try {
-//			return Database.operate(sql);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean approveMoreOrder(ArrayList<OrderPO> po) {
-//		int size = po.size();
-//		for(int i = 0; i < size; i++) {
-//			this.approveOneOrder(po.get(i));
-//		}
-//		return true;
-//	}
 
 	@Override
 	public boolean ApproveOneForm(Approvable form) throws RemoteException {
@@ -260,23 +240,27 @@ public class OrderDataImpl implements OrderDataService{
 	}
 
 	@Override
-	public boolean setTrace(String deliveryid,String place) throws RemoteException {
+	public boolean setTrace(String deliveryid, TransitionNode node, City c) throws RemoteException {
 		// TODO Auto-generated method stub
 		ResultSet rs;
-		String sql="SELECT goods_trace FROM order_table WHERE goods_id='"+deliveryid+"'";
+		String sql="SELECT goods_trace, goods_city FROM order_table WHERE goods_id='"+deliveryid+"'";
 		String trace="";
+		String city = "";
 		try {
 			rs=Database.findOperation(sql);
 			while(rs.next()){
 				trace=rs.getString("goods_trace");
+				city = rs.getString("goods_city");
 			} 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
-		trace+="-"+place;
-		String val="goods_trace='"+trace+"'";
-		return Database.modify("order_table",val,"goods_id",deliveryid);
+		trace += "-" + node;
+		city += "-" + c;
+		String s ="goods_trace='"+trace+"', " + "goods_city='" + city + "'";
+		
+		return Database.modify("order_table",s,"goods_id",deliveryid);
 	}
 }

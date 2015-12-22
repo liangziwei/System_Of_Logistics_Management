@@ -199,6 +199,7 @@ public class GoodsInfoPanel extends JPanel{
 	 */
 	public void setGoodsInfo(String number, String weight, String volumn,
 			String name, String price) {
+		this.setOpaque(false);
 		this.numText.setText(number);
 		this.weightText.setText(weight);
 		this.volumnText.setText(volumn);

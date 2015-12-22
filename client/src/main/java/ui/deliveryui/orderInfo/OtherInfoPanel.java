@@ -226,6 +226,7 @@ public class OtherInfoPanel extends JPanel{
 	 */
 	public void setOtherInfo(String id, DeliveryType deliveryType, PackageType packageType,
 		String date, String time) {
+		this.setOpaque(false);
 		this.idText.setText(id);
 		this.typeText.setSelectedItem(deliveryType);
 		this.packageText.setSelectedItem(packageType);

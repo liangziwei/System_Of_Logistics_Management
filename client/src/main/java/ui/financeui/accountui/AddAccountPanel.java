@@ -128,7 +128,7 @@ public class AddAccountPanel extends DetailPanel{
 					repaint();
 					return ;
 				}
-				if(!CommonLogic.isNumber(money)) {
+				if(!CommonLogic.isDouble(money)) {
 					tip.setText("账户金额应该为数字");
 					repaint();
 					return ;

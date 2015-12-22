@@ -3,6 +3,8 @@ package main;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import network.RMI;
+import network.Reconnect;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
 import ui.viewcontroller.ViewController;
@@ -38,5 +40,9 @@ public class Start {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//每隔5分钟检查一下网络连接是否正常
+		Runnable connect = new Reconnect(RMI.getRegistry(), frame);
+		Thread check = new Thread(connect);
+		check.start();
 	}
 }
