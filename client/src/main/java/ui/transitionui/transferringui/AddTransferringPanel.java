@@ -111,15 +111,19 @@ public class AddTransferringPanel extends DetailPanel {
 		// 下拉框设置
 		container.setLayout(null);
 		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		container.setOpaque(false);
 		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
 
 		// 主面板
 		this.infoPanel.setBounds(START_X, START_Y, this.DETAIL_PANEL_W,
 				START_Y + (LABEL_H + COMPONENT_GAP_Y) * 6 + Area_H - 40);
 		this.infoPanel.setLayout(null);
+		this.infoPanel.setOpaque(false);
 		// 初始化信息面板
 		this.initUI();
 		// 按钮面板

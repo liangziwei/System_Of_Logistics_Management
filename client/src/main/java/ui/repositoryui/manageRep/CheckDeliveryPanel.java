@@ -56,7 +56,7 @@ public class CheckDeliveryPanel extends DetailPanel {
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 16);
 
 	public static final int LABEL_W = 80;
-	public static final int LABEL_H = 30;
+	public static final int LABEL_H = 32;
 	public static final int TEXT_W = LABEL_W << 1;
 	public static final int TEXT_H = LABEL_H;
 	public static final int TEXTid_W = LABEL_W * 4;
@@ -85,13 +85,16 @@ public class CheckDeliveryPanel extends DetailPanel {
 		// 下拉框设置
 		container.setLayout(null);
 		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		container.setOpaque(false);
 		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
 
 		// 按钮
-		find.setBounds(START_X * 2, 10, TEXT_W, LABEL_H);
+		find.setBounds(START_X * 2, 10, TEXT_W+70, LABEL_H);
 		find.setFont(WORD_FONT);
 		container.add(find);
 		excel.setBounds(find.getX() + find.getWidth() + LABEL_W, find.getY(), TEXT_W, LABEL_H);

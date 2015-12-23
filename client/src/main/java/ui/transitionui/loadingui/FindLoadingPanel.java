@@ -97,9 +97,12 @@ public class FindLoadingPanel extends DetailPanel{
 		//下拉框设置
 		container.setLayout(null);
 		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		container.setOpaque(false);
 		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
 		
 		//查询的相关组件
@@ -107,6 +110,7 @@ public class FindLoadingPanel extends DetailPanel{
 		this.container.add(this.loadingid);
 		loadingidText.setBounds(loadingid.getX()+loadingid.getWidth()+AddLoadingPanel.COMPONENT_GAP_X,loadingid.getY(),
 				AddLoadingPanel.TEXTid_W,AddLoadingPanel.TEXT_H);
+		loadingidText.setOpaque(false);
 		this.container.add(this.loadingidText);
 		find.setBounds(loadingidText.getX()+loadingidText.getWidth()+AddLoadingPanel.COMPONENT_GAP_X,loadingid.getY(),
 				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H-10);
@@ -119,6 +123,7 @@ public class FindLoadingPanel extends DetailPanel{
 		this.infoPanel.setBounds(loadingid.getX(),loadingid.getY()+loadingid.getHeight()+COMPONENT_GAP_Y,
 				AddLoadingPanel.DETAIL_PANEL_W,AddLoadingPanel.START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H);
 		this.infoPanel.setLayout(null);
+		this.infoPanel.setOpaque(false);
 		this.container.add(infoPanel);
 		this.infoPanel.setVisible(false);
 		//初始化信息面板
