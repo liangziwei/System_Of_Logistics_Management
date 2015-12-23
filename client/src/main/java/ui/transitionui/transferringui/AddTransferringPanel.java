@@ -167,6 +167,7 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(loadingdate);
 		loadingdateTextyear.setBounds(loadingdate.getX() + loadingdate.getWidth() + COMPONENT_GAP_X, loadingdate.getY(),
 				TEXT_W , TEXT_H);
+		loadingdateTextyear.setOpaque(false);
 		dateChoose.register(loadingdateTextyear);
 		this.infoPanel.add(loadingdateTextyear);
 //		apart1.setBounds(loadingdateTextyear.getX() + loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10,
@@ -244,6 +245,9 @@ public class AddTransferringPanel extends DetailPanel {
 		scrollPane.setBounds(alldeliveryid.getX(), alldeliveryid.getY() + alldeliveryid.getHeight(), Area_W, Area_H);
 		this.infoPanel.add(scrollPane);
 		scrollPane.setViewportView(alldeliveryidText);
+		scrollPane.setOpaque(false);
+		alldeliveryidText.setOpaque(false);
+		alldeliveryidText.setFont(WORD_FONT);
 
 		fare.setBounds(alldeliveryid.getX(), scrollPane.getY() + scrollPane.getHeight() + COMPONENT_GAP_Y - 15, LABEL_W,
 				LABEL_H);

@@ -73,7 +73,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 				outrepositorydate = rs.getString("outrepositorydate");
 				arrivalid = rs.getString("arrivalid");
 				way = LoadingType.valueOf(rs.getString("way"));
-				loadingid= rs.getString("loading");
+				loadingid= rs.getString("loadingid");
 				isApproval = Boolean.parseBoolean(rs.getString("isApproved"));
 				isPass = Boolean.parseBoolean(rs.getString("isPassed"));
 			}

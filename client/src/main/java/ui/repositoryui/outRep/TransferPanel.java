@@ -54,6 +54,7 @@ public class TransferPanel extends JPanel {
 		wayid.setBounds(Start_x, Start_y, labelW, labelH);
 		wayid.setFont(WORD_FONT);
 		wayidText.setBounds(wayid.getX() + wayid.getWidth() + theGap, wayid.getY(), textW, textH);
+		wayidText.setOpaque(false);
 		wayidText.setText(transferringVO.getwayid());
 
 		// 出发地
@@ -61,6 +62,7 @@ public class TransferPanel extends JPanel {
 		departureid.setFont(WORD_FONT);
 		departureidText.setBounds(departureid.getX() + departureid.getWidth() + COMPONENT_GAP_X, departureid.getY(),
 				textW / 3, textH);
+		departureidText.setOpaque(false);
 		departureidText.setText(transferringVO.getdepartureid());
 		// 到达地
 		arrivalid.setBounds(departureidText.getX() + departureidText.getWidth() + theGap, departureidText.getY(),
@@ -68,22 +70,29 @@ public class TransferPanel extends JPanel {
 		arrivalid.setFont(WORD_FONT);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), textW / 3,
 				textH);
+		arrivalidText.setOpaque(false);
 		arrivalidText.setText(transferringVO.getarrivalid());
 		// 监装员
 		supervisionid.setBounds(departureid.getX(), departureid.getY()+departureid.getHeight()+theGap-20, labelW/2, labelH);
 		supervisionid.setFont(WORD_FONT);
 		supervisionidText.setBounds(supervisionid.getX()+supervisionid.getWidth()+COMPONENT_GAP_X,supervisionid.getY(),textW/3,textH);
+		supervisionidText.setOpaque(false);
 		supervisionidText.setText(transferringVO.getsupervisionid());
 		// 货柜号
 		containerid.setBounds(supervisionidText.getX()+supervisionidText.getWidth()+theGap, supervisionid.getY(), labelW/2, labelH);
 		containerid.setFont(WORD_FONT);
 		containeridText.setBounds(containerid.getX()+containerid.getWidth()+COMPONENT_GAP_X, containerid.getY(), textW/3, textH);
+		containeridText.setOpaque(false);
 		containeridText.setText(transferringVO.getcontainerid());
 		// 所有托运单号
 		alldeliveryid.setBounds(supervisionid.getX(), supervisionid.getY()+supervisionid.getHeight()+theGap-20, textW, labelH);
 		alldeliveryid.setFont(WORD_FONT);
 		scrollPane.setBounds(alldeliveryid.getX(),alldeliveryid.getY()+alldeliveryid.getHeight()+5,textW+labelW,textH*3);
 		scrollPane.setViewportView(alldeliveryidText);
+		scrollPane.setOpaque(false);
+		alldeliveryidText.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		alldeliveryidText.setFont(WORD_FONT);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(15);
 		for(String allDEL:(transferringVO.getalldeliveryid())){
 			alldeliveryidText.append(allDEL+"\n");

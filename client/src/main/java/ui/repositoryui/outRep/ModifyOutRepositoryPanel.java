@@ -195,6 +195,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		loadingwayText.addItem("飞机");
 		loadingwayText.addItem("火车");
 		loadingwayText.addItem("汽车");
+		loadingwayText.setOpaque(false);
 		this.infoPanel.add(loadingwayText);
 		// 装运信息编号
 		wayid.setBounds(arrivalid.getX(), arrivalid.getY() + arrivalid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);

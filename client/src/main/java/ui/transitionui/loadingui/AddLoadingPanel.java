@@ -200,6 +200,11 @@ public class AddLoadingPanel extends DetailPanel{
 		scrollPane.setBounds(alldeliveryid.getX(), alldeliveryid.getY()+alldeliveryid.getHeight(), Area_W,Area_H);
 		this.infoPanel.add(scrollPane);
 		scrollPane.setViewportView(alldeliveryidArea);
+		scrollPane.setOpaque(false);
+		alldeliveryidArea.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		alldeliveryidArea.setFont(WORD_FONT);
+		
 		fare.setBounds(scrollPane.getX(), scrollPane.getY()+Area_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(fare);
 		fareText.setBounds(fare.getX()+fare.getWidth()+COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
