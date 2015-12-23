@@ -7,18 +7,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import com.mysql.jdbc.Statement;
 
 import constant.AreaCodeType;
 import dataService.repositoryDataService.ManageRepositoryDataService;
 import mysql.Database;
-import mysql.DatabaseConnect;
 import po.repositoryPO.DeliveryInfoPO;
 import po.repositoryPO.RepositoryInfoPO;
 import po.repositoryPO.RepositoryPO;

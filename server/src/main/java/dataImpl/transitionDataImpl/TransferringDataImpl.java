@@ -63,7 +63,6 @@ public class TransferringDataImpl implements TransferringDataService {
 		for (String all : alldeliveryid) {
 			theallDeliveryid = theallDeliveryid + all + " ";
 		}
-		boolean add = false;
 		String val = "";
 		val = "loadingdate='" + loadingdate + "',way='" + way.toString() + "',wayid＝'" + wayid + "',departureid='"
 				+ departureid + "',arrivalid='" + arrivalid + "',supervisionid='" + supervisionid + "',containerid='"
