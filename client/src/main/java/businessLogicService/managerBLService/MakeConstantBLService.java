@@ -1,6 +1,5 @@
 package businessLogicService.managerBLService;
 
-import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 

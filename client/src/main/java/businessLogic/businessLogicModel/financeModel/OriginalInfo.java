@@ -20,7 +20,6 @@ public class OriginalInfo {
 	
 	private OriginalInfoDataService originalInfo = RMI.<OriginalInfoDataService> getDataService("originalInfo");
 	
-	
 	public List<StaffVO> getStaffInfo(int year) {
 		// TODO Auto-generated method stub
 		List<StaffVO> list = null;

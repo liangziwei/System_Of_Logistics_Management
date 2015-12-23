@@ -96,48 +96,6 @@ public class ReceiveAndSendDataImpl implements ReceiveAndSendDataService {
 		return null;
 	}
 
-//	@Override
-//	public boolean approveOneArrivalForm(ArrivalFormPO form) throws RemoteException {
-//		String sql = "update arrivalForm set isApproved = 1, isPassed = 1 where "
-//				+ "transitNumber = '" + form.getTransitNumber() + "';";
-//		try {
-//			return Database.operate(sql);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean approveMoreArrivalForm(ArrayList<ArrivalFormPO> form) throws RemoteException {
-//		int size = form.size();
-//		for(int i = 0; i < size; i++) {
-//			this.approveOneArrivalForm(form.get(i));
-//		}
-//		return true;
-//	}
-//
-//	@Override
-//	public boolean approveOneSendForm(SendFormPO form) throws RemoteException {
-//		String sql = "update sendForm set isApproved = 1, isPassed = 1 where "
-//				+ "deliveryid = '" + form.getDeliveryid() + "';";
-//		try {
-//			return Database.operate(sql);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean approveMoreSendForm(ArrayList<SendFormPO> form) throws RemoteException {
-//		int size = form.size();
-//		for(int i = 0; i < size; i++) {
-//			this.approveOneSendForm(form.get(i));
-//		}
-//		return true;
-//	}
-
 	@Override
 	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = null;
@@ -160,8 +118,10 @@ public class ReceiveAndSendDataImpl implements ReceiveAndSendDataService {
 
 	@Override
 	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		for (Approvable a : forms) {
+			this.ApproveOneForm(a);
+		}
+		return true;
 	}
 
 }

@@ -235,8 +235,10 @@ public class OrderDataImpl implements OrderDataService{
 
 	@Override
 	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		for (Approvable a : forms) {
+			this.ApproveOneForm(a);
+		}
+		return true;
 	}
 
 	@Override

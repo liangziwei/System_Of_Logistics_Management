@@ -169,20 +169,6 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		return null;
 	}
 
-//	@Override
-//	public boolean approveOneInRepository(InRepositoryPO form) throws RemoteException {
-//		
-//	}
-//
-//	@Override
-//	public boolean approveMoreInRepository(ArrayList<InRepositoryPO> form) throws RemoteException {
-//		int size = form.size();
-//		for(int i = 0; i < size; i++) {
-//			this.approveOneInRepository(form.get(i));
-//		}
-//		return true;
-//	}
-
 	@Override
 	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = "update inRepository set isApproved = 1, isPassed = 1 where "
@@ -197,8 +183,10 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 
 	@Override
 	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		for (Approvable a : forms) {
+			this.ApproveOneForm(a);
+		}
+		return true;
 	}
 
 }

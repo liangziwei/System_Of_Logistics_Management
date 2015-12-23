@@ -65,20 +65,6 @@ public class PaymentDataImpl implements PaymentDataService {
 		return null;
 	}
 
-//	@Override
-//	public boolean approveOneReceivable(ReceivablePO form) throws RemoteException {
-//		
-//	}
-//
-//	@Override
-//	public boolean approveMoreReceivable(ArrayList<ReceivablePO> form) throws RemoteException {
-//		int size = form.size();
-//		for(int i = 0; i < size; i++) {
-//			this.approveOneReceivable(form.get(i));
-//		}
-//		return true;
-//	}
-
 	@Override
 	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = "update receivable set isApproved = 1, isPassed = 1 where "
@@ -93,8 +79,10 @@ public class PaymentDataImpl implements PaymentDataService {
 
 	@Override
 	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		for (Approvable a : forms) {
+			this.ApproveOneForm(a);
+		}
+		return true;
 	}
 
 }

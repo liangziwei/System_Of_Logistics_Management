@@ -91,7 +91,7 @@ public class RMI {
 		//提示服务器运行成功
 		System.out.println("Server is working...");
 	}
-
+	
 	private static void initTestRMI() {
 		try {
 			NetworkTest test = new NetworkTestImpl();

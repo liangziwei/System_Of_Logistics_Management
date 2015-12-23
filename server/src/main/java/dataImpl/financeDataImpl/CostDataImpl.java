@@ -57,20 +57,6 @@ public class CostDataImpl implements CostDataService{
 		return null;
 	}
 
-//	@Override
-//	public boolean approveOnePayment(PaymentPO form) throws RemoteException {
-//		
-//	}
-//
-//	@Override
-//	public boolean approveMorePayment(ArrayList<PaymentPO> form) throws RemoteException {
-//		int size = form.size();
-//		for(int i = 0; i < size; i++) {
-//			this.approveOnePayment(form.get(i));
-//		}
-//		return true;
-//	}
-
 	@Override
 	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = "update payment set is_approved = 'true', is_passed = 'true' where "
@@ -85,7 +71,9 @@ public class CostDataImpl implements CostDataService{
 
 	@Override
 	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		for (Approvable a : forms) {
+			this.ApproveOneForm(a);
+		}
+		return true;
 	}
 }

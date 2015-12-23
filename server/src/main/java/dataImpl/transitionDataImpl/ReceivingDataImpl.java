@@ -124,20 +124,6 @@ public class ReceivingDataImpl implements ReceivingDataService {
 		return null;
 	}
 
-//	@Override
-//	public boolean approveOneReceiving(ReceivingPO form) throws RemoteException {
-//		
-//	}
-//
-//	@Override
-//	public boolean approveMoreReceiving(ArrayList<ReceivingPO> form) throws RemoteException {
-//		int size = form.size();
-//		for(int i = 0; i < size; i++) {
-//			this.approveOneReceiving(form.get(i));
-//		}
-//		return true;
-//	}
-
 	@Override
 	public boolean ApproveOneForm(Approvable form) throws RemoteException {
 		String sql = "update receiving set isApproved = 1, isPassed = 1 where "
@@ -152,8 +138,10 @@ public class ReceivingDataImpl implements ReceivingDataService {
 
 	@Override
 	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		for (Approvable a : forms) {
+			this.ApproveOneForm(a);
+		}
+		return true;
 	}
 
 }
