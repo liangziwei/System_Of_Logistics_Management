@@ -14,11 +14,12 @@ import ui.baseui.LimpidButton;
 import vo.businessVO.SendFormVO;
 import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.businessBLService.ReceiveAndSendBLService;
 
 @SuppressWarnings("serial")
 public class SendPanel extends DetailPanel {
 
-	private ReceiveAndSendController receAndSendCon=new ReceiveAndSendController();
+	private ReceiveAndSendBLService receAndSendCon=new ReceiveAndSendController();
 	private SendFormVO sendVO;
 	
 	private DateChooser dateChoose=DateChooser.getInstance();

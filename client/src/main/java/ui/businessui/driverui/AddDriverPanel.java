@@ -16,11 +16,12 @@ import ui.baseui.LimpidButton;
 import vo.businessVO.DriverVO;
 import businessLogic.businessLogicController.businessController.DriverController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.businessBLService.DriverBLService;
 
 @SuppressWarnings("serial")
 public class AddDriverPanel extends DetailPanel{
 
-	private DriverController driverCon=new DriverController();
+	private DriverBLService driverCon=new DriverController();
 	private DriverVO driverVO;
 	
 	private DateChooser dateChoose=DateChooser.getInstance();

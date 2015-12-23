@@ -21,13 +21,14 @@ import ui.baseui.LimpidButton;
 import vo.businessVO.EntruckingVO;
 import businessLogic.businessLogicController.businessController.EntruckingController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.businessBLService.EntruckingBLService;
 
 @SuppressWarnings("serial")
 public class EntruckingPanel extends DetailPanel {
 
 	EntruckingVO entruckingVO;
 
-	EntruckingController entruckingCon = new EntruckingController();
+	EntruckingBLService entruckingCon = new EntruckingController();
 
 	private DateChooser dateChoose = DateChooser.getInstance();
 

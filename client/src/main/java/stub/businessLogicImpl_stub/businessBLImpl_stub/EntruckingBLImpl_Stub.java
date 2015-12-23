@@ -29,4 +29,10 @@ public class EntruckingBLImpl_Stub implements EntruckingBLService{
 		return new EntruckingPO(entruckingVO.getDate(),entruckingVO.getBusinessHallid(),entruckingVO.getTransportNumber(),entruckingVO.getDestionation(),entruckingVO.getVehicleid(),entruckingVO.getSupervisor(),entruckingVO.getSupercargo(),entruckingVO.getFreight());
 	}
 
+	@Override
+	public double getFreight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
