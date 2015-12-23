@@ -41,12 +41,12 @@ public class Reconnect implements Runnable{
 				boolean flag = true;
 				while(flag) {
 					try {
+						Thread.sleep(2000);
 						//显示当前已连接次数
 						panel.setNumber(panel.getNumber() + 1);
 						panel.repaint();
 						//每隔2秒测试一下网络是否畅通
 						registry.lookup("test");
-						Thread.sleep(2000);
 						flag = false;
 					} catch (Exception e1) {}
 				}

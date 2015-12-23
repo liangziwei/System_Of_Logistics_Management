@@ -230,6 +230,12 @@ public class AddStaff extends DetailPanel{
 			tip.setText("人员编号应为9位数字");
 			return false;
 		}
+		//验证该人员编号是否已经存在
+		StaffVO vo = this.staff.findStaff(id);
+		if(vo != null) {
+			tip.setText("该人员编号已存在");
+			return false;
+		}
 		//验证日期是否符合格式
 		if(!CommonLogic.isDate(birthText.getText())) {
 			tip.setText("该日期不存在");

@@ -133,6 +133,12 @@ public class AddAccountPanel extends DetailPanel{
 					repaint();
 					return ;
 				}
+				AccountVO vo = account.findAccount(name);
+				if(vo != null) {
+					tip.setText("该账户已经存在");
+					repaint();
+					return ;
+				}
 				//保存账户信息
 				boolean save = account.addAccount(new AccountVO(name, Double.parseDouble(money)));
 				if(save) {
