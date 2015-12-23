@@ -55,8 +55,8 @@ public class LoadingDataImpl implements LoadingDataService {
 			theallDeliveryid = theallDeliveryid + all + " ";
 		}
 		double fare = loadingPO.getfare();
-		boolean isApproval = loadingPO.getisApproved();
-		boolean isPass = loadingPO.getisPassed();
+//		boolean isApproval = loadingPO.getisApproved();
+//		boolean isPass = loadingPO.getisPassed();
 		String Val = "";
 		Val =  "arrivalid='" + arrivalid + "',way='" + way.toString() + "',wayid='" + wayid
 				+ "',supervisionid='" + supervisionid + "',supercargoid='" + supercargo + "',alldeliveryid='"
