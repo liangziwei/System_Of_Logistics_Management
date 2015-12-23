@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,20 +19,24 @@ import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import businessLogic.businessLogicController.transitionController.ReceivingController;
+import businessLogic.businessLogicController.transitionController.TransferringController;
 import businessLogicService.transitionBLService.ReceivingBLService;
+import businessLogicService.transitionBLService.TransferringBLService;
 import constant.CargoState;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.transitionVO.ReceivingVO;
+import vo.transitionVO.TransferringVO;
 
 public class AddReceivingPanel extends DetailPanel {
 	private ReceivingBLService receivingService = new ReceivingController();
-	
-	private DateChooser dateChoose=DateChooser.getInstance();
-//	// 添加下拉框
-//	private JScrollPane jScrollPane = new JScrollPane();
-//	private JPanel container = new JPanel();
+	private TransferringBLService transferringBLService = new TransferringController();
+
+	private DateChooser dateChoose = DateChooser.getInstance();
+	// // 添加下拉框
+	// private JScrollPane jScrollPane = new JScrollPane();
+	// private JPanel container = new JPanel();
 	// 组件
 	private JLabel transferringid = new JLabel("中转单编号");
 
@@ -50,9 +56,9 @@ public class AddReceivingPanel extends DetailPanel {
 
 	private JTextField arrivaldateTextyear = new JTextField();
 
-//	private JTextField arrivaldateTextmonth = new JTextField();
-//
-//	private JTextField arrivaldateTextday = new JTextField();
+	// private JTextField arrivaldateTextmonth = new JTextField();
+	//
+	// private JTextField arrivaldateTextday = new JTextField();
 
 	private JTextField transitionidText = new JTextField();
 
@@ -64,12 +70,15 @@ public class AddReceivingPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private LimpidButton ok = new LimpidButton("","picture/确定.png");
+	private JButton check = new JButton("同步相关中转单");
 
-	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
+	private LimpidButton ok = new LimpidButton("", "picture/确定.png");
+
+	private LimpidButton cancel = new LimpidButton("", "picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
+	private JLabel betransfer = new JLabel("不存在该中转单");
 	private JLabel state = new JLabel("", JLabel.CENTER);
 
 	public static final int LABEL_W = 80;
@@ -104,22 +113,28 @@ public class AddReceivingPanel extends DetailPanel {
 	 * 是否为第一次按确认按钮
 	 */
 	private boolean isFirstEnsure = true;
+	/**
+	 * 是否为已存在的中转单
+	 */
+	private boolean istransfer = false;
 
 	public AddReceivingPanel() {
 		// TODO Auto-generated constructor stub
 		super();
-//		// 下拉框设置
-//		container.setLayout(null);
-//		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
-//		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
-//		jScrollPane.setViewportView(this.container);
-//		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
-//		super.add(jScrollPane);
+		// // 下拉框设置
+		// container.setLayout(null);
+		// container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		// jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
+		// jScrollPane.setViewportView(this.container);
+		// jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		// super.add(jScrollPane);
 
 		// 主面板
-		this.infoPanel.setBounds(START_X, START_Y/2, this.DETAIL_PANEL_W, START_Y + (LABEL_H + COMPONENT_GAP_Y) * 4-30);
+		this.infoPanel.setBounds(START_X, START_Y / 2, this.DETAIL_PANEL_W,
+				START_Y + (LABEL_H + COMPONENT_GAP_Y) * 4 - 30);
 		this.infoPanel.setLayout(null);
-		infoPanel.setOpaque(false);;
+		infoPanel.setOpaque(false);
+		;
 		// 初始化信息面板
 		this.initUI();
 		// 按钮面板
@@ -157,29 +172,43 @@ public class AddReceivingPanel extends DetailPanel {
 				transferringid.getY(), TEXTid_W, TEXT_H);
 		transferringidText.setOpaque(false);
 		this.infoPanel.add(transferringidText);
+		check.setBounds(transferringidText.getX() + transferringidText.getWidth() + COMPONENT_GAP_Y,
+				transferringidText.getY(), 80 * 2, 30);
+		check.setFont(WORD_FONT);
+		this.infoPanel.add(check);
+		betransfer.setBounds(transferringid.getX(), transferringid.getY() + transferringid.getHeight(), TEXTid_W,
+				COMPONENT_GAP_Y);
+		betransfer.setFont(WORD_FONT);
+		betransfer.setForeground(Color.red);
+		betransfer.setVisible(false);
+		this.infoPanel.add(betransfer);
 		// 到达日期
 		arrivaldate.setBounds(transferringid.getX(),
 				transferringid.getY() + transferringid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivaldate);
 		arrivaldateTextyear.setBounds(arrivaldate.getX() + arrivaldate.getWidth() + COMPONENT_GAP_X, arrivaldate.getY(),
-				TEXT_W *(2), TEXT_H);
+				TEXT_W * (2), TEXT_H);
 		dateChoose.register(arrivaldateTextyear);
 		arrivaldateTextyear.setOpaque(false);
 		this.infoPanel.add(arrivaldateTextyear);
-//		JLabel apart1 = new JLabel("-");
-//		JLabel apart2 = new JLabel("-");
-//		apart1.setBounds(arrivaldateTextyear.getX() + arrivaldateTextyear.getWidth(), arrivaldateTextyear.getY(), 10,
-//				TEXT_H);
-//		this.infoPanel.add(apart1);
-//		arrivaldateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
-//		this.infoPanel.add(arrivaldateTextmonth);
-//		apart2.setBounds(arrivaldateTextmonth.getX() + arrivaldateTextmonth.getWidth(), arrivaldate.getY(), 10, TEXT_H);
-//		this.infoPanel.add(apart2);
-//		arrivaldateTextday.setBounds(apart2.getX() + apart2.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
-//		this.infoPanel.add(arrivaldateTextday);
+		// JLabel apart1 = new JLabel("-");
+		// JLabel apart2 = new JLabel("-");
+		// apart1.setBounds(arrivaldateTextyear.getX() +
+		// arrivaldateTextyear.getWidth(), arrivaldateTextyear.getY(), 10,
+		// TEXT_H);
+		// this.infoPanel.add(apart1);
+		// arrivaldateTextmonth.setBounds(apart1.getX() + apart1.getWidth(),
+		// arrivaldate.getY(), TEXT_W / 2, TEXT_H);
+		// this.infoPanel.add(arrivaldateTextmonth);
+		// apart2.setBounds(arrivaldateTextmonth.getX() +
+		// arrivaldateTextmonth.getWidth(), arrivaldate.getY(), 10, TEXT_H);
+		// this.infoPanel.add(apart2);
+		// arrivaldateTextday.setBounds(apart2.getX() + apart2.getWidth(),
+		// arrivaldate.getY(), TEXT_W / 2, TEXT_H);
+		// this.infoPanel.add(arrivaldateTextday);
 		// 本中转中心编号
 		transitionid.setBounds(arrivaldate.getX(), arrivaldate.getY() + arrivaldate.getHeight() + COMPONENT_GAP_Y,
-				LABEL_W +11, LABEL_H);
+				LABEL_W + 11, LABEL_H);
 
 		this.infoPanel.add(transitionid);
 		transitionidText.setBounds(transferringid.getX() + transitionid.getWidth() + COMPONENT_GAP_X,
@@ -212,7 +241,7 @@ public class AddReceivingPanel extends DetailPanel {
 		endState.addItem("损坏");
 		endState.addItem("丢失");
 		this.infoPanel.add(endState);
-		
+
 	}
 
 	private void addListener() {
@@ -222,20 +251,28 @@ public class AddReceivingPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				// 创建接收单对象
 				ReceivingVO receivingVO = creatReceivingVO();
-				// 验证输入是否规范
-				boolean result = receivingService.verify(receivingVO);
-
-				if (result) {
-					//重置接受单时间
-					receivingVO.setarrivaldate(arrivaldateTextyear.getText().trim());
-					throughVerifyOperation(receivingVO); // 验证成功
-					cancel.setVisible(true);
-				} else {
-					verifyFailOperation(receivingVO); // 验证失败
+				//是否有相关中转单
+				if (!istransfer) {
+					check.doClick();	
 				}
-
-				// 刷新页面
-				repaint();
+				
+				if (istransfer) {
+					// 验证输入是否规范
+					boolean result = receivingService.verify(receivingVO);
+					
+					if (result) {
+						// 重置接受单时间
+						receivingVO.setarrivaldate(arrivaldateTextyear.getText().trim());
+						throughVerifyOperation(receivingVO); // 验证成功
+						cancel.setVisible(true);
+					} else {
+						verifyFailOperation(receivingVO); // 验证失败
+					}
+					
+					// 刷新页面
+					repaint();
+				}
+				
 			}
 		});
 
@@ -252,6 +289,45 @@ public class AddReceivingPanel extends DetailPanel {
 				cancel.setVisible(false);
 			}
 		});
+		
+		check.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String transferID = transferringidText.getText().trim();
+				if (transferID.matches("\\d{16}")) {
+					TransferringVO transferringVO = transferringBLService.findTransferringFormBL(transferID);
+					if (transferringVO!=null) {
+						arrivalidText.setText(transferringVO.getarrivalid().trim());
+						departureidText.setText(transferringVO.getdepartureid().trim());
+						betransfer.setVisible(false);
+						istransfer = true;
+					}
+					else {
+						istransfer = false;
+						betransfer.setVisible(true);
+					}
+					
+				}
+				else if (transferID.matches("\\d{19}")) {
+					istransfer = true;
+				}
+				else {
+					betransfer.setVisible(true);
+				}
+				
+			}
+		});
+		
+		transferringidText.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					check.doClick();
+				}
+			}
+		});
+		
+		
 	}
 
 	private void throughVerifyOperation(ReceivingVO receivingVO) {
@@ -307,8 +383,8 @@ public class AddReceivingPanel extends DetailPanel {
 		transitionidText.setEditable(false);
 		arrivaldateTextyear.setEditable(false);
 		dateChoose.setEnabled(false);
-//		arrivaldateTextmonth.setEditable(false);
-//		arrivaldateTextday.setEditable(false);
+		// arrivaldateTextmonth.setEditable(false);
+		// arrivaldateTextday.setEditable(false);
 		departureidText.setEditable(false);
 		arrivalidText.setEditable(false);
 		endState.setEnabled(false);
@@ -319,8 +395,8 @@ public class AddReceivingPanel extends DetailPanel {
 		transitionidText.setEditable(true);
 		arrivaldateTextyear.setEditable(true);
 		dateChoose.setEnabled(true);
-//		arrivaldateTextmonth.setEditable(true);
-//		arrivaldateTextday.setEditable(true);
+		// arrivaldateTextmonth.setEditable(true);
+		// arrivaldateTextday.setEditable(true);
 		departureidText.setEditable(true);
 		arrivalidText.setEditable(true);
 		endState.setEnabled(true);

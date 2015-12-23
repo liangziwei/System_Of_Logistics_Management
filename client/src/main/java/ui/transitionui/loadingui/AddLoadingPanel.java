@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -123,7 +122,9 @@ public class AddLoadingPanel extends DetailPanel{
 		jScrollPane.getViewport().setOpaque(false);
 		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
-		
+		container.setOpaque(false);
+		jScrollPane.setOpaque(false);
+		jScrollPane.getViewport().setOpaque(false);
 		//主面板
 		this.infoPanel.setBounds(START_X,START_Y,this.DETAIL_PANEL_W,START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H);
 		this.infoPanel.setLayout(null);
@@ -133,7 +134,7 @@ public class AddLoadingPanel extends DetailPanel{
 		//按钮面板
 		this.buttonPanel.setBounds(START_X+LABEL_W +COMPONENT_GAP_X+TEXTid_W, infoPanel.getY()+infoPanel.getHeight(),
 				(BUTTON_W << 1)+COMPONENT_GAP_Y , BUTTON_H);
-				
+		this.buttonPanel.setOpaque(false);
 		this.buttonPanel.setLayout(null);
 		//确定按钮
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);

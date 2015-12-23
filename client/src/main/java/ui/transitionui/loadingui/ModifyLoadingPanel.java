@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -119,7 +118,9 @@ public class ModifyLoadingPanel extends DetailPanel {
 		jScrollPane.getViewport().setOpaque(false);
 		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
-
+		container.setOpaque(false);
+		jScrollPane.setOpaque(false);
+		jScrollPane.getViewport().setOpaque(false);
 		// 查询的相关组件
 		loadingid.setBounds(AddLoadingPanel.START_X, AddLoadingPanel.START_Y, AddLoadingPanel.LABEL_W,
 				AddLoadingPanel.LABEL_H);
@@ -148,7 +149,7 @@ public class ModifyLoadingPanel extends DetailPanel {
 		// 按钮面板
 		this.buttonPanel.setBounds(AddLoadingPanel.START_X + LABEL_W + COMPONENT_GAP_X + TEXTid_W,
 				infoPanel.getY() + infoPanel.getHeight(), (BUTTON_W << 1) + COMPONENT_GAP_Y, BUTTON_H);
-
+		this.buttonPanel.setOpaque(false);
 		this.buttonPanel.setLayout(null);
 		// 确定按钮
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
@@ -362,6 +363,7 @@ public class ModifyLoadingPanel extends DetailPanel {
 		this.supervisionidText.setText(loadingVO.getsupervisionid());
 		this.supercargoidText.setText(loadingVO.getsupercargoid());
 		this.fareText.setText(loadingVO.getfare() + "");
+		alldeliveryidArea.setText("");
 		List<String> deliveryID = loadingVO.getalldeliveryid();
 		for (String str : deliveryID) {
 			alldeliveryidArea.append(str + "\n");

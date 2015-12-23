@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -104,7 +103,9 @@ public class FindLoadingPanel extends DetailPanel{
 		jScrollPane.getViewport().setOpaque(false);
 		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
-		
+		container.setOpaque(false);
+		jScrollPane.setOpaque(false);
+		jScrollPane.getViewport().setOpaque(false);
 		//查询的相关组件
 		loadingid.setBounds(AddLoadingPanel.START_X, AddLoadingPanel.START_Y, AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
 		this.container.add(this.loadingid);
@@ -246,6 +247,7 @@ public class FindLoadingPanel extends DetailPanel{
 		List<String> deliveryID = loadingVO.getalldeliveryid();
 //		System.out.println(deliveryID);
 //		System.out.println("123");
+		alldeliveryidArea.setText("");
 		for (String str: deliveryID){
 			alldeliveryidArea.append(str+"\n");
 		}

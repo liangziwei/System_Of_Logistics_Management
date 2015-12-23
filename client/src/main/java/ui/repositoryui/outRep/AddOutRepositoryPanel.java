@@ -145,7 +145,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		DeliveryidText.setOpaque(false);
 		this.infoPanel.add(DeliveryidText);
 		//检查快递编号相关组件
-		check.setBounds(DeliveryidText.getX()+DeliveryidText.getWidth()+COMPONENT_GAP_Y,DeliveryidText.getY(),80,30);
+		check.setBounds(DeliveryidText.getX()+DeliveryidText.getWidth()+COMPONENT_GAP_Y,DeliveryidText.getY(),80*2,30);
 		check.setFont(WORD_FONT);
 		this.infoPanel.add(check);
 		deliveryNumberState.setBounds(Deliveryid.getX(), Deliveryid.getY()+Deliveryid.getHeight(), TEXTid_W, COMPONENT_GAP_Y);

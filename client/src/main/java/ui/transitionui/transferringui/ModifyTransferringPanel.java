@@ -121,6 +121,9 @@ public class ModifyTransferringPanel extends DetailPanel {
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
 		super.add(jScrollPane);
+		container.setOpaque(false);
+		jScrollPane.setOpaque(false);
+		jScrollPane.getViewport().setOpaque(false);
 		// 添加查询组件
 		transferringid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
 		container.add(transferringid);
@@ -139,6 +142,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 				START_Y + (LABEL_H + COMPONENT_GAP_Y) * 5 + Area_H - 40);
 		this.infoPanel.setLayout(null);
 		this.infoPanel.setVisible(false);
+		this.infoPanel.setOpaque(false);
 		container.add(this.infoPanel);
 		// 初始化信息面板
 		this.initUI();
@@ -148,6 +152,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 				infoPanel.getY() + infoPanel.getHeight(), (BUTTON_W << 1) + COMPONENT_GAP_Y, BUTTON_H);
 		this.buttonPanel.setVisible(false);
 		this.buttonPanel.setLayout(null);
+		this.buttonPanel.setOpaque(false);
 		// 确定按钮
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
 		this.ok.setFont(WORD_FONT);
@@ -472,6 +477,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 		this.arrivalidText.setSelectedItem(transferringVO.getarrivalid().trim());
 		this.supervisionidText.setText(transferringVO.getsupervisionid().trim());
 		this.containeridText.setText(transferringVO.getcontainerid().trim());
+		this.alldeliveryidText.setText("");
 		List<String> deliveryID = transferringVO.getalldeliveryid();
 		for (String str : deliveryID) {
 			alldeliveryidText.append(str + "\n");
