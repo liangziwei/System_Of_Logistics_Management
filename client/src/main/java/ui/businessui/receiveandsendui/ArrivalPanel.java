@@ -10,18 +10,19 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
-import businessLogic.businessLogicModel.util.CommonLogic;
-import constant.CargoState;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.ArrivalFormVO;
+import businessLogic.businessLogicController.businessController.ReceiveAndSendController;
+import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.businessBLService.ReceiveAndSendBLService;
+import constant.CargoState;
 
 @SuppressWarnings("serial")
 public class ArrivalPanel extends DetailPanel {
 
-	private ReceiveAndSendController receAndSendCon=new ReceiveAndSendController();
+	private ReceiveAndSendBLService receAndSendCon=new ReceiveAndSendController();
 	private ArrivalFormVO arrivalVO;
 	
 	private DateChooser dateChoose=DateChooser.getInstance();

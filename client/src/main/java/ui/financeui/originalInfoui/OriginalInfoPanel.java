@@ -21,6 +21,7 @@ import businessLogic.businessLogicController.financeController.OriginalRecordCon
 import businessLogicService.financeBLService.OriginalInfoRecordBLService;
 import constant.AreaCodeType;
 import ui.baseui.DetailPanel;
+import ui.baseui.LimpidButton;
 import vo.businessVO.VehicleVO;
 import vo.financeVO.AccountVO;
 import vo.managerVO.OrganizationVO;
@@ -45,13 +46,13 @@ public class OriginalInfoPanel extends DetailPanel {
 	// 账单（年份）JScroll
 	private JScrollPane yearpane = new JScrollPane();
 	private JTable yeartable = null;
-	private JButton find = new JButton("账单查询");
-	private JButton creat = new JButton("期初建账");
+	private LimpidButton find = new LimpidButton("","picture/账单查询.png");
+	private LimpidButton creat = new LimpidButton("","picture/期初建账Button.png");
 	// 按钮面板
 	private JPanel buttonPanel = new JPanel();
-	private JButton ok = new JButton("确定");
-	private JButton cancel = new JButton("取消");
-	private JButton cancle = new JButton("取消");
+	private LimpidButton ok = new LimpidButton("","picture/确定.png");
+	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
+	private LimpidButton cancle = new LimpidButton("","picture/取消.png");
 	// 信息信息面板
 	private JPanel InfoPanel = new JPanel();
 

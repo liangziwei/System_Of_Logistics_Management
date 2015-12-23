@@ -21,13 +21,14 @@ import ui.baseui.LimpidButton;
 import vo.businessVO.EntruckingVO;
 import businessLogic.businessLogicController.businessController.EntruckingController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.businessBLService.EntruckingBLService;
 
 @SuppressWarnings("serial")
 public class EntruckingPanel extends DetailPanel {
 
 	EntruckingVO entruckingVO;
 
-	EntruckingController entruckingCon = new EntruckingController();
+	EntruckingBLService entruckingCon = new EntruckingController();
 
 	private DateChooser dateChoose = DateChooser.getInstance();
 
@@ -93,9 +94,12 @@ public class EntruckingPanel extends DetailPanel {
 		//下拉框设置
 		container.setLayout(null);
 		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		container.setOpaque(false);
 		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
 		
 		this.date.setBounds(START_X, START_Y, LABEL_W, LABEL_H);

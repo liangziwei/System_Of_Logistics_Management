@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -97,16 +96,22 @@ public class FindLoadingPanel extends DetailPanel{
 		//下拉框设置
 		container.setLayout(null);
 		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		container.setOpaque(false);
 		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
-		
+		container.setOpaque(false);
+		jScrollPane.setOpaque(false);
+		jScrollPane.getViewport().setOpaque(false);
 		//查询的相关组件
 		loadingid.setBounds(AddLoadingPanel.START_X, AddLoadingPanel.START_Y, AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H);
 		this.container.add(this.loadingid);
 		loadingidText.setBounds(loadingid.getX()+loadingid.getWidth()+AddLoadingPanel.COMPONENT_GAP_X,loadingid.getY(),
 				AddLoadingPanel.TEXTid_W,AddLoadingPanel.TEXT_H);
+		loadingidText.setOpaque(false);
 		this.container.add(this.loadingidText);
 		find.setBounds(loadingidText.getX()+loadingidText.getWidth()+AddLoadingPanel.COMPONENT_GAP_X,loadingid.getY(),
 				AddLoadingPanel.LABEL_W, AddLoadingPanel.LABEL_H-10);
@@ -119,6 +124,7 @@ public class FindLoadingPanel extends DetailPanel{
 		this.infoPanel.setBounds(loadingid.getX(),loadingid.getY()+loadingid.getHeight()+COMPONENT_GAP_Y,
 				AddLoadingPanel.DETAIL_PANEL_W,AddLoadingPanel.START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H);
 		this.infoPanel.setLayout(null);
+		this.infoPanel.setOpaque(false);
 		this.container.add(infoPanel);
 		this.infoPanel.setVisible(false);
 		//初始化信息面板
@@ -154,14 +160,17 @@ public class FindLoadingPanel extends DetailPanel{
 		wayid.setBounds(arrivalid.getX(), arrivalid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(wayid);
 		wayidText.setBounds(wayid.getX()+wayid.getWidth()+COMPONENT_GAP_X, wayid.getY(), TEXTid_W, TEXT_H);
+		wayidText.setOpaque(false);
 		this.infoPanel.add(wayidText);
 		supervisionid.setBounds(wayid.getX(), wayid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(supervisionid);
 		supervisionidText.setBounds(supervisionid.getX()+supervisionid.getWidth()+COMPONENT_GAP_X, supervisionid.getY(), TEXT_W, TEXT_H);
+		supervisionidText.setOpaque(false);
 		this.infoPanel.add(supervisionidText);
 		supercargoid.setBounds(supervisionidText.getX()+supervisionidText.getWidth()+COMPONENT_GAP_X, supervisionid.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(supercargoid);
 		supercargoidText.setBounds(supercargoid.getX()+supercargoid.getWidth()+COMPONENT_GAP_X, supercargoid.getY(), TEXT_W, TEXT_H);
+		supercargoidText.setOpaque(false);
 		this.infoPanel.add(supercargoidText);
 		alldeliveryid.setBounds(supervisionid.getX(), supervisionid.getY()+supervisionid.getHeight()+COMPONENT_GAP_Y, TEXTid_W,LABEL_H);
 		this.infoPanel.add(alldeliveryid);
@@ -169,10 +178,15 @@ public class FindLoadingPanel extends DetailPanel{
 		scrollPane.setBounds(alldeliveryid.getX(), alldeliveryid.getY()+alldeliveryid.getHeight(), Area_W,Area_H);
 		this.infoPanel.add(scrollPane);
 		scrollPane.setViewportView(alldeliveryidArea);
+		scrollPane.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		alldeliveryidArea.setOpaque(false);
+		
 		fare.setBounds(scrollPane.getX(), scrollPane.getY()+Area_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(fare);
 		fareText.setBounds(fare.getX()+fare.getWidth()+COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
 		fareText.setBackground(Color.GRAY);
+		fareText.setOpaque(false);
 		fareText.setEditable(false);
 		this.infoPanel.add(fareText);
 	}
@@ -233,6 +247,7 @@ public class FindLoadingPanel extends DetailPanel{
 		List<String> deliveryID = loadingVO.getalldeliveryid();
 //		System.out.println(deliveryID);
 //		System.out.println("123");
+		alldeliveryidArea.setText("");
 		for (String str: deliveryID){
 			alldeliveryidArea.append(str+"\n");
 		}

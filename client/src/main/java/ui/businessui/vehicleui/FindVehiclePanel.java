@@ -12,10 +12,11 @@ import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.businessVO.VehicleVO;
 import businessLogic.businessLogicController.businessController.VehicleController;
+import businessLogicService.businessBLService.VehicleBLService;
 
 @SuppressWarnings("serial")
 public class FindVehiclePanel extends DetailPanel{
-	private VehicleController vehicleCon=new VehicleController();
+	private VehicleBLService vehicleCon=new VehicleController();
 	private VehicleVO vehicleVO;
 	
 	private JLabel vehicleid=new JLabel("车辆代号");

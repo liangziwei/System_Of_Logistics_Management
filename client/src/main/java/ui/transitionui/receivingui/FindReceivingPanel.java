@@ -107,10 +107,11 @@ public class FindReceivingPanel extends DetailPanel {
 //		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
 //		super.add(jScrollPane);
 				
-		transferringid.setBounds(START_X, START_Y, LABEL_W, LABEL_H);
+		transferringid.setBounds(START_X, START_Y/2, LABEL_W, LABEL_H);
 		this.add(transferringid);
 		transferringidText.setBounds(transferringid.getX() + transferringid.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), TEXTid_W, TEXT_H);
+		transferringidText.setOpaque(false);
 		this.add(transferringidText);
 		find.setBounds(transferringidText.getX() + transferringidText.getWidth() + COMPONENT_GAP_X,
 				transferringid.getY(), BUTTON_W, BUTTON_H);
@@ -145,6 +146,7 @@ public class FindReceivingPanel extends DetailPanel {
 		this.infoPanel.add(arrivaldate);
 		arrivaldateTextyear.setBounds(arrivaldate.getX() + arrivaldate.getWidth() + COMPONENT_GAP_X, arrivaldate.getY(),
 				TEXT_W / 2, TEXT_H);
+		arrivaldateTextyear.setOpaque(false);
 		this.infoPanel.add(arrivaldateTextyear);
 		JLabel apart1 = new JLabel("-");
 		JLabel apart2 = new JLabel("-");
@@ -152,10 +154,12 @@ public class FindReceivingPanel extends DetailPanel {
 				TEXT_H);
 		this.infoPanel.add(apart1);
 		arrivaldateTextmonth.setBounds(apart1.getX() + apart1.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
+		arrivaldateTextmonth.setOpaque(false);
 		this.infoPanel.add(arrivaldateTextmonth);
 		apart2.setBounds(arrivaldateTextmonth.getX() + arrivaldateTextmonth.getWidth(), arrivaldate.getY(), 10, TEXT_H);
 		this.infoPanel.add(apart2);
 		arrivaldateTextday.setBounds(apart2.getX() + apart2.getWidth(), arrivaldate.getY(), TEXT_W / 2, TEXT_H);
+		arrivaldateTextday.setOpaque(false);
 		this.infoPanel.add(arrivaldateTextday);
 		// 本中转中心编号
 		transitionid.setBounds(arrivaldate.getX(), arrivaldate.getY() + arrivaldate.getHeight() + COMPONENT_GAP_Y,
@@ -164,6 +168,7 @@ public class FindReceivingPanel extends DetailPanel {
 		this.infoPanel.add(transitionid);
 		transitionidText.setBounds(transferringid.getX() + transitionid.getWidth() + COMPONENT_GAP_X,
 				transitionid.getY(), TEXTid_W, TEXT_H);
+		transitionidText.setOpaque(false);
 		this.infoPanel.add(transitionidText);
 		// 出发地
 		departureid.setBounds(transitionid.getX(), transitionid.getY() + transitionid.getHeight() + COMPONENT_GAP_Y,
@@ -171,6 +176,7 @@ public class FindReceivingPanel extends DetailPanel {
 		this.infoPanel.add(departureid);
 		departureidText.setBounds(departureid.getX() + departureid.getWidth() + COMPONENT_GAP_X, departureid.getY(),
 				TEXT_W, TEXT_H);
+		departureidText.setOpaque(false);
 		this.infoPanel.add(departureidText);
 		// 到达地
 		arrivalid.setBounds(departureidText.getX() + departureidText.getWidth() + COMPONENT_GAP_Y, departureid.getY(),
@@ -178,6 +184,7 @@ public class FindReceivingPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setOpaque(false);
 		this.infoPanel.add(arrivalidText);
 		// 货物到达状态
 		statelabel.setBounds(departureid.getX(), departureid.getY() + departureid.getHeight() + COMPONENT_GAP_Y,

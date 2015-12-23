@@ -17,4 +17,6 @@ public interface EntruckingBLService {
 	 * @return 添加是否成功
 	 */
     public boolean addEntruckingFrom(EntruckingVO entruckingVO);
+
+	public double getFreight();
 }

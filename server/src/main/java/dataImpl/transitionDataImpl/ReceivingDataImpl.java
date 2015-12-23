@@ -38,6 +38,7 @@ public class ReceivingDataImpl implements ReceivingDataService {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		if (state == null) {
 			return null;

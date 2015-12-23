@@ -7,22 +7,27 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.repositoryController.InRepositoryController;
 import businessLogic.businessLogicController.repositoryController.OutRepositoryController;
+import businessLogicService.repositoryBLService.InRepositoryBLService;
 import businessLogicService.repositoryBLService.OutRepositoryBLService;
 import constant.LoadingType;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import ui.transitionui.loadingui.AddLoadingPanel;
+import vo.repositoryVO.InRepositoryVO;
 import vo.repositoryVO.OutRepositoryVO;
 
 public class AddOutRepositoryPanel extends DetailPanel {
 	private OutRepositoryBLService outRepositoryBLService = new OutRepositoryController();
+	private InRepositoryBLService inRepositoryBLService = new InRepositoryController();
 
 	private DateChooser dateChoose = DateChooser.getInstance();
 	// 组件
@@ -43,13 +48,17 @@ public class AddOutRepositoryPanel extends DetailPanel {
 	private JPanel infoPanel = new JPanel();
 
 	private JPanel buttonPanel = new JPanel();
+	
+	private JButton check = new JButton("同步该快递单");
 
 	private LimpidButton ok = new LimpidButton("", "picture/确定.png");
 
 	private LimpidButton cancel = new LimpidButton("", "picture/取消.png");
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
-
+	
+	
+	private JLabel deliveryNumberState = new JLabel("该快递单未曾入库",JLabel.CENTER);
 	private JLabel state = new JLabel("", JLabel.CENTER);
 
 	public static final int LABEL_W = 80;
@@ -84,6 +93,10 @@ public class AddOutRepositoryPanel extends DetailPanel {
 	 * 是否为第一次按确认按钮
 	 */
 	private boolean isFirstEnsure = true;
+	/**
+	 * 是否在数据库中找到该入库单
+	 */
+	private boolean isInRepo = false;
 
 	public AddOutRepositoryPanel() {
 		// TODO Auto-generated constructor stub
@@ -131,6 +144,15 @@ public class AddOutRepositoryPanel extends DetailPanel {
 				TEXTid_W, TEXT_H);
 		DeliveryidText.setOpaque(false);
 		this.infoPanel.add(DeliveryidText);
+		//检查快递编号相关组件
+		check.setBounds(DeliveryidText.getX()+DeliveryidText.getWidth()+COMPONENT_GAP_Y,DeliveryidText.getY(),80*2,30);
+		check.setFont(WORD_FONT);
+		this.infoPanel.add(check);
+		deliveryNumberState.setBounds(Deliveryid.getX(), Deliveryid.getY()+Deliveryid.getHeight(), TEXTid_W, COMPONENT_GAP_Y);
+		deliveryNumberState.setFont(WORD_FONT);
+		deliveryNumberState.setForeground(Color.RED);
+		deliveryNumberState.setVisible(false);
+		this.infoPanel.add(deliveryNumberState);
 		// 出库日期
 		outrepositorydate.setBounds(Deliveryid.getX(), Deliveryid.getY() + Deliveryid.getHeight() + COMPONENT_GAP_Y,
 				LABEL_W, LABEL_H);
@@ -174,6 +196,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		loadingwayText.addItem("飞机");
 		loadingwayText.addItem("火车");
 		loadingwayText.addItem("汽车");
+		loadingwayText.setOpaque(false);
 		this.infoPanel.add(loadingwayText);
 		// 装运信息编号
 		wayid.setBounds(arrivalid.getX(), arrivalid.getY() + arrivalid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
@@ -190,20 +213,27 @@ public class AddOutRepositoryPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				// 创建接收单对象
 				OutRepositoryVO outRepositoryVO = creatOutRepository();
-				// 验证输入是否规范
-				boolean result = outRepositoryBLService.verify(outRepositoryVO);
-
-				if (result) {
-					// 重置出库时间
-					outRepositoryVO.setoutrepositorydate(outrepositoryYear.getText().trim());
-					throughVerifyOperation(outRepositoryVO); // 验证成功
-					cancel.setVisible(true);
-				} else {
-					verifyFailOperation(outRepositoryVO); // 验证失败
+				//是否有相关入库单
+				if (!isInRepo) {
+					check.doClick();					
 				}
-
-				// 刷新页面
-				repaint();
+				if (isInRepo) {
+					// 验证输入是否规范
+					boolean result = outRepositoryBLService.verify(outRepositoryVO);
+					
+					if (result) {
+						// 重置出库时间
+						outRepositoryVO.setoutrepositorydate(outrepositoryYear.getText().trim());
+						throughVerifyOperation(outRepositoryVO); // 验证成功
+						cancel.setVisible(true);
+					} else {
+						verifyFailOperation(outRepositoryVO); // 验证失败
+					}
+					
+					// 刷新页面
+					repaint();
+					
+				}
 			}
 		});
 
@@ -220,7 +250,44 @@ public class AddOutRepositoryPanel extends DetailPanel {
 				cancel.setVisible(false);
 			}
 		});
-
+		
+		this.check.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				InRepositoryVO inRepositoryVO = inRepositoryBLService.findInRepositoryFormBL(DeliveryidText.getText().trim());
+				if (inRepositoryVO!=null) {
+					arrivalidText.setText(inRepositoryVO.getarrivalid().trim());
+					switch (inRepositoryVO.getareaCode()) {
+					case PLANEAREA:
+						loadingwayText.setSelectedItem("飞机");
+						break;
+					case TRAINAREA:
+						loadingwayText.setSelectedItem("火车");
+						break;
+					case TRUCKAREA:
+						loadingwayText.setSelectedItem("汽车");
+						break;
+					case MOTOAREA:
+						break;
+					}
+					deliveryNumberState.setVisible(false);
+					isInRepo = true;
+				}
+				else {
+					isInRepo = false;
+					deliveryNumberState.setVisible(true);
+				}
+			}
+		});
+		
+		DeliveryidText.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					check.doClick();
+				}
+			}
+		});
 //		wayidText.addKeyListener(new KeyAdapter() {
 //
 //			public void keyPressed(KeyEvent e) {

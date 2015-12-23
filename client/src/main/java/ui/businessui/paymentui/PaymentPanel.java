@@ -16,11 +16,12 @@ import ui.baseui.LimpidButton;
 import vo.businessVO.ReceivableVO;
 import businessLogic.businessLogicController.businessController.PaymentController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.businessBLService.PaymentBLService;
 
 @SuppressWarnings("serial")
 public class PaymentPanel extends DetailPanel{
 	
-	private PaymentController paymentCon=new PaymentController();
+	private PaymentBLService paymentCon=new PaymentController();
 	private ReceivableVO receivableVO;
 	
 	private DateChooser dateChoose=DateChooser.getInstance();

@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 
 import businessLogic.businessLogicController.repositoryController.ManageRepositoryController;
@@ -56,7 +58,7 @@ public class CheckDeliveryPanel extends DetailPanel {
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 16);
 
 	public static final int LABEL_W = 80;
-	public static final int LABEL_H = 30;
+	public static final int LABEL_H = 32;
 	public static final int TEXT_W = LABEL_W << 1;
 	public static final int TEXT_H = LABEL_H;
 	public static final int TEXTid_W = LABEL_W * 4;
@@ -84,14 +86,17 @@ public class CheckDeliveryPanel extends DetailPanel {
 
 		// 下拉框设置
 		container.setLayout(null);
-		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		container.setOpaque(false);
+		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H-50));
 		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
 
 		// 按钮
-		find.setBounds(START_X * 2, 10, TEXT_W, LABEL_H);
+		find.setBounds(START_X * 2, 10, TEXT_W+70, LABEL_H);
 		find.setFont(WORD_FONT);
 		container.add(find);
 		excel.setBounds(find.getX() + find.getWidth() + LABEL_W, find.getY(), TEXT_W, LABEL_H);
@@ -100,29 +105,29 @@ public class CheckDeliveryPanel extends DetailPanel {
 		// update.setBounds(find.getX() + find.getWidth() + COMPONENT_GAP_Y * 4,
 		// find.getY(), TEXT_W, LABEL_H);
 		// add(update);
-		//
+		//航运区标签
 		plane.setBounds(40, find.getY() + find.getHeight() + COMPONENT_GAP_Y, TEXT_W, TEXT_H);
 		plane.setFont(WORD_FONT);
 		container.add(plane);
 		excelPlane.setBounds(plane.getX() + plane.getWidth() + TEXT_W * 2, plane.getY(), TEXT_W, TEXT_H);
 		excelPlane.setFont(WORD_FONT);
 		container.add(excelPlane);
-		//
-		train.setBounds(40, plane.getY() + plane.getHeight() + LABEL_H * 3, TEXT_W, TEXT_H);
+		//铁运区标签
+		train.setBounds(40, plane.getY() + plane.getHeight() + LABEL_H * 5, TEXT_W, TEXT_H);
 		train.setFont(WORD_FONT);
 		container.add(train);
 		excelTrain.setBounds(train.getX() + train.getWidth() + TEXT_W * 2, train.getY(), TEXT_W, TEXT_H);
 		excelTrain.setFont(WORD_FONT);
 		container.add(excelTrain);
-		//
-		truck.setBounds(40, train.getY() + train.getHeight() + LABEL_H * 3, TEXT_W, TEXT_H);
+		//汽运区标签
+		truck.setBounds(40, train.getY() + train.getHeight() + LABEL_H * 5, TEXT_W, TEXT_H);
 		truck.setFont(WORD_FONT);
 		container.add(truck);
 		exceltruck.setBounds(truck.getX() + truck.getWidth() + TEXT_W * 2, truck.getY(), TEXT_W, TEXT_H);
 		exceltruck.setFont(WORD_FONT);
 		container.add(exceltruck);
-		//
-		moto.setBounds(40, truck.getY() + truck.getHeight() + LABEL_H * 3, TEXT_W, TEXT_H);
+		//机动区标签
+		moto.setBounds(40, truck.getY() + truck.getHeight() + LABEL_H * 5, TEXT_W, TEXT_H);
 		moto.setFont(WORD_FONT);
 		container.add(moto);
 		excelmoto.setBounds(moto.getX() + moto.getWidth() + TEXT_W * 2, moto.getY(), TEXT_W, TEXT_H);
@@ -409,27 +414,31 @@ public class CheckDeliveryPanel extends DetailPanel {
 		// 添加组件
 		// plane
 		JScrollPane jScrollPane1 = new JScrollPane();
-		jScrollPane1.setBounds(40, plane.getY() + plane.getHeight(), Area_W + LABEL_W, LABEL_H * 3);
+		jScrollPane1.setBounds(40, plane.getY() + plane.getHeight(), Area_W + LABEL_W, LABEL_H * 5);
 		jScrollPane1.setViewportView(tablepl);
 		container.add(jScrollPane1);
 		// train
 		JScrollPane jScrollPane2 = new JScrollPane();
-		jScrollPane2.setBounds(40, train.getY() + train.getHeight(), Area_W + LABEL_W, LABEL_H * 3);
+		jScrollPane2.setBounds(40, train.getY() + train.getHeight(), Area_W + LABEL_W, LABEL_H * 5);
 		jScrollPane2.setViewportView(tabletra);
 		container.add(jScrollPane2);
 		// truck
 		JScrollPane jScrollPane3 = new JScrollPane();
-		jScrollPane3.setBounds(40, truck.getY() + truck.getHeight(), Area_W + LABEL_W, LABEL_H * 3);
+		jScrollPane3.setBounds(40, truck.getY() + truck.getHeight(), Area_W + LABEL_W, LABEL_H * 5);
 		jScrollPane3.setViewportView(tabletru);
 		container.add(jScrollPane3);
 		// moto
 		JScrollPane jScrollPane4 = new JScrollPane();
-		jScrollPane4.setBounds(40, moto.getY() + moto.getHeight(), Area_W + LABEL_W, LABEL_H * 3);
+		jScrollPane4.setBounds(40, moto.getY() + moto.getHeight(), Area_W + LABEL_W, LABEL_H * 5);
 		jScrollPane4.setViewportView(tablemo);
 		container.add(jScrollPane4);
 	}
 
 	private void visiblefalse() {
+		plane.setVisible(false);
+		train.setVisible(false);
+		truck.setVisible(false);
+		moto.setVisible(false);
 		excel.setVisible(false);
 		excelmoto.setVisible(false);
 		excelPlane.setVisible(false);
@@ -438,6 +447,10 @@ public class CheckDeliveryPanel extends DetailPanel {
 	}
 
 	private void visibletrue() {
+		plane.setVisible(true);
+		train.setVisible(true);
+		truck.setVisible(true);
+		moto.setVisible(true);
 		excel.setVisible(true);
 		excelmoto.setVisible(true);
 		excelPlane.setVisible(true);

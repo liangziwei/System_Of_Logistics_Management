@@ -111,21 +111,27 @@ public class AddTransferringPanel extends DetailPanel {
 		// 下拉框设置
 		container.setLayout(null);
 		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		container.setOpaque(false);
 		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
 		super.add(jScrollPane);
-
+		container.setOpaque(false);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
 		// 主面板
 		this.infoPanel.setBounds(START_X, START_Y, this.DETAIL_PANEL_W,
 				START_Y + (LABEL_H + COMPONENT_GAP_Y) * 6 + Area_H - 40);
 		this.infoPanel.setLayout(null);
+		this.infoPanel.setOpaque(false);
 		// 初始化信息面板
 		this.initUI();
 		// 按钮面板
 		this.buttonPanel.setBounds(START_X + LABEL_W + COMPONENT_GAP_X + TEXTid_W,
 				infoPanel.getY() + infoPanel.getHeight(), (BUTTON_W << 1) + COMPONENT_GAP_Y, BUTTON_H);
-
+		this.buttonPanel.setOpaque(false);
 		this.buttonPanel.setLayout(null);
 		// 确定按钮
 		this.ok.setBounds(0, 0, BUTTON_W, BUTTON_H);
@@ -163,6 +169,7 @@ public class AddTransferringPanel extends DetailPanel {
 		this.infoPanel.add(loadingdate);
 		loadingdateTextyear.setBounds(loadingdate.getX() + loadingdate.getWidth() + COMPONENT_GAP_X, loadingdate.getY(),
 				TEXT_W , TEXT_H);
+		loadingdateTextyear.setOpaque(false);
 		dateChoose.register(loadingdateTextyear);
 		this.infoPanel.add(loadingdateTextyear);
 //		apart1.setBounds(loadingdateTextyear.getX() + loadingdateTextyear.getWidth(), loadingdateTextyear.getY(), 10,
@@ -240,6 +247,10 @@ public class AddTransferringPanel extends DetailPanel {
 		scrollPane.setBounds(alldeliveryid.getX(), alldeliveryid.getY() + alldeliveryid.getHeight(), Area_W, Area_H);
 		this.infoPanel.add(scrollPane);
 		scrollPane.setViewportView(alldeliveryidText);
+		scrollPane.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		alldeliveryidText.setOpaque(false);
+		alldeliveryidText.setFont(WORD_FONT);
 
 		fare.setBounds(alldeliveryid.getX(), scrollPane.getY() + scrollPane.getHeight() + COMPONENT_GAP_Y - 15, LABEL_W,
 				LABEL_H);

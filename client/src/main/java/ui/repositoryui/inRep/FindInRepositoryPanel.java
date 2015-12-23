@@ -123,16 +123,19 @@ public class FindInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(inrepositorydate);
 		inrepositoryYear.setBounds(inrepositorydate.getX() + inrepositorydate.getWidth() + COMPONENT_GAP_X,
 				inrepositorydate.getY(), TEXT_W / 2, TEXT_H);
+		inrepositoryYear.setOpaque(false);
 		this.infoPanel.add(inrepositoryYear);
 		JLabel apart1 = new JLabel("-");
 		JLabel apart2 = new JLabel("-");
 		apart1.setBounds(inrepositoryYear.getX() + inrepositoryYear.getWidth(), inrepositoryYear.getY(), 10, TEXT_H);
 		this.infoPanel.add(apart1);
 		inrepositoryMonth.setBounds(apart1.getX() + apart1.getWidth(), apart1.getY(), TEXT_W / 2, TEXT_H);
+		inrepositoryMonth.setOpaque(false);
 		this.infoPanel.add(inrepositoryMonth);
 		apart2.setBounds(inrepositoryMonth.getX() + inrepositoryMonth.getWidth(), inrepositoryMonth.getY(), 10, TEXT_H);
 		this.infoPanel.add(apart2);
 		inrepositoryDay.setBounds(apart2.getX() + apart2.getWidth(), apart2.getY(), TEXT_W / 2, TEXT_H);
+		inrepositoryDay.setOpaque(false);
 		this.infoPanel.add(inrepositoryDay);
 		// 目的地
 		arrivalid.setBounds(inrepositorydate.getX(),
@@ -152,6 +155,7 @@ public class FindInRepositoryPanel extends DetailPanel {
 		areaidText.addItem("铁运区");
 		areaidText.addItem("汽运区");
 		areaidText.addItem("机动区");
+		areaidText.setOpaque(false);
 		this.infoPanel.add(areaidText);
 		// 排号
 		rowid.setBounds(arrivalid.getX(), arrivalid.getY() + arrivalid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
