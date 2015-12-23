@@ -218,7 +218,7 @@ public class TransferringDataImpl implements TransferringDataService {
 			return new TransferringPO(rs.getString("loadingdate"), rs.getString("transferringid"),
 					LoadingType.valueOf(rs.getString("way")), rs.getString("wayid"),
 					rs.getString("departureid"), rs.getString("arrivalid"),
-					rs.getString("supervisionid"), rs.getString("supercargoid"), id);
+					rs.getString("supervisionid"), rs.getString("containerid"), id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
