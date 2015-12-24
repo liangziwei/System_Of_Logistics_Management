@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -57,6 +58,9 @@ public class ModifyVehiclePanel extends DetailPanel {
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
 	private boolean isFirstEnsure = true;
+	
+	private int count = 0;
+	
 	private boolean isOver=false;
 	
 	public ModifyVehiclePanel(){
@@ -135,9 +139,13 @@ public class ModifyVehiclePanel extends DetailPanel {
 					if(isFirstEnsure){
 						if(isCorrect()){
 							   result.setForeground(Color.BLUE);
-							   result.setText("请确认修改后信息无误，确认后点击提交");
-							   ok.setText("提交");
+							   result.setText("请确认修改后信息无误，确认后点击提交");							  
+							   ok.setIcon(new ImageIcon("picture/提交.png"));
+							   ok.setRolloverIcon(new ImageIcon("picture/提交.png"));
+							   ok.setPressedIcon(new ImageIcon("picture/提交.png"));
+//							   ok.setText("提交");
 							   disablePanel();
+							   count = 1;
 							   isFirstEnsure=false;
 						}else{
 							   result.setForeground(Color.RED);
@@ -148,7 +156,10 @@ public class ModifyVehiclePanel extends DetailPanel {
 					}else{
 						if(isOver){
 							result.setText("");
-							ok.setText("修改");
+							ok.setIcon(new ImageIcon("picture/修改.png"));
+						    ok.setRolloverIcon(new ImageIcon("picture/修改.png"));
+							ok.setPressedIcon(new ImageIcon("picture/修改.png"));
+//							ok.setText("修改");
 							visible(false);
 							setBlack();
 							enablePanel();
@@ -165,7 +176,10 @@ public class ModifyVehiclePanel extends DetailPanel {
 							if(vehicleCon.modifyVehicle(vehicleVO)){
 								result.setForeground(Color.GREEN);
 								result.setText("修改成功！");
-								ok.setText("确认");
+								ok.setIcon(new ImageIcon("picture/确认.png"));
+								ok.setRolloverIcon(new ImageIcon("picture/确认.png"));
+								ok.setPressedIcon(new ImageIcon("picture/确认.png"));
+//								ok.setText("确认");
 								cancel.setVisible(false);
 								isOver=true;
 							}else{

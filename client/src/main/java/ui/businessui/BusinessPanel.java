@@ -34,11 +34,11 @@ import ui.viewcontroller.ViewController;
 public class BusinessPanel extends UserPanel{
 
 	private LimpidButton entrucking=new LimpidButton("","picture/新建装车单.png");
-	private TaskButton receiveAndSend=new TaskButton("");
-	private TaskButton payment=new TaskButton("");
-	private TaskButton vehicle=new TaskButton("");
-	private TaskButton driver=new TaskButton("");
-	private TaskButton exit = new TaskButton("");
+	private TaskButton receiveAndSend=new TaskButton("","picture/接收与派件.png");
+	private TaskButton payment=new TaskButton("","picture/新建收款单.png");
+	private TaskButton vehicle=new TaskButton("","picture/车辆信息管理.png");
+	private TaskButton driver=new TaskButton("","picture/司机信息管理.png");
+	private TaskButton exit = new TaskButton("","picture/退出.png");
 	
 	JButton receive=new JButton("");
 	JButton send=new JButton("");		
@@ -77,24 +77,19 @@ public class BusinessPanel extends UserPanel{
 		this.receiveAndSend.setBounds(0, this.entrucking.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP,
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.receiveAndSend.setFont(WORD_FONT);
-		this.receiveAndSend.setIcon(new ImageIcon("picture/接收与派件.png"));
 		this.payment.setBounds(0, this.receiveAndSend.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.payment.setFont(WORD_FONT);
-		this.payment.setIcon(new ImageIcon("picture/新建收款单.png"));
 		this.vehicle.setBounds(0, this.payment.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.vehicle.setFont(WORD_FONT);
-		this.vehicle.setIcon(new ImageIcon("picture/车辆信息管理.png"));
 		this.driver.setBounds(0, this.vehicle.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.driver.setFont(WORD_FONT);
-		this.driver.setIcon(new ImageIcon("picture/司机信息管理.png"));
 		
 		this.exit.setBounds(0, this.driver.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.exit.setFont(WORD_FONT);
-		this.exit.setIcon(new ImageIcon("picture/退出.png"));
 		
 		this.receive.setFont(WORD_FONT);
 		this.receive.setIcon(new ImageIcon("picture/新建到达单.png"));

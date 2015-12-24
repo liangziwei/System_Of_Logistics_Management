@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -58,6 +59,9 @@ public class AddVehiclePanel extends DetailPanel{
 	private static final Font WORD_FONT = new Font("宋体", Font.PLAIN, 18);
 	
 	private boolean isFirstEnsure = true;
+	
+	private int count = 0;
+	
 	private boolean isOver=false;
 	
 	public AddVehiclePanel(){
@@ -118,9 +122,13 @@ public class AddVehiclePanel extends DetailPanel{
 					if(isCorrect()){
 						   result.setForeground(Color.BLUE);
 						   result.setText("请确认信息输入无误，确认后点击提交");
-						   ok.setText("提交");
+//						   ok.setText("提交");
+						   ok.setIcon(new ImageIcon("picture/提交.png"));
+						   ok.setRolloverIcon(new ImageIcon("picture/提交.png"));
+						   ok.setPressedIcon(new ImageIcon("picture/提交.png"));
 						   disablePanel();
 						   isFirstEnsure=false;
+						   count = 1;
 					}else{
 						   result.setForeground(Color.RED);
 						   disablePanel();
@@ -132,9 +140,13 @@ public class AddVehiclePanel extends DetailPanel{
 						result.setText("");
 						setBlack();
 						enablePanel();
+						ok.setIcon(new ImageIcon("picture/确定.png"));
+					    ok.setRolloverIcon(new ImageIcon("picture/确定.png"));
+						ok.setPressedIcon(new ImageIcon("picture/确定.png"));
+						cancel.setVisible(true);
 						isFirstEnsure=true;	
 						isOver=false;
-						
+						count = 0;
 					}else{
 						String vehicleidStr=vehicleidText.getText();
 						String numberStr=numberText.getText();
@@ -145,7 +157,11 @@ public class AddVehiclePanel extends DetailPanel{
 						if(vehicleCon.addVehicle(vehicleVO)){
 							result.setForeground(Color.GREEN);
 							result.setText("保存成功！");
-							ok.setText("确认");
+//							ok.setText("确认");
+							ok.setIcon(new ImageIcon("picture/确认.png"));
+							ok.setRolloverIcon(new ImageIcon("picture/确认.png"));
+							ok.setPressedIcon(new ImageIcon("picture/确认.png"));
+							count = 4;
 							cancel.setVisible(false);
 							isOver=true;
 						}else{
@@ -164,8 +180,11 @@ public class AddVehiclePanel extends DetailPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				//设置取消按钮不可见
-				if(ok.getText().equals("提交")){
-					ok.setText("确定");
+				if(count == 1){
+//					ok.setText("确定");
+					ok.setIcon(new ImageIcon("picture/确定.png"));
+				    ok.setRolloverIcon(new ImageIcon("picture/确定.png"));
+					ok.setPressedIcon(new ImageIcon("picture/确定.png"));
 					cancel.setVisible(false);
 					enablePanel();
 					isFirstEnsure = true;
