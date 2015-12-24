@@ -158,7 +158,12 @@ public class LoginPanel extends JPanel{
 				String id = idField.getText();
 				id=id.toUpperCase();
 				
-
+				if(DEBUG) {
+					setVisible(false);
+					viewController.switchView(USER_TABLE.get(id.charAt(0)));
+					return ;
+				}
+				
 				if(id == null ||(!id.matches("[B-H][0-9]{9}")&&!id.equalsIgnoreCase("admin"))) {
 					hint.setForeground(Color.RED);
 					hint.setText("账号輸入格式错误");
