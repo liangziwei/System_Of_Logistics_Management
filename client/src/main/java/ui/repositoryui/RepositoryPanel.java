@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import ui.baseui.LimpidButton;
 import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
@@ -29,33 +30,33 @@ import ui.viewcontroller.ViewController;
 
 public class RepositoryPanel extends UserPanel {
 	// TaskButton
-	private TaskButton InRepository = new TaskButton("");
-	private TaskButton OutRepository = new TaskButton("");
-	private TaskButton LookRepository = new TaskButton("");
-	private TaskButton CheckDelivery = new TaskButton("");
-	private TaskButton RepositoryWarn = new TaskButton("");
-	private TaskButton exit = new TaskButton("");
+	private TaskButton InRepository = new TaskButton("","picture/入库管理.png");
+	private TaskButton OutRepository = new TaskButton("","picture/出库管理.png");
+	private TaskButton LookRepository = new TaskButton("","picture/库存查看.png");
+	private TaskButton CheckDelivery = new TaskButton("","picture/库存盘点.png");
+	private TaskButton RepositoryWarn = new TaskButton("","picture/库存预警.png");
+	private TaskButton exit = new TaskButton("","picture/退出.png");
 
 	// 入库单相关按钮
-	private JButton AddInRepository = new JButton("");
-	private JButton ModifyInRepository = new JButton("");
-	private JButton FindInRepository = new JButton("");
+	private LimpidButton AddInRepository = new LimpidButton("","picture/添加入库单.png");
+	private LimpidButton ModifyInRepository = new LimpidButton("","picture/修改入库单.png");
+	private LimpidButton FindInRepository = new LimpidButton("","picture/查询入库单.png");
 
 	// 出库单相关按钮
-	private JButton AddOutRepository = new JButton("");
-	private JButton ModifyOutRepository = new JButton("");
-	private JButton FindOutRepository = new JButton("");
+	private LimpidButton AddOutRepository = new LimpidButton("","picture/添加出库单.png");
+	private LimpidButton ModifyOutRepository = new LimpidButton("","picture/修改出库单.png");
+	private LimpidButton FindOutRepository = new LimpidButton("","picture/查询出库单.png");
 
-	private JButton SeeTransferringList = new JButton("");
+	private LimpidButton SeeTransferringList = new LimpidButton("","picture/查询中转单列表.png");
 	
 	private Image head = new ImageIcon("picture/中转中心仓库管理员.jpg").getImage();
 
 
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 
-	private List<JButton> DetailButtonInRepository = new ArrayList<JButton>();
+	private List<LimpidButton> DetailButtonInRepository = new ArrayList<LimpidButton>();
 
-	private List<JButton> DetailButtonOutRepository = new ArrayList<JButton>();
+	private List<LimpidButton> DetailButtonOutRepository = new ArrayList<LimpidButton>();
 
 	private static final int BUTTON_WITH = TaskPanel.BUTTON_W;
 
@@ -70,9 +71,7 @@ public class RepositoryPanel extends UserPanel {
 		addListenter();
 		
 		//入库管理
-		this.AddInRepository.setIcon(new ImageIcon("picture/添加入库单.png"));
-		this.ModifyInRepository.setIcon(new ImageIcon("picture/修改入库单.png"));
-		this.FindInRepository.setIcon(new ImageIcon("picture/查询入库单.png"));
+		
 		DetailButtonInRepository.add(AddInRepository);
 		DetailButtonInRepository.add(ModifyInRepository);
 		DetailButtonInRepository.add(FindInRepository);
@@ -80,10 +79,7 @@ public class RepositoryPanel extends UserPanel {
 		InRepository.setDetailButtons(DetailButtonInRepository); // 设置（添加）要展开的按钮
 		
 		//出库管理
-		this.AddOutRepository.setIcon(new ImageIcon("picture/添加出库单.png"));
-		this.ModifyOutRepository.setIcon(new ImageIcon("picture/修改出库单.png"));
-		this.FindOutRepository.setIcon(new ImageIcon("picture/查询出库单.png"));
-		this.SeeTransferringList.setIcon(new ImageIcon("picture/查询中转单列表.png"));
+		
 		DetailButtonOutRepository.add(AddOutRepository);
 		DetailButtonOutRepository.add(ModifyOutRepository);
 		DetailButtonOutRepository.add(FindOutRepository);
@@ -97,32 +93,26 @@ public class RepositoryPanel extends UserPanel {
 	private void initUI() {
 		// 入库单相关操作按钮
 		this.InRepository.setBounds(0, UserImagePanel.USER_PANEL_H, BUTTON_WITH, BUTTON_HEIGHT);
-		this.InRepository.setFont(WORD_FONT);
-		this.InRepository.setIcon(new ImageIcon("picture/入库管理.png"));
+		
 		// 出库单相关操作按钮
 		this.OutRepository.setBounds(0, this.InRepository.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH,
 				BUTTON_HEIGHT);
-		this.OutRepository.setFont(WORD_FONT);
-		this.OutRepository.setIcon(new ImageIcon("picture/出库管理.png"));
+		
 		// 库存信息查看按钮
 		this.LookRepository.setBounds(0, this.OutRepository.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH,
 				BUTTON_HEIGHT);
-		this.LookRepository.setFont(WORD_FONT);
-		this.LookRepository.setIcon(new ImageIcon("picture/库存查看.png"));
+	
 		//库存信息盘点按钮
 		this.CheckDelivery.setBounds(0, this.LookRepository.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH,
 				BUTTON_HEIGHT);
-		this.CheckDelivery.setFont(WORD_FONT);
-		this.CheckDelivery.setIcon(new ImageIcon("picture/库存盘点.png"));
+	
 		//库存预警按钮
 		this.RepositoryWarn.setBounds(0, this.CheckDelivery.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH,
 				BUTTON_HEIGHT);
-		this.RepositoryWarn.setFont(WORD_FONT);
-		this.RepositoryWarn.setIcon(new ImageIcon("picture/库存预警.png"));
+		
 		// 退出按钮
 		this.exit.setBounds(0, this.RepositoryWarn.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH, BUTTON_HEIGHT);
-		this.exit.setFont(WORD_FONT);
-		this.exit.setIcon(new ImageIcon("picture/退出.png"));
+		
 		// 面板添加按钮
 		this.task.buttonContainer.add(InRepository);
 		this.task.buttonContainer.add(OutRepository);

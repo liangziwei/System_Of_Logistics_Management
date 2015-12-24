@@ -31,7 +31,7 @@ public class TaskButton extends JButton{
 	/**
 	 * 展开后的按钮
 	 */
-	private List<JButton> detailButtons = new ArrayList<JButton>();
+	private List<LimpidButton> detailButtons = new ArrayList<LimpidButton>();
 
 	public TaskButton(String name) {
 		this.setText(name);
@@ -86,11 +86,11 @@ public class TaskButton extends JButton{
 		this.isUnfold = isUnfold;
 	}
 
-	public List<JButton> getDetailButtons() {
+	public List<LimpidButton> getDetailButtons() {
 		return detailButtons;
 	}
 
-	public void setDetailButtons(List<JButton> detailButtons) {
+	public void setDetailButtons(List<LimpidButton> detailButtons) {
 		this.detailButtons = detailButtons;
 	}
 }
