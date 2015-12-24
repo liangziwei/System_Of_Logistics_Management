@@ -155,9 +155,12 @@ public class EntruckingPanel extends DetailPanel {
 		alldeliveryid.setBounds(freight.getX(), freight.getY()+freight.getHeight()+LABEL_H, LABEL_W*3,LABEL_H);
 		alldeliveryid.setFont(WORD_FONT);
 		alldeliveryidArea.setFont(WORD_FONT);
+		alldeliveryidArea.setOpaque(false);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(alldeliveryid.getX(), alldeliveryid.getY()+alldeliveryid.getHeight(), TEXT_W/2*3,TEXT_H*7);
 		scrollPane.setViewportView(alldeliveryidArea);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setOpaque(false);
 		this.container.add(scrollPane);
 
 		this.result.setBounds(scrollPane.getX() + LINE_GAP, scrollPane.getY()+scrollPane.getHeight() + LINE_GAP, TEXT_W, TEXT_H);

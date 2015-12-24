@@ -48,7 +48,7 @@ public class SettlePartPanel extends DetailPanel{
 				//根据营业厅编号查询当天的收款单
 				receivableVO = settle.showBusinessRecei(id.getId(), DatePanel.getCurrentDate());
 				//如果找不到，提示用户没有该收款单
-				if(receivableVO == null || receivableVO.size() == 0) {
+				if(receivableVO == null) {
 					if(receivable != null) receivable.setVisible(false);
 					if(list != null) list.setVisible(false);
 					id.setTip("该收款单不存在");

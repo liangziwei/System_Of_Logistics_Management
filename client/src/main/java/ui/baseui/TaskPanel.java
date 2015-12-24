@@ -127,7 +127,7 @@ public class TaskPanel extends JScrollPane{
 		if(foldButton == null || belowButtons == null) return;
 		
 		//隐藏任务按钮附属的细节按钮
-		List<JButton> detailButtons = foldButton.getDetailButtons();		//要展开的按钮
+		List<LimpidButton> detailButtons = foldButton.getDetailButtons();		//要展开的按钮
 		for(int i = 0; i < detailButtons.size(); i++) {
 			detailButtons.get(i).setVisible(false);
 		}
@@ -163,7 +163,7 @@ public class TaskPanel extends JScrollPane{
 		button.setBounds(0, currentY, BUTTON_W, BUTTON_H);
 		
 		//对细节按钮进行布局
-		List<JButton> details = button.getDetailButtons();
+		List<LimpidButton> details = button.getDetailButtons();
 		for(int i = 0; i < details.size(); i++) {
 			//计算要布局按钮的y坐标
 			currentY = currentY + BUTTON_H + BUTTON_GAP;

@@ -152,13 +152,13 @@ public class LoginPanel extends JPanel{
 		
 		this.ok.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {				
 				
 				//跳转页面
 				String id = idField.getText();
 				id=id.toUpperCase();
 				
+
 				if(id == null ||(!id.matches("[B-H][0-9]{9}")&&!id.equalsIgnoreCase("admin"))) {
 					hint.setForeground(Color.RED);
 					hint.setText("账号輸入格式错误");

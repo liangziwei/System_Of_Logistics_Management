@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.senderController.InquireController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.senderBLService.InquireBLService;
 import constant.City;
 import constant.TransitionNode;
@@ -40,6 +41,8 @@ public class InquirePanel extends JPanel{
 	private JTextField search = new JTextField();
 	
 	private JLabel orderLabel = new JLabel("订单条形码号");
+	
+	private JLabel tip = new JLabel();
 	
 	private LimpidButton ok = new LimpidButton("","picture/查询.png");
 	
@@ -98,6 +101,11 @@ public class InquirePanel extends JPanel{
 				TEXT_W + COMPONENT_GAP, TEXT_H);
 		this.search.setFont(WORD_FONT);
 		this.search.setOpaque(false);
+		//提示信息标签
+		this.tip.setBounds(this.orderLabel.getX(), this.orderLabel.getY() + (LABEL_H << 1),
+				this.search.getWidth(), LABEL_H);
+		this.tip.setFont(WORD_FONT);
+		this.tip.setForeground(Color.RED);
 		//确定按钮
 		this.ok.setBounds(this.search.getX() + TEXT_W + (COMPONENT_GAP << 1),
 				          this.search.getY(),
@@ -110,6 +118,7 @@ public class InquirePanel extends JPanel{
 		//把组件添加到面板
 		this.add(this.orderLabel);
 		this.add(this.search);
+		this.add(this.tip);
 		this.add(this.ok);
 		this.add(this.cancel);
 		//添加事件监听
@@ -123,24 +132,24 @@ public class InquirePanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				//检查订单条形码号是否有效
 				String id = search.getText();
-				if(id.length() != 10) {
-					//TODO 提示输入不是10位数字
+				if(id.length() != 10 || !CommonLogic.isNumber(id)) {
+					//提示输入不是10位数字
+					tip.setText("订单条形码号应为10位数字");
+					repaint();
 					return ;
 				}
-				for (int i = 0; i < 10; i++) {
-					if(id.charAt(i) > '9' || id.charAt(i) < '0') {
-						//TODO 提示输入不是10位数字
-						return ;
-					}
-				}
+
 				//检查是否存在该条形码号对应的订单
 				logisticsInfo = inquireService.getLogInfoById(id);
 				if(logisticsInfo == null) {
-					//TODO 提示输入的订单条形码号不存在
+					//提示输入的订单条形码号不存在
+					tip.setText("该订单不存在");
+					repaint();
 					return ;
 				}
 				//显示物流信息
 				isShow = true;
+				tip.setText("");
 				repaint();
 			}
 		});
@@ -162,6 +171,7 @@ public class InquirePanel extends JPanel{
 		if(!isShow) return ;
 		
 		LogisticsVO vo = this.inquireService.getLogInfoById(this.search.getText());
+		if(vo == null) return ;
 		//获得物流节点与城市
 		List<TransitionNode> node = vo.getState();
 		List<City> trace =vo.getTrace();

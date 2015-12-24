@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import ui.baseui.LimpidButton;
 import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
@@ -29,43 +30,43 @@ import ui.viewcontroller.ViewController;
 
 public class TransitionPanel extends UserPanel {
 
-	private TaskButton Loading = new TaskButton("");
+	private TaskButton Loading = new TaskButton("","picture/装运货物管理.png");
+	
+	private LimpidButton AddLoading = new LimpidButton("","picture/添加装运单.png");
 
-	private JButton AddLoading = new JButton("");
+	private LimpidButton ModifyLoading = new LimpidButton("","picture/修改装运单.png");
 
-	private JButton ModifyLoading = new JButton("");
+	private LimpidButton FindLoading = new LimpidButton("","picture/查询装运单.png");
 
-	private JButton FindLoading = new JButton("");
+	private TaskButton Transferring = new TaskButton("","picture/中转货物管理.png");
+	
+	private LimpidButton AddTransferring = new LimpidButton("","picture/添加中转单.png");
 
-	private TaskButton Transferring = new TaskButton("");
+	private LimpidButton ModifyTransferring = new LimpidButton("","picture/修改中转单.png");
 
-	private JButton AddTransferring = new JButton("");
+	private LimpidButton FindTransferring = new LimpidButton("","picture/查询中转单.png");
 
-	private JButton ModifyTransferring = new JButton("");
+	private LimpidButton SeeRepository = new LimpidButton("","picture/查看库存信息.png");
+	
+	private TaskButton Receiving = new TaskButton("","picture/接收货物管理.png");
 
-	private JButton FindTransferring = new JButton("");
+	private LimpidButton AddReceiving = new LimpidButton("","picture/添加接收单.png");
 
-	private JButton SeeRepository = new JButton("");
+	private LimpidButton ModifyReceiving = new LimpidButton("","picture/修改接收单.png");
 
-	private TaskButton Receiving = new TaskButton("");
+	private LimpidButton FindReceiving = new LimpidButton("","picture/查询接收单.png");
 
-	private JButton AddReceiving = new JButton("");
-
-	private JButton ModifyReceiving = new JButton("");
-
-	private JButton FindReceiving = new JButton("");
-
-	private TaskButton exit = new TaskButton("");
+	private TaskButton exit = new TaskButton("","picture/退出.png");
 	
 	private Image head = new ImageIcon("picture/中转中心业务员.jpg").getImage();
 
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
-	private List<JButton> DetailButtonLoading = new ArrayList<JButton>();
+	private List<LimpidButton> DetailButtonLoading = new ArrayList<LimpidButton>();
 	
-	private List<JButton> DetailButtonTransferring = new ArrayList<JButton>();
+	private List<LimpidButton> DetailButtonTransferring = new ArrayList<LimpidButton>();
 	
-	private List<JButton> DetailButtonReceiving = new ArrayList<JButton>();
+	private List<LimpidButton> DetailButtonReceiving = new ArrayList<LimpidButton>();
 	
 	private static final int BUTTON_WITH = TaskPanel.BUTTON_W;
 
@@ -79,9 +80,6 @@ public class TransitionPanel extends UserPanel {
 		initUI();
 		addListenter();
 		//装运货物管理
-		this.AddLoading.setIcon(new ImageIcon("picture/添加装运单.png"));
-		this.ModifyLoading.setIcon(new ImageIcon("picture/修改装运单.png"));
-		this.FindLoading.setIcon(new ImageIcon("picture/查询装运单.png"));
 		DetailButtonLoading.add(AddLoading);
 		DetailButtonLoading.add(ModifyLoading);
 		DetailButtonLoading.add(FindLoading);
@@ -89,9 +87,6 @@ public class TransitionPanel extends UserPanel {
 		Loading.setDetailButtons(DetailButtonLoading);    //设置（添加）要展开的按钮
 		
 		//接收货物管理
-		this.AddReceiving.setIcon(new ImageIcon("picture/添加接收单.png"));
-		this.ModifyReceiving.setIcon(new ImageIcon("picture/修改接收单.png"));
-		this.FindReceiving.setIcon(new ImageIcon("picture/查询接收单.png"));
 		DetailButtonReceiving.add(AddReceiving);
 		DetailButtonReceiving.add(ModifyReceiving);
 		DetailButtonReceiving.add(FindReceiving);
@@ -99,10 +94,6 @@ public class TransitionPanel extends UserPanel {
 		Receiving.setDetailButtons(DetailButtonReceiving);    //设置（添加）要展开的按钮
 		
 		//中转货物管理
-		this.AddTransferring.setIcon(new ImageIcon("picture/添加中转单.png"));
-		this.ModifyTransferring.setIcon(new ImageIcon("picture/修改中转单.png"));
-		this.FindTransferring.setIcon(new ImageIcon("picture/查询中转单.png"));
-		this.SeeRepository.setIcon(new ImageIcon("picture/查看库存信息.png"));
 		DetailButtonTransferring.add(AddTransferring);
 		DetailButtonTransferring.add(ModifyTransferring);
 		DetailButtonTransferring.add(FindTransferring);
@@ -117,20 +108,16 @@ public class TransitionPanel extends UserPanel {
 	private void initUI() {
 		// 装运信息管理按钮
 		this.Loading.setBounds(0, UserImagePanel.USER_PANEL_H, BUTTON_WITH, BUTTON_HEIGHT);
-		this.Loading.setFont(WORD_FONT);
-		this.Loading.setIcon(new ImageIcon("picture/装运货物管理.png"));
+		
 		// 中转信息管理按钮
 		this.Transferring.setBounds(0, this.Loading.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH, BUTTON_HEIGHT);
-		this.Transferring.setFont(WORD_FONT);
-		this.Transferring.setIcon(new ImageIcon("picture/中转货物管理.png"));
+		
 		// 接收信息管理按钮
 		this.Receiving.setBounds(0, this.Transferring.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH, BUTTON_HEIGHT);
-		this.Receiving.setFont(WORD_FONT);
-		this.Receiving.setIcon(new ImageIcon("picture/接收货物管理.png"));
+	
 		// 退出按钮
 		this.exit.setBounds(0, this.Receiving.getY() + BUTTON_HEIGHT + BUTTON_GAP, BUTTON_WITH, BUTTON_HEIGHT);
-		this.exit.setFont(WORD_FONT);
-		this.exit.setIcon(new ImageIcon("picture/退出.png"));
+
 		// 面板添加按钮
 
 		this.task.buttonContainer.add(Loading);

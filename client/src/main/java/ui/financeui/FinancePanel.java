@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import ui.baseui.LimpidButton;
 import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
@@ -30,35 +31,35 @@ import ui.viewcontroller.ViewController;
 @SuppressWarnings("serial")
 public class FinancePanel extends UserPanel{
 	
-	private TaskButton cost = new TaskButton("");
+	private TaskButton cost = new TaskButton("","picture/成本管理.png");
 	
-	private JButton payment = new JButton("");
+	private LimpidButton payment = new LimpidButton("","picture/新建付款单.png");
 	
-	private TaskButton settlement = new TaskButton("");
+	private TaskButton settlement = new TaskButton("","picture/结算管理.png");
 	
-	private JButton receivable = new JButton("");
+	private LimpidButton receivable = new LimpidButton("","picture/营业厅当天收款单.png");
 	
-	private JButton allReceivable = new JButton("");
+	private LimpidButton allReceivable = new LimpidButton("","picture/当天所有收款单.png");
 	
-	private TaskButton account = new TaskButton("");
+	private TaskButton account = new TaskButton("","picture/账号管理.png");
 	
-	private JButton addAccount = new JButton("");
+	private LimpidButton addAccount = new LimpidButton("","picture/增加账号.png");
 	
-	private JButton deleteAccount = new JButton("");
+	private LimpidButton deleteAccount = new LimpidButton("","picture/删除账号.png");
 	
-	private JButton modifyAccount = new JButton("");
+	private LimpidButton modifyAccount = new LimpidButton("","picture/修改账号.png");
 	
-	private JButton inquireAccount = new JButton("");
+	private LimpidButton inquireAccount = new LimpidButton("","picture/查询账号.png");
 	
-	private TaskButton statistics = new TaskButton("");
+	private TaskButton statistics = new TaskButton("","picture/成本经营统计分析.png");
 	
-	private JButton costAndProfit = new JButton("");
+	private LimpidButton costAndProfit = new LimpidButton("","picture/查看成本收益表.png");
 	
-	private JButton run = new JButton("");
+	private LimpidButton run = new LimpidButton("","picture/查看经营情况表.png");
 	
-	private TaskButton originalInfo = new TaskButton("");
+	private TaskButton originalInfo = new TaskButton("","picture/期初建账.png");
 	
-	private TaskButton exit = new TaskButton("");
+	private TaskButton exit = new TaskButton("","picture/退出.png");
 	
 	private Image head = new ImageIcon("picture/财务人员.jpg").getImage();
 	
@@ -86,50 +87,29 @@ public class FinancePanel extends UserPanel{
 		int gap = TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP;
 		//成本管理按钮（包括新建付款单按钮）
 		this.cost.setBounds(0, UserImagePanel.USER_PANEL_H, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.cost.setFont(WORD_FONT);
-		this.cost.setIcon(new ImageIcon("picture/成本管理.png"));
+	
 		//付款单按钮
-		this.payment.setFont(WORD_FONT);
-		this.payment.setIcon(new ImageIcon("picture/新建付款单.png"));
+		
 		//将付款单按钮作为成本管理按钮的子按钮
-		List<JButton> costButtons = new ArrayList<JButton>();
+		List<LimpidButton> costButtons = new ArrayList<LimpidButton>();
 		costButtons.add(this.payment);
 		this.cost.setDetailButtons(costButtons);
 		
 		//结算管理按钮（包括收款单按钮）
 		this.settlement.setBounds(0, this.cost.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.settlement.setFont(WORD_FONT);
-		this.settlement.setIcon(new ImageIcon("picture/结算管理.png"));
-		//当天收款单按钮
-		this.receivable.setFont(WORD_FONT);
-		this.receivable.setIcon(new ImageIcon("picture/营业厅当天收款单.png"));
-		//所有收款单按钮
-		this.allReceivable.setFont(WORD_FONT);
-		this.allReceivable.setIcon(new ImageIcon("picture/当天所有收款单.png"));
+		
 		//将收款单按钮作为结算管理按钮的子按钮
-		List<JButton> settleButtons = new ArrayList<JButton>();
+		List<LimpidButton> settleButtons = new ArrayList<LimpidButton>();
 		settleButtons.add(this.receivable);
 		settleButtons.add(this.allReceivable);
 		this.settlement.setDetailButtons(settleButtons);
 		
 		//账户管理按钮（增删改查账户）
 		this.account.setBounds(0, this.settlement.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.account.setFont(WORD_FONT);
-		this.account.setIcon(new ImageIcon("picture/账号管理.png"));
-		//增加账户按钮
-		this.addAccount.setFont(WORD_FONT);
-		this.addAccount.setIcon(new ImageIcon("picture/增加账号.png"));
-		//删除账户按钮
-		this.deleteAccount.setFont(WORD_FONT);
-		this.deleteAccount.setIcon(new ImageIcon("picture/删除账号.png"));
-		//修改账户按钮
-		this.modifyAccount.setFont(WORD_FONT);
-		this.modifyAccount.setIcon(new ImageIcon("picture/修改账号.png"));
-		//查询账户按钮
-		this.inquireAccount.setFont(WORD_FONT);
-		this.inquireAccount.setIcon(new ImageIcon("picture/查询账号.png"));
+
+		
 		//将增删改查按钮作为账户管理按钮的子按钮
-		List<JButton> accountButtons = new ArrayList<JButton>();
+		List<LimpidButton> accountButtons = new ArrayList<LimpidButton>();
 		accountButtons.add(this.addAccount);
 		accountButtons.add(this.deleteAccount);
 		accountButtons.add(this.modifyAccount);
@@ -138,28 +118,19 @@ public class FinancePanel extends UserPanel{
 		
 		//成本经营统计分析按钮
 		this.statistics.setBounds(0, this.account.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.statistics.setFont(WORD_FONT);
-		this.statistics.setIcon(new ImageIcon("picture/成本经营统计分析.png"));
-		//成本收益表按钮
-		this.costAndProfit.setFont(WORD_FONT);
-		this.costAndProfit.setIcon(new ImageIcon("picture/查看成本收益表.png"));
-		//经营情况表按钮
-		this.run.setFont(WORD_FONT);
-		this.run.setIcon(new ImageIcon("picture/查看经营情况表.png"));
+	
 		//将成本收益和经营情况添加到成本经营统计分析
-		List<JButton> statisticsButtons = new ArrayList<JButton>();
+		List<LimpidButton> statisticsButtons = new ArrayList<LimpidButton>();
 		statisticsButtons.add(this.costAndProfit);
 		statisticsButtons.add(this.run);
 		this.statistics.setDetailButtons(statisticsButtons);
 		
 		//期初建账按钮
 		this.originalInfo.setBounds(0, this.statistics.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.originalInfo.setFont(WORD_FONT);
-		this.originalInfo.setIcon(new ImageIcon("picture/期初建账.png"));
+		
 		//退出按钮
 		this.exit.setBounds(0, this.originalInfo.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.exit.setFont(WORD_FONT);
-		this.exit.setIcon(new ImageIcon("picture/退出.png"));
+		
 		//面板添加按钮
 		this.task.buttonContainer.add(this.cost);
 		this.task.buttonContainer.add(this.settlement);
