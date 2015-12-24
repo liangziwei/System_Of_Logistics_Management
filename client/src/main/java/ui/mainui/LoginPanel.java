@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import ui.administratorui.AdministratorPanel;
@@ -43,7 +44,7 @@ public class LoginPanel extends JPanel{
 	
 	private JTextField idField= new JTextField();
 	
-	private JTextField pwField = new JTextField();
+	private JPasswordField pwField = new JPasswordField();
 	
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	

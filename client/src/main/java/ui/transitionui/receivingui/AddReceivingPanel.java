@@ -70,7 +70,7 @@ public class AddReceivingPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 
-	private JButton check = new JButton("同步相关中转单");
+	private LimpidButton check = new LimpidButton("","picture/同步相关中转单.png");
 
 	private LimpidButton ok = new LimpidButton("", "picture/确定.png");
 

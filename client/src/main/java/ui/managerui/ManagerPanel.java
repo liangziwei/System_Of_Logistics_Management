@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import ui.baseui.LimpidButton;
 import ui.baseui.TaskButton;
 import ui.baseui.TaskPanel;
 import ui.baseui.UserImagePanel;
@@ -33,41 +34,41 @@ import ui.viewcontroller.ViewController;
 @SuppressWarnings("serial")
 public class ManagerPanel extends UserPanel{
 
-	private TaskButton approve = new TaskButton("");
+	private TaskButton approve = new TaskButton("","picture/审批单据.png");
 	
-	private TaskButton constant = new TaskButton("");
+	private TaskButton constant = new TaskButton("","picture/制定常量.png");
 	
-	private JButton city = new JButton("");
+	private LimpidButton city = new LimpidButton("","picture/城市距离.png");
 	
-	private JButton price = new JButton("");
+	private LimpidButton price = new LimpidButton("","picture/价格常量.png");
 	
-	private TaskButton organization = new TaskButton("");
+	private TaskButton organization = new TaskButton("","picture/机构管理.png");
 	
-	private JButton addOrg = new JButton("");
+	private LimpidButton addOrg = new LimpidButton("","picture/增加机构信息.png");
 	
-	private JButton deleteOrg = new JButton("");
+	private LimpidButton deleteOrg = new LimpidButton("","picture/删除机构信息.png");
 	
-	private JButton modifyOrg = new JButton("");
+	private LimpidButton modifyOrg = new LimpidButton("","picture/修改机构信息.png");
 	
-	private JButton inquireOrg = new JButton("");
+	private LimpidButton inquireOrg = new LimpidButton("","picture/查询机构信息.png");
 	
-	private TaskButton staff = new TaskButton("");
+	private TaskButton staff = new TaskButton("","picture/人员管理.png");
 	
-	private JButton addStaff = new JButton("");
+	private LimpidButton addStaff = new LimpidButton("","picture/增加人员信息.png");
 	
-	private JButton deleteStaff = new JButton("");
+	private LimpidButton deleteStaff = new LimpidButton("","picture/删除人员信息.png");
 	
-	private JButton modifyStaff = new JButton("");
+	private LimpidButton modifyStaff = new LimpidButton("","picture/修改人员信息.png");
 	
-	private JButton inquireStaff = new JButton("");
+	private LimpidButton inquireStaff = new LimpidButton("","picture/查询人员信息.png");
 	
-	private TaskButton statistics = new TaskButton("");
+	private TaskButton statistics = new TaskButton("","picture/成本经营统计分析.png");
 	
-	private JButton run = new JButton("");
+	private LimpidButton run = new LimpidButton("","picture/查看经营情况表.png");
 	
-	private JButton costBenefit = new JButton("");
+	private LimpidButton costBenefit = new LimpidButton("","picture/查看成本收益表.png");
 	
-	private TaskButton exit = new TaskButton("");
+	private TaskButton exit = new TaskButton("","picture/退出.png");
 	
 	private Image head = new ImageIcon("picture/总经理.jpg").getImage();
 	
@@ -78,35 +79,17 @@ public class ManagerPanel extends UserPanel{
 		int gap = TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP;
 		//审批单据按钮
 		this.approve.setBounds(0, UserImagePanel.USER_PANEL_H, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.approve.setFont(WORD_FONT);
-		this.approve.setIcon(new ImageIcon("picture/审批单据.png"));
 		
 		//制定常量按钮
 		this.constant.setBounds(0, this.approve.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.constant.setFont(WORD_FONT);	
-		this.constant.setIcon(new ImageIcon("picture/制定常量.png"));
-		this.city.setFont(WORD_FONT);
-		this.city.setIcon(new ImageIcon("picture/城市距离.png"));
-		this.price.setFont(WORD_FONT);
-		this.price.setIcon(new ImageIcon("picture/价格常量.png"));		
-		List<JButton> constantButtons = new ArrayList<JButton>();
+		List<LimpidButton> constantButtons = new ArrayList<LimpidButton>();
 		constantButtons.add(this.city);
 		constantButtons.add(this.price);
 		this.constant.setDetailButtons(constantButtons);
 		
 		//机构管理按钮
 		this.organization.setBounds(0, this.constant.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.organization.setFont(WORD_FONT);
-		this.organization.setIcon(new ImageIcon("picture/机构管理.png"));
-		this.addOrg.setFont(WORD_FONT);
-		this.addOrg.setIcon(new ImageIcon("picture/增加机构信息.png"));
-		this.deleteOrg.setFont(WORD_FONT);
-		this.deleteOrg.setIcon(new ImageIcon("picture/删除机构信息.png"));
-		this.modifyOrg.setFont(WORD_FONT); 
-		this.modifyOrg.setIcon(new ImageIcon("picture/修改机构信息.png"));
-		this.inquireOrg.setFont(WORD_FONT);
-		this.inquireOrg.setIcon(new ImageIcon("picture/查询机构信息.png"));
-		List<JButton> orgButtons = new ArrayList<JButton>();
+		List<LimpidButton> orgButtons = new ArrayList<LimpidButton>();
 		orgButtons.add(this.addOrg);
 		orgButtons.add(this.deleteOrg);
 		orgButtons.add(this.modifyOrg);
@@ -115,17 +98,7 @@ public class ManagerPanel extends UserPanel{
 		
 		//人员管理按钮
 		this.staff.setBounds(0, this.organization.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.staff.setFont(WORD_FONT);
-		this.staff.setIcon(new ImageIcon("picture/人员管理.png"));
-		this.addStaff.setFont(WORD_FONT);
-		this.addStaff.setIcon(new ImageIcon("picture/增加人员信息.png"));
-		this.deleteStaff.setFont(WORD_FONT);
-		this.deleteStaff.setIcon(new ImageIcon("picture/删除人员信息.png"));
-		this.modifyStaff.setFont(WORD_FONT);
-		this.modifyStaff.setIcon(new ImageIcon("picture/修改人员信息.png"));
-		this.inquireStaff.setFont(WORD_FONT);
-		this.inquireStaff.setIcon(new ImageIcon("picture/查询人员信息.png"));
-		List<JButton> staffButtons = new ArrayList<JButton>();
+		List<LimpidButton> staffButtons = new ArrayList<LimpidButton>();
 		staffButtons.add(this.addStaff);
 		staffButtons.add(this.deleteStaff);
 		staffButtons.add(this.modifyStaff);
@@ -134,21 +107,13 @@ public class ManagerPanel extends UserPanel{
 		
 		//成本经营统计分析按钮
 		this.statistics.setBounds(0, this.staff.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.statistics.setFont(WORD_FONT);
-		this.statistics.setIcon(new ImageIcon("picture/成本经营统计分析.png"));
-		this.run.setFont(WORD_FONT);
-		this.run.setIcon(new ImageIcon("picture/查看经营情况表.png"));
-		this.costBenefit.setFont(WORD_FONT);
-		this.costBenefit.setIcon(new ImageIcon("picture/查看成本收益表.png"));
-		List<JButton> statisticsButtons = new ArrayList<JButton>();
+		List<LimpidButton> statisticsButtons = new ArrayList<LimpidButton>();
 		statisticsButtons.add(this.costBenefit);
 		statisticsButtons.add(this.run);
 		this.statistics.setDetailButtons(statisticsButtons);
 		
 		//退出按钮
 		this.exit.setBounds(0, this.statistics.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.exit.setFont(WORD_FONT);
-		this.exit.setIcon(new ImageIcon("picture/退出.png"));
 		
 		//面板添加按钮
 		this.task.buttonContainer.add(this.approve);

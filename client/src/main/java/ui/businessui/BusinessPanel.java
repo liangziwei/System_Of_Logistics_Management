@@ -34,29 +34,29 @@ import ui.viewcontroller.ViewController;
 public class BusinessPanel extends UserPanel{
 
 	private LimpidButton entrucking=new LimpidButton("","picture/新建装车单.png");
-	private TaskButton receiveAndSend=new TaskButton("");
-	private TaskButton payment=new TaskButton("");
-	private TaskButton vehicle=new TaskButton("");
-	private TaskButton driver=new TaskButton("");
-	private TaskButton exit = new TaskButton("");
+	private TaskButton receiveAndSend=new TaskButton("","picture/接收与派件.png");
+	private TaskButton payment=new TaskButton("","picture/新建收款单.png");
+	private TaskButton vehicle=new TaskButton("","picture/车辆信息管理.png");
+	private TaskButton driver=new TaskButton("","picture/司机信息管理.png");
+	private TaskButton exit = new TaskButton("","picture/退出.png");
 	
-	JButton receive=new JButton("");
-	JButton send=new JButton("");		
-	JButton addVehi=new JButton("");
-	JButton delVehi=new JButton("");
-	JButton modVehi=new JButton("");
-	JButton findVehi=new JButton("");
-	JButton addDriv=new JButton("");
-	JButton delDriv=new JButton("");
-	JButton modDriv=new JButton("");
-	JButton findDriv=new JButton("");
+	LimpidButton receive=new LimpidButton("","picture/新建到达单.png");
+	LimpidButton send=new LimpidButton("","picture/新建派件单.png");		
+	LimpidButton addVehi=new LimpidButton("","picture/添加车辆信息.png");
+	LimpidButton delVehi=new LimpidButton("","picture/删除车辆信息.png");
+	LimpidButton modVehi=new LimpidButton("","picture/修改车辆信息.png");
+	LimpidButton findVehi=new LimpidButton("","picture/查询车辆信息.png");
+	LimpidButton addDriv=new LimpidButton("","picture/添加司机信息.png");
+	LimpidButton delDriv=new LimpidButton("","picture/删除司机信息.png");
+	LimpidButton modDriv=new LimpidButton("","picture/修改司机信息.png");
+	LimpidButton findDriv=new LimpidButton("","picture/查询司机信息.png");
 	
 	List<TaskButton> receAndSendButtonList=new ArrayList<TaskButton>();
 	List<TaskButton> vehiButtonList1=new ArrayList<TaskButton>();
 	List<TaskButton> drivButtonList2=new ArrayList<TaskButton>();
-	List<JButton> receAndSendList=new ArrayList<JButton>();
-	List<JButton> vehicleList=new ArrayList<JButton>();
-	List<JButton> driverList=new ArrayList<JButton>();
+	List<LimpidButton> receAndSendList=new ArrayList<LimpidButton>();
+	List<LimpidButton> vehicleList=new ArrayList<LimpidButton>();
+	List<LimpidButton> driverList=new ArrayList<LimpidButton>();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
@@ -77,45 +77,19 @@ public class BusinessPanel extends UserPanel{
 		this.receiveAndSend.setBounds(0, this.entrucking.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP,
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.receiveAndSend.setFont(WORD_FONT);
-		this.receiveAndSend.setIcon(new ImageIcon("picture/接收与派件.png"));
 		this.payment.setBounds(0, this.receiveAndSend.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.payment.setFont(WORD_FONT);
-		this.payment.setIcon(new ImageIcon("picture/新建收款单.png"));
 		this.vehicle.setBounds(0, this.payment.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.vehicle.setFont(WORD_FONT);
-		this.vehicle.setIcon(new ImageIcon("picture/车辆信息管理.png"));
 		this.driver.setBounds(0, this.vehicle.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
 		this.driver.setFont(WORD_FONT);
-		this.driver.setIcon(new ImageIcon("picture/司机信息管理.png"));
 		
 		this.exit.setBounds(0, this.driver.getY() + TaskPanel.BUTTON_H + TaskPanel.BUTTON_GAP, 
 				TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
-		this.exit.setFont(WORD_FONT);
-		this.exit.setIcon(new ImageIcon("picture/退出.png"));
-		
-		this.receive.setFont(WORD_FONT);
-		this.receive.setIcon(new ImageIcon("picture/新建到达单.png"));
-		this.send.setFont(WORD_FONT);
-		this.send.setIcon(new ImageIcon("picture/新建派件单.png"));
-		this.addVehi.setFont(WORD_FONT);
-		this.addVehi.setIcon(new ImageIcon("picture/添加车辆信息.png"));
-		this.delVehi.setFont(WORD_FONT);
-		this.delVehi.setIcon(new ImageIcon("picture/删除车辆信息.png"));
-		this.modVehi.setFont(WORD_FONT);
-		this.modVehi.setIcon(new ImageIcon("picture/修改车辆信息.png"));
-		this.findVehi.setFont(WORD_FONT);
-		this.findVehi.setIcon(new ImageIcon("picture/查询车辆信息.png"));
-		this.addDriv.setFont(WORD_FONT);
-		this.addDriv.setIcon(new ImageIcon("picture/添加司机信息.png"));
-		this.delDriv.setFont(WORD_FONT);
-		this.delDriv.setIcon(new ImageIcon("picture/删除司机信息.png"));
-		this.modDriv.setFont(WORD_FONT);
-		this.modDriv.setIcon(new ImageIcon("picture/修改司机信息.png"));
-		this.findDriv.setFont(WORD_FONT);
-		this.findDriv.setIcon(new ImageIcon("picture/查询司机信息.png"));
+		this.exit.setFont(WORD_FONT);		
 		
 		
 		this.receAndSendList.add(receive);
