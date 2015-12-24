@@ -19,19 +19,14 @@ public class InquireDataImpl implements InquireDataService{
 		LogisticsPO po = null;
 		try {
 			OrderPO temp = order.getOrderInfoById(id);
+			if(temp == null) {
+				return null;
+			}
 			po = new LogisticsPO(temp.getGoodsInfo().getTransitNode(), temp.getGoodsInfo().getCity());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return po;
-		//临时数据
-//		TransitionNode state = TransitionNode.SENDER_TRANSI_CENTER;
-//		List<City> trace = new ArrayList<City>();
-//		trace.add(City.BEI_JING);
-//		trace.add(City.NAN_JING);
-//		trace.add(City.SHANG_HAI);
-//		trace.add(City.GUANG_ZHOU);
-//		return new LogisticsPO(state, trace);
 	}
 
 }

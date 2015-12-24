@@ -153,9 +153,9 @@ public class LoginPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				
+				String id = idField.getText();
+				id=id.toUpperCase();
 				if(DEBUG) {
-					String id = idField.getText();
-					id=id.toUpperCase();
 					//设置当前页面不可见
 					setVisible(false);
 					viewController.switchView(USER_TABLE.get(id.charAt(0)));
@@ -163,52 +163,6 @@ public class LoginPanel extends JPanel{
 				}
 				
 				//跳转页面
-				String id = idField.getText();
-				id=id.toUpperCase();
-				setVisible(false);
-				viewController.switchView(USER_TABLE.get(id.charAt(0)));
-//				if(id == null ||(!id.matches("[B-H][0-9]{9}")&&!id.equalsIgnoreCase("admin"))) {
-//					hint.setForeground(Color.RED);
-//					hint.setText("账号輸入格式错误");
-//				}else{
-//				    
-//					String password=pwField.getText();
-//					if(login.login(id, password)){
-//						//设置当前页面不可见
-//						setVisible(false);
-//						//跳转到相应用户的界面
-//						hint.setText("");
-//						if(id.equalsIgnoreCase("admin")){
-//							id="H"+id;
-//						}
-//						viewController.switchView(USER_TABLE.get(id.charAt(0)));
-//					}else{
-//						hint.setForeground(Color.RED);
-//						hint.setText("账号或密码输入错误");
-//					}
-//				}
-//				LoginBL login = new LoginBL();
-//				//设置当前页面不可见
-//				setVisible(false);
-//				viewController.switchView(USER_TABLE.get(id.charAt(0)));
-//				if(id == null ||!id.matches("[B-H][0-9]{9}")) {
-//					hint.setForeground(Color.RED);
-//					hint.setText("账号輸入格式错误");
-//				}else{
-//				    
-//					String password=pwField.getText();
-//					if(login.login(id, password)){
-//						//设置当前页面不可见
-//						setVisible(false);
-//						//跳转到相应用户的界面
-//						hint.setText("");
-//						viewController.switchView(USER_TABLE.get(id.charAt(0)));
-//					}else{
-//						hint.setForeground(Color.RED);
-//						hint.setText("账号或密码输入错误");
-//					}
-//				}
-				
 				if(id == null ||(!id.matches("[B-H][0-9]{9}")&&!id.equalsIgnoreCase("admin"))) {
 					hint.setForeground(Color.RED);
 					hint.setText("账号輸入格式错误");
