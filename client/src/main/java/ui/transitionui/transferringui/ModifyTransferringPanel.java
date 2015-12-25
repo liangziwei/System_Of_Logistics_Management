@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +18,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.repositoryController.InRepositoryController;
 import businessLogic.businessLogicController.transitionController.TransferringController;
+import businessLogicService.repositoryBLService.InRepositoryBLService;
 import businessLogicService.transitionBLService.TransferringBLService;
 import constant.LoadingType;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import ui.transitionui.loadingui.AddLoadingPanel;
+import vo.repositoryVO.InRepositoryVO;
 import vo.transitionVO.TransferringVO;
 
 public class ModifyTransferringPanel extends DetailPanel {
 	private TransferringBLService transferringBLService = new TransferringController();
+	private InRepositoryBLService InRepositoryBLService = new InRepositoryController();
 	
 	private DateChooser dateChoose=DateChooser.getInstance();
 	// 添加下拉框
@@ -42,6 +48,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 	private JLabel supervisionid = new JLabel("监装员");
 	private JLabel containerid = new JLabel("货柜号");
 	private JLabel alldeliveryid = new JLabel("本次装箱所有托运单号");
+	private JLabel adddeliveryid = new JLabel("快递编号添加");
 	private JLabel fare = new JLabel("运费");
 
 	private JTextField transferringidText = new JTextField();
@@ -55,11 +62,14 @@ public class ModifyTransferringPanel extends DetailPanel {
 	private JTextField supervisionidText = new JTextField();
 	private JTextField containeridText = new JTextField();
 	private JTextField fareText = new JTextField();
+	private JTextField addtext = new JTextField();
 	private JTextArea alldeliveryidText = new JTextArea();
 
 	private JPanel infoPanel = new JPanel();
 
 	private JPanel buttonPanel = new JPanel();
+	
+	private JButton add = new JButton("+");
 
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
@@ -71,6 +81,8 @@ public class ModifyTransferringPanel extends DetailPanel {
 
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
+	private JLabel deliverystate = new JLabel("库存中无该快递单"); 
+	
 	private JLabel state1 = new JLabel("", JLabel.CENTER);
 
 	private JLabel state2 = new JLabel("", JLabel.CENTER);
@@ -116,7 +128,7 @@ public class ModifyTransferringPanel extends DetailPanel {
 		super();
 		// 下拉框设置
 		container.setLayout(null);
-		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H-130));
 		jScrollPane.setBounds(0, 0, DETAIL_PANEL_W, DETAIL_PANEL_H);
 		jScrollPane.setViewportView(this.container);
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(15);
@@ -264,17 +276,32 @@ public class ModifyTransferringPanel extends DetailPanel {
 				supervisionid.getY() + supervisionid.getHeight() + COMPONENT_GAP_Y - 15, TEXTid_W, LABEL_H);
 		this.infoPanel.add(alldeliveryid);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(alldeliveryid.getX(), alldeliveryid.getY() + alldeliveryid.getHeight(), Area_W, Area_H);
+		scrollPane.setBounds(alldeliveryid.getX()+Area_W-180, alldeliveryid.getY()+alldeliveryid.getHeight(),TEXT_W,Area_H/2-20);
 		this.infoPanel.add(scrollPane);
 		scrollPane.setViewportView(alldeliveryidText);
 		scrollPane.setOpaque(false);
 		scrollPane.getViewport().setOpaque(false);
 		alldeliveryidText.setOpaque(false);
+		alldeliveryidText.setFont(WORD_FONT);
+		alldeliveryidText.setEditable(false);
+		adddeliveryid.setBounds(alldeliveryid.getX(), alldeliveryid.getY()+alldeliveryid.getHeight()+20, TEXT_W-60, LABEL_H);
+		adddeliveryid.setFont(WORD_FONT);
+		this.infoPanel.add(adddeliveryid);
+		addtext.setBounds(adddeliveryid.getX()+adddeliveryid.getWidth()+COMPONENT_GAP_X,adddeliveryid.getY(),150,TEXT_H);
+		addtext.setOpaque(false);
+		this.infoPanel.add(addtext);
+		add.setBounds(addtext.getX()+addtext.getWidth()+COMPONENT_GAP_X,addtext.getY(),40,TEXT_H);
+		add.setFont(WORD_FONT);
+		this.infoPanel.add(add);
+		deliverystate.setBounds(adddeliveryid.getX()+COMPONENT_GAP_Y, adddeliveryid.getY()+adddeliveryid.getHeight()+COMPONENT_GAP_X, TEXT_W, TEXT_H);
+		deliverystate.setFont(WORD_FONT);
+		deliverystate.setForeground(Color.red);
+		deliverystate.setVisible(false);
+		this.infoPanel.add(deliverystate);
 
-		fare.setBounds(alldeliveryid.getX(), scrollPane.getY() + scrollPane.getHeight() + COMPONENT_GAP_Y - 15, LABEL_W,
-				LABEL_H);
+		fare.setBounds(alldeliveryid.getX(), deliverystate.getY()+deliverystate.getHeight()+COMPONENT_GAP_X, LABEL_W, LABEL_H);
 		this.infoPanel.add(fare);
-		fareText.setBounds(fare.getX() + fare.getWidth() + COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
+		fareText.setBounds(fare.getX() + fare.getWidth() + COMPONENT_GAP_X, fare.getY(), TEXT_W, TEXT_H);
 		fareText.setBackground(Color.GRAY);
 		fareText.setEditable(false);
 		fareText.setOpaque(false);
@@ -362,6 +389,30 @@ public class ModifyTransferringPanel extends DetailPanel {
 				// 重置运费
 				fareText.setText("");
 				fare.setForeground(Color.black);
+			}
+		});
+		
+		this.add.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				InRepositoryVO inRepositoryVO = InRepositoryBLService.findInRepositoryFormBL(addtext.getText().trim());
+				if (inRepositoryVO!=null) {
+					deliverystate.setVisible(false);
+					alldeliveryidText.append(addtext.getText().trim()+"\n");
+					addtext.setText("");
+				}
+				else {
+					deliverystate.setVisible(true);
+				}
+			}
+		});
+		
+		addtext.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					add.doClick();
+				}
 			}
 		});
 	}

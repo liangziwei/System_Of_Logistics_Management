@@ -11,7 +11,7 @@ public class Start {
 	public static void main(String[] args) {
 		
 		//主框架
-		ExpressFrame frame = new ExpressFrame();
+		ExpressFrame frame = ExpressFrame.getInstance();
 		//界面跳转控制器
 		ViewController controller = new ViewController(frame);
 		//主面板
@@ -21,7 +21,7 @@ public class Start {
 		//刷新面板
 		frame.repaint();
 		
-		//每隔5分钟检查一下网络连接是否正常
+		//每隔5秒检查一下网络连接是否正常
 		Runnable connect = new Reconnect(RMI.getRegistry(), frame);
 		Thread check = new Thread(connect);
 		check.start();
