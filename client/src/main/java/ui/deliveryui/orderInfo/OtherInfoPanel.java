@@ -47,6 +47,8 @@ public class OtherInfoPanel extends JPanel{
 		this.addComboItem();
 		//将组件添加到面板
 		this.addComponent();
+		
+		this.setOpaque(false);
 	}
 	
 	public void clearInfo() {

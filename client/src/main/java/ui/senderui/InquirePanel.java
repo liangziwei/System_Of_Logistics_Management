@@ -44,9 +44,9 @@ public class InquirePanel extends JPanel{
 	
 	private JLabel tip = new JLabel();
 	
-	private LimpidButton ok = new LimpidButton("","picture/查询.png");
+	private LimpidButton ok = new LimpidButton("","picture/inquire.png");
 	
-	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
+	private LimpidButton cancel = new LimpidButton("","picture/back.png");
 	
 	private static Image NAN_JING = new ImageIcon("picture/city/nan_jing.png").getImage();
 	

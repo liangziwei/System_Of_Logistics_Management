@@ -50,8 +50,6 @@ public class OrderInquirePanel extends DetailPanel{
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
-	private static Image BACKGROUND = new ImageIcon("picture/订单查询.jpg").getImage();
-	
 	private static final int LABEL_W = 100;
 	
 	private static final int LABEL_H = 30;
@@ -159,11 +157,5 @@ public class OrderInquirePanel extends DetailPanel{
 		});
 	}
 	
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(BACKGROUND, 0, orderLabel.getY() + (LABEL_H << 1),
-				DETAIL_PANEL_W - 30, DETAIL_PANEL_H - (LABEL_H << 2), null);
-	}
 
 }

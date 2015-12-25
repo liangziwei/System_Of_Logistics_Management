@@ -45,6 +45,8 @@ public class GoodsInfoPanel extends JPanel{
 		this.addComponent();
 		//将输入框设置为透明
 		this.setOpaque();
+		
+		this.setOpaque(false);
 	}
 	
 	public void setWordFont(Font font) {

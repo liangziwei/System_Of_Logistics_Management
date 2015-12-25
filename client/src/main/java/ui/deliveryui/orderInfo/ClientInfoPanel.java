@@ -58,6 +58,8 @@ public class ClientInfoPanel extends JPanel{
 		this.addComponent();
 		//设置输入框为透明
 		this.setOpaque();
+		
+		this.setOpaque(false);
 	}
 	
 	public void clearInfo() {

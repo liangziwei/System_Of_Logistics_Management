@@ -130,6 +130,7 @@ public class OrderInputPanel extends DetailPanel{
 		this.buttonPanel.setLayout(null);
 		this.buttonPanel.add(this.ok);
 		this.buttonPanel.add(this.cancel);
+		this.buttonPanel.setOpaque(false);
 		//状态信息
 		this.state.setBounds(this.sender.getX(), this.buttonPanel.getY() - BUTTON_H, PANEL_W, BUTTON_W);
 		this.state.setFont(WORD_FONT);
