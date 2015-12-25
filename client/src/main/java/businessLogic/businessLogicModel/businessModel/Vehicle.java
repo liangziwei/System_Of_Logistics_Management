@@ -30,6 +30,7 @@ public class Vehicle {
 		VehiclePO vehiclePO = null;
 		try {
 			vehiclePO = vehicleData.findVehicle(vehicleid);
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();

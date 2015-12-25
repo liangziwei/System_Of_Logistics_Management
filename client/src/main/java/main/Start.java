@@ -1,8 +1,5 @@
 package main;
 
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
 import network.RMI;
 import network.Reconnect;
 import ui.mainui.ExpressFrame;
@@ -24,22 +21,6 @@ public class Start {
 		//刷新面板
 		frame.repaint();
 		
-		String lookAndFeel =  "javax.swing.plaf.metal.MetalLookAndFeel";
-		try {
-			UIManager.setLookAndFeel(lookAndFeel);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		//每隔5分钟检查一下网络连接是否正常
 		Runnable connect = new Reconnect(RMI.getRegistry(), frame);
 		Thread check = new Thread(connect);

@@ -19,7 +19,6 @@ public class MakeConstantController implements MakeConstantBLService{
 	
 	private MakeConstant makeconstant = new MakeConstant();
 	
-	
 	@Override
 	public boolean setDistance(DistanceTable distance) {
 		return this.makeconstant.setDistance(distance);
