@@ -184,7 +184,7 @@ public class FindLoadingPanel extends DetailPanel{
 		
 		fare.setBounds(scrollPane.getX(), scrollPane.getY()+Area_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(fare);
-		fareText.setBounds(fare.getX()+fare.getWidth()+COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
+		fareText.setBounds(fare.getX()+fare.getWidth()+COMPONENT_GAP_X, fare.getY(), TEXT_W, TEXT_H);
 		fareText.setBackground(Color.GRAY);
 		fareText.setOpaque(false);
 		fareText.setEditable(false);

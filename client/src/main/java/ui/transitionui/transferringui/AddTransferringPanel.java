@@ -278,9 +278,9 @@ public class AddTransferringPanel extends DetailPanel {
 		deliverystate.setVisible(false);
 		this.infoPanel.add(deliverystate);
 		
-		fare.setBounds(alldeliveryid.getX(), alldeliveryid.getY()+alldeliveryid.getHeight()+Area_H/2+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
+		fare.setBounds(alldeliveryid.getX(), deliverystate.getY()+deliverystate.getHeight()+COMPONENT_GAP_X, LABEL_W, LABEL_H);
 		this.infoPanel.add(fare);
-		fareText.setBounds(fare.getX() + fare.getWidth() + COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
+		fareText.setBounds(fare.getX() + fare.getWidth() + COMPONENT_GAP_X, fare.getY(), TEXT_W, TEXT_H);
 		fareText.setOpaque(false);
 		fareText.setBackground(Color.GRAY);
 		fareText.setEditable(false);

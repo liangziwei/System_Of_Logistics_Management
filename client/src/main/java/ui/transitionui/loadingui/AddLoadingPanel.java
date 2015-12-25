@@ -141,7 +141,7 @@ public class AddLoadingPanel extends DetailPanel{
 		jScrollPane.setOpaque(false);
 		jScrollPane.getViewport().setOpaque(false);
 		//主面板
-		this.infoPanel.setBounds(START_X,START_Y,this.DETAIL_PANEL_W,START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H/2);
+		this.infoPanel.setBounds(START_X,START_Y,this.DETAIL_PANEL_W,START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H/2-30);
 		this.infoPanel.setLayout(null);
 		this.infoPanel.setOpaque(false);
 		//初始化信息面板
@@ -244,9 +244,9 @@ public class AddLoadingPanel extends DetailPanel{
 		deliverystate.setVisible(false);
 		this.infoPanel.add(deliverystate);
 		//
-		fare.setBounds(alldeliveryid.getX(), alldeliveryid.getY()+alldeliveryid.getHeight()+Area_H/2+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
+		fare.setBounds(alldeliveryid.getX(), deliverystate.getY()+deliverystate.getHeight()+COMPONENT_GAP_X, LABEL_W, LABEL_H);
 		this.infoPanel.add(fare);
-		fareText.setBounds(fare.getX()+fare.getWidth()+COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
+		fareText.setBounds(fare.getX()+fare.getWidth()+COMPONENT_GAP_X, fare.getY(), TEXT_W, TEXT_H);
 		fareText.setBackground(Color.GRAY);
 		fareText.setEditable(false);
 		fareText.setOpaque(false);
