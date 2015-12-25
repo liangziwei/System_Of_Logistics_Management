@@ -5,9 +5,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,15 +18,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.repositoryController.InRepositoryController;
 import businessLogic.businessLogicController.transitionController.LoadingController;
+import businessLogicService.repositoryBLService.InRepositoryBLService;
 import businessLogicService.transitionBLService.LoadingBLService;
 import constant.LoadingType;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
+import vo.repositoryVO.InRepositoryVO;
 import vo.transitionVO.LoadingVO;
 
 public class AddLoadingPanel extends DetailPanel{
 	private LoadingBLService loadingservice = new LoadingController();
+	private InRepositoryBLService InRepositoryBLService = new InRepositoryController();
+	
 	//添加下拉框
 	private JScrollPane jScrollPane =new JScrollPane();
 	private JPanel container = new JPanel();
@@ -41,6 +49,8 @@ public class AddLoadingPanel extends DetailPanel{
 	private JLabel supercargoid = new JLabel("押运员");
 	
 	private JLabel alldeliveryid = new JLabel("本次装箱所有订单条形码号");
+	
+	private JLabel adddeliveryid = new JLabel("快递编号添加");
 	
 	private JLabel fare = new JLabel("运费");
 	
@@ -60,16 +70,21 @@ public class AddLoadingPanel extends DetailPanel{
 	
 	private JTextArea alldeliveryidArea = new JTextArea();
 	
+	private JTextField addtext = new JTextField();
+	
 	private JPanel infoPanel = new JPanel();
 	
 	private JPanel buttonPanel = new JPanel();
 	
+	private JButton add = new JButton("+");
+		
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
 	private LimpidButton cancel = new LimpidButton("","picture/取消.png");
 	
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
+	private JLabel deliverystate = new JLabel("库存中无该快递单"); 
 	private JLabel state = new JLabel("" ,JLabel.CENTER);
 	
 	public static final int LABEL_W = 80;
@@ -114,7 +129,7 @@ public class AddLoadingPanel extends DetailPanel{
 		super();
 		//下拉框设置
 		container.setLayout(null);
-		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H));
+		container.setPreferredSize(new Dimension(CONTAINER_W, CONTAINER_H-160));
 		container.setOpaque(false);
 		jScrollPane.setBounds(0, 0,DETAIL_PANEL_W, DETAIL_PANEL_H);
 		jScrollPane.setViewportView(this.container);
@@ -126,7 +141,7 @@ public class AddLoadingPanel extends DetailPanel{
 		jScrollPane.setOpaque(false);
 		jScrollPane.getViewport().setOpaque(false);
 		//主面板
-		this.infoPanel.setBounds(START_X,START_Y,this.DETAIL_PANEL_W,START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H);
+		this.infoPanel.setBounds(START_X,START_Y,this.DETAIL_PANEL_W,START_Y+(LABEL_H+COMPONENT_GAP_Y)*5+Area_H/2-30);
 		this.infoPanel.setLayout(null);
 		this.infoPanel.setOpaque(false);
 		//初始化信息面板
@@ -158,11 +173,13 @@ public class AddLoadingPanel extends DetailPanel{
 	}
 	
 	private void initUI(){
+		//
 		loadingid.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(loadingid);
 		loadingidText.setBounds(loadingid.getX()+LABEL_W+COMPONENT_GAP_X,loadingid.getY() , TEXTid_W, TEXT_H);
 		loadingidText.setOpaque(false);
 		this.infoPanel.add(loadingidText);
+		//
 		arrivalid.setBounds(loadingid.getX(), loadingid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX()+arrivalid.getWidth()+COMPONENT_GAP_X,arrivalid.getY(),TEXT_W,TEXT_H);
@@ -172,6 +189,7 @@ public class AddLoadingPanel extends DetailPanel{
 		arrivalidText.addItem("广州");
 		arrivalidText.addItem("上海");
 		this.infoPanel.add(arrivalidText);
+		//
 		way.setBounds(arrivalidText.getX()+arrivalidText.getWidth()+COMPONENT_GAP_X, arrivalid.getY(),LABEL_W, LABEL_H);
 		this.infoPanel.add(way);
 		wayBox.setBounds(way.getX()+way.getWidth()+COMPONENT_GAP_X, way.getY(), TEXT_W, TEXT_H);
@@ -180,35 +198,55 @@ public class AddLoadingPanel extends DetailPanel{
 		wayBox.addItem("火车");
 		wayBox.addItem("汽车");
 		this.infoPanel.add(wayBox);
+		//
 		wayid.setBounds(arrivalid.getX(), arrivalid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(wayid);
 		wayidText.setBounds(wayid.getX()+wayid.getWidth()+COMPONENT_GAP_X, wayid.getY(), TEXTid_W, TEXT_H);
 		wayidText.setOpaque(false);
 		this.infoPanel.add(wayidText);
+		//
 		supervisionid.setBounds(wayid.getX(), wayid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(supervisionid);
 		supervisionidText.setBounds(supervisionid.getX()+supervisionid.getWidth()+COMPONENT_GAP_X, supervisionid.getY(), TEXT_W, TEXT_H);
 		supervisionidText.setOpaque(false);
 		this.infoPanel.add(supervisionidText);
+		//
 		supercargoid.setBounds(supervisionidText.getX()+supervisionidText.getWidth()+COMPONENT_GAP_X, supervisionid.getY(), LABEL_W, LABEL_H);
 		this.infoPanel.add(supercargoid);
 		supercargoidText.setBounds(supercargoid.getX()+supercargoid.getWidth()+COMPONENT_GAP_X, supercargoid.getY(), TEXT_W, TEXT_H);
 		supercargoidText.setOpaque(false);
 		this.infoPanel.add(supercargoidText);
+		//
 		alldeliveryid.setBounds(supervisionid.getX(), supervisionid.getY()+supervisionid.getHeight()+COMPONENT_GAP_Y, TEXTid_W,LABEL_H);
+		alldeliveryid.setFont(WORD_FONT);
 		this.infoPanel.add(alldeliveryid);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(alldeliveryid.getX(), alldeliveryid.getY()+alldeliveryid.getHeight(), Area_W,Area_H);
+		scrollPane.setBounds(alldeliveryid.getX()+Area_W-180, alldeliveryid.getY()+alldeliveryid.getHeight(), TEXT_W,Area_H/2+20);
 		this.infoPanel.add(scrollPane);
 		scrollPane.setViewportView(alldeliveryidArea);
 		scrollPane.setOpaque(false);
 		alldeliveryidArea.setOpaque(false);
 		scrollPane.getViewport().setOpaque(false);
 		alldeliveryidArea.setFont(WORD_FONT);
-		
-		fare.setBounds(scrollPane.getX(), scrollPane.getY()+Area_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
+		alldeliveryidArea.setEditable(false);
+		adddeliveryid.setBounds(alldeliveryid.getX(), alldeliveryid.getY()+alldeliveryid.getHeight()+20, TEXT_W-60, LABEL_H);
+		adddeliveryid.setFont(WORD_FONT);
+		this.infoPanel.add(adddeliveryid);
+		addtext.setBounds(adddeliveryid.getX()+adddeliveryid.getWidth()+COMPONENT_GAP_X,adddeliveryid.getY(),150,TEXT_H);
+		addtext.setOpaque(false);
+		this.infoPanel.add(addtext);
+		add.setBounds(addtext.getX()+addtext.getWidth()+COMPONENT_GAP_X,addtext.getY(),40,TEXT_H);
+		add.setFont(WORD_FONT);
+		this.infoPanel.add(add);
+		deliverystate.setBounds(adddeliveryid.getX()+COMPONENT_GAP_Y, adddeliveryid.getY()+adddeliveryid.getHeight()+COMPONENT_GAP_X, TEXT_W, TEXT_H);
+		deliverystate.setFont(WORD_FONT);
+		deliverystate.setForeground(Color.red);
+		deliverystate.setVisible(false);
+		this.infoPanel.add(deliverystate);
+		//
+		fare.setBounds(alldeliveryid.getX(), deliverystate.getY()+deliverystate.getHeight()+COMPONENT_GAP_X, LABEL_W, LABEL_H);
 		this.infoPanel.add(fare);
-		fareText.setBounds(fare.getX()+fare.getWidth()+COMPONENT_GAP_X, fare.getY(), TEXTid_W, TEXT_H);
+		fareText.setBounds(fare.getX()+fare.getWidth()+COMPONENT_GAP_X, fare.getY(), TEXT_W, TEXT_H);
 		fareText.setBackground(Color.GRAY);
 		fareText.setEditable(false);
 		fareText.setOpaque(false);
@@ -254,6 +292,30 @@ public class AddLoadingPanel extends DetailPanel{
 				//重置运费
 				fareText.setText("");
 				fare.setForeground(Color.black);
+			}
+		});
+		
+		this.add.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				InRepositoryVO inRepositoryVO = InRepositoryBLService.findInRepositoryFormBL(addtext.getText().trim());
+				if (inRepositoryVO!=null) {
+					deliverystate.setVisible(false);
+					alldeliveryidArea.append(addtext.getText().trim()+"\n");
+					addtext.setText("");
+				}
+				else {
+					deliverystate.setVisible(true);
+				}
+			}
+		});
+		
+		addtext.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					add.doClick();
+				}
 			}
 		});
 	}
@@ -333,7 +395,7 @@ public class AddLoadingPanel extends DetailPanel{
 		this.wayidText.setEditable(false);
 		this.supercargoidText.setEditable(false);
 		this.supervisionidText.setEditable(false);
-		this.alldeliveryidArea.setEditable(false);
+		this.addtext.setEditable(false);
 	}
 	
 	private void enableComponents() {
@@ -343,7 +405,7 @@ public class AddLoadingPanel extends DetailPanel{
 		this.wayidText.setEditable(true);
 		this.supercargoidText.setEditable(true);
 		this.supervisionidText.setEditable(true);
-		this.alldeliveryidArea.setEditable(true);
+		this.addtext.setEditable(true);
 	}
 	
 	private void showState(String msg) {
