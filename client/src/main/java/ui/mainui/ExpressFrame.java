@@ -34,24 +34,24 @@ public class ExpressFrame extends JFrame{
 		this.setUndecorated(true);
 		this.setVisible(true);
 		
-		//处理拖动事件
-		 this.addMouseListener(new MouseAdapter() {
-		  @Override
-		  public void mousePressed(MouseEvent e) {
-		  xOld = e.getX();
-		  yOld = e.getY();
-		  }
-		 });
-		 this.addMouseMotionListener(new MouseMotionAdapter() {
-		  @Override
-		  public void mouseDragged(MouseEvent e) {
-		  int xOnScreen = e.getXOnScreen();
-		  int yOnScreen = e.getYOnScreen();
-		  int xx = xOnScreen - xOld;
-		  int yy = yOnScreen - yOld;
-		  ExpressFrame.this.setLocation(xx, yy);
-		  }
-		 });
+//		//处理拖动事件
+//		 this.addMouseListener(new MouseAdapter() {
+//		  @Override
+//		  public void mousePressed(MouseEvent e) {
+//		  xOld = e.getX();
+//		  yOld = e.getY();
+//		  }
+//		 });
+//		 this.addMouseMotionListener(new MouseMotionAdapter() {
+//		  @Override
+//		  public void mouseDragged(MouseEvent e) {
+//		  int xOnScreen = e.getXOnScreen();
+//		  int yOnScreen = e.getYOnScreen();
+//		  int xx = xOnScreen - xOld;
+//		  int yy = yOnScreen - yOld;
+//		  ExpressFrame.this.setLocation(xx, yy);
+//		  }
+//		 });
 	}
 	
 	private void setFrameAtCenter(JFrame frame) {
@@ -64,10 +64,10 @@ public class ExpressFrame extends JFrame{
 	}
 	
 	
-	private static final long serialVersionUID = 1L;
+//	private static final long serialVersionUID = 1L;
 	 //用于处理拖动事件，表示鼠标按下时的坐标，相对于JFrame
-	 int xOld = 0;
-	 int yOld = 0;
+//	 int xOld = 0;
+//	 int yOld = 0;
 	  
 	 public static ExpressFrame getInstance(){
 		 if(frame==null){

@@ -100,6 +100,7 @@ public class OriginalBuildPanel extends DetailPanel {
 
 		ok.setBounds(40, LABEL_H + 5, BUTTON_W*2, BUTTON_H * 2);
 		ok.setFont(WORD_FONT);
+		ok.setVisible(false);
 
 		
 		buttonPanel.setVisible(true);
@@ -362,6 +363,7 @@ public class OriginalBuildPanel extends DetailPanel {
 				//根据用户的选择的表格类型获得相应单据的编号
 				JButton temp = TABLE_GETTER_METHOD.get((String)many.getSelectedItem());
 				temp.doClick();
+				ok.setVisible(true);
 				//刷新面板
 				repaint();
 			}
@@ -378,8 +380,8 @@ public class OriginalBuildPanel extends DetailPanel {
 	
 	private boolean save() {
 		Calendar a = Calendar.getInstance();
-		int theyear = a.get(Calendar.YEAR);
-		System.out.println(a.get(Calendar.YEAR));// 得到年
+		int theyear = a.get(Calendar.YEAR);// 得到年
+//		System.out.println(a.get(Calendar.YEAR));
 		originalInfoCon = new OriginalInfoController("creat");
 		List<StaffVO> staffVOs = originalInfoCon.getStaffInfo(0);
 		List<VehicleVO> vehicleVOs = originalInfoCon.getVehicleInfo(0);
