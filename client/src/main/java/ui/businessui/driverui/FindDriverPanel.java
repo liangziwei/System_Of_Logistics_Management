@@ -141,7 +141,7 @@ public class FindDriverPanel extends DetailPanel {
 				if(isCorrect()){
 					
 				  driverVO=driverCon.findDriver(driverid);
-				  if(!driverVO.isWrong()){
+				  if(!driverVO.isWrong()&&driverVO.getIdNumber()!=null){
 					visible(true);
 					nameText.setText(driverVO.getName());
 					birthdayText.setText(driverVO.getBirthday());

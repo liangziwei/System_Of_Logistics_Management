@@ -1,20 +1,14 @@
 package UI;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.rmi.AlreadyBoundException;
-import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import network.RMI;
 
 public class ServerFrame extends JFrame {
 	/**
@@ -25,14 +19,14 @@ public class ServerFrame extends JFrame {
 	/**
 	 * 服务器界面高度
 	 */
-	public static final int FRAME_H = 500;
+	public static final int FRAME_H = 400;
 	
 	//组件
 	private JPanel mainpanel = new JPanel();
 	private JLabel note = new JLabel("",JLabel.CENTER);
-	public JButton connect = new JButton("连接");
+//	private JButton connect = new JButton("连接");
 	
-	private Font TEXT_FONT = new Font("宋体", Font.PLAIN, 20);
+	private Font TEXT_FONT = new Font("宋体", Font.PLAIN, 25);
 	
 	public ServerFrame() {
 		// 主界面设置
@@ -43,7 +37,7 @@ public class ServerFrame extends JFrame {
 		this.setResizable(false);
 		this.setFrameAtCenter(this);
 		//背景图片的路径。（相对路径或者绝对路径。本例图片放于"java项目名"的文件下）  
-        String path = "Picture/background.jpg";  
+        String path = "Picture/back1.jpg";  
         // 背景图片  
         ImageIcon background = new ImageIcon(path);  
         // 把背景图片显示在一个标签里面  
@@ -58,7 +52,7 @@ public class ServerFrame extends JFrame {
         //设置可见  
         setVisible(true); 
 		init();
-		addActionListener();
+//		addActionListener();
 		this.repaint();
 		
 	}
@@ -71,35 +65,35 @@ public class ServerFrame extends JFrame {
 	    		(screenHeight-frame.getHeight()>>1)-32);
 	}
 	
-	private void addActionListener(){
-		connect.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-					try {
-						RMI.initRMI();
-						setnote("连接成功");
-						connect.setEnabled(false);
-					}catch (AlreadyBoundException | RemoteException e3) {
-						// TODO: handle exception
-						e3.printStackTrace();
-						setnote("连接出错，请稍后重新连接");
-					}
-			}
-		});
-	}
+//	private void addActionListener(){
+//		connect.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//					try {
+//						RMI.initRMI();
+//						setnote("连接成功");
+//						connect.setEnabled(false);
+//					}catch (AlreadyBoundException | RemoteException e3) {
+//						// TODO: handle exception
+//						e3.printStackTrace();
+//						setnote("连接出错，请稍后重新连接");
+//					} 
+//			}
+//		});
+//	}
 	
 	private void init(){
-		mainpanel.setBounds(50, 50, 200, 400);
+		mainpanel.setBounds(50, 50, 200, 300);
 		mainpanel.setLayout(null);
 		mainpanel.setOpaque(false);
 		this.add(mainpanel);
-		note.setBounds(30, 50, 150, 150);
+		note.setBounds(0, 50, 200, 150);
 		note.setFont(TEXT_FONT);
+		note.setForeground(Color.green);
 		mainpanel.add(note);
-		connect.setBounds(50,note.getY()+note.getHeight()+50,110,50);
-		connect.setFont(TEXT_FONT);
-		mainpanel.add(connect);
+//		connect.setBounds(0,220,50,20);
+//		mainpanel.add(connect);
 	}
 	
 	public void setnote(String msg) {

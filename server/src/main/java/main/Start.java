@@ -13,12 +13,11 @@ public class Start {
 		ServerFrame frame = new ServerFrame();
 		try {
 			RMI.initRMI();
-			frame.setnote("连接成功");
-			frame.connect.setEnabled(false);
-		}catch (AlreadyBoundException | RemoteException e3) {
-			// TODO: handle exception
-			e3.printStackTrace();
-			frame.setnote("连接出错，请稍后重新连接");
+			frame.setnote("服务器运行中...");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			frame.setnote("服务器无法正常启动");
 		}
 	
 	}
