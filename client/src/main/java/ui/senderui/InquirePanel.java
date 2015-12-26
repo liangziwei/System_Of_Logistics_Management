@@ -68,6 +68,10 @@ public class InquirePanel extends JPanel{
 	
 	private static Image TRANSITION = new ImageIcon("picture/city/Transition.png").getImage();
 	
+	private static Image SENDER = new ImageIcon("picture/city/sender.png").getImage();
+	
+	private static Image RECEIVER = new ImageIcon("picture/city/receiver.png").getImage();
+	
 	private static Map<City, Image> CITY_IMG_MAP = new HashMap<City, Image>();
 	
 	static {
@@ -103,6 +107,14 @@ public class InquirePanel extends JPanel{
 	private static final int TOARRIVE_W = TOARRIVE.getWidth(null);
 	
 	private static final int TOARRIVE_H = TOARRIVE.getHeight(null);
+	
+	private static final int SENDER_W = SENDER.getWidth(null);
+	
+	private static final int SENDER_H = SENDER.getHeight(null);
+	
+	private static final int RECEIVER_W = RECEIVER.getWidth(null);
+	
+	private static final int RECEIVER_H = RECEIVER.getHeight(null);
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
@@ -257,16 +269,20 @@ public class InquirePanel extends JPanel{
 						ARRIVED_W, ARRIVED_H, null);
 			}
 			for(int i = size - 1; i < 3; i++) {//未到达箭头
-				g.drawImage(TOARRIVE, arrowX + xGap * i, arrowY, 
+				g.drawImage(TOARRIVE, arrowX + xGap * i, arrowY,
 						TOARRIVE_W, TOARRIVE_H, null);
 			}
 		}else {//同一城市
 			//送件人营业厅
 			g.drawImage(CITY_IMG_MAP.get(source), startX, startY,
 					CITY_W, CITY_H, null);
+			g.drawImage(SENDER, startX, strH,
+					SENDER_W, SENDER_H, null);
 			//收件人营业厅
 			g.drawImage(CITY_IMG_MAP.get(dest), startX + xGap, startY,
 					CITY_W, CITY_H, null);
+			g.drawImage(RECEIVER, startX + xGap, strH,
+					RECEIVER_W, RECEIVER_H, null);
 			//箭头
 			int arrowX = startX + CITY_W;
 			int arrowY = startY + (CITY_H - ARRIVED_H >> 1);

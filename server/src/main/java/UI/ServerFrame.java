@@ -65,23 +65,6 @@ public class ServerFrame extends JFrame {
 	    		(screenHeight-frame.getHeight()>>1)-32);
 	}
 	
-//	private void addActionListener(){
-//		connect.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//					try {
-//						RMI.initRMI();
-//						setnote("连接成功");
-//						connect.setEnabled(false);
-//					}catch (AlreadyBoundException | RemoteException e3) {
-//						// TODO: handle exception
-//						e3.printStackTrace();
-//						setnote("连接出错，请稍后重新连接");
-//					} 
-//			}
-//		});
-//	}
 	
 	private void init(){
 		mainpanel.setBounds(50, 50, 200, 300);
@@ -90,10 +73,8 @@ public class ServerFrame extends JFrame {
 		this.add(mainpanel);
 		note.setBounds(0, 50, 200, 150);
 		note.setFont(TEXT_FONT);
-		note.setForeground(Color.green);
+		note.setForeground(Color.WHITE);
 		mainpanel.add(note);
-//		connect.setBounds(0,220,50,20);
-//		mainpanel.add(connect);
 	}
 	
 	public void setnote(String msg) {

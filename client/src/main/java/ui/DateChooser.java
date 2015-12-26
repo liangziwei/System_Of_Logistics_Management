@@ -38,6 +38,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
+import ui.mainui.ExpressFrame;
+
 public class DateChooser extends JPanel {
 	 
 	private static final long serialVersionUID = 4529266044762990227L;
@@ -252,7 +254,8 @@ public class DateChooser extends JPanel {
 		} else {
 			y -= 188;
 		}
-		pop = PopupFactory.getSharedInstance().getPopup(owner, monthPanel, x, y);
+		pop = PopupFactory.getSharedInstance().getPopup(owner, monthPanel,
+				x, y);
 		pop.show();
 		isShow = true;
 	}
