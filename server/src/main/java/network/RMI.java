@@ -90,7 +90,7 @@ public class RMI {
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("test", new NetworkTestImpl()));
 	}
 
-	public static void initRMI() throws RemoteException, AlreadyBoundException {
+	public static void initRMI() throws Exception {
 		for (RemoteObjectMap map : REMOTE_MAP_LIST) {
 			bind(map.getService(), map.getKey());
 		}
@@ -104,7 +104,7 @@ public class RMI {
 	 * @throws RemoteException 
 	 * @throws AlreadyBoundException 
 	 */
-	private static<Service extends Remote> void bind(Service implementation, String key) throws RemoteException, AlreadyBoundException {
+	private static<Service extends Remote> void bind(Service implementation, String key) throws RemoteException, Exception{
 		@SuppressWarnings("unchecked")
 		Service stub = (Service) UnicastRemoteObject.exportObject(implementation, 0);
 		REGISTRY.bind(key, stub);
