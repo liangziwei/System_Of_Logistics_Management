@@ -1,8 +1,5 @@
 package main;
 
-import java.rmi.AlreadyBoundException;
-import java.rmi.RemoteException;
-
 import UI.ServerFrame;
 import network.RMI;
 
