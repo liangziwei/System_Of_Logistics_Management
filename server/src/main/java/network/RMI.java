@@ -1,5 +1,6 @@
 package network;
 
+import java.rmi.AlreadyBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -20,6 +21,7 @@ import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
 import dataImpl.financeDataImpl.CostDataImpl;
 import dataImpl.financeDataImpl.OriginalInfoDataImpl;
+import dataImpl.financeDataImpl.OriginalInfoRecordDataImpl;
 import dataImpl.financeDataImpl.SettlementDataImpl;
 import dataImpl.financeDataImpl.StatisticsDataImpl;
 import dataImpl.managerDataImpl.ApprovalFormDataImpl;
@@ -79,6 +81,7 @@ public class RMI {
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("account", new AccountDataImpl()));
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("cost", new CostDataImpl()));
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("originalInfo", new OriginalInfoDataImpl()));
+		REMOTE_MAP_LIST.add(new RemoteObjectMap("originalInfoRecord", new OriginalInfoRecordDataImpl()));
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("settlement", new SettlementDataImpl()));
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("statistics", new StatisticsDataImpl()));
 		//系统管理人员
@@ -87,27 +90,24 @@ public class RMI {
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("test", new NetworkTestImpl()));
 	}
 
-	public static void initRMI() {
+	public static void initRMI() throws Exception {
 		for (RemoteObjectMap map : REMOTE_MAP_LIST) {
 			bind(map.getService(), map.getKey());
 		}
 		//提示服务器运行成功
-		System.out.println("Server is working...");
 	}
 	
 	/**
 	 * 将远程服务对象与相应字符串绑定
 	 * @param implementation， 远程服务接口的具体实现对象
 	 * @param key， 远程服务对象对应的关键字
+	 * @throws RemoteException 
+	 * @throws AlreadyBoundException 
 	 */
-	private static<Service extends Remote> void bind(Service implementation, String key) {
-		try {
-			@SuppressWarnings("unchecked")
-			Service stub = (Service) UnicastRemoteObject.exportObject(implementation, 0);
-			REGISTRY.bind(key, stub);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private static<Service extends Remote> void bind(Service implementation, String key) throws RemoteException, Exception{
+		@SuppressWarnings("unchecked")
+		Service stub = (Service) UnicastRemoteObject.exportObject(implementation, 0);
+		REGISTRY.bind(key, stub);
 	}
 }
 

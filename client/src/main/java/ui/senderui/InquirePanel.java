@@ -57,6 +57,14 @@ public class InquirePanel extends JPanel{
 	
 	private static Image GUANG_ZHOU = new ImageIcon("picture/city/guang_zhou.png").getImage();
 	
+	private static Image ARRIVED = new ImageIcon("picture/city/Arrived.png").getImage();
+	
+	private static Image TOARRIVE = new ImageIcon("picture/city/ToArrive.png").getImage();
+	
+	private static Image BUSINESS_HALL = new ImageIcon("picture/city/BusinessHall.png").getImage();
+	
+	private static Image TRANSITION = new ImageIcon("pictre/city/transition.png").getImage();
+	
 	private static Map<City, Image> CITY_IMG_MAP = new HashMap<City, Image>();
 	
 	static {
@@ -199,7 +207,10 @@ public class InquirePanel extends JPanel{
 			g.drawString(this.toString(node.get(i)), x + 38, y + (int)(imgH * 1.4));
 		}
 		//绘制图片之间的连线
-		g.setColor(Color.WHITE);
+		int x = startX, y;
+		for(int i = 0; i < size; i++) {
+			
+		}
 		int x1 , x2 , y1, y2, w, h;
 		for(int i = 0; i < size - 1; i++) {
 			img = CITY_IMG_MAP.get(trace.get(i));

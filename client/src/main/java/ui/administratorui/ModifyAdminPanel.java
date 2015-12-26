@@ -133,7 +133,7 @@ public class ModifyAdminPanel extends DetailPanel {
 				if(isCorrect()){
 					
 				  adminVO=adminCon.findUser(userid);
-				  if(!adminVO.isWrong()){
+				  if(!adminVO.isWrong()&&adminVO.getName()!=null){
 					visible(true);
 					passwordText.setText(adminVO.getPassword());
 					nameText.setText(adminVO.getName());
