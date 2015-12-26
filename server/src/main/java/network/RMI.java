@@ -95,7 +95,6 @@ public class RMI {
 			bind(map.getService(), map.getKey());
 		}
 		//提示服务器运行成功
-		System.out.println("Server is working...");
 	}
 	
 	/**
