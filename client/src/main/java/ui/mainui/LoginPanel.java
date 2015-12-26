@@ -229,8 +229,9 @@ public class LoginPanel extends JPanel{
 	public void setClose() {
 
 		//最小化按钮
-		JButton minButton=new JButton("-");
-		minButton.setBounds(ExpressFrame.FRAME_W-70, 0, 30, 30);
+		JButton minButton=new JButton("");
+		minButton.setBounds(ExpressFrame.FRAME_W-85, 0, 40, 30);
+		minButton.setIcon(new ImageIcon("picture/FrameButton/minLogin.png"));
 		minButton.addActionListener(new ActionListener(){
 			@Override
 			  public void actionPerformed(ActionEvent e) {
@@ -240,9 +241,9 @@ public class LoginPanel extends JPanel{
 		
 		
 		 //关闭按钮
-		 JButton closeButton = new JButton("X");
-//		 closeButton.setIcon(new ImageIcon("img/closeButton.png"));
-		 closeButton.setBounds(ExpressFrame.FRAME_W-30, 0, 30, 30);
+		 JButton closeButton = new JButton("");
+		 closeButton.setIcon(new ImageIcon("picture/FrameButton/closeLogin.png"));
+		 closeButton.setBounds(ExpressFrame.FRAME_W-45, 0, 40, 30);
 		 closeButton.addActionListener(new ActionListener() {
 		  @Override
 		  public void actionPerformed(ActionEvent e) {

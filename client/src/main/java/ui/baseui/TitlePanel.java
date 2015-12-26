@@ -2,6 +2,8 @@ package ui.baseui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,8 +34,9 @@ public class TitlePanel extends JPanel{
 	public void setClose() {
 
 		//最小化按钮
-		JButton minButton=new JButton("-");
-		minButton.setBounds(ExpressFrame.FRAME_W-70, 0, 30, 30);
+		JButton minButton=new JButton("");
+		minButton.setBounds(ExpressFrame.FRAME_W-85, 0, 40, 30);
+		minButton.setIcon(new ImageIcon("picture/FrameButton/minMain.png"));
 		minButton.addActionListener(new ActionListener(){
 			@Override
 			  public void actionPerformed(ActionEvent e) {
@@ -43,9 +46,9 @@ public class TitlePanel extends JPanel{
 		
 		
 		 //关闭按钮
-		 JButton closeButton = new JButton("X");
-//		 closeButton.setIcon(new ImageIcon("img/closeButton.png"));
-		 closeButton.setBounds(ExpressFrame.FRAME_W-30, 0, 30, 30);
+		 JButton closeButton = new JButton("");
+		 closeButton.setIcon(new ImageIcon("picture/FrameButton/closeMain.png"));
+		 closeButton.setBounds(ExpressFrame.FRAME_W-45, 0, 40, 30);
 		 closeButton.addActionListener(new ActionListener() {
 		  @Override
 		  public void actionPerformed(ActionEvent e) {
