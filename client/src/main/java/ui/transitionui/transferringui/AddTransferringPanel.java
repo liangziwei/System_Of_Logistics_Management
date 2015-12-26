@@ -68,7 +68,7 @@ public class AddTransferringPanel extends DetailPanel {
 
 	private JPanel buttonPanel = new JPanel();
 	
-	private JButton add = new JButton("+");
+	private LimpidButton add = new LimpidButton("","picture/AddButton.png");
 	
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 
