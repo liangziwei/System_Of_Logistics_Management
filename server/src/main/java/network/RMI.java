@@ -1,5 +1,6 @@
 package network;
 
+import java.rmi.AlreadyBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -87,7 +88,7 @@ public class RMI {
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("test", new NetworkTestImpl()));
 	}
 
-	public static void initRMI() {
+	public static void initRMI() throws RemoteException, AlreadyBoundException {
 		for (RemoteObjectMap map : REMOTE_MAP_LIST) {
 			bind(map.getService(), map.getKey());
 		}
@@ -99,15 +100,13 @@ public class RMI {
 	 * 将远程服务对象与相应字符串绑定
 	 * @param implementation， 远程服务接口的具体实现对象
 	 * @param key， 远程服务对象对应的关键字
+	 * @throws RemoteException 
+	 * @throws AlreadyBoundException 
 	 */
-	private static<Service extends Remote> void bind(Service implementation, String key) {
-		try {
-			@SuppressWarnings("unchecked")
-			Service stub = (Service) UnicastRemoteObject.exportObject(implementation, 0);
-			REGISTRY.bind(key, stub);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private static<Service extends Remote> void bind(Service implementation, String key) throws RemoteException, AlreadyBoundException {
+		@SuppressWarnings("unchecked")
+		Service stub = (Service) UnicastRemoteObject.exportObject(implementation, 0);
+		REGISTRY.bind(key, stub);
 	}
 }
 
