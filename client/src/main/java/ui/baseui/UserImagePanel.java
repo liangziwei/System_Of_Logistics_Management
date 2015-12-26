@@ -45,6 +45,6 @@ public class UserImagePanel extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(Background, 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(Background,(this.getWidth()-Background.getWidth(null))/2, 0, Background.getWidth(null),Background.getHeight(null), null);
 	}
 }

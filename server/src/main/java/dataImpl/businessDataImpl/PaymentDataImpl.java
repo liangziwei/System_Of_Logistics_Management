@@ -19,6 +19,19 @@ public class PaymentDataImpl implements PaymentDataService {
 	ArrayList<String> deliveryList;
 	
 	public boolean addPayentForm(ReceivablePO receivablePO) {
+		
+		String sql = "select * from account where name = '农业银行';";
+		ResultSet rs;
+		double balance = 0.0;
+		try {
+			rs = Database.findOperation(sql);
+			if(rs.next()) {
+				balance = rs.getDouble("balance");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		date=receivablePO.getDate();
 		money=receivablePO.getMoney();
 		courier=receivablePO.getCourier();
@@ -31,7 +44,12 @@ public class PaymentDataImpl implements PaymentDataService {
 		String val="";
 		val="'"+date+"',"+money+",'"+courier+"','"+delivery+"','"+businessid+"',0,1";
 		// TODO Auto-generated method stub
-		return Database.add("receivable", val);
+		sql="balance="+(balance+money);
+
+		if(!Database.add("receivable", val)){
+			return false;
+		}
+		return Database.modify("account", sql, "name", "农业银行");
 	}
 	
 	public ArrayList<ReceivablePO> getUncheckReceivable() {

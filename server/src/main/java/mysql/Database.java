@@ -90,7 +90,7 @@ public class Database {
 	public static boolean modify(String table,String val,String idname,String id){
 		@SuppressWarnings("unused")
 		int x;
-		String sql="UPDATE "+table+" SET "+val+" WHERE "+idname+"="+"'"+id+"'";;
+		String sql="UPDATE "+table+" SET "+val+" WHERE "+idname+"="+"'"+id+"'";
 		try {
 			x=stat.executeUpdate(sql);
 		} catch (SQLException e) {

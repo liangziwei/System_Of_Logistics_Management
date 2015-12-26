@@ -27,7 +27,7 @@ public class DeliveryPanel extends UserPanel{
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
-	private static Image head = new ImageIcon("picture/快递员.jpg").getImage();
+	private static Image head = new ImageIcon("picture/head/快递员.png").getImage();
 	
 	public DeliveryPanel(ViewController controller) {
 		super(controller);

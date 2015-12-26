@@ -49,7 +49,7 @@ public class RepositoryPanel extends UserPanel {
 
 	private LimpidButton SeeTransferringList = new LimpidButton("","picture/查询中转单列表.png");
 	
-	private Image head = new ImageIcon("picture/中转中心仓库管理员.jpg").getImage();
+	private Image head = new ImageIcon("picture/head/中转中心仓库管理员.png").getImage();
 
 
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);

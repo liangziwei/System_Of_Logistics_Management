@@ -59,7 +59,7 @@ public class BusinessPanel extends UserPanel{
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
-	private static Image head = new ImageIcon("picture/营业厅业务员.jpg").getImage();
+	private static Image head = new ImageIcon("picture/head/营业厅业务员.png").getImage();
 	
 	public BusinessPanel(ViewController viewController) {
 		super(viewController);

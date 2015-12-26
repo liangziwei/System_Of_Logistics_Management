@@ -255,7 +255,7 @@ public class AddTransferringPanel extends DetailPanel {
 				supervisionid.getY() + supervisionid.getHeight() + COMPONENT_GAP_Y - 15, TEXTid_W, LABEL_H);
 		this.infoPanel.add(alldeliveryid);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(alldeliveryid.getX()+Area_W-180, alldeliveryid.getY()+alldeliveryid.getHeight(),TEXT_W,Area_H/2-20);
+		scrollPane.setBounds(alldeliveryid.getX()+Area_W-180, alldeliveryid.getY()+alldeliveryid.getHeight(),TEXT_W,Area_H/2+20);
 		this.infoPanel.add(scrollPane);
 		scrollPane.setViewportView(alldeliveryidText);
 		scrollPane.setOpaque(false);

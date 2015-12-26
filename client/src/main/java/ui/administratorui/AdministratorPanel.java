@@ -22,7 +22,7 @@ public class AdministratorPanel extends UserPanel{
 	private LimpidButton modAdmin=new LimpidButton("","picture/修改账户.png");
 	private LimpidButton exit = new LimpidButton("","picture/退出.png");
 	
-	private Image head = new ImageIcon("picture/管理员.jpg").getImage();
+	private Image head = new ImageIcon("picture/head/管理员.png").getImage();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
