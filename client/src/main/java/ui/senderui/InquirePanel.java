@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -123,6 +124,7 @@ public class InquirePanel extends JPanel{
 		this.add(this.cancel);
 		//添加事件监听
 		this.addListener(this.ok, this.cancel);
+		setClose();
 	}
 	
 	private void addListener(JButton ok, JButton cancel) {
@@ -225,4 +227,32 @@ public class InquirePanel extends JPanel{
 		}
 		return null;
 	}
+	
+	public void setClose() {
+
+		//最小化按钮
+		JButton minButton=new JButton("-");
+		minButton.setBounds(ExpressFrame.FRAME_W-70, 0, 30, 30);
+		minButton.addActionListener(new ActionListener(){
+			@Override
+			  public void actionPerformed(ActionEvent e) {
+				ExpressFrame.getInstance().setExtendedState(JFrame.ICONIFIED);
+			  }
+		});
+		
+		
+		 //关闭按钮
+		 JButton closeButton = new JButton("X");
+//		 closeButton.setIcon(new ImageIcon("img/closeButton.png"));
+		 closeButton.setBounds(ExpressFrame.FRAME_W-30, 0, 30, 30);
+		 closeButton.addActionListener(new ActionListener() {
+		  @Override
+		  public void actionPerformed(ActionEvent e) {
+		  System.exit(0);
+		  }
+		 });
+		 this.add(closeButton);
+		 this.add(minButton);  
+
+		 }
 }
