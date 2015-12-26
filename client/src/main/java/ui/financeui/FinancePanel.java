@@ -20,6 +20,8 @@ import ui.financeui.accountui.DeleteAccountPanel;
 import ui.financeui.accountui.InquireAccountPanel;
 import ui.financeui.accountui.ModifyAccountPanel;
 import ui.financeui.costui.CostPanel;
+import ui.financeui.originalInfoui.OriginalBuildPanel;
+import ui.financeui.originalInfoui.OriginalFindPanel;
 import ui.financeui.originalInfoui.OriginalInfoPanel;
 import ui.financeui.settlementui.SettleAllPanel;
 import ui.financeui.settlementui.SettlePartPanel;
@@ -56,6 +58,10 @@ public class FinancePanel extends UserPanel{
 	private LimpidButton costAndProfit = new LimpidButton("","picture/查看成本收益表.png");
 	
 	private LimpidButton run = new LimpidButton("","picture/查看经营情况表.png");
+	
+	private LimpidButton build = new LimpidButton("","picture/finance/AddOriginalInfo.png");
+	
+	private LimpidButton Find = new LimpidButton("","picture/finance/InquireOriginalInfo.png");
 	
 	private TaskButton originalInfo = new TaskButton("","picture/期初建账.png");
 	
@@ -127,6 +133,12 @@ public class FinancePanel extends UserPanel{
 		
 		//期初建账按钮
 		this.originalInfo.setBounds(0, this.statistics.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
+		
+		//期初建账的子按钮
+		List<LimpidButton> originalInfoButtons = new ArrayList<LimpidButton>();
+		originalInfoButtons.add(this.build);
+		originalInfoButtons.add(this.Find);
+		this.originalInfo.setDetailButtons(originalInfoButtons);
 		
 		//退出按钮
 		this.exit.setBounds(0, this.originalInfo.getY() + gap, TaskPanel.BUTTON_W, TaskPanel.BUTTON_H);
@@ -200,14 +212,9 @@ public class FinancePanel extends UserPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//设置当前细节信息面板为不可见
-				detail.setVisible(false);
-				//设置细节信息面板显示订单输入界面
-				detail = new OriginalInfoPanel();
-				//将细节信息面板添加到主面板
-				add(detail);
-				//将子组件重新布局和重绘
-				revalidate();
+				List<TaskButton> t = new ArrayList<TaskButton>();
+				t.add(exit);
+				task.resetTaskButtons(originalInfo, t);
 			}
 		});
 		//退出按钮
@@ -362,6 +369,36 @@ public class FinancePanel extends UserPanel{
 				detail.setVisible(false);
 				//设置细节信息面板显示订单输入界面
 				detail = new RunPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局和重绘
+				revalidate();
+			}
+		});
+		//期初建账
+		this.build.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//设置当前细节信息面板为不可见
+				detail.setVisible(false);
+				//设置细节信息面板显示订单输入界面
+				detail = new OriginalBuildPanel();
+				//将细节信息面板添加到主面板
+				add(detail);
+				//将子组件重新布局和重绘
+				revalidate();
+			}
+		});
+		//账单查询
+		this.Find.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//设置当前细节信息面板为不可见
+				detail.setVisible(false);
+				//设置细节信息面板显示订单输入界面
+				detail = new OriginalFindPanel();
 				//将细节信息面板添加到主面板
 				add(detail);
 				//将子组件重新布局和重绘
