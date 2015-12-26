@@ -70,7 +70,7 @@ public class ManagerPanel extends UserPanel{
 	
 	private TaskButton exit = new TaskButton("","picture/退出.png");
 	
-	private Image head = new ImageIcon("picture/总经理.jpg").getImage();
+	private Image head = new ImageIcon("picture/head/总经理.png").getImage();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	

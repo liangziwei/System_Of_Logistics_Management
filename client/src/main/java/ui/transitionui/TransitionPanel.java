@@ -58,7 +58,7 @@ public class TransitionPanel extends UserPanel {
 
 	private TaskButton exit = new TaskButton("","picture/退出.png");
 	
-	private Image head = new ImageIcon("picture/中转中心业务员.jpg").getImage();
+	private Image head = new ImageIcon("picture/head/中转中心业务员.png").getImage();
 
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 17);
 	
