@@ -20,6 +20,7 @@ import dataImpl.deliveryDataImpl.ReceiptDataImpl;
 import dataImpl.financeDataImpl.AccountDataImpl;
 import dataImpl.financeDataImpl.CostDataImpl;
 import dataImpl.financeDataImpl.OriginalInfoDataImpl;
+import dataImpl.financeDataImpl.OriginalInfoRecordDataImpl;
 import dataImpl.financeDataImpl.SettlementDataImpl;
 import dataImpl.financeDataImpl.StatisticsDataImpl;
 import dataImpl.managerDataImpl.ApprovalFormDataImpl;
@@ -79,6 +80,7 @@ public class RMI {
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("account", new AccountDataImpl()));
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("cost", new CostDataImpl()));
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("originalInfo", new OriginalInfoDataImpl()));
+		REMOTE_MAP_LIST.add(new RemoteObjectMap("originalInfoRecord", new OriginalInfoRecordDataImpl()));
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("settlement", new SettlementDataImpl()));
 		REMOTE_MAP_LIST.add(new RemoteObjectMap("statistics", new StatisticsDataImpl()));
 		//系统管理人员

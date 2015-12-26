@@ -61,7 +61,7 @@ public class ExpressPanel extends JPanel{
 		this.logistics.setSize(BUTTON_W, BUTTON_H);
 		this.logistics.setLocation(LOGISTICS_X, LOGISTICS_Y);
 		this.logistics.setFont(WORD_FONT);
-		//增加时间监听
+		//增加事件监听
 		this.addListener(this.login, this.logistics);
 		//增加组件到容器
 		this.add(this.login);
@@ -114,7 +114,6 @@ public class ExpressPanel extends JPanel{
 		
 		 //关闭按钮
 		 JButton closeButton = new JButton("X");
-//		 closeButton.setIcon(new ImageIcon("img/closeButton.png"));
 		 closeButton.setBounds(ExpressFrame.FRAME_W-30, 0, 30, 30);
 		 closeButton.addActionListener(new ActionListener() {
 		  @Override
