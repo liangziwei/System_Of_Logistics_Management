@@ -17,8 +17,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.deliveryController.OrderController;
 import businessLogic.businessLogicController.senderController.InquireController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.deliveryBLService.OrderBLService;
 import businessLogicService.senderBLService.InquireBLService;
 import constant.City;
 import constant.TransitionNode;
@@ -26,6 +28,7 @@ import ui.baseui.LimpidButton;
 import ui.mainui.ExpressFrame;
 import ui.mainui.ExpressPanel;
 import ui.viewcontroller.ViewController;
+import vo.deliveryVO.OrderVO;
 import vo.senderVO.LogisticsVO;
 
 @SuppressWarnings("serial")
@@ -63,7 +66,7 @@ public class InquirePanel extends JPanel{
 	
 	private static Image BUSINESS_HALL = new ImageIcon("picture/city/BusinessHall.png").getImage();
 	
-	private static Image TRANSITION = new ImageIcon("pictre/city/transition.png").getImage();
+	private static Image TRANSITION = new ImageIcon("picture/city/Transition.png").getImage();
 	
 	private static Map<City, Image> CITY_IMG_MAP = new HashMap<City, Image>();
 	
@@ -73,6 +76,33 @@ public class InquirePanel extends JPanel{
 		CITY_IMG_MAP.put(City.SHANG_HAI, SHANG_HAI);
 		CITY_IMG_MAP.put(City.GUANG_ZHOU, GUANG_ZHOU);
 	}
+	
+	private static Map<TransitionNode, Image> NODE_IMG_MAP = new HashMap<TransitionNode, Image>();
+	
+	static {
+		NODE_IMG_MAP.put(TransitionNode.BUSINESS_HALL, BUSINESS_HALL);
+		NODE_IMG_MAP.put(TransitionNode.TRANSI_CENTER, TRANSITION);
+	}
+	
+	private static final int CITY_W = NAN_JING.getWidth(null);
+	
+	private static final int CITY_H = NAN_JING.getHeight(null);
+	
+	private static final int BUSINESS_W = BUSINESS_HALL.getWidth(null);
+	
+	private static final int BUSINESS_H = BUSINESS_HALL.getHeight(null);
+	
+	private static final int TRANSITION_W = TRANSITION.getWidth(null);
+	
+	private static final int TRANSITION_H = TRANSITION.getHeight(null);
+	
+	private static final int ARRIVED_W = ARRIVED.getWidth(null);
+	
+	private static final int ARRIVED_H = ARRIVED.getHeight(null);
+	
+	private static final int TOARRIVE_W = TOARRIVE.getWidth(null);
+	
+	private static final int TOARRIVE_H = TOARRIVE.getHeight(null);
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
@@ -182,61 +212,62 @@ public class InquirePanel extends JPanel{
 		
 		LogisticsVO vo = this.inquireService.getLogInfoById(this.search.getText());
 		if(vo == null) return ;
-		//获得物流节点与城市
-		List<TransitionNode> node = vo.getState();
-		List<City> trace =vo.getTrace();
 		
 		//绘制城市轨迹与物流节点轨迹
-		int size = trace.size();
-		int startX = 100;	//第一张图片X坐标
-		int startY = 200;	//第一张图片Y坐标
-		int yGap = 30;		//图片之间在Y轴上的距离
+		int startX = 130;	//第一张图片X坐标
+		int startY = 250;	//第一张图片Y坐标
 		int xGap = 210;		//图片之间在X轴上的距离
-		Image img = null;
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("宋体", Font.PLAIN, 25));
-		for(int i = 0; i < size; i++) {
-			img = CITY_IMG_MAP.get(trace.get(i));
-			int imgW = img.getWidth(null);		
-			int imgH = img.getHeight(null);	
-			int x = startX + i * xGap;
-			int y = startY + yGap * i;
-			g.drawImage(CITY_IMG_MAP.get(trace.get(i)),
-					x, y,
-					imgW, imgH, null);
-			g.drawString(this.toString(node.get(i)), x + 38, y + (int)(imgH * 1.4));
-		}
-		//绘制图片之间的连线
-		int x = startX, y;
-		for(int i = 0; i < size; i++) {
+		int strH = startY + (int)(CITY_H * 1.2);  //字符串图片Y坐标
+		//城市图片
+		OrderBLService order = new OrderController();
+		OrderVO orderVO = order.getOrderInfoById(this.search.getText());
+		City source = orderVO.getSenderInfo().getCity();
+		City dest = orderVO.getReceiverInfo().getCity();
+		Image city = null;
+		if(source != dest) {//如果出发地和目的地不在同一城市
+			//送件人营业厅
+			city = CITY_IMG_MAP.get(source);
+			g.drawImage(city, startX, startY,
+					CITY_W, CITY_H, null);
+			g.drawImage(BUSINESS_HALL, startX, strH,
+					BUSINESS_W, BUSINESS_H, null);
+			//送件人中转中心
+			g.drawImage(city, startX + xGap, startY,
+					CITY_W, CITY_H, null);
+			g.drawImage(TRANSITION, startX + xGap, strH,
+					TRANSITION_W, TRANSITION_H, null);
+			//收件人中转中心
+			city = CITY_IMG_MAP.get(dest);
+			g.drawImage(city, startX + (xGap << 1), startY,
+					CITY_W, CITY_H, null);
+			g.drawImage(TRANSITION, startX + (xGap << 1), strH,
+					TRANSITION_W, TRANSITION_H, null);
+			//收件人营业厅
+			g.drawImage(city, startX + (xGap * 3), startY,
+					CITY_W, CITY_H, null);
+			g.drawImage(BUSINESS_HALL, startX + (xGap * 3), strH,
+					BUSINESS_W, BUSINESS_H, null);
+			//箭头
+			List<TransitionNode> node = vo.getState();
+			int size = node.size();
+			int arrowX = startX + CITY_W;
+			int arrowY = startY + (CITY_H - ARRIVED_H >> 1);
+			for(int i = 0; i < size - 1; i++) {//到达箭头
+				g.drawImage(ARRIVED, arrowX + xGap * i, arrowY,
+						ARRIVED_W, ARRIVED_H, null);
+			}
+			for(int i = size - 1; i < 3; i++) {//未到达箭头
+				g.drawImage(TOARRIVE, arrowX + xGap * i, arrowY, 
+						TOARRIVE_W, TOARRIVE_H, null);
+			}
+		}else {
 			
-		}
-		int x1 , x2 , y1, y2, w, h;
-		for(int i = 0; i < size - 1; i++) {
-			img = CITY_IMG_MAP.get(trace.get(i));
-			w = img.getWidth(null);
-			h = img.getHeight(null);
-			x1 = startX + w + i * xGap;
-			y1 = startY + (h >> 1) + i * yGap;
-			x2 = x1 + xGap - w;
-			y2 = y1 + yGap;
-			g.drawLine(x1, y1, x2, y2);
 		}
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
-	}
-	
-	private String toString(TransitionNode node) {
-		switch(node) {
-		case BUSINESS_HALL:
-			return "营业厅";
-		case TRANSI_CENTER:
-			return "中转中心";
-		}
-		return null;
 	}
 	
 	public void setClose() {
