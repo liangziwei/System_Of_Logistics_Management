@@ -177,7 +177,7 @@ public class OriginalInfoPanel extends DetailPanel {
 
 	// 创建人员信息的表
 	private void createStaffTable(List<StaffVO> staffVOs) {
-		String[] name = { "ID", "姓名", "性别", "职位", "年龄", "薪水" };
+		String[] name = { "ID", "姓名", "性别", "职位", "出生日期", "薪水" };
 		int size = staffVOs.size();
 
 		Object[][] datas = new Object[size][6];

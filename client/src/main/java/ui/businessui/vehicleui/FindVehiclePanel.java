@@ -106,7 +106,7 @@ public class FindVehiclePanel extends DetailPanel{
 				if(isCorrect()){
 					
 				  vehicleVO=vehicleCon.findVehicle(vehicleid);
-				  if(!vehicleVO.isWrong()){
+				  if(!vehicleVO.isWrong()&&vehicleVO.getNumber()!=null){
 					visible(true);
 					numberText.setText(vehicleVO.getNumber());
 					ageText.setText(vehicleVO.getAge());
