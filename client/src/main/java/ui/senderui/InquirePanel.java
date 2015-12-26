@@ -224,6 +224,7 @@ public class InquirePanel extends JPanel{
 		City source = orderVO.getSenderInfo().getCity();
 		City dest = orderVO.getReceiverInfo().getCity();
 		Image city = null;
+		List<TransitionNode> node = vo.getState();
 		if(source != dest) {//如果出发地和目的地不在同一城市
 			//送件人营业厅
 			city = CITY_IMG_MAP.get(source);
@@ -248,7 +249,6 @@ public class InquirePanel extends JPanel{
 			g.drawImage(BUSINESS_HALL, startX + (xGap * 3), strH,
 					BUSINESS_W, BUSINESS_H, null);
 			//箭头
-			List<TransitionNode> node = vo.getState();
 			int size = node.size();
 			int arrowX = startX + CITY_W;
 			int arrowY = startY + (CITY_H - ARRIVED_H >> 1);
@@ -260,8 +260,23 @@ public class InquirePanel extends JPanel{
 				g.drawImage(TOARRIVE, arrowX + xGap * i, arrowY, 
 						TOARRIVE_W, TOARRIVE_H, null);
 			}
-		}else {
-			
+		}else {//同一城市
+			//送件人营业厅
+			g.drawImage(CITY_IMG_MAP.get(source), startX, startY,
+					CITY_W, CITY_H, null);
+			//收件人营业厅
+			g.drawImage(CITY_IMG_MAP.get(dest), startX + xGap, startY,
+					CITY_W, CITY_H, null);
+			//箭头
+			int arrowX = startX + CITY_W;
+			int arrowY = startY + (CITY_H - ARRIVED_H >> 1);
+			if(node.size() < 2) {
+				g.drawImage(TOARRIVE, arrowX, arrowY,
+						TOARRIVE_W, TOARRIVE_H, null);
+			}else {
+				g.drawImage(ARRIVED, arrowX, arrowY,
+						ARRIVED_W, ARRIVED_H, null);
+			}
 		}
 	}
 	
