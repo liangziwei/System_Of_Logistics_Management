@@ -20,7 +20,7 @@ public class DetailPanel extends JPanel{
 	 */
 	protected static final int DETAIL_PANEL_H = TaskPanel.TASK_PANEL_H;
 	
-	protected static final int CONTAINER_W = 750;
+	protected static final int CONTAINER_W = 700;
 	
 	protected static final int CONTAINER_H = 900;
 	
