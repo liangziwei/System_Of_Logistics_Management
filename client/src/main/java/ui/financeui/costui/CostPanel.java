@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -13,14 +15,17 @@ import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.financeController.AccountController;
 import businessLogic.businessLogicController.financeController.CostController;
+import businessLogic.businessLogicController.transitionController.TransferringController;
 import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.financeBLService.AccountBLService;
 import businessLogicService.financeBLService.CostBLService;
+import businessLogicService.transitionBLService.TransferringBLService;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.financeVO.AccountVO;
 import vo.financeVO.PaymentVO;
+import vo.transitionVO.TransferringVO;
 
 @SuppressWarnings("serial")
 public class CostPanel extends DetailPanel{
@@ -51,7 +56,7 @@ public class CostPanel extends DetailPanel{
 	
 	private JLabel noteLabel = new JLabel("租金年份");
 	
-	private JTextField noteText = new JTextField();
+	private JTextField noteText;
 	
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
 	
@@ -60,6 +65,23 @@ public class CostPanel extends DetailPanel{
 	private JLabel tip = new JLabel();
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
+	
+	/**
+	 * 成员变量itemText不同的选项序号与对应备注名称之间的映射表
+	 */
+	private static Map<Integer, String> ITEM_MAP = new HashMap<Integer, String>();
+	
+	static {
+		ITEM_MAP.put(0, "租金年份");
+		ITEM_MAP.put(1, "运单号");
+		ITEM_MAP.put(2, "月份");
+		ITEM_MAP.put(3, "备注");
+	}
+	
+	/**
+	 *不同付款内容与对应的输入文本框之间的映射表 
+	 */
+	private Map<Integer, NoteText> textMap = new HashMap<Integer, NoteText>();
 	
 	private static final int LABEL_W = 60;
 	
@@ -132,10 +154,14 @@ public class CostPanel extends DetailPanel{
 		//备注标签
 		this.noteLabel.setBounds(this.itemLabel.getX(), this.itemLabel.getY() + gap, LABEL_W, LABEL_H);
 		this.noteLabel.setFont(WORD_FONT);
+		//备注文本框映射表
+		this.textMap.put(0, new YearText());
+		this.textMap.put(1, new TransitText());
+		this.textMap.put(2, new MonthText());
+		this.textMap.put(3, new RemarkText());
 		//备注文本框
-		this.noteText.setBounds(this.itemText.getX(), this.noteLabel.getY(), TEXT_W, TEXT_H);
-		this.noteText.setFont(WORD_FONT);
-		this.noteText.setOpaque(false);
+		this.noteText = this.textMap.get(0);
+		this.setNoteTextUI();
 		//确定按钮
 		this.ok.setBounds(this.noteText.getX() + (TEXT_W >> 1), this.noteText.getY() + TEXT_H + gap
 				, BUTTON_W, BUTTON_H);
@@ -172,6 +198,7 @@ public class CostPanel extends DetailPanel{
 	}
 	
 	private void addItem() {
+		//这里添加顺序不能改变，因为映射表ITEM_MAP和textMap根据它们的先后关系来添加映射关系
 		this.itemText.addItem("租金（按年收）");
 		this.itemText.addItem("运费（按次计算）");
 		this.itemText.addItem("人员工资（按月统计）");
@@ -230,23 +257,9 @@ public class CostPanel extends DetailPanel{
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				int selected = itemText.getSelectedIndex();
-				switch(selected) {
-				case 0:
-					noteLabel.setText("租金年份");
-					break;
-				case 1:
-					noteLabel.setText("运单号");
-					break;
-				case 2:
-					noteLabel.setText("月份");
-					break;
-				case 3:
-					noteLabel.setText("备注");
-					break;
-				default:
-					noteLabel.setText("租金年份");
-					break;
-				}
+				noteLabel.setText(ITEM_MAP.get(selected));
+				//设置备注文本框
+				noteText = textMap.get(selected);
 			}
 		});
 	}
@@ -259,8 +272,7 @@ public class CostPanel extends DetailPanel{
 		}
 		//验证输入是否完整
 		if(CommonLogic.isNull(this.dateText.getText()) || CommonLogic.isNull(this.moneyText.getText())
-				|| CommonLogic.isNull(this.nameText.getText()) || CommonLogic.isNull(this.accountText.getText())
-				|| CommonLogic.isNull(this.noteText.getText())) {
+				|| CommonLogic.isNull(this.nameText.getText()) || CommonLogic.isNull(this.accountText.getText())) {
 			tip.setText("请把信息填写完整");
 			return false;
 		}
@@ -276,7 +288,102 @@ public class CostPanel extends DetailPanel{
 			tip.setText("该账户不存在");
 			return false;
 		}
-		tip.setText("");
-		return true;
+		//对不同的备注框进行不同的数据验证
+		int select = this.itemText.getSelectedIndex();
+		NoteText text = this.textMap.get(select);
+		return text.setTipForInput(this.tip, text.getText());
+		
+	}
+	
+	/**
+	 *设置备注文本框的边界，字体格式和是否透明
+	 */
+	private void setNoteTextUI() {
+		if(this.noteText == null) return ;
+		
+		this.noteText.setBounds(this.itemText.getX(), this.noteLabel.getY(), TEXT_W, TEXT_H);
+		this.noteText.setFont(WORD_FONT);
+		this.noteText.setOpaque(false);
 	}
 }
+
+/**
+ * 以下各种文本框的父类，抽象出一个数据验证的方法，用于多态
+ * 方法的参数：
+ * tip 用于界面提示的标签，
+ * input 用户在文本框上的输入
+ */
+@SuppressWarnings("serial")
+abstract class NoteText extends JTextField {
+	public abstract boolean setTipForInput(JLabel tip, String input);
+}
+
+/**
+ *年份输入文本框，用于记录租金年份 
+ */
+@SuppressWarnings("serial")
+class YearText extends NoteText {
+
+	@Override
+	public boolean setTipForInput(JLabel tip, String input) {
+		if(!CommonLogic.isYear(input)) {
+			tip.setText("年份应该为4为数字");
+			return false;
+		}
+		return true;
+	}	
+}
+
+/**
+ *月份输入文本框，用于记录发送人员工资月份
+ */
+@SuppressWarnings("serial")
+class MonthText extends NoteText {
+
+	@Override
+	public boolean setTipForInput(JLabel tip, String input) {
+		if(!CommonLogic.isMonth(input)) {
+			tip.setText("月份输入错误");
+			return false;
+		}
+		return true;
+	}
+	
+}
+
+/**
+ *运单号输入文本框，用于记录运费的运单号
+ */
+@SuppressWarnings("serial")
+class TransitText extends NoteText {
+
+	@Override
+	public boolean setTipForInput(JLabel tip, String input) {
+		TransferringBLService t = new TransferringController();
+		TransferringVO vo = t.findTransferringFormBL(input);
+		if(vo == null) {
+			tip.setText("该运单号不存在");
+			return false;
+		}
+		return true;
+	}
+	
+}
+
+/**
+ *备注输入文本框，用于记录奖励的原因
+ */
+@SuppressWarnings("serial")
+class RemarkText extends NoteText {
+
+	@Override
+	public boolean setTipForInput(JLabel tip, String input) {
+		if(CommonLogic.isNull(input)) {
+			tip.setText("备注不能为空");
+			return false;
+		}
+		return true;
+	}
+	
+}
+

@@ -37,4 +37,17 @@ public class CommonLogic {
 		return true;
 	}
 	
+	/**
+	 *默认年份为四位数字 
+	 */
+	public static boolean isYear(String year) {
+		return !isNull(year) && isNumber(year) && year.length() == 4;
+	}
+	
+	public static boolean isMonth(String month) {
+		if(isNull(month) || !isNumber(month)) return false;
+		int m = Integer.parseInt(month);
+		return m >= 1 && m <= 12;
+	}
+	
 }
