@@ -57,7 +57,9 @@ public class Reconnect implements Runnable{
 	}
 	
 	private void initDialog(JDialog dialog, ConnectPanel panel) {
-		dialog.setSize(300, 200);
+		dialog.setUndecorated(true);
+//		com.sun.awt.AWTUtilities.setWindowOpacity(dialog, 0.9f);
+		dialog.setSize(400, 250);
 		dialog.setVisible(true);
 		dialog.setAlwaysOnTop(true);
 		dialog.setResizable(false);
