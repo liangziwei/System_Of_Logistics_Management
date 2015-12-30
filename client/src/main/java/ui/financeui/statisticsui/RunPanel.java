@@ -125,17 +125,20 @@ public class RunPanel extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(list!=null){
 					String fileSave = "d:\\workbook.xls";
-					JFileChooser jfc=new JFileChooser();  
-			        jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG ); 
-			        jfc.showSaveDialog(new JLabel());  
-			        File file=jfc.getSelectedFile(); 
-			        fileSave = file.getAbsolutePath();
-			        int i = fileSave.lastIndexOf(".");
-			        String extention = fileSave.substring(i+1);
-			        if(!extention.equals("xls")){
-			        	 fileSave+=".xls";
-			        }			           
-					statistics.outExcel(fileSave,list);		
+					JFileChooser jfc=new JFileChooser(); 
+					int value = jfc.showSaveDialog(null);
+					if(value==JFileChooser.OPEN_DIALOG){
+						jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG); 
+			        	jfc.showSaveDialog(new JLabel());  
+			        	  File file=jfc.getSelectedFile(); 
+					        fileSave = file.getAbsolutePath();
+					        int i = fileSave.lastIndexOf(".");
+					        String extention = fileSave.substring(i+1);
+					        if(!extention.equals("xls")){
+					        	 fileSave+=".xls";
+					        }	
+					        statistics.outExcel(fileSave,list);	
+			        }						
 				}		
 			}
 		});
