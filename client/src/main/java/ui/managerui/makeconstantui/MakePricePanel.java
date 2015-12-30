@@ -72,8 +72,8 @@ public class MakePricePanel extends DetailPanel{
 			{"快递袋包装费(元)", pack.getCourierBag() + ""},
 			{"其他包装费(元)", pack.getOther() + ""},
 			{"飞机每公里每吨(元)", transit.getAir() + ""},
-			{"汽车每公里每吨(元)", transit.getRailway() + ""},
-			{"火车每公里每吨(元)", transit.getRoad() + ""}
+			{"火车每公里每吨(元)", transit.getRailway() + ""},
+			{"汽车每公里每吨(元)", transit.getRoad() + ""}
 		};
 		this.price = new JTable(datas, names);
 		this.price.setRowHeight(32);
@@ -154,8 +154,8 @@ public class MakePricePanel extends DetailPanel{
 	 */
 	private void saveTranstiPrice() {
 		String air = (String)price.getValueAt(4, 1);
-		String railway = (String)price.getValueAt(6, 1);
-		String road = (String)price.getValueAt(5, 1);
+		String railway = (String)price.getValueAt(5, 1);
+		String road = (String)price.getValueAt(6, 1);
 		this.makePrice.setTransitPrice(new TransitPrice(Double.parseDouble(air),
 				Double.parseDouble(railway), Double.parseDouble(road)));
 	}

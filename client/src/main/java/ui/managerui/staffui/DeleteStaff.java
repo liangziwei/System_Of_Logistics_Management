@@ -40,6 +40,8 @@ public class DeleteStaff extends DetailPanel{
 		//人员信息面板
 		this.container.setBounds(0, DETAIL_PANEL_H / 6, DETAIL_PANEL_W, DETAIL_PANEL_H / 6 * 5);
 		this.container.getVerticalScrollBar().setUnitIncrement(15);
+		this.container.setOpaque(false);
+		this.container.getViewport().setOpaque(false);
 		this.container.setVisible(false);
 		this.add(this.container);
 		
@@ -60,6 +62,8 @@ public class DeleteStaff extends DetailPanel{
 		this.tip.setFont(WORD_FONT);
 		tip.setForeground(Color.RED);
 		this.add(this.tip);
+		
+		this.setOpaque(false);
 	}
 
 	private void addListener() {

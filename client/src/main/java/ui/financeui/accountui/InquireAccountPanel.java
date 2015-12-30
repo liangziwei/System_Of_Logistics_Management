@@ -32,6 +32,8 @@ public class InquireAccountPanel extends DetailPanel{
 	
 	private JLabel tip = new JLabel();
 	
+	private AccountInfoPanel panel;
+	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 20);
 	
 	private static final int LABEL_W = 100;
@@ -104,9 +106,10 @@ public class InquireAccountPanel extends DetailPanel{
 				}
 				else {
 					tip.setText("");
-					AccountInfoPanel infomation = new AccountInfoPanel(0, tip.getY() + TEXT_H,
+					if(panel != null) panel.setVisible(false);
+					panel = new AccountInfoPanel(0, tip.getY() + TEXT_H,
 							DETAIL_PANEL_W, DETAIL_PANEL_H - LABEL_H * 3, vo);
-					add(infomation);
+					add(panel);
 				}
 				repaint();
 			}
