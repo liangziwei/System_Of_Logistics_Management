@@ -99,6 +99,7 @@ public class OrganizationInfoPanel extends JPanel{
 		this.idText.setBounds(this.idLabel.getX() + LABEL_W + (startX >> 1),
 				this.idLabel.getY(), TEXT_W, TEXT_H);
 		this.idText.setFont(WORD_FONT);
+		this.idText.setEditable(false);
 		this.idText.setOpaque(false);
 		//机构类型标签
 		this.typeLabel.setBounds(this.idLabel.getX(),

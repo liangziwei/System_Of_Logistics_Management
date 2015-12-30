@@ -115,6 +115,7 @@ public class DeleteOrganization extends  DetailPanel{
 				orgPanel.setVisible(false);
 				//消除提示信息
 				orgId.removeText();
+				
 			}
 		});
 		//确定删除按钮
@@ -127,6 +128,7 @@ public class DeleteOrganization extends  DetailPanel{
 				organization.deleteStaffByOrgId(orgId.getIdText());
 				//返回查询界面
 				backToInquire();
+				
 			}
 		});
 		//取消删除按钮
@@ -150,6 +152,8 @@ public class DeleteOrganization extends  DetailPanel{
 		orgId.setVisible(true);
 		//消除提示信息
 		this.tip.setText("");
+		//消除之前输入的机构编号
+		orgId.clearIdText();
 				
 		repaint();
 	}

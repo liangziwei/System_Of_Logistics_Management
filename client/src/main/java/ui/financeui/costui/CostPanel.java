@@ -259,7 +259,13 @@ public class CostPanel extends DetailPanel{
 				int selected = itemText.getSelectedIndex();
 				noteLabel.setText(ITEM_MAP.get(selected));
 				//设置备注文本框
+				if(noteText != null) noteText.setVisible(false);
 				noteText = textMap.get(selected);
+				noteText.setVisible(true);
+				add(noteText);
+				setNoteTextUI();
+				
+				repaint();
 			}
 		});
 	}
@@ -291,7 +297,7 @@ public class CostPanel extends DetailPanel{
 		//对不同的备注框进行不同的数据验证
 		int select = this.itemText.getSelectedIndex();
 		NoteText text = this.textMap.get(select);
-		return text.setTipForInput(this.tip, text.getText());
+		return text.setTipForInput(this.tip, this.noteText.getText());
 		
 	}
 	

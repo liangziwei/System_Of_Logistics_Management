@@ -1,10 +1,7 @@
 package ui.managerui.staffui;
 
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -55,8 +52,6 @@ public class StaffInfoPanel extends JPanel{
 	private static final int START_X = (750 - LABEL_W - TEXT_W) / 3;
 	
 	private static final int START_Y = START_X >> 2;
-	
-	private static Image BACKGROUND = new ImageIcon("picture/detail.jpg").getImage();
 	
 	public StaffInfoPanel() {
 		//标签与标签之间的距离
@@ -122,6 +117,7 @@ public class StaffInfoPanel extends JPanel{
 		//将组件添加到面板
 		this.setLayout(null);
 		this.setOpaque(false);
+		
 		this.add(this.nameLabel);
 		this.add(this.nameText);
 		this.add(this.genderLabel);
@@ -145,6 +141,7 @@ public class StaffInfoPanel extends JPanel{
 		this.birthText.setDate(staffVO.getBirthday());
 		this.salaryType.setSelectedItem(staffVO.getType());
 		this.salaryText.setText(staffVO.getSalary());
+		
 		return this;
 	}
 	
@@ -153,11 +150,5 @@ public class StaffInfoPanel extends JPanel{
 				(String)posText.getSelectedItem(), (String)genderText.getSelectedItem(),
 				birthText.getDate(), salaryText.getText(), (String)salaryType.getSelectedItem(),
 				false, false);
-	}
-	
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 }

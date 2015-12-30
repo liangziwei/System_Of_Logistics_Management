@@ -149,7 +149,7 @@ public class ModifyAccountPanel extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String name = nameText.getText();
+				String name = panel.getAccountName();
 				//查看修改后的名称是否已经存在
 				AccountVO vo = account.findAccount(name);
 				if(vo != null) {
@@ -157,8 +157,8 @@ public class ModifyAccountPanel extends DetailPanel{
 					repaint();
 					return ;
 				}
-				//删除账户信息
-				boolean result = account.modifyAccount(name, panel.getAccountName());
+				//修改账户信息
+				boolean result = account.modifyAccount(nameText.getText(), name);
 				if(result) {
 					tip.setText("修改成功");
 				}

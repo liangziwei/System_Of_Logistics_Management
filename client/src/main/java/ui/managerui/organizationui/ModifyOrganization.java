@@ -153,7 +153,8 @@ public class ModifyOrganization extends DetailPanel{
 		this.orgId.setVisible(true);
 		//消除提示信息
 		this.tip.setText("");
-		
+		//消除之前输入的机构编号
+		orgId.clearIdText();
 		this.repaint();
 	}
 }
