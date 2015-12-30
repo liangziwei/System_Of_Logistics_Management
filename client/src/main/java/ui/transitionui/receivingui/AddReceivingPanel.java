@@ -1,28 +1,24 @@
 package ui.transitionui.receivingui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import businessLogic.businessLogicController.transitionController.ReceivingController;
 import businessLogic.businessLogicController.transitionController.TransferringController;
 import businessLogicService.transitionBLService.ReceivingBLService;
 import businessLogicService.transitionBLService.TransferringBLService;
 import constant.CargoState;
+import dataService.businessDataService.EntruckingDataService;
+import network.RMI;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
@@ -32,6 +28,7 @@ import vo.transitionVO.TransferringVO;
 public class AddReceivingPanel extends DetailPanel {
 	private ReceivingBLService receivingService = new ReceivingController();
 	private TransferringBLService transferringBLService = new TransferringController();
+	private EntruckingDataService entruckingData=RMI.<EntruckingDataService>getDataService("entrucking");
 
 	private DateChooser dateChoose = DateChooser.getInstance();
 	// // 添加下拉框
@@ -79,6 +76,7 @@ public class AddReceivingPanel extends DetailPanel {
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 
 	private JLabel betransfer = new JLabel("不存在该中转单");
+	private JLabel beloading = new JLabel("不存在该装车单");
 	private JLabel state = new JLabel("", JLabel.CENTER);
 
 	public static final int LABEL_W = 80;
@@ -176,12 +174,20 @@ public class AddReceivingPanel extends DetailPanel {
 				transferringidText.getY(), 80 * 2, 30);
 		check.setFont(WORD_FONT);
 		this.infoPanel.add(check);
+		//是否存在中转单
 		betransfer.setBounds(transferringid.getX(), transferringid.getY() + transferringid.getHeight(), TEXTid_W,
 				COMPONENT_GAP_Y);
 		betransfer.setFont(WORD_FONT);
 		betransfer.setForeground(Color.red);
 		betransfer.setVisible(false);
 		this.infoPanel.add(betransfer);
+		//是否存在营业厅装车单
+		beloading.setBounds(transferringid.getX(), transferringid.getY() + transferringid.getHeight(), TEXTid_W,
+				COMPONENT_GAP_Y);
+		beloading.setFont(WORD_FONT);
+		beloading.setForeground(Color.red);
+		beloading.setVisible(false);
+		this.infoPanel.add(beloading);
 		// 到达日期
 		arrivaldate.setBounds(transferringid.getX(),
 				transferringid.getY() + transferringid.getHeight() + COMPONENT_GAP_Y, LABEL_W, LABEL_H);
@@ -310,6 +316,7 @@ public class AddReceivingPanel extends DetailPanel {
 					
 				}
 				else if (transferID.matches("\\d{19}")) {
+					beloading.setVisible(false);
 					istransfer = true;
 				}
 				else {
