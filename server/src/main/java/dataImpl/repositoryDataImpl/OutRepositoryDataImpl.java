@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import constant.LoadingType;
 import dataService.Approvable;
@@ -79,6 +80,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		if (way==null) {
 			return null;
@@ -108,6 +110,27 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 		}
 		else {
 			return Database.delete("repository", "deliveryid", outRepositoryPO.getdeliveryid());			
+		}
+	}
+	
+	public List<String> getdeliveryid(String loadingid){
+		List<String> alldeliveryID = new ArrayList<String>();
+		try {
+			rs=Database.query("outRepository","loadingid",loadingid);
+			while(rs.next()){
+				String delID = rs.getString("deliveryid");
+				alldeliveryID.add(delID);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		if (alldeliveryID.isEmpty()) {
+			return null;
+		}
+		else {
+			return alldeliveryID;
+			
 		}
 	}
 	

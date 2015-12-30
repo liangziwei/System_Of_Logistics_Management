@@ -2,6 +2,7 @@ package dataService.repositoryDataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import dataService.ApproveFormService;
 import po.repositoryPO.OutRepositoryPO;
@@ -51,5 +52,7 @@ public interface OutRepositoryDataService extends Remote, ApproveFormService{
 	 * @return boolean, 返回给方法调用者库存信息是否更新成功
 	 * */
 	public boolean UpdateRepositoryInfoDT(OutRepositoryPO outRepositoryPO)throws RemoteException;
+	//查询相关装运单的所有快递编号
+	public List<String> getdeliveryid(String loadingid)throws RemoteException;
 	
 }

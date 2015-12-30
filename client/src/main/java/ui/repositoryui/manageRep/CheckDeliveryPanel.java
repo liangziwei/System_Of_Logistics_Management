@@ -166,16 +166,20 @@ public class CheckDeliveryPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				if (list != null) {
 					JFileChooser jfc = new JFileChooser();
-					jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
-					jfc.showSaveDialog(new JLabel());
-					File file = jfc.getSelectedFile();
-					String fileSave = file.getAbsolutePath();
-					int i = fileSave.lastIndexOf(".");
-					String extention = fileSave.substring(i + 1);
-					if (!extention.equals("xls")) {
-						fileSave += ".xls";
+					int value = jfc.showSaveDialog(null);
+					if (value==JFileChooser.OPEN_DIALOG) {
+						jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
+						jfc.showSaveDialog(new JLabel());
+						File file = jfc.getSelectedFile();
+						String fileSave = file.getAbsolutePath();
+						int i = fileSave.lastIndexOf(".");
+						String extention = fileSave.substring(i + 1);
+						if (!extention.equals("xls")) {
+							fileSave += ".xls";
+						}
+						manageRepositoryBLService.allExcel(fileSave, list);
+						
 					}
-					manageRepositoryBLService.allExcel(fileSave, list);
 				}
 
 			}
@@ -186,16 +190,20 @@ public class CheckDeliveryPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				if (list != null) {
 					JFileChooser jfc = new JFileChooser();
-					jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
-					jfc.showSaveDialog(new JLabel());
-					File file = jfc.getSelectedFile();
-					String fileSave = file.getAbsolutePath();
-					int i = fileSave.lastIndexOf(".");
-					String extention = fileSave.substring(i + 1);
-					if (!extention.equals("xls")) {
-						fileSave += ".xls";
+					int value = jfc.showSaveDialog(null);
+					if (value==JFileChooser.OPEN_DIALOG) {
+						jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
+						jfc.showSaveDialog(new JLabel());
+						File file = jfc.getSelectedFile();
+						String fileSave = file.getAbsolutePath();
+						int i = fileSave.lastIndexOf(".");
+						String extention = fileSave.substring(i + 1);
+						if (!extention.equals("xls")) {
+							fileSave += ".xls";
+						}
+						manageRepositoryBLService.plExcel(fileSave, pllist);
+						
 					}
-					manageRepositoryBLService.plExcel(fileSave, pllist);
 				}
 			}
 		});
@@ -205,16 +213,20 @@ public class CheckDeliveryPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				if (list != null) {
 					JFileChooser jfc = new JFileChooser();
-					jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
-					jfc.showSaveDialog(new JLabel());
-					File file = jfc.getSelectedFile();
-					String fileSave = file.getAbsolutePath();
-					int i = fileSave.lastIndexOf(".");
-					String extention = fileSave.substring(i + 1);
-					if (!extention.equals("xls")) {
-						fileSave += ".xls";
+					int value = jfc.showSaveDialog(null);
+					if (value==JFileChooser.OPEN_DIALOG) {
+						jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
+						jfc.showSaveDialog(new JLabel());
+						File file = jfc.getSelectedFile();
+						String fileSave = file.getAbsolutePath();
+						int i = fileSave.lastIndexOf(".");
+						String extention = fileSave.substring(i + 1);
+						if (!extention.equals("xls")) {
+							fileSave += ".xls";
+						}
+						manageRepositoryBLService.traExcel(fileSave, tralist);
+						
 					}
-					manageRepositoryBLService.traExcel(fileSave, tralist);
 				}
 			}
 		});
@@ -224,16 +236,20 @@ public class CheckDeliveryPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				if (list != null) {
 					JFileChooser jfc = new JFileChooser();
-					jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
-					jfc.showSaveDialog(new JLabel());
-					File file = jfc.getSelectedFile();
-					String fileSave = file.getAbsolutePath();
-					int i = fileSave.lastIndexOf(".");
-					String extention = fileSave.substring(i + 1);
-					if (!extention.equals("xls")) {
-						fileSave += ".xls";
+					int value = jfc.showSaveDialog(null);
+					if (value==JFileChooser.OPEN_DIALOG) {
+						jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
+						jfc.showSaveDialog(new JLabel());
+						File file = jfc.getSelectedFile();
+						String fileSave = file.getAbsolutePath();
+						int i = fileSave.lastIndexOf(".");
+						String extention = fileSave.substring(i + 1);
+						if (!extention.equals("xls")) {
+							fileSave += ".xls";
+						}
+						manageRepositoryBLService.truExcel(fileSave, trulist);
+						
 					}
-					manageRepositoryBLService.truExcel(fileSave, trulist);
 				}
 			}
 		});
@@ -243,16 +259,20 @@ public class CheckDeliveryPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				if (list != null) {
 					JFileChooser jfc = new JFileChooser();
-					jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
-					jfc.showSaveDialog(new JLabel());
-					File file = jfc.getSelectedFile();
-					String fileSave = file.getAbsolutePath();
-					int i = fileSave.lastIndexOf(".");
-					String extention = fileSave.substring(i + 1);
-					if (!extention.equals("xls")) {
-						fileSave += ".xls";
+					int value = jfc.showSaveDialog(null);
+					if (value==JFileChooser.OPEN_DIALOG) {
+						jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
+						jfc.showSaveDialog(new JLabel());
+						File file = jfc.getSelectedFile();
+						String fileSave = file.getAbsolutePath();
+						int i = fileSave.lastIndexOf(".");
+						String extention = fileSave.substring(i + 1);
+						if (!extention.equals("xls")) {
+							fileSave += ".xls";
+						}
+						manageRepositoryBLService.moExcel(fileSave, motolist);
+						
 					}
-					manageRepositoryBLService.moExcel(fileSave, motolist);
 				}
 			}
 		});
