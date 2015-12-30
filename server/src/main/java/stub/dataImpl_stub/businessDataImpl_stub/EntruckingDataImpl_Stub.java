@@ -28,4 +28,11 @@ public class EntruckingDataImpl_Stub implements EntruckingDataService{
 		return false;
 	}
 
+
+	@Override
+	public boolean isExist(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

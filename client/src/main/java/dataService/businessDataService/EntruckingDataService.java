@@ -21,4 +21,6 @@ public interface EntruckingDataService extends Remote, ApproveFormService{
 	 */
 	public boolean addEntruckingFrom(EntruckingPO entruckingPO)throws RemoteException;
 	
+	
+	public boolean isExist(String id)throws RemoteException;
 }

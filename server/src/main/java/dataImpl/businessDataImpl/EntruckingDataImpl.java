@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mysql.Database;
+import po.businessPO.DriverPO;
 import po.businessPO.EntruckingPO;
 import dataService.Approvable;
 import dataService.businessDataService.EntruckingDataService;
@@ -42,6 +43,7 @@ public class EntruckingDataImpl implements EntruckingDataService {
 		
 		return Database.add("entrucking", val);
 	}
+	
 	
 	public ArrayList<EntruckingPO> getUncheckEntrucking() {
 		ArrayList<EntruckingPO> po = new ArrayList<EntruckingPO>();
@@ -86,6 +88,24 @@ public class EntruckingDataImpl implements EntruckingDataService {
 			this.ApproveOneForm(a);
 		}
 		return true;
+	}
+
+
+	@Override
+	public boolean isExist(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		ResultSet rs;
+		try {
+			rs=Database.query("entrucking", "transportNumber", id);
+			while(rs.next()){
+				return true;
+			}  
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();			
+			return false;
+		}		
+		return false;
 	}
 	
 }
