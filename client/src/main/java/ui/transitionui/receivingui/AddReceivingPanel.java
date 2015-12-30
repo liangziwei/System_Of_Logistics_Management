@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.rmi.RemoteException;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -316,8 +317,21 @@ public class AddReceivingPanel extends DetailPanel {
 					
 				}
 				else if (transferID.matches("\\d{19}")) {
-					beloading.setVisible(false);
-					istransfer = true;
+					boolean entruck=false;
+					try {
+						entruck = entruckingData.isExist(transferID);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					if (entruck) {
+						beloading.setVisible(false);
+						istransfer = true;						
+					}
+					else {
+						beloading.setVisible(true);
+						istransfer = false;
+					}
 				}
 				else {
 					betransfer.setVisible(true);
