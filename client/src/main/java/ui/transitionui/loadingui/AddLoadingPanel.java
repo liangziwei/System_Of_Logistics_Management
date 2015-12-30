@@ -80,7 +80,7 @@ public class AddLoadingPanel extends DetailPanel{
 	
 	private JPanel buttonPanel = new JPanel();
 	
-	private JButton Sync = new JButton("sync");
+	private LimpidButton Sync = new LimpidButton("","picture/自动添加订单号.png");
 	
 	private LimpidButton add = new LimpidButton("","picture/AddButton.png");
 		
@@ -233,7 +233,7 @@ public class AddLoadingPanel extends DetailPanel{
 		alldeliveryid.setBounds(supervisionid.getX(), supervisionid.getY()+supervisionid.getHeight()+COMPONENT_GAP_Y, TEXTid_W,LABEL_H);
 		alldeliveryid.setFont(WORD_FONT);
 		this.infoPanel.add(alldeliveryid);
-		Sync.setBounds(alldeliveryid.getX()+alldeliveryid.getWidth()-120+COMPONENT_GAP_X,alldeliveryid.getY()+5,BUTTON_W,BUTTON_H);
+		Sync.setBounds(alldeliveryid.getX()+alldeliveryid.getWidth()-120+COMPONENT_GAP_X,alldeliveryid.getY()+5,BUTTON_W*2,BUTTON_H);
 		Sync.setFont(WORD_FONT);
 		this.infoPanel.add(Sync);
 		JScrollPane scrollPane = new JScrollPane();
