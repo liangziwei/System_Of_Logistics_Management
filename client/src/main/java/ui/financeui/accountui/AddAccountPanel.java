@@ -133,6 +133,11 @@ public class AddAccountPanel extends DetailPanel{
 					repaint();
 					return ;
 				}
+				if(!CommonLogic.isMoney(money)) {
+					tip.setText("小数点位数应该<=2");
+					repaint();
+					return ;
+				}
 				AccountVO vo = account.findAccount(name);
 				if(vo != null) {
 					tip.setText("该账户已经存在");

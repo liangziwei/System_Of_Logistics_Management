@@ -2,12 +2,9 @@ package ui.deliveryui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -153,6 +150,13 @@ public class OrderInquirePanel extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//将当前细节信息面板设置为初始页面
 				container.setVisible(false);
+				//消除用户输入的订单条形码号
+				search.setText("");
+				//消除提示信息
+				error.setText("");
+				orderLabel.setForeground(Color.BLACK);
+				
+				repaint();
 			}
 		});
 	}

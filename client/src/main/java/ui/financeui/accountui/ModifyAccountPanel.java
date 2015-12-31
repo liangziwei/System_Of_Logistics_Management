@@ -10,6 +10,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.financeController.AccountController;
+import businessLogic.businessLogicModel.util.CommonLogic;
 import businessLogicService.financeBLService.AccountBLService;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
@@ -153,11 +154,14 @@ public class ModifyAccountPanel extends DetailPanel{
 				//查看修改后的名称是否已经存在
 				AccountVO vo = account.findAccount(name);
 				if(vo != null) {
-					tip.setText("该账户名称已经存在");
-					repaint();
+					setTip("该账户名称已经存在");
 					return ;
 				}
 				//修改账户信息
+				if(CommonLogic.isNull(name)) {
+					setTip("账户名称不能为空");
+					return ;
+				}
 				boolean result = account.modifyAccount(nameText.getText(), name);
 				if(result) {
 					tip.setText("修改成功");
@@ -182,6 +186,14 @@ public class ModifyAccountPanel extends DetailPanel{
 		//展现确认按钮
 		ok.setVisible(true);
 		//刷新面板
+		repaint();
+	}
+	
+	/**
+	 *设置提示信息 
+	 */
+	private void setTip(String text) {
+		tip.setText(text);
 		repaint();
 	}
 }

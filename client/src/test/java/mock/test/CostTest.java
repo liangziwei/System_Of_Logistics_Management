@@ -1,14 +1,5 @@
 package mock.test;
 
-//import static org.junit.Assert.assertEquals;
-
-
-import org.junit.Test;
-
-import businessLogic.businessLogicController.financeController.CostController;
-
-import vo.financeVO.PaymentVO;
-
 public class CostTest {
 
 //	@Test

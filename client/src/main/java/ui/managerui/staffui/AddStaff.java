@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -55,6 +59,23 @@ public class AddStaff extends DetailPanel{
 	private JLabel tip = new JLabel();
 	
 	private DateChooser dateChooser = DateChooser.getInstance();
+	
+	/**
+	 *人员类型与薪水类型的映射表(integer为添加到JComboBox的下标) 
+	 */
+	private static Map<Integer, Integer> SALARY_TYPE_MAP = new HashMap<Integer, Integer>();
+	
+	static {
+		//快递员-提成
+		SALARY_TYPE_MAP.put(0, 2);
+		//司机-计次
+		SALARY_TYPE_MAP.put(5, 1);
+		//其他-按月
+		SALARY_TYPE_MAP.put(1, 0);
+		SALARY_TYPE_MAP.put(2, 0);
+		SALARY_TYPE_MAP.put(3, 0);
+		SALARY_TYPE_MAP.put(4, 0);
+	}
 	
 	private static Font WORD_FONT = new Font("宋体", Font.PLAIN, 12);
 	
@@ -114,6 +135,7 @@ public class AddStaff extends DetailPanel{
 		this.posText.addItem("中转中心业务员");
 		this.posText.addItem("中转中心库存管理人员");
 		this.posText.addItem("财务人员");
+		this.posText.addItem("司机");
 		this.posText.setOpaque(false);
 		//出生日期标签
 		this.birthLabel.setBounds(this.posLabel.getX(), this.posLabel.getY() + gap, LABEL_W, LABEL_H);
@@ -132,6 +154,7 @@ public class AddStaff extends DetailPanel{
 		this.salaryType.addItem("按月");
 		this.salaryType.addItem("计次");
 		this.salaryType.addItem("提成");
+		this.salaryType.setSelectedIndex(2);
 		//薪水文本框
 		this.salaryText.setBounds(this.salaryType.getX() + this.salaryType.getWidth(),
 				this.salaryType.getY(), TEXT_W >> 1, TEXT_H);
@@ -208,6 +231,16 @@ public class AddStaff extends DetailPanel{
 				repaint();
 			}
 		});
+		//人员类型下拉框
+		this.posText.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				//根据人员类型选择不同的薪水类型
+				int position = posText.getSelectedIndex();
+				salaryType.setSelectedIndex(SALARY_TYPE_MAP.get(position));
+			}
+		});;
 	}
 	
 	private void clearInfo() {
