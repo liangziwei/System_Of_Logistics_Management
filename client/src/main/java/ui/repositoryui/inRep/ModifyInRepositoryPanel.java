@@ -1,29 +1,23 @@
 package ui.repositoryui.inRep;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.repositoryController.InRepositoryController;
-import businessLogic.businessLogicController.transitionController.ReceivingController;
 import businessLogicService.repositoryBLService.InRepositoryBLService;
-import businessLogicService.transitionBLService.ReceivingBLService;
 import constant.AreaCodeType;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import ui.transitionui.loadingui.AddLoadingPanel;
 import vo.repositoryVO.InRepositoryVO;
-import vo.transitionVO.ReceivingVO;
 
 public class ModifyInRepositoryPanel extends DetailPanel {
 	private InRepositoryBLService inRepositoryBLService = new InRepositoryController();

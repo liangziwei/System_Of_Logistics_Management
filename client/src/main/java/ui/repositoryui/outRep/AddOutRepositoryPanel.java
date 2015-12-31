@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -191,6 +190,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setEditable(false);
 		arrivalidText.setOpaque(false);
 		this.infoPanel.add(arrivalidText);
 		// 装运形式
@@ -341,7 +341,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		transitionid.setEditable(false);
 		// outrepositoryMonth.setEditable(false);
 		// outrepositoryDay.setEditable(false);
-		arrivalidText.setEditable(false);
+//		arrivalidText.setEditable(false);
 		loadingwayText.setEnabled(false);
 		wayidText.setEditable(false);
 	}
@@ -353,7 +353,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		transitionid.setEditable(true);
 		// outrepositoryMonth.setEditable(true);
 		// outrepositoryDay.setEditable(true);
-		arrivalidText.setEditable(true);
+//		arrivalidText.setEditable(true);
 		loadingwayText.setEnabled(true);
 		wayidText.setEditable(true);
 	}

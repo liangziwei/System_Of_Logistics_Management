@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 
 import businessLogic.businessLogicController.deliveryController.OrderController;
 import businessLogic.businessLogicController.repositoryController.InRepositoryController;
-import businessLogic.businessLogicModel.deliveryModel.OrderModel;
 import businessLogicService.deliveryBLService.OrderBLService;
 import businessLogicService.repositoryBLService.InRepositoryBLService;
 import constant.AreaCodeType;
