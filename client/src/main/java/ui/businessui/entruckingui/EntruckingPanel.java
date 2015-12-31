@@ -149,7 +149,7 @@ public class EntruckingPanel extends DetailPanel {
 		this.freight.setFont(WORD_FONT);
 		this.freightText.setBounds(this.dateText.getX(), this.freight.getY(), TEXT_W, TEXT_H);
 		this.freightText.setFont(WORD_FONT);
-		this.freightText.setText(String.valueOf(entruckingCon.getFreight()));
+		
 		this.freightText.setOpaque(false);
 		
 		alldeliveryid.setBounds(freight.getX(), freight.getY()+freight.getHeight()+LABEL_H, LABEL_W*3,LABEL_H);
@@ -195,6 +195,7 @@ public class EntruckingPanel extends DetailPanel {
 						result.setForeground(Color.BLUE);
 						result.setText("请确认信息输入无误，确认后点击提交");
 						// ok.setText("提交");
+						freightText.setText(String.valueOf(entruckingCon.getFreight()));
 						ok.setIcon(new ImageIcon("picture/提交.png"));
 						disablePanel();
 						isFirstEnsure = false;
@@ -366,7 +367,7 @@ public class EntruckingPanel extends DetailPanel {
 		this.destionationText.setText("");
 		this.supercargoText.setText("");
 		this.supervisorText.setText("");
-		// this.freightText.setText("");
+		this.freightText.setText("");
 		this.vehicleidText.setText("");
 		this.alldeliveryidArea.setText("");
 	}

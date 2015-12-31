@@ -25,37 +25,40 @@ public class Receiving {
 	public boolean addReceivingFormBL(ReceivingVO receivingVO) {
 		// TODO Auto-generated method stub
 		// 编辑物流轨迹
-		boolean trace = false;
-		HashMap<String, String> constant = null;
-		try {
-			constant = makeConstantDataService.getIDTable();
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		if (constant != null && receivingVO.gettransferringid().matches("\\d{16}")) {
-			String pos1 = receivingVO.gettransitionid().substring(0, 3);
-			String cityStr = constant.get(pos1);
-			City city = this.strToCity(cityStr);
-			TransferringPO transferringPO =null;
-			try {
-				transferringPO = transferringDataService.FindTransferringFormDT(receivingVO.gettransferringid().trim());
-			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			if (transferringPO==null) {
-				return false;
-			}
-			for(String del1:(transferringPO.getalldeliveryid())){
-				try {
-					trace = order.setTrace(del1, TransitionNode.TRANSI_CENTER, city);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
+		boolean trace = true;
+//		HashMap<String, String> constant = null;
+//		try {
+//			constant = makeConstantDataService.getIDTable();
+//		} catch (RemoteException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		if (constant != null && receivingVO.gettransferringid().matches("\\d{16}")) {
+//			String pos1 = receivingVO.gettransitionid().substring(0, 3);
+//			String cityStr = constant.get(pos1);
+//			City city = this.strToCity(cityStr);
+//			TransferringPO transferringPO =null;
+//			try {
+//				transferringPO = transferringDataService.FindTransferringFormDT(receivingVO.gettransferringid().trim());
+//			} catch (RemoteException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//			if (transferringPO==null) {
+//				return false;
+//			}
+//			for(String del1:(transferringPO.getalldeliveryid())){
+//				try {
+//					trace = order.setTrace(del1, TransitionNode.TRANSI_CENTER, city);
+//				} catch (RemoteException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//		if (receivingVO.gettransferringid().matches("\\d{19}")) {
+//			trace = true;
+//		}
 
 		// 保存接收单
 		if (trace) {

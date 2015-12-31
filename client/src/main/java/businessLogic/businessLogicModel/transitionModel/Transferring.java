@@ -47,16 +47,16 @@ public class Transferring {
 		// TODO Auto-generated method stub
 		//编辑物流轨迹
 		boolean trace = false;
-		HashMap<String, String> constant = null;
-		try {
-			constant = makeConstantDataService.getIDTable();
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//		HashMap<String, String> constant = null;
+//		try {
+//			constant = makeConstantDataService.getIDTable();
+//		} catch (RemoteException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 		String position = transferringVO.getdepartureid();
 		City city = this.strToCity(position);
-		if(constant != null && city != null) {
+		if(city != null) {
 			for(String del:(transferringVO.getalldeliveryid())){
 				try {
 					trace = order.setTrace(del, TransitionNode.TRANSI_CENTER, city);

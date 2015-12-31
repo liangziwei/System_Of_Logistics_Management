@@ -7,10 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +23,8 @@ import businessLogic.businessLogicController.transitionController.LoadingControl
 import businessLogicService.repositoryBLService.InRepositoryBLService;
 import businessLogicService.transitionBLService.LoadingBLService;
 import constant.LoadingType;
+import dataService.repositoryDataService.OutRepositoryDataService;
+import network.RMI;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import vo.repositoryVO.InRepositoryVO;
@@ -31,6 +33,7 @@ import vo.transitionVO.LoadingVO;
 public class AddLoadingPanel extends DetailPanel{
 	private LoadingBLService loadingservice = new LoadingController();
 	private InRepositoryBLService InRepositoryBLService = new InRepositoryController();
+	private OutRepositoryDataService outRepositoryDataService = RMI.<OutRepositoryDataService>getDataService("outrepository");
 	
 	//添加下拉框
 	private JScrollPane jScrollPane =new JScrollPane();
@@ -76,6 +79,8 @@ public class AddLoadingPanel extends DetailPanel{
 	
 	private JPanel buttonPanel = new JPanel();
 	
+	private LimpidButton Sync = new LimpidButton("","picture/自动添加订单号.png");
+	
 	private LimpidButton add = new LimpidButton("","picture/AddButton.png");
 		
 	private LimpidButton ok = new LimpidButton("","picture/确定.png");
@@ -84,6 +89,7 @@ public class AddLoadingPanel extends DetailPanel{
 	
 	public static Font WORD_FONT = new Font("宋体", Font.PLAIN, 15);
 	
+	private JLabel loadingstate = new JLabel("<html>"+"库存中无该装运单号相关的快递订单号"+"<html>");
 	private JLabel deliverystate = new JLabel("库存中无该快递单"); 
 	private JLabel state = new JLabel("" ,JLabel.CENTER);
 	
@@ -175,10 +181,16 @@ public class AddLoadingPanel extends DetailPanel{
 	private void initUI(){
 		//
 		loadingid.setBounds(0, 0, LABEL_W, LABEL_H);
+		loadingid.setFont(WORD_FONT);
 		this.infoPanel.add(loadingid);
 		loadingidText.setBounds(loadingid.getX()+LABEL_W+COMPONENT_GAP_X,loadingid.getY() , TEXTid_W, TEXT_H);
 		loadingidText.setOpaque(false);
 		this.infoPanel.add(loadingidText);
+		loadingstate.setBounds(loadingid.getX()+150, loadingid.getY()+loadingid.getHeight(), TEXTid_W, TEXT_H);
+		loadingstate.setFont(WORD_FONT);
+		loadingstate.setForeground(Color.red);
+		loadingstate.setVisible(false);
+		this.infoPanel.add(loadingstate);
 		//
 		arrivalid.setBounds(loadingid.getX(), loadingid.getY()+LABEL_H+COMPONENT_GAP_Y, LABEL_W, LABEL_H);
 		this.infoPanel.add(arrivalid);
@@ -220,6 +232,9 @@ public class AddLoadingPanel extends DetailPanel{
 		alldeliveryid.setBounds(supervisionid.getX(), supervisionid.getY()+supervisionid.getHeight()+COMPONENT_GAP_Y, TEXTid_W,LABEL_H);
 		alldeliveryid.setFont(WORD_FONT);
 		this.infoPanel.add(alldeliveryid);
+		Sync.setBounds(alldeliveryid.getX()+alldeliveryid.getWidth()-120+COMPONENT_GAP_X,alldeliveryid.getY()+5,BUTTON_W*2,BUTTON_H);
+		Sync.setFont(WORD_FONT);
+		this.infoPanel.add(Sync);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(alldeliveryid.getX()+Area_W-180, alldeliveryid.getY()+alldeliveryid.getHeight(), TEXT_W,Area_H/2+20);
 		this.infoPanel.add(scrollPane);
@@ -292,6 +307,30 @@ public class AddLoadingPanel extends DetailPanel{
 				//重置运费
 				fareText.setText("");
 				fare.setForeground(Color.black);
+			}
+		});
+		
+		this.Sync.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String loadingnumber = loadingidText.getText().trim();
+				List<String> allnum = null;
+				try {
+					allnum = outRepositoryDataService.getdeliveryid(loadingnumber);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				if (allnum == null) {
+					loadingstate.setVisible(true);
+				}
+				else {
+					loadingstate.setVisible(false);
+					for (String str: allnum){
+						alldeliveryidArea.append(str+"\n");
+					}
+				}
 			}
 		});
 		

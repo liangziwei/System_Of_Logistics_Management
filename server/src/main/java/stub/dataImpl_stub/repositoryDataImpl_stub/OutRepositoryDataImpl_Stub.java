@@ -2,6 +2,7 @@ package stub.dataImpl_stub.repositoryDataImpl_stub;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import constant.LoadingType;
 import dataService.Approvable;
@@ -40,6 +41,12 @@ public class OutRepositoryDataImpl_Stub implements OutRepositoryDataService{
 	public boolean ApproveMoreForm(ArrayList<? extends Approvable> forms) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<String> getdeliveryid(String loadingid) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
