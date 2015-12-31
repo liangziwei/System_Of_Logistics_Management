@@ -1,21 +1,5 @@
 package mock.test;
 
-//import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Test;
-
-import vo.businessVO.VehicleVO;
-import vo.financeVO.AccountVO;
-import vo.managerVO.OrganizationVO;
-import vo.managerVO.StaffVO;
-import vo.repositoryVO.RepositoryInfoVO;
-import vo.repositoryVO.RepositoryVO;
-import businessLogic.businessLogicController.financeController.OriginalInfoController;
-import constant.AreaCodeType;
-
 public class OriginalInfoTest {
 
 //	@Test

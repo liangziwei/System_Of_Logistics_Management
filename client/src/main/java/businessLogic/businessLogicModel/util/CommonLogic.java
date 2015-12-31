@@ -22,6 +22,21 @@ public class CommonLogic {
 		return true;
 	}
 	
+	/**
+	 *是否是金额（即是否是数字，且精度只到小数点后两位 ）
+	 *若输入为形如1E-2,也认为不符合要求
+	 */
+	public static boolean isMoney(String s) {
+		if(!isDouble(s)) return false;
+		
+		String[] temp = s.split("\\.");
+		try {
+			return temp[1].length() <= 2;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+	
 	public static boolean isStaffType(char c) {
 		return c >= 'B' && c <= 'H';
 	}
