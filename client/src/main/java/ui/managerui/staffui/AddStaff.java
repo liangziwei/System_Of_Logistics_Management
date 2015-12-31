@@ -154,6 +154,7 @@ public class AddStaff extends DetailPanel{
 		this.salaryType.addItem("按月");
 		this.salaryType.addItem("计次");
 		this.salaryType.addItem("提成");
+		this.salaryType.setSelectedIndex(2);
 		//薪水文本框
 		this.salaryText.setBounds(this.salaryType.getX() + this.salaryType.getWidth(),
 				this.salaryType.getY(), TEXT_W >> 1, TEXT_H);
