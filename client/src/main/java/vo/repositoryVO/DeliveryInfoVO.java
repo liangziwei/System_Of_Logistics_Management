@@ -21,6 +21,10 @@ public class DeliveryInfoVO {
 	 */
 	private String arrivalid;
 	/**
+	 * 中转中心编号
+	 */
+	private String transitionid;
+	/**
 	 * 区号
 	 */
 	private AreaCodeType areaCode;
@@ -37,7 +41,7 @@ public class DeliveryInfoVO {
 	 */
 	private String posid;
 	public DeliveryInfoVO(String deliveryid,String inrepositorydate,String arrivalid,
-			AreaCodeType areaCode,String rowid,String shelfid,String posid) {
+			AreaCodeType areaCode,String rowid,String shelfid,String posid,String transitionid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -47,6 +51,7 @@ public class DeliveryInfoVO {
 		this.rowid=rowid;
 		this.shelfid=shelfid;
 		this.posid=posid;
+		this.transitionid = transitionid;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;
@@ -89,6 +94,12 @@ public class DeliveryInfoVO {
 	}
 	public String getposid() {
 		return posid;
+	}
+	public void settransitionid(String transitionid) {
+		this.transitionid = transitionid;
+	}
+	public String gettransitionid() {
+		return transitionid;
 	}
 }
 

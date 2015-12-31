@@ -153,15 +153,17 @@ public class ManageRepository {
 	}
 
 	private RepositoryVO RepositoryPOtoRepositoryVO(RepositoryPO repositoryPO) {
-		return new RepositoryVO(repositoryPO.getdeliveryid(), repositoryPO.getinrepositorydate(),
+		RepositoryVO repositoryVO2 = new RepositoryVO(repositoryPO.getdeliveryid(), repositoryPO.getinrepositorydate(),
 				repositoryPO.getarrivalid(), repositoryPO.getareaCode(), repositoryPO.getrowid(),
 				repositoryPO.getshelfid(), repositoryPO.getposid());
+		repositoryVO2.settransitionid(repositoryPO.gettransitionid());
+		return repositoryVO2;
 	}
 
 	private RepositoryInfoVO RepositoryInfoPOtoRepositoryInfoVO(RepositoryInfoPO repositoryInfoPO) {
 		RepositoryInfoVO repositoryInfoVO = new RepositoryInfoVO(repositoryInfoPO.getdeliveryid(),
 				repositoryInfoPO.getareaCode(), repositoryInfoPO.getrowid(), repositoryInfoPO.getshelfid(),
-				repositoryInfoPO.getposid(), repositoryInfoPO.getbeinrepository());
+				repositoryInfoPO.getposid(), repositoryInfoPO.getbeinrepository(),repositoryInfoPO.gettransitionid());
 		repositoryInfoVO.setmoney(repositoryInfoPO.getmoney());
 		return repositoryInfoVO;
 	}
@@ -169,7 +171,7 @@ public class ManageRepository {
 	private DeliveryInfoVO DeliveryInfoPOtoDeliveryInfoVO(DeliveryInfoPO deliveryInfoPO) {
 		return new DeliveryInfoVO(deliveryInfoPO.getdeliveryid(), deliveryInfoPO.getinrepositorydate(),
 				deliveryInfoPO.getarrivalid(), deliveryInfoPO.getareaCode(), deliveryInfoPO.getrowid(),
-				deliveryInfoPO.getshelfid(), deliveryInfoPO.getposid());
+				deliveryInfoPO.getshelfid(), deliveryInfoPO.getposid(),deliveryInfoPO.gettransitionid());
 	}
 
 	public void Excel(String fileSave, List<DeliveryInfoVO> list) {

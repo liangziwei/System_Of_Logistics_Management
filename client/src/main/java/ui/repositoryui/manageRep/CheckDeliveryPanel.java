@@ -201,7 +201,7 @@ public class CheckDeliveryPanel extends DetailPanel {
 						if (!extention.equals("xls")) {
 							fileSave += ".xls";
 						}
-						manageRepositoryBLService.plExcel(fileSave, pllist);
+						manageRepositoryBLService.allExcel(fileSave, pllist);
 						
 					}
 				}
@@ -224,7 +224,7 @@ public class CheckDeliveryPanel extends DetailPanel {
 						if (!extention.equals("xls")) {
 							fileSave += ".xls";
 						}
-						manageRepositoryBLService.traExcel(fileSave, tralist);
+						manageRepositoryBLService.allExcel(fileSave, tralist);
 						
 					}
 				}
@@ -247,7 +247,7 @@ public class CheckDeliveryPanel extends DetailPanel {
 						if (!extention.equals("xls")) {
 							fileSave += ".xls";
 						}
-						manageRepositoryBLService.truExcel(fileSave, trulist);
+						manageRepositoryBLService.allExcel(fileSave, trulist);
 						
 					}
 				}
@@ -270,7 +270,7 @@ public class CheckDeliveryPanel extends DetailPanel {
 						if (!extention.equals("xls")) {
 							fileSave += ".xls";
 						}
-						manageRepositoryBLService.moExcel(fileSave, motolist);
+						manageRepositoryBLService.allExcel(fileSave, motolist);
 						
 					}
 				}
@@ -363,14 +363,14 @@ public class CheckDeliveryPanel extends DetailPanel {
 	private void initTabel(List<DeliveryInfoVO> listpl, List<DeliveryInfoVO> listtra, List<DeliveryInfoVO> listtru,
 			List<DeliveryInfoVO> listmo) {
 		// 设置列表
-		Object[] names = { "快递编号", "入库日期", "目的地", "区号", "排号", "架号", "位号" };
+		Object[] names = { "快递编号", "中转中心编号","入库日期", "目的地", "区号", "排号", "架号", "位号" };
 		// 初始化表格信息
 		// plane
 		int sizepl = listpl.size();
-		Object[][] dataspl = new Object[sizepl][7];
+		Object[][] dataspl = new Object[sizepl][8];
 		for (int i = 0; i < sizepl; i++) {
 			String AREA = "航运区";
-			dataspl[i] = new Object[] { listpl.get(i).getdeliveryid(), listpl.get(i).getinrepositorydate(),
+			dataspl[i] = new Object[] { listpl.get(i).getdeliveryid(),listpl.get(i).gettransitionid(), listpl.get(i).getinrepositorydate(),
 					listpl.get(i).getarrivalid(), AREA, listpl.get(i).getrowid(), listpl.get(i).getshelfid(),
 					listpl.get(i).getposid() };
 		}
@@ -384,10 +384,10 @@ public class CheckDeliveryPanel extends DetailPanel {
 		this.tablepl.setRowHeight(rowH);
 		// train
 		int sizetra = listtra.size();
-		Object[][] datastra = new Object[sizetra][7];
+		Object[][] datastra = new Object[sizetra][8];
 		for (int i = 0; i < sizetra; i++) {
 			String AREA = "铁运区";
-			datastra[i] = new Object[] { listtra.get(i).getdeliveryid(), listtra.get(i).getinrepositorydate(),
+			datastra[i] = new Object[] { listtra.get(i).getdeliveryid(),listtra.get(i).gettransitionid(), listtra.get(i).getinrepositorydate(),
 					listtra.get(i).getarrivalid(), AREA, listtra.get(i).getrowid(), listtra.get(i).getshelfid(),
 					listtra.get(i).getposid() };
 		}
@@ -400,10 +400,10 @@ public class CheckDeliveryPanel extends DetailPanel {
 		this.tabletra.setRowHeight(rowH);
 		// truck
 		int sizetru = listtru.size();
-		Object[][] datastru = new Object[sizetru][7];
+		Object[][] datastru = new Object[sizetru][8];
 		for (int i = 0; i < sizetru; i++) {
 			String AREA = "汽运区";
-			datastru[i] = new Object[] { listtru.get(i).getdeliveryid(), listtru.get(i).getinrepositorydate(),
+			datastru[i] = new Object[] { listtru.get(i).getdeliveryid(),listtru.get(i).gettransitionid(), listtru.get(i).getinrepositorydate(),
 					listtru.get(i).getarrivalid(), AREA, listtru.get(i).getrowid(), listtru.get(i).getshelfid(),
 					listtru.get(i).getposid() };
 		}
@@ -416,10 +416,10 @@ public class CheckDeliveryPanel extends DetailPanel {
 		this.tabletru.setRowHeight(rowH);
 		// moto
 		int sizemo = listmo.size();
-		Object[][] datasmo = new Object[sizemo][7];
+		Object[][] datasmo = new Object[sizemo][8];
 		for (int i = 0; i < sizemo; i++) {
 			String AREA = "机动区";
-			datasmo[i] = new Object[] { listmo.get(i).getdeliveryid(), listmo.get(i).getinrepositorydate(),
+			datasmo[i] = new Object[] { listmo.get(i).getdeliveryid(),listmo.get(i).gettransitionid(), listmo.get(i).getinrepositorydate(),
 					listmo.get(i).getarrivalid(), AREA, listmo.get(i).getrowid(), listmo.get(i).getshelfid(),
 					listmo.get(i).getposid() };
 		}
@@ -436,21 +436,33 @@ public class CheckDeliveryPanel extends DetailPanel {
 		JScrollPane jScrollPane1 = new JScrollPane();
 		jScrollPane1.setBounds(40, plane.getY() + plane.getHeight(), Area_W + LABEL_W, LABEL_H * 5);
 		jScrollPane1.setViewportView(tablepl);
+		jScrollPane1.getViewport().setOpaque(false);
+		jScrollPane1.setOpaque(false);
+		tablepl.setOpaque(false);
 		container.add(jScrollPane1);
 		// train
 		JScrollPane jScrollPane2 = new JScrollPane();
 		jScrollPane2.setBounds(40, train.getY() + train.getHeight(), Area_W + LABEL_W, LABEL_H * 5);
 		jScrollPane2.setViewportView(tabletra);
+		jScrollPane2.getViewport().setOpaque(false);
+		jScrollPane2.setOpaque(false);
+		tabletra.setOpaque(false);
 		container.add(jScrollPane2);
 		// truck
 		JScrollPane jScrollPane3 = new JScrollPane();
 		jScrollPane3.setBounds(40, truck.getY() + truck.getHeight(), Area_W + LABEL_W, LABEL_H * 5);
 		jScrollPane3.setViewportView(tabletru);
+		jScrollPane3.getViewport().setOpaque(false);
+		jScrollPane3.setOpaque(false);
+		tabletru.setOpaque(false);
 		container.add(jScrollPane3);
 		// moto
 		JScrollPane jScrollPane4 = new JScrollPane();
 		jScrollPane4.setBounds(40, moto.getY() + moto.getHeight(), Area_W + LABEL_W, LABEL_H * 5);
 		jScrollPane4.setViewportView(tablemo);
+		jScrollPane4.getViewport().setOpaque(false);
+		jScrollPane4.setOpaque(false);
+		tablemo.setOpaque(false);
 		container.add(jScrollPane4);
 	}
 

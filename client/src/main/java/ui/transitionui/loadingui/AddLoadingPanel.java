@@ -374,9 +374,11 @@ public class AddLoadingPanel extends DetailPanel{
 			//添加装运信息
 			boolean save =loadingservice.addLoadingFormBL(loadingVO);
 			if(save) {		//保存成功
+				state.setForeground(Color.green);
 				showState("订单保存成功");
 				disableComponents();
 			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
+				state.setForeground(Color.red);
 				showState("订单保存失败");
 			}
 		}
@@ -384,6 +386,7 @@ public class AddLoadingPanel extends DetailPanel{
 	
 	private void verifyFailOperation(LoadingVO loadingVO) {
 		//提示修改意见
+		state.setForeground(Color.red);
 		showState(loadingVO.geterrorMsg());
 	}
 	

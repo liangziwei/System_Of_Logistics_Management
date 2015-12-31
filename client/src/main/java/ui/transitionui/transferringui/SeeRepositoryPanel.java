@@ -129,10 +129,10 @@ public class SeeRepositoryPanel extends DetailPanel {
 
 	private void initTabel(List<RepositoryVO> list) {
 		// 设置列表
-		Object[] names = { "快递编号", "入库日期", "目的地", "区号", "排号", "架号", "位号" };
+		Object[] names = { "快递编号", "中转中心编号","入库日期", "目的地", "区号", "排号", "架号", "位号" };
 
 		int size = list.size();
-		Object[][] datas = new Object[size][7];
+		Object[][] datas = new Object[size][8];
 		for (int i = 0; i < size; i++) {
 			AreaCodeType area = list.get(i).getareaCode();
 			String AREA = null;
@@ -150,7 +150,7 @@ public class SeeRepositoryPanel extends DetailPanel {
 				AREA = "机动区";
 				break;
 			}
-			datas[i] = new Object[] { list.get(i).getdeliveryid(), list.get(i).getinrepositorydate(),
+			datas[i] = new Object[] { list.get(i).getdeliveryid(),list.get(i).gettransitionid(), list.get(i).getinrepositorydate(),
 					list.get(i).getarrivalid(), AREA, list.get(i).getrowid(), list.get(i).getshelfid(),
 					list.get(i).getposid() };
 		}
@@ -166,6 +166,9 @@ public class SeeRepositoryPanel extends DetailPanel {
 		
 		jScrollPane.setBounds(10, 0, Area_W + LABEL_W, Area_H + LABEL_H);
 		jScrollPane.setViewportView(table);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
+		table.setOpaque(false);
 		thetablepanel.add(jScrollPane);
 	}
 }

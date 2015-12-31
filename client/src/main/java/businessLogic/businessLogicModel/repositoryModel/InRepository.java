@@ -72,13 +72,13 @@ public class InRepository {
 	private InRepositoryVO InRepositoryPOtoInRepositoryVO(InRepositoryPO inRepositoryPO) {
 		return new InRepositoryVO(inRepositoryPO.getdeliveryid(), inRepositoryPO.getinrepositorydate(),
 				inRepositoryPO.getarrivalid(), inRepositoryPO.getareaCode(), inRepositoryPO.getrowid(),
-				inRepositoryPO.getshelfid(), inRepositoryPO.getposid());
+				inRepositoryPO.getshelfid(), inRepositoryPO.getposid(),inRepositoryPO.gettransitionid());
 	}
 
 	private InRepositoryPO InRepositoryVOtoInRepositoryPO(InRepositoryVO inRepositoryVO) {
 		return new InRepositoryPO(inRepositoryVO.getdeliveryid(), inRepositoryVO.getinrepositorydate(),
 				inRepositoryVO.getarrivalid(), inRepositoryVO.getareaCode(), inRepositoryVO.getrowid(),
-				inRepositoryVO.getshelfid(), inRepositoryVO.getposid());
+				inRepositoryVO.getshelfid(), inRepositoryVO.getposid(),inRepositoryVO.gettransitionid());
 	}
 
 	public boolean verify(InRepositoryVO inRepositoryVO) {

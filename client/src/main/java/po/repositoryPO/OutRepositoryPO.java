@@ -33,6 +33,10 @@ public class OutRepositoryPO implements Serializable, Approvable{
 	 */
 	private LoadingType way;
 	/**
+	 * 中转中心编号
+	 */
+	private String transitionid;
+	/**
 	 * 装运编号（中转中心编号+日期+0000四位数字）
 	 */
 	private String loadingid;
@@ -49,7 +53,7 @@ public class OutRepositoryPO implements Serializable, Approvable{
 	 */
 	private boolean isPassed = false;
 	public OutRepositoryPO(String deliveryid,String outrepositorydate,String arrivalid,
-			LoadingType way,String loadingid) {
+			LoadingType way,String loadingid,String transitionid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -57,6 +61,7 @@ public class OutRepositoryPO implements Serializable, Approvable{
 		this.arrivalid=arrivalid;
 		this.way=way;
 		this.loadingid=loadingid;
+		this.transitionid = transitionid;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;
@@ -106,15 +111,21 @@ public class OutRepositoryPO implements Serializable, Approvable{
 	public boolean getisPassed() {
 		return isPassed;
 	}
+	public void settransitionid(String transitionid) {
+		this.transitionid = transitionid;
+	}
+	public String gettransitionid() {
+		return transitionid;
+	}
 	
 	public OutRepositoryVO outRepositoryPOToVO() {
 		return new OutRepositoryVO(this.deliveryid, 
-				this.outrepositorydate, this.arrivalid, this.way, this.loadingid);
+				this.outrepositorydate, this.arrivalid, this.way, this.loadingid,this.transitionid);
 	}
 	
 	public static OutRepositoryPO outRepositoryVOToPO(OutRepositoryVO vo) {
 		return new OutRepositoryPO(vo.getdeliveryid(), vo.getoutrepositorydate(),
-				vo.getarrivalid(), vo.getway(), vo.getloadingid());
+				vo.getarrivalid(), vo.getway(), vo.getloadingid(),vo.gettransitionid());
 	}
 	
 	public static ArrayList<OutRepositoryPO> outRepositoryVOListToPO(ArrayList<OutRepositoryVO> list) {

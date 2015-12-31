@@ -20,13 +20,14 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		String deliveryid = inRepositoryPO.getdeliveryid();
 		String inrepositorydate = inRepositoryPO.getinrepositorydate();
 		String arrivalid = inRepositoryPO.getarrivalid();
+		String transitionid = inRepositoryPO.gettransitionid();
 		AreaCodeType areaCode = inRepositoryPO.getareaCode();
 		String rowid = inRepositoryPO.getrowid();
 		String shelfid = inRepositoryPO.getshelfid();
 		String posid = inRepositoryPO.getposid();
 		boolean add = false;
 		String val = "";
-		val = "'" + deliveryid + "','" + inrepositorydate + "','" + arrivalid + "','" + areaCode.toString() + "','"
+		val = "'" + deliveryid + "','" + inrepositorydate + "','" + arrivalid + "','" +transitionid+"','"+ areaCode.toString() + "','"
 				+ rowid + "','" + shelfid + "','" + posid + "'," + "0,1";
 		try {
 			add = Database.add("inRepository", val);
@@ -43,13 +44,14 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		String deliveryid = inRepository.getdeliveryid();
 		String inrepositorydate = inRepository.getinrepositorydate();
 		String arrivalid = inRepository.getarrivalid();
+		String transitionid = inRepository.gettransitionid();
 		AreaCodeType areaCode = inRepository.getareaCode();
 		String rowid = inRepository.getrowid();
 		String shelfid = inRepository.getshelfid();
 		String posid = inRepository.getposid();
 		boolean modify = false;
 		String val = "";
-		val ="inrepositorydate='" + inrepositorydate + "',arrivalid='" + arrivalid
+		val ="inrepositorydate='" + inrepositorydate + "',arrivalid='" + arrivalid+"',transitionid='"+transitionid
 				+ "',areaCode='" + areaCode.toString() + "',rowid='" + rowid + "',shelfid='" + shelfid + "',posid='"
 				+ posid + "'," + "isApproved=0,isPassed=1";
 		try {
@@ -69,6 +71,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		String deliveryid = InRepositoryNumber;
 		String inrepositorydate = null;
 		String arrivalid = null;
+		String transitionid = null;
 		AreaCodeType areaCode = null;
 		String rowid = null;
 		String shelfid = null;
@@ -80,6 +83,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 			while (rs.next()) {
 				inrepositorydate = rs.getString("inrepositorydate");
 				arrivalid = rs.getString("arrivalid");
+				transitionid = rs.getString("transitionid");
 				areaCode = AreaCodeType.valueOf(rs.getString("areaCode"));
 				rowid = rs.getString("rowid");
 				shelfid = rs.getString("shelfid");
@@ -89,13 +93,13 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-
+			e.printStackTrace();
 		}
 		if (areaCode == null) {
 			return null;
 		}
 		InRepositoryPO inRepositoryPO = new InRepositoryPO(deliveryid, inrepositorydate, arrivalid, areaCode, rowid,
-				shelfid, posid);
+				shelfid, posid,transitionid);
 		inRepositoryPO.setisApproved(isApproval);
 		inRepositoryPO.setisPassed(isPass);
 		return inRepositoryPO;
@@ -162,7 +166,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		try {
 			return new InRepositoryPO(rs.getString("deliveryid"), rs.getString("inrepositorydate"),
 					rs.getString("arrivalid"), AreaCodeType.valueOf(rs.getString("areaCode")),
-					rs.getString("rowid"), rs.getString("shelfid"), rs.getString("posid"));
+					rs.getString("rowid"), rs.getString("shelfid"), rs.getString("posid"),rs.getString("transitionid"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

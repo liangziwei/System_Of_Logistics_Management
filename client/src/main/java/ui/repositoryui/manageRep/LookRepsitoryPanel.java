@@ -147,7 +147,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 		initinfo();
 
 		// tablePanel
-		tablePanel.setBounds(inRepositoryText.getX() + inRepositoryText.getWidth() + 10,
+		tablePanel.setBounds(inRepositoryText.getX() + inRepositoryText.getWidth() + 5,
 				find.getY() + find.getHeight() + COMPONENT_GAP_Y, Area_W, Area_H + LABEL_H * 3);
 		tablePanel.setOpaque(false);
 		addPanels();
@@ -260,12 +260,13 @@ public class LookRepsitoryPanel extends DetailPanel {
 	// 初始化table面板
 	private void initTable(List<RepositoryInfoVO> list) {
 		// 设置列表
-		Object[] names = { "快递编号", "区号", "排号", "架号", "位号" ,"出/入库"};
+		Object[] names = { "快递编号","中转中心编号","区号", "排号", "架号", "位号" ,"出/入库"};
 
 		int size = list.size();
-		Object[][] datas = new Object[size][6];
+		Object[][] datas = new Object[size][7];
 		for (int i = 0; i < size; i++) {
 			AreaCodeType area = list.get(i).getareaCode();
+			String transitionid = list.get(i).gettransitionid();
 			String AREA = null;
 			switch (area) {
 			case PLANEAREA:
@@ -288,7 +289,7 @@ public class LookRepsitoryPanel extends DetailPanel {
 			else {
 				beinRep = "出库单";
 			}
-			datas[i] = new Object[] { list.get(i).getdeliveryid(), AREA, list.get(i).getrowid(),
+			datas[i] = new Object[] { list.get(i).getdeliveryid(),transitionid, AREA, list.get(i).getrowid(),
 					list.get(i).getshelfid(), list.get(i).getposid(),beinRep };
 		}
 		DefaultTableModel model = new DefaultTableModel(datas, names) {
@@ -301,8 +302,11 @@ public class LookRepsitoryPanel extends DetailPanel {
 		this.table.setRowHeight(rowH);
 		// 添加列表
 		jScrollPaneTable = new JScrollPane();
-		jScrollPaneTable.setBounds(0, 0, Area_W - 30, Area_H + LABEL_H * 2);
+		jScrollPaneTable.setBounds(0, 0, Area_W - 20, Area_H + LABEL_H * 2);
 		jScrollPaneTable.setViewportView(table);
+		jScrollPaneTable.getViewport().setOpaque(false);
+		jScrollPaneTable.setOpaque(false);
+		table.setOpaque(false);
 		this.tablePanel.add(jScrollPaneTable);
 	}
 

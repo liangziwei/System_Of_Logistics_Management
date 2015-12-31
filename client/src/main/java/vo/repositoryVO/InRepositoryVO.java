@@ -26,6 +26,10 @@ public class InRepositoryVO implements Approvable{
 	 */
 	private AreaCodeType areaCode;
 	/**
+	 * 中转中心编号
+	 */
+	private String transitionid;
+	/**
 	 * 排号
 	 */
 	private String rowid;
@@ -58,7 +62,7 @@ public class InRepositoryVO implements Approvable{
 	 */
 	private boolean isPassed = false;
 	public InRepositoryVO(String deliveryid,String inrepositorydate,String arrivalid,
-			AreaCodeType areaCode,String rowid,String shelfid,String posid) {
+			AreaCodeType areaCode,String rowid,String shelfid,String posid,String transitionid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -68,6 +72,7 @@ public class InRepositoryVO implements Approvable{
 		this.rowid=rowid;
 		this.shelfid=shelfid;
 		this.posid=posid;
+		this.transitionid = transitionid;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;
@@ -140,6 +145,12 @@ public class InRepositoryVO implements Approvable{
 	}
 	public boolean getVerifyResult() {
 		return VerifyResult;
+	}
+	public void settransitionid(String transitionid) {
+		this.transitionid = transitionid;
+	}
+	public String gettransitionid() {
+		return transitionid;
 	}
 	
 	public String getAreaCodeString() {

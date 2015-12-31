@@ -27,12 +27,14 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 	// 组件
 	private JLabel Deliveryid = new JLabel("快递编号");
 	private JLabel outrepositorydate = new JLabel("出库日期");
+	private JLabel transition = new JLabel("中转中心编号");
 	private JLabel arrivalid = new JLabel("目的地");
 	private JLabel loadingway = new JLabel("装运形式");
 	private JLabel wayid = new JLabel("装运信息编号");
 
 	private JTextField DeliveryidText = new JTextField();
 	private JTextField outrepositoryYear = new JTextField();
+	private JTextField transitionid = new JTextField();
 	// private JTextField outrepositoryMonth = new JTextField();
 	// private JTextField outrepositoryDay = new JTextField();
 	private JTextField arrivalidText = new JTextField();
@@ -157,11 +159,16 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		outrepositorydate.setBounds(0, 0, LABEL_W, LABEL_H);
 		this.infoPanel.add(outrepositorydate);
 		outrepositoryYear.setBounds(outrepositorydate.getX() + outrepositorydate.getWidth() + COMPONENT_GAP_X,
-				outrepositorydate.getY(), (TEXT_W / 2) * 3, TEXT_H);
+				outrepositorydate.getY(), (TEXT_W) , TEXT_H);
 		outrepositoryYear.setOpaque(false);
 		this.infoPanel.add(outrepositoryYear);
 		dateChoose.register(outrepositoryYear);
 		this.infoPanel.add(outrepositoryYear);
+		transition.setBounds(outrepositoryYear.getX()+outrepositoryYear.getWidth()+COMPONENT_GAP_X, outrepositoryYear.getY(), LABEL_W, LABEL_H);
+		this.infoPanel.add(transition);
+		transitionid.setBounds(transition.getX()+transition.getWidth()+COMPONENT_GAP_X, transition.getY(), TEXT_W, TEXT_H);
+		transitionid.setOpaque(false);
+		this.infoPanel.add(transitionid);
 		// JLabel apart1 = new JLabel("-");
 		// JLabel apart2 = new JLabel("-");
 		// apart1.setBounds(outrepositoryYear.getX() +
@@ -278,6 +285,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 				isFirstEnsure = true;
 				// 使提示信息消失
 				state2.setText("");
+				state2.setForeground(Color.red);
 				// 使信息可编辑
 				enableComponents();
 				cancle2.setVisible(false);
@@ -296,9 +304,11 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 			// 添加装运信息
 			boolean save = outRepositoryBLService.modifyOutRepositoryFormBL(outRepositoryVO);
 			if (save) { // 保存成功
+				state2.setForeground(Color.green);
 				showState2("订单修改成功");
 				disableComponents();
 			} else { // TODO 保存失败，说明保存失败的原因或者提出建议
+				state2.setForeground(Color.red);
 				showState2("订单修改失败");
 			}
 		}
@@ -306,6 +316,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 
 	private void verifyFailOperation(OutRepositoryVO outRepositoryVO) {
 		// 提示修改意见
+		state2.setForeground(Color.red);
 		showState2(outRepositoryVO.geterrorMsg());
 	}
 
@@ -313,6 +324,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(false);
 		outrepositoryYear.setEditable(false);
 		dateChoose.setEnabled(false);
+		transitionid.setEditable(false);
 		// outrepositoryMonth.setEditable(false);
 		// outrepositoryDay.setEditable(false);
 		arrivalidText.setEditable(false);
@@ -324,6 +336,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(true);
 		outrepositoryYear.setEditable(true);
 		dateChoose.setEnabled(true);
+		transitionid.setEditable(true);
 		// outrepositoryMonth.setEditable(true);
 		// outrepositoryDay.setEditable(true);
 		arrivalidText.setEditable(true);
@@ -335,6 +348,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		String Delivery = DeliveryidText.getText().trim();
 		String outdate = outrepositoryYear.getText().trim();
 		String arrive = arrivalidText.getText().trim();
+		String transitid = transitionid.getText().trim();
 		LoadingType type = null;
 		String way = (String) loadingwayText.getSelectedItem();
 		switch (way) {
@@ -349,13 +363,14 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 			break;
 		}
 		String loadingwayid = wayidText.getText().trim();
-		OutRepositoryVO outRepositoryVO = new OutRepositoryVO(Delivery, outdate, arrive, type, loadingwayid);
+		OutRepositoryVO outRepositoryVO = new OutRepositoryVO(Delivery, outdate, arrive, type, loadingwayid,transitid);
 		return outRepositoryVO;
 	}
 
 	private void setinfo(OutRepositoryVO outRepositoryVO) {
 		// String[] outdate = outRepositoryVO.getoutrepositorydate().split("-");
 		outrepositoryYear.setText(outRepositoryVO.getoutrepositorydate());
+		transitionid.setText(outRepositoryVO.gettransitionid());
 		// outrepositoryMonth.setText(outdate[1]);
 		// outrepositoryDay.setText(outdate[2]);
 		arrivalidText.setText(outRepositoryVO.getarrivalid());

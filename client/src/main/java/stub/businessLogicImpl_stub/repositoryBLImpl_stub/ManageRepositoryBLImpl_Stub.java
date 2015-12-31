@@ -121,12 +121,12 @@ public class ManageRepositoryBLImpl_Stub implements ManageRepositoryBLService{
 	private RepositoryInfoVO RepositoryInfoPOtoRepositoryInfoVO(RepositoryInfoPO repositoryInfoPO){
 		return new RepositoryInfoVO(repositoryInfoPO.getdeliveryid(),repositoryInfoPO.getareaCode(), 
 				repositoryInfoPO.getrowid(), repositoryInfoPO.getshelfid(), 
-				repositoryInfoPO.getposid(), repositoryInfoPO.getbeinrepository());
+				repositoryInfoPO.getposid(), repositoryInfoPO.getbeinrepository(),repositoryInfoPO.gettransitionid());
 	}
 	private DeliveryInfoVO DeliveryInfoPOtoDeliveryInfoVO(DeliveryInfoPO deliveryInfoPO){
 		return new DeliveryInfoVO(deliveryInfoPO.getdeliveryid(), deliveryInfoPO.getinrepositorydate(), 
 				deliveryInfoPO.getarrivalid(), deliveryInfoPO.getareaCode(), 
-				deliveryInfoPO.getrowid(), deliveryInfoPO.getshelfid(), deliveryInfoPO.getposid());
+				deliveryInfoPO.getrowid(), deliveryInfoPO.getshelfid(), deliveryInfoPO.getposid(),deliveryInfoPO.gettransitionid());
 	}
 
 	@Override
@@ -141,28 +141,28 @@ public class ManageRepositoryBLImpl_Stub implements ManageRepositoryBLService{
 		
 	}
 
-	@Override
-	public void plExcel(String fileSave, List<DeliveryInfoVO> list) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void traExcel(String fileSave, List<DeliveryInfoVO> list) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void truExcel(String fileSave, List<DeliveryInfoVO> list) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void moExcel(String fileSave, List<DeliveryInfoVO> list) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void plExcel(String fileSave, List<DeliveryInfoVO> list) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void traExcel(String fileSave, List<DeliveryInfoVO> list) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void truExcel(String fileSave, List<DeliveryInfoVO> list) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void moExcel(String fileSave, List<DeliveryInfoVO> list) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }

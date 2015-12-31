@@ -28,6 +28,10 @@ public class DeliveryInfoPO implements Serializable{
 	 */
 	private String arrivalid;
 	/**
+	 * 中转中心编号
+	 */
+	private String transitionid;
+	/**
 	 * 区号
 	 */
 	private AreaCodeType areaCode;
@@ -44,7 +48,7 @@ public class DeliveryInfoPO implements Serializable{
 	 */
 	private String posid;
 	public DeliveryInfoPO(String deliveryid,String inrepositorydate,String arrivalid,
-			AreaCodeType areaCode,String rowid,String shelfid,String posid) {
+			AreaCodeType areaCode,String rowid,String shelfid,String posid,String transitionid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -54,6 +58,7 @@ public class DeliveryInfoPO implements Serializable{
 		this.rowid=rowid;
 		this.shelfid=shelfid;
 		this.posid=posid;
+		this.transitionid = transitionid;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;
@@ -96,5 +101,11 @@ public class DeliveryInfoPO implements Serializable{
 	}
 	public String getposid() {
 		return posid;
+	}
+	public void settransitionid(String transitionid) {
+		this.transitionid = transitionid;
+	}
+	public String gettransitionid() {
+		return transitionid;
 	}
 }

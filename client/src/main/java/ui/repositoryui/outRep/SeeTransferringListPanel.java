@@ -170,6 +170,9 @@ public class SeeTransferringListPanel extends DetailPanel{
 
 		jScrollPane.setBounds(5, state.getY()+state.getHeight(), TABLE_W-40, TABLE_H);
 		jScrollPane.setViewportView(table);
+		jScrollPane.getViewport().setOpaque(false);
+		jScrollPane.setOpaque(false);
+		table.setOpaque(false);
 		add(jScrollPane);
 		//添加表格监听
 		this.addTableListener();
