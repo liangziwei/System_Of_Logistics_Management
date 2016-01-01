@@ -72,6 +72,7 @@ public class DeleteOrganization extends  DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tip.setText("");
 				//获得用户输入的机构编号
 				String id = orgId.getIdText();
 				//查询机构信息
@@ -115,7 +116,8 @@ public class DeleteOrganization extends  DetailPanel{
 				orgPanel.setVisible(false);
 				//消除提示信息
 				orgId.removeText();
-				
+				tip.setText("");
+				repaint();
 			}
 		});
 		//确定删除按钮
@@ -127,7 +129,7 @@ public class DeleteOrganization extends  DetailPanel{
 				organization.deleteOrganization(orgId.getIdText());
 				organization.deleteStaffByOrgId(orgId.getIdText());
 				//返回查询界面
-				backToInquire();
+				backToInquire(true);
 				
 			}
 		});
@@ -137,24 +139,31 @@ public class DeleteOrganization extends  DetailPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//返回查询界面
-				backToInquire();
+				backToInquire(false);
 			}
 		});
 	}
 	
-	private void backToInquire() {
+	private void backToInquire(boolean isDelete) {
 		//隐藏删除按钮
 		delete.setVisible(false);
 		cancel.setVisible(false);
-		//隐藏人员信息面板
+		//隐藏机构信息面板
 		orgPanel.setVisible(false);
 		//显示查询面板
 		orgId.setVisible(true);
-		//消除提示信息
-		this.tip.setText("");
-		//消除之前输入的机构编号
-		orgId.clearIdText();
-				
+		//消除错误提示
+		if(isDelete) {
+			tip.setBounds(10, this.orgId.getIDLabel().getY() + 30, 240, 30);
+			this.tip.setForeground(Color.BLUE);
+			this.tip.setText("修改成功");
+		}else {
+			tip.setBounds(80, this.delete.getY(), 240, 30);
+			this.tip.setText("");
+		}
+		//消除用户输入的人员编号
+		this.orgId.clearIdText();
+		
 		repaint();
 	}
 }

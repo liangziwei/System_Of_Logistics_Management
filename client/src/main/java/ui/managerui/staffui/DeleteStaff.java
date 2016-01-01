@@ -72,6 +72,7 @@ public class DeleteStaff extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tip.setText("");
 				//获得人员ID
 				String id = staffId.getIdText();
 				//查询人员信息
@@ -105,6 +106,8 @@ public class DeleteStaff extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//隐藏人员信息面板
 				container.setVisible(false);
+				tip.setText("");
+				repaint();
 			}
 		});
 		//确定删除按钮
@@ -115,7 +118,7 @@ public class DeleteStaff extends DetailPanel{
 				//删除人员信息
 				staff.deleteStaff(staffId.getIdText());
 				//返回查询界面
-				backToInquire();
+				backToInquire(true);
 			}
 		});
 		//取消删除按钮
@@ -124,12 +127,12 @@ public class DeleteStaff extends DetailPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//返回查询界面
-				backToInquire();
+				backToInquire(false);
 			}
 		});
 	}
 	
-	private void backToInquire() {
+	private void backToInquire(boolean isDelete) {
 		//隐藏删除按钮
 		delete.setVisible(false);
 		cancel.setVisible(false);
@@ -137,8 +140,14 @@ public class DeleteStaff extends DetailPanel{
 		container.setVisible(false);
 		//显示查询面板
 		staffId.setVisible(true);
-		//消除错误提示
-		this.tip.setText("");
+		if(isDelete) {
+			tip.setBounds(10, this.staffId.getIDLabel().getY() + 30, 240, 30);
+			this.tip.setForeground(Color.BLUE);
+			this.tip.setText("删除成功");
+		}else {
+			tip.setBounds(80, this.delete.getY(), 240, 30);
+			this.tip.setText("");
+		}
 		//消除用户输入的人员编号
 		this.staffId.clearIdText();
 		
