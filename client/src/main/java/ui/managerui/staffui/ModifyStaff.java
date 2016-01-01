@@ -8,11 +8,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
+import businessLogic.businessLogicController.managerController.OrganizationManagementController;
 import businessLogic.businessLogicController.managerController.StaffManagementController;
+import businessLogicService.managerBLService.OrganizationManagementBLService;
 import businessLogicService.managerBLService.StaffManagementBLService;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
 import ui.managerui.SearchPanel;
+import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 
 @SuppressWarnings("serial")
@@ -120,6 +123,22 @@ public class ModifyStaff extends DetailPanel{
 					StaffVO vo = staff.findStaff(staffInfo.getIdText().getText());
 					if(vo != null) {
 						tip.setText("该人员编号已经存在");
+						repaint();
+						return ;
+					}
+					//验证修改后的编号前6位表示的机构是否存在
+					String temp = null;
+					try {
+						temp = staffInfo.getIdText().getText().substring(0, 6);
+					}catch(IndexOutOfBoundsException ex) {
+						tip.setText("人员编号前6位对应的机构不存在");
+						repaint();
+						return ;
+					}
+					OrganizationManagementBLService org = new OrganizationManagementController();
+					OrganizationVO orgVO = org.findOrganization(temp);
+					if(orgVO == null) {
+						tip.setText("人员编号前6位对应的机构不存在");
 						repaint();
 						return ;
 					}
