@@ -37,6 +37,9 @@ import dataImpl.transitionDataImpl.ReceivingDataImpl;
 import dataImpl.transitionDataImpl.TransferringDataImpl;
 
 public class RMI {
+	
+	private RMI() {}
+	
 	/**
 	 *远程服务注册对象 
 	 */

@@ -12,6 +12,8 @@ import org.dom4j.io.SAXReader;
 
 public class RMI {
 	
+	private RMI() {}
+	
 	private static Registry registry = null;
 	
 	static {

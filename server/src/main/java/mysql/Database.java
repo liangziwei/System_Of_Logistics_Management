@@ -7,6 +7,8 @@ import java.sql.Statement;
 
 public class Database {
 	
+	private Database() {}
+	
 	private static Connection conn=null;
 	private static Statement stat;
 	private static ResultSet rs;

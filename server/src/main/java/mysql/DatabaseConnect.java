@@ -15,6 +15,8 @@ import org.dom4j.io.SAXReader;
 
 
 public class DatabaseConnect {
+	
+	private DatabaseConnect() {}
 
 	private static  String URL="jdbc:mysql://localhost/logistics_system";
 	private static  String USER="root";
