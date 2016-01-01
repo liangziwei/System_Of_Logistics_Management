@@ -97,8 +97,8 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 
 	public boolean UpdateRepositoryInfoDT(OutRepositoryPO outRepositoryPO) {
 		// TODO Auto-generated method stub
-		String DeleTe = "DELETE FROM repository WHERE deliveryid="+"'"+outRepositoryPO.getdeliveryid()+"'"+",transitionid="+"'"+outRepositoryPO.gettransitionid()+"'";
-		String Find = "SELECT * FROM repository WHERE deliveryid="+"'"+outRepositoryPO.getdeliveryid()+"'"+",transitionid="+"'"+outRepositoryPO.gettransitionid()+"'";
+		String DeleTe = "DELETE FROM repository WHERE deliveryid="+"'"+outRepositoryPO.getdeliveryid()+"'"+"&&transitionid="+"'"+outRepositoryPO.gettransitionid()+"'";
+		String Find = "SELECT * FROM repository WHERE deliveryid="+"'"+outRepositoryPO.getdeliveryid()+"'"+"&&transitionid="+"'"+outRepositoryPO.gettransitionid()+"'";
 //		String deliveryid = outRepositoryPO.getdeliveryid();
 		String date = null;
 		try {
