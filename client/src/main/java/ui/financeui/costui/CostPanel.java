@@ -283,8 +283,14 @@ public class CostPanel extends DetailPanel{
 			return false;
 		}
 		//验证输入付款金额是否为数字
-		if(!CommonLogic.isDouble(this.moneyText.getText())) {
+		String money = this.moneyText.getText();
+		if(!CommonLogic.isDouble(money)) {
 			tip.setText("付款金额应该为数字");
+			return false;
+		}
+		//验证输入的付款金额精度是否精确到小数点后两位
+		if(!CommonLogic.isNumber(money) && !CommonLogic.isMoney(money)) {
+			tip.setText("付款金额小数点后位数应该<=2");
 			return false;
 		}
 		//验证付款账户是否存在
