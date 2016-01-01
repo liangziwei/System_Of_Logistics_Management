@@ -39,7 +39,7 @@ public class AddInRepositoryPanel extends DetailPanel {
 
 	private JTextField DeliveryidText = new JTextField();
 	private JTextField inrepositoryYear = new JTextField();
-	private JTextField transitionid = new JTextField();
+	private JComboBox<String> transitionid = new JComboBox<String>();
 	// private JTextField inrepositoryMonth = new JTextField();
 	// private JTextField inrepositoryDay = new JTextField();
 	private JTextField arrivalidText = new JTextField();
@@ -169,6 +169,10 @@ public class AddInRepositoryPanel extends DetailPanel {
 		transitionid.setBounds(transition.getX() + transition.getWidth() + COMPONENT_GAP_X, transition.getY(), TEXT_W,
 				TEXT_H);
 		transitionid.setOpaque(false);
+		transitionid.addItem("0251");
+		transitionid.addItem("0101");
+		transitionid.addItem("0211");
+		transitionid.addItem("0201");
 		this.infoPanel.add(transitionid);
 		// JLabel apart1 = new JLabel("-");
 		// JLabel apart2 = new JLabel("-");
@@ -392,7 +396,7 @@ public class AddInRepositoryPanel extends DetailPanel {
 		String row = rowidText.getText().trim();
 		String shelf = shelfidText.getText().trim();
 		String position = posidText.getText().trim();
-		String transit = transitionid.getText().trim();
+		String transit = (String) transitionid.getSelectedItem();
 		InRepositoryVO inRepositoryVO = new InRepositoryVO(delivery, InRepDate, arrive, areacode, row, shelf, position,
 				transit);
 		return inRepositoryVO;
@@ -402,7 +406,7 @@ public class AddInRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(false);
 		inrepositoryYear.setEditable(false);
 		dateChoose.setEnabled(false);
-		transitionid.setEditable(false);
+		transitionid.setEnabled(false);
 		// inrepositoryMonth.setEditable(false);
 		// inrepositoryDay.setEditable(false);
 //		arrivalidText.setEditable(false);
@@ -416,7 +420,7 @@ public class AddInRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(true);
 		inrepositoryYear.setEditable(true);
 		dateChoose.setEnabled(true);
-		transitionid.setEditable(true);
+		transitionid.setEnabled(true);
 		// inrepositoryMonth.setEditable(true);
 		// inrepositoryDay.setEditable(true);
 //		arrivalidText.setEditable(true);

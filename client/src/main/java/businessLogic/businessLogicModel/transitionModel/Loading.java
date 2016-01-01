@@ -1,11 +1,13 @@
 package businessLogic.businessLogicModel.transitionModel;
 
 import java.rmi.RemoteException;
+import java.util.HashMap;
 
 import businessLogic.businessLogicModel.managerModel.MakeConstant;
 import constant.City;
 import constant.LoadingType;
 import constant.TransitType;
+import dataService.managerDataService.MakeConstantDataService;
 import dataService.transitionDataService.LoadingDataService;
 import network.RMI;
 import po.transitionPO.LoadingPO;
@@ -13,6 +15,7 @@ import vo.transitionVO.LoadingVO;
 
 public class Loading {
 	private LoadingDataService loadingDataService = RMI.<LoadingDataService>getDataService("loading");
+	private MakeConstantDataService makeConstantDataService = RMI.<MakeConstantDataService>getDataService("makeConstant");
 	
 	public LoadingVO findLoadingFormBL(String loadingNumber) {
 		// TODO Auto-generated method stub
@@ -36,7 +39,16 @@ public class Loading {
 
 	public boolean addLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		double faremoney = this.loadingFare("南京", loadingVO.getarrivalid(),loadingVO.getway());
+		HashMap<String, String> constant = null;
+		try {
+			constant = makeConstantDataService.getIDTable();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String departure = loadingVO.getloadingid().substring(0, 3);
+		String city = constant.get(departure);
+		double faremoney = this.loadingFare(city, loadingVO.getarrivalid(),loadingVO.getway());
 		loadingVO.setfare(faremoney);
 		LoadingPO loadingPO = LoadingVOtoLoadingPO(loadingVO);
 		boolean add =false;
@@ -51,7 +63,16 @@ public class Loading {
 
 	public boolean modifyLoadingFormBL(LoadingVO loadingVO) {
 		// TODO Auto-generated method stub
-		double faremoney = this.loadingFare("南京", loadingVO.getarrivalid(),loadingVO.getway());
+		HashMap<String, String> constant = null;
+		try {
+			constant = makeConstantDataService.getIDTable();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String departure = loadingVO.getloadingid().substring(0, 3);
+		String city = constant.get(departure);
+		double faremoney = this.loadingFare(city, loadingVO.getarrivalid(),loadingVO.getway());
 		loadingVO.setfare(faremoney);
 		LoadingPO loadingPO = LoadingVOtoLoadingPO(loadingVO);
 		boolean modify =false;
@@ -136,7 +157,19 @@ public class Loading {
 	
 	public boolean verifyres(LoadingVO loadingVO) {
 		if(loadingVO.getloadingid().equals("")||(!loadingVO.getloadingid().matches("\\d{11}"))){
-			loadingVO.seterrorMsg("装运单编号不能为空或装运单编号错误(11位)");
+			loadingVO.seterrorMsg("装运单编号不能为空或装运单编号错误(11位),前三位为中转中心编号");
+			return false;
+		}
+		HashMap<String, String> constant = null;
+		try {
+			constant = makeConstantDataService.getIDTable();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String position = constant.get(loadingVO.getloadingid().substring(0, 3));
+		if (position==null) {
+			loadingVO.seterrorMsg("中转单编号前3位数字应为城市编号");
 			return false;
 		}
 		if(loadingVO.getarrivalid().equals("")){

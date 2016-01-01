@@ -11,7 +11,7 @@ import vo.repositoryVO.InRepositoryVO;
 public class InRepository {
 	private InRepositoryDataService inRepositoryDataService = RMI
 			.<InRepositoryDataService> getDataService("inrepository");
-
+	
 	public boolean addInRepositoryFormBL(InRepositoryVO inRepositoryVO) {
 		// TODO Auto-generated method stub
 		InRepositoryPO inRepositoryPO = InRepositoryVOtoInRepositoryPO(inRepositoryVO);
