@@ -62,9 +62,11 @@ public class InquireOrganization extends DetailPanel{
 				orgPanel = new OrganizationInfoPanel(orgId.getX(), orgId.getHeight(),
 						DETAIL_PANEL_W, DETAIL_PANEL_H * 5 / 6, list);
 				orgPanel.setOrganizationInfo(vo);
+				orgPanel.disableStaffInfo();
 				add(orgPanel);
 				//刷新面板
 				repaint();
+				revalidate();
 			}
 		});
 		//取消查询按钮

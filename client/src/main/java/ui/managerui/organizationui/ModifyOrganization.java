@@ -122,11 +122,14 @@ public class ModifyOrganization extends DetailPanel{
 				repaint();
 			}
 		});
-		//确定删除按钮
+		//确定修改按钮
 		this.modify.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//验证修改之后的信息是否合法
+				AddOrganization add = new AddOrganization();
+				if(!add.verifyInput(orgPanel.getIdText(), orgPanel.getNameText(), tip, true)) return ;
 				//保存对机构信息的修改
 				OrganizationVO vo = orgPanel.createOrganizationVO();
 				organization.modifyOrganization(vo);
@@ -134,7 +137,7 @@ public class ModifyOrganization extends DetailPanel{
 				backToInquire(true);
 			}
 		});
-		//取消删除按钮
+		//取消修改按钮
 		this.cancel.addActionListener(new ActionListener() {
 
 			@Override

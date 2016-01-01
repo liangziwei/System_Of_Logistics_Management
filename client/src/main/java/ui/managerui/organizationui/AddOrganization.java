@@ -117,7 +117,7 @@ public class AddOrganization extends DetailPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tip.setForeground(Color.RED);
-				if(!verifyInput()) return ;
+				if(!verifyInput(idText, nameText, tip, false)) return ;
 				//保存信息
 				boolean res = organization.addOrganization(new OrganizationVO(typeText.getSelectedItem().toString(),
 						idText.getText(), nameText.getText(), false, false));
@@ -154,7 +154,7 @@ public class AddOrganization extends DetailPanel{
 		this.nameText.setText("");
 	}
 	
-	private boolean verifyInput() {
+	public boolean verifyInput(JTextField idText, JTextField nameText, JLabel tip, boolean isModify) {
 		//验证输入是否完整
 		if(CommonLogic.isNull(idText.getText()) || CommonLogic.isNull(nameText.getText())) {
 			tip.setText("请把信息填写完整");
@@ -167,7 +167,7 @@ public class AddOrganization extends DetailPanel{
 		}
 		//验证该机构信息是否已经存在
 		OrganizationVO vo = organization.findOrganization(idText.getText());
-		if(vo != null) {
+		if(vo != null && !isModify) {
 			tip.setText("该机构信息已经存在");
 			return false;
 		}

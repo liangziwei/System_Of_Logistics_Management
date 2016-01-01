@@ -226,6 +226,15 @@ public class CostPanel extends DetailPanel{
 				boolean result = cost.addPayment(createPayment());
 				//如果保存成功
 				if(result) {
+					//更新账户余额
+					AccountBLService account = new AccountController();
+					String name = accountText.getText();
+					AccountVO vo = account.findAccount(name);
+					double balance = vo.getBalance();
+					double pay = Double.parseDouble(moneyText.getText());
+					double remain = balance - pay;
+					account.deleteAccount(name);
+					account.addAccount(new AccountVO(name, remain));
 					//清空用户所填信息
 					clearInfo();
 					//提示保存成功
@@ -294,10 +303,19 @@ public class CostPanel extends DetailPanel{
 			return false;
 		}
 		//验证付款账户是否存在
+		String name = this.accountText.getText();
 		AccountBLService account = new AccountController();
-		AccountVO vo = account.findAccount(this.accountText.getText());
+		AccountVO vo = account.findAccount(name);
 		if(vo == null) {
 			tip.setText("该账户不存在");
+			return false;
+		}
+		//验证付款金额是否大于账户余额
+		double balance = vo.getBalance();
+		double pay = Double.parseDouble(money);
+		double remain = balance - pay;
+		if(remain < 0) {
+			tip.setText("该账户余额不足");
 			return false;
 		}
 		//对不同的备注框进行不同的数据验证

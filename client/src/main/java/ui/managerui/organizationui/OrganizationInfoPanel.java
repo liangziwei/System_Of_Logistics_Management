@@ -165,4 +165,16 @@ public class OrganizationInfoPanel extends JPanel{
 		//把把表格加入表格容器
 		this.container.setViewportView(this.staffInfo);
 	}
+	
+	public String getOrgId() {
+		return this.idText.getText();
+	}
+
+	public JTextField getIdText() {
+		return idText;
+	}
+
+	public JTextField getNameText() {
+		return nameText;
+	}
 }
