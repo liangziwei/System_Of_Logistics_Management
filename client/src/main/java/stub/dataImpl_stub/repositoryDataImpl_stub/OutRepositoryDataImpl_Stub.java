@@ -23,7 +23,7 @@ public class OutRepositoryDataImpl_Stub implements OutRepositoryDataService{
 
 	public OutRepositoryPO FindOutRepositoryFormDT(String OutRepositoryNumber) {
 		// TODO Auto-generated method stub
-		return new OutRepositoryPO("2015100046", "2015-10-18","广州",LoadingType.TRUCK,"025 1012 0002301");
+		return new OutRepositoryPO("2015100046", "2015-10-18","广州",LoadingType.TRUCK,"025 1012 0002301","0251");
 	}
 
 	public boolean UpdateRepositoryInfoDT(OutRepositoryPO outRepositoryPO) {

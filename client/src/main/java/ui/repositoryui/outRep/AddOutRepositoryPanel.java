@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,12 +32,14 @@ public class AddOutRepositoryPanel extends DetailPanel {
 	// 组件
 	private JLabel Deliveryid = new JLabel("快递编号");
 	private JLabel outrepositorydate = new JLabel("出库日期");
+	private JLabel transition = new JLabel("中转中心编号");
 	private JLabel arrivalid = new JLabel("目的地");
 	private JLabel loadingway = new JLabel("装运形式");
 	private JLabel wayid = new JLabel("装运信息编号");
 
 	private JTextField DeliveryidText = new JTextField();
 	private JTextField outrepositoryYear = new JTextField();
+	private JTextField transitionid = new JTextField();
 	// private JTextField outrepositoryMonth = new JTextField();
 	// private JTextField outrepositoryDay = new JTextField();
 	private JTextField arrivalidText = new JTextField();
@@ -158,11 +159,16 @@ public class AddOutRepositoryPanel extends DetailPanel {
 				LABEL_W, LABEL_H);
 		this.infoPanel.add(outrepositorydate);
 		outrepositoryYear.setBounds(outrepositorydate.getX() + outrepositorydate.getWidth() + COMPONENT_GAP_X,
-				outrepositorydate.getY(), (TEXT_W / 2) * 3, TEXT_H);
+				outrepositorydate.getY(), (TEXT_W ) , TEXT_H);
 		outrepositoryYear.setOpaque(false);
 		this.infoPanel.add(outrepositoryYear);
 		dateChoose.register(outrepositoryYear);
 		this.infoPanel.add(outrepositoryYear);
+		transition.setBounds(outrepositoryYear.getX()+outrepositoryYear.getWidth()+COMPONENT_GAP_X, outrepositoryYear.getY(), LABEL_W, LABEL_H);
+		this.infoPanel.add(transition);
+		transitionid.setBounds(transition.getX()+transition.getWidth()+COMPONENT_GAP_X, transition.getY(), TEXT_W, TEXT_H);
+		transitionid.setOpaque(false);
+		this.infoPanel.add(transitionid);
 		// JLabel apart1 = new JLabel("-");
 		// JLabel apart2 = new JLabel("-");
 		// apart1.setBounds(outrepositoryYear.getX() +
@@ -184,6 +190,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(arrivalid);
 		arrivalidText.setBounds(arrivalid.getX() + arrivalid.getWidth() + COMPONENT_GAP_X, arrivalid.getY(), TEXT_W,
 				TEXT_H);
+		arrivalidText.setEditable(false);
 		arrivalidText.setOpaque(false);
 		this.infoPanel.add(arrivalidText);
 		// 装运形式
@@ -245,6 +252,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 				isFirstEnsure = true;
 				// 使提示信息消失
 				state.setText("");
+				state.setForeground(Color.red);
 				// 使信息可编辑
 				enableComponents();
 				cancel.setVisible(false);
@@ -310,9 +318,11 @@ public class AddOutRepositoryPanel extends DetailPanel {
 			// 添加装运信息
 			boolean save = outRepositoryBLService.addOutRepositoryFormBL(outRepositoryVO);
 			if (save) { // 保存成功
+				state.setForeground(Color.green);
 				showState("订单保存成功");
 				disableComponents();
 			} else { // TODO 保存失败，说明保存失败的原因或者提出建议
+				state.setForeground(Color.red);
 				showState("订单保存失败(检查快递编号)");
 			}
 		}
@@ -320,6 +330,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 
 	private void verifyFailOperation(OutRepositoryVO outRepositoryVO) {
 		// 提示修改意见
+		state.setForeground(Color.red);
 		showState(outRepositoryVO.geterrorMsg());
 	}
 
@@ -327,9 +338,10 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(false);
 		outrepositoryYear.setEditable(false);
 		dateChoose.setEnabled(false);
+		transitionid.setEditable(false);
 		// outrepositoryMonth.setEditable(false);
 		// outrepositoryDay.setEditable(false);
-		arrivalidText.setEditable(false);
+//		arrivalidText.setEditable(false);
 		loadingwayText.setEnabled(false);
 		wayidText.setEditable(false);
 	}
@@ -338,9 +350,10 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(true);
 		outrepositoryYear.setEditable(true);
 		dateChoose.setEnabled(true);
+		transitionid.setEditable(true);
 		// outrepositoryMonth.setEditable(true);
 		// outrepositoryDay.setEditable(true);
-		arrivalidText.setEditable(true);
+//		arrivalidText.setEditable(true);
 		loadingwayText.setEnabled(true);
 		wayidText.setEditable(true);
 	}
@@ -349,6 +362,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 		String Delivery = DeliveryidText.getText().trim();
 		String outdate = outrepositoryYear.getText().trim();
 		String arrive = arrivalidText.getText().trim();
+		String transitid = transitionid.getText().trim();
 		LoadingType type = null;
 		String way = (String) loadingwayText.getSelectedItem();
 		switch (way) {
@@ -363,7 +377,7 @@ public class AddOutRepositoryPanel extends DetailPanel {
 			break;
 		}
 		String loadingwayid = wayidText.getText().trim();
-		OutRepositoryVO outRepositoryVO = new OutRepositoryVO(Delivery, outdate, arrive, type, loadingwayid);
+		OutRepositoryVO outRepositoryVO = new OutRepositoryVO(Delivery, outdate, arrive, type, loadingwayid,transitid);
 		return outRepositoryVO;
 	}
 

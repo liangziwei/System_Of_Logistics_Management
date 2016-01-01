@@ -291,9 +291,11 @@ public class AddReceivingPanel extends DetailPanel {
 				isFirstEnsure = true;
 				// 使提示信息消失
 				state.setText("");
+				state.setForeground(Color.red);
 				// 使信息可编辑
 				enableComponents();
 				cancel.setVisible(false);
+				
 			}
 		});
 		
@@ -325,10 +327,12 @@ public class AddReceivingPanel extends DetailPanel {
 						e1.printStackTrace();
 					}
 					if (entruck) {
-						beloading.setVisible(false);
+						beloading.setText("装运单编号正确");
+						beloading.setVisible(true);
 						istransfer = true;						
 					}
 					else {
+						beloading.setText("不存在该装车单");
 						beloading.setVisible(true);
 						istransfer = false;
 					}
@@ -362,9 +366,11 @@ public class AddReceivingPanel extends DetailPanel {
 			// 添加装运信息
 			boolean save = receivingService.addReceivingFormBL(receivingVO);
 			if (save) { // 保存成功
+				state.setForeground(Color.green);
 				showState("订单保存成功");
 				disableComponents();
 			} else { // TODO 保存失败，说明保存失败的原因或者提出建议
+				state.setForeground(Color.red);
 				showState("订单保存失败，注意检查中转单编号");
 			}
 		}
@@ -372,6 +378,7 @@ public class AddReceivingPanel extends DetailPanel {
 
 	private void verifyFailOperation(ReceivingVO receivingVO) {
 		// 提示修改意见
+		state.setForeground(Color.red);
 		showState(receivingVO.geterrorMsg());
 	}
 

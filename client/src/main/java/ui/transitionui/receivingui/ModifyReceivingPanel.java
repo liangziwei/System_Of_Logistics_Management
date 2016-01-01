@@ -310,6 +310,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 				isFirstEnsure = true;
 				//使提示信息消失
 				state2.setText("");
+				state2.setForeground(Color.red);
 				//使信息可编辑
 				enableComponents();
 				cancle2.setVisible(false);
@@ -330,9 +331,11 @@ public class ModifyReceivingPanel extends DetailPanel {
 			//添加装运信息
 			boolean save =receivingService.modifyReceivingFormBL(receivingVO);
 			if(save) {		//保存成功
+				state2.setForeground(Color.green);
 				showState2("订单修改成功");
 				disableComponents();
 			}else {			//TODO 保存失败，说明保存失败的原因或者提出建议
+				state2.setForeground(Color.red);
 				showState2("订单修改失败");
 			}
 		}
@@ -340,6 +343,7 @@ public class ModifyReceivingPanel extends DetailPanel {
 	
 	private void verifyFailOperation(ReceivingVO receivingVO) {
 		//提示修改意见
+		state2.setForeground(Color.red);
 		showState2(receivingVO.geterrorMsg());
 	}
 	

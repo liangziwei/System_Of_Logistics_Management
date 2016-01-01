@@ -26,6 +26,10 @@ public class RepositoryPO implements Serializable{
 	 */
 	private String arrivalid;
 	/**
+	 * 中转中心编号
+	 */
+	private String transitionid;
+	/**
 	 * 区号
 	 */
 	private AreaCodeType areaCode;
@@ -94,5 +98,11 @@ public class RepositoryPO implements Serializable{
 	}
 	public String getposid() {
 		return posid;
+	}
+	public void settransitionid(String transitionid) {
+		this.transitionid = transitionid;
+	}
+	public String gettransitionid() {
+		return transitionid;
 	}
 }

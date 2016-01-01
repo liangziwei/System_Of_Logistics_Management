@@ -46,7 +46,6 @@ public class Transferring {
 	public boolean addTransferringFormBL(TransferringVO transferringVO) {
 		// TODO Auto-generated method stub
 		//编辑物流轨迹
-		boolean trace = false;
 //		HashMap<String, String> constant = null;
 //		try {
 //			constant = makeConstantDataService.getIDTable();
@@ -54,35 +53,36 @@ public class Transferring {
 //			// TODO Auto-generated catch block
 //			e1.printStackTrace();
 //		}
-		String position = transferringVO.getdepartureid();
-		City city = this.strToCity(position);
-		if(city != null) {
-			for(String del:(transferringVO.getalldeliveryid())){
-				try {
-					trace = order.setTrace(del, TransitionNode.TRANSI_CENTER, city);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+		double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid(),transferringVO.getway());
+		transferringVO.setfare(faremoney);
+		TransferringPO transferringPO = TransferringVOtoTransferringPO(transferringVO);
+		boolean add =false;
+		try {
+			add = transferringDataService.AddTransferringFormDT(transferringPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+
 		//保存中转单
-		if (trace) {
-			double faremoney = this.tranferringFare(transferringVO.getdepartureid(), transferringVO.getarrivalid(),transferringVO.getway());
-			transferringVO.setfare(faremoney);
-			TransferringPO transferringPO = TransferringVOtoTransferringPO(transferringVO);
-			boolean add =false;
-			try {
-				add = transferringDataService.AddTransferringFormDT(transferringPO);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return add;			
+		if (add) {
+			boolean trace = false;
+			String position = transferringVO.getdepartureid();
+			City city = this.strToCity(position);
+			if(city != null) {
+				for(String del:(transferringVO.getalldeliveryid())){
+					try {
+						trace = order.setTrace(del, TransitionNode.TRANSI_CENTER, city);
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}	
+			return trace;			
 		}
 		else {
-			return trace;
+			return add;
 		}
 	}
 

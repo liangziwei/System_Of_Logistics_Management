@@ -22,6 +22,10 @@ public class RepositoryInfoPO implements Serializable{
 	 */
 	private AreaCodeType areaCode;
 	/**
+	 * 中转中心编号
+	 */
+	private String transitionid;
+	/**
 	 * 排号
 	 */
 	private String rowid;
@@ -42,7 +46,7 @@ public class RepositoryInfoPO implements Serializable{
 	 */
 	private double money;
 	public RepositoryInfoPO(String deliveryid,AreaCodeType areaCode,
-			String rowid,String shelfid,String posid,boolean beinrepository) {
+			String rowid,String shelfid,String posid,boolean beinrepository,String transitionid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -51,6 +55,7 @@ public class RepositoryInfoPO implements Serializable{
 		this.shelfid=shelfid;
 		this.posid=posid;
 		this.beinrepository=beinrepository;
+		this.transitionid = transitionid;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;
@@ -93,5 +98,11 @@ public class RepositoryInfoPO implements Serializable{
 	}
 	public double getmoney() {
 		return money;
+	}
+	public void settransitionid(String transitionid) {
+		this.transitionid = transitionid;
+	}
+	public String gettransitionid() {
+		return transitionid;
 	}
 }

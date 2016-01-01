@@ -321,6 +321,7 @@ public class AddTransferringPanel extends DetailPanel {
 				isFirstEnsure = true;
 				// 使提示信息消失
 				state.setText("");
+				state.setForeground(Color.red);
 				// 使信息可编辑
 				enableComponents();
 				cancle.setVisible(false);
@@ -364,15 +365,18 @@ public class AddTransferringPanel extends DetailPanel {
 		// 显示运费
 		fareText.setText(thefare);
 		if (isFirstEnsure) {
+			fare.setForeground(Color.red);
 			showState("请再次确认信息，无误后按确定，否则按取消");
 			isFirstEnsure = false;
 		} else {
 			// 添加装运信息
 			boolean save = transferringBLService.addTransferringFormBL(transferringVO);
 			if (save) { // 保存成功
+				state.setForeground(Color.green);
 				showState("订单保存成功");
 				disableComponents();
 			} else { // TODO 保存失败，说明保存失败的原因或者提出建议
+				state.setForeground(Color.red);
 				showState("订单保存失败");
 			}
 		}
@@ -380,6 +384,7 @@ public class AddTransferringPanel extends DetailPanel {
 
 	private void verifyFailOperation(TransferringVO transferringVO) {
 		// 提示修改意见
+		state.setForeground(Color.red);
 		showState(transferringVO.geterrorMsg());
 	}
 

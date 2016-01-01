@@ -70,12 +70,12 @@ public class OutRepository {
 	private OutRepositoryVO OutRepositoryPOtoOutRepositoryVO(OutRepositoryPO outRepositoryPO){
 		return new OutRepositoryVO(outRepositoryPO.getdeliveryid(), outRepositoryPO.getoutrepositorydate(), 
 				outRepositoryPO.getarrivalid(), outRepositoryPO.getway(), 
-				outRepositoryPO.getloadingid());
+				outRepositoryPO.getloadingid(),outRepositoryPO.gettransitionid());
 	}
 	private OutRepositoryPO OutRepositoryVOtoOutRepositoryPO(OutRepositoryVO outRepositoryVO){
 		return new OutRepositoryPO(outRepositoryVO.getdeliveryid(), outRepositoryVO.getoutrepositorydate(), 
 				outRepositoryVO.getarrivalid(), outRepositoryVO.getway(), 
-				outRepositoryVO.getloadingid());
+				outRepositoryVO.getloadingid(),outRepositoryVO.gettransitionid());
 	}
 	
 	public boolean verify(OutRepositoryVO outRepositoryVO) {

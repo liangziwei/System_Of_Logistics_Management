@@ -22,7 +22,7 @@ public class InRepositoryDataImpl_Stub implements InRepositoryDataService{
 
 	public InRepositoryPO FindInRepositoryFormDT(String InRepositoryNumber) {
 		// TODO Auto-generated method stub
-		return new InRepositoryPO("1110101023","2015-10-13", "北京",AreaCodeType.PLANEAREA,"004","012","042");
+		return new InRepositoryPO("1110101023","2015-10-13", "北京",AreaCodeType.PLANEAREA,"004","012","042","0251");
 	}
 
 	public boolean UpdateRepositoryInfoDT(InRepositoryPO inRepository) {

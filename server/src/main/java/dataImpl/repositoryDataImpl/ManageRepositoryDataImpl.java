@@ -34,6 +34,9 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 //        }
 		// List
 		List<RepositoryInfoPO> thelist = new ArrayList<RepositoryInfoPO>();
+		
+//		List<String> inReplist = new ArrayList<String>();
+//		List<String> outReplist = new ArrayList<String>();
 		//入库单
 		String sql = "SELECT * FROM inRepository";
 		ResultSet rs = null;
@@ -50,17 +53,22 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 		String shelfid = null;
 		String posid = null;
 		String date = null;
+		String transitid1 = null;
 		try {
 			while (rs.next()) {
 				date = rs.getString("inrepositorydate");
 				if (TIME[0].compareTo(date)<=0&&TIME[1].compareTo(date)>=0) {
 					deliveryid1 = rs.getString("deliveryid");
-					areaCode = AreaCodeType.valueOf(rs.getString("areaCode"));
-					rowid = rs.getString("rowid");
-					shelfid = rs.getString("shelfid");
-					posid = rs.getString("posid");
-					RepositoryInfoPO repositoryInfoPO = new RepositoryInfoPO(deliveryid1, areaCode, rowid, shelfid, posid, true);
-					thelist.add(repositoryInfoPO);					
+//					int temp = inReplist.indexOf(deliveryid1);
+						areaCode = AreaCodeType.valueOf(rs.getString("areaCode"));
+						rowid = rs.getString("rowid");
+						shelfid = rs.getString("shelfid");
+						posid = rs.getString("posid");
+						transitid1 = rs.getString("transitionid");
+						RepositoryInfoPO repositoryInfoPO = new RepositoryInfoPO(deliveryid1, areaCode, rowid, shelfid, posid, true,transitid1);
+//						inReplist.add(deliveryid1);
+						thelist.add(repositoryInfoPO);					
+
 				}
 			}
 		} catch (Exception e) {
@@ -91,6 +99,7 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 		String rowid2 = null;
 		String shelfid2 = null;
 		String posid2 = null;
+		String transitid2 = null;
 		List<String> deliveryID = new ArrayList<String>();
 		try {
 			while (rs2.next()) {
@@ -112,13 +121,14 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 					rowid2 = rs3.getString("rowid");
 					shelfid2 = rs3.getString("shelfid");
 					posid2 = rs3.getString("posid");
+					transitid2 = rs3.getString("transitionid");
 				}
 //						rs3.close();
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-			RepositoryInfoPO repositoryInfoPOout = new RepositoryInfoPO(del, areaCode2, rowid2, shelfid2, posid2, false);
+			RepositoryInfoPO repositoryInfoPOout = new RepositoryInfoPO(del, areaCode2, rowid2, shelfid2, posid2, false,transitid2);
 			thelist.add(repositoryInfoPOout);	
 			
 		}
@@ -149,6 +159,7 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 		String rowid = null;
 		String shelfid = null;
 		String posid = null;
+		String transitionid = null;
 		try {
 			while (rs.next()) {
 				deliveryid = rs.getString("deliveryid");
@@ -158,8 +169,9 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 				rowid = rs.getString("rowid");
 				shelfid = rs.getString("shelfid");
 				posid = rs.getString("posid");
+				transitionid = rs.getString("transitionid");
 				DeliveryInfoPO deliveryInfoPO = new DeliveryInfoPO(deliveryid, inrepositorydate, arrivalid, areaCode,
-						rowid, shelfid, posid);
+						rowid, shelfid, posid,transitionid);
 				thelist.add(deliveryInfoPO);
 			}
 		} catch (Exception e) {
@@ -336,6 +348,7 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 		String rowid = null;
 		String shelfid = null;
 		String posid = null;
+		String transitionid =  null;
 		try {
 			while (rs.next()) {
 				deliveryid = rs.getString("deliveryid");
@@ -345,8 +358,10 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 				rowid = rs.getString("rowid");
 				shelfid = rs.getString("shelfid");
 				posid = rs.getString("posid");
+				transitionid = rs.getString("transitionid");
 				RepositoryPO repositoryPO = new RepositoryPO(deliveryid, inrepositorydate, arrivalid, areaCode, rowid,
-						shelfid, posid);                                                       
+						shelfid, posid);    
+				repositoryPO.settransitionid(transitionid);
 				thelist.add(repositoryPO);
 			}
 		} catch (Exception e) {

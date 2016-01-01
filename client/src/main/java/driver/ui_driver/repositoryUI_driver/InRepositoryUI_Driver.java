@@ -18,7 +18,7 @@ public class InRepositoryUI_Driver {
 					+ "（3）查询入库单 (4)结束");
 			int input = s.nextInt();
 			switch(input){
-			case 1:String add = inRepositoryBLService.addInRepositoryFormBL(new InRepositoryVO("1110101023","2015-10-13", "北京",AreaCodeType.PLANEAREA,"004","012","042"));
+			case 1:String add = inRepositoryBLService.addInRepositoryFormBL(new InRepositoryVO("1110101023","2015-10-13", "北京",AreaCodeType.PLANEAREA,"004","012","042",""));
 			if(add.equals("ture")){
 				System.out.println("添加成功，不报警");
 			}
@@ -29,7 +29,7 @@ public class InRepositoryUI_Driver {
 				System.out.println("添加失败");
 			}
 			break;
-			case 2:String modify = inRepositoryBLService.modifyInRepositoryFormBL(new InRepositoryVO("1110101023","2015-10-13", "北京",AreaCodeType.PLANEAREA,"004","012","042"));
+			case 2:String modify = inRepositoryBLService.modifyInRepositoryFormBL(new InRepositoryVO("1110101023","2015-10-13", "北京",AreaCodeType.PLANEAREA,"004","012","042",""));
 			if(modify.equals("ture")){
 				System.out.println("修改成功，不报警");
 			}

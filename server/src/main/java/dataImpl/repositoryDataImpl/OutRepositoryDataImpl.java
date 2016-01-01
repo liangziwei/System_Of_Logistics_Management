@@ -21,12 +21,13 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 		String deliveryid = outRepository.getdeliveryid();
 		String outrepositorydate = outRepository.getoutrepositorydate();
 		String arrivalid = outRepository.getarrivalid();
+		String transitionid = outRepository.gettransitionid();
 		LoadingType way = outRepository.getway();
 		String loadingid = outRepository.getloadingid();
 		
 		boolean add = false;
 		String val = "";
-		val = "'" + deliveryid + "','" + outrepositorydate + "','" + arrivalid + "','" + way.toString() + "','"
+		val = "'" + deliveryid + "','" + outrepositorydate + "','" +transitionid+ "','" + arrivalid + "','" + way.toString() + "','"
 				+ loadingid + "'," +"0,1";
 		try {
 			add = Database.add("outRepository", val);
@@ -45,10 +46,11 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 		String arrivalid = outRepositoryPO.getarrivalid();
 		LoadingType way = outRepositoryPO.getway();
 		String loadingid = outRepositoryPO.getloadingid();
+		String transitionid = outRepositoryPO.gettransitionid();
 		
 		boolean modify = false;
 		String val = "";
-		val = "outrepositorydate='" + outrepositorydate + "',arrivalid='" + arrivalid
+		val = "outrepositorydate='" + outrepositorydate +"',transitionid='"+transitionid+ "',arrivalid='" + arrivalid
 				+ "',way='" + way.toString() + "',loadingid='" + loadingid + "',isApproved=0,isPassed=1";
 		try {
 			modify = Database.modify("outRepository", val, "deliveryid", deliveryid);
@@ -63,6 +65,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 //		OutRepositoryPO outRepositoryPO = new OutRepositoryPO("2015100046", "2015-10-18","广州",LoadingType.TRUCK,"025 1012 0002301");
 		String deliveryid = OutRepositoryNumber;
 		String outrepositorydate = null;
+		String transitionid = null;
 		String arrivalid = null;
 		LoadingType way = null;
 		String loadingid = null;
@@ -72,6 +75,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 			rs=Database.query("outRepository","deliveryid",OutRepositoryNumber);
 			while(rs.next()){
 				outrepositorydate = rs.getString("outrepositorydate");
+				transitionid = rs.getString("transitionid");
 				arrivalid = rs.getString("arrivalid");
 				way = LoadingType.valueOf(rs.getString("way"));
 				loadingid= rs.getString("loadingid");
@@ -85,7 +89,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 		if (way==null) {
 			return null;
 		}
-		OutRepositoryPO outRepositoryPO = new OutRepositoryPO(deliveryid, outrepositorydate, arrivalid, way, loadingid);
+		OutRepositoryPO outRepositoryPO = new OutRepositoryPO(deliveryid, outrepositorydate, arrivalid, way, loadingid,transitionid);
 		outRepositoryPO.setisApproved(isApproval);
 		outRepositoryPO.setisPassed(isPass);		
 		return outRepositoryPO;
@@ -151,7 +155,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 	private OutRepositoryPO createOutRepositoryPO(ResultSet rs) {
 		try {
 			return new OutRepositoryPO(rs.getString("deliveryid"), rs.getString("outrepositorydate"),
-					rs.getString("arrivalid"), LoadingType.valueOf(rs.getString("way")), rs.getString("loadingid"));
+					rs.getString("arrivalid"), LoadingType.valueOf(rs.getString("way")), rs.getString("loadingid"),rs.getString("transitionid"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

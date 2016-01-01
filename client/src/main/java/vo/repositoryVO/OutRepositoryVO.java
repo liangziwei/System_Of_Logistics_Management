@@ -27,6 +27,10 @@ public class OutRepositoryVO implements Approvable{
 	 */
 	private LoadingType way;
 	/**
+	 * 中转中心编号
+	 */
+	private String transitionid;
+	/**
 	 * 装运编号（中转中心编号+日期+0000四位数字）
 	 */
 	private String loadingid;
@@ -51,7 +55,7 @@ public class OutRepositoryVO implements Approvable{
 	 */
 	private boolean isPassed = false;
 	public OutRepositoryVO(String deliveryid,String outrepositorydate,String arrivalid,
-			LoadingType way,String loadingid) {
+			LoadingType way,String loadingid,String transitionid) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.deliveryid=deliveryid;
@@ -59,6 +63,7 @@ public class OutRepositoryVO implements Approvable{
 		this.arrivalid=arrivalid;
 		this.way=way;
 		this.loadingid=loadingid;
+		this.transitionid = transitionid;
 	}
 	public void setdeliveryid(String deliveryid) {
 		this.deliveryid=deliveryid;
@@ -119,6 +124,12 @@ public class OutRepositoryVO implements Approvable{
 	}
 	public boolean getVerifyResult() {
 		return VerifyResult;
+	}
+	public void settransitionid(String transitionid) {
+		this.transitionid = transitionid;
+	}
+	public String gettransitionid() {
+		return transitionid;
 	}
 	
 	public String getWayString() {
