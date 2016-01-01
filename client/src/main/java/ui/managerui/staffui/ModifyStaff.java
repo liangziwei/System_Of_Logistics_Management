@@ -114,8 +114,17 @@ public class ModifyStaff extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//验证用户修改是否合理
 				AddStaff add = new AddStaff();
-				if(!add.verifyInput(staffInfo.getIdText(), staffInfo.getNameText(),
+				if(!staffInfo.getIdText().getText().equals(staffId.getIdText())) {//如果编号发生改变
+					//验证修改后的编号是否已经存在
+					StaffVO vo = staff.findStaff(staffInfo.getIdText().getText());
+					if(vo != null) {
+						tip.setText("该人员编号已经存在");
+						repaint();
+						return ;
+					}
+				}else if(!add.verifyInput(staffInfo.getIdText(), staffInfo.getNameText(),
 						staffInfo.getBirthText(), staffInfo.getSalaryText(), tip, true)) return ;
+			    
 				//保存修改
 				staff.modifyStaff(staffInfo.createVO());
 				//返回查询界面

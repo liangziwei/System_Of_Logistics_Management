@@ -27,7 +27,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		String posid = inRepositoryPO.getposid();
 		boolean add = false;
 		String val = "";
-		val = "'" + deliveryid + "','" + inrepositorydate + "','" + arrivalid + "','" +transitionid+"','"+ areaCode.toString() + "','"
+		val = "'" + deliveryid + "','" + transitionid + "','" +inrepositorydate + "','" +arrivalid+"','"+ areaCode.toString() + "','"
 				+ rowid + "','" + shelfid + "','" + posid + "'," + "0,1";
 		try {
 			add = Database.add("inRepository", val);
@@ -51,7 +51,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		String posid = inRepository.getposid();
 		boolean modify = false;
 		String val = "";
-		val ="inrepositorydate='" + inrepositorydate + "',arrivalid='" + arrivalid+"',transitionid='"+transitionid
+		val ="transitionid='"+transitionid+"',inrepositorydate='" + inrepositorydate + "',arrivalid='" + arrivalid
 				+ "',areaCode='" + areaCode.toString() + "',rowid='" + rowid + "',shelfid='" + shelfid + "',posid='"
 				+ posid + "'," + "isApproved=0,isPassed=1";
 		try {
@@ -108,6 +108,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 	public boolean UpdateRepositoryInfoDT(InRepositoryPO inRepository) {
 		// TODO Auto-generated method stub
 		String deliveryid = inRepository.getdeliveryid();
+		String transitionid = inRepository.gettransitionid();
 		String inrepositorydate = inRepository.getinrepositorydate();
 		String arrivalid = inRepository.getarrivalid();
 		AreaCodeType areaCode = inRepository.getareaCode();
@@ -116,7 +117,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		String posid = inRepository.getposid();
 		boolean add = false;
 		String val = "";
-		val = "'" + deliveryid + "','" + inrepositorydate + "','" + arrivalid + "','" + areaCode.toString() + "','"
+		val = "'" + deliveryid + "','" +transitionid+"','"+ inrepositorydate + "','" + arrivalid + "','" + areaCode.toString() + "','"
 				+ rowid + "','" + shelfid + "','" + posid + "'";
 		try {
 			add = Database.add("repository", val);
@@ -130,6 +131,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 
 	public boolean modifyUpdateRepositoryInfoDT(InRepositoryPO inRepository) {
 		String deliveryid = inRepository.getdeliveryid();
+		String transitionid = inRepository.gettransitionid();
 		String inrepositorydate = inRepository.getinrepositorydate();
 		String arrivalid = inRepository.getarrivalid();
 		AreaCodeType areaCode = inRepository.getareaCode();
@@ -138,7 +140,7 @@ public class InRepositoryDataImpl implements InRepositoryDataService {
 		String posid = inRepository.getposid();
 		boolean modify = false;
 		String val = "";
-		val = "inrepositorydate='" + inrepositorydate + "',arrivalid='" + arrivalid + "',areaCode='"
+		val = "transitionid='"+transitionid+"',inrepositorydate='" + inrepositorydate + "',arrivalid='" + arrivalid + "',areaCode='"
 				+ areaCode.toString() + "',rowid='" + rowid + "',shelfid='" + shelfid + "',posid='" + posid + "'";
 		try {
 			modify = Database.modify("repository", val, "deliveryid", deliveryid);
