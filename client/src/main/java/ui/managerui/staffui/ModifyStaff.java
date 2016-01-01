@@ -60,7 +60,7 @@ public class ModifyStaff extends DetailPanel{
 		this.cancel.setVisible(false);
 		this.add(this.cancel);
 		//提示标签
-		this.tip.setBounds(buttonW, this.modify.getY(), buttonW << 1, buttonH);
+		this.tip.setBounds(buttonW, this.modify.getY(), (int)(buttonW * 3), buttonH);
 		this.tip.setFont(WORD_FONT);
 		tip.setForeground(Color.RED);
 		this.add(this.tip);
@@ -112,6 +112,10 @@ public class ModifyStaff extends DetailPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//验证用户修改是否合理
+				AddStaff add = new AddStaff();
+				if(!add.verifyInput(staffInfo.getIdText(), staffInfo.getNameText(),
+						staffInfo.getBirthText(), staffInfo.getSalaryText(), tip, true)) return ;
 				//保存修改
 				staff.modifyStaff(staffInfo.createVO());
 				//返回查询界面
@@ -139,8 +143,11 @@ public class ModifyStaff extends DetailPanel{
 		staffId.setVisible(true);
 		//消除错误提示
 		this.tip.setText("");
+		//消除用户输入的人员编号
+		this.staffId.clearIdText();
 		
 		repaint();
 	}
+	
 }
 

@@ -49,7 +49,7 @@ public class InquireOrganization extends DetailPanel{
 				OrganizationVO vo = organization.findOrganization(id);
 				//如果不存在该机构信息
 				if(vo == null) {
-					orgId.setText("该人员信息不存在", WORD_FONT, Color.RED);
+					orgId.setText("该机构信息不存在", WORD_FONT, Color.RED);
 					return ;
 				}
 				else {

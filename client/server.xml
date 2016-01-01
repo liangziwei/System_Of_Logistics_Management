@@ -2,6 +2,6 @@
 <CONFIG>  
     <VALUE>  
         <!-- 服务器ip -->  
-        <server>127.0.0.1</server>
+        <server>10.0.2.11</server>
     </VALUE>  
 </CONFIG>

@@ -153,7 +153,7 @@ public class ModifyAccountPanel extends DetailPanel{
 				String name = panel.getAccountName();
 				//查看修改后的名称是否已经存在
 				AccountVO vo = account.findAccount(name);
-				if(vo != null) {
+				if(!name.equals(nameText.getText()) && vo != null) {
 					setTip("该账户名称已经存在");
 					return ;
 				}
@@ -164,9 +164,11 @@ public class ModifyAccountPanel extends DetailPanel{
 				}
 				boolean result = account.modifyAccount(nameText.getText(), name);
 				if(result) {
+					tip.setForeground(Color.BLUE);
 					tip.setText("修改成功");
 				}
 				else {
+					tip.setForeground(Color.RED);
 					tip.setText("修改失败");
 				}
 				//返回搜索界面
@@ -185,6 +187,8 @@ public class ModifyAccountPanel extends DetailPanel{
 		nameText.setText("");
 		//展现确认按钮
 		ok.setVisible(true);
+		//隐藏账户信息面板
+		if(panel != null) panel.setVisible(false);
 		//刷新面板
 		repaint();
 	}

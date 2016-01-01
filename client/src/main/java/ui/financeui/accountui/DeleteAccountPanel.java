@@ -87,7 +87,7 @@ public class DeleteAccountPanel extends DetailPanel{
 		this.tip.setBounds(START_X >> 2, this.nameLabel.getY() + LABEL_H,
 				TEXT_W, TEXT_H);
 		this.tip.setFont(WORD_FONT);
-		tip.setForeground(Color.RED);
+		this.tip.setForeground(Color.RED);
 		//分割线
 		this.line.setBounds(0, this.tip.getY() + TEXT_H, DETAIL_PANEL_W, 5);
 		//将按钮添加到面板
@@ -150,9 +150,11 @@ public class DeleteAccountPanel extends DetailPanel{
 				//删除账户信息
 				boolean result = account.deleteAccount(nameText.getText());
 				if(result) {
+					tip.setForeground(Color.BLUE);
 					tip.setText("删除成功");
 				}
 				else {
+					tip.setForeground(Color.RED);
 					tip.setText("删除失败");
 				}
 				//返回搜索界面

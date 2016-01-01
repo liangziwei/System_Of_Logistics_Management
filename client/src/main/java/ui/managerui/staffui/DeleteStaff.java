@@ -139,6 +139,8 @@ public class DeleteStaff extends DetailPanel{
 		staffId.setVisible(true);
 		//消除错误提示
 		this.tip.setText("");
+		//消除用户输入的人员编号
+		this.staffId.clearIdText();
 		
 		repaint();
 	}

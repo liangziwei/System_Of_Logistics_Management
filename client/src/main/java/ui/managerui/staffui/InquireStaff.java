@@ -49,7 +49,7 @@ public class InquireStaff extends DetailPanel{
 				StaffVO staffVO = staff.findStaff(staffId.getIdText());
 				//如果不存在该人员信息
 				if(staffVO == null) {
-					staffId.setText("该人员信息不存在", WORD_FONT, Color.RED);
+					staffId.setText("该人员不存在", WORD_FONT, Color.RED);
 					return ;
 				}
 				else {

@@ -133,7 +133,7 @@ public class AddAccountPanel extends DetailPanel{
 					repaint();
 					return ;
 				}
-				if(!CommonLogic.isMoney(money)) {
+				if(!CommonLogic.isNumber(money) && !CommonLogic.isMoney(money)) {
 					tip.setText("小数点位数应该<=2");
 					repaint();
 					return ;

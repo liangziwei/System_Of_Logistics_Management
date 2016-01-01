@@ -13,12 +13,15 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.businessLogicController.managerController.OrganizationManagementController;
 import businessLogic.businessLogicController.managerController.StaffManagementController;
 import businessLogic.businessLogicModel.util.CommonLogic;
+import businessLogicService.managerBLService.OrganizationManagementBLService;
 import businessLogicService.managerBLService.StaffManagementBLService;
 import ui.DateChooser;
 import ui.baseui.DetailPanel;
 import ui.baseui.LimpidButton;
+import vo.managerVO.OrganizationVO;
 import vo.managerVO.StaffVO;
 
 @SuppressWarnings("serial")
@@ -168,7 +171,7 @@ public class AddStaff extends DetailPanel{
 		this.cancel.setBounds(this.ok.getX() + (BUTTON_W << 1), this.ok.getY(), BUTTON_W, BUTTON_H);
 		this.cancel.setFont(WORD_FONT);
 		//提示标签
-		this.tip.setBounds(this.salaryLabel.getX(), this.ok.getY(), LABEL_W << 1, LABEL_H);
+		this.tip.setBounds(this.salaryLabel.getX(), this.ok.getY(), TEXT_W, LABEL_H);
 		this.tip.setFont(WORD_FONT);
 		//将组件添加到面板
 		this.add(this.nameLabel);
@@ -199,7 +202,7 @@ public class AddStaff extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//输入验证
 				tip.setForeground(Color.RED);
-				if(!verifyInput()) return ;
+				if(!verifyInput(idText, nameText, birthText, salaryText, tip, false)) return ;
 				//保存输入
 				boolean result = staff.addStaff(new StaffVO(nameText.getText(), idText.getText(),
 						(String)posText.getSelectedItem(), (String)genderText.getSelectedItem(),
@@ -250,7 +253,8 @@ public class AddStaff extends DetailPanel{
 		this.salaryText.setText("");
 	}
 	
-	private boolean verifyInput() {
+	public boolean verifyInput(JTextField idText, JTextField nameText,
+			JTextField birthText, JTextField salaryText, JLabel tip, boolean isModify) {
 		//验证输入是否完整
 		String id = idText.getText();
 		if(CommonLogic.isNull(nameText.getText()) || CommonLogic.isNull(id)
@@ -263,9 +267,24 @@ public class AddStaff extends DetailPanel{
 			tip.setText("人员编号应为9位数字");
 			return false;
 		}
+		//验证人员对应的机构是否存在
+		String temp = null;
+		try {
+			temp = id.substring(0, 6);
+		}catch(IndexOutOfBoundsException e) {
+			tip.setText("人员编号前6位对应的机构不存在");
+			return false;
+		}
+		OrganizationManagementBLService org = new OrganizationManagementController();
+		OrganizationVO orgVO = org.findOrganization(temp);
+		
+		if(orgVO == null) {
+			tip.setText("人员编号前6位对应的机构不存在");
+			return false;
+		}
 		//验证该人员编号是否已经存在
 		StaffVO vo = this.staff.findStaff(id);
-		if(vo != null) {
+		if(vo != null && !isModify) {
 			tip.setText("该人员编号已存在");
 			return false;
 		}
