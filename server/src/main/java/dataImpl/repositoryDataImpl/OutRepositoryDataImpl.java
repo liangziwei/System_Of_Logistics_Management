@@ -27,7 +27,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 		
 		boolean add = false;
 		String val = "";
-		val = "'" + deliveryid + "','" + outrepositorydate + "','" +transitionid+ "','" + arrivalid + "','" + way.toString() + "','"
+		val = "'" + deliveryid + "','" + transitionid + "','" +outrepositorydate+ "','" + arrivalid + "','" + way.toString() + "','"
 				+ loadingid + "'," +"0,1";
 		try {
 			add = Database.add("outRepository", val);
@@ -50,7 +50,7 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 		
 		boolean modify = false;
 		String val = "";
-		val = "outrepositorydate='" + outrepositorydate +"',transitionid='"+transitionid+ "',arrivalid='" + arrivalid
+		val = "transitionid='"+transitionid+ "',outrepositorydate='" + outrepositorydate +"',arrivalid='" + arrivalid
 				+ "',way='" + way.toString() + "',loadingid='" + loadingid + "',isApproved=0,isPassed=1";
 		try {
 			modify = Database.modify("outRepository", val, "deliveryid", deliveryid);
@@ -97,10 +97,12 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 
 	public boolean UpdateRepositoryInfoDT(OutRepositoryPO outRepositoryPO) {
 		// TODO Auto-generated method stub
-		String deliveryid = outRepositoryPO.getdeliveryid();
+		String DeleTe = "DELETE FROM repository WHERE deliveryid="+"'"+outRepositoryPO.getdeliveryid()+"'"+",transitionid="+"'"+outRepositoryPO.gettransitionid()+"'";
+		String Find = "SELECT * FROM repository WHERE deliveryid="+"'"+outRepositoryPO.getdeliveryid()+"'"+",transitionid="+"'"+outRepositoryPO.gettransitionid()+"'";
+//		String deliveryid = outRepositoryPO.getdeliveryid();
 		String date = null;
 		try {
-			rs=Database.query("inRepository","deliveryid",deliveryid);
+			rs=Database.findOperation(Find);
 			while(rs.next()){
 				date = rs.getString("inrepositorydate");
 			}
@@ -113,7 +115,14 @@ public class OutRepositoryDataImpl implements OutRepositoryDataService {
 			return false;
 		}
 		else {
-			return Database.delete("repository", "deliveryid", outRepositoryPO.getdeliveryid());			
+			boolean dele = false;
+			try {
+				dele=Database.operate(DeleTe);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			return dele;
 		}
 	}
 	
