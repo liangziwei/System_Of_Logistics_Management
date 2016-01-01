@@ -114,6 +114,7 @@ public class ModifyStaff extends DetailPanel{
 			public void actionPerformed(ActionEvent e) {
 				//验证用户修改是否合理
 				AddStaff add = new AddStaff();
+				tip.setText("");
 				if(!staffInfo.getIdText().getText().equals(staffId.getIdText())) {//如果编号发生改变
 					//验证修改后的编号是否已经存在
 					StaffVO vo = staff.findStaff(staffInfo.getIdText().getText());
@@ -128,7 +129,7 @@ public class ModifyStaff extends DetailPanel{
 				//保存修改
 				staff.modifyStaff(staffInfo.createVO());
 				//返回查询界面
-				backToInquire();
+				backToInquire(true);
 			}
 		});
 		//取消修改按钮
@@ -137,12 +138,12 @@ public class ModifyStaff extends DetailPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//返回查询界面
-				backToInquire();
+				backToInquire(false);
 			}
 		});
 	}
 	
-	private void backToInquire() {
+	private void backToInquire(boolean isModify) {
 		//隐藏查询按钮
 		modify.setVisible(false);
 		cancel.setVisible(false);
@@ -151,7 +152,14 @@ public class ModifyStaff extends DetailPanel{
 		//显示查询面板
 		staffId.setVisible(true);
 		//消除错误提示
-		this.tip.setText("");
+		if(isModify) {
+			tip.setBounds(10, this.staffId.getIDLabel().getY() + 30, 240, 30);
+			this.tip.setForeground(Color.BLUE);
+			this.tip.setText("修改成功");
+		}else {
+			tip.setBounds(80, this.modify.getY(), 240, 30);
+			this.tip.setText("");
+		}
 		//消除用户输入的人员编号
 		this.staffId.clearIdText();
 		

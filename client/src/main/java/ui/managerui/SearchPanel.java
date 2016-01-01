@@ -82,6 +82,10 @@ public class SearchPanel extends JPanel{
 	public JButton getCancel() {
 		return this.cancel;
 	}
+	
+	public JLabel getIDLabel() {
+		return this.idLabel;
+	}
 
 	public String getIdText() {
 		return idText.getText();

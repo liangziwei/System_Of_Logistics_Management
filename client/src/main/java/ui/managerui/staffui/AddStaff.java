@@ -284,7 +284,7 @@ public class AddStaff extends DetailPanel{
 		}
 		//验证该人员编号是否已经存在
 		StaffVO vo = this.staff.findStaff(id);
-		if(vo != null) {
+		if(vo != null && !isModify) {
 			tip.setText("该人员编号已存在");
 			return false;
 		}
