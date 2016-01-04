@@ -33,7 +33,7 @@ import businessLogic.businessLogicController.administratorController.LoginBL;
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel{
 	
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 	
 	private ViewController viewController;
 	private LoginBL login;

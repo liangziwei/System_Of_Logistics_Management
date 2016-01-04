@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -492,7 +491,7 @@ public class ModifyLoadingPanel extends DetailPanel {
 	}
 
 	private void showState2(String msg) {
-		this.state2.setText(msg);
+		this.state2.setText("<html>"+msg+"<html>");
 		this.repaint();
 	}
 }

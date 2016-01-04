@@ -4,7 +4,11 @@
         <!-- mysql连接设置 -->  
   		<url>jdbc:mysql://localhost/logistics_system</url>
         <user>root</user>  
+<<<<<<< HEAD
         <pass>1282976747</pass>  
+=======
+        <pass>blabla</pass>  
+>>>>>>> branch 'master' of https://github.com/zyfncg/System_Of_Logistics_Management.git
         <port>3306</port>  
     </VALUE>  
 </CONFIG>  

@@ -333,9 +333,11 @@ public class OriginalBuildPanel extends DetailPanel {
 				// TODO Auto-generated method stub
 				boolean result = save();
 				if (result) {
+					state.setForeground(Color.green);
 					showstate("账单保存成功");
 					;
 				} else {
+					state.setForeground(Color.red);
 					showstate("账单保存失败");
 				}
 			}

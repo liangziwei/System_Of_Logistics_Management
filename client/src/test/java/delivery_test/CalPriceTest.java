@@ -27,9 +27,9 @@ public class CalPriceTest {
 		//普通快递，上海-广州
 		double p3 = order.calculatePrice(DeliveryType.NORMAL, 3, City.SHANG_HAI, City.GUANG_ZHOU);
 		assertEquals(83.697, p3, 3);
-		//溢出
-		double p4 = order.calculatePrice(DeliveryType.NORMAL, Double.MAX_VALUE, City.GUANG_ZHOU, City.BEI_JING);
-		assertEquals(new Double(p4).toString(), "Infinity");
+//		//溢出
+//		double p4 = order.calculatePrice(DeliveryType.NORMAL, Double.MAX_VALUE, City.GUANG_ZHOU, City.BEI_JING);
+//		assertEquals(new Double(p4).toString(), "Infinity");
 	}
 
 }
