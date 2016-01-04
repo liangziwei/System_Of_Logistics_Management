@@ -12,14 +12,14 @@ public class VehicleTest {
 	
 	public void testaddVehicle(){
 		VehicleController vehicleControl=new VehicleController();
-		VehicleVO vehicleVO=new VehicleVO("025001008","苏A 00001","2");
+		VehicleVO vehicleVO=new VehicleVO("025001001","苏A 00001","2");
 		assertEquals(true,vehicleControl.addVehicle(vehicleVO));
 	}
 	@Test
 	public void testfindVehicle(){
 		VehicleController vehicleControl=new VehicleController();
 		assertEquals("025001001",vehicleControl.findVehicle("025001001").getVehicleid());
-		assertEquals("苏A 12345",vehicleControl.findVehicle("025001001").getNumber());
+		assertEquals("苏A 00001",vehicleControl.findVehicle("025001001").getNumber());
 		assertEquals("2",vehicleControl.findVehicle("025001001").getAge());
 	}
 	@Test
