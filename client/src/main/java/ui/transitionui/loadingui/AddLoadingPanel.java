@@ -181,7 +181,6 @@ public class AddLoadingPanel extends DetailPanel{
 	private void initUI(){
 		//
 		loadingid.setBounds(0, 0, LABEL_W, LABEL_H);
-		loadingid.setFont(WORD_FONT);
 		this.infoPanel.add(loadingid);
 		loadingidText.setBounds(loadingid.getX()+LABEL_W+COMPONENT_GAP_X,loadingid.getY() , TEXTid_W, TEXT_H);
 		loadingidText.setOpaque(false);
@@ -451,7 +450,7 @@ public class AddLoadingPanel extends DetailPanel{
 	}
 	
 	private void showState(String msg) {
-		this.state.setText(msg);
+		this.state.setText("<html>"+msg+"<html>");
 		this.repaint();
 	}
 }

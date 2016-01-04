@@ -169,7 +169,7 @@ public class Loading {
 		}
 		String position = constant.get(loadingVO.getloadingid().substring(0, 3));
 		if (position==null) {
-			loadingVO.seterrorMsg("中转单编号前3位数字应为城市编号");
+			loadingVO.seterrorMsg("装运编号前3位数字应为城市编号025 南京,010 北京,021 上海,020 广州");
 			return false;
 		}
 		if(loadingVO.getarrivalid().equals("")){
