@@ -27,7 +27,7 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 		String gender = null;
 		String birthday = null;
 		String salary = null;
-		String sql = "SELECT * FROM staffRecord WHERE year="+year;
+		String sql = "SELECT * FROM staffrecord WHERE year="+year;
 		ResultSet rs = null;
 		try {
 			rs = Database.findOperation(sql);
@@ -62,7 +62,7 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 		String id = null;
 		String type = null;
 		String name = null;
-		String sql = "SELECT * FROM organizationRecord WHERE year="+year;
+		String sql = "SELECT * FROM organizationrecord WHERE year="+year;
 		ResultSet rs = null;
 		try {
 			rs = Database.findOperation(sql);
@@ -94,7 +94,7 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 		String vehicleid = null;
 		String number = null;
 		String age = null;
-		String sql = "SELECT * FROM vehicleRecord WHERE year="+year;
+		String sql = "SELECT * FROM vehiclerecord WHERE year="+year;
 		ResultSet rs = null;
 		try {
 			rs = Database.findOperation(sql);
@@ -130,7 +130,7 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 		String rowid = null;
 		String shelfid = null;
 		String posid = null;
-		String sql = "SELECT * FROM repositoryRecord WHERE year="+year;
+		String sql = "SELECT * FROM repositoryrecord WHERE year="+year;
 		ResultSet rs = null;
 		try {
 			rs = Database.findOperation(sql);
@@ -165,7 +165,7 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 		List<AccountPO> thelist = new ArrayList<AccountPO>();
 		String name = null;
 		double balance = 0.0;
-		String sql = "SELECT * FROM accountRecord WHERE year="+year;
+		String sql = "SELECT * FROM accountrecord WHERE year="+year;
 		ResultSet rs = null;
 		try {
 			rs = Database.findOperation(sql);
@@ -195,11 +195,11 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 		String sql;
 		String staff_id;
 		for(StaffPO staffPO:list){
-			sql = "insert into staffRecord values(";
+			sql = "insert into staffrecord values(";
 			staff_id = staffPO.getId();
-			sql += year+",'"+staff_id.substring(0, 6) + "','" + staff_id + "','" + staffPO.getName() + "','" 
+			sql += year+",'" + staff_id + "','" + staffPO.getName() + "','" 
 					+ staffPO.getPosition() + "','"+ staffPO.getGender() + "','" 
-					+ staffPO.getBirthday() + "','"+ staffPO.getSalary() + "','" + staffPO.getSalaryType() + "',1,1);";
+					+ staffPO.getBirthday() + "','"+ staffPO.getSalary() + "');";
 			try {
 				Database.operate(sql);
 			} catch (SQLException e) {
@@ -217,10 +217,9 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 		// TODO Auto-generated method stub
 		String sql;
 		for(OrganizationPO organizationPO:list){
-			sql = "insert into organizationRecord values(";
+			sql = "insert into organizationrecord values(";
 			sql +=year+",'"+ organizationPO.getId() + "','" + organizationPO.getType() 
-					+ "','" + organizationPO.getName() + "','" + organizationPO.isApproved()
-					+ "','" + organizationPO.isPassed() + "');";
+					+ "','" + organizationPO.getName() + "');";
 			try {
 				Database.operate(sql);
 			} catch (SQLException e) {
@@ -234,7 +233,6 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 	@Override
 	public boolean addVehicleInfo(int year, List<VehiclePO> list)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		String vehicleid;
 		String number;
 		String age;
@@ -243,8 +241,8 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 			vehicleid=vehiclePO.getVehicleid();
 			number=vehiclePO.getNumber();
 			age=vehiclePO.getAge();
-			sql=year+"'"+vehicleid+"','"+number+"','"+age+"'";
-			if(!Database.add("vehicleRecord", sql)){
+			sql=year+",'"+vehicleid+"','"+number+"','"+age+"'";
+			if(!Database.add("vehiclerecord", sql)){
 				return false;
 			}
 		}
@@ -272,10 +270,10 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 			shelfid = repositoryPO.getshelfid();
 			posid = repositoryPO.getposid();
 
-			val = "'" + deliveryid + "','" + inrepositorydate + "','" + arrivalid + "','" + areaCode.toString() + "','"
+			val =year+",'" + deliveryid + "','" + inrepositorydate + "','" + arrivalid + "','" + areaCode.toString() + "','"
 					+ rowid + "','" + shelfid + "','" + posid + "'";
 			try {
-				if(!Database.add("repositoryRecord", val)){
+				if(!Database.add("repositoryrecord", val)){
 					return false;
 				}
 			} catch (Exception e) {
@@ -296,9 +294,9 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 		for(AccountPO accountPO:list){
 			name = accountPO.getName();
 			balance = accountPO.getBalance();
-			val = "'"+name+"',"+balance;
+			val = year+",'"+name+"',"+balance;
 			
-			if(!Database.add("accountRecord", val)){
+			if(!Database.add("accountrecord", val)){
 				return false;
 			}
 		}
@@ -310,7 +308,7 @@ public class OriginalInfoRecordDataImpl implements OriginalInfoRecordDataService
 	public List<Integer> getYearList() throws RemoteException {
 		// TODO Auto-generated method stub
 		List<Integer> yearList=new ArrayList<Integer>();
-		String sql="SELECT distinct year FROM organizationRecord";
+		String sql="SELECT distinct year FROM organizationrecord";
 		ResultSet rs = null;
 		try {
 			rs=Database.findOperation(sql);
