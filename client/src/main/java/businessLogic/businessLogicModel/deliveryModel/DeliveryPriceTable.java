@@ -1,5 +1,6 @@
 package businessLogic.businessLogicModel.deliveryModel;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,8 @@ public class DeliveryPriceTable {
 	}
 	
 	public static double calculatePrice(DeliveryType type, double distance, double weight) {
-		return distance / 1000 * PRICE_TABLE.get(type) * weight;
+		DecimalFormat format = new DecimalFormat(".##");
+		double price = distance / 1000 * PRICE_TABLE.get(type) * weight;
+		return Double.parseDouble(format.format(price));
 	}
 }
