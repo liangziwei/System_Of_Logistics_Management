@@ -34,7 +34,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 
 	private JTextField DeliveryidText = new JTextField();
 	private JTextField outrepositoryYear = new JTextField();
-	private JTextField transitionid = new JTextField();
+	private JComboBox<String> transitionid = new JComboBox<String>();
 	// private JTextField outrepositoryMonth = new JTextField();
 	// private JTextField outrepositoryDay = new JTextField();
 	private JTextField arrivalidText = new JTextField();
@@ -168,6 +168,10 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(transition);
 		transitionid.setBounds(transition.getX()+transition.getWidth()+COMPONENT_GAP_X, transition.getY(), TEXT_W, TEXT_H);
 		transitionid.setOpaque(false);
+		transitionid.addItem("0251");
+		transitionid.addItem("0101");
+		transitionid.addItem("0211");
+		transitionid.addItem("0201");
 		this.infoPanel.add(transitionid);
 		// JLabel apart1 = new JLabel("-");
 		// JLabel apart2 = new JLabel("-");
@@ -324,7 +328,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(false);
 		outrepositoryYear.setEditable(false);
 		dateChoose.setEnabled(false);
-		transitionid.setEditable(false);
+		transitionid.setEnabled(false);
 		// outrepositoryMonth.setEditable(false);
 		// outrepositoryDay.setEditable(false);
 		arrivalidText.setEditable(false);
@@ -336,7 +340,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		DeliveryidText.setEditable(true);
 		outrepositoryYear.setEditable(true);
 		dateChoose.setEnabled(true);
-		transitionid.setEditable(true);
+		transitionid.setEnabled(true);
 		// outrepositoryMonth.setEditable(true);
 		// outrepositoryDay.setEditable(true);
 		arrivalidText.setEditable(true);
@@ -348,7 +352,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 		String Delivery = DeliveryidText.getText().trim();
 		String outdate = outrepositoryYear.getText().trim();
 		String arrive = arrivalidText.getText().trim();
-		String transitid = transitionid.getText().trim();
+		String transitid = (String) transitionid.getSelectedItem();
 		LoadingType type = null;
 		String way = (String) loadingwayText.getSelectedItem();
 		switch (way) {
@@ -370,7 +374,7 @@ public class ModifyOutRepositoryPanel extends DetailPanel {
 	private void setinfo(OutRepositoryVO outRepositoryVO) {
 		// String[] outdate = outRepositoryVO.getoutrepositorydate().split("-");
 		outrepositoryYear.setText(outRepositoryVO.getoutrepositorydate());
-		transitionid.setText(outRepositoryVO.gettransitionid());
+		transitionid.setSelectedItem(outRepositoryVO.gettransitionid());
 		// outrepositoryMonth.setText(outdate[1]);
 		// outrepositoryDay.setText(outdate[2]);
 		arrivalidText.setText(outRepositoryVO.getarrivalid());

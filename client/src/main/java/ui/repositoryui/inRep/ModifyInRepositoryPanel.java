@@ -35,7 +35,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 
 	private JTextField DeliveryidText = new JTextField();
 	private JTextField inrepositoryYear = new JTextField();
-	private JTextField transitionid = new JTextField();
+	private JComboBox<String> transitionid = new JComboBox<String>();
 //	private JTextField inrepositoryMonth = new JTextField();
 //	private JTextField inrepositoryDay = new JTextField();
 	private JTextField arrivalidText = new JTextField();
@@ -174,6 +174,10 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		this.infoPanel.add(transition);
 		transitionid.setBounds(transition.getX()+transition.getWidth()+COMPONENT_GAP_X, transition.getY(), TEXT_W, TEXT_H);
 		transitionid.setOpaque(false);
+		transitionid.addItem("0251");
+		transitionid.addItem("0101");
+		transitionid.addItem("0211");
+		transitionid.addItem("0201");
 		this.infoPanel.add(transitionid);
 //		JLabel apart1 = new JLabel("-");
 //		JLabel apart2 = new JLabel("-");
@@ -363,7 +367,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 		String delivery = DeliveryidText.getText().trim();
 		String InRepDate = inrepositoryYear.getText().trim();
 		String arrive = arrivalidText.getText().trim();
-		String transitid = transitionid.getText().trim();
+		String transitid = (String) transitionid.getSelectedItem();
 		String AREA = (String) areaidText.getSelectedItem();
 		AreaCodeType areacode = null;
 		switch (AREA) {
@@ -390,7 +394,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 	private void disableComponents() {
 		inrepositoryYear.setEditable(false);
 		dateChoose.setEnabled(false);
-		transitionid.setEditable(false);
+		transitionid.setEnabled(false);
 //		inrepositoryMonth.setEditable(false);
 //		inrepositoryDay.setEditable(false);
 		arrivalidText.setEditable(false);
@@ -403,7 +407,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 	private void enableComponents() {
 		inrepositoryYear.setEditable(true);
 		dateChoose.setEnabled(true);
-		transitionid.setEditable(true);
+		transitionid.setEnabled(true);
 //		inrepositoryMonth.setEditable(true);
 //		inrepositoryDay.setEditable(true);
 		arrivalidText.setEditable(true);
@@ -416,7 +420,7 @@ public class ModifyInRepositoryPanel extends DetailPanel {
 	private void setinfo(InRepositoryVO inRepositoryVO) {
 //		String[] inrepositorydate = inRepositoryVO.getinrepositorydate().split("-");
 		inrepositoryYear.setText(inRepositoryVO.getinrepositorydate());
-		transitionid.setText(inRepositoryVO.gettransitionid());
+		transitionid.setSelectedItem(inRepositoryVO.gettransitionid());
 //		inrepositoryMonth.setText(inrepositorydate[1].trim());
 //		inrepositoryDay.setText(inrepositorydate[2].trim());
 		arrivalidText.setText(inRepositoryVO.getarrivalid().trim());

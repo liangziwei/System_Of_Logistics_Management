@@ -94,6 +94,7 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 			return null;
 		}
 		//相关信息（出库单）
+		String deli = null;
 		String date2 = null;
 		AreaCodeType areaCode2 = null;
 		String rowid2 = null;
@@ -106,7 +107,8 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 				date2 = rs2.getString("outrepositorydate");
 				if (TIME[0].compareTo(date2)<=0&&TIME[1].compareTo(date2)>=0) {
 					String deliveryid2 = rs2.getString("deliveryid");
-					deliveryID.add(deliveryid2);
+					String transitionId = rs2.getString("transitionid");
+					deliveryID.add(deliveryid2+" "+transitionId);
 				}			
 			}
 		} catch (Exception e) {
@@ -114,9 +116,12 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 			e.printStackTrace();
 		}
 		for(String del:deliveryID){
+			String[] Temp = del.split(" ");
+			String Find = "SELECT * FROM inRepository WHERE deliveryid="+"'"+Temp[0]+"'"+"&&transitionid="+"'"+Temp[1]+"'";
 			try {
-				ResultSet rs3 = Database.query("inRepository", "deliveryid", del);
+				ResultSet rs3 = Database.findOperation(Find);
 				while (rs3.next()) {
+					deli = rs3.getString("deliveryid");
 					areaCode2 = AreaCodeType.valueOf(rs3.getString("areaCode"));
 					rowid2 = rs3.getString("rowid");
 					shelfid2 = rs3.getString("shelfid");
@@ -128,7 +133,7 @@ public class ManageRepositoryDataImpl implements ManageRepositoryDataService {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-			RepositoryInfoPO repositoryInfoPOout = new RepositoryInfoPO(del, areaCode2, rowid2, shelfid2, posid2, false,transitid2);
+			RepositoryInfoPO repositoryInfoPOout = new RepositoryInfoPO(deli, areaCode2, rowid2, shelfid2, posid2, false,transitid2);
 			thelist.add(repositoryInfoPOout);	
 			
 		}

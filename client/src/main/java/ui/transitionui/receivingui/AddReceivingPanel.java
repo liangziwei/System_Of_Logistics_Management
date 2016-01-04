@@ -309,11 +309,15 @@ public class AddReceivingPanel extends DetailPanel {
 					if (transferringVO!=null) {
 						arrivalidText.setText(transferringVO.getarrivalid().trim());
 						departureidText.setText(transferringVO.getdepartureid().trim());
-						betransfer.setVisible(false);
+						betransfer.setForeground(Color.green);
+						betransfer.setText("中转单编号正确");
+						betransfer.setVisible(true);
 						istransfer = true;
 					}
 					else {
 						istransfer = false;
+						betransfer.setForeground(Color.red);
+						betransfer.setText("不存在该中转单");
 						betransfer.setVisible(true);
 					}
 					
@@ -327,11 +331,13 @@ public class AddReceivingPanel extends DetailPanel {
 						e1.printStackTrace();
 					}
 					if (entruck) {
+						beloading.setForeground(Color.green);
 						beloading.setText("装运单编号正确");
 						beloading.setVisible(true);
 						istransfer = true;						
 					}
 					else {
+						beloading.setForeground(Color.red);
 						beloading.setText("不存在该装车单");
 						beloading.setVisible(true);
 						istransfer = false;
