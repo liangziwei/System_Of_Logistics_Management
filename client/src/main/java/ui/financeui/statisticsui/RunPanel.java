@@ -124,7 +124,7 @@ public class RunPanel extends DetailPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(list!=null){
-					String fileSave = "d:\\workbook.xls";
+					String fileSave = null;
 					JFileChooser jfc=new JFileChooser(); 
 					int value = jfc.showSaveDialog(null);
 					if(value==JFileChooser.OPEN_DIALOG){
