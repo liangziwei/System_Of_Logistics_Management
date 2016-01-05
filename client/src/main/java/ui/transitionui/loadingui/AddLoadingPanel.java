@@ -9,6 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JComboBox;
@@ -23,6 +24,7 @@ import businessLogic.businessLogicController.transitionController.LoadingControl
 import businessLogicService.repositoryBLService.InRepositoryBLService;
 import businessLogicService.transitionBLService.LoadingBLService;
 import constant.LoadingType;
+import dataService.managerDataService.MakeConstantDataService;
 import dataService.repositoryDataService.OutRepositoryDataService;
 import network.RMI;
 import ui.baseui.DetailPanel;
@@ -31,6 +33,7 @@ import vo.repositoryVO.InRepositoryVO;
 import vo.transitionVO.LoadingVO;
 
 public class AddLoadingPanel extends DetailPanel{
+	private MakeConstantDataService makeConstantDataService = RMI.<MakeConstantDataService>getDataService("makeConstant");
 	private LoadingBLService loadingservice = new LoadingController();
 	private InRepositoryBLService InRepositoryBLService = new InRepositoryController();
 	private OutRepositoryDataService outRepositoryDataService = RMI.<OutRepositoryDataService>getDataService("outrepository");
@@ -362,7 +365,16 @@ public class AddLoadingPanel extends DetailPanel{
 		//使所有组件不可编辑
 		disableComponents();
 		//计算运费
-		String thefare = loadingservice.loadingFare("南京", loadingVO.getarrivalid(),loadingVO.getway())+"";
+		HashMap<String, String> constant = null;
+		try {
+			constant = makeConstantDataService.getIDTable();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String departure = loadingVO.getloadingid().substring(0, 3);
+		String city = constant.get(departure);
+		String thefare = loadingservice.loadingFare(city, loadingVO.getarrivalid(),loadingVO.getway())+"";
 		//显示运费
 		fareText.setText(thefare);
 		if(isFirstEnsure) {
