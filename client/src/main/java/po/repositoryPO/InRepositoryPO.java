@@ -167,4 +167,7 @@ public class InRepositoryPO implements Serializable, Approvable{
 		}
 		return vo;
 	}
+	
+	public static void try(){
+	}
 }
